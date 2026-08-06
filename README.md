@@ -13,8 +13,6 @@
 [![License: GPL v3](https://img.shields.io/badge/license-GPL--3.0-blue)](LICENSE)
 [![Content](https://img.shields.io/badge/content-SRD%205.2%20%2B%20non--redistributable-lightgrey)](NOTICE.md)
 
-[English](README.md) · [Türkçe](README.tr.md)
-
 </div>
 
 ---
