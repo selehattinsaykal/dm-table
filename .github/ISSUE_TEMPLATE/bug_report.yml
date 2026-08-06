@@ -1,0 +1,64 @@
+name: Bug report
+description: Something behaves incorrectly
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. Please never paste an AI provider API key, a campaign backup or
+        player personal data into an issue.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you expect instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open campaign …
+        2. Go to Combat → …
+        3. …
+    validations:
+      required: true
+
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Where did it happen?
+      options:
+        - DM app (Windows)
+        - DM app (Android)
+        - Player web panel
+        - Both DM app and player panel
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: App version
+      description: Shown in Settings, or the version from `pubspec.yaml` if you built it yourself.
+      placeholder: "1.1.0+2"
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: OS / browser
+      description: For player panel issues, the browser and device matter.
+      placeholder: "Windows 11 · player on iOS 18 Safari"
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or screenshots
+      description: Console output, stack traces, screenshots. Optional but helpful.

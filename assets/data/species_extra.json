@@ -1,0 +1,354 @@
+[
+ {
+  "key": "xphb-dragonborn",
+  "name": "Dragonborn",
+  "is_subspecies": false,
+  "document": "phb-2024",
+  "traits": [
+   {
+    "name": "Dragonborn",
+    "desc": "",
+    "type": "RACE",
+    "order": 1
+   }
+  ]
+ },
+ {
+  "key": "xphb-dwarf",
+  "name": "Dwarf",
+  "is_subspecies": false,
+  "document": "phb-2024",
+  "traits": [
+   {
+    "name": "Size",
+    "desc": "Medium (about 4–5 feet tall)Speed: 30 feetAs a Dwarf, you have these special traits.Darkvision. You have Darkvision with a range of 120 feet.Dwarven Resilience. You have Resistance to Poison damage. You also have Advantage on saving throws you make to avoid or end the Poisoned condition.Dwarven Toughness. Your Hit Point maximum increases by 1, and it increases by 1 again whenever you gain a level.Stonecunning. As a Bonus Action, you gain Tremorsense with a range of 60 feet for 10 minutes. You must be on a stone surface or touching a stone surface to use this Tremorsense. The stone can be natural or worked.You can use this Bonus Action a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest. chat: ''",
+    "type": "SIZE",
+    "order": 1
+   },
+   {
+    "name": "Speed",
+    "desc": "30 feetAs a Dwarf, you have these special traits.Darkvision. You have Darkvision with a range of 120 feet.Dwarven Resilience. You have Resistance to Poison damage. You also have Advantage on saving throws you make to avoid or end the Poisoned condition.Dwarven Toughness. Your Hit Point maximum increases by 1, and it increases by 1 again whenever you gain a level.Stonecunning. As a Bonus Action, you gain Tremorsense with a range of 60 feet for 10 minutes. You must be on a stone surface or touching a stone surface to use this Tremorsense. The stone can be natural or worked.You can use this Bonus Action a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest. chat: ''",
+    "type": "SPEED",
+    "order": 2
+   },
+   {
+    "name": "Dwarf",
+    "desc": "@Embed[Compendium.dnd5e.content24.JournalEntry.phbAppendixSpeci.JournalEntryPage.phbspDwarf000000 inline classes=\"free-rules-embed\"]Dwarf TraitsCreature Type: HumanoidSize: Medium (about 4–5 feet tall)Speed: 30 feetAs a Dwarf, you have these special traits.Darkvision. You have Darkvision with a range of 120 feet.Dwarven Resilience. You have Resistance to Poison damage. You also have Advantage on saving throws you make to avoid or end the Poisoned condition.Dwarven Toughness. Your Hit Point maximum increases by 1, and it increases by 1 again whenever you gain a level.Stonecunning. As a Bonus Action, you gain Tremorsense with a range of 60 feet for 10 minutes. You must be on a stone surface or touching a stone surface to use this Tremorsense. The stone can be natural or worked.You can use this Bonus Action a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest. chat: ''",
+    "type": "RACE",
+    "order": 3
+   }
+  ]
+ },
+ {
+  "key": "xphb-elf-drow",
+  "name": "Elf, Drow",
+  "is_subspecies": false,
+  "document": "phb-2024",
+  "traits": [
+   {
+    "name": "Size",
+    "desc": "Medium (about 5–6 feet tall)Speed: 30 feetAs an Elf, you have these special traits.Darkvision. You have Darkvision with a range of 60 feet.Elven Lineage. You are part of a lineage that grants you supernatural abilities.When you reach character levels 3 and 5, you learn a higher-level spell, as shown on the table. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest. You can also cast the spell using any spell slots you have of the appropriate level. Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the lineage).Drow Lineage FeaturesLevel 1Level 3Level 5The range of your Darkvision increases to 120 feet. You also know the @UUID[Compendium.dnd5e.spells24.Item.phbsplDancingLig]{Dancing Lights} cantrip.@UUID[Compendium.dnd5e.spells24.Item.phbsplFaerieFire]{Faerie Fire}@UUID[Compendium.dnd5e.spells24.Item.phbsplDarkness00]{Darkness}Fey Ancestry. You have Advantage on saving throws you make to avoid or end the &Reference[Charmed] condition.Keen Senses. You have proficiency in the Insight, Perception, or Survival skill.Trance. You don't need to sleep, and magic can't put you to sleep. You can finish a Long Rest in 4 hours if you spend those hours in a trancelike meditation, during which you retain consciousness. chat: ''",
+    "type": "SIZE",
+    "order": 1
+   },
+   {
+    "name": "Speed",
+    "desc": "30 feetAs an Elf, you have these special traits.Darkvision. You have Darkvision with a range of 60 feet.Elven Lineage. You are part of a lineage that grants you supernatural abilities.When you reach character levels 3 and 5, you learn a higher-level spell, as shown on the table. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest. You can also cast the spell using any spell slots you have of the appropriate level. Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the lineage).Drow Lineage FeaturesLevel 1Level 3Level 5The range of your Darkvision increases to 120 feet. You also know the @UUID[Compendium.dnd5e.spells24.Item.phbsplDancingLig]{Dancing Lights} cantrip.@UUID[Compendium.dnd5e.spells24.Item.phbsplFaerieFire]{Faerie Fire}@UUID[Compendium.dnd5e.spells24.Item.phbsplDarkness00]{Darkness}Fey Ancestry. You have Advantage on saving throws you make to avoid or end the &Reference[Charmed] condition.Keen Senses. You have proficiency in the Insight, Perception, or Survival skill.Trance. You don't need to sleep, and magic can't put you to sleep. You can finish a Long Rest in 4 hours if you spend those hours in a trancelike meditation, during which you retain consciousness. chat: ''",
+    "type": "SPEED",
+    "order": 2
+   },
+   {
+    "name": "Elf, Drow",
+    "desc": "@Embed[Compendium.dnd5e.content24.JournalEntry.phbAppendixSpeci.JournalEntryPage.phbspElf00000000 inline classes=\"free-rules-embed\"]Drow@Embed[Compendium.dnd5e.content24.JournalEntry.phbAppendixSpeci.JournalEntryPage.phbspDrow0000000 inline classes=\"free-rules-embed\"]Elf TraitsCreature Type: HumanoidSize: Medium (about 5–6 feet tall)Speed: 30 feetAs an Elf, you have these special traits.Darkvision. You have Darkvision with a range of 60 feet.Elven Lineage. You are part of a lineage that grants you supernatural abilities.When you reach character levels 3 and 5, you learn a higher-level spell, as shown on the table. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest. You can also cast the spell using any spell slots you have of the appropriate level. Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the lineage).Drow Lineage FeaturesLevel 1Level 3Level 5The range of your Darkvision increases to 120 feet. You also know the @UUID[Compendium.dnd5e.spells24.Item.phbsplDancingLig]{Dancing Lights} cantrip.@UUID[Compendium.dnd5e.spells24.Item.phbsplFaerieFire]{Faerie Fire}@UUID[Compendium.dnd5e.spells24.Item.phbsplDarkness00]{Darkness}Fey Ancestry. You have Advantage on saving throws you make to avoid or end the &Reference[Charmed] condition.Keen Senses. You have proficiency in the Insight, Perception, or Survival skill.Trance. You don't need to sleep, and magic can't put you to sleep. You can finish a Long Rest in 4 hours if you spend those hours in a trancelike meditation, during which you retain consciousness. chat: ''",
+    "type": "RACE",
+    "order": 3
+   }
+  ]
+ },
+ {
+  "key": "xphb-elf-high",
+  "name": "Elf, High",
+  "is_subspecies": false,
+  "document": "phb-2024",
+  "traits": [
+   {
+    "name": "Size",
+    "desc": "Medium (about 5–6 feet tall)Speed: 30 feetAs an Elf, you have these special traits.Darkvision. You have Darkvision with a range of 60 feet.Elven Lineage. You are part of a lineage that grants you supernatural abilities.When you reach character levels 3 and 5, you learn a higher-level spell, as shown on the table. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest. You can also cast the spell using any spell slots you have of the appropriate level. Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the lineage).High Elf Lineage FeaturesLevel 1Level 3Level 5You know the @UUID[Compendium.dnd5e.spells24.Item.phbsplPrestidigi]{Prestidigitation} cantrip. Whenever you finish a Long Rest, you can replace that cantrip with a different cantrip from the @UUID[Compendium.dnd5e.content24.JournalEntry.phbSpells0000000.JournalEntryPage.6AnqLUowgdsqMFvz]{Wizard spell list}.@UUID[Compendium.dnd5e.spells24.Item.phbsplDetectMagi]{Detect Magic}@UUID[Compendium.dnd5e.spells24.Item.phbsplMistyStep0]{Misty Step}Fey Ancestry. You have Advantage on saving throws you make to avoid or end the Charmed condition.Keen Senses. You have proficiency in the Insight, Perception, or Survival skill.Trance. You don't need to sleep, and magic can't put you to sleep. You can finish a Long Rest in 4 hours if you spend those hours in a trancelike meditation, during which you retain consciousness. chat: ''",
+    "type": "SIZE",
+    "order": 1
+   },
+   {
+    "name": "Speed",
+    "desc": "30 feetAs an Elf, you have these special traits.Darkvision. You have Darkvision with a range of 60 feet.Elven Lineage. You are part of a lineage that grants you supernatural abilities.When you reach character levels 3 and 5, you learn a higher-level spell, as shown on the table. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest. You can also cast the spell using any spell slots you have of the appropriate level. Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the lineage).High Elf Lineage FeaturesLevel 1Level 3Level 5You know the @UUID[Compendium.dnd5e.spells24.Item.phbsplPrestidigi]{Prestidigitation} cantrip. Whenever you finish a Long Rest, you can replace that cantrip with a different cantrip from the @UUID[Compendium.dnd5e.content24.JournalEntry.phbSpells0000000.JournalEntryPage.6AnqLUowgdsqMFvz]{Wizard spell list}.@UUID[Compendium.dnd5e.spells24.Item.phbsplDetectMagi]{Detect Magic}@UUID[Compendium.dnd5e.spells24.Item.phbsplMistyStep0]{Misty Step}Fey Ancestry. You have Advantage on saving throws you make to avoid or end the Charmed condition.Keen Senses. You have proficiency in the Insight, Perception, or Survival skill.Trance. You don't need to sleep, and magic can't put you to sleep. You can finish a Long Rest in 4 hours if you spend those hours in a trancelike meditation, during which you retain consciousness. chat: ''",
+    "type": "SPEED",
+    "order": 2
+   },
+   {
+    "name": "Elf, High",
+    "desc": "@Embed[Compendium.dnd5e.content24.JournalEntry.phbAppendixSpeci.JournalEntryPage.phbspElf00000000 inline classes=\"free-rules-embed\"]High Elves@Embed[Compendium.dnd5e.content24.JournalEntry.phbAppendixSpeci.JournalEntryPage.phbspHighElf0000 inline classes=\"free-rules-embed\"]Elf TraitsCreature Type: HumanoidSize: Medium (about 5–6 feet tall)Speed: 30 feetAs an Elf, you have these special traits.Darkvision. You have Darkvision with a range of 60 feet.Elven Lineage. You are part of a lineage that grants you supernatural abilities.When you reach character levels 3 and 5, you learn a higher-level spell, as shown on the table. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest. You can also cast the spell using any spell slots you have of the appropriate level. Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the lineage).High Elf Lineage FeaturesLevel 1Level 3Level 5You know the @UUID[Compendium.dnd5e.spells24.Item.phbsplPrestidigi]{Prestidigitation} cantrip. Whenever you finish a Long Rest, you can replace that cantrip with a different cantrip from the @UUID[Compendium.dnd5e.content24.JournalEntry.phbSpells0000000.JournalEntryPage.6AnqLUowgdsqMFvz]{Wizard spell list}.@UUID[Compendium.dnd5e.spells24.Item.phbsplDetectMagi]{Detect Magic}@UUID[Compendium.dnd5e.spells24.Item.phbsplMistyStep0]{Misty Step}Fey Ancestry. You have Advantage on saving throws you make to avoid or end the Charmed condition.Keen Senses. You have proficiency in the Insight, Perception, or Survival skill.Trance. You don't need to sleep, and magic can't put you to sleep. You can finish a Long Rest in 4 hours if you spend those hours in a trancelike meditation, during which you retain consciousness. chat: ''",
+    "type": "RACE",
+    "order": 3
+   }
+  ]
+ },
+ {
+  "key": "xphb-elf-wood",
+  "name": "Elf, Wood",
+  "is_subspecies": false,
+  "document": "phb-2024",
+  "traits": [
+   {
+    "name": "Size",
+    "desc": "Medium (about 5–6 feet tall)Speed: 30 feetAs an Elf, you have these special traits.Darkvision. You have Darkvision with a range of 60 feet.Elven Lineage. You are part of a lineage that grants you supernatural abilities.When you reach character levels 3 and 5, you learn a higher-level spell, as shown on the table. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest. You can also cast the spell using any spell slots you have of the appropriate level. Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the lineage).Wood Elf Lineage FeaturesLevel 1Level 3Level 5Your Speed increases to 35 feet. You also know the @UUID[Compendium.dnd5e.spells24.Item.phbsplDruidcraft]{Druidcraft} cantrip.@UUID[Compendium.dnd5e.spells24.Item.phbsplLongstride]{Longstrider}@UUID[Compendium.dnd5e.spells24.Item.phbsplPasswithou]{Pass without Trace}Fey Ancestry. You have Advantage on saving throws you make to avoid or end the Charmed condition.Keen Senses. You have proficiency in the Insight, Perception, or Survival skill.Trance. You don't need to sleep, and magic can't put you to sleep. You can finish a Long Rest in 4 hours if you spend those hours in a trancelike meditation, during which you retain consciousness. chat: ''",
+    "type": "SIZE",
+    "order": 1
+   },
+   {
+    "name": "Speed",
+    "desc": "30 feetAs an Elf, you have these special traits.Darkvision. You have Darkvision with a range of 60 feet.Elven Lineage. You are part of a lineage that grants you supernatural abilities.When you reach character levels 3 and 5, you learn a higher-level spell, as shown on the table. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest. You can also cast the spell using any spell slots you have of the appropriate level. Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the lineage).Wood Elf Lineage FeaturesLevel 1Level 3Level 5Your Speed increases to 35 feet. You also know the @UUID[Compendium.dnd5e.spells24.Item.phbsplDruidcraft]{Druidcraft} cantrip.@UUID[Compendium.dnd5e.spells24.Item.phbsplLongstride]{Longstrider}@UUID[Compendium.dnd5e.spells24.Item.phbsplPasswithou]{Pass without Trace}Fey Ancestry. You have Advantage on saving throws you make to avoid or end the Charmed condition.Keen Senses. You have proficiency in the Insight, Perception, or Survival skill.Trance. You don't need to sleep, and magic can't put you to sleep. You can finish a Long Rest in 4 hours if you spend those hours in a trancelike meditation, during which you retain consciousness. chat: ''",
+    "type": "SPEED",
+    "order": 2
+   },
+   {
+    "name": "Elf, Wood",
+    "desc": "@Embed[Compendium.dnd5e.content24.JournalEntry.phbAppendixSpeci.JournalEntryPage.phbspElf00000000 inline classes=\"free-rules-embed\"]Wood Elves@Embed[Compendium.dnd5e.content24.JournalEntry.phbAppendixSpeci.JournalEntryPage.phbspWoodElf0000 inline classes=\"free-rules-embed\"]Elf TraitsCreature Type: HumanoidSize: Medium (about 5–6 feet tall)Speed: 30 feetAs an Elf, you have these special traits.Darkvision. You have Darkvision with a range of 60 feet.Elven Lineage. You are part of a lineage that grants you supernatural abilities.When you reach character levels 3 and 5, you learn a higher-level spell, as shown on the table. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest. You can also cast the spell using any spell slots you have of the appropriate level. Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the lineage).Wood Elf Lineage FeaturesLevel 1Level 3Level 5Your Speed increases to 35 feet. You also know the @UUID[Compendium.dnd5e.spells24.Item.phbsplDruidcraft]{Druidcraft} cantrip.@UUID[Compendium.dnd5e.spells24.Item.phbsplLongstride]{Longstrider}@UUID[Compendium.dnd5e.spells24.Item.phbsplPasswithou]{Pass without Trace}Fey Ancestry. You have Advantage on saving throws you make to avoid or end the Charmed condition.Keen Senses. You have proficiency in the Insight, Perception, or Survival skill.Trance. You don't need to sleep, and magic can't put you to sleep. You can finish a Long Rest in 4 hours if you spend those hours in a trancelike meditation, during which you retain consciousness. chat: ''",
+    "type": "RACE",
+    "order": 3
+   }
+  ]
+ },
+ {
+  "key": "xphb-gnome-forest",
+  "name": "Gnome, Forest",
+  "is_subspecies": false,
+  "document": "phb-2024",
+  "traits": [
+   {
+    "name": "Size",
+    "desc": "Small (about 3–4 feet tall)Speed: 30 feetAs a Gnome, you have these special traits.Darkvision. You have Darkvision with a range of 60 feet.Gnomish Cunning. You have Advantage on Intelligence, Wisdom, and Charisma saving throws.Gnomish Lineage. You are part of a lineage that grants you supernatural abilities. Whichever lineage you choose, Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the lineage):Forest Gnome. You know the @UUID[Compendium.dnd5e.spells24.Item.phbsplMinorIllus]{Minor Illusion} cantrip. You also always have the @UUID[Compendium.dnd5e.spells24.Item.phbsplSpeakwithA]{Speak with Animals} spell prepared. You can cast it without a spell slot a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest. You can also use any spell slots you have to cast the spell. chat: ''",
+    "type": "SIZE",
+    "order": 1
+   },
+   {
+    "name": "Speed",
+    "desc": "30 feetAs a Gnome, you have these special traits.Darkvision. You have Darkvision with a range of 60 feet.Gnomish Cunning. You have Advantage on Intelligence, Wisdom, and Charisma saving throws.Gnomish Lineage. You are part of a lineage that grants you supernatural abilities. Whichever lineage you choose, Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the lineage):Forest Gnome. You know the @UUID[Compendium.dnd5e.spells24.Item.phbsplMinorIllus]{Minor Illusion} cantrip. You also always have the @UUID[Compendium.dnd5e.spells24.Item.phbsplSpeakwithA]{Speak with Animals} spell prepared. You can cast it without a spell slot a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest. You can also use any spell slots you have to cast the spell. chat: ''",
+    "type": "SPEED",
+    "order": 2
+   },
+   {
+    "name": "Gnome, Forest",
+    "desc": "@Embed[Compendium.dnd5e.content24.JournalEntry.phbAppendixSpeci.JournalEntryPage.phbspGnome000000 inline classes=\"free-rules-embed\"]Gnome TraitsCreature Type: HumanoidSize: Small (about 3–4 feet tall)Speed: 30 feetAs a Gnome, you have these special traits.Darkvision. You have Darkvision with a range of 60 feet.Gnomish Cunning. You have Advantage on Intelligence, Wisdom, and Charisma saving throws.Gnomish Lineage. You are part of a lineage that grants you supernatural abilities. Whichever lineage you choose, Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the lineage):Forest Gnome. You know the @UUID[Compendium.dnd5e.spells24.Item.phbsplMinorIllus]{Minor Illusion} cantrip. You also always have the @UUID[Compendium.dnd5e.spells24.Item.phbsplSpeakwithA]{Speak with Animals} spell prepared. You can cast it without a spell slot a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest. You can also use any spell slots you have to cast the spell. chat: ''",
+    "type": "RACE",
+    "order": 3
+   }
+  ]
+ },
+ {
+  "key": "xphb-gnome-rock",
+  "name": "Gnome, Rock",
+  "is_subspecies": false,
+  "document": "phb-2024",
+  "traits": [
+   {
+    "name": "Size",
+    "desc": "Small (about 3–4 feet tall)Speed: 30 feetAs a Gnome, you have these special traits.Darkvision. You have Darkvision with a range of 60 feet.Gnomish Cunning. You have Advantage on Intelligence, Wisdom, and Charisma saving throws.Gnomish Lineage. You are part of a lineage that grants you supernatural abilities. Whichever lineage you choose, Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the lineage):Rock Gnome. You know the @UUID[Compendium.dnd5e.spells24.Item.phbsplMending000]{Mending} and @UUID[Compendium.dnd5e.spells24.Item.phbsplPrestidigi]{Prestidigitation} cantrips. In addition, you can spend 10 minutes casting Prestidigitation to create a Tiny clockwork device (AC 5, 1 HP), such as a toy, fire starter, or music box. When you create the device, you determine its function by choosing one effect from Prestidigitation; the device produces that effect whenever you or another creature takes a Bonus Action to activate it with a touch. If the chosen effect has options within it, you choose one of those options for the device when you create it. For example, if you choose the spell's ignite-extinguish effect, you determine whether the device ignites or extinguishes fire; the device doesn't do both. You can have three such devices in existence at a time, and each falls apart 8 hours after its creation or when you dismantle it with a touch as a Utilize action. chat: ''",
+    "type": "SIZE",
+    "order": 1
+   },
+   {
+    "name": "Speed",
+    "desc": "30 feetAs a Gnome, you have these special traits.Darkvision. You have Darkvision with a range of 60 feet.Gnomish Cunning. You have Advantage on Intelligence, Wisdom, and Charisma saving throws.Gnomish Lineage. You are part of a lineage that grants you supernatural abilities. Whichever lineage you choose, Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the lineage):Rock Gnome. You know the @UUID[Compendium.dnd5e.spells24.Item.phbsplMending000]{Mending} and @UUID[Compendium.dnd5e.spells24.Item.phbsplPrestidigi]{Prestidigitation} cantrips. In addition, you can spend 10 minutes casting Prestidigitation to create a Tiny clockwork device (AC 5, 1 HP), such as a toy, fire starter, or music box. When you create the device, you determine its function by choosing one effect from Prestidigitation; the device produces that effect whenever you or another creature takes a Bonus Action to activate it with a touch. If the chosen effect has options within it, you choose one of those options for the device when you create it. For example, if you choose the spell's ignite-extinguish effect, you determine whether the device ignites or extinguishes fire; the device doesn't do both. You can have three such devices in existence at a time, and each falls apart 8 hours after its creation or when you dismantle it with a touch as a Utilize action. chat: ''",
+    "type": "SPEED",
+    "order": 2
+   },
+   {
+    "name": "Gnome, Rock",
+    "desc": "@Embed[Compendium.dnd5e.content24.JournalEntry.phbAppendixSpeci.JournalEntryPage.phbspGnome000000 inline classes=\"free-rules-embed\"]Gnome TraitsCreature Type: HumanoidSize: Small (about 3–4 feet tall)Speed: 30 feetAs a Gnome, you have these special traits.Darkvision. You have Darkvision with a range of 60 feet.Gnomish Cunning. You have Advantage on Intelligence, Wisdom, and Charisma saving throws.Gnomish Lineage. You are part of a lineage that grants you supernatural abilities. Whichever lineage you choose, Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the lineage):Rock Gnome. You know the @UUID[Compendium.dnd5e.spells24.Item.phbsplMending000]{Mending} and @UUID[Compendium.dnd5e.spells24.Item.phbsplPrestidigi]{Prestidigitation} cantrips. In addition, you can spend 10 minutes casting Prestidigitation to create a Tiny clockwork device (AC 5, 1 HP), such as a toy, fire starter, or music box. When you create the device, you determine its function by choosing one effect from Prestidigitation; the device produces that effect whenever you or another creature takes a Bonus Action to activate it with a touch. If the chosen effect has options within it, you choose one of those options for the device when you create it. For example, if you choose the spell's ignite-extinguish effect, you determine whether the device ignites or extinguishes fire; the device doesn't do both. You can have three such devices in existence at a time, and each falls apart 8 hours after its creation or when you dismantle it with a touch as a Utilize action. chat: ''",
+    "type": "RACE",
+    "order": 3
+   }
+  ]
+ },
+ {
+  "key": "xphb-goliath",
+  "name": "Goliath",
+  "is_subspecies": false,
+  "document": "phb-2024",
+  "traits": [
+   {
+    "name": "Size",
+    "desc": "Medium (about 7–8 feet tall)Speed: 35 feetAs a Goliath, you have these special traits.Giant Ancestry. You are descended from Giants. Choose one of the following benefits—a supernatural boon from your ancestry; you can use the chosen benefit a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest:Cloud's Jaunt (Cloud Giant). As a Bonus Action, you magically teleport up to 30 feet to an unoccupied space you can see.Fire's Burn (Fire Giant). When you hit a target with an attack roll and deal damage to it, you can also deal 1d10 Fire damage to that target.Frost's Chill (Frost Giant). When you hit a target with an attack roll and deal damage to it, you can also deal 1d6 Cold damage to that target and reduce its Speed by 10 feet until the start of your next turn.Hill's Tumble (Hill Giant). When you hit a Large or smaller creature with an attack roll and deal damage to it, you can give that target the &Reference[Prone] condition.Stone's Endurance (Stone Giant). When you take damage, you can take a Reaction to roll 1d12. Add your Constitution modifier to the number rolled and reduce the damage by that total.Storm's Thunder (Storm Giant). When you take damage from a creature within 60 feet of you, you can take a Reaction to deal 1d8 Thunder damage to that creature.Large Form. Starting at character level 5, you can change your size to Large as a Bonus Action if you're in a big enough space. This transformation lasts for 10 minutes or until you end it (no action required). For that duration, you have Advantage on Strength checks, and your Speed increases by 10 feet. Once you use this trait, you can't use it again until you finish a Long Rest.Powerful Build. You have Advantage on any ability check you make to end the Grappled condition. You also count as one size larger when determining your carrying capacity. chat: ''",
+    "type": "SIZE",
+    "order": 1
+   },
+   {
+    "name": "Speed",
+    "desc": "35 feetAs a Goliath, you have these special traits.Giant Ancestry. You are descended from Giants. Choose one of the following benefits—a supernatural boon from your ancestry; you can use the chosen benefit a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest:Cloud's Jaunt (Cloud Giant). As a Bonus Action, you magically teleport up to 30 feet to an unoccupied space you can see.Fire's Burn (Fire Giant). When you hit a target with an attack roll and deal damage to it, you can also deal 1d10 Fire damage to that target.Frost's Chill (Frost Giant). When you hit a target with an attack roll and deal damage to it, you can also deal 1d6 Cold damage to that target and reduce its Speed by 10 feet until the start of your next turn.Hill's Tumble (Hill Giant). When you hit a Large or smaller creature with an attack roll and deal damage to it, you can give that target the &Reference[Prone] condition.Stone's Endurance (Stone Giant). When you take damage, you can take a Reaction to roll 1d12. Add your Constitution modifier to the number rolled and reduce the damage by that total.Storm's Thunder (Storm Giant). When you take damage from a creature within 60 feet of you, you can take a Reaction to deal 1d8 Thunder damage to that creature.Large Form. Starting at character level 5, you can change your size to Large as a Bonus Action if you're in a big enough space. This transformation lasts for 10 minutes or until you end it (no action required). For that duration, you have Advantage on Strength checks, and your Speed increases by 10 feet. Once you use this trait, you can't use it again until you finish a Long Rest.Powerful Build. You have Advantage on any ability check you make to end the Grappled condition. You also count as one size larger when determining your carrying capacity. chat: ''",
+    "type": "SPEED",
+    "order": 2
+   },
+   {
+    "name": "Goliath",
+    "desc": "@Embed[Compendium.dnd5e.content24.JournalEntry.phbAppendixSpeci.JournalEntryPage.phbspGoliath0000 inline classes=\"free-rules-embed\"]Goliath TraitsCreature Type: HumanoidSize: Medium (about 7–8 feet tall)Speed: 35 feetAs a Goliath, you have these special traits.Giant Ancestry. You are descended from Giants. Choose one of the following benefits—a supernatural boon from your ancestry; you can use the chosen benefit a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest:Cloud's Jaunt (Cloud Giant). As a Bonus Action, you magically teleport up to 30 feet to an unoccupied space you can see.Fire's Burn (Fire Giant). When you hit a target with an attack roll and deal damage to it, you can also deal 1d10 Fire damage to that target.Frost's Chill (Frost Giant). When you hit a target with an attack roll and deal damage to it, you can also deal 1d6 Cold damage to that target and reduce its Speed by 10 feet until the start of your next turn.Hill's Tumble (Hill Giant). When you hit a Large or smaller creature with an attack roll and deal damage to it, you can give that target the &Reference[Prone] condition.Stone's Endurance (Stone Giant). When you take damage, you can take a Reaction to roll 1d12. Add your Constitution modifier to the number rolled and reduce the damage by that total.Storm's Thunder (Storm Giant). When you take damage from a creature within 60 feet of you, you can take a Reaction to deal 1d8 Thunder damage to that creature.Large Form. Starting at character level 5, you can change your size to Large as a Bonus Action if you're in a big enough space. This transformation lasts for 10 minutes or until you end it (no action required). For that duration, you have Advantage on Strength checks, and your Speed increases by 10 feet. Once you use this trait, you can't use it again until you finish a Long Rest.Powerful Build. You have Advantage on any ability check you make to end the Grappled condition. You also count as one size larger when determining your carrying capacity. chat: ''",
+    "type": "RACE",
+    "order": 3
+   }
+  ]
+ },
+ {
+  "key": "xphb-halfling",
+  "name": "Halfling",
+  "is_subspecies": false,
+  "document": "phb-2024",
+  "traits": [
+   {
+    "name": "Size",
+    "desc": "Small (about 2–3 feet tall)Speed: 30 feetAs a Halfling, you have these special traits.Brave. You have Advantage on saving throws you make to avoid or end the Frightened condition.Halfling Nimbleness. You can move through the space of any creature that is a size larger than you, but you can't stop in the same space.Luck. When you roll a 1 on the d20 of a D20 Test, you can reroll the die, and you must use the new roll.Naturally Stealthy. You can take the Hide action even when you are obscured only by a creature that is at least one size larger than you. chat: ''",
+    "type": "SIZE",
+    "order": 1
+   },
+   {
+    "name": "Speed",
+    "desc": "30 feetAs a Halfling, you have these special traits.Brave. You have Advantage on saving throws you make to avoid or end the Frightened condition.Halfling Nimbleness. You can move through the space of any creature that is a size larger than you, but you can't stop in the same space.Luck. When you roll a 1 on the d20 of a D20 Test, you can reroll the die, and you must use the new roll.Naturally Stealthy. You can take the Hide action even when you are obscured only by a creature that is at least one size larger than you. chat: ''",
+    "type": "SPEED",
+    "order": 2
+   },
+   {
+    "name": "Halfling",
+    "desc": "@Embed[Compendium.dnd5e.content24.JournalEntry.phbAppendixSpeci.JournalEntryPage.phbspHalfling000 inline classes=\"free-rules-embed\"]Halfling TraitsCreature Type: HumanoidSize: Small (about 2–3 feet tall)Speed: 30 feetAs a Halfling, you have these special traits.Brave. You have Advantage on saving throws you make to avoid or end the Frightened condition.Halfling Nimbleness. You can move through the space of any creature that is a size larger than you, but you can't stop in the same space.Luck. When you roll a 1 on the d20 of a D20 Test, you can reroll the die, and you must use the new roll.Naturally Stealthy. You can take the Hide action even when you are obscured only by a creature that is at least one size larger than you. chat: ''",
+    "type": "RACE",
+    "order": 3
+   }
+  ]
+ },
+ {
+  "key": "xphb-human",
+  "name": "Human",
+  "is_subspecies": false,
+  "document": "phb-2024",
+  "traits": [
+   {
+    "name": "Size",
+    "desc": "Medium (about 4–7 feet tall) or Small (about 2–4 feet tall), chosen when you select this speciesSpeed: 30 feetAs a Human, you have these special traits.Resourceful. You gain Heroic Inspiration whenever you finish a Long Rest.Skillful. You gain proficiency in one skill of your choice.Versatile. You gain an Origin feat of your choice (see chapter 5). Skilled is recommended. chat: ''",
+    "type": "SIZE",
+    "order": 1
+   },
+   {
+    "name": "Speed",
+    "desc": "30 feetAs a Human, you have these special traits.Resourceful. You gain Heroic Inspiration whenever you finish a Long Rest.Skillful. You gain proficiency in one skill of your choice.Versatile. You gain an Origin feat of your choice (see chapter 5). Skilled is recommended. chat: ''",
+    "type": "SPEED",
+    "order": 2
+   },
+   {
+    "name": "Human",
+    "desc": "@Embed[Compendium.dnd5e.content24.JournalEntry.phbAppendixSpeci.JournalEntryPage.phbspHuman000000 inline classes=\"free-rules-embed\"]Human TraitsCreature Type: HumanoidSize: Medium (about 4–7 feet tall) or Small (about 2–4 feet tall), chosen when you select this speciesSpeed: 30 feetAs a Human, you have these special traits.Resourceful. You gain Heroic Inspiration whenever you finish a Long Rest.Skillful. You gain proficiency in one skill of your choice.Versatile. You gain an Origin feat of your choice (see chapter 5). Skilled is recommended. chat: ''",
+    "type": "RACE",
+    "order": 3
+   }
+  ]
+ },
+ {
+  "key": "xphb-orc",
+  "name": "Orc",
+  "is_subspecies": false,
+  "document": "phb-2024",
+  "traits": [
+   {
+    "name": "Size",
+    "desc": "Medium (about 6–7 feet tall)Speed: 30 feetAs an Orc, you have these special traits.Adrenaline Rush. You can take the Dash action as a Bonus Action. When you do so, you gain a number of Temporary Hit Points equal to your Proficiency Bonus. You can use this trait a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Short or Long Rest.Darkvision. You have Darkvision with a range of 120 feet.Relentless Endurance. When you are reduced to 0 Hit Points but not killed outright, you can drop to 1 Hit Point instead. Once you use this trait, you can't do so again until you finish a Long Rest. chat: ''",
+    "type": "SIZE",
+    "order": 1
+   },
+   {
+    "name": "Speed",
+    "desc": "30 feetAs an Orc, you have these special traits.Adrenaline Rush. You can take the Dash action as a Bonus Action. When you do so, you gain a number of Temporary Hit Points equal to your Proficiency Bonus. You can use this trait a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Short or Long Rest.Darkvision. You have Darkvision with a range of 120 feet.Relentless Endurance. When you are reduced to 0 Hit Points but not killed outright, you can drop to 1 Hit Point instead. Once you use this trait, you can't do so again until you finish a Long Rest. chat: ''",
+    "type": "SPEED",
+    "order": 2
+   },
+   {
+    "name": "Orc",
+    "desc": "@Embed[Compendium.dnd5e.content24.JournalEntry.phbAppendixSpeci.JournalEntryPage.phbspOrc00000000 inline classes=\"free-rules-embed\"]Orc TraitsCreature Type: HumanoidSize: Medium (about 6–7 feet tall)Speed: 30 feetAs an Orc, you have these special traits.Adrenaline Rush. You can take the Dash action as a Bonus Action. When you do so, you gain a number of Temporary Hit Points equal to your Proficiency Bonus. You can use this trait a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Short or Long Rest.Darkvision. You have Darkvision with a range of 120 feet.Relentless Endurance. When you are reduced to 0 Hit Points but not killed outright, you can drop to 1 Hit Point instead. Once you use this trait, you can't do so again until you finish a Long Rest. chat: ''",
+    "type": "RACE",
+    "order": 3
+   }
+  ]
+ },
+ {
+  "key": "xphb-tiefling-abyssal",
+  "name": "Tiefling, Abyssal",
+  "is_subspecies": false,
+  "document": "phb-2024",
+  "traits": [
+   {
+    "name": "Size",
+    "desc": "Medium (about 4–7 feet tall) or Small (about 3–4 feet tall), chosen when you select this speciesSpeed: 30 feetAs a Tiefling, you have the following special traits.Darkvision. You have Darkvision with a range of 60 feet.Fiendish Legacy. You are the recipient of a legacy that grants you supernatural abilities.When you reach character levels 3 and 5, you learn a higher-level spell, as shown on the table. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest. You can also cast the spell using any spell slots you have of the appropriate level. Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the legacy).Otherworldly Presence. You know the @UUID[Compendium.dnd5e.spells24.Item.phbsplThaumaturg]{Thaumaturgy} cantrip. When you cast it with this trait, the spell uses the same spellcasting ability you use for your Fiendish Legacy trait.Abyssal Legacy TraitsLevel 1Level 3Level 5You have Resistance to Poison damage. You also know the @UUID[Compendium.dnd5e.spells24.Item.phbsplPoisonSpra]{Poison Spray} cantrip.@UUID[Compendium.dnd5e.spells24.Item.phbsplRayofSickn]{Ray of Sickness}@UUID[Compendium.dnd5e.spells24.Item.phbsplHoldPerson]{Hold Person} chat: ''",
+    "type": "SIZE",
+    "order": 1
+   },
+   {
+    "name": "Speed",
+    "desc": "30 feetAs a Tiefling, you have the following special traits.Darkvision. You have Darkvision with a range of 60 feet.Fiendish Legacy. You are the recipient of a legacy that grants you supernatural abilities.When you reach character levels 3 and 5, you learn a higher-level spell, as shown on the table. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest. You can also cast the spell using any spell slots you have of the appropriate level. Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the legacy).Otherworldly Presence. You know the @UUID[Compendium.dnd5e.spells24.Item.phbsplThaumaturg]{Thaumaturgy} cantrip. When you cast it with this trait, the spell uses the same spellcasting ability you use for your Fiendish Legacy trait.Abyssal Legacy TraitsLevel 1Level 3Level 5You have Resistance to Poison damage. You also know the @UUID[Compendium.dnd5e.spells24.Item.phbsplPoisonSpra]{Poison Spray} cantrip.@UUID[Compendium.dnd5e.spells24.Item.phbsplRayofSickn]{Ray of Sickness}@UUID[Compendium.dnd5e.spells24.Item.phbsplHoldPerson]{Hold Person} chat: ''",
+    "type": "SPEED",
+    "order": 2
+   },
+   {
+    "name": "Tiefling, Abyssal",
+    "desc": "@Embed[Compendium.dnd5e.content24.JournalEntry.phbAppendixSpeci.JournalEntryPage.phbspTiefling000 inline classes=\"free-rules-embed\"]Abyssal@Embed[Compendium.dnd5e.content24.JournalEntry.phbAppendixSpeci.JournalEntryPage.phbspAbyssalTief inline classes=\"free-rules-embed\"]Tiefling TraitsCreature Type: HumanoidSize: Medium (about 4–7 feet tall) or Small (about 3–4 feet tall), chosen when you select this speciesSpeed: 30 feetAs a Tiefling, you have the following special traits.Darkvision. You have Darkvision with a range of 60 feet.Fiendish Legacy. You are the recipient of a legacy that grants you supernatural abilities.When you reach character levels 3 and 5, you learn a higher-level spell, as shown on the table. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest. You can also cast the spell using any spell slots you have of the appropriate level. Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the legacy).Otherworldly Presence. You know the @UUID[Compendium.dnd5e.spells24.Item.phbsplThaumaturg]{Thaumaturgy} cantrip. When you cast it with this trait, the spell uses the same spellcasting ability you use for your Fiendish Legacy trait.Abyssal Legacy TraitsLevel 1Level 3Level 5You have Resistance to Poison damage. You also know the @UUID[Compendium.dnd5e.spells24.Item.phbsplPoisonSpra]{Poison Spray} cantrip.@UUID[Compendium.dnd5e.spells24.Item.phbsplRayofSickn]{Ray of Sickness}@UUID[Compendium.dnd5e.spells24.Item.phbsplHoldPerson]{Hold Person} chat: ''",
+    "type": "RACE",
+    "order": 3
+   }
+  ]
+ },
+ {
+  "key": "xphb-tiefling-chthonic",
+  "name": "Tiefling, Chthonic",
+  "is_subspecies": false,
+  "document": "phb-2024",
+  "traits": [
+   {
+    "name": "Size",
+    "desc": "Medium (about 4–7 feet tall) or Small (about 3–4 feet tall), chosen when you select this speciesSpeed: 30 feetAs a Tiefling, you have the following special traits.Darkvision. You have Darkvision with a range of 60 feet.Fiendish Legacy. You are the recipient of a legacy that grants you supernatural abilities.When you reach character levels 3 and 5, you learn a higher-level spell, as shown on the table. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest. You can also cast the spell using any spell slots you have of the appropriate level. Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the legacy).Otherworldly Presence. You know the @UUID[Compendium.dnd5e.spells24.Item.phbsplThaumaturg]{Thaumaturgy} cantrip. When you cast it with this trait, the spell uses the same spellcasting ability you use for your Fiendish Legacy trait.Fiendish LegaciesLevel 1Level 3Level 5You have Resistance to Necrotic damage.You also know the @UUID[Compendium.dnd5e.spells24.Item.phbsplChillTouch]{Chill Touch} cantrip.@UUID[Compendium.dnd5e.spells24.Item.phbsplFalseLife0]{False Life}@UUID[Compendium.dnd5e.spells24.Item.phbsplRayofEnfee]{Ray of Enfeeblement} chat: ''",
+    "type": "SIZE",
+    "order": 1
+   },
+   {
+    "name": "Speed",
+    "desc": "30 feetAs a Tiefling, you have the following special traits.Darkvision. You have Darkvision with a range of 60 feet.Fiendish Legacy. You are the recipient of a legacy that grants you supernatural abilities.When you reach character levels 3 and 5, you learn a higher-level spell, as shown on the table. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest. You can also cast the spell using any spell slots you have of the appropriate level. Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the legacy).Otherworldly Presence. You know the @UUID[Compendium.dnd5e.spells24.Item.phbsplThaumaturg]{Thaumaturgy} cantrip. When you cast it with this trait, the spell uses the same spellcasting ability you use for your Fiendish Legacy trait.Fiendish LegaciesLevel 1Level 3Level 5You have Resistance to Necrotic damage.You also know the @UUID[Compendium.dnd5e.spells24.Item.phbsplChillTouch]{Chill Touch} cantrip.@UUID[Compendium.dnd5e.spells24.Item.phbsplFalseLife0]{False Life}@UUID[Compendium.dnd5e.spells24.Item.phbsplRayofEnfee]{Ray of Enfeeblement} chat: ''",
+    "type": "SPEED",
+    "order": 2
+   },
+   {
+    "name": "Tiefling, Chthonic",
+    "desc": "@Embed[Compendium.dnd5e.content24.JournalEntry.phbAppendixSpeci.JournalEntryPage.phbspTiefling000 inline classes=\"free-rules-embed\"]Chthonic@Embed[Compendium.dnd5e.content24.JournalEntry.phbAppendixSpeci.JournalEntryPage.phbspChthonicTie inline classes=\"free-rules-embed\"]Tiefling TraitsCreature Type: HumanoidSize: Medium (about 4–7 feet tall) or Small (about 3–4 feet tall), chosen when you select this speciesSpeed: 30 feetAs a Tiefling, you have the following special traits.Darkvision. You have Darkvision with a range of 60 feet.Fiendish Legacy. You are the recipient of a legacy that grants you supernatural abilities.When you reach character levels 3 and 5, you learn a higher-level spell, as shown on the table. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest. You can also cast the spell using any spell slots you have of the appropriate level. Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the legacy).Otherworldly Presence. You know the @UUID[Compendium.dnd5e.spells24.Item.phbsplThaumaturg]{Thaumaturgy} cantrip. When you cast it with this trait, the spell uses the same spellcasting ability you use for your Fiendish Legacy trait.Fiendish LegaciesLevel 1Level 3Level 5You have Resistance to Necrotic damage.You also know the @UUID[Compendium.dnd5e.spells24.Item.phbsplChillTouch]{Chill Touch} cantrip.@UUID[Compendium.dnd5e.spells24.Item.phbsplFalseLife0]{False Life}@UUID[Compendium.dnd5e.spells24.Item.phbsplRayofEnfee]{Ray of Enfeeblement} chat: ''",
+    "type": "RACE",
+    "order": 3
+   }
+  ]
+ },
+ {
+  "key": "xphb-tiefling-infernal",
+  "name": "Tiefling, Infernal",
+  "is_subspecies": false,
+  "document": "phb-2024",
+  "traits": [
+   {
+    "name": "Size",
+    "desc": "Medium (about 4–7 feet tall) or Small (about 3–4 feet tall), chosen when you select this speciesSpeed: 30 feetAs a Tiefling, you have the following special traits.Darkvision. You have Darkvision with a range of 60 feet.Fiendish Legacy. You are the recipient of a legacy that grants you supernatural abilities.When you reach character levels 3 and 5, you learn a higher-level spell, as shown on the table. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest. You can also cast the spell using any spell slots you have of the appropriate level. Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the legacy).Otherworldly Presence. You know the @UUID[Compendium.dnd5e.spells24.Item.phbsplThaumaturg]{Thaumaturgy} cantrip. When you cast it with this trait, the spell uses the same spellcasting ability you use for your Fiendish Legacy trait.Fiendish LegaciesLevel 1Level 3Level 5You have Resistance to Fire damage. You also know the @UUID[Compendium.dnd5e.spells24.Item.phbsplFireBolt00]{Fire Bolt} cantrip.@UUID[Compendium.dnd5e.spells24.Item.phbsplHellishReb]{Hellish Rebuke}@UUID[Compendium.dnd5e.spells24.Item.phbsplDarkness00]{Darkness} chat: ''",
+    "type": "SIZE",
+    "order": 1
+   },
+   {
+    "name": "Speed",
+    "desc": "30 feetAs a Tiefling, you have the following special traits.Darkvision. You have Darkvision with a range of 60 feet.Fiendish Legacy. You are the recipient of a legacy that grants you supernatural abilities.When you reach character levels 3 and 5, you learn a higher-level spell, as shown on the table. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest. You can also cast the spell using any spell slots you have of the appropriate level. Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the legacy).Otherworldly Presence. You know the @UUID[Compendium.dnd5e.spells24.Item.phbsplThaumaturg]{Thaumaturgy} cantrip. When you cast it with this trait, the spell uses the same spellcasting ability you use for your Fiendish Legacy trait.Fiendish LegaciesLevel 1Level 3Level 5You have Resistance to Fire damage. You also know the @UUID[Compendium.dnd5e.spells24.Item.phbsplFireBolt00]{Fire Bolt} cantrip.@UUID[Compendium.dnd5e.spells24.Item.phbsplHellishReb]{Hellish Rebuke}@UUID[Compendium.dnd5e.spells24.Item.phbsplDarkness00]{Darkness} chat: ''",
+    "type": "SPEED",
+    "order": 2
+   },
+   {
+    "name": "Tiefling, Infernal",
+    "desc": "@Embed[Compendium.dnd5e.content24.JournalEntry.phbAppendixSpeci.JournalEntryPage.phbspTiefling000 inline classes=\"free-rules-embed\"]Infernal@Embed[Compendium.dnd5e.content24.JournalEntry.phbAppendixSpeci.JournalEntryPage.phbspInfernalTie inline classes=\"free-rules-embed\"]Tiefling TraitsCreature Type: HumanoidSize: Medium (about 4–7 feet tall) or Small (about 3–4 feet tall), chosen when you select this speciesSpeed: 30 feetAs a Tiefling, you have the following special traits.Darkvision. You have Darkvision with a range of 60 feet.Fiendish Legacy. You are the recipient of a legacy that grants you supernatural abilities.When you reach character levels 3 and 5, you learn a higher-level spell, as shown on the table. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest. You can also cast the spell using any spell slots you have of the appropriate level. Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the legacy).Otherworldly Presence. You know the @UUID[Compendium.dnd5e.spells24.Item.phbsplThaumaturg]{Thaumaturgy} cantrip. When you cast it with this trait, the spell uses the same spellcasting ability you use for your Fiendish Legacy trait.Fiendish LegaciesLevel 1Level 3Level 5You have Resistance to Fire damage. You also know the @UUID[Compendium.dnd5e.spells24.Item.phbsplFireBolt00]{Fire Bolt} cantrip.@UUID[Compendium.dnd5e.spells24.Item.phbsplHellishReb]{Hellish Rebuke}@UUID[Compendium.dnd5e.spells24.Item.phbsplDarkness00]{Darkness} chat: ''",
+    "type": "RACE",
+    "order": 3
+   }
+  ]
+ }
+]

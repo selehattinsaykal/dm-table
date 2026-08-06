@@ -1,0 +1,1962 @@
+[
+  {
+    "key": "phb-2024_path-of-the-wild-heart",
+    "features": [
+      {
+        "key": "phb-2024_barbarian_path-of-the-wild-heart_beast-speaker",
+        "name": "Beast Speaker",
+        "desc": "You can cast the Beast Sense and Speak with Animals spells as Rituals.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_barbarian_path-of-the-wild-heart_rage-of-the-wilds",
+        "name": "Rage of the Wilds",
+        "desc": "Whenever you activate your Rage, you gain an option of your choice: Bear (resistance to all damage except Force, Necrotic, and Psychic), Eagle (Dash or Disengage as a Bonus Action and Disadvantage on Opportunity Attacks against you), or Wolf (allies have Advantage on melee attacks against enemies within 10 feet of you).",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_barbarian_path-of-the-wild-heart_aspect-of-the-wilds",
+        "name": "Aspect of the Wilds",
+        "desc": "You gain one aspect of your choice: Owl (Darkvision 60 ft.), Panther (Climb speed equal to Speed), or Salmon (Swim speed equal to Speed). You can change your choice after a Long Rest.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 6, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_barbarian_path-of-the-wild-heart_nature-speaker",
+        "name": "Nature Speaker",
+        "desc": "You can cast Commune with Nature as a Ritual.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 10, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_barbarian_path-of-the-wild-heart_power-of-the-wilds",
+        "name": "Power of the Wilds",
+        "desc": "Whenever you activate your Rage, you gain one primal power: Lion (enemies within 5 ft. have Disadvantage on attacks against targets other than you), Ram (knock Large or smaller creatures Prone when you hit with a melee attack), or Falcon (gain a Fly Speed equal to your Speed while not wearing armor).",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 14, "detail": null}],
+        "data_for_class_table": []
+      }
+    ],
+    "document": "phb-2024",
+    "saving_throws": [],
+    "subclass_of": {"name": "Barbarian", "key": "srd-2024_barbarian"},
+    "name": "Path of the Wild Heart",
+    "desc": "*Channel the Spirits of Beasts*\n\nBarbarians who walk the Path of the Wild Heart view themselves as kin to beasts, drawing supernatural resilience and agility from animal spirits.",
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "primary_abilities": [],
+    "crossreferences": {"to": []}
+  },
+  {
+    "key": "phb-2024_path-of-the-world-tree",
+    "features": [
+      {
+        "key": "phb-2024_barbarian_path-of-the-world-tree_vitality-of-the-tree",
+        "name": "Vitality of the Tree",
+        "desc": "When you activate your Rage, you gain Temporary Hit Points equal to your Barbarian level. At the start of each of your turns while Raging, you can grant Temporary Hit Points to another creature within 10 feet of you.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_barbarian_path-of-the-world-tree_branches-of-the-tree",
+        "name": "Branches of the Tree",
+        "desc": "While your Rage is active, whenever a creature you can see starts its turn within 30 feet of you, you can use your Reaction to teleport the creature to an unoccupied space within 5 feet of you if it fails a Strength saving throw.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 6, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_barbarian_path-of-the-world-tree_battering-roots",
+        "name": "Battering Roots",
+        "desc": "During your turn, your reach with Melee weapons increases by 10 feet, and you can use the Push or Topple mastery property in addition to the weapon's normal mastery property.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 10, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_barbarian_path-of-the-world-tree_travel-along-the-tree",
+        "name": "Travel along the Tree",
+        "desc": "As a Bonus Action while Raging, you can teleport up to 60 feet to an unoccupied space you can see, bringing up to six willing creatures within 10 feet of you along with you.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 14, "detail": null}],
+        "data_for_class_table": []
+      }
+    ],
+    "document": "phb-2024",
+    "saving_throws": [],
+    "subclass_of": {"name": "Barbarian", "key": "srd-2024_barbarian"},
+    "name": "Path of the World Tree",
+    "desc": "*Draw Might from the Cosmic Ash Tree*\n\nBarbarians of the World Tree connect with Yggdrasil, channeling cosmic vitality to heal allies and control the battlefield through teleportation.",
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "primary_abilities": [],
+    "crossreferences": {"to": []}
+  },
+  {
+    "key": "phb-2024_path-of-the-zealot",
+    "features": [
+      {
+        "key": "phb-2024_barbarian_path-of-the-zealot_divine-fury",
+        "name": "Divine Fury",
+        "desc": "While Raging, the first creature you hit on your turn with a weapon or Unarmed Strike takes extra Necrotic or Radiant damage equal to 1d6 plus half your Barbarian level.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_barbarian_path-of-the-zealot_warrior-of-the-gods",
+        "name": "Warrior of the Gods",
+        "desc": "You have a pool of four d12s that you can spend to restore Hit Points to yourself as a Bonus Action. You regain all expended dice after a Long Rest.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_barbarian_path-of-the-zealot_fanatical-focus",
+        "name": "Fanatical Focus",
+        "desc": "If you fail a saving throw while Raging, you can reroll it with a bonus equal to your Rage Damage bonus, and you must use the new roll. You can use this once per Rage.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 6, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_barbarian_path-of-the-zealot_zealous-presence",
+        "name": "Zealous Presence",
+        "desc": "As a Bonus Action, you unleash a battle cry that grants up to ten creatures within 60 feet Advantage on attack rolls and saving throws until the start of your next turn.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 10, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_barbarian_path-of-the-zealot_rage-of-the-gods",
+        "name": "Rage of the Gods",
+        "desc": "When you activate your Rage, you can assume a divine form for 1 minute. While in this form, you gain a Fly Speed equal to your Speed, and when you drop to 0 Hit Points, you can use your Reaction to drop to 1 Hit Point instead.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 14, "detail": null}],
+        "data_for_class_table": []
+      }
+    ],
+    "document": "phb-2024",
+    "saving_throws": [],
+    "subclass_of": {"name": "Barbarian", "key": "srd-2024_barbarian"},
+    "name": "Path of the Zealot",
+    "desc": "*Fight with Divine Fervor*\n\nZealots are holy warriors charged with sacred fury, fighting relentlessly in the name of their deities.",
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "primary_abilities": [],
+    "crossreferences": {"to": []}
+  },
+  {
+    "key": "phb-2024_college-of-dance",
+    "features": [
+      {
+        "key": "phb-2024_bard_college-of-dance_dazzling-footwork",
+        "name": "Dazzling Footwork",
+        "desc": "While you aren't wearing armor or wielding a Shield, you gain benefits: your Unarmed Strike deals damage equal to your Bardic Inspiration die, you can use Dexterity for its attacks, and when you spend Bardic Inspiration as an action or Bonus Action, you can make an Unarmed Strike as part of that action.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_bard_college-of-dance_unarmored-defense",
+        "name": "Unarmored Defense",
+        "desc": "While you aren't wearing armor or wielding a Shield, your base AC equals 10 plus your Dexterity and Charisma modifiers.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_bard_college-of-dance_inspiring-movement",
+        "name": "Inspiring Movement",
+        "desc": "When an enemy ends its turn within 5 feet of you, you can use your Reaction and expend one Bardic Inspiration to move up to half your Speed and allow one ally within 30 feet to also move up to half their Speed without provoking Opportunity Attacks.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 6, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_bard_college-of-dance_tandem-footwork",
+        "name": "Tandem Footwork",
+        "desc": "When you roll Initiative, you can expend one use of Bardic Inspiration to grant yourself and allies within 30 feet a bonus to Initiative equal to the number rolled on the Bardic Inspiration die.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 6, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_bard_college-of-dance_leading-evasion",
+        "name": "Leading Evasion",
+        "desc": "When you are subjected to an effect that allows a Dexterity save for half damage, you take no damage on a success and half on a failure. Allies within 5 feet of you also gain this benefit.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 14, "detail": null}],
+        "data_for_class_table": []
+      }
+    ],
+    "document": "phb-2024",
+    "saving_throws": [],
+    "subclass_of": {"name": "Bard", "key": "srd-2024_bard"},
+    "name": "College of Dance",
+    "desc": "*Move with Grace and Deadly Agility*\n\nBards of the College of Dance channel artistic movement into martial agility, dodging blows and delivering rhythmic strikes.",
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "primary_abilities": [],
+    "crossreferences": {"to": []}
+  },
+  {
+    "key": "phb-2024_college-of-glamour",
+    "features": [
+      {
+        "key": "phb-2024_bard_college-of-glamour_beguiling-magic",
+        "name": "Beguiling Magic",
+        "desc": "You always have the Charm Person and Mirror Image spells prepared. Immediately after you cast an Enchantment or Illusion spell using a spell slot, you can cause a creature within 30 feet to make a Wisdom saving throw or be Charmed or Frightened of you for 1 minute.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_bard_college-of-glamour_mantle-of-inspiration",
+        "name": "Mantle of Inspiration",
+        "desc": "As a Bonus Action, you can expend a use of Bardic Inspiration to grant Temporary Hit Points equal to two times your Bardic Inspiration die roll to a number of creatures up to your Charisma modifier within 60 feet. Those creatures can immediately use their Reaction to move up to their Speed without provoking Opportunity Attacks.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_bard_college-of-glamour_mantle-of-majesty",
+        "name": "Mantle of Majesty",
+        "desc": "You always have the Command spell prepared. As a Bonus Action, you can cast Command without expending a spell slot, and for 1 minute, you can cast it as a Bonus Action on each of your turns without expending a spell slot.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 6, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_bard_college-of-glamour_unbreakable-majesty",
+        "name": "Unbreakable Majesty",
+        "desc": "As a Bonus Action, you assume a majestic appearance for 1 minute. Any creature that hits you with an attack roll for the first time on a turn must make a Charisma saving throw or miss the attack.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 14, "detail": null}],
+        "data_for_class_table": []
+      }
+    ],
+    "document": "phb-2024",
+    "saving_throws": [],
+    "subclass_of": {"name": "Bard", "key": "srd-2024_bard"},
+    "name": "College of Glamour",
+    "desc": "*Weave the Enchanting Magic of the Feywild*\n\nThe College of Glamour teaches bards how to harness Feywild magic to captivate audiences and bend enemies to their will.",
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "primary_abilities": [],
+    "crossreferences": {"to": []}
+  },
+  {
+    "key": "phb-2024_college-of-valor",
+    "features": [
+      {
+        "key": "phb-2024_bard_college-of-valor_combat-inspiration",
+        "name": "Combat Inspiration",
+        "desc": "Creatures that have your Bardic Inspiration die can use it to increase their damage roll or their AC against an incoming attack as a Reaction.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_bard_college-of-valor_martial-training",
+        "name": "Martial Training",
+        "desc": "You gain proficiency with Martial weapons, Medium armor, and Shields. You can also use a Simple or Martial weapon as a Spellcasting Focus for your Bard spells.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_bard_college-of-valor_extra-attack",
+        "name": "Extra Attack",
+        "desc": "You can attack twice instead of once whenever you take the Attack action on your turn. You can replace one of the attacks with a casting of one of your Bard cantrips that has a casting time of an action.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 6, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_bard_college-of-valor_battle-magic",
+        "name": "Battle Magic",
+        "desc": "After you cast a Bard spell that has a casting time of an action, you can make one attack with a weapon as a Bonus Action.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 14, "detail": null}],
+        "data_for_class_table": []
+      }
+    ],
+    "document": "phb-2024",
+    "saving_throws": [],
+    "subclass_of": {"name": "Bard", "key": "srd-2024_bard"},
+    "name": "College of Valor",
+    "desc": "*Sing the Deeds of Ancient Heroes*\n\nBards of the College of Valor are daring skalds who combine martial skill with spellcasting on the front lines of battle.",
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "primary_abilities": [],
+    "crossreferences": {"to": []}
+  },
+  {
+    "key": "phb-2024_light-domain",
+    "features": [
+      {
+        "key": "phb-2024_cleric_light-domain_light-domain-spells",
+        "name": "Light Domain Spells",
+        "desc": "You always have certain spells prepared: Burning Hands, Faerie Fire, Flaming Sphere, See Invisibility, Daylight, Fireball, Arcane Eye, Wall of Fire, Flame Strike, and Scrying.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_cleric_light-domain_radiance-of-the-dawn",
+        "name": "Radiance of the Dawn",
+        "desc": "As a Magic action, you present your Holy Symbol and expend a use of your Channel Divinity to emit a flash of light. Hostile creatures within 30 feet must make a Constitution saving throw, taking 2d10 + your Cleric level Radiant damage on a failure.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_cleric_light-domain_warding-flare",
+        "name": "Warding Flare",
+        "desc": "When a creature you can see within 30 feet attacks you or an ally, you can use your Reaction to impose Disadvantage on the attack roll. You can use this a number of times equal to your Wisdom modifier per Long Rest.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_cleric_light-domain_improved-warding-flare",
+        "name": "Improved Warding Flare",
+        "desc": "You regain all expended uses of Warding Flare when you finish a Short or Long Rest, and when you use it, you grant the target Temporary Hit Points equal to 2d6 plus your Wisdom modifier.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 6, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_cleric_light-domain_corona-of-light",
+        "name": "Corona of Light",
+        "desc": "As an action, you emit sunlight in a 60-foot radius for 1 minute. Enemies in the light have Disadvantage on saving throws against any spell that deals Fire or Radiant damage.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 17, "detail": null}],
+        "data_for_class_table": []
+      }
+    ],
+    "document": "phb-2024",
+    "saving_throws": [],
+    "subclass_of": {"name": "Cleric", "key": "srd-2024_cleric"},
+    "name": "Light Domain",
+    "desc": "*Wield the Blazing Might of Sunlight*\n\nClerics of Light channel the radiant power of the sun and fire to purge darkness and burn away enemies.",
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "primary_abilities": [],
+    "crossreferences": {"to": []}
+  },
+  {
+    "key": "phb-2024_trickery-domain",
+    "features": [
+      {
+        "key": "phb-2024_cleric_trickery-domain_trickery-domain-spells",
+        "name": "Trickery Domain Spells",
+        "desc": "You always have certain spells prepared: Charm Person, Disguise Self, Invisibility, Pass without Trace, Hypnotic Pattern, Nondetection, Confusion, Dimension Door, Dominate Person, and Modify Memory.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_cleric_trickery-domain_blessing-of-the-trickster",
+        "name": "Blessing of the Trickster",
+        "desc": "As an action, you can touch a willing creature other than yourself to give it Advantage on Dexterity (Stealth) checks. This blessing lasts until you use this feature again or finish a Long Rest.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_cleric_trickery-domain_invoke-duplicity",
+        "name": "Invoke Duplicity",
+        "desc": "As a Bonus Action, you expend a use of Channel Divinity to create an illusory duplicate of yourself within 30 feet for 1 minute. You can cast spells as though you were in its space, and you have Advantage on attack rolls against enemies within 5 feet of the illusion.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_cleric_trickery-domain_tricksters-transposition",
+        "name": "Trickster's Transposition",
+        "desc": "Whenever you move your illusion from Invoke Duplicity using a Bonus Action, you can teleport, swapping places with the illusion.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 6, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_cleric_trickery-domain_improved-duplicity",
+        "name": "Improved Duplicity",
+        "desc": "When you use Invoke Duplicity, you can create up to three illusory duplicates, and whenever you or an ally hits a target within 5 feet of a duplicate, the target takes extra Radiant damage equal to your Wisdom modifier.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 17, "detail": null}],
+        "data_for_class_table": []
+      }
+    ],
+    "document": "phb-2024",
+    "saving_throws": [],
+    "subclass_of": {"name": "Cleric", "key": "srd-2024_cleric"},
+    "name": "Trickery Domain",
+    "desc": "*Deceive Foes with Divine Illusions*\n\nTrickery domain clerics are disruptive mischief-makers who use illusions, stealth, and misdirection to confound enemies.",
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "primary_abilities": [],
+    "crossreferences": {"to": []}
+  },
+  {
+    "key": "phb-2024_war-domain",
+    "features": [
+      {
+        "key": "phb-2024_cleric_war-domain_war-domain-spells",
+        "name": "War Domain Spells",
+        "desc": "You always have certain spells prepared: Divine Favor, Shield of Faith, Magic Weapon, Spiritual Weapon, Crusader's Mantle, Spirit Guardians, Fire Shield, Freedom of Movement, Hold Monster, and Steel Wind Strike.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at":[{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_cleric_war-domain_guided-strike",
+        "name": "Guided Strike",
+        "desc": "When you or a creature within 30 feet makes an attack roll, you can use your Reaction and expend a use of Channel Divinity to grant a +10 bonus to the roll.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_cleric_war-domain_war-priest",
+        "name": "War Priest",
+        "desc": "When you take the Attack action or cast a spell with an action, you can make one weapon attack as a Bonus Action a number of times equal to your Wisdom modifier per Long Rest (or by spending a spell slot).",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_cleric_war-domain_war-gods-blessing",
+        "name": "War God's Blessing",
+        "desc": "You can expend a use of Channel Divinity to cast Spiritual Weapon or Shield of Faith without expending a spell slot, and Shield of Faith doesn't require Concentration when cast in this way.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 6, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_cleric_war-domain_avatar-of-battle",
+        "name": "Avatar of Battle",
+        "desc": "You gain Resistance to Bludgeoning, Piercing, and Slashing damage.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 17, "detail": null}],
+        "data_for_class_table": []
+      }
+    ],
+    "document": "phb-2024",
+    "saving_throws": [],
+    "subclass_of": {"name": "Cleric", "key": "srd-2024_cleric"},
+    "name": "War Domain",
+    "desc": "*Inspire Valor on the Battlefield*\n\nWar domain clerics are armored champions of battle gods who lead charges and deliver divine wrath in melee combat.",
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "primary_abilities": [],
+    "crossreferences": {"to": []}
+  },
+  {
+    "key": "phb-2024_circle-of-the-moon",
+    "features": [
+      {
+        "key": "phb-2024_druid_circle-of-the-moon_circle-forms",
+        "name": "Circle Forms",
+        "desc": "Your maximum Challenge Rating for Wild Shape forms equals your Druid level divided by 3 (round down, minimum of 1). In addition, your AC in Beast form equals 13 plus your Wisdom modifier if that total is higher than the Beast's AC.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_druid_circle-of-the-moon_combat-wild-shape",
+        "name": "Combat Wild Shape",
+        "desc": "You can use Wild Shape as a Bonus Action or an Action. You can cast Abjuration spells from the Druid spell list while in Wild Shape, and you can expend spell slots to regain Hit Points while shape-shifted.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_druid_circle-of-the-moon_improved-circle-forms",
+        "name": "Improved Circle Forms",
+        "desc": "While in Wild Shape, your attacks count as magical, and you can add your Wisdom modifier to your Constitution saving throws to maintain Concentration.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 6, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_druid_circle-of-the-moon_moonlight-step",
+        "name": "Moonlight Step",
+        "desc": "As a Bonus Action, you can teleport up to 30 feet to an unoccupied space you can see and gain Advantage on your next attack roll before the end of the turn. You can use this feature a number of times equal to your Wisdom modifier per Long Rest.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 10, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_druid_circle-of-the-moon_lunar-form",
+        "name": "Lunar Form",
+        "desc": "While in Wild Shape, you deal an extra 1d10 Radiant damage on a hit with your Beast attacks, and you can share your Moonlight Step teleport with a willing creature within 10 feet of you.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 14, "detail": null}],
+        "data_for_class_table": []
+      }
+    ],
+    "document": "phb-2024",
+    "saving_throws": [],
+    "subclass_of": {"name": "Druid", "key": "srd-2024_druid"},
+    "name": "Circle of the Moon",
+    "desc": "*Embody the Form of Powerful Beasts*\n\nDruids of the Circle of the Moon are fierce guardians of the wilderness who specialize in fighting as resilient beasts.",
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "primary_abilities": [],
+    "crossreferences": {"to": []}
+  },
+  {
+    "key": "phb-2024_circle-of-the-sea",
+    "features": [
+      {
+        "key": "phb-2024_druid_circle-of-the-sea_circle-of-the-sea-spells",
+        "name": "Circle of the Sea Spells",
+        "desc": "You always have certain spells prepared: Fog Cloud, Ray of Frost, Gust of Wind, Shatter, Sleet Storm, Water Breathing, Control Water, Ice Storm, Conjure Elemental, and Hold Monster.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_druid_circle-of-the-sea_wrath-of-the-sea",
+        "name": "Wrath of the Sea",
+        "desc": "As a Bonus Action, you can expend a use of Wild Shape to surround yourself with oceanic spray for 10 minutes. When a creature within 10 feet of you starts its turn or enters that area, you can force it to make a Constitution saving throw or take Cold or Thunder damage and be pushed up to 15 feet away.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_druid_circle-of-the-sea_aquatic-affinity",
+        "name": "Aquatic Affinity",
+        "desc": "You always have the Water Breathing spell prepared, and you gain a Swim Speed equal to your Speed.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 6, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_druid_circle-of-the-sea_stormborn",
+        "name": "Stormborn",
+        "desc": "While your Wrath of the Sea feature is active, you gain a Fly Speed equal to your Speed and Resistance to Cold, Lightning, and Thunder damage.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 10, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_druid_circle-of-the-sea_oceanic-gift",
+        "name": "Oceanic Gift",
+        "desc": "When you activate Wrath of the Sea, you can also confer its benefits to a willing creature within 30 feet of you.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 14, "detail": null}],
+        "data_for_class_table": []
+      }
+    ],
+    "document": "phb-2024",
+    "saving_throws": [],
+    "subclass_of": {"name": "Druid", "key": "srd-2024_druid"},
+    "name": "Circle of the Sea",
+    "desc": "*Channel the Stormy Might of Oceans*\n\nDruids of the Sea connect with tempests and ocean depths, creating damaging zones of waves and storm energy.",
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "primary_abilities": [],
+    "crossreferences": {"to": []}
+  },
+  {
+    "key": "phb-2024_circle-of-the-stars",
+    "features": [
+      {
+        "key": "phb-2024_druid_circle-of-the-stars_star-map",
+        "name": "Star Map",
+        "desc": "You hold a sacred Star Map, which grants you the Guidance cantrip and the Guiding Bolt spell prepared. You can cast Guiding Bolt without expending a spell slot a number of times equal to your Wisdom modifier per Long Rest.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_druid_circle-of-the-stars_starry-form",
+        "name": "Starry Form",
+        "desc": "As a Bonus Action, you can expend a use of Wild Shape to assume a Starry Form for 10 minutes, choosing Archer (bonus action radiant attack), Chalice (extra healing), or Dragon (minimum 10 on Intelligence/Wisdom checks and Concentration saves).",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_druid_circle-of-the-stars_cosmic-omen",
+        "name": "Cosmic Omen",
+        "desc": "At the end of a Long Rest, roll a die: even is Weal (add 1d6 to a creature's attack, save, or check as a Reaction), odd is Woe (subtract 1d6 from a roll). You can use this a number of times equal to your Wisdom modifier per Long Rest.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 6, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_druid_circle-of-the-stars_twinkling-constellations",
+        "name": "Twinkling Constellations",
+        "desc": "The damage and healing of your Archer and Chalice constellations increase to 2d8, and you can change your constellation choice at the start of each of your turns while in Starry Form.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 10, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_druid_circle-of-the-stars_full-of-stars",
+        "name": "Full of Stars",
+        "desc": "While in your Starry Form, you become partially incorporeal, giving you Resistance to Bludgeoning, Piercing, and Slashing damage.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 14, "detail": null}],
+        "data_for_class_table": []
+      }
+    ],
+    "document": "phb-2024",
+    "saving_throws": [],
+    "subclass_of": {"name": "Druid", "key": "srd-2024_druid"},
+    "name": "Circle of the Stars",
+    "desc": "*Harness the Light of Constellations*\n\nDruids of the Stars track celestial patterns, projecting starlight to heal allies or blast foes.",
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "primary_abilities": [],
+    "crossreferences": {"to": []}
+  },
+  {
+    "key": "phb-2024_battle-master",
+    "features": [
+      {
+        "key": "phb-2024_fighter_battle-master_combat-superiority",
+        "name": "Combat Superiority",
+        "desc": "You learn three Maneuvers and gain four d8 Superiority Dice to enhance your attacks and defenses. You regain all expended dice when you finish a Short or Long Rest.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_fighter_battle-master_student-of-war",
+        "name": "Student of War",
+        "desc": "You gain proficiency with one type of Artisan's Tools of your choice, and you gain proficiency in one skill of your choice from the Fighter skill list.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_fighter_battle-master_know-your-enemy",
+        "name": "Know Your Enemy",
+        "desc": "As a Bonus Action, you can discern if a creature you can see within 30 feet has any Immunities, Resistances, or Vulnerabilities, and what they are.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 7, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_fighter_battle-master_improved-combat-superiority",
+        "name": "Improved Combat Superiority",
+        "desc": "Your Superiority Dice turn into d10s at level 10 and d12s at level 18. You also learn additional Maneuvers at levels 7, 10, and 15.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 10, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_fighter_battle-master_relentless",
+        "name": "Relentless",
+        "desc": "Once per turn when you use a Maneuver, you can roll a d8 and use that number instead of expending a Superiority Die.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 15, "detail": null}],
+        "data_for_class_table": []
+      }
+    ],
+    "document": "phb-2024",
+    "saving_throws": [],
+    "subclass_of": {"name": "Fighter", "key": "srd-2024_fighter"},
+    "name": "Battle Master",
+    "desc": "*Employ Superior Martial Techniques*\n\nBattle Masters treat combat as an academic art, using maneuver superiority dice to control enemies and bolster strikes.",
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "primary_abilities": [],
+    "crossreferences": {"to": []}
+  },
+  {
+    "key": "phb-2024_eldritch-knight",
+    "features": [
+      {
+        "key": "phb-2024_fighter_eldritch-knight_spellcasting",
+        "name": "Spellcasting",
+        "desc": "You learn Wizard cantrips and spells, using Intelligence as your spellcasting ability. You can use an Arcane Focus for your Wizard spells.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_fighter_eldritch-knight_weapon-bond",
+        "name": "Weapon Bond",
+        "desc": "You can perform a ritual to bond with a weapon. You can't be disarmed of a bonded weapon, and you can summon it to your hand as a Bonus Action.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_fighter_eldritch-knight_war-magic",
+        "name": "War Magic",
+        "desc": "When you take the Attack action on your turn, you can replace one of your attacks with a casting of one of your Wizard cantrips.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 7, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_fighter_eldritch-knight_eldritch-strike",
+        "name": "Eldritch Strike",
+        "desc": "When you hit a creature with a weapon attack, that creature has Disadvantage on the next saving throw it makes against a spell you cast before the end of your next turn.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 10, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_fighter_eldritch-knight_arcane-charge",
+        "name": "Arcane Charge",
+        "desc": "When you use your Action Surge, you can teleport up to 30 feet to an unoccupied space you can see.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 15, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_fighter_eldritch-knight_improved-war-magic",
+        "name": "Improved War Magic",
+        "desc": "When you take the Attack action on your turn, you can replace two of your attacks with a casting of a level 1 or level 2 Wizard spell that has a casting time of an action.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 18, "detail": null}],
+        "data_for_class_table": []
+      }
+    ],
+    "document": "phb-2024",
+    "saving_throws": [],
+    "subclass_of": {"name": "Fighter", "key": "srd-2024_fighter"},
+    "name": "Eldritch Knight",
+    "desc": "*Combine Martial Mastery with Arcane Spells*\n\nEldritch Knights blend martial prowess with wizardly abjuration and evocation magic.",
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "primary_abilities": [],
+    "crossreferences": {"to": []}
+  },
+  {
+    "key": "phb-2024_psi-warrior",
+    "features": [
+      {
+        "key": "phb-2024_fighter_psi-warrior_psionic-power",
+        "name": "Psionic Power",
+        "desc": "You harbor a pool of Psionic Energy Dice (d8s, scaling up at higher levels) that you can expend to use Protective Field, Psionic Strike, or Telekinetic Movement.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_fighter_psi-warrior_telekinetic-adept",
+        "name": "Telekinetic Adept",
+        "desc": "You master new psionic powers: Psi-Powered Leap (fly speed as a Bonus Action) and Telekinetic Thrust (push or knock prone a target damaged by your Psionic Strike).",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 7, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_fighter_psi-warrior_guarded-mind",
+        "name": "Guarded Mind",
+        "desc": "You gain Resistance to Psychic damage, and if you start your turn Charmed or Frightened, you can expend a Psionic Energy Die to end every condition affecting you.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 10, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_fighter_psi-warrior_bulwark-of-force",
+        "name": "Bulwark of Force",
+        "desc": "As a Bonus Action, you can shield yourself and allies within 30 feet with half cover for 1 minute.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 15, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_fighter_psi-warrior_telekinetic-master",
+        "name": "Telekinetic Master",
+        "desc": "You can cast Telekinesis requiring no components, and while concentrating on it, you can make a weapon attack as a Bonus Action.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 18, "detail": null}],
+        "data_for_class_table": []
+      }
+    ],
+    "document": "phb-2024",
+    "saving_throws": [],
+    "subclass_of": {"name": "Fighter", "key": "srd-2024_fighter"},
+    "name": "Psi Warrior",
+    "desc": "*Enhance Combat with Psionic Might*\n\nPsi Warriors augment their physical attacks and shields with telekinetic mental energy.",
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "primary_abilities": [],
+    "crossreferences": {"to": []}
+  },
+  {
+    "key": "phb-2024_warrior-of-mercy",
+    "features": [
+      {
+        "key": "phb-2024_monk_warrior-of-mercy_hand-of-healing",
+        "name": "Hand of Healing",
+        "desc": "When you take the Attack action or use Flurry of Blows, you can replace an Unarmed Strike with a touch that restores Hit Points equal to a roll of your Martial Arts die plus your Wisdom modifier.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_monk_warrior-of-mercy_hand-of-harm",
+        "name": "Hand of Harm",
+        "desc": "Once per turn when you hit a creature with an Unarmed Strike, you can expend 1 Focus Point to deal extra Necrotic damage equal to a roll of your Martial Arts die plus your Wisdom modifier.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_monk_warrior-of-mercy_implement-of-mercy",
+        "name": "Implement of Mercy",
+        "desc": "You gain proficiency in the Insight or Medicine skill, and you gain proficiency with the Herbalism Kit.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_monk_warrior-of-mercy_physicians-touch",
+        "name": "Physician's Touch",
+        "desc": "Hand of Healing can now also end one disease or condition (Blinded, Deafened, Paralyzed, Poisoned, or Stunned), and Hand of Harm can apply the Poisoned condition until the end of your next turn.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 6, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_monk_warrior-of-mercy_flurry-of-healing-and-harm",
+        "name": "Flurry of Healing and Harm",
+        "desc": "When you use Flurry of Blows, you can replace each of the Unarmed Strikes with a use of Hand of Healing without spending Focus Points for the healing.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 11, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_monk_warrior-of-mercy_hand-of-ultimate-mercy",
+        "name": "Hand of Ultimate Mercy",
+        "desc": "Once per Long Rest, you can expend 5 Focus Points to touch a creature that died within the last 24 hours and return it to life with maximum Hit Points.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 17, "detail": null}],
+        "data_for_class_table": []
+      }
+    ],
+    "document": "phb-2024",
+    "saving_throws": [],
+    "subclass_of": {"name": "Monk", "key": "srd-2024_monk"},
+    "name": "Warrior of Mercy",
+    "desc": "*Manipulate Life Force to Heal or Harm*\n\nWarriors of Mercy manipulate the flow of ki to heal mending wounds or inflict necrotic pain on enemies.",
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "primary_abilities": [],
+    "crossreferences": {"to": []}
+  },
+  {
+    "key": "phb-2024_warrior-of-shadow",
+    "features": [
+      {
+        "key": "phb-2024_monk_warrior-of-shadow_shadow-arts",
+        "name": "Shadow Arts",
+        "desc": "You gain Darkvision out to 60 feet (or increase existing Darkvision by 60 feet), you know the Minor Illusion cantrip, and you can expend 1 Focus Point to cast Darkness without spell components.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_monk_warrior-of-shadow_shadow-step",
+        "name": "Shadow Step",
+        "desc": "While in Dim Light or Darkness, you can use a Bonus Action to teleport up to 60 feet to an unoccupied space also in Dim Light or Darkness, gaining Advantage on your next melee attack roll before the end of the turn.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 6, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_monk_warrior-of-shadow_improved-shadow-step",
+        "name": "Improved Shadow Step",
+        "desc": "When you use Shadow Step, you can expend 1 Focus Point to remove the light requirement, allowing you to teleport between any spaces.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 11, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_monk_warrior-of-shadow_cloak-of-shadows",
+        "name": "Cloak of Shadows",
+        "desc": "As a Bonus Action while in Dim Light or Darkness, you can expend 3 Focus Points to shroud yourself in magical shadow for 1 minute, becoming Invisible and allowing your attacks to deal extra Necrotic damage.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 17, "detail": null}],
+        "data_for_class_table": []
+      }
+    ],
+    "document": "phb-2024",
+    "saving_throws": [],
+    "subclass_of": {"name": "Monk", "key": "srd-2024_monk"},
+    "name": "Warrior of Shadow",
+    "desc": "*Strike from Darkness with Ninja Stealth*\n\nWarriors of Shadow are stealthy martial artists who manipulate darkness and teleport through shadows.",
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "primary_abilities": [],
+    "crossreferences": {"to": []}
+  },
+  {
+    "key": "phb-2024_warrior-of-the-elements",
+    "features": [
+      {
+        "key": "phb-2024_monk_warrior-of-the-elements_elemental-attunement",
+        "name": "Elemental Attunement",
+        "desc": "At the start of your turn, you can expend 1 Focus Point to imbue your Unarmed Strikes with elemental energy for 10 minutes, extending your reach by 10 feet and dealing Acid, Cold, Fire, Lightning, or Thunder damage.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_monk_warrior-of-the-elements_manipulate-the-elements",
+        "name": "Manipulate the Elements",
+        "desc": "You learn the Elementalism cantrip.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_monk_warrior-of-the-elements_elemental-burst",
+        "name": "Elemental Burst",
+        "desc": "As a Magic action, you can expend 2 Focus Points to unleash a 20-foot-radius sphere of elemental damage within 120 feet.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 6, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_monk_warrior-of-the-elements_stride-of-the-elements",
+        "name": "Stride of the Elements",
+        "desc": "While your Elemental Attunement is active, you gain a Fly Speed and a Swim Speed equal to your Speed.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 11, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_monk_warrior-of-the-elements_elemental-epitome",
+        "name": "Elemental Epitome",
+        "desc": "While Elemental Attunement is active, you gain Resistance to your chosen elemental damage type, and your Unarmed Strikes deal extra elemental damage.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 17, "detail": null}],
+        "data_for_class_table": []
+      }
+    ],
+    "document": "phb-2024",
+    "saving_throws": [],
+    "subclass_of": {"name": "Monk", "key": "srd-2024_monk"},
+    "name": "Warrior of the Elements",
+    "desc": "*Harness Elemental Power in Melee Strikes*\n\nWarriors of the Elements channel fire, ice, lightning, and wind into their martial arts strikes.",
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "primary_abilities": [],
+    "crossreferences": {"to": []}
+  },
+  {
+    "key": "phb-2024_oath-of-glory",
+    "features": [
+      {
+        "key": "phb-2024_paladin_oath-of-glory_oath-of-glory-spells",
+        "name": "Oath of Glory Spells",
+        "desc": "You always have certain spells prepared: Guiding Bolt, Heroism, Enhance Ability, Magic Weapon, Haste, Protection from Energy, Compulsion, Freedom of Movement, Commune, and Legend Lore.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_paladin_oath-of-glory_inspiring-smite",
+        "name": "Inspiring Smite",
+        "desc": "Immediately after you cast Divine Smite, you can use your Channel Divinity to distribute Temporary Hit Points equal to 2d8 plus your Paladin level among creatures of your choice within 30 feet.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_paladin_oath-of-glory_peerless-athlete",
+        "name": "Peerless Athlete",
+        "desc": "As a Bonus Action, you can use your Channel Divinity to gain Advantage on Athletics and Acrobatics checks and increase your carrying capacity and jump distances for 1 hour.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_paladin_oath-of-glory_aura-of-alacrity",
+        "name": "Aura of Alacrity",
+        "desc": "Your Speed increases by 10 feet, and any ally who starts their turn within your Aura of Protection also gains a 10-foot Speed increase until the end of their turn.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 7, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_paladin_oath-of-glory_glorious-defense",
+        "name": "Glorious Defense",
+        "desc": "When you or an ally within your aura is hit by an attack, you can use your Reaction to add your Charisma modifier to the target's AC against that attack, potentially turning the hit into a miss.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 15, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_paladin_oath-of-glory_living-legend",
+        "name": "Living Legend",
+        "desc": "As a Bonus Action, you can empower yourself for 1 minute, gaining Advantage on Charisma checks, turning missed weapon attacks into hits once per turn, and rerolling failed saving throws.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 20, "detail": null}],
+        "data_for_class_table": []
+      }
+    ],
+    "document": "phb-2024",
+    "saving_throws": [],
+    "subclass_of": {"name": "Paladin", "key": "srd-2024_paladin"},
+    "name": "Oath of Glory",
+    "desc": "*Achieve Legend Through Heroic Deeds*\n\nPaladins of Glory train their bodies to athletic perfection, inspiring companions to achieve epic victories.",
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "primary_abilities": [],
+    "crossreferences": {"to": []}
+  },
+  {
+    "key": "phb-2024_oath-of-the-ancients",
+    "features": [
+      {
+        "key": "phb-2024_paladin_oath-of-the-ancients_oath-of-the-ancients-spells",
+        "name": "Oath of the Ancients Spells",
+        "desc": "You always have certain spells prepared: Ensnaring Strike, Speak with Animals, Misty Step, Moonbeam, Plant Growth, Protection from Energy, Ice Storm, Stoneskin, Commune with Nature, and Tree Stride.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_paladin_oath-of-the-ancients_natures-wrath",
+        "name": "Nature's Wrath",
+        "desc": "As an action, you can expend a use of Channel Divinity to cause spectral vines to Restrain creatures of your choice within 15 feet of you on a failed Strength save.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_paladin_oath-of-the-ancients_aura-of-warding",
+        "name": "Aura of Warding",
+        "desc": "You and your allies within your Aura of Protection have Resistance to Necrotic, Psychic, and Radiant damage.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 7, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_paladin_oath-of-the-ancients_undying-sentinel",
+        "name": "Undying Sentinel",
+        "desc": "When you are reduced to 0 Hit Points and not killed outright, you can drop to 1 Hit Point instead. You also age more slowly and can't be aged magically.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 15, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_paladin_oath-of-the-ancients_elder-champion",
+        "name": "Elder Champion",
+        "desc": "As a Bonus Action, you can assume the form of an ancient force of nature for 1 minute, regenerating Hit Points at the start of each turn and casting Paladin spells with a Bonus Action.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 20, "detail": null}],
+        "data_for_class_table": []
+      }
+    ],
+    "document": "phb-2024",
+    "saving_throws": [],
+    "subclass_of": {"name": "Paladin", "key": "srd-2024_paladin"},
+    "name": "Oath of the Ancients",
+    "desc": "*Preserve the Light of Life and Nature*\n\nPaladins of the Ancients swear to protect the light of nature, weaving primal druidic magic into their holy oaths.",
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "primary_abilities": [],
+    "crossreferences": {"to": []}
+  },
+  {
+    "key": "phb-2024_oath-of-vengeance",
+    "features": [
+      {
+        "key": "phb-2024_paladin_oath-of-vengeance_oath-of-vengeance-spells",
+        "name": "Oath of Vengeance Spells",
+        "desc": "You always have certain spells prepared: Bane, Hunter's Mark, Hold Person, Misty Step, Haste, Protection from Energy, Banishment, Dimension Door, Hold Monster, and Scrying.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_paladin_oath-of-vengeance_vow-of-enmity",
+        "name": "Vow of Enmity",
+        "desc": "As a Bonus Action, you can expend a use of Channel Divinity to mark a creature within 10 feet, gaining Advantage on attack rolls against it for 1 minute or until it drops to 0 Hit Points.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_paladin_oath-of-vengeance_relentless-avenger",
+        "name": "Relentless Avenger",
+        "desc": "When you hit a creature with an Opportunity Attack, you can move up to half your Speed immediately after the attack without provoking Opportunity Attacks.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 7, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_paladin_oath-of-vengeance_soul-of-vengeance",
+        "name": "Soul of Vengeance",
+        "desc": "When a creature under your Vow of Enmity makes an attack, you can use your Reaction to make a melee weapon attack against it.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 15, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_paladin_oath-of-vengeance_avenging-angel",
+        "name": "Avenging Angel",
+        "desc": "As a Bonus Action, you can transform for 1 hour, gaining a Fly Speed of 60 feet and emitting a menacing aura that frightens enemies.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 20, "detail": null}],
+        "data_for_class_table": []
+      }
+    ],
+    "document": "phb-2024",
+    "saving_throws": [],
+    "subclass_of": {"name": "Paladin", "key": "srd-2024_paladin"},
+    "name": "Oath of Vengeance",
+    "desc": "*Hunt Down the Wicked Without Mercy*\n\nPaladins of Vengeance pursue evil relentlessly, focusing their holy wrath on single targets.",
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "primary_abilities": [],
+    "crossreferences": {"to": []}
+  },
+  {
+    "key": "phb-2024_beast-master",
+    "features": [
+      {
+        "key": "phb-2024_ranger_beast-master_primal-companion",
+        "name": "Primal Companion",
+        "desc": "You magically summon a Primal Companion (Beast of the Land, Sea, or Sky) that obeys your commands and scales with your Ranger level and Wisdom modifier.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_ranger_beast-master_exceptional-training",
+        "name": "Exceptional Training",
+        "desc": "On any of your turns when your Primal Companion doesn't attack, you can command it to take the Dash, Disengage, Dodge, or Help action using a Bonus Action.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 7, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_ranger_beast-master_bestial-fury",
+        "name": "Bestial Fury",
+        "desc": "When you command your Primal Companion to take the Attack action, the beast can attack twice or take the Multiattack action if it has that action.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 11, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_ranger_beast-master_share-spells",
+        "name": "Share Spells",
+        "desc": "When you cast a spell targeting yourself, you can also affect your Primal Companion with the spell if the beast is within 30 feet of you.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 15, "detail": null}],
+        "data_for_class_table": []
+      }
+    ],
+    "document": "phb-2024",
+    "saving_throws": [],
+    "subclass_of": {"name": "Ranger", "key": "srd-2024_ranger"},
+    "name": "Beast Master",
+    "desc": "*Bond with a Loyal Primal Beast*\n\nBeast Master rangers fight alongside a supernatural primal beast companion that shares their spirit.",
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "primary_abilities": [],
+    "crossreferences": {"to": []}
+  },
+  {
+    "key": "phb-2024_fey-wanderer",
+    "features": [
+      {
+        "key": "phb-2024_ranger_fey-wanderer_dreadful-strikes",
+        "name": "Dreadful Strikes",
+        "desc": "You can augment your weapon attacks with mind-scarring fey magic, dealing extra 1d4 Psychic damage (scales to 1d6 at level 11) to a creature once per turn.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_ranger_fey-wanderer_fey-wanderer-spells",
+        "name": "Fey Wanderer Spells",
+        "desc": "You always have certain spells prepared: Charm Person, Misty Step, Summon Fey, Dimension Door, and Mislead.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_ranger_fey-wanderer_otherworldly-glamour",
+        "name": "Otherworldly Glamour",
+        "desc": "You add your Wisdom modifier to your Charisma checks, and you gain proficiency in Deception, Performance, or Persuasion.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_ranger_fey-wanderer_beguiling-twist",
+        "name": "Beguiling Twist",
+        "desc": "You have Advantage on saving throws against Charmed and Frightened conditions, and when someone within 120 feet succeeds on such a save, you can force another creature to make a Wisdom save or be Charmed or Frightened.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 7, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_ranger_fey-wanderer_fey-reinforcements",
+        "name": "Fey Reinforcements",
+        "desc": "You can cast Summon Fey without expending a Material component, and you can cast it once per Long Rest without expending a spell slot.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 11, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_ranger_fey-wanderer_misty-wanderer",
+        "name": "Misty Wanderer",
+        "desc": "You can cast Misty Step without expending a spell slot a number of times equal to your Wisdom modifier per Long Rest, and you can bring a willing creature within 5 feet along with you.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 15, "detail": null}],
+        "data_for_class_table": []
+      }
+    ],
+    "document": "phb-2024",
+    "saving_throws": [],
+    "subclass_of": {"name": "Ranger", "key": "srd-2024_ranger"},
+    "name": "Fey Wanderer",
+    "desc": "*Wield the Enchanting Glamour of the Feywild*\n\nFey Wanderer rangers absorb Feywild magic, using psychic strikes and social charm to navigate both courts and combats.",
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "primary_abilities": [],
+    "crossreferences": {"to": []}
+  },
+  {
+    "key": "phb-2024_gloom-stalker",
+    "features": [
+      {
+        "key": "phb-2024_ranger_gloom-stalker_dread-ambusher",
+        "name": "Dread Ambusher",
+        "desc": "You add your Wisdom modifier to your Initiative rolls. On the first turn of combat, your Speed increases by 10 feet, and your attacks deal extra Psychic damage.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_ranger_gloom-stalker_gloom-stalker-spells",
+        "name": "Gloom Stalker Spells",
+        "desc": "You always have certain spells prepared: Disguise Self, Rope Trick, Fear, Greater Invisibility, and Seeming.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_ranger_gloom-stalker_umbral-sight",
+        "name": "Umbral Sight",
+        "desc": "You gain Darkvision out to 60 feet (or increase existing Darkvision by 60 feet), and you are Invisible to any creature that relies on Darkvision to see you in Darkness.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_ranger_gloom-stalker_iron-mind",
+        "name": "Iron Mind",
+        "desc": "You gain proficiency in Wisdom saving throws.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 7, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_ranger_gloom-stalker_stalkers-flurry",
+        "name": "Stalker's Flurry",
+        "desc": "You can upgrade your Dread Ambusher extra damage or make an additional attack against a nearby creature when you hit.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 11, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_ranger_gloom-stalker_shadowy-dodge",
+        "name": "Shadowy Dodge",
+        "desc": "When a creature attacks you without Advantage, you can use your Reaction to impose Disadvantage on the attack roll and teleport up to 30 feet.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 15, "detail": null}],
+        "data_for_class_table": []
+      }
+    ],
+    "document": "phb-2024",
+    "saving_throws": [],
+    "subclass_of": {"name": "Ranger", "key": "srd-2024_ranger"},
+    "name": "Gloom Stalker",
+    "desc": "*Strike Unseen from the Shadowy Depths*\n\nGloom Stalkers hunt monsters in the Underdark and shadows, turning darkness against their enemies.",
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "primary_abilities": [],
+    "crossreferences": {"to": []}
+  },
+  {
+    "key": "phb-2024_arcane-trickster",
+    "features": [
+      {
+        "key": "phb-2024_rogue_arcane-trickster_spellcasting",
+        "name": "Spellcasting",
+        "desc": "You learn Wizard cantrips and spells, primarily from the Illusion and Enchantment schools, using Intelligence as your spellcasting ability.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_rogue_arcane-trickster_mage-hand-legerdemain",
+        "name": "Mage Hand Legerdemain",
+        "desc": "When you cast Mage Hand, you can make the hand invisible and use it to stow or retrieve objects from containers and pick locks or pockets at range.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_rogue_arcane-trickster_magical-ambush",
+        "name": "Magical Ambush",
+        "desc": "If you are hidden from a creature when you cast a spell on it, the creature has Disadvantage on any saving throw it makes against the spell this turn.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 9, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_rogue_arcane-trickster_versatile-trickster",
+        "name": "Versatile Trickster",
+        "desc": "You can use your Bonus Action to direct your Mage Hand to distract a target within 5 feet of it, granting you Advantage on attack rolls against that target.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 13, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_rogue_arcane-trickster_spell-thief",
+        "name": "Spell Thief",
+        "desc": "When a creature casts a spell targeting you or in your area, you can use your Reaction to force a save; on a failure, you negate the spell's effect on you and steal the knowledge of how to cast it for 8 hours.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 17, "detail": null}],
+        "data_for_class_table": []
+      }
+    ],
+    "document": "phb-2024",
+    "saving_throws": [],
+    "subclass_of": {"name": "Rogue", "key": "srd-2024_rogue"},
+    "name": "Arcane Trickster",
+    "desc": "*Enhance Stealth with Illusion and Enchantment*\n\nArcane Tricksters combine rogue agility with Wizard illusion and enchantment magic to pull off impossible thefts.",
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "primary_abilities": [],
+    "crossreferences": {"to": []}
+  },
+  {
+    "key": "phb-2024_assassin",
+    "features": [
+      {
+        "key": "phb-2024_rogue_assassin_assassinate",
+        "name": "Assassinate",
+        "desc": "You have Advantage on Initiative rolls, and during the first round of combat, you have Advantage on attack rolls against any creature that hasn't taken a turn yet and deal extra damage equal to your Rogue level.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_rogue_assassin_assassins-tools",
+        "name": "Assassin's Tools",
+        "desc": "You gain proficiency with the Disguise Kit and Poisoner's Kit.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_rogue_assassin_infiltration-expertise",
+        "name": "Infiltration Expertise",
+        "desc": "You can flawlessly adopt false identities and mimic speech patterns and handwriting after studying them.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 9, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_rogue_assassin_envenom-weapons",
+        "name": "Envenom Weapons",
+        "desc": "When you use the Poison Cunning Strike option, the target takes extra Poison damage equal to 2d6 plus your Dexterity modifier, and ignores resistance to Poison.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 13, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_rogue_assassin_death-strike",
+        "name": "Death Strike",
+        "desc": "When you hit a surprised creature during the first round of combat, it must make a Constitution saving throw or take double damage from the attack.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 17, "detail": null}],
+        "data_for_class_table": []
+      }
+    ],
+    "document": "phb-2024",
+    "saving_throws": [],
+    "subclass_of": {"name": "Rogue", "key": "srd-2024_rogue"},
+    "name": "Assassin",
+    "desc": "*Eliminate Targets with Precision and Poison*\n\nAssassins are lethal killers who specialize in ambush attacks, disguises, and deadly toxins.",
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "primary_abilities": [],
+    "crossreferences": {"to": []}
+  },
+  {
+    "key": "phb-2024_soulknife",
+    "features": [
+      {
+        "key": "phb-2024_rogue_soulknife_psionic-power",
+        "name": "Psionic Power",
+        "desc": "You harbor a pool of Psionic Energy Dice that you can expend to use Psi-Bolstered Knack (add to failed skill checks) or Psychic Whispers (telepathic communication).",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_rogue_soulknife_psychic-blades",
+        "name": "Psychic Blades",
+        "desc": "You can manifest shimmering blades of psychic energy from your hands when you attack, dealing Psychic damage and leaving no marks.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_rogue_soulknife_soul-blades",
+        "name": "Soul Blades",
+        "desc": "Your Psychic Blades gain Homing Strikes (add a Psionic Energy Die to a missed attack roll) and Psychic Teleportation (throw blade to teleport to its location).",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 9, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_rogue_soulknife_psychic-veil",
+        "name": "Psychic Veil",
+        "desc": "As an action, you can weave a veil of psychic energy to become Invisible for 1 hour or until you deal damage or force a saving throw.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 13, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_rogue_soulknife_rend-mind",
+        "name": "Rend Mind",
+        "desc": "When you deal Sneak Attack damage with your Psychic Blades, you can force the target to make a Wisdom saving throw or be Stunned for 1 minute.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 17, "detail": null}],
+        "data_for_class_table": []
+      }
+    ],
+    "document": "phb-2024",
+    "saving_throws": [],
+    "subclass_of": {"name": "Rogue", "key": "srd-2024_rogue"},
+    "name": "Soulknife",
+    "desc": "*Strike with Telepathic Psychic Blades*\n\nSoulknife rogues are psionic infiltrators who project mind-blades to strike targets mentally.",
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "primary_abilities": [],
+    "crossreferences": {"to": []}
+  },
+  {
+    "key": "phb-2024_aberrant-sorcery",
+    "features": [
+      {
+        "key": "phb-2024_sorcerer_aberrant-sorcery_psionic-spells",
+        "name": "Psionic Spells",
+        "desc": "You always have certain spells prepared: Arms of Hadar, Dissonant Whispers, Mind Spike, Calm Emotions, Hunger of Hadar, Sending, Evard's Black Tentacles, Summon Aberration, Rary's Telepathic Bond, and Telekinesis.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_sorcerer_aberrant-sorcery_telepathic-speech",
+        "name": "Telepathic Speech",
+        "desc": "You can form a telepathic link with a creature you can see within 30 feet of you for a number of minutes equal to your Sorcerer level.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_sorcerer_aberrant-sorcery_psionic-sorcery",
+        "name": "Psionic Sorcery",
+        "desc": "You can cast any spell from your Psionic Spells list using Sorcery Points equal to the spell's level without requiring Verbal, Somatic, or non-costly Material components.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 6, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_sorcerer_aberrant-sorcery_psychic-defenses",
+        "name": "Psychic Defenses",
+        "desc": "You gain Resistance to Psychic damage and Advantage on saving throws against being Charmed or Frightened.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 6, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_sorcerer_aberrant-sorcery_revelation-in-flesh",
+        "name": "Revelation in Flesh",
+        "desc": "As a Bonus Action, you can spend Sorcery Points to transform your body for 10 minutes, gaining benefits like a Fly Speed, Swim Speed, or squeezing through tiny spaces.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 14, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_sorcerer_aberrant-sorcery_warping-implosion",
+        "name": "Warping Implosion",
+        "desc": "As an action, you can unleash a gravitational anomaly, teleporting up to 120 feet while dealing Force damage and pulling nearby creatures toward your space.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 18, "detail": null}],
+        "data_for_class_table": []
+      }
+    ],
+    "document": "phb-2024",
+    "saving_throws": [],
+    "subclass_of": {"name": "Sorcerer", "key": "srd-2024_sorcerer"},
+    "name": "Aberrant Sorcery",
+    "desc": "*Wield the Alien Powers of the Multiverse*\n\nAberrant Sorcerers draw their power from alien entities or cosmic horrors, warping minds with psionic magic.",
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "primary_abilities": [],
+    "crossreferences": {"to": []}
+  },
+  {
+    "key": "phb-2024_clockwork-sorcery",
+    "features": [
+      {
+        "key": "phb-2024_sorcerer_clockwork-sorcery_clockwork-spells",
+        "name": "Clockwork Spells",
+        "desc": "You always have certain spells prepared: Alarm, Protection from Evil and Good, Aid, Lesser Restoration, Dispel Magic, Protection from Energy, Freedom of Movement, Summon Construct, Greater Restoration, and Wall of Force.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_sorcerer_clockwork-sorcery_restore-balance",
+        "name": "Restore Balance",
+        "desc": "When a creature within 60 feet is about to roll a d20 with Advantage or Disadvantage, you can use your Reaction to prevent the roll from being affected by Advantage and Disadvantage.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_sorcerer_clockwork-sorcery_bastion-of-law",
+        "name": "Bastion of Law",
+        "desc": "You can expend Sorcery Points to create a protective ward around a creature that reduces incoming damage.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 6, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_sorcerer_clockwork-sorcery_trance-of-order",
+        "name": "Trance of Order",
+        "desc": "As a Bonus Action, you enter a state of absolute order for 1 minute, preventing attack rolls against you from having Advantage and treating d20 rolls of 9 or lower as a 10.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 14, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_sorcerer_clockwork-sorcery_clockwork-cavalcade",
+        "name": "Clockwork Cavalcade",
+        "desc": "You summon spirits of order to restore up to 100 Hit Points, repair objects, and end spells of level 6 or lower within a 30-foot cube.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 18, "detail": null}],
+        "data_for_class_table": []
+      }
+    ],
+    "document": "phb-2024",
+    "saving_throws": [],
+    "subclass_of": {"name": "Sorcerer", "key": "srd-2024_sorcerer"},
+    "name": "Clockwork Sorcery",
+    "desc": "*Channel Absolute Cosmic Order*\n\nClockwork Sorcerers are imbued with the precision of Mechanus, balancing chaos and manipulating fate.",
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "primary_abilities": [],
+    "crossreferences": {"to": []}
+  },
+  {
+    "key": "phb-2024_wild-magic-sorcery",
+    "features": [
+      {
+        "key": "phb-2024_sorcerer_wild-magic-sorcery_wild-magic-surge",
+        "name": "Wild Magic Surge",
+        "desc": "Your spellcasting can unleash chaotic magic. Once per turn when you cast a Sorcerer spell of level 1 or higher, you roll a d20; on a 20 (or modified threshold), you roll on the Wild Magic Surge table.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_sorcerer_wild-magic-sorcery_tides-of-chaos",
+        "name": "Tides of Chaos",
+        "desc": "You can gain Advantage on one d20 test. After doing so, the GM can have you roll on the Wild Magic Surge table immediately after casting a spell, resetting your use of this feature.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_sorcerer_wild-magic-sorcery_bend-luck",
+        "name": "Bend Luck",
+        "desc": "When another creature rolls a d20 test, you can use your Reaction and expend 1 Sorcery Point to roll 1d4 and add or subtract it from the creature's total.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 6, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_sorcerer_wild-magic-sorcery_controlled-chaos",
+        "name": "Controlled Chaos",
+        "desc": "Whenever you roll on the Wild Magic Surge table, you can roll twice and choose which of the two effects to unleash.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 14, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_sorcerer_wild-magic-sorcery_wild-bombardment",
+        "name": "Wild Bombardment",
+        "desc": "When you roll damage for a spell, you can unleash a focused wild surge, causing an explosive magical effect from the Wild Magic Surge table.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 18, "detail": null}],
+        "data_for_class_table": []
+      }
+    ],
+    "document": "phb-2024",
+    "saving_throws": [],
+    "subclass_of": {"name": "Sorcerer", "key": "srd-2024_sorcerer"},
+    "name": "Wild Magic Sorcery",
+    "desc": "*Unleash Untamed Multiversal Chaos*\n\nWild Magic Sorcerers wield volatile magic that produces unpredictable and dramatic surges of power.",
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "primary_abilities": [],
+    "crossreferences": {"to": []}
+  },
+  {
+    "key": "phb-2024_archfey-patron",
+    "features": [
+      {
+        "key": "phb-2024_warlock_archfey-patron_archfey-spells",
+        "name": "Archfey Spells",
+        "desc": "You always have certain spells prepared: Calm Emotions, Faerie Fire, Phantasmal Force, Sleep, Blink, Plant Growth, Dominate Beast, Greater Invisibility, Dominate Person, and Seeming.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_warlock_archfey-patron_steps-of-the-fey",
+        "name": "Steps of the Fey",
+        "desc": "You can cast Misty Step without expending a spell slot a number of times equal to your Charisma modifier per Long Rest, adding a teleportation flourish like Refreshing Step or Taunting Step.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_warlock_archfey-patron_misty-escape",
+        "name": "Misty Escape",
+        "desc": "When you take damage, you can use your Reaction to cast Misty Step and turn Invisible until the start of your next turn.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 6, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_warlock_archfey-patron_beguiling-defenses",
+        "name": "Beguiling Defenses",
+        "desc": "You are immune to being Charmed, and when a creature attempts to charm you, you can use your Reaction to turn the charm back onto that creature.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 10, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_warlock_archfey-patron_bewitching-magic",
+        "name": "Bewitching Magic",
+        "desc": "Immediately after you cast an Enchantment or Illusion spell using an action, you can cast Misty Step as part of the same action without expending a spell slot.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 14, "detail": null}],
+        "data_for_class_table": []
+      }
+    ],
+    "document": "phb-2024",
+    "saving_throws": [],
+    "subclass_of": {"name": "Warlock", "key": "srd-2024_warlock"},
+    "name": "Archfey Patron",
+    "desc": "*Make a Pact with a Feywild Lord*\n\nWarlocks of the Archfey gain teleportation and enchantment tricks to charm or evade opponents.",
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "primary_abilities": [],
+    "crossreferences": {"to": []}
+  },
+  {
+    "key": "phb-2024_celestial-patron",
+    "features": [
+      {
+        "key": "phb-2024_warlock_celestial-patron_celestial-spells",
+        "name": "Celestial Spells",
+        "desc": "You always have certain spells prepared: Aid, Cure Wounds, Guiding Bolt, Lesser Restoration, Daylight, Revivify, Guardian of Faith, Wall of Fire, Greater Restoration, and Summon Celestial.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_warlock_celestial-patron_healing-light",
+        "name": "Healing Light",
+        "desc": "You have a pool of d6s equal to 1 plus your Warlock level that you can spend as a Bonus Action to heal creatures within 60 feet.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_warlock_celestial-patron_radiant-soul",
+        "name": "Radiant Soul",
+        "desc": "You gain Resistance to Radiant damage, and when you cast a spell that deals Fire or Radiant damage, you can add your Charisma modifier to one damage roll.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 6, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_warlock_celestial-patron_celestial-resilience",
+        "name": "Celestial Resilience",
+        "desc": "Whenever you finish a Short or Long Rest, you gain Temporary Hit Points equal to your Warlock level plus your Charisma modifier, and allies within 30 feet also gain half that amount.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 10, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_warlock_celestial-patron_searing-vengeance",
+        "name": "Searing Vengeance",
+        "desc": "When you have to make a Death Saving Throw, you can instead spring up with half your Hit Points and deal Radiant damage and blindness to nearby enemies.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 14, "detail": null}],
+        "data_for_class_table": []
+      }
+    ],
+    "document": "phb-2024",
+    "saving_throws": [],
+    "subclass_of": {"name": "Warlock", "key": "srd-2024_warlock"},
+    "name": "Celestial Patron",
+    "desc": "*Draw Holy Might from Heavenly Beings*\n\nCelestial Warlocks make pacts with angels and holy entities to heal companions and burn enemies with holy light.",
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "primary_abilities": [],
+    "crossreferences": {"to": []}
+  },
+  {
+    "key": "phb-2024_great-old-one-patron",
+    "features": [
+      {
+        "key": "phb-2024_warlock_great-old-one-patron_great-old-one-spells",
+        "name": "Great Old One Spells",
+        "desc": "You always have certain spells prepared: Dissonant Whispers, Tasha's Hideous Laughter, Detect Thoughts, Phantasmal Force, Clairvoyance, Hunger of Hadar, Confusion, Summon Aberration, Modify Memory, and Telekinesis.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_warlock_great-old-one-patron_awakened-mind",
+        "name": "Awakened Mind",
+        "desc": "You can communicate telepathically with any creature you can see within 30 feet that understands a language.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_warlock_great-old-one-patron_psychic-spells",
+        "name": "Psychic Spells",
+        "desc": "When you cast a Warlock spell that deals damage, you can change the damage type to Psychic, and your Enchantment/Illusion spells can be cast without Verbal or Somatic components.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_warlock_great-old-one-patron_clairvoyant-combatant",
+        "name": "Clairvoyant Combatant",
+        "desc": "When you form a telepathic link with a creature, you can force it to make a Wisdom save; on a failure, you have Advantage on attacks against it and it has Disadvantage on attacks against you.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 6, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_warlock_great-old-one-patron_eldritch-hex",
+        "name": "Eldritch Hex",
+        "desc": "You always have the Hex spell prepared, and when you cast it, the target also has Disadvantage on saving throws of the chosen ability.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 10, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_warlock_great-old-one-patron_create-thrall",
+        "name": "Create Thrall",
+        "desc": "You can cast Summon Aberration without a spell slot, and the summoned aberration is permanently bonded to your telepathic commands.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 14, "detail": null}],
+        "data_for_class_table": []
+      }
+    ],
+    "document": "phb-2024",
+    "saving_throws": [],
+    "subclass_of": {"name": "Warlock", "key": "srd-2024_warlock"},
+    "name": "Great Old One Patron",
+    "desc": "*Serve an Unfathomable Cosmic Horror*\n\nGreat Old One Warlocks draw mind-shattering secrets from ancient entities beyond reality.",
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "primary_abilities": [],
+    "crossreferences": {"to": []}
+  },
+  {
+    "key": "phb-2024_abjurer",
+    "features": [
+      {
+        "key": "phb-2024_wizard_abjurer_abjuration-savant",
+        "name": "Abjuration Savant",
+        "desc": "You gain two level 2 or lower Abjuration spells in your spellbook for free, and whenever you gain a new level of spell slots, you can add an Abjuration spell to your book.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_wizard_abjurer_arcane-ward",
+        "name": "Arcane Ward",
+        "desc": "When you cast an Abjuration spell with a spell slot, you create a magical ward with Hit Points equal to twice your Wizard level plus your Intelligence modifier that absorbs damage you take.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_wizard_abjurer_projected-ward",
+        "name": "Projected Ward",
+        "desc": "When a creature that you can see within 30 feet takes damage, you can use your Reaction to have your Arcane Ward absorb that damage.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 6, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_wizard_abjurer_spellbreaker",
+        "name": "Spellbreaker",
+        "desc": "You always have Counterspell and Dispel Magic prepared, and when you cast them, you add your Proficiency Bonus to the ability check.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 10, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_wizard_abjurer_spell-resistance",
+        "name": "Spell Resistance",
+        "desc": "You have Advantage on saving throws against spells, and you have Resistance to the damage of spells.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 14, "detail": null}],
+        "data_for_class_table": []
+      }
+    ],
+    "document": "phb-2024",
+    "saving_throws": [],
+    "subclass_of": {"name": "Wizard", "key": "srd-2024_wizard"},
+    "name": "Abjurer",
+    "desc": "*Protect and Ward Using Protective Arcane Magic*\n\nAbjurers specialize in creating magical barriers, dispelling harmful magic, and protecting allies from damage.",
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "primary_abilities": [],
+    "crossreferences": {"to": []}
+  },
+  {
+    "key": "phb-2024_diviner",
+    "features": [
+      {
+        "key": "phb-2024_wizard_diviner_divination-savant",
+        "name": "Divination Savant",
+        "desc": "You gain two level 2 or lower Divination spells in your spellbook for free, and whenever you gain a new level of spell slots, you can add a Divination spell to your book.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_wizard_diviner_portent",
+        "name": "Portent",
+        "desc": "After a Long Rest, roll two d20s and record the numbers. You can replace any attack roll, saving throw, or ability check made by you or a creature you can see with one of these foretold rolls.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_wizard_diviner_expert-divination",
+        "name": "Expert Divination",
+        "desc": "When you cast a Divination spell of level 2 or higher using a spell slot, you regain an expended spell slot of a level lower than the spell cast.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 6, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_wizard_diviner_the-third-eye",
+        "name": "The Third Eye",
+        "desc": "As a Bonus Action, you can increase your perception for 1 hour, choosing Darkvision 120 ft., Ethereal Sight, Greater Comprehension, or See Invisibility.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 10, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_wizard_diviner_greater-portent",
+        "name": "Greater Portent",
+        "desc": "You roll three d20s for your Portent feature after a Long Rest instead of two.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 14, "detail": null}],
+        "data_for_class_table": []
+      }
+    ],
+    "document": "phb-2024",
+    "saving_throws": [],
+    "subclass_of": {"name": "Wizard", "key": "srd-2024_wizard"},
+    "name": "Diviner",
+    "desc": "*See the Future and Manipulate Fate*\n\nDiviners pierce the veils of space and time, glimpsing the future to manipulate dice rolls and uncover secrets.",
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "primary_abilities": [],
+    "crossreferences": {"to": []}
+  },
+  {
+    "key": "phb-2024_illusionist",
+    "features": [
+      {
+        "key": "phb-2024_wizard_illusionist_illusion-savant",
+        "name": "Illusion Savant",
+        "desc": "You gain two level 2 or lower Illusion spells in your spellbook for free, and whenever you gain a new level of spell slots, you can add an Illusion spell to your book.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_wizard_illusionist_improved-minor-illusion",
+        "name": "Improved Minor Illusion",
+        "desc": "You learn the Minor Illusion cantrip, and when you cast it, you can create both a sound and an image with a single casting.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 3, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_wizard_illusionist_phantasmal-creatures",
+        "name": "Phantasmal Creatures",
+        "desc": "You always have the Summon Beast or Summon Fey spell prepared, and you can cast it as an Illusion spell without costly Material components.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 6, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_wizard_illusionist_illusory-self",
+        "name": "Illusory Self",
+        "desc": "When a creature hits you with an attack roll, you can use your Reaction to interpose an illusory duplicate and cause the attack to miss automatically.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 10, "detail": null}],
+        "data_for_class_table": []
+      },
+      {
+        "key": "phb-2024_wizard_illusionist_illusory-reality",
+        "name": "Illusory Reality",
+        "desc": "When you cast an Illusion spell of level 1 or higher, you can choose one inanimate, nonmagical object that is part of the illusion and make that object real for 1 minute.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [{"level": 14, "detail": null}],
+        "data_for_class_table": []
+      }
+    ],
+    "document": "phb-2024",
+    "saving_throws": [],
+    "subclass_of": {"name": "Wizard", "key": "srd-2024_wizard"},
+    "name": "Illusionist",
+    "desc": "*Weave Phantoms to Deceive Senses*\n\nIllusionists craft lifelike phantoms and sensory deceptions, eventually making their illusory creations tangible.",
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "primary_abilities": [],
+    "crossreferences": {"to": []}
+  }
+]

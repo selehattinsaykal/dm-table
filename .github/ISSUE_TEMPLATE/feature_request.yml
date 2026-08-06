@@ -1,0 +1,39 @@
+name: Feature request
+description: Suggest something the table needs
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve at the table?
+      description: Describe the situation during play, not just the feature.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What would you like it to do?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: side
+    attributes:
+      label: Which side is affected?
+      options:
+        - DM app
+        - Player panel
+        - Both
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: content
+    attributes:
+      label: Content policy
+      options:
+        - label: >
+            This request does not require shipping rules text, stat blocks or art from non-SRD
+            sourcebooks with the app.
+          required: true

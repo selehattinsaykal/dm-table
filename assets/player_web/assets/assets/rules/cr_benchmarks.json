@@ -1,0 +1,230 @@
+{
+  "generatedFrom": "srd-2024 creatures (CC-BY 4.0)",
+  "creatureCount": 331,
+  "benchmarks": [
+    {
+      "cr": 0.0,
+      "sampleCount": 30,
+      "hitPoints": 3.0,
+      "armorClass": 11.5,
+      "damagePerRound": 2.5,
+      "attackBonus": 2.0
+    },
+    {
+      "cr": 0.125,
+      "sampleCount": 19,
+      "hitPoints": 9.0,
+      "armorClass": 12.0,
+      "damagePerRound": 4.5,
+      "attackBonus": 4.0
+    },
+    {
+      "cr": 0.25,
+      "sampleCount": 32,
+      "hitPoints": 13.0,
+      "armorClass": 12.0,
+      "damagePerRound": 6.5,
+      "attackBonus": 4.0
+    },
+    {
+      "cr": 0.5,
+      "sampleCount": 27,
+      "hitPoints": 21.0,
+      "armorClass": 12.0,
+      "damagePerRound": 6.5,
+      "attackBonus": 4.0
+    },
+    {
+      "cr": 1.0,
+      "sampleCount": 27,
+      "hitPoints": 26.0,
+      "armorClass": 13.0,
+      "damagePerRound": 8.8,
+      "attackBonus": 5.0
+    },
+    {
+      "cr": 2.0,
+      "sampleCount": 42,
+      "hitPoints": 45.0,
+      "armorClass": 13.0,
+      "damagePerRound": 13.0,
+      "attackBonus": 5.0
+    },
+    {
+      "cr": 3.0,
+      "sampleCount": 25,
+      "hitPoints": 65.0,
+      "armorClass": 15.0,
+      "damagePerRound": 18.0,
+      "attackBonus": 5.0
+    },
+    {
+      "cr": 4.0,
+      "sampleCount": 16,
+      "hitPoints": 76.0,
+      "armorClass": 15.0,
+      "damagePerRound": 26.0,
+      "attackBonus": 6.0
+    },
+    {
+      "cr": 5.0,
+      "sampleCount": 25,
+      "hitPoints": 104.0,
+      "armorClass": 15.0,
+      "damagePerRound": 26.0,
+      "attackBonus": 7.0
+    },
+    {
+      "cr": 6.0,
+      "sampleCount": 11,
+      "hitPoints": 123.0,
+      "armorClass": 15.0,
+      "damagePerRound": 34.5,
+      "attackBonus": 7.0
+    },
+    {
+      "cr": 7.0,
+      "sampleCount": 6,
+      "hitPoints": 126.5,
+      "armorClass": 17.0,
+      "damagePerRound": 41.3,
+      "attackBonus": 7.0
+    },
+    {
+      "cr": 8.0,
+      "sampleCount": 10,
+      "hitPoints": 136.0,
+      "armorClass": 17.0,
+      "damagePerRound": 41.3,
+      "attackBonus": 7.0
+    },
+    {
+      "cr": 9.0,
+      "sampleCount": 8,
+      "hitPoints": 161.5,
+      "armorClass": 17.0,
+      "damagePerRound": 44.0,
+      "attackBonus": 9.5
+    },
+    {
+      "cr": 10.0,
+      "sampleCount": 6,
+      "hitPoints": 178.0,
+      "armorClass": 18.0,
+      "damagePerRound": 44.0,
+      "attackBonus": 9.5
+    },
+    {
+      "cr": 11.0,
+      "sampleCount": 7,
+      "hitPoints": 199.0,
+      "armorClass": 18.0,
+      "damagePerRound": 50.3,
+      "attackBonus": 9.5
+    },
+    {
+      "cr": 12.0,
+      "sampleCount": 2,
+      "hitPoints": 199.0,
+      "armorClass": 18.0,
+      "damagePerRound": 73.5,
+      "attackBonus": 9.5
+    },
+    {
+      "cr": 13.0,
+      "sampleCount": 6,
+      "hitPoints": 199.0,
+      "armorClass": 18.0,
+      "damagePerRound": 73.5,
+      "attackBonus": 10.5
+    },
+    {
+      "cr": 14.0,
+      "sampleCount": 3,
+      "hitPoints": 199.0,
+      "armorClass": 18.0,
+      "damagePerRound": 73.5,
+      "attackBonus": 11.0
+    },
+    {
+      "cr": 15.0,
+      "sampleCount": 4,
+      "hitPoints": 209.5,
+      "armorClass": 18.0,
+      "damagePerRound": 73.5,
+      "attackBonus": 11.5
+    },
+    {
+      "cr": 16.0,
+      "sampleCount": 5,
+      "hitPoints": 220.0,
+      "armorClass": 19.0,
+      "damagePerRound": 73.5,
+      "attackBonus": 12.0
+    },
+    {
+      "cr": 17.0,
+      "sampleCount": 4,
+      "hitPoints": 249.5,
+      "armorClass": 19.0,
+      "damagePerRound": 73.5,
+      "attackBonus": 13.5
+    },
+    {
+      "cr": 19.0,
+      "sampleCount": 1,
+      "hitPoints": 287.0,
+      "armorClass": 19.0,
+      "damagePerRound": 73.5,
+      "attackBonus": 14.0
+    },
+    {
+      "cr": 20.0,
+      "sampleCount": 3,
+      "hitPoints": 333.0,
+      "armorClass": 20.0,
+      "damagePerRound": 78.0,
+      "attackBonus": 14.0
+    },
+    {
+      "cr": 21.0,
+      "sampleCount": 4,
+      "hitPoints": 341.0,
+      "armorClass": 21.0,
+      "damagePerRound": 81.0,
+      "attackBonus": 15.0
+    },
+    {
+      "cr": 22.0,
+      "sampleCount": 2,
+      "hitPoints": 423.0,
+      "armorClass": 21.5,
+      "damagePerRound": 81.8,
+      "attackBonus": 15.5
+    },
+    {
+      "cr": 23.0,
+      "sampleCount": 3,
+      "hitPoints": 481.0,
+      "armorClass": 22.0,
+      "damagePerRound": 81.8,
+      "attackBonus": 17.0
+    },
+    {
+      "cr": 24.0,
+      "sampleCount": 2,
+      "hitPoints": 526.5,
+      "armorClass": 22.0,
+      "damagePerRound": 86.3,
+      "attackBonus": 17.0
+    },
+    {
+      "cr": 30.0,
+      "sampleCount": 1,
+      "hitPoints": 697.0,
+      "armorClass": 25.0,
+      "damagePerRound": 86.3,
+      "attackBonus": 19.0
+    }
+  ]
+}

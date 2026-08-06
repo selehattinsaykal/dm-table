@@ -1,0 +1,26 @@
+# Normalise line endings: LF in the repository, native in the working tree.
+* text=auto eol=lf
+
+# Windows-only build inputs keep CRLF.
+*.bat text eol=crlf
+*.ps1 text eol=crlf
+*.rc  text eol=crlf
+gradlew.bat text eol=crlf
+
+# Binary assets.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.ico binary
+*.ttf binary
+*.otf binary
+*.gz  binary
+*.wasm binary
+*.zip binary
+*.jar binary
+
+# Generated payloads: keep them out of diffs and language statistics.
+assets/player_web/** linguist-generated=true -diff
+lib/**/*.g.dart linguist-generated=true
+lib/l10n/app_localizations*.dart linguist-generated=true
+assets/data/*.json.gz linguist-vendored=true
