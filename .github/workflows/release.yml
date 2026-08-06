@@ -1,0 +1,63 @@
+name: Release
+
+# Builds the Windows app and attaches it to a GitHub Release as a ready-to-run
+# zip — this is the download link players and DMs use; they don't need
+# Flutter, Visual Studio or git.
+#
+# Trigger by pushing a tag: git tag v1.2.0 && git push origin v1.2.0
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag to release (must already exist), e.g. v1.2.0"
+        required: true
+
+env:
+  FLUTTER_VERSION: "3.44.7"
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    name: Build Windows release zip
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag || github.ref }}
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+
+      - run: flutter pub get
+      - run: flutter test --reporter expanded
+      - run: flutter build windows --release
+
+      - name: Zip the build
+        shell: pwsh
+        run: |
+          $tag = "${{ inputs.tag || github.ref_name }}"
+          $zipName = "DM-Table-$tag-windows.zip"
+          Compress-Archive -Path "build/windows/x64/runner/Release/*" -DestinationPath $zipName
+          echo "ZIP_NAME=$zipName" >> $env:GITHUB_ENV
+
+      - name: Publish release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ inputs.tag || github.ref_name }}
+          files: ${{ env.ZIP_NAME }}
+          generate_release_notes: true
+          body: |
+            **How to run:** download `${{ env.ZIP_NAME }}` below, extract it anywhere, and
+            double-click `dm_table.exe`. No installer, no Flutter, nothing else to set up.
+
+            Windows will ask for firewall access the first time you open a table — allow
+            **private networks**, or players on your network won't be able to connect.

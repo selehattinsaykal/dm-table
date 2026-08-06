@@ -8,14 +8,29 @@
 
 [![Flutter](https://img.shields.io/badge/Flutter-3.44-02569B?logo=flutter&logoColor=white)](https://flutter.dev)
 [![Dart](https://img.shields.io/badge/Dart-3.12-0175C2?logo=dart&logoColor=white)](https://dart.dev)
-[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Web%20player-informational)](#installation)
+[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Web%20player-informational)](#just-want-to-run-a-session-no-install-no-flutter-nothing-to-build)
 [![Tests](https://img.shields.io/badge/tests-925%20passing-2ea043)](#testing)
 [![License: GPL v3](https://img.shields.io/badge/license-GPL--3.0-blue)](LICENSE)
 [![Content](https://img.shields.io/badge/content-SRD%205.2%20%2B%20non--redistributable-lightgrey)](NOTICE.md)
+[![Download](https://img.shields.io/github/v/release/selehattinsaykal/dm-table?label=download&color=c2410c)](../../releases/latest)
 
 </div>
 
 ---
+
+## Just want to run a session? (no install, no Flutter, nothing to build)
+
+1. Go to **[Releases](../../releases/latest)** and download the `DM-Table-*-windows.zip` under **Assets**.
+2. Extract the zip anywhere (Desktop is fine).
+3. Double-click **`dm_table.exe`** inside the extracted folder. That's the whole install.
+4. Right-click `dm_table.exe` → **Send to → Desktop (create shortcut)** if you want an icon for next time.
+
+The first time you open a table, Windows will ask for firewall access — tick **private networks**,
+otherwise players on your Wi-Fi/LAN won't be able to connect. Everyone else just opens the QR code or
+the address shown on screen in their phone/laptop browser; they install nothing.
+
+There is currently **no macOS/Linux/Android build** — the app runs on Windows, and reaches every
+player through their browser instead.
 
 ## What it is
 
@@ -77,7 +92,10 @@ because the player panel is downloaded over the LAN and every megabyte counts. B
 system sans for legibility. Colors, spacing and breakpoints are exposed as theme extensions
 (`context.fantasyColors`, `context.spacing`, `Breakpoints`) instead of scattered magic numbers.
 
-## Installation
+## Building from source
+
+Only needed if you want to modify the app — see [above](#just-want-to-run-a-session-no-install-no-flutter-nothing-to-build)
+if you just want to play.
 
 ### Requirements
 
@@ -87,7 +105,7 @@ system sans for legibility. Colors, spacing and breakpoints are exposed as theme
 ### Build
 
 ```bash
-git clone https://github.com/<owner>/dm-table.git
+git clone https://github.com/selehattinsaykal/dm-table.git
 cd dm-table
 flutter pub get
 flutter build windows --release
@@ -112,7 +130,9 @@ dart run tools/build_player_web.dart
 > The tool also rewrites the `player_web` asset block in `pubspec.yaml` (Flutter does not scan asset
 > directories recursively) and prunes ~21 MB of unused renderer/plugin payload.
 
-### Running a session
+## Running a session
+
+Same steps whether you downloaded the release zip or built from source:
 
 1. Open the app, pick or create a campaign — the SRD library is imported into it on first run.
 2. Go to **Session → open the table**; the server starts on port 8080, or the next free port.
