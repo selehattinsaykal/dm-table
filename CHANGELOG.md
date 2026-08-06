@@ -19,6 +19,14 @@ All notable changes to this project are documented here. The format is based on
 - Repository documentation for open source: README (EN/TR), contributing guide, security policy,
   third-party attribution notice, GitHub Actions CI, issue and pull request templates.
 
+### Removed
+
+- The Android runner (`android/`). The DM app targets Windows only; players never install anything.
+- ~4 MB of raw source JSON that was being packaged into both the app and the player bundle. The
+  files moved to `tools/content_sources/`, where only `tools/fetch_open5e.dart` reads them.
+- Dead scaffolding (`lib/app/placeholder_page.dart`) and the duplicated `Logo/` folder, which was
+  byte-identical to `assets/logo/logo.png`.
+
 ## [1.1.0] — 2026-08-06
 
 ### Added

@@ -19,12 +19,24 @@ DM Table is an independent, unofficial project. It is not affiliated with, endor
 approved by Wizards of the Coast LLC. *Dungeons & Dragons* and *D&D* are trademarks of Wizards of the
 Coast LLC.
 
-**No content from non-SRD sourcebooks is included in this repository.** Material outside the SRD must
-be entered by the user through the app's own content editors, on their own device.
-
 `assets/data/conditions_tr.json` and `assets/data/starter_tables.json` are Turkish translations and
 original tables written for this project; they follow the SRD's CC BY 4.0 terms where derived from
 SRD text.
+
+## Additional 2024 rules content — not CC BY
+
+The bundles in `assets/data/` also contain material that is **not** part of SRD 5.2 and therefore
+**not** covered by the CC BY 4.0 license above: 2024 core-rulebook spells, subclasses, feats,
+backgrounds, species and items, and Monster Manual creatures. The unmerged source files are in
+[`tools/content_sources/`](tools/content_sources/) and are tagged `phb-2024` / `mm-2024` in the data.
+
+This material is copyright Wizards of the Coast. It is included here for the maintainer's own table
+and is **not** licensed for redistribution — the GPL-3.0 grant on this repository covers the source
+code, not this content. If you fork, package or redistribute this project, strip those entries (keep
+only `document: "srd-2024"`) or replace them with your own content.
+
+Rights holders who want this material removed can open an issue or contact the maintainer, and it
+will be taken down.
 
 ## Fonts — SIL Open Font License 1.1
 

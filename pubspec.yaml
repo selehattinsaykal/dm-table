@@ -166,8 +166,7 @@ flutter:
 # hali. Logo degisirse `tools/build_icon.dart` ile yeniden uret.
 flutter_launcher_icons:
   image_path: "assets/logo/logo_icon.png"
-  # android: true  # iOS projesinin yok; build hata veriyor.
-  # ios: true
+  # Yalnizca Windows + web hedefi var; android/ios runner'i bu depoda yok.
   windows:
     generate: true
     image_path: "assets/logo/logo_icon.png"

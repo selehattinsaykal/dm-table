@@ -8,10 +8,10 @@
 
 [![Flutter](https://img.shields.io/badge/Flutter-3.44-02569B?logo=flutter&logoColor=white)](https://flutter.dev)
 [![Dart](https://img.shields.io/badge/Dart-3.12-0175C2?logo=dart&logoColor=white)](https://dart.dev)
-[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Android%20%7C%20Web-informational)](#kurulum)
+[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Web%20oyuncu-informational)](#kurulum)
 [![Tests](https://img.shields.io/badge/test-925%20ge%C3%A7iyor-2ea043)](#test)
 [![Lisans: GPL v3](https://img.shields.io/badge/lisans-GPL--3.0-blue)](LICENSE)
-[![İçerik: CC BY 4.0](https://img.shields.io/badge/i%C3%A7erik-SRD%205.2%20CC%20BY%204.0-lightgrey)](NOTICE.md)
+[![İçerik](https://img.shields.io/badge/i%C3%A7erik-SRD%205.2%20%2B%20da%C4%9F%C4%B1t%C4%B1lamaz-lightgrey)](NOTICE.md)
 
 [English](README.md) · [Türkçe](README.tr.md)
 
@@ -21,7 +21,7 @@
 
 ## Nedir
 
-DM Table **kendi cihazınızda çalışan** bir masa yardımcısıdır. DM masaüstü (ya da Android)
+DM Table **kendi cihazınızda çalışan** bir masa yardımcısıdır. DM, Windows masaüstü
 uygulamasını açar; uygulama yerel ağda bir HTTP + WebSocket sunucusu başlatır ve oyuncu panelini
 kendi varlıklarından servis eder. Oyuncular QR kodu okutup katılır — hesap yok, bulut yok, internet
 bağlantısı gerekmez.
@@ -31,7 +31,7 @@ Tek yetkili DM'dir: oyuncular istek gönderir, sunucu doğrular, yazar ve yeni m
 dağıtır.
 
 ```
-DM uygulaması (Windows / Android)              Oyuncular (ağdaki herhangi bir tarayıcı)
+DM uygulaması (Windows)                        Oyuncular (ağdaki herhangi bir tarayıcı)
 ┌──────────────────────────────┐               ┌────────────────────────────┐
 │  Kampanya SQLite (drift)     │               │  Karakter kağıdı · zar     │
 │  Kural motoru · SRD 5.2      │  görüntü →    │  Envanter · görev · harita │
@@ -77,8 +77,7 @@ sabitler yerine tema uzantılarıyla verilir (`context.fantasyColors`, `context.
 ### Gereksinimler
 
 - [Flutter](https://docs.flutter.dev/get-started/install) 3.44 veya üstü (Dart 3.12+)
-- **Windows:** Visual Studio 2022+ ve *C++ ile masaüstü geliştirme* iş yükü, Geliştirici Modu açık
-- **Android:** Android SDK (Android Studio ile) ve bir JDK
+- Visual Studio 2022+ ve *C++ ile masaüstü geliştirme* iş yükü, Geliştirici Modu açık
 
 ### Derleme
 
@@ -89,11 +88,10 @@ flutter pub get
 flutter build windows --release
 ```
 
-Çalıştırılabilir dosya `build/windows/x64/runner/Release/dm_table.exe` altında oluşur. Android için:
+Çalıştırılabilir dosya `build/windows/x64/runner/Release/dm_table.exe` altında oluşur.
 
-```bash
-flutter build apk --release
-```
+DM uygulaması **yalnızca Windows** hedefler; depoda Android/iOS/macOS/Linux runner'ı yoktur.
+Oyuncular hiçbir şey kurmaz — DM'in servis ettiği web panelini kullanır.
 
 ### Oyuncu paneli
 
@@ -170,6 +168,7 @@ assets/
   player_web/   derlenmiş oyuncu paneli, ağ üzerinden servis edilir
   fonts/ logo/ rules/
 tools/          build_player_web.dart · fetch_open5e.dart · build_icon.dart
+  content_sources/  paketlere karışan elle bakılan JSON (uygulamaya girmez)
 test/           102 dosya, 925 test
 ```
 
@@ -194,7 +193,12 @@ girmez ve ağ üzerinden gönderilmez.
 
 Kod **GNU General Public License v3.0** ile lisanslanmıştır — bkz. [LICENSE](LICENSE).
 
-`assets/data/` içindeki oyun içeriği, Wizards of the Coast tarafından **CC BY 4.0** ile lisanslanan
-**System Reference Document 5.2**'den gelir; fontlar SIL Open Font License altındadır. Atıf ayrıntıları
-[NOTICE.md](NOTICE.md) dosyasında. DM Table bağımsız bir projedir; Wizards of the Coast ile bağlantılı
-değildir ve onun onayını taşımaz.
+Fontlar SIL Open Font License altındadır.
+
+`assets/data/` içindeki oyun içeriği **karışıktır**: büyük bölümü **CC BY 4.0** ile lisanslanan
+**System Reference Document 5.2**'den gelir, ancak paketlerde açık lisanslı OLMAYAN ve bu deponun GPL
+kapsamına GİRMEYEN 2024 temel kitap + Monster Manual içeriği de vardır. **Projeyi fork'lar veya
+dağıtırsan bu kayıtları temizle** — neyin etkilendiği ve nasıl yapılacağı [NOTICE.md](NOTICE.md)
+dosyasında.
+
+DM Table bağımsız bir projedir; Wizards of the Coast ile bağlantılı değildir ve onun onayını taşımaz.

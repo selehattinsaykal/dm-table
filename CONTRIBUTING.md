@@ -97,11 +97,18 @@ call `CalendarRepository.advanceDays` directly.
 
 ## Content policy
 
-Only **SRD 5.2 (CC BY 4.0)** and openly licensed material may be added to `assets/data/`. Do not open
-pull requests containing text, stat blocks or art from non-SRD sourcebooks — users add that themselves
-through the in-app editors. When you do update the SRD bundle, update the counts in
-`assets/data/manifest.json` **and** bump `fetchedAt`, otherwise existing databases will not re-seed;
-the count-dependent tests in `test/data/asset_importer_test.dart` need updating too.
+Please do not open pull requests that add further copyrighted game text, stat blocks or art. New
+bundled content should be **SRD 5.2 (CC BY 4.0)** or otherwise openly licensed; anything else belongs
+in the user's own device, through the in-app content editors.
+
+The bundles currently shipped are not purely SRD — see the "Additional 2024 rules content" section of
+[NOTICE.md](NOTICE.md) before redistributing this project.
+
+The generator is `tools/fetch_open5e.dart`; its hand-maintained inputs live in
+`tools/content_sources/` (never in `assets/`, which is packaged wholesale into the app and the player
+panel). After regenerating, update the counts in `assets/data/manifest.json` **and** bump `fetchedAt`,
+otherwise existing databases will not re-seed; the count-dependent tests in
+`test/data/asset_importer_test.dart` need updating too.
 
 ## Reporting bugs
 

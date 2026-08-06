@@ -22,7 +22,7 @@ body:
     attributes:
       label: Which side is affected?
       options:
-        - DM app
+        - DM app (Windows)
         - Player panel
         - Both
     validations:
@@ -34,6 +34,6 @@ body:
       label: Content policy
       options:
         - label: >
-            This request does not require shipping rules text, stat blocks or art from non-SRD
-            sourcebooks with the app.
+            This request does not require shipping additional copyrighted rules text, stat blocks or
+            art with the app.
           required: true

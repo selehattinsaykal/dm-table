@@ -20,6 +20,12 @@ import 'package:http/http.dart' as http;
 const _apiRoot = 'https://api.open5e.com/v2';
 const _outDir = 'assets/data';
 
+/// Elle saglanan ek icerik dosyalari (`*_extra.json`, `spells_phb.json`,
+/// `creatures_mm.json`). `assets/data` DISINDA duruyorlar: o klasorun tamami
+/// uygulamaya ve oyuncu paneline paketlendigi icin, yalnizca bu aracin okudugu
+/// ~4 MB'lik ham JSON her iki pakete de bosuna giriyordu.
+const _srcDir = 'tools/content_sources';
+
 /// Belge bazli filtrelenen uc noktalar: her biri secilen dokuman(lar)a ait
 /// kayitlari getirir.
 const _documentScoped = <String>[
@@ -188,7 +194,7 @@ void _validate(String endpoint, int count, {required bool onlySrd}) {
 /// birlestirir. Ayni isimli SRD kaydi 2024 surumuyle degistirilir; boylece
 /// fetch tekrar calistirildiginda PHB eklemesi kaybolmaz.
 List<Map<String, dynamic>> _mergePhbSpells(List<Map<String, dynamic>> srd) {
-  final phbFile = File('$_outDir/spells_phb.json');
+  final phbFile = File('$_srcDir/spells_phb.json');
   if (!phbFile.existsSync()) {
     throw StateError('spells_phb.json bulunamadi: $phbFile');
   }
@@ -241,7 +247,7 @@ List<Map<String, dynamic>> _mergeEndpoint(
   };
   final name = extras[endpoint];
   if (name == null) return srd;
-  final file = File('$_outDir/$name');
+  final file = File('$_srcDir/$name');
   if (!file.existsSync()) {
     stderr.writeln('UYARI: $name bulunamadi; extra birlestirme atlandi.');
     return srd;
@@ -272,7 +278,7 @@ List<Map<String, dynamic>> _mergeEndpoint(
 List<Map<String, dynamic>> _mergeExtraCreatures(
   List<Map<String, dynamic>> srd,
 ) {
-  final file = File('$_outDir/creatures_mm.json');
+  final file = File('$_srcDir/creatures_mm.json');
   if (!file.existsSync()) return srd;
   final extra = (jsonDecode(file.readAsStringSync()) as List)
       .cast<Map<String, dynamic>>();

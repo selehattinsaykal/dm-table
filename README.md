@@ -8,10 +8,10 @@
 
 [![Flutter](https://img.shields.io/badge/Flutter-3.44-02569B?logo=flutter&logoColor=white)](https://flutter.dev)
 [![Dart](https://img.shields.io/badge/Dart-3.12-0175C2?logo=dart&logoColor=white)](https://dart.dev)
-[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Android%20%7C%20Web-informational)](#installation)
+[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Web%20player-informational)](#installation)
 [![Tests](https://img.shields.io/badge/tests-925%20passing-2ea043)](#testing)
 [![License: GPL v3](https://img.shields.io/badge/license-GPL--3.0-blue)](LICENSE)
-[![Content: CC BY 4.0](https://img.shields.io/badge/content-SRD%205.2%20CC%20BY%204.0-lightgrey)](NOTICE.md)
+[![Content](https://img.shields.io/badge/content-SRD%205.2%20%2B%20non--redistributable-lightgrey)](NOTICE.md)
 
 [English](README.md) · [Türkçe](README.tr.md)
 
@@ -21,7 +21,7 @@
 
 ## What it is
 
-DM Table is a **self-hosted** table companion. The DM runs the desktop (or Android) app; it starts an
+DM Table is a **self-hosted** table companion. The DM runs the Windows desktop app; it starts an
 HTTP + WebSocket server on the local network and serves a full player web panel from its own assets.
 Players join by scanning a QR code — no accounts, no cloud, no internet connection required.
 
@@ -30,7 +30,7 @@ the single source of truth: players send requests, the server validates them, wr
 broadcasts the new table state to everyone.
 
 ```
-DM app (Windows / Android)                     Players (any browser on the LAN)
+DM app (Windows)                               Players (any browser on the LAN)
 ┌──────────────────────────────┐               ┌────────────────────────────┐
 │  Campaign SQLite (drift)     │               │  Character sheet · dice    │
 │  Rules engine · SRD 5.2      │  snapshots →  │  Inventory · quests · map  │
@@ -84,8 +84,7 @@ system sans for legibility. Colors, spacing and breakpoints are exposed as theme
 ### Requirements
 
 - [Flutter](https://docs.flutter.dev/get-started/install) 3.44 or newer (Dart 3.12+)
-- **Windows:** Visual Studio 2022+ with the *Desktop development with C++* workload, Developer Mode on
-- **Android:** Android SDK (via Android Studio) and a JDK
+- Visual Studio 2022+ with the *Desktop development with C++* workload, and Developer Mode enabled
 
 ### Build
 
@@ -96,11 +95,10 @@ flutter pub get
 flutter build windows --release
 ```
 
-The executable lands in `build/windows/x64/runner/Release/dm_table.exe`. For Android:
+The executable lands in `build/windows/x64/runner/Release/dm_table.exe`.
 
-```bash
-flutter build apk --release
-```
+The DM app targets **Windows only**; there is no Android/iOS/macOS/Linux runner in this repository.
+Players do not install anything — they use the web panel the DM serves.
 
 ### Player panel
 
@@ -177,6 +175,7 @@ assets/
   player_web/   compiled player panel, served over the LAN
   fonts/ logo/ rules/
 tools/          build_player_web.dart · fetch_open5e.dart · build_icon.dart
+  content_sources/  hand-maintained JSON merged into the bundles (never shipped)
 test/           102 files, 925 tests
 ```
 
@@ -201,7 +200,12 @@ never included in a backup and never sent over the LAN.
 
 Code is licensed under the **GNU General Public License v3.0** — see [LICENSE](LICENSE).
 
-Game content bundled in `assets/data/` comes from the **System Reference Document 5.2**, licensed by
-Wizards of the Coast under **CC BY 4.0**; fonts are under the SIL Open Font License. Attribution
-details are in [NOTICE.md](NOTICE.md). DM Table is an independent project, not affiliated with or
-endorsed by Wizards of the Coast.
+Fonts are under the SIL Open Font License.
+
+Game content in `assets/data/` is **mixed**: most of it comes from the **System Reference Document
+5.2** under **CC BY 4.0**, but the bundles also contain 2024 core-rulebook and Monster Manual
+material that is *not* openly licensed and *not* covered by this repository's GPL grant. **If you
+fork or redistribute this project, strip those entries** — see [NOTICE.md](NOTICE.md) for what is
+affected and how.
+
+DM Table is an independent project, not affiliated with or endorsed by Wizards of the Coast.

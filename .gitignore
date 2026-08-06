@@ -39,17 +39,10 @@ app.*.symbols
 # Obfuscation related
 app.*.map.json
 
-# Android Studio will place build artifacts here
-/android/app/debug
-/android/app/profile
-/android/app/release
 
 # Editor / agent local state
 .claude/settings.local.json
 .vscode/settings.json
-
-# Kotlin incremental compilation cache (Android Gradle)
-android/.kotlin/
 
 # OS cruft
 Thumbs.db
