@@ -708,7 +708,7 @@
   "codexLinkTargetPage": "Hedef sayfa",
   "codexLinkLabel": "Etiket (isteğe bağlı)",
   "sessionOpenTable": "Masayı aç",
-  "sessionStartHint": "Oyuncular aynı Wi-Fi ağındayken telefonlarının kamerasıyla QR kodu okutup tarayıcıdan bağlanır. Uygulama kurmalarına, hesap açmalarına ya da internete gerek yok.",
+  "sessionStartHint": "Oyuncular aynı Wi-Fi ağındayken bilgisayardan veya telefondan linki yapıştırabilir ya da QR kodu okutabilir; tarayıcıdan bağlanırlar. Uygulama kurmalarına, hesap açmalarına ya da internete gerek yok.",
   "sessionStartServer": "Sunucuyu başlat",
   "sessionAddressCopied": "Adres kopyalandı",
   "sessionCopyAddress": "Adresi kopyala",

@@ -664,7 +664,7 @@
   "codexLinkTargetPage": "Target page",
   "codexLinkLabel": "Label (optional)",
   "sessionOpenTable": "Open the table",
-  "sessionStartHint": "While on the same Wi-Fi network, players scan the QR code with their phone camera and connect from the browser. No app install, account, or internet needed.",
+  "sessionStartHint": "While on the same Wi-Fi network, players can paste the link on a computer or phone, or scan the QR code, and connect from the browser. No app install, account, or internet needed.",
   "sessionStartServer": "Start server",
   "sessionAddressCopied": "Address copied",
   "sessionCopyAddress": "Copy address",

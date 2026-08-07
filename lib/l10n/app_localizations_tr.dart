@@ -2085,7 +2085,7 @@ class L10nTr extends L10n {
 
   @override
   String get sessionStartHint =>
-      'Oyuncular aynı Wi-Fi ağındayken telefonlarının kamerasıyla QR kodu okutup tarayıcıdan bağlanır. Uygulama kurmalarına, hesap açmalarına ya da internete gerek yok.';
+      'Oyuncular aynı Wi-Fi ağındayken bilgisayardan veya telefondan linki yapıştırabilir ya da QR kodu okutabilir; tarayıcıdan bağlanırlar. Uygulama kurmalarına, hesap açmalarına ya da internete gerek yok.';
 
   @override
   String get sessionStartServer => 'Sunucuyu başlat';

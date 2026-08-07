@@ -2083,7 +2083,7 @@ class L10nEn extends L10n {
 
   @override
   String get sessionStartHint =>
-      'While on the same Wi-Fi network, players scan the QR code with their phone camera and connect from the browser. No app install, account, or internet needed.';
+      'While on the same Wi-Fi network, players can paste the link on a computer or phone, or scan the QR code, and connect from the browser. No app install, account, or internet needed.';
 
   @override
   String get sessionStartServer => 'Start server';
