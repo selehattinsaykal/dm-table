@@ -139,17 +139,20 @@ void main() {
       expect(survivor.parentId, isNull, reason: 'koke yukselmeli');
     });
 
-    test('parca kaybolmaz: silinen kategorinin parcalari listesiz kalir', () async {
-      final savas = await music.createPlaylist('Savas');
-      final source = File(p.join(tmp.path, 'kaynak.mp3'))
-        ..writeAsBytesSync([1, 2, 3]);
-      final track = await music.addTrack(source, playlistId: savas);
+    test(
+      'parca kaybolmaz: silinen kategorinin parcalari listesiz kalir',
+      () async {
+        final savas = await music.createPlaylist('Savas');
+        final source = File(p.join(tmp.path, 'kaynak.mp3'))
+          ..writeAsBytesSync([1, 2, 3]);
+        final track = await music.addTrack(source, playlistId: savas);
 
-      await music.deletePlaylist(savas);
+        await music.deletePlaylist(savas);
 
-      final rows = await music.tracks(all: true);
-      expect(rows.firstWhere((t) => t.id == track).playlistId, isNull);
-    });
+        final rows = await music.tracks(all: true);
+        expect(rows.firstWhere((t) => t.id == track).playlistId, isNull);
+      },
+    );
 
     test('dongu engellenir: ust kendi altina tasinamaz', () async {
       final savas = await music.createPlaylist('Savas');
