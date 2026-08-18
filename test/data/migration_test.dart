@@ -38,7 +38,8 @@ void main() {
   ///
   /// **Migration zincirinin `addColumn` yaptigi HER tablo burada bulunmali**
   /// (`createTable` yapanlar gerekmez, migration kendisi kurar). Su an:
-  /// `locations` (v24), `combatants` (v27), `shops` + `shop_stock` (v28).
+  /// `locations` (v24), `combatants` (v27), `shops` + `shop_stock` (v28),
+  /// `encounters` (v32).
   /// Yeni bir `addColumn` migration'i eklenirse ilgili tablo buraya da
   /// eklenmeli, yoksa bu test "no such table" ile patlar.
   AppDatabase openOverV23(File file) => AppDatabase(
@@ -62,6 +63,17 @@ void main() {
             node_radius REAL NULL,
             sort_order INTEGER NOT NULL DEFAULT 0,
             created_at INTEGER NOT NULL DEFAULT 0,
+            PRIMARY KEY (id)
+          )
+        ''');
+        raw.execute('''
+          CREATE TABLE IF NOT EXISTS encounters (
+            id TEXT NOT NULL,
+            name TEXT NOT NULL,
+            active_index INTEGER NOT NULL DEFAULT 0,
+            round INTEGER NOT NULL DEFAULT 1,
+            started INTEGER NOT NULL DEFAULT 0,
+            created_at INTEGER NOT NULL,
             PRIMARY KEY (id)
           )
         ''');
@@ -346,6 +358,27 @@ void main() {
     await db.customStatement('SELECT 1'); // acilisi tetikle
     final row = await db.customSelect('PRAGMA user_version').getSingle();
     expect(row.data.values.first, db.schemaVersion);
+    await db.close();
+  });
+  test('v23 -> guncel: encounters brifing/ganimet kolonlari olusur', () async {
+    final file = File(p.join(tmp.path, 'v23_encounter_panels.sqlite'));
+    final db = openOverV23(file);
+
+    await db.customStatement(
+      "INSERT INTO encounters (id, name, created_at) "
+      "VALUES ('e1', 'Bogazda pusu', 0)",
+    );
+    await db.customStatement(
+      'UPDATE encounters SET briefing_json = ?, loot_json = ? WHERE id = ?',
+      ['{"objective":"Sag cik"}', '{"coinsCp":500,"items":[]}', 'e1'],
+    );
+
+    final row = await db
+        .customSelect('SELECT briefing_json, loot_json FROM encounters')
+        .getSingle();
+    expect(row.data['briefing_json'], contains('Sag cik'));
+    expect(row.data['loot_json'], contains('500'));
+
     await db.close();
   });
 }

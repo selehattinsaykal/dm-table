@@ -10311,6 +10311,28 @@ class $EncountersTable extends Encounters
     ),
     defaultValue: const Constant(false),
   );
+  static const VerificationMeta _briefingJsonMeta = const VerificationMeta(
+    'briefingJson',
+  );
+  @override
+  late final GeneratedColumn<String> briefingJson = GeneratedColumn<String>(
+    'briefing_json',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _lootJsonMeta = const VerificationMeta(
+    'lootJson',
+  );
+  @override
+  late final GeneratedColumn<String> lootJson = GeneratedColumn<String>(
+    'loot_json',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
   static const VerificationMeta _createdAtMeta = const VerificationMeta(
     'createdAt',
   );
@@ -10330,6 +10352,8 @@ class $EncountersTable extends Encounters
     activeIndex,
     round,
     started,
+    briefingJson,
+    lootJson,
     createdAt,
   ];
   @override
@@ -10378,6 +10402,21 @@ class $EncountersTable extends Encounters
         started.isAcceptableOrUnknown(data['started']!, _startedMeta),
       );
     }
+    if (data.containsKey('briefing_json')) {
+      context.handle(
+        _briefingJsonMeta,
+        briefingJson.isAcceptableOrUnknown(
+          data['briefing_json']!,
+          _briefingJsonMeta,
+        ),
+      );
+    }
+    if (data.containsKey('loot_json')) {
+      context.handle(
+        _lootJsonMeta,
+        lootJson.isAcceptableOrUnknown(data['loot_json']!, _lootJsonMeta),
+      );
+    }
     if (data.containsKey('created_at')) {
       context.handle(
         _createdAtMeta,
@@ -10413,6 +10452,14 @@ class $EncountersTable extends Encounters
         DriftSqlType.bool,
         data['${effectivePrefix}started'],
       )!,
+      briefingJson: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}briefing_json'],
+      ),
+      lootJson: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}loot_json'],
+      ),
       createdAt: attachedDatabase.typeMapping.read(
         DriftSqlType.dateTime,
         data['${effectivePrefix}created_at'],
@@ -10436,6 +10483,25 @@ class Encounter extends DataClass implements Insertable<Encounter> {
 
   /// Savas basladi mi? Baslamadan once initiative duzenlenebiliyor.
   final bool started;
+
+  /// Karsilasmanin DM BRIFINGI: kazanma kosulu, taktikler, arazi, takviye,
+  /// zorluk ayari, sahne metni, DM notu.
+  ///
+  /// Tek JSON sutun, yedi ayri sutun degil: alanlarin hepsi serbest metin,
+  /// hicbiri sorgulanmiyor ve AI ureteci hepsini birlikte uretiyor. Ayri
+  /// sutunlar sema yuzeyini bes katina cikarip hicbir sey kazandirmazdi.
+  /// Bicim: `{"objective":"...","tactics":"...", ...}` (bkz.
+  /// `CombatRepository.briefingOf`).
+  final String? briefingJson;
+
+  /// Savastan cikacak GANIMET: para + esyalar.
+  ///
+  /// Bicim gorev odul havuzuyla ayni (`{"coinsCp":0,"items":[...]}`) ama her
+  /// esya ayrica kutuphaneye COZULMUS anahtarini tasir:
+  /// `{"id","name","magic","itemKey","magicItemKey"}`. Anahtarlar null ise
+  /// esya kutuphanede bulunamamis demektir ve arayuz bunu isaretler — DM
+  /// uydurma bir esyayi gercek sanmasin.
+  final String? lootJson;
   final DateTime createdAt;
   const Encounter({
     required this.id,
@@ -10443,6 +10509,8 @@ class Encounter extends DataClass implements Insertable<Encounter> {
     required this.activeIndex,
     required this.round,
     required this.started,
+    this.briefingJson,
+    this.lootJson,
     required this.createdAt,
   });
   @override
@@ -10453,6 +10521,12 @@ class Encounter extends DataClass implements Insertable<Encounter> {
     map['active_index'] = Variable<int>(activeIndex);
     map['round'] = Variable<int>(round);
     map['started'] = Variable<bool>(started);
+    if (!nullToAbsent || briefingJson != null) {
+      map['briefing_json'] = Variable<String>(briefingJson);
+    }
+    if (!nullToAbsent || lootJson != null) {
+      map['loot_json'] = Variable<String>(lootJson);
+    }
     map['created_at'] = Variable<DateTime>(createdAt);
     return map;
   }
@@ -10464,6 +10538,12 @@ class Encounter extends DataClass implements Insertable<Encounter> {
       activeIndex: Value(activeIndex),
       round: Value(round),
       started: Value(started),
+      briefingJson: briefingJson == null && nullToAbsent
+          ? const Value.absent()
+          : Value(briefingJson),
+      lootJson: lootJson == null && nullToAbsent
+          ? const Value.absent()
+          : Value(lootJson),
       createdAt: Value(createdAt),
     );
   }
@@ -10479,6 +10559,8 @@ class Encounter extends DataClass implements Insertable<Encounter> {
       activeIndex: serializer.fromJson<int>(json['activeIndex']),
       round: serializer.fromJson<int>(json['round']),
       started: serializer.fromJson<bool>(json['started']),
+      briefingJson: serializer.fromJson<String?>(json['briefingJson']),
+      lootJson: serializer.fromJson<String?>(json['lootJson']),
       createdAt: serializer.fromJson<DateTime>(json['createdAt']),
     );
   }
@@ -10491,6 +10573,8 @@ class Encounter extends DataClass implements Insertable<Encounter> {
       'activeIndex': serializer.toJson<int>(activeIndex),
       'round': serializer.toJson<int>(round),
       'started': serializer.toJson<bool>(started),
+      'briefingJson': serializer.toJson<String?>(briefingJson),
+      'lootJson': serializer.toJson<String?>(lootJson),
       'createdAt': serializer.toJson<DateTime>(createdAt),
     };
   }
@@ -10501,6 +10585,8 @@ class Encounter extends DataClass implements Insertable<Encounter> {
     int? activeIndex,
     int? round,
     bool? started,
+    Value<String?> briefingJson = const Value.absent(),
+    Value<String?> lootJson = const Value.absent(),
     DateTime? createdAt,
   }) => Encounter(
     id: id ?? this.id,
@@ -10508,6 +10594,8 @@ class Encounter extends DataClass implements Insertable<Encounter> {
     activeIndex: activeIndex ?? this.activeIndex,
     round: round ?? this.round,
     started: started ?? this.started,
+    briefingJson: briefingJson.present ? briefingJson.value : this.briefingJson,
+    lootJson: lootJson.present ? lootJson.value : this.lootJson,
     createdAt: createdAt ?? this.createdAt,
   );
   Encounter copyWithCompanion(EncountersCompanion data) {
@@ -10519,6 +10607,10 @@ class Encounter extends DataClass implements Insertable<Encounter> {
           : this.activeIndex,
       round: data.round.present ? data.round.value : this.round,
       started: data.started.present ? data.started.value : this.started,
+      briefingJson: data.briefingJson.present
+          ? data.briefingJson.value
+          : this.briefingJson,
+      lootJson: data.lootJson.present ? data.lootJson.value : this.lootJson,
       createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
     );
   }
@@ -10531,14 +10623,24 @@ class Encounter extends DataClass implements Insertable<Encounter> {
           ..write('activeIndex: $activeIndex, ')
           ..write('round: $round, ')
           ..write('started: $started, ')
+          ..write('briefingJson: $briefingJson, ')
+          ..write('lootJson: $lootJson, ')
           ..write('createdAt: $createdAt')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode =>
-      Object.hash(id, name, activeIndex, round, started, createdAt);
+  int get hashCode => Object.hash(
+    id,
+    name,
+    activeIndex,
+    round,
+    started,
+    briefingJson,
+    lootJson,
+    createdAt,
+  );
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -10548,6 +10650,8 @@ class Encounter extends DataClass implements Insertable<Encounter> {
           other.activeIndex == this.activeIndex &&
           other.round == this.round &&
           other.started == this.started &&
+          other.briefingJson == this.briefingJson &&
+          other.lootJson == this.lootJson &&
           other.createdAt == this.createdAt);
 }
 
@@ -10557,6 +10661,8 @@ class EncountersCompanion extends UpdateCompanion<Encounter> {
   final Value<int> activeIndex;
   final Value<int> round;
   final Value<bool> started;
+  final Value<String?> briefingJson;
+  final Value<String?> lootJson;
   final Value<DateTime> createdAt;
   final Value<int> rowid;
   const EncountersCompanion({
@@ -10565,6 +10671,8 @@ class EncountersCompanion extends UpdateCompanion<Encounter> {
     this.activeIndex = const Value.absent(),
     this.round = const Value.absent(),
     this.started = const Value.absent(),
+    this.briefingJson = const Value.absent(),
+    this.lootJson = const Value.absent(),
     this.createdAt = const Value.absent(),
     this.rowid = const Value.absent(),
   });
@@ -10574,6 +10682,8 @@ class EncountersCompanion extends UpdateCompanion<Encounter> {
     this.activeIndex = const Value.absent(),
     this.round = const Value.absent(),
     this.started = const Value.absent(),
+    this.briefingJson = const Value.absent(),
+    this.lootJson = const Value.absent(),
     this.createdAt = const Value.absent(),
     this.rowid = const Value.absent(),
   }) : id = Value(id),
@@ -10584,6 +10694,8 @@ class EncountersCompanion extends UpdateCompanion<Encounter> {
     Expression<int>? activeIndex,
     Expression<int>? round,
     Expression<bool>? started,
+    Expression<String>? briefingJson,
+    Expression<String>? lootJson,
     Expression<DateTime>? createdAt,
     Expression<int>? rowid,
   }) {
@@ -10593,6 +10705,8 @@ class EncountersCompanion extends UpdateCompanion<Encounter> {
       if (activeIndex != null) 'active_index': activeIndex,
       if (round != null) 'round': round,
       if (started != null) 'started': started,
+      if (briefingJson != null) 'briefing_json': briefingJson,
+      if (lootJson != null) 'loot_json': lootJson,
       if (createdAt != null) 'created_at': createdAt,
       if (rowid != null) 'rowid': rowid,
     });
@@ -10604,6 +10718,8 @@ class EncountersCompanion extends UpdateCompanion<Encounter> {
     Value<int>? activeIndex,
     Value<int>? round,
     Value<bool>? started,
+    Value<String?>? briefingJson,
+    Value<String?>? lootJson,
     Value<DateTime>? createdAt,
     Value<int>? rowid,
   }) {
@@ -10613,6 +10729,8 @@ class EncountersCompanion extends UpdateCompanion<Encounter> {
       activeIndex: activeIndex ?? this.activeIndex,
       round: round ?? this.round,
       started: started ?? this.started,
+      briefingJson: briefingJson ?? this.briefingJson,
+      lootJson: lootJson ?? this.lootJson,
       createdAt: createdAt ?? this.createdAt,
       rowid: rowid ?? this.rowid,
     );
@@ -10636,6 +10754,12 @@ class EncountersCompanion extends UpdateCompanion<Encounter> {
     if (started.present) {
       map['started'] = Variable<bool>(started.value);
     }
+    if (briefingJson.present) {
+      map['briefing_json'] = Variable<String>(briefingJson.value);
+    }
+    if (lootJson.present) {
+      map['loot_json'] = Variable<String>(lootJson.value);
+    }
     if (createdAt.present) {
       map['created_at'] = Variable<DateTime>(createdAt.value);
     }
@@ -10653,6 +10777,8 @@ class EncountersCompanion extends UpdateCompanion<Encounter> {
           ..write('activeIndex: $activeIndex, ')
           ..write('round: $round, ')
           ..write('started: $started, ')
+          ..write('briefingJson: $briefingJson, ')
+          ..write('lootJson: $lootJson, ')
           ..write('createdAt: $createdAt, ')
           ..write('rowid: $rowid')
           ..write(')'))
@@ -19579,6 +19705,17 @@ class $MusicPlaylistsTable extends MusicPlaylists
     type: DriftSqlType.string,
     requiredDuringInsert: true,
   );
+  static const VerificationMeta _parentIdMeta = const VerificationMeta(
+    'parentId',
+  );
+  @override
+  late final GeneratedColumn<String> parentId = GeneratedColumn<String>(
+    'parent_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
   static const VerificationMeta _sortOrderMeta = const VerificationMeta(
     'sortOrder',
   );
@@ -19604,7 +19741,13 @@ class $MusicPlaylistsTable extends MusicPlaylists
     defaultValue: currentDateAndTime,
   );
   @override
-  List<GeneratedColumn> get $columns => [id, name, sortOrder, createdAt];
+  List<GeneratedColumn> get $columns => [
+    id,
+    name,
+    parentId,
+    sortOrder,
+    createdAt,
+  ];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -19629,6 +19772,12 @@ class $MusicPlaylistsTable extends MusicPlaylists
       );
     } else if (isInserting) {
       context.missing(_nameMeta);
+    }
+    if (data.containsKey('parent_id')) {
+      context.handle(
+        _parentIdMeta,
+        parentId.isAcceptableOrUnknown(data['parent_id']!, _parentIdMeta),
+      );
     }
     if (data.containsKey('sort_order')) {
       context.handle(
@@ -19659,6 +19808,10 @@ class $MusicPlaylistsTable extends MusicPlaylists
         DriftSqlType.string,
         data['${effectivePrefix}name'],
       )!,
+      parentId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}parent_id'],
+      ),
       sortOrder: attachedDatabase.typeMapping.read(
         DriftSqlType.int,
         data['${effectivePrefix}sort_order'],
@@ -19679,11 +19832,19 @@ class $MusicPlaylistsTable extends MusicPlaylists
 class MusicPlaylist extends DataClass implements Insertable<MusicPlaylist> {
   final String id;
   final String name;
+
+  /// Ust kategori; `null` = kok liste.
+  ///
+  /// Tek kademe derinlik varsayilmiyor ama arayuz kok + bir alt kademe
+  /// gosteriyor: "Savas > Boss" yeter, daha derini masada gezinmeyi
+  /// zorlastirirdi.
+  final String? parentId;
   final int sortOrder;
   final DateTime createdAt;
   const MusicPlaylist({
     required this.id,
     required this.name,
+    this.parentId,
     required this.sortOrder,
     required this.createdAt,
   });
@@ -19692,6 +19853,9 @@ class MusicPlaylist extends DataClass implements Insertable<MusicPlaylist> {
     final map = <String, Expression>{};
     map['id'] = Variable<String>(id);
     map['name'] = Variable<String>(name);
+    if (!nullToAbsent || parentId != null) {
+      map['parent_id'] = Variable<String>(parentId);
+    }
     map['sort_order'] = Variable<int>(sortOrder);
     map['created_at'] = Variable<DateTime>(createdAt);
     return map;
@@ -19701,6 +19865,9 @@ class MusicPlaylist extends DataClass implements Insertable<MusicPlaylist> {
     return MusicPlaylistsCompanion(
       id: Value(id),
       name: Value(name),
+      parentId: parentId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(parentId),
       sortOrder: Value(sortOrder),
       createdAt: Value(createdAt),
     );
@@ -19714,6 +19881,7 @@ class MusicPlaylist extends DataClass implements Insertable<MusicPlaylist> {
     return MusicPlaylist(
       id: serializer.fromJson<String>(json['id']),
       name: serializer.fromJson<String>(json['name']),
+      parentId: serializer.fromJson<String?>(json['parentId']),
       sortOrder: serializer.fromJson<int>(json['sortOrder']),
       createdAt: serializer.fromJson<DateTime>(json['createdAt']),
     );
@@ -19724,6 +19892,7 @@ class MusicPlaylist extends DataClass implements Insertable<MusicPlaylist> {
     return <String, dynamic>{
       'id': serializer.toJson<String>(id),
       'name': serializer.toJson<String>(name),
+      'parentId': serializer.toJson<String?>(parentId),
       'sortOrder': serializer.toJson<int>(sortOrder),
       'createdAt': serializer.toJson<DateTime>(createdAt),
     };
@@ -19732,11 +19901,13 @@ class MusicPlaylist extends DataClass implements Insertable<MusicPlaylist> {
   MusicPlaylist copyWith({
     String? id,
     String? name,
+    Value<String?> parentId = const Value.absent(),
     int? sortOrder,
     DateTime? createdAt,
   }) => MusicPlaylist(
     id: id ?? this.id,
     name: name ?? this.name,
+    parentId: parentId.present ? parentId.value : this.parentId,
     sortOrder: sortOrder ?? this.sortOrder,
     createdAt: createdAt ?? this.createdAt,
   );
@@ -19744,6 +19915,7 @@ class MusicPlaylist extends DataClass implements Insertable<MusicPlaylist> {
     return MusicPlaylist(
       id: data.id.present ? data.id.value : this.id,
       name: data.name.present ? data.name.value : this.name,
+      parentId: data.parentId.present ? data.parentId.value : this.parentId,
       sortOrder: data.sortOrder.present ? data.sortOrder.value : this.sortOrder,
       createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
     );
@@ -19754,6 +19926,7 @@ class MusicPlaylist extends DataClass implements Insertable<MusicPlaylist> {
     return (StringBuffer('MusicPlaylist(')
           ..write('id: $id, ')
           ..write('name: $name, ')
+          ..write('parentId: $parentId, ')
           ..write('sortOrder: $sortOrder, ')
           ..write('createdAt: $createdAt')
           ..write(')'))
@@ -19761,13 +19934,14 @@ class MusicPlaylist extends DataClass implements Insertable<MusicPlaylist> {
   }
 
   @override
-  int get hashCode => Object.hash(id, name, sortOrder, createdAt);
+  int get hashCode => Object.hash(id, name, parentId, sortOrder, createdAt);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is MusicPlaylist &&
           other.id == this.id &&
           other.name == this.name &&
+          other.parentId == this.parentId &&
           other.sortOrder == this.sortOrder &&
           other.createdAt == this.createdAt);
 }
@@ -19775,12 +19949,14 @@ class MusicPlaylist extends DataClass implements Insertable<MusicPlaylist> {
 class MusicPlaylistsCompanion extends UpdateCompanion<MusicPlaylist> {
   final Value<String> id;
   final Value<String> name;
+  final Value<String?> parentId;
   final Value<int> sortOrder;
   final Value<DateTime> createdAt;
   final Value<int> rowid;
   const MusicPlaylistsCompanion({
     this.id = const Value.absent(),
     this.name = const Value.absent(),
+    this.parentId = const Value.absent(),
     this.sortOrder = const Value.absent(),
     this.createdAt = const Value.absent(),
     this.rowid = const Value.absent(),
@@ -19788,6 +19964,7 @@ class MusicPlaylistsCompanion extends UpdateCompanion<MusicPlaylist> {
   MusicPlaylistsCompanion.insert({
     required String id,
     required String name,
+    this.parentId = const Value.absent(),
     this.sortOrder = const Value.absent(),
     this.createdAt = const Value.absent(),
     this.rowid = const Value.absent(),
@@ -19796,6 +19973,7 @@ class MusicPlaylistsCompanion extends UpdateCompanion<MusicPlaylist> {
   static Insertable<MusicPlaylist> custom({
     Expression<String>? id,
     Expression<String>? name,
+    Expression<String>? parentId,
     Expression<int>? sortOrder,
     Expression<DateTime>? createdAt,
     Expression<int>? rowid,
@@ -19803,6 +19981,7 @@ class MusicPlaylistsCompanion extends UpdateCompanion<MusicPlaylist> {
     return RawValuesInsertable({
       if (id != null) 'id': id,
       if (name != null) 'name': name,
+      if (parentId != null) 'parent_id': parentId,
       if (sortOrder != null) 'sort_order': sortOrder,
       if (createdAt != null) 'created_at': createdAt,
       if (rowid != null) 'rowid': rowid,
@@ -19812,6 +19991,7 @@ class MusicPlaylistsCompanion extends UpdateCompanion<MusicPlaylist> {
   MusicPlaylistsCompanion copyWith({
     Value<String>? id,
     Value<String>? name,
+    Value<String?>? parentId,
     Value<int>? sortOrder,
     Value<DateTime>? createdAt,
     Value<int>? rowid,
@@ -19819,6 +19999,7 @@ class MusicPlaylistsCompanion extends UpdateCompanion<MusicPlaylist> {
     return MusicPlaylistsCompanion(
       id: id ?? this.id,
       name: name ?? this.name,
+      parentId: parentId ?? this.parentId,
       sortOrder: sortOrder ?? this.sortOrder,
       createdAt: createdAt ?? this.createdAt,
       rowid: rowid ?? this.rowid,
@@ -19833,6 +20014,9 @@ class MusicPlaylistsCompanion extends UpdateCompanion<MusicPlaylist> {
     }
     if (name.present) {
       map['name'] = Variable<String>(name.value);
+    }
+    if (parentId.present) {
+      map['parent_id'] = Variable<String>(parentId.value);
     }
     if (sortOrder.present) {
       map['sort_order'] = Variable<int>(sortOrder.value);
@@ -19851,6 +20035,7 @@ class MusicPlaylistsCompanion extends UpdateCompanion<MusicPlaylist> {
     return (StringBuffer('MusicPlaylistsCompanion(')
           ..write('id: $id, ')
           ..write('name: $name, ')
+          ..write('parentId: $parentId, ')
           ..write('sortOrder: $sortOrder, ')
           ..write('createdAt: $createdAt, ')
           ..write('rowid: $rowid')
@@ -32660,6 +32845,8 @@ typedef $$EncountersTableCreateCompanionBuilder =
       Value<int> activeIndex,
       Value<int> round,
       Value<bool> started,
+      Value<String?> briefingJson,
+      Value<String?> lootJson,
       Value<DateTime> createdAt,
       Value<int> rowid,
     });
@@ -32670,6 +32857,8 @@ typedef $$EncountersTableUpdateCompanionBuilder =
       Value<int> activeIndex,
       Value<int> round,
       Value<bool> started,
+      Value<String?> briefingJson,
+      Value<String?> lootJson,
       Value<DateTime> createdAt,
       Value<int> rowid,
     });
@@ -32728,6 +32917,16 @@ class $$EncountersTableFilterComposer
 
   ColumnFilters<bool> get started => $composableBuilder(
     column: $table.started,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get briefingJson => $composableBuilder(
+    column: $table.briefingJson,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get lootJson => $composableBuilder(
+    column: $table.lootJson,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -32796,6 +32995,16 @@ class $$EncountersTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get briefingJson => $composableBuilder(
+    column: $table.briefingJson,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get lootJson => $composableBuilder(
+    column: $table.lootJson,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<DateTime> get createdAt => $composableBuilder(
     column: $table.createdAt,
     builder: (column) => ColumnOrderings(column),
@@ -32827,6 +33036,14 @@ class $$EncountersTableAnnotationComposer
 
   GeneratedColumn<bool> get started =>
       $composableBuilder(column: $table.started, builder: (column) => column);
+
+  GeneratedColumn<String> get briefingJson => $composableBuilder(
+    column: $table.briefingJson,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get lootJson =>
+      $composableBuilder(column: $table.lootJson, builder: (column) => column);
 
   GeneratedColumn<DateTime> get createdAt =>
       $composableBuilder(column: $table.createdAt, builder: (column) => column);
@@ -32890,6 +33107,8 @@ class $$EncountersTableTableManager
                 Value<int> activeIndex = const Value.absent(),
                 Value<int> round = const Value.absent(),
                 Value<bool> started = const Value.absent(),
+                Value<String?> briefingJson = const Value.absent(),
+                Value<String?> lootJson = const Value.absent(),
                 Value<DateTime> createdAt = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => EncountersCompanion(
@@ -32898,6 +33117,8 @@ class $$EncountersTableTableManager
                 activeIndex: activeIndex,
                 round: round,
                 started: started,
+                briefingJson: briefingJson,
+                lootJson: lootJson,
                 createdAt: createdAt,
                 rowid: rowid,
               ),
@@ -32908,6 +33129,8 @@ class $$EncountersTableTableManager
                 Value<int> activeIndex = const Value.absent(),
                 Value<int> round = const Value.absent(),
                 Value<bool> started = const Value.absent(),
+                Value<String?> briefingJson = const Value.absent(),
+                Value<String?> lootJson = const Value.absent(),
                 Value<DateTime> createdAt = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => EncountersCompanion.insert(
@@ -32916,6 +33139,8 @@ class $$EncountersTableTableManager
                 activeIndex: activeIndex,
                 round: round,
                 started: started,
+                briefingJson: briefingJson,
+                lootJson: lootJson,
                 createdAt: createdAt,
                 rowid: rowid,
               ),
@@ -37666,6 +37891,7 @@ typedef $$MusicPlaylistsTableCreateCompanionBuilder =
     MusicPlaylistsCompanion Function({
       required String id,
       required String name,
+      Value<String?> parentId,
       Value<int> sortOrder,
       Value<DateTime> createdAt,
       Value<int> rowid,
@@ -37674,6 +37900,7 @@ typedef $$MusicPlaylistsTableUpdateCompanionBuilder =
     MusicPlaylistsCompanion Function({
       Value<String> id,
       Value<String> name,
+      Value<String?> parentId,
       Value<int> sortOrder,
       Value<DateTime> createdAt,
       Value<int> rowid,
@@ -37695,6 +37922,11 @@ class $$MusicPlaylistsTableFilterComposer
 
   ColumnFilters<String> get name => $composableBuilder(
     column: $table.name,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get parentId => $composableBuilder(
+    column: $table.parentId,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -37728,6 +37960,11 @@ class $$MusicPlaylistsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get parentId => $composableBuilder(
+    column: $table.parentId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<int> get sortOrder => $composableBuilder(
     column: $table.sortOrder,
     builder: (column) => ColumnOrderings(column),
@@ -37753,6 +37990,9 @@ class $$MusicPlaylistsTableAnnotationComposer
 
   GeneratedColumn<String> get name =>
       $composableBuilder(column: $table.name, builder: (column) => column);
+
+  GeneratedColumn<String> get parentId =>
+      $composableBuilder(column: $table.parentId, builder: (column) => column);
 
   GeneratedColumn<int> get sortOrder =>
       $composableBuilder(column: $table.sortOrder, builder: (column) => column);
@@ -37796,12 +38036,14 @@ class $$MusicPlaylistsTableTableManager
               ({
                 Value<String> id = const Value.absent(),
                 Value<String> name = const Value.absent(),
+                Value<String?> parentId = const Value.absent(),
                 Value<int> sortOrder = const Value.absent(),
                 Value<DateTime> createdAt = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => MusicPlaylistsCompanion(
                 id: id,
                 name: name,
+                parentId: parentId,
                 sortOrder: sortOrder,
                 createdAt: createdAt,
                 rowid: rowid,
@@ -37810,12 +38052,14 @@ class $$MusicPlaylistsTableTableManager
               ({
                 required String id,
                 required String name,
+                Value<String?> parentId = const Value.absent(),
                 Value<int> sortOrder = const Value.absent(),
                 Value<DateTime> createdAt = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => MusicPlaylistsCompanion.insert(
                 id: id,
                 name: name,
+                parentId: parentId,
                 sortOrder: sortOrder,
                 createdAt: createdAt,
                 rowid: rowid,

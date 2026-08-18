@@ -23,6 +23,25 @@ class Encounters extends Table {
   /// Savas basladi mi? Baslamadan once initiative duzenlenebiliyor.
   BoolColumn get started => boolean().withDefault(const Constant(false))();
 
+  /// Karsilasmanin DM BRIFINGI: kazanma kosulu, taktikler, arazi, takviye,
+  /// zorluk ayari, sahne metni, DM notu.
+  ///
+  /// Tek JSON sutun, yedi ayri sutun degil: alanlarin hepsi serbest metin,
+  /// hicbiri sorgulanmiyor ve AI ureteci hepsini birlikte uretiyor. Ayri
+  /// sutunlar sema yuzeyini bes katina cikarip hicbir sey kazandirmazdi.
+  /// Bicim: `{"objective":"...","tactics":"...", ...}` (bkz.
+  /// `CombatRepository.briefingOf`).
+  TextColumn get briefingJson => text().nullable()();
+
+  /// Savastan cikacak GANIMET: para + esyalar.
+  ///
+  /// Bicim gorev odul havuzuyla ayni (`{"coinsCp":0,"items":[...]}`) ama her
+  /// esya ayrica kutuphaneye COZULMUS anahtarini tasir:
+  /// `{"id","name","magic","itemKey","magicItemKey"}`. Anahtarlar null ise
+  /// esya kutuphanede bulunamamis demektir ve arayuz bunu isaretler — DM
+  /// uydurma bir esyayi gercek sanmasin.
+  TextColumn get lootJson => text().nullable()();
+
   DateTimeColumn get createdAt => dateTime().withDefault(currentDateAndTime)();
 
   @override

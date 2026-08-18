@@ -33,16 +33,20 @@ class MusicRepository {
     db.musicPlaylists,
   )..orderBy([(t) => OrderingTerm(expression: t.sortOrder)])).get();
 
-  Future<String> createPlaylist(String name) async {
+  /// [parentId] verilirse liste onun ALT KATEGORİSİ olur; `null` = kök liste.
+  Future<String> createPlaylist(String name, {String? parentId}) async {
     final id = 'mpl-${_uuid.v4()}';
-    final count = (await playlists()).length;
+    final siblings = (await playlists())
+        .where((p) => p.parentId == parentId)
+        .length;
     await db
         .into(db.musicPlaylists)
         .insert(
           MusicPlaylistsCompanion.insert(
             id: id,
             name: name,
-            sortOrder: Value(count),
+            parentId: Value(parentId),
+            sortOrder: Value(siblings),
           ),
         );
     return id;
@@ -55,12 +59,36 @@ class MusicRepository {
 
   /// Listeyi siler. **Parçalar silinmez**, listesiz duruma düşer: dosyaları
   /// yanlışlıkla kaybetmek, bir başlığı yanlışlıkla silmekten çok daha pahalı.
+  /// Ayrıca alt kategorileri **silinmez**, kök listeye yükselir: bir kategoriyi
+  /// silmek içindeki listeleri de götürseydi tek tıkla çok şey kaybedilirdi.
   Future<void> deletePlaylist(String id) async {
     await db.transaction(() async {
       await (db.update(db.musicTracks)..where((t) => t.playlistId.equals(id)))
           .write(const MusicTracksCompanion(playlistId: Value(null)));
+      await (db.update(db.musicPlaylists)..where((t) => t.parentId.equals(id)))
+          .write(const MusicPlaylistsCompanion(parentId: Value(null)));
       await (db.delete(db.musicPlaylists)..where((t) => t.id.equals(id))).go();
     });
+  }
+
+  /// Listeyi başka bir kategoriye taşır; [parentId] `null` = kök.
+  ///
+  /// Kendini ya da kendi altındakini üst yapmaya izin verilmez — döngü oluşur
+  /// ve ağaç çizilirken sonsuz özyineleme olurdu.
+  Future<bool> movePlaylist(String id, String? parentId) async {
+    if (id == parentId) return false;
+    if (parentId != null) {
+      final all = await playlists();
+      var cursor = all.where((p) => p.id == parentId).firstOrNull;
+      while (cursor != null) {
+        if (cursor.parentId == id) return false;
+        cursor = all.where((p) => p.id == cursor!.parentId).firstOrNull;
+      }
+    }
+    await (db.update(db.musicPlaylists)..where((t) => t.id.equals(id))).write(
+      MusicPlaylistsCompanion(parentId: Value(parentId)),
+    );
+    return true;
   }
 
   // --- Parçalar ------------------------------------------------------------

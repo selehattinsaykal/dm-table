@@ -32,6 +32,11 @@ class _NpcDetailPageState extends ConsumerState<NpcDetailPage> {
   bool _loaded = false;
   bool _busy = false;
 
+  /// Duzenleme modu; KAPALI baslar (bkz. `app/ui/edit_mode.dart`). Bu sayfa
+  /// eskiden dogrudan 14 alanli bir form aciyordu: NPC'ye bakmak icin bile
+  /// duzenleme ekranindaydik ve masada yanlislikla bir alani silmek kolaydi.
+  bool _editing = false;
+
   static const _fields = [
     'name',
     'role',
@@ -58,6 +63,8 @@ class _NpcDetailPageState extends ConsumerState<NpcDetailPage> {
     _load();
   }
 
+  /// Kaydi veritabanindan (yeniden) okur. "Vazgec" de bunu cagirir: yapilan
+  /// duzenlemeler diske hic gitmeden atilir.
   Future<void> _load() async {
     final npc = await ref.read(worldRepositoryProvider).findNpc(widget.npcId);
     if (npc == null || !mounted) return;
@@ -111,7 +118,16 @@ class _NpcDetailPageState extends ConsumerState<NpcDetailPage> {
           description: _t('description'),
           secretNotes: _t('secretNotes'),
         );
-    if (mounted) Navigator.of(context).pop();
+    // Kaydedince sayfayi KAPATMIYORUZ, okuma moduna donuyoruz: DM yazdiginin
+    // sonucunu gorsun. Eskiden kaydet dogrudan geri ciktigi icin sonucu
+    // gormek yeniden acmayi gerektiriyordu.
+    if (mounted) setState(() => _editing = false);
+  }
+
+  /// Vazgec: diskteki hâli geri yükler, okuma moduna doner.
+  Future<void> _cancel() async {
+    setState(() => _editing = false);
+    await _load();
   }
 
   Future<void> _uploadPortrait() async {
@@ -150,13 +166,28 @@ class _NpcDetailPageState extends ConsumerState<NpcDetailPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(l10n.npcHeading),
+        // Okuma modunda NPC'nin ADI baslikta: sayfanin kimin oldugu
+        // ustte belli olsun.
+        title: Text(
+          _editing || _t('name').isEmpty ? l10n.npcHeading : _t('name'),
+        ),
         actions: [
-          TextButton.icon(
-            onPressed: _busy ? null : _save,
-            icon: const Icon(Icons.save_outlined, size: 18),
-            label: Text(l10n.save),
-          ),
+          if (_editing) ...[
+            TextButton.icon(
+              onPressed: _busy ? null : _save,
+              icon: const Icon(Icons.save_outlined, size: 18),
+              label: Text(l10n.save),
+            ),
+            IconButton(
+              tooltip: l10n.editModeDiscard,
+              icon: const Icon(Icons.close),
+              onPressed: _busy ? null : _cancel,
+            ),
+          ] else
+            EditModeButton(
+              editing: false,
+              onToggle: () => setState(() => _editing = true),
+            ),
         ],
       ),
       body: ListView(
@@ -164,41 +195,61 @@ class _NpcDetailPageState extends ConsumerState<NpcDetailPage> {
         children: [
           _portrait(l10n, theme),
           const SizedBox(height: 16),
-          _field(l10n.worldNpcNameLabel, 'name'),
+          if (_editing) _field(l10n.worldNpcNameLabel, 'name'),
           _field(l10n.worldNpcRoleLabel, 'role'),
-          Row(
-            children: [
-              Expanded(child: _field(l10n.npcRace, 'race')),
-              const SizedBox(width: 8),
-              Expanded(child: _field(l10n.npcGender, 'gender')),
-            ],
-          ),
-          Row(
-            children: [
-              Expanded(child: _field(l10n.npcAge, 'age')),
-              const SizedBox(width: 8),
-              Expanded(child: _field(l10n.npcAlignment, 'alignment')),
-            ],
-          ),
+          // Okuma modunda kisa alanlar yan yana DURMAZ: bos olanlar
+          // cizilmediginde Row'lar yarim kalip hizayi bozuyordu.
+          if (_editing) ...[
+            Row(
+              children: [
+                Expanded(child: _field(l10n.npcRace, 'race')),
+                const SizedBox(width: 8),
+                Expanded(child: _field(l10n.npcGender, 'gender')),
+              ],
+            ),
+            Row(
+              children: [
+                Expanded(child: _field(l10n.npcAge, 'age')),
+                const SizedBox(width: 8),
+                Expanded(child: _field(l10n.npcAlignment, 'alignment')),
+              ],
+            ),
+          ] else ...[
+            _field(l10n.npcRace, 'race'),
+            _field(l10n.npcGender, 'gender'),
+            _field(l10n.npcAge, 'age'),
+            _field(l10n.npcAlignment, 'alignment'),
+          ],
           _field(l10n.npcSectionAppearance, 'appearance', lines: 2),
           _field(l10n.npcSectionPersonality, 'personality', lines: 2),
-          Row(
-            children: [
-              Expanded(child: _field(l10n.npcTraitIdeal, 'ideal')),
-              const SizedBox(width: 8),
-              Expanded(child: _field(l10n.npcTraitBond, 'bond')),
-            ],
-          ),
+          if (_editing)
+            Row(
+              children: [
+                Expanded(child: _field(l10n.npcTraitIdeal, 'ideal')),
+                const SizedBox(width: 8),
+                Expanded(child: _field(l10n.npcTraitBond, 'bond')),
+              ],
+            )
+          else ...[
+            _field(l10n.npcTraitIdeal, 'ideal'),
+            _field(l10n.npcTraitBond, 'bond'),
+          ],
           _field(l10n.npcTraitFlaw, 'flaw'),
           _field(l10n.npcSectionHook, 'hook', lines: 2),
           _field(l10n.npcNotes, 'description', lines: 3),
           _field(l10n.npcSecretLabel, 'secretNotes', lines: 2),
+          if (!_editing && _isEmptyRecord) const EmptyRecordHint(),
           const SizedBox(height: 8),
           _LinksCard(npcId: widget.npcId),
         ],
       ),
     );
   }
+
+  /// Ad disinda doldurulmus hicbir alan yok mu (okuma modunda bos sayfa
+  /// yerine aciklama gostermek icin).
+  bool get _isEmptyRecord =>
+      _fields.where((f) => f != 'name').every((f) => _t(f).isEmpty);
 
   Widget _portrait(L10n l10n, ThemeData theme) {
     final path = _portraitPath;
@@ -222,43 +273,41 @@ class _NpcDetailPageState extends ConsumerState<NpcDetailPage> {
           ),
         const SizedBox(width: 16),
         Expanded(
-          child: Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: [
-              FilledButton.tonalIcon(
-                onPressed: _busy ? null : _uploadPortrait,
-                icon: const Icon(Icons.add_a_photo_outlined, size: 18),
-                label: Text(
-                  path == null ? l10n.npcAddPortrait : l10n.npcChangePortrait,
-                ),
-              ),
-              if (path != null)
-                TextButton(
-                  onPressed: _busy ? null : _removePortrait,
-                  child: Text(l10n.delete),
-                ),
-            ],
-          ),
+          // Portre degistirmek de bir duzenleme: okuma modunda yalnizca
+          // gorsel durur, dugmeler cikmaz.
+          child: _editing
+              ? Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    FilledButton.tonalIcon(
+                      onPressed: _busy ? null : _uploadPortrait,
+                      icon: const Icon(Icons.add_a_photo_outlined, size: 18),
+                      label: Text(
+                        path == null
+                            ? l10n.npcAddPortrait
+                            : l10n.npcChangePortrait,
+                      ),
+                    ),
+                    if (path != null)
+                      TextButton(
+                        onPressed: _busy ? null : _removePortrait,
+                        child: Text(l10n.delete),
+                      ),
+                  ],
+                )
+              : Text(_t('name'), style: theme.textTheme.headlineSmall),
         ),
       ],
     );
   }
 
-  Widget _field(String label, String key, {int lines = 1}) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
-      child: TextField(
-        controller: _c[key],
-        maxLines: lines,
-        decoration: InputDecoration(
-          labelText: label,
-          border: const OutlineInputBorder(),
-          isDense: true,
-        ),
-      ),
-    );
-  }
+  Widget _field(String label, String key, {int lines = 1}) => DetailField(
+    label: label,
+    controller: _c[key]!,
+    editing: _editing,
+    lines: lines,
+  );
 }
 
 /// NPC'nin dunyaya baglandigi yerler: harita pinleri + islettigi magazalar.

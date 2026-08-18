@@ -4,10 +4,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../data/db/database.dart';
 import '../../data/db/world_tables.dart';
 import '../../data/loot_repository.dart';
+import '../../data/pin_visibility.dart';
 import '../../l10n/app_localizations.dart';
 import '../combat/combat_providers.dart';
 import '../loot/loot_page.dart';
 import '../shops/shop_providers.dart';
+import 'map_view.dart' show pinKindColor, pinKindIcon;
 import 'world_providers.dart';
 
 /// Pin ekleme/duzenleme paneli.
@@ -23,6 +25,7 @@ Future<void> showPinEditor(
   double? x,
   double? y,
   bool initialRevealed = false,
+  bool? visibleToPlayers,
 }) => showModalBottomSheet<void>(
   context: context,
   isScrollControlled: true,
@@ -35,6 +38,7 @@ Future<void> showPinEditor(
       x: x,
       y: y,
       initialRevealed: initialRevealed,
+      visibleToPlayers: visibleToPlayers,
     ),
   ),
 );
@@ -46,6 +50,7 @@ class _PinEditor extends ConsumerStatefulWidget {
     this.x,
     this.y,
     this.initialRevealed = false,
+    this.visibleToPlayers,
   });
 
   final String locationId;
@@ -56,6 +61,11 @@ class _PinEditor extends ConsumerStatefulWidget {
   /// Yeni pinin varsayilan gorunurlugu (yer oyunculara acilmissa true gelir).
   final bool initialRevealed;
 
+  /// Mevcut pinin oyunculara GERCEK gorunurlugu. Pinin kendi bayragindan
+  /// okunamaz (yer/dukkan pinleri hedeflerinin durumuna bakar), bu yuzden
+  /// cagiran taraf hesaplayip verir; bkz. `data/pin_visibility.dart`.
+  final bool? visibleToPlayers;
+
   @override
   ConsumerState<_PinEditor> createState() => _PinEditorState();
 }
@@ -65,7 +75,8 @@ class _PinEditorState extends ConsumerState<_PinEditor> {
   late final _note = TextEditingController(text: widget.pin?.noteText ?? '');
   late PinKind _kind = widget.pin?.kind ?? PinKind.note;
   late String? _targetId = widget.pin?.targetId;
-  late bool _revealed = widget.pin?.revealed ?? widget.initialRevealed;
+  late bool _revealed =
+      widget.visibleToPlayers ?? widget.pin?.revealed ?? widget.initialRevealed;
   late String? _lootSetId = widget.pin?.lootSetId;
 
   bool get _isNew => widget.pin == null;
@@ -117,7 +128,7 @@ class _PinEditorState extends ConsumerState<_PinEditor> {
             children: [
               for (final kind in PinKind.values)
                 ChoiceChip(
-                  label: Text(_labelFor(l10n, kind)),
+                  label: Text(pinKindLabel(l10n, kind)),
                   selected: _kind == kind,
                   onSelected: (_) => setState(() {
                     _kind = kind;
@@ -155,7 +166,31 @@ class _PinEditorState extends ConsumerState<_PinEditor> {
                 border: const OutlineInputBorder(),
               ),
             ),
-          ] else if (_kind == PinKind.note)
+          ] else if (_kind == PinKind.note || _kind == PinKind.place) ...[
+            // Haritasiz yerde hedef SECILMEZ: kaydederken lokasyon kaydi
+            // kendiliginden aciliyor (bkz. `_save`).
+            if (_kind == PinKind.place) ...[
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Icon(
+                    Icons.info_outline,
+                    size: 16,
+                    color: theme.colorScheme.outline,
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      l10n.worldPinPlaceHint,
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: theme.colorScheme.outline,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 12),
+            ],
             TextField(
               controller: _note,
               maxLines: 5,
@@ -164,8 +199,8 @@ class _PinEditorState extends ConsumerState<_PinEditor> {
                 hintText: l10n.worldPinNoteHint,
                 border: const OutlineInputBorder(),
               ),
-            )
-          else
+            ),
+          ] else
             _TargetPicker(
               kind: _kind,
               locationId: widget.locationId,
@@ -218,12 +253,46 @@ class _PinEditorState extends ConsumerState<_PinEditor> {
   /// Bagli tur seciliyse hedef zorunlu; yoksa bosa dusen pin olusur.
   bool get _canSave {
     if (_label.text.trim().isEmpty) return false;
-    if (_kind == PinKind.note || _kind == PinKind.treasure) return true;
+    // Haritasiz yer de hedef ISTEMEZ: lokasyonu kaydederken kendisi aciyor.
+    if (_kind == PinKind.note ||
+        _kind == PinKind.treasure ||
+        _kind == PinKind.place) {
+      return true;
+    }
     return _targetId != null;
   }
 
   Future<void> _save() async {
     final repo = ref.read(worldRepositoryProvider);
+    final shops = ref.read(shopRepositoryProvider);
+
+    // Gorunurluk her zaman AYRI yazilir: anahtarin hangi kaydi degistirecegi
+    // pin turune bagli (yer pininde hedef lokasyon, dukkan pininde dukkan,
+    // digerlerinde pinin kendisi). `updatePin(revealed:)` ile yazmak yer
+    // pinlerinde hicbir ise yaramiyordu -- sunucu o bayraga bakmiyor.
+    String? pinId = widget.pin?.id;
+
+    // Haritasiz yer, ARKASINDA gercek bir lokasyon kaydi tutar: gorev
+    // ureticisi, seyahat planlayici ve lokasyon secicileri `Locations`
+    // tablosunu okuyor, oraya girmeyen bir pin oralarda hic gozukmezdi.
+    if (_kind == PinKind.place) {
+      if (_targetId == null) {
+        _targetId = await repo.createLocation(
+          name: _label.text.trim(),
+          parentId: widget.locationId,
+          description: _note.text.trim(),
+        );
+      } else {
+        // Duzenlemede ad/aciklama pinle birlikte guncellensin; aksi halde
+        // gorev listesinde eski ad gozukmeye devam ederdi.
+        await repo.updateLocation(
+          _targetId!,
+          name: _label.text.trim(),
+          description: _note.text.trim(),
+        );
+      }
+    }
+
     if (_isNew) {
       // Hazine pini bir ganimet setine baglandiysa setin kopyasi "kalan
       // ganimet" olarak pin'e yazilir; oyuncular esya/para aldikca azalir.
@@ -241,37 +310,166 @@ class _PinEditorState extends ConsumerState<_PinEditor> {
         lootSetId: _lootSetId,
         lootDataJson: lootJson,
       );
-      // Yeni pin varsayilan olarak kapali; DM acmak istediyse ayrica yazilir.
-      if (_revealed) {
-        final pins = await repo.pins(widget.locationId);
-        await repo.updatePin(pins.last.id, revealed: true);
-      }
+      final pins = await repo.pins(widget.locationId);
+      pinId = pins.last.id;
     } else {
       await repo.updatePin(
         widget.pin!.id,
         label: _label.text.trim(),
         noteText: _note.text.trim(),
-        revealed: _revealed,
         targetId: _targetId,
       );
     }
+
+    await setPinPlayerVisibility(
+      kind: _kind,
+      targetId: _targetId,
+      visible: _revealed,
+      world: repo,
+      shops: shops,
+      pinId: pinId,
+    );
+
     if (mounted) Navigator.pop(context);
   }
-
-  static String _labelFor(L10n l10n, PinKind kind) => switch (kind) {
-    PinKind.location => l10n.worldKindLocation,
-    PinKind.note => l10n.worldPinNote,
-    PinKind.npc => l10n.worldKindNpc,
-    PinKind.shop => l10n.worldKindShop,
-    PinKind.encounter => l10n.worldKindEncounter,
-    PinKind.treasure => l10n.worldKindTreasure,
-  };
 
   /// Secili ganimet setini pinin baslangic "kalan ganimet" verisine cevirir.
   Future<String?> _initialLootJson(String lootSetId) async {
     final set = await ref.read(lootRepositoryProvider).find(lootSetId);
     if (set == null) return null;
     return LootRepository.initialPinLoot(set);
+  }
+}
+
+/// Pin turunun okunabilir adi.
+String pinKindLabel(L10n l10n, PinKind kind) => switch (kind) {
+  PinKind.location => l10n.worldKindLocation,
+  PinKind.place => l10n.worldKindPlace,
+  PinKind.note => l10n.worldPinNote,
+  PinKind.npc => l10n.worldKindNpc,
+  PinKind.shop => l10n.worldKindShop,
+  PinKind.encounter => l10n.worldKindEncounter,
+  PinKind.treasure => l10n.worldKindTreasure,
+};
+
+/// Pinin SALT-OKUNUR ozeti (goruntuleme modu).
+///
+/// Goruntuleme modunda pine dokunmak duzenleyiciyi acmaz — masada yanlislikla
+/// bir pini degistirmek istemiyoruz. Yine de tek bir yazma islemi burada
+/// birakildi: pini oyunculara acmak/kapamak. Bu bir HAZIRLIK degil, oyun
+/// sirasindaki asil hamledir ("burayi artik goruyorlar"), ve kazara olacak
+/// bir jest degil — panel bilincli olarak acilir.
+Future<void> showPinInfo(
+  BuildContext context,
+  WidgetRef ref, {
+  required MapPin pin,
+  required bool visibleToPlayers,
+}) => showModalBottomSheet<void>(
+  context: context,
+  showDragHandle: true,
+  builder: (context) => _PinInfo(pin: pin, visibleToPlayers: visibleToPlayers),
+);
+
+class _PinInfo extends ConsumerStatefulWidget {
+  const _PinInfo({required this.pin, required this.visibleToPlayers});
+
+  final MapPin pin;
+
+  /// Pinin oyunculara GERCEK gorunurlugu (bkz. `data/pin_visibility.dart`).
+  final bool visibleToPlayers;
+
+  @override
+  ConsumerState<_PinInfo> createState() => _PinInfoState();
+}
+
+class _PinInfoState extends ConsumerState<_PinInfo> {
+  late bool _revealed = widget.visibleToPlayers;
+
+  /// Anahtar pin turune gore DOGRU kaydi degistirir: yer pininde hedef
+  /// lokasyon acilir/kapanir -- yani dugum grafigindeki "oyunculara goster"
+  /// ile birebir ayni islem.
+  Future<void> _setRevealed(bool value) async {
+    setState(() => _revealed = value);
+    await setPinPlayerVisibility(
+      kind: widget.pin.kind,
+      targetId: widget.pin.targetId,
+      visible: value,
+      world: ref.read(worldRepositoryProvider),
+      shops: ref.read(shopRepositoryProvider),
+      pinId: widget.pin.id,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final l10n = L10n.of(context);
+    final pin = widget.pin;
+    final color = pinKindColor(pin.kind, theme.colorScheme);
+
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(20, 8, 20, 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              children: [
+                CircleAvatar(
+                  backgroundColor: color,
+                  child: Icon(
+                    pinKindIcon(pin.kind),
+                    color: Colors.white,
+                    size: 20,
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(pin.label, style: theme.textTheme.titleLarge),
+                      Text(
+                        pinKindLabel(l10n, pin.kind),
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: theme.colorScheme.onSurfaceVariant,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            if (pin.noteText.trim().isNotEmpty) ...[
+              const SizedBox(height: 16),
+              Text(pin.noteText, style: theme.textTheme.bodyMedium),
+            ],
+            const SizedBox(height: 8),
+            SwitchListTile(
+              contentPadding: EdgeInsets.zero,
+              title: Text(l10n.worldShowToPlayers),
+              subtitle: Text(
+                _revealed
+                    ? l10n.worldPinVisibleToPlayers
+                    : l10n.worldPinHiddenFromPlayers,
+              ),
+              value: _revealed,
+              onChanged: _setRevealed,
+            ),
+            const SizedBox(height: 8),
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text(l10n.close),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 

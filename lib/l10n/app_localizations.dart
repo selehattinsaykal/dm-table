@@ -199,6 +199,12 @@ abstract class L10n {
   /// **'Yeni liste'**
   String get musicNewPlaylist;
 
+  /// No description provided for @musicNewSubList.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yeni alt liste'**
+  String get musicNewSubList;
+
   /// No description provided for @musicRenamePlaylist.
   ///
   /// In tr, this message translates to:
@@ -288,6 +294,174 @@ abstract class L10n {
   /// In tr, this message translates to:
   /// **'{title} — dosya bulunamadı'**
   String musicMissingFile(String title);
+
+  /// No description provided for @musicAddLink.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bağlantıdan ekle'**
+  String get musicAddLink;
+
+  /// No description provided for @musicLinkTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bağlantıdan müzik ekle'**
+  String get musicLinkTitle;
+
+  /// No description provided for @musicLinkHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'YouTube bağlantısı yapıştır (veya yt-dlp\'nin desteklediği herhangi bir bağlantı)'**
+  String get musicLinkHint;
+
+  /// No description provided for @musicLinkDownload.
+  ///
+  /// In tr, this message translates to:
+  /// **'İndir'**
+  String get musicLinkDownload;
+
+  /// No description provided for @musicLinkNotice.
+  ///
+  /// In tr, this message translates to:
+  /// **'YouTube bağlantısı yapıştırıp sesi kütüphanene indirebilirsin. yt-dlp\'nin desteklediği diğer siteler de çalışır.'**
+  String get musicLinkNotice;
+
+  /// No description provided for @musicSettings.
+  ///
+  /// In tr, this message translates to:
+  /// **'Müzik ayarları'**
+  String get musicSettings;
+
+  /// No description provided for @musicToolPurpose.
+  ///
+  /// In tr, this message translates to:
+  /// **'YouTube ve yt-dlp\'nin desteklediği diğer sitelerden indirmek için gereklidir.'**
+  String get musicToolPurpose;
+
+  /// No description provided for @musicToolRecheck.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yeniden kontrol et'**
+  String get musicToolRecheck;
+
+  /// No description provided for @musicToolInstallAction.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kur'**
+  String get musicToolInstallAction;
+
+  /// No description provided for @musicToolInstalled.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kurulu'**
+  String get musicToolInstalled;
+
+  /// No description provided for @musicToolNotInstalled.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kurulu değil'**
+  String get musicToolNotInstalled;
+
+  /// No description provided for @musicToolChecking.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kontrol ediliyor…'**
+  String get musicToolChecking;
+
+  /// No description provided for @musicToolDownloading.
+  ///
+  /// In tr, this message translates to:
+  /// **'İndiriliyor: %{percent}'**
+  String musicToolDownloading(String percent);
+
+  /// No description provided for @musicToolExtracting.
+  ///
+  /// In tr, this message translates to:
+  /// **'Çıkarılıyor…'**
+  String get musicToolExtracting;
+
+  /// No description provided for @musicToolInstalling.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kuruluyor…'**
+  String get musicToolInstalling;
+
+  /// No description provided for @musicToolError.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hata: {message}'**
+  String musicToolError(String message);
+
+  /// No description provided for @musicToolMissingHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'yt-dlp henüz kurulu değil, bağlantı indirilemez. Müzik ayarlarından kurabilirsin.'**
+  String get musicToolMissingHint;
+
+  /// No description provided for @musicOpenSettings.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ayarları aç'**
+  String get musicOpenSettings;
+
+  /// No description provided for @musicLinkBad.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bu geçerli bir web bağlantısı değil.'**
+  String get musicLinkBad;
+
+  /// No description provided for @musicToolMissing.
+  ///
+  /// In tr, this message translates to:
+  /// **'İndirme araçları bulunamadı'**
+  String get musicToolMissing;
+
+  /// No description provided for @musicToolMissingBody.
+  ///
+  /// In tr, this message translates to:
+  /// **'YouTube için yt-dlp gerekli. Otomatik kurulum için Müzik sayfasındaki \"Müzik İndirme Araçları\" panelini kullanın veya yolunu aşağıya yapıştırın.'**
+  String get musicToolMissingBody;
+
+  /// No description provided for @musicToolPath.
+  ///
+  /// In tr, this message translates to:
+  /// **'yt-dlp yolu (isteğe bağlı)'**
+  String get musicToolPath;
+
+  /// No description provided for @musicToolInstall.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kurulum yönergeleri'**
+  String get musicToolInstall;
+
+  /// No description provided for @musicDownloads.
+  ///
+  /// In tr, this message translates to:
+  /// **'İndirmeler'**
+  String get musicDownloads;
+
+  /// No description provided for @musicDownloadClear.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bitenleri temizle'**
+  String get musicDownloadClear;
+
+  /// No description provided for @musicDownloadFailed.
+  ///
+  /// In tr, this message translates to:
+  /// **'İndirme başarısız'**
+  String get musicDownloadFailed;
+
+  /// No description provided for @musicForbidden.
+  ///
+  /// In tr, this message translates to:
+  /// **'Erişim reddedildi (403). Bu genellikle korumalı ya da lisanslı içerik demektir; değilse araçların güncel olduğundan emin ol.'**
+  String get musicForbidden;
+
+  /// No description provided for @musicDownloadDone.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kütüphaneye eklendi'**
+  String get musicDownloadDone;
 
   /// No description provided for @settingsLanguage.
   ///
@@ -577,6 +751,576 @@ abstract class L10n {
   /// **'İsteğe bağlı — seçersen görev bu lokasyona götürür.'**
   String get questTargetHint;
 
+  /// No description provided for @npcDisposition.
+  ///
+  /// In tr, this message translates to:
+  /// **'Partiye tutumu'**
+  String get npcDisposition;
+
+  /// No description provided for @npcDispAny.
+  ///
+  /// In tr, this message translates to:
+  /// **'Serbest'**
+  String get npcDispAny;
+
+  /// No description provided for @npcDispFriendly.
+  ///
+  /// In tr, this message translates to:
+  /// **'Dostane'**
+  String get npcDispFriendly;
+
+  /// No description provided for @npcDispNeutral.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kayıtsız'**
+  String get npcDispNeutral;
+
+  /// No description provided for @npcDispWary.
+  ///
+  /// In tr, this message translates to:
+  /// **'Temkinli'**
+  String get npcDispWary;
+
+  /// No description provided for @npcDispHostile.
+  ///
+  /// In tr, this message translates to:
+  /// **'Düşmanca'**
+  String get npcDispHostile;
+
+  /// No description provided for @npcDispDeceptive.
+  ///
+  /// In tr, this message translates to:
+  /// **'İkiyüzlü'**
+  String get npcDispDeceptive;
+
+  /// No description provided for @npcImportance.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ağırlığı'**
+  String get npcImportance;
+
+  /// No description provided for @npcImpWalkOn.
+  ///
+  /// In tr, this message translates to:
+  /// **'Tek sahnelik'**
+  String get npcImpWalkOn;
+
+  /// No description provided for @npcImpRecurring.
+  ///
+  /// In tr, this message translates to:
+  /// **'Tekrar eden'**
+  String get npcImpRecurring;
+
+  /// No description provided for @npcImpMajor.
+  ///
+  /// In tr, this message translates to:
+  /// **'Başrol'**
+  String get npcImpMajor;
+
+  /// No description provided for @npcSectionVoice.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sesi ve tavrı'**
+  String get npcSectionVoice;
+
+  /// No description provided for @npcSectionMannerism.
+  ///
+  /// In tr, this message translates to:
+  /// **'Tavrı'**
+  String get npcSectionMannerism;
+
+  /// No description provided for @npcSectionWants.
+  ///
+  /// In tr, this message translates to:
+  /// **'Şu an istediği'**
+  String get npcSectionWants;
+
+  /// No description provided for @npcSectionFirstLine.
+  ///
+  /// In tr, this message translates to:
+  /// **'Açılış repliği'**
+  String get npcSectionFirstLine;
+
+  /// No description provided for @npcFirstLineNote.
+  ///
+  /// In tr, this message translates to:
+  /// **'Masada olduğu gibi okuyabilirsin'**
+  String get npcFirstLineNote;
+
+  /// No description provided for @npcParseFailed.
+  ///
+  /// In tr, this message translates to:
+  /// **'Model geçerli bir NPC döndürmedi — yanıt büyük olasılıkla yarıda kesildi. Yeniden dene.'**
+  String get npcParseFailed;
+
+  /// No description provided for @encPanelBriefing.
+  ///
+  /// In tr, this message translates to:
+  /// **'Brifing'**
+  String get encPanelBriefing;
+
+  /// No description provided for @encPanelBriefingEmpty.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bu karşılaşmanın brifingi boş. Kalem düğmesinden doldurabilir ya da AI karşılaşma üretecinden oluşturabilirsin.'**
+  String get encPanelBriefingEmpty;
+
+  /// No description provided for @encPanelLoot.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ganimet'**
+  String get encPanelLoot;
+
+  /// No description provided for @encPanelLootEmpty.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bu savaştan ganimet tanımlı değil. + ile ekle.'**
+  String get encPanelLootEmpty;
+
+  /// No description provided for @encLootAdd.
+  ///
+  /// In tr, this message translates to:
+  /// **'Eşya ekle'**
+  String get encLootAdd;
+
+  /// No description provided for @encLootAddHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'Adı kütüphanede aranır; bulunursa eşya tam kaydıyla eklenir.'**
+  String get encLootAddHint;
+
+  /// No description provided for @encLootCoins.
+  ///
+  /// In tr, this message translates to:
+  /// **'Para'**
+  String get encLootCoins;
+
+  /// No description provided for @encLootNoCoins.
+  ///
+  /// In tr, this message translates to:
+  /// **'Para yok — eklemek için dokun'**
+  String get encLootNoCoins;
+
+  /// No description provided for @encLootInLibrary.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kütüphanede var'**
+  String get encLootInLibrary;
+
+  /// No description provided for @encLootNotInLibrary.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kütüphanede yok — yalnızca isim'**
+  String get encLootNotInLibrary;
+
+  /// No description provided for @encLootUnresolvedHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'{count} eşya kütüphanede bulunamadı; keseye yalnızca isim olarak gider.'**
+  String encLootUnresolvedHint(int count);
+
+  /// No description provided for @encLootGrant.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ganimeti partiye ver'**
+  String get encLootGrant;
+
+  /// No description provided for @encLootGranted.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ganimet keseye aktarıldı'**
+  String get encLootGranted;
+
+  /// No description provided for @encLootNoInventory.
+  ///
+  /// In tr, this message translates to:
+  /// **'Önce Ganimet sekmesinden bir parti kesesi oluştur.'**
+  String get encLootNoInventory;
+
+  /// No description provided for @encLootPickInventory.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hangi keseye?'**
+  String get encLootPickInventory;
+
+  /// No description provided for @encounterObjective.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kazanma koşulu'**
+  String get encounterObjective;
+
+  /// No description provided for @encObjAny.
+  ///
+  /// In tr, this message translates to:
+  /// **'Serbest'**
+  String get encObjAny;
+
+  /// No description provided for @encObjDefeat.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hepsini yen'**
+  String get encObjDefeat;
+
+  /// No description provided for @encObjSurvive.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hayatta kal'**
+  String get encObjSurvive;
+
+  /// No description provided for @encObjProtect.
+  ///
+  /// In tr, this message translates to:
+  /// **'Koru'**
+  String get encObjProtect;
+
+  /// No description provided for @encObjRetrieve.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kap ve kaç'**
+  String get encObjRetrieve;
+
+  /// No description provided for @encObjEscape.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kaç'**
+  String get encObjEscape;
+
+  /// No description provided for @encObjStop.
+  ///
+  /// In tr, this message translates to:
+  /// **'Durdur'**
+  String get encObjStop;
+
+  /// No description provided for @encounterSetup.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kuruluş'**
+  String get encounterSetup;
+
+  /// No description provided for @encSetupAny.
+  ///
+  /// In tr, this message translates to:
+  /// **'Serbest'**
+  String get encSetupAny;
+
+  /// No description provided for @encSetupAmbush.
+  ///
+  /// In tr, this message translates to:
+  /// **'Pusuya düşerler'**
+  String get encSetupAmbush;
+
+  /// No description provided for @encSetupAmbushed.
+  ///
+  /// In tr, this message translates to:
+  /// **'Pusu kurabilirler'**
+  String get encSetupAmbushed;
+
+  /// No description provided for @encSetupPatrol.
+  ///
+  /// In tr, this message translates to:
+  /// **'Devriye'**
+  String get encSetupPatrol;
+
+  /// No description provided for @encSetupLair.
+  ///
+  /// In tr, this message translates to:
+  /// **'İn'**
+  String get encSetupLair;
+
+  /// No description provided for @encSetupGuard.
+  ///
+  /// In tr, this message translates to:
+  /// **'Geçit tutan'**
+  String get encSetupGuard;
+
+  /// No description provided for @encSetupNegotiable.
+  ///
+  /// In tr, this message translates to:
+  /// **'Konuşmayla çözülebilir'**
+  String get encSetupNegotiable;
+
+  /// No description provided for @encounterLocation.
+  ///
+  /// In tr, this message translates to:
+  /// **'Geçtiği yer'**
+  String get encounterLocation;
+
+  /// No description provided for @encounterLocationHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'İsteğe bağlı — sahne bu yere oturtulur.'**
+  String get encounterLocationHint;
+
+  /// No description provided for @encounterObjectiveSection.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kazanma koşulu'**
+  String get encounterObjectiveSection;
+
+  /// No description provided for @encounterReinforcements.
+  ///
+  /// In tr, this message translates to:
+  /// **'Takviye'**
+  String get encounterReinforcements;
+
+  /// No description provided for @encounterScaling.
+  ///
+  /// In tr, this message translates to:
+  /// **'Zorluk ayarı'**
+  String get encounterScaling;
+
+  /// No description provided for @encounterTreasure.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ganimet'**
+  String get encounterTreasure;
+
+  /// No description provided for @encounterParseFailed.
+  ///
+  /// In tr, this message translates to:
+  /// **'Model geçerli bir karşılaşma döndürmedi — yanıt büyük olasılıkla yarıda kesildi. Yeniden dene.'**
+  String get encounterParseFailed;
+
+  /// No description provided for @questLinksSection.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bağlantılar'**
+  String get questLinksSection;
+
+  /// No description provided for @questGiverLocation.
+  ///
+  /// In tr, this message translates to:
+  /// **'Görevin alındığı yer'**
+  String get questGiverLocation;
+
+  /// No description provided for @questGiverLocationHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'İsteğe bağlı — görev burada teklif edilir (hedeften ayrı).'**
+  String get questGiverLocationHint;
+
+  /// No description provided for @questAntagonist.
+  ///
+  /// In tr, this message translates to:
+  /// **'Karşı taraf'**
+  String get questAntagonist;
+
+  /// No description provided for @questAntagonistHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'İsteğe bağlı — görevin karşısındaki NPC.'**
+  String get questAntagonistHint;
+
+  /// No description provided for @questFollowsUp.
+  ///
+  /// In tr, this message translates to:
+  /// **'Devamı olduğu görev'**
+  String get questFollowsUp;
+
+  /// No description provided for @questFollowsUpHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'İsteğe bağlı — seçersen bunun devamı yazılır.'**
+  String get questFollowsUpHint;
+
+  /// No description provided for @questKind.
+  ///
+  /// In tr, this message translates to:
+  /// **'Görev türü'**
+  String get questKind;
+
+  /// No description provided for @questKindAny.
+  ///
+  /// In tr, this message translates to:
+  /// **'Serbest'**
+  String get questKindAny;
+
+  /// No description provided for @questKindRetrieve.
+  ///
+  /// In tr, this message translates to:
+  /// **'Getir'**
+  String get questKindRetrieve;
+
+  /// No description provided for @questKindEliminate.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yok et'**
+  String get questKindEliminate;
+
+  /// No description provided for @questKindEscort.
+  ///
+  /// In tr, this message translates to:
+  /// **'Koru'**
+  String get questKindEscort;
+
+  /// No description provided for @questKindRescue.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kurtar'**
+  String get questKindRescue;
+
+  /// No description provided for @questKindInvestigate.
+  ///
+  /// In tr, this message translates to:
+  /// **'Araştır'**
+  String get questKindInvestigate;
+
+  /// No description provided for @questKindDelivery.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ulaştır'**
+  String get questKindDelivery;
+
+  /// No description provided for @questKindDefend.
+  ///
+  /// In tr, this message translates to:
+  /// **'Savun'**
+  String get questKindDefend;
+
+  /// No description provided for @questKindExplore.
+  ///
+  /// In tr, this message translates to:
+  /// **'Keşfet'**
+  String get questKindExplore;
+
+  /// No description provided for @questKindDiplomacy.
+  ///
+  /// In tr, this message translates to:
+  /// **'Diplomasi'**
+  String get questKindDiplomacy;
+
+  /// No description provided for @questKindHeist.
+  ///
+  /// In tr, this message translates to:
+  /// **'Soygun'**
+  String get questKindHeist;
+
+  /// No description provided for @questScope.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kapsam'**
+  String get questScope;
+
+  /// No description provided for @questScopeOneShot.
+  ///
+  /// In tr, this message translates to:
+  /// **'Tek oturum'**
+  String get questScopeOneShot;
+
+  /// No description provided for @questScopeShortArc.
+  ///
+  /// In tr, this message translates to:
+  /// **'Birkaç oturumluk'**
+  String get questScopeShortArc;
+
+  /// No description provided for @questScopeCampaign.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kampanya boyu süren'**
+  String get questScopeCampaign;
+
+  /// No description provided for @questTone.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ton'**
+  String get questTone;
+
+  /// No description provided for @questToneAny.
+  ///
+  /// In tr, this message translates to:
+  /// **'Serbest'**
+  String get questToneAny;
+
+  /// No description provided for @questToneHeroic.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kahramanca'**
+  String get questToneHeroic;
+
+  /// No description provided for @questToneMysterious.
+  ///
+  /// In tr, this message translates to:
+  /// **'Gizemli'**
+  String get questToneMysterious;
+
+  /// No description provided for @questToneGrim.
+  ///
+  /// In tr, this message translates to:
+  /// **'Karanlık'**
+  String get questToneGrim;
+
+  /// No description provided for @questToneComedic.
+  ///
+  /// In tr, this message translates to:
+  /// **'Mizahi'**
+  String get questToneComedic;
+
+  /// No description provided for @questToneGrey.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ahlaki gri'**
+  String get questToneGrey;
+
+  /// No description provided for @questUrgency.
+  ///
+  /// In tr, this message translates to:
+  /// **'Süre baskısı'**
+  String get questUrgency;
+
+  /// No description provided for @questUrgencyNone.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yok'**
+  String get questUrgencyNone;
+
+  /// No description provided for @questUrgencySoft.
+  ///
+  /// In tr, this message translates to:
+  /// **'Gecikince kötüleşir'**
+  String get questUrgencySoft;
+
+  /// No description provided for @questUrgencyHard.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kesin süre'**
+  String get questUrgencyHard;
+
+  /// No description provided for @questDeadline.
+  ///
+  /// In tr, this message translates to:
+  /// **'Süre'**
+  String get questDeadline;
+
+  /// No description provided for @questUnitHours.
+  ///
+  /// In tr, this message translates to:
+  /// **'saat'**
+  String get questUnitHours;
+
+  /// No description provided for @questUnitDays.
+  ///
+  /// In tr, this message translates to:
+  /// **'gün'**
+  String get questUnitDays;
+
+  /// No description provided for @questUnitWeeks.
+  ///
+  /// In tr, this message translates to:
+  /// **'hafta'**
+  String get questUnitWeeks;
+
+  /// No description provided for @questUnitMonths.
+  ///
+  /// In tr, this message translates to:
+  /// **'ay'**
+  String get questUnitMonths;
+
+  /// No description provided for @questParseFailed.
+  ///
+  /// In tr, this message translates to:
+  /// **'Model geçerli bir görev döndürmedi — yanıt büyük olasılıkla yarıda kesildi. Kapsamı küçültüp yeniden dene.'**
+  String get questParseFailed;
+
   /// No description provided for @questSectionQuest.
   ///
   /// In tr, this message translates to:
@@ -588,6 +1332,42 @@ abstract class L10n {
   /// In tr, this message translates to:
   /// **'Ödül'**
   String get questSectionReward;
+
+  /// No description provided for @questSectionHooks.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kancalar'**
+  String get questSectionHooks;
+
+  /// No description provided for @questHooksNote.
+  ///
+  /// In tr, this message translates to:
+  /// **'Parti ilkini yutmazsa diğerini kullan'**
+  String get questHooksNote;
+
+  /// No description provided for @questSectionStages.
+  ///
+  /// In tr, this message translates to:
+  /// **'Aşamalar'**
+  String get questSectionStages;
+
+  /// No description provided for @questSectionComplications.
+  ///
+  /// In tr, this message translates to:
+  /// **'Komplikasyonlar'**
+  String get questSectionComplications;
+
+  /// No description provided for @questSectionFailure.
+  ///
+  /// In tr, this message translates to:
+  /// **'Başarısız olurlarsa'**
+  String get questSectionFailure;
+
+  /// No description provided for @questSectionKeyNpcs.
+  ///
+  /// In tr, this message translates to:
+  /// **'Geçen karakterler'**
+  String get questSectionKeyNpcs;
 
   /// No description provided for @questSectionDm.
   ///
@@ -2806,8 +3586,44 @@ abstract class L10n {
   /// No description provided for @worldPinDragHint.
   ///
   /// In tr, this message translates to:
-  /// **'Pinleri sürükleyerek taşıyabilirsin. Dokununca düzenlenir.'**
+  /// **'Düzenleme modu açık: pinleri sürükleyerek taşı, ayarları için uzun bas.'**
   String get worldPinDragHint;
+
+  /// No description provided for @editModeOn.
+  ///
+  /// In tr, this message translates to:
+  /// **'Düzenleme modu açık — kapatmak için dokun'**
+  String get editModeOn;
+
+  /// No description provided for @editModeOff.
+  ///
+  /// In tr, this message translates to:
+  /// **'Görüntüleme modu — düzenlemek için dokun'**
+  String get editModeOff;
+
+  /// No description provided for @editModeEmptyRecord.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bu kayıt henüz boş. Doldurmak için düzenleme modunu aç.'**
+  String get editModeEmptyRecord;
+
+  /// No description provided for @editModeDiscard.
+  ///
+  /// In tr, this message translates to:
+  /// **'Vazgeç'**
+  String get editModeDiscard;
+
+  /// No description provided for @worldPinHiddenFromPlayers.
+  ///
+  /// In tr, this message translates to:
+  /// **'Oyunculara kapalı'**
+  String get worldPinHiddenFromPlayers;
+
+  /// No description provided for @worldPinVisibleToPlayers.
+  ///
+  /// In tr, this message translates to:
+  /// **'Oyunculara açık'**
+  String get worldPinVisibleToPlayers;
 
   /// No description provided for @worldNoMap.
   ///
@@ -2820,6 +3636,12 @@ abstract class L10n {
   /// In tr, this message translates to:
   /// **'Haritayı yükledikten sonra üstüne pin koyabilir, pinlerden alt yerlere girebilirsin.'**
   String get worldNoMapHint;
+
+  /// No description provided for @worldNoMapViewModeHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'Harita yüklemek için düzenleme modunu aç.'**
+  String get worldNoMapViewModeHint;
 
   /// No description provided for @worldMapNotFound.
   ///
@@ -3006,6 +3828,12 @@ abstract class L10n {
   /// In tr, this message translates to:
   /// **'Parti {days} gün yol aldı.'**
   String travelAnnounce(Object days);
+
+  /// No description provided for @travelPlanAction.
+  ///
+  /// In tr, this message translates to:
+  /// **'Seyahat planla'**
+  String get travelPlanAction;
 
   /// No description provided for @travelDrawRoute.
   ///
@@ -3390,6 +4218,18 @@ abstract class L10n {
   /// In tr, this message translates to:
   /// **'Alt yer'**
   String get worldKindLocation;
+
+  /// No description provided for @worldKindPlace.
+  ///
+  /// In tr, this message translates to:
+  /// **'Lokasyon'**
+  String get worldKindPlace;
+
+  /// No description provided for @worldPinPlaceHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kendi haritası olmayan bir yer: içine girilmez ama lokasyon olarak kaydedilir ve görevlerde, seyahatte ve yer seçicilerinde görünür. Oyuncuların buradan öğreneceklerini aşağıya yaz.'**
+  String get worldPinPlaceHint;
 
   /// No description provided for @worldKindNpc.
   ///

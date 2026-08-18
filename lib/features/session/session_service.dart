@@ -18,6 +18,7 @@ import '../../data/db/world_tables.dart';
 import '../../data/loot_repository.dart';
 import '../../data/notes_repository.dart';
 import '../../data/party_inventory_repository.dart';
+import '../../data/pin_visibility.dart';
 import '../../data/quest_repository.dart';
 import '../../data/shop_repository.dart';
 import '../../data/world_repository.dart';
@@ -650,11 +651,17 @@ class SessionService {
       label: pin.label,
       x: pin.x,
       y: pin.y,
-      // Not metni yalnizca not/hazine pinlerinde gonderilir.
-      note: pin.kind == PinKind.note || pin.kind == PinKind.treasure
+      // Not metni bilgilendirici pinlerde gonderilir. Haritasiz YER pini de
+      // buraya dahil: zaten tek isi uzerindeki bilgiyi gostermek.
+      note:
+          pin.kind == PinKind.note ||
+              pin.kind == PinKind.treasure ||
+              pin.kind == PinKind.place
           ? pin.noteText
           : '',
       // Location/shop pinleri gorunuyorsa zaten erisilebilir; hedefi ver.
+      // `place` BILEREK disarida: icine girilecek bir harita yok, hedef
+      // verilseydi oyuncu bos bir haritaya gecmeye calisirdi.
       targetLocationId: pin.kind == PinKind.location ? pin.targetId : null,
       targetShopId: pin.kind == PinKind.shop ? pin.targetId : null,
       lootCoinsCp: loot?.coinsCp,
@@ -669,26 +676,18 @@ class SessionService {
 
   /// Bir pin oyuncu haritasinda gorunmeli mi?
   ///
-  /// LOCATION/SHOP pinleri "aksiyonlu": yalnizca hedefi ERISILEBILIRSE gorunur
-  /// (kapali yerin/dukkanin pini hic cizilmez; acilinca pini de otomatik cikar).
-  /// Bilgilendirici pinler (not, npc, karsilasma, hazine) pin.revealed'a bagli.
+  /// Kural DM arayuzuyle ORTAK: `data/pin_visibility.dart`. Burada ayri bir
+  /// kopyasi vardi ve DM tarafi baska bir kurala gore ciziyordu (bkz. o
+  /// dosyanin notu).
   bool _pinVisibleToPlayers(
     MapPin pin,
     Set<String> accessible,
     Set<String> accessibleShops,
-  ) {
-    switch (pin.kind) {
-      case PinKind.location:
-        return pin.targetId != null && accessible.contains(pin.targetId);
-      case PinKind.shop:
-        return pin.targetId != null && accessibleShops.contains(pin.targetId);
-      case PinKind.note:
-      case PinKind.npc:
-      case PinKind.encounter:
-      case PinKind.treasure:
-        return pin.revealed;
-    }
-  }
+  ) => pinVisibleToPlayers(
+    pin,
+    accessibleLocations: accessible,
+    accessibleShops: accessibleShops,
+  );
 
   /// Sunucunun harita gorsellerini ve karakter portrelerini cozmesi icin.
   /// `/media/<ad>` yolu duz oldugu icin once haritalarda, sonra portrelerde

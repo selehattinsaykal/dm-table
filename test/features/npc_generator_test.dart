@@ -134,6 +134,11 @@ void main() {
       flaw: 'inatçı',
       hook: 'cevher arıyor',
       secret: 'kaçak bir prens',
+      parsed: true,
+      voice: 'boğuk, kısa cümleler',
+      mannerism: 'örsü parmağıyla tıklatır',
+      wants: 'cevherin kaynağını öğrenmek',
+      firstLine: 'Ne istiyorsun?',
     );
     final prompt = buildPortraitPrompt(r);
     expect(prompt, contains('cüce'));
@@ -143,6 +148,11 @@ void main() {
     // DM sirri portre istemine ASLA girmemeli.
     expect(prompt, isNot(contains('kaçak bir prens')));
     expect(prompt, isNot(contains('cevher arıyor')));
+    // Masa alanlari da gorsele girmemeli: portre neye BENZEDIGINI anlatir,
+    // nasil konustugunu/ne istedigini degil.
+    expect(prompt, isNot(contains('boğuk')));
+    expect(prompt, isNot(contains('Ne istiyorsun?')));
+    expect(prompt, isNot(contains('cevherin kaynağını')));
   });
 
   test('portre isteminde bos alanlar etiketsiz atlanir', () {
@@ -160,10 +170,75 @@ void main() {
       flaw: '',
       hook: '',
       secret: '',
+      parsed: true,
+      voice: '',
+      mannerism: '',
+      wants: '',
+      firstLine: '',
     );
     final prompt = buildPortraitPrompt(r);
     expect(prompt, contains('elf'));
     expect(prompt, isNot(contains('Approximate age:')));
     expect(prompt, isNot(contains('Gender:')));
+  });
+  group('NPC: yeni masa alanlari', () {
+    test('tutum ve agirlik prompta yazilir', () {
+      final p = buildNpcPrompt(
+        profession: 'hancı',
+        gender: NpcGender.random,
+        race: '',
+        name: '',
+        extra: '',
+        languageName: 'Türkçe',
+        disposition: NpcDisposition.deceptive,
+        importance: NpcImportance.major,
+      );
+      expect(p.user, contains(NpcDisposition.deceptive.promptDescriptor));
+      expect(p.user, contains(NpcImportance.major.promptDescriptor));
+    });
+
+    test('system yeni alanlari semada ister', () {
+      final p = buildNpcPrompt(
+        profession: '',
+        gender: NpcGender.random,
+        race: '',
+        name: '',
+        extra: '',
+        languageName: 'Türkçe',
+      );
+      for (final key in ['voice', 'mannerism', 'wants', 'firstLine']) {
+        expect(p.system, contains('"$key"'));
+      }
+    });
+
+    test('yeni alanlar ayrisir', () {
+      final r = parseNpcResult(
+        '{"name":"Mira","summary":"hancı","appearance":"kısa boylu",'
+        '"voice":"boğuk, kısa cümleler","mannerism":"bardağı siler",'
+        '"wants":"kirasını almak","firstLine":"Oda mı, dert mi?"}',
+      );
+      expect(r.parsed, isTrue);
+      expect(r.voice, 'boğuk, kısa cümleler');
+      expect(r.mannerism, 'bardağı siler');
+      expect(r.wants, 'kirasını almak');
+      expect(r.firstLine, 'Oda mı, dert mi?');
+    });
+
+    test('kesilen yanit tamamlanan alanlari kurtarir', () {
+      final r = parseNpcResult(
+        '{"name":"Mira","summary":"hancı","race":"insan",'
+        '"appearance":"kısa boylu","voice":"boğ',
+      );
+      expect(r.parsed, isTrue);
+      expect(r.name, 'Mira');
+      expect(r.appearance, 'kısa boylu');
+      expect(r.voice, isEmpty);
+    });
+
+    test('hic tam alan yoksa parsed false', () {
+      final r = parseNpcResult('Sadece duz metin.');
+      expect(r.parsed, isFalse);
+      expect(r.appearance, 'Sadece duz metin.');
+    });
   });
 }

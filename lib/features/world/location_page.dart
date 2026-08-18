@@ -5,7 +5,9 @@ import '../../app/ui/ui.dart';
 import '../../data/db/database.dart';
 import '../../data/db/world_tables.dart';
 import '../../data/journey_repository.dart';
+import '../../data/pin_visibility.dart';
 import '../../l10n/app_localizations.dart';
+import '../shops/shop_providers.dart';
 import 'journey_providers.dart';
 import 'journey_sheet.dart';
 import 'map_view.dart';
@@ -35,6 +37,18 @@ class _LocationPageState extends ConsumerState<LocationPage> {
   late String _id = widget.locationId;
   bool _placingPin = false;
   bool _busy = false;
+
+  /// Duzenleme modu. KAPALI baslar.
+  ///
+  /// Neden kapali: bu sayfa masada oyun SIRASINDA acik duruyor ve pinler
+  /// dogrudan surukelenebiliyordu — haritayi kaydirmak isterken bir sehri
+  /// yerinden oynatmak sessizce veriyi bozuyor. Artik icerigi degistiren her
+  /// jest (pin ekle/tasi/duzenle, harita yukle, yeri sil) bu modun arkasinda;
+  /// kapaliyken harita oyuncunun gordugu haline yakin, salt-okunur durur.
+  ///
+  /// Alt yerlere gecerken SIFIRLANMAZ (bkz. [_go]): mod bir "durus"tur --
+  /// hazirlik yapan DM birkac harita gezerken her seferinde yeniden acmasin.
+  bool _editMode = false;
 
   /// Rota cizme modu: haritaya dokunmak durak ekler.
   ///
@@ -70,8 +84,17 @@ class _LocationPageState extends ConsumerState<LocationPage> {
       return const Scaffold(body: AppLoading());
     }
     final l10n = L10n.of(context);
-    final theme = Theme.of(context);
     final journey = ref.watch(activeJourneyProvider).value;
+
+    // Pinin oyunculara gorunup gorunmedigi pinin kendi bayragindan okunamaz:
+    // yer/dukkan pinleri HEDEFLERININ durumuna bakar. Kumeler `ref.watch` ile
+    // kuruluyor ki dugum grafiginde bir yer acilinca harita da aninda tazelensin.
+    final access = _accessibleSets(
+      location: location,
+      trail: trail,
+      children: ref.watch(childLocationsProvider(_id)).value ?? const [],
+      shops: ref.watch(shopsProvider).value ?? const [],
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -86,22 +109,21 @@ class _LocationPageState extends ConsumerState<LocationPage> {
         actions: [
           // Olcek girilmisse seyahat her oturum kullanilan bir sey; menude
           // degil arac cubugunda dursun.
-          if (location.mapWidthMiles != null) ...[
+          //
+          // TEK dugme: eskiden "rota ciz" ve "seyahat" ayri ikonlardi, ama
+          // ikisi ayni isin iki yariciydi (duraklari topla / mesafeyi hesapla)
+          // ve hangisinin nereye gittigi belirsizdi. Artik tek giris:
+          // planlayici acilir, duraklar ya pin listesinden secilir ya da
+          // oradaki "haritada ciz" ile haritaya cizilir.
+          //
+          // Rota cizilirken gizlenir: o sirada akisi serit yonetiyor.
+          if (location.mapWidthMiles != null && !_drawingRoute)
             IconButton(
-              tooltip: l10n.travelDrawRoute,
-              icon: Icon(
-                _drawingRoute ? Icons.close : Icons.route_outlined,
-                color: _drawingRoute ? theme.colorScheme.primary : null,
-              ),
-              onPressed: _toggleRouteMode,
-            ),
-            IconButton(
-              tooltip: l10n.travelTitle,
+              tooltip: l10n.travelPlanAction,
               icon: const Icon(Icons.directions_walk),
               onPressed: () => _openPlanner(location, pins),
             ),
-          ],
-          if (location.mapImagePath != null)
+          if (_editMode && location.mapImagePath != null)
             IconButton(
               tooltip: _placingPin ? l10n.worldStopAddingPin : l10n.worldAddPin,
               icon: Icon(_placingPin ? Icons.close : Icons.add_location_alt),
@@ -110,36 +132,46 @@ class _LocationPageState extends ConsumerState<LocationPage> {
                 if (_placingPin) _drawingRoute = false;
               }),
             ),
-          PopupMenuButton<String>(
-            itemBuilder: (context) => [
-              PopupMenuItem(
-                value: 'map',
-                child: Text(
-                  location.mapImagePath == null
-                      ? l10n.worldUploadMap
-                      : l10n.worldChangeMap,
-                ),
-              ),
-              if (location.mapImagePath != null) ...[
+          // Duzenleme modu anahtari; tum detay sayfalariyla ORTAK
+          // (bkz. `app/ui/edit_mode.dart`).
+          EditModeButton(editing: _editMode, onToggle: _toggleEditMode),
+          // Menudeki her sey icerik degistirir (harita yukle/kaldir, olcek,
+          // yeniden adlandir, alt yer ekle, sil); goruntuleme modunda hic
+          // gorunmez. Seyahat menude degil arac cubugunda duruyor.
+          if (_editMode)
+            PopupMenuButton<String>(
+              itemBuilder: (context) => [
                 PopupMenuItem(
-                  value: 'removeMap',
-                  child: Text(l10n.worldRemoveMap),
+                  value: 'map',
+                  child: Text(
+                    location.mapImagePath == null
+                        ? l10n.worldUploadMap
+                        : l10n.worldChangeMap,
+                  ),
                 ),
+                if (location.mapImagePath != null) ...[
+                  PopupMenuItem(
+                    value: 'removeMap',
+                    child: Text(l10n.worldRemoveMap),
+                  ),
+                  PopupMenuItem(
+                    value: 'scale',
+                    child: Text(l10n.travelScaleTitle),
+                  ),
+                  PopupMenuItem(
+                    value: 'travel',
+                    child: Text(l10n.travelPlanAction),
+                  ),
+                ],
+                PopupMenuItem(value: 'rename', child: Text(l10n.worldRename)),
+                PopupMenuItem(value: 'child', child: Text(l10n.worldAddChild)),
                 PopupMenuItem(
-                  value: 'scale',
-                  child: Text(l10n.travelScaleTitle),
+                  value: 'delete',
+                  child: Text(l10n.worldDeleteLocation),
                 ),
-                PopupMenuItem(value: 'travel', child: Text(l10n.travelTitle)),
               ],
-              PopupMenuItem(value: 'rename', child: Text(l10n.worldRename)),
-              PopupMenuItem(value: 'child', child: Text(l10n.worldAddChild)),
-              PopupMenuItem(
-                value: 'delete',
-                child: Text(l10n.worldDeleteLocation),
-              ),
-            ],
-            onSelected: (a) => _onMenu(a, location, pins),
-          ),
+              onSelected: (a) => _onMenu(a, location, pins),
+            ),
         ],
         bottom: trail.length > 1
             ? PreferredSize(
@@ -175,17 +207,24 @@ class _LocationPageState extends ConsumerState<LocationPage> {
                   )
                 else if (journey != null && journey.locationId == _id)
                   _JourneyBanner(journey: journey)
-                else if (location.mapImagePath != null)
+                // Serit YALNIZCA duzenleme modunda: goruntuleme modunda
+                // harita, oyuncunun gordugune yakin sekilde temiz kalmali.
+                else if (_editMode && location.mapImagePath != null)
                   MaterialBanner(
                     content: Text(l10n.worldPinDragHint),
                     actions: const [SizedBox.shrink()],
                   ),
                 Expanded(
                   child: location.mapImagePath == null
-                      ? _NoMap(onUpload: () => _pickMap(location))
+                      ? _NoMap(
+                          onUpload: _editMode ? () => _pickMap(location) : null,
+                        )
                       : MapView(
                           location: location,
                           pins: pins,
+                          editing: _editMode,
+                          accessibleLocations: access.locations,
+                          accessibleShops: access.shops,
                           route: [
                             for (final s in _routeStops) (x: s.x, y: s.y),
                           ],
@@ -196,10 +235,14 @@ class _LocationPageState extends ConsumerState<LocationPage> {
                           // Sag tik / uzun bas: pinin ayarlari. Dokunmak
                           // alt haritaya girdigi icin duzenleyiciye baska
                           // bir yol gerekiyordu.
-                          onPinSettings: _drawingRoute ? null : _editPin,
+                          onPinSettings: (_drawingRoute || !_editMode)
+                              ? null
+                              : _editPin,
                           // Rota cizerken pin surukleme kapali: dokunuslar
-                          // rotaya ait.
-                          onMovePin: _drawingRoute
+                          // rotaya ait. Goruntuleme modunda da kapali --
+                          // asil sebep buydu: haritayi kaydirmak isterken
+                          // pin yerinden oynuyordu.
+                          onMovePin: (_drawingRoute || !_editMode)
                               ? null
                               : (pin, x, y) => ref
                                     .read(worldRepositoryProvider)
@@ -302,6 +345,33 @@ class _LocationPageState extends ConsumerState<LocationPage> {
     );
   }
 
+  /// Bir pinin oyunculara GERCEKTEN gorunup gorunmedigi.
+  ///
+  /// Panel acilirken anahtarin baslangic degeri icin gerekir; `build` disinda
+  /// cagrildigi icin saglayicilari `read` ile okur.
+  bool _pinVisible(MapPin pin) {
+    final location = ref.read(locationProvider(_id)).value;
+    if (location == null) return pin.revealed;
+    final access = _accessibleSets(
+      location: location,
+      trail: ref.read(breadcrumbProvider(_id)).value ?? const [],
+      children: ref.read(childLocationsProvider(_id)).value ?? const [],
+      shops: ref.read(shopsProvider).value ?? const [],
+    );
+    return pinVisibleToPlayers(
+      pin,
+      accessibleLocations: access.locations,
+      accessibleShops: access.shops,
+    );
+  }
+
+  /// Duzenleme modunu ac/kapa. Kapatirken pin yerlestirme modu da duser:
+  /// aksi halde "haritaya dokun" seridi acik kalir ama dokunus is yapmaz.
+  void _toggleEditMode() => setState(() {
+    _editMode = !_editMode;
+    if (!_editMode) _placingPin = false;
+  });
+
   void _toggleRouteMode() => setState(() {
     _drawingRoute = !_drawingRoute;
     _placingPin = false;
@@ -357,6 +427,14 @@ class _LocationPageState extends ConsumerState<LocationPage> {
       location: location,
       pins: pins,
       initialStops: initialStops,
+      // Planlayicidan haritaya cizmeye gecis: sheet kapanir, sayfa rota
+      // moduna girer. Seritteki "Planla" planlayiciyi ciziligi duraklarla
+      // geri acar, yani akis kapali bir dongu.
+      onDrawOnMap: () => setState(() {
+        _drawingRoute = true;
+        _placingPin = false;
+        _routeStops.clear();
+      }),
     );
     if (started == null || !mounted) return;
     await showJourneySheet(context, ref);
@@ -364,18 +442,65 @@ class _LocationPageState extends ConsumerState<LocationPage> {
 
   /// Pin ayarlari (tur, etiket, gorunurluk, hedef...).
   Future<void> _editPin(MapPin pin) async {
-    await showPinEditor(context, ref, locationId: _id, pin: pin);
+    await showPinEditor(
+      context,
+      ref,
+      locationId: _id,
+      pin: pin,
+      visibleToPlayers: _pinVisible(pin),
+    );
   }
 
   Future<void> _openPin(MapPin pin) async {
-    // Alt lokasyon pini dogrudan icine girer; digerleri duzenleyici acar.
+    // Alt lokasyon pini dogrudan icine girer: gezinme her iki modda da acik,
+    // cunku yer degistirmek icerigi degistirmez.
     if (pin.kind == PinKind.location && pin.targetId != null) {
       _go(pin.targetId!);
       return;
     }
     if (!mounted) return;
-    await showPinEditor(context, ref, locationId: _id, pin: pin);
+    // Goruntuleme modunda duzenleyici degil salt-okunur ozet acilir; masada
+    // bir nota bakmak bir seyi degistirme riski tasimamali.
+    if (_editMode) {
+      await _editPin(pin);
+    } else {
+      await showPinInfo(
+        context,
+        ref,
+        pin: pin,
+        visibleToPlayers: _pinVisible(pin),
+      );
+    }
   }
+}
+
+/// Oyuncunun girebildigi alt yerler + haritadan erisilebilir dukkanlar.
+///
+/// Sunucudaki kuralin (bkz. `SessionService._accessibleMapLocationIds`) bu
+/// haritaya bakan parcasi. Yalnizca BU yerin cocuklari hesaplanir; haritadaki
+/// yer pinleri zaten yalnizca buradaki alt yerlere isaret edebilir.
+///
+/// Zincir sarti onemli: ust yerlerden biri kapaliysa alt yer acik olsa bile
+/// oyuncuya gitmez, dolayisiyla pini de gizli sayilmali.
+({Set<String> locations, Set<String> shops}) _accessibleSets({
+  required Location location,
+  required List<Location> trail,
+  required List<Location> children,
+  required List<Shop> shops,
+}) {
+  final chainOpen = location.revealed && trail.every((l) => l.revealed);
+  return (
+    locations: {
+      for (final child in children)
+        // Haritasi olmayan yere "girilemez", acik olsa bile.
+        if (chainOpen && child.revealed && child.mapPreviewPath != null)
+          child.id,
+    },
+    shops: {
+      for (final shop in shops)
+        if (shop.mapAccessible) shop.id,
+    },
+  );
 }
 
 /// Rota cizerken gorunen serit: kac durak var, geri al / vazgec / planla.
@@ -487,7 +612,10 @@ class _Breadcrumb extends StatelessWidget {
 class _NoMap extends StatelessWidget {
   const _NoMap({required this.onUpload});
 
-  final VoidCallback onUpload;
+  /// Null = goruntuleme modu: yukleme bir duzenleme islemi oldugu icin dugme
+  /// yerine modu acmayi soyleyen bir ipucu gosterilir (dugmeyi gosterip
+  /// calismamasindan iyi).
+  final VoidCallback? onUpload;
 
   @override
   Widget build(BuildContext context) {
@@ -508,16 +636,20 @@ class _NoMap extends StatelessWidget {
             Text(l10n.worldNoMap, style: theme.textTheme.titleMedium),
             const SizedBox(height: 4),
             Text(
-              l10n.worldNoMapHint,
+              onUpload == null
+                  ? l10n.worldNoMapViewModeHint
+                  : l10n.worldNoMapHint,
               style: theme.textTheme.bodySmall,
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 16),
-            FilledButton.icon(
-              onPressed: onUpload,
-              icon: const Icon(Icons.upload),
-              label: Text(l10n.worldUploadMap),
-            ),
+            if (onUpload != null) ...[
+              const SizedBox(height: 16),
+              FilledButton.icon(
+                onPressed: onUpload,
+                icon: const Icon(Icons.upload),
+                label: Text(l10n.worldUploadMap),
+              ),
+            ],
           ],
         ),
       ),
@@ -534,8 +666,19 @@ class _ChildrenStrip extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final children =
-        ref.watch(childLocationsProvider(locationId)).value ?? const [];
+    final all = ref.watch(childLocationsProvider(locationId)).value ?? const [];
+
+    // Haritasiz YER pinlerinin arkasindaki lokasyonlar buraya GIRMEZ: bu serit
+    // "icine girilebilecek alt yerler" icin. Onlara girilse bos bir harita
+    // yukleme ekrani acilirdi -- oysa haritalari hic olmayacak.
+    final placeTargets = {
+      for (final pin in ref.watch(pinsProvider(locationId)).value ?? const [])
+        if (pin.kind == PinKind.place && pin.targetId != null) pin.targetId!,
+    };
+    final children = [
+      for (final c in all)
+        if (!placeTargets.contains(c.id)) c,
+    ];
     if (children.isEmpty) return const SizedBox.shrink();
 
     return SizedBox(

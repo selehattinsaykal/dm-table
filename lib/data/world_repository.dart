@@ -180,11 +180,14 @@ class WorldRepository {
       await (db.delete(
         db.mapPins,
       )..where((t) => t.locationId.equals(locationId))).go();
-      // Bu lokasyona isaret eden pinler de anlamsiz kalir.
+      // Bu lokasyona isaret eden pinler de anlamsiz kalir. `place` de dahil:
+      // haritasiz yer pininin arkasindaki lokasyon silinince pin sarkitta
+      // kalir, tiklaninca "baglanti kopmus" gosterirdi.
       await (db.delete(db.mapPins)..where(
             (t) =>
                 t.targetId.equals(locationId) &
-                t.kind.equalsValue(PinKind.location),
+                (t.kind.equalsValue(PinKind.location) |
+                    t.kind.equalsValue(PinKind.place)),
           ))
           .go();
       // Bu yeri iceren grafik baglantilari da kalksin.
@@ -485,8 +488,22 @@ class WorldRepository {
     );
   }
 
+  /// Pini siler.
+  ///
+  /// `place` (haritasiz yer) pininde ARKASINDAKI lokasyon kaydi da silinir:
+  /// o kayit tamamen bu pine ait, pin gidince yer seciclerinde sahipsiz bir
+  /// satir olarak kalmasi istenmiyor. Diger turlerde hedef kayda (NPC,
+  /// magaza, karsilasma) dokunulmaz -- onlar pinden bagimsiz yasar.
   Future<void> deletePin(String id) async {
+    final pin = await (db.select(
+      db.mapPins,
+    )..where((t) => t.id.equals(id))).getSingleOrNull();
+
     await (db.delete(db.mapPins)..where((t) => t.id.equals(id))).go();
+
+    if (pin != null && pin.kind == PinKind.place && pin.targetId != null) {
+      await deleteLocation(pin.targetId!);
+    }
   }
 
   /// Hazine pininden bir esya ya da parayi alir.
@@ -627,6 +644,7 @@ class WorldRepository {
 
     switch (pin.kind) {
       case PinKind.location:
+      case PinKind.place:
         final location = await find(targetId);
         return location == null
             ? null

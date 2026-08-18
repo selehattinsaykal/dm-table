@@ -60,6 +60,9 @@ class L10nTr extends L10n {
   String get musicNewPlaylist => 'Yeni liste';
 
   @override
+  String get musicNewSubList => 'Yeni alt liste';
+
+  @override
   String get musicRenamePlaylist => 'Listeyi yeniden adlandır';
 
   @override
@@ -107,6 +110,100 @@ class L10nTr extends L10n {
   String musicMissingFile(String title) {
     return '$title — dosya bulunamadı';
   }
+
+  @override
+  String get musicAddLink => 'Bağlantıdan ekle';
+
+  @override
+  String get musicLinkTitle => 'Bağlantıdan müzik ekle';
+
+  @override
+  String get musicLinkHint =>
+      'YouTube bağlantısı yapıştır (veya yt-dlp\'nin desteklediği herhangi bir bağlantı)';
+
+  @override
+  String get musicLinkDownload => 'İndir';
+
+  @override
+  String get musicLinkNotice =>
+      'YouTube bağlantısı yapıştırıp sesi kütüphanene indirebilirsin. yt-dlp\'nin desteklediği diğer siteler de çalışır.';
+
+  @override
+  String get musicSettings => 'Müzik ayarları';
+
+  @override
+  String get musicToolPurpose =>
+      'YouTube ve yt-dlp\'nin desteklediği diğer sitelerden indirmek için gereklidir.';
+
+  @override
+  String get musicToolRecheck => 'Yeniden kontrol et';
+
+  @override
+  String get musicToolInstallAction => 'Kur';
+
+  @override
+  String get musicToolInstalled => 'Kurulu';
+
+  @override
+  String get musicToolNotInstalled => 'Kurulu değil';
+
+  @override
+  String get musicToolChecking => 'Kontrol ediliyor…';
+
+  @override
+  String musicToolDownloading(String percent) {
+    return 'İndiriliyor: %$percent';
+  }
+
+  @override
+  String get musicToolExtracting => 'Çıkarılıyor…';
+
+  @override
+  String get musicToolInstalling => 'Kuruluyor…';
+
+  @override
+  String musicToolError(String message) {
+    return 'Hata: $message';
+  }
+
+  @override
+  String get musicToolMissingHint =>
+      'yt-dlp henüz kurulu değil, bağlantı indirilemez. Müzik ayarlarından kurabilirsin.';
+
+  @override
+  String get musicOpenSettings => 'Ayarları aç';
+
+  @override
+  String get musicLinkBad => 'Bu geçerli bir web bağlantısı değil.';
+
+  @override
+  String get musicToolMissing => 'İndirme araçları bulunamadı';
+
+  @override
+  String get musicToolMissingBody =>
+      'YouTube için yt-dlp gerekli. Otomatik kurulum için Müzik sayfasındaki \"Müzik İndirme Araçları\" panelini kullanın veya yolunu aşağıya yapıştırın.';
+
+  @override
+  String get musicToolPath => 'yt-dlp yolu (isteğe bağlı)';
+
+  @override
+  String get musicToolInstall => 'Kurulum yönergeleri';
+
+  @override
+  String get musicDownloads => 'İndirmeler';
+
+  @override
+  String get musicDownloadClear => 'Bitenleri temizle';
+
+  @override
+  String get musicDownloadFailed => 'İndirme başarısız';
+
+  @override
+  String get musicForbidden =>
+      'Erişim reddedildi (403). Bu genellikle korumalı ya da lisanslı içerik demektir; değilse araçların güncel olduğundan emin ol.';
+
+  @override
+  String get musicDownloadDone => 'Kütüphaneye eklendi';
 
   @override
   String get settingsLanguage => 'Dil';
@@ -259,10 +356,324 @@ class L10nTr extends L10n {
       'İsteğe bağlı — seçersen görev bu lokasyona götürür.';
 
   @override
+  String get npcDisposition => 'Partiye tutumu';
+
+  @override
+  String get npcDispAny => 'Serbest';
+
+  @override
+  String get npcDispFriendly => 'Dostane';
+
+  @override
+  String get npcDispNeutral => 'Kayıtsız';
+
+  @override
+  String get npcDispWary => 'Temkinli';
+
+  @override
+  String get npcDispHostile => 'Düşmanca';
+
+  @override
+  String get npcDispDeceptive => 'İkiyüzlü';
+
+  @override
+  String get npcImportance => 'Ağırlığı';
+
+  @override
+  String get npcImpWalkOn => 'Tek sahnelik';
+
+  @override
+  String get npcImpRecurring => 'Tekrar eden';
+
+  @override
+  String get npcImpMajor => 'Başrol';
+
+  @override
+  String get npcSectionVoice => 'Sesi ve tavrı';
+
+  @override
+  String get npcSectionMannerism => 'Tavrı';
+
+  @override
+  String get npcSectionWants => 'Şu an istediği';
+
+  @override
+  String get npcSectionFirstLine => 'Açılış repliği';
+
+  @override
+  String get npcFirstLineNote => 'Masada olduğu gibi okuyabilirsin';
+
+  @override
+  String get npcParseFailed =>
+      'Model geçerli bir NPC döndürmedi — yanıt büyük olasılıkla yarıda kesildi. Yeniden dene.';
+
+  @override
+  String get encPanelBriefing => 'Brifing';
+
+  @override
+  String get encPanelBriefingEmpty =>
+      'Bu karşılaşmanın brifingi boş. Kalem düğmesinden doldurabilir ya da AI karşılaşma üretecinden oluşturabilirsin.';
+
+  @override
+  String get encPanelLoot => 'Ganimet';
+
+  @override
+  String get encPanelLootEmpty =>
+      'Bu savaştan ganimet tanımlı değil. + ile ekle.';
+
+  @override
+  String get encLootAdd => 'Eşya ekle';
+
+  @override
+  String get encLootAddHint =>
+      'Adı kütüphanede aranır; bulunursa eşya tam kaydıyla eklenir.';
+
+  @override
+  String get encLootCoins => 'Para';
+
+  @override
+  String get encLootNoCoins => 'Para yok — eklemek için dokun';
+
+  @override
+  String get encLootInLibrary => 'Kütüphanede var';
+
+  @override
+  String get encLootNotInLibrary => 'Kütüphanede yok — yalnızca isim';
+
+  @override
+  String encLootUnresolvedHint(int count) {
+    return '$count eşya kütüphanede bulunamadı; keseye yalnızca isim olarak gider.';
+  }
+
+  @override
+  String get encLootGrant => 'Ganimeti partiye ver';
+
+  @override
+  String get encLootGranted => 'Ganimet keseye aktarıldı';
+
+  @override
+  String get encLootNoInventory =>
+      'Önce Ganimet sekmesinden bir parti kesesi oluştur.';
+
+  @override
+  String get encLootPickInventory => 'Hangi keseye?';
+
+  @override
+  String get encounterObjective => 'Kazanma koşulu';
+
+  @override
+  String get encObjAny => 'Serbest';
+
+  @override
+  String get encObjDefeat => 'Hepsini yen';
+
+  @override
+  String get encObjSurvive => 'Hayatta kal';
+
+  @override
+  String get encObjProtect => 'Koru';
+
+  @override
+  String get encObjRetrieve => 'Kap ve kaç';
+
+  @override
+  String get encObjEscape => 'Kaç';
+
+  @override
+  String get encObjStop => 'Durdur';
+
+  @override
+  String get encounterSetup => 'Kuruluş';
+
+  @override
+  String get encSetupAny => 'Serbest';
+
+  @override
+  String get encSetupAmbush => 'Pusuya düşerler';
+
+  @override
+  String get encSetupAmbushed => 'Pusu kurabilirler';
+
+  @override
+  String get encSetupPatrol => 'Devriye';
+
+  @override
+  String get encSetupLair => 'İn';
+
+  @override
+  String get encSetupGuard => 'Geçit tutan';
+
+  @override
+  String get encSetupNegotiable => 'Konuşmayla çözülebilir';
+
+  @override
+  String get encounterLocation => 'Geçtiği yer';
+
+  @override
+  String get encounterLocationHint => 'İsteğe bağlı — sahne bu yere oturtulur.';
+
+  @override
+  String get encounterObjectiveSection => 'Kazanma koşulu';
+
+  @override
+  String get encounterReinforcements => 'Takviye';
+
+  @override
+  String get encounterScaling => 'Zorluk ayarı';
+
+  @override
+  String get encounterTreasure => 'Ganimet';
+
+  @override
+  String get encounterParseFailed =>
+      'Model geçerli bir karşılaşma döndürmedi — yanıt büyük olasılıkla yarıda kesildi. Yeniden dene.';
+
+  @override
+  String get questLinksSection => 'Bağlantılar';
+
+  @override
+  String get questGiverLocation => 'Görevin alındığı yer';
+
+  @override
+  String get questGiverLocationHint =>
+      'İsteğe bağlı — görev burada teklif edilir (hedeften ayrı).';
+
+  @override
+  String get questAntagonist => 'Karşı taraf';
+
+  @override
+  String get questAntagonistHint => 'İsteğe bağlı — görevin karşısındaki NPC.';
+
+  @override
+  String get questFollowsUp => 'Devamı olduğu görev';
+
+  @override
+  String get questFollowsUpHint =>
+      'İsteğe bağlı — seçersen bunun devamı yazılır.';
+
+  @override
+  String get questKind => 'Görev türü';
+
+  @override
+  String get questKindAny => 'Serbest';
+
+  @override
+  String get questKindRetrieve => 'Getir';
+
+  @override
+  String get questKindEliminate => 'Yok et';
+
+  @override
+  String get questKindEscort => 'Koru';
+
+  @override
+  String get questKindRescue => 'Kurtar';
+
+  @override
+  String get questKindInvestigate => 'Araştır';
+
+  @override
+  String get questKindDelivery => 'Ulaştır';
+
+  @override
+  String get questKindDefend => 'Savun';
+
+  @override
+  String get questKindExplore => 'Keşfet';
+
+  @override
+  String get questKindDiplomacy => 'Diplomasi';
+
+  @override
+  String get questKindHeist => 'Soygun';
+
+  @override
+  String get questScope => 'Kapsam';
+
+  @override
+  String get questScopeOneShot => 'Tek oturum';
+
+  @override
+  String get questScopeShortArc => 'Birkaç oturumluk';
+
+  @override
+  String get questScopeCampaign => 'Kampanya boyu süren';
+
+  @override
+  String get questTone => 'Ton';
+
+  @override
+  String get questToneAny => 'Serbest';
+
+  @override
+  String get questToneHeroic => 'Kahramanca';
+
+  @override
+  String get questToneMysterious => 'Gizemli';
+
+  @override
+  String get questToneGrim => 'Karanlık';
+
+  @override
+  String get questToneComedic => 'Mizahi';
+
+  @override
+  String get questToneGrey => 'Ahlaki gri';
+
+  @override
+  String get questUrgency => 'Süre baskısı';
+
+  @override
+  String get questUrgencyNone => 'Yok';
+
+  @override
+  String get questUrgencySoft => 'Gecikince kötüleşir';
+
+  @override
+  String get questUrgencyHard => 'Kesin süre';
+
+  @override
+  String get questDeadline => 'Süre';
+
+  @override
+  String get questUnitHours => 'saat';
+
+  @override
+  String get questUnitDays => 'gün';
+
+  @override
+  String get questUnitWeeks => 'hafta';
+
+  @override
+  String get questUnitMonths => 'ay';
+
+  @override
+  String get questParseFailed =>
+      'Model geçerli bir görev döndürmedi — yanıt büyük olasılıkla yarıda kesildi. Kapsamı küçültüp yeniden dene.';
+
+  @override
   String get questSectionQuest => 'Görev metni';
 
   @override
   String get questSectionReward => 'Ödül';
+
+  @override
+  String get questSectionHooks => 'Kancalar';
+
+  @override
+  String get questHooksNote => 'Parti ilkini yutmazsa diğerini kullan';
+
+  @override
+  String get questSectionStages => 'Aşamalar';
+
+  @override
+  String get questSectionComplications => 'Komplikasyonlar';
+
+  @override
+  String get questSectionFailure => 'Başarısız olurlarsa';
+
+  @override
+  String get questSectionKeyNpcs => 'Geçen karakterler';
 
   @override
   String get questSectionDm => 'Bilmem gereken açıklamalar';
@@ -1468,7 +1879,26 @@ class L10nTr extends L10n {
 
   @override
   String get worldPinDragHint =>
-      'Pinleri sürükleyerek taşıyabilirsin. Dokununca düzenlenir.';
+      'Düzenleme modu açık: pinleri sürükleyerek taşı, ayarları için uzun bas.';
+
+  @override
+  String get editModeOn => 'Düzenleme modu açık — kapatmak için dokun';
+
+  @override
+  String get editModeOff => 'Görüntüleme modu — düzenlemek için dokun';
+
+  @override
+  String get editModeEmptyRecord =>
+      'Bu kayıt henüz boş. Doldurmak için düzenleme modunu aç.';
+
+  @override
+  String get editModeDiscard => 'Vazgeç';
+
+  @override
+  String get worldPinHiddenFromPlayers => 'Oyunculara kapalı';
+
+  @override
+  String get worldPinVisibleToPlayers => 'Oyunculara açık';
 
   @override
   String get worldNoMap => 'Harita yok';
@@ -1476,6 +1906,10 @@ class L10nTr extends L10n {
   @override
   String get worldNoMapHint =>
       'Haritayı yükledikten sonra üstüne pin koyabilir, pinlerden alt yerlere girebilirsin.';
+
+  @override
+  String get worldNoMapViewModeHint =>
+      'Harita yüklemek için düzenleme modunu aç.';
 
   @override
   String get worldMapNotFound => 'Harita dosyası bulunamadı.';
@@ -1588,6 +2022,9 @@ class L10nTr extends L10n {
   String travelAnnounce(Object days) {
     return 'Parti $days gün yol aldı.';
   }
+
+  @override
+  String get travelPlanAction => 'Seyahat planla';
 
   @override
   String get travelDrawRoute => 'Haritada rota çiz';
@@ -1810,6 +2247,13 @@ class L10nTr extends L10n {
 
   @override
   String get worldKindLocation => 'Alt yer';
+
+  @override
+  String get worldKindPlace => 'Lokasyon';
+
+  @override
+  String get worldPinPlaceHint =>
+      'Kendi haritası olmayan bir yer: içine girilmez ama lokasyon olarak kaydedilir ve görevlerde, seyahatte ve yer seçicilerinde görünür. Oyuncuların buradan öğreneceklerini aşağıya yaz.';
 
   @override
   String get worldKindNpc => 'NPC';

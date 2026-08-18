@@ -115,4 +115,64 @@ void main() {
     expect(await music.playlists(), hasLength(1));
     expect((await store.resolve(restored.single.path)).existsSync(), isTrue);
   });
+
+  group('kategori (alt liste) hiyerarsisi', () {
+    test('alt liste ust listeye baglanir, kok listeler ayri kalir', () async {
+      final savas = await music.createPlaylist('Savas');
+      final boss = await music.createPlaylist('Boss', parentId: savas);
+      await music.createPlaylist('Taverna');
+
+      final all = await music.playlists();
+      expect(all.firstWhere((p) => p.id == boss).parentId, savas);
+      expect(all.where((p) => p.parentId == null).length, 2);
+    });
+
+    test('ust liste silinince alt listeler SILINMEZ, koke yukselir', () async {
+      final savas = await music.createPlaylist('Savas');
+      final boss = await music.createPlaylist('Boss', parentId: savas);
+
+      await music.deletePlaylist(savas);
+
+      final all = await music.playlists();
+      expect(all.any((p) => p.id == savas), isFalse);
+      final survivor = all.firstWhere((p) => p.id == boss);
+      expect(survivor.parentId, isNull, reason: 'koke yukselmeli');
+    });
+
+    test(
+      'parca kaybolmaz: silinen kategorinin parcalari listesiz kalir',
+      () async {
+        final savas = await music.createPlaylist('Savas');
+        final source = File(p.join(tmp.path, 'kaynak.mp3'))
+          ..writeAsBytesSync([1, 2, 3]);
+        final track = await music.addTrack(source, playlistId: savas);
+
+        await music.deletePlaylist(savas);
+
+        final rows = await music.tracks(all: true);
+        expect(rows.firstWhere((t) => t.id == track).playlistId, isNull);
+      },
+    );
+
+    test('dongu engellenir: ust kendi altina tasinamaz', () async {
+      final savas = await music.createPlaylist('Savas');
+      final boss = await music.createPlaylist('Boss', parentId: savas);
+
+      // Savas'i kendi cocugunun altina tasimak agaci dongulu yapardi.
+      expect(await music.movePlaylist(savas, boss), isFalse);
+      expect(await music.movePlaylist(savas, savas), isFalse);
+
+      final all = await music.playlists();
+      expect(all.firstWhere((p) => p.id == savas).parentId, isNull);
+    });
+
+    test('gecerli tasima uygulanir', () async {
+      final savas = await music.createPlaylist('Savas');
+      final taverna = await music.createPlaylist('Taverna');
+
+      expect(await music.movePlaylist(taverna, savas), isTrue);
+      final all = await music.playlists();
+      expect(all.firstWhere((p) => p.id == taverna).parentId, savas);
+    });
+  });
 }
