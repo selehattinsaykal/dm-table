@@ -7,6 +7,7 @@
 /// Kullanim: `import '../../app/ui/ui.dart';`
 library;
 
+export 'edit_mode.dart';
 export 'ornaments.dart';
 export 'parchment.dart';
 export 'states.dart';

@@ -9,6 +9,8 @@ import '../../data/db/database.dart';
 import '../../data/music_store.dart';
 import '../../l10n/app_localizations.dart';
 import 'music_controller.dart';
+import 'music_link_dialog.dart';
+import 'tool_installer.dart';
 
 /// Müzik kütüphanesi: başlıklara (listelere) ayrılmış parçalar + çalar.
 ///
@@ -44,14 +46,33 @@ class _MusicPageState extends ConsumerState<MusicPage> {
       });
     }
 
+    // Seçili liste alt listesi olan bir kök liste mi? Öyleyse kategori
+    // görünümü çizilecek.
+    final current = playlists.where((p) => p.id == _playlistId).firstOrNull;
+    final category =
+        current != null &&
+            current.parentId == null &&
+            playlists.any((p) => p.parentId == current.id)
+        ? current
+        : null;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(l10n.navMusic),
         actions: [
-          // Eskiden FAB'dı: alt çalar çubuğu (ses seviyesi dahil) her zaman
-          // ekranın altında durduğu için sağ-alt köşedeki FAB onun ÜSTÜNE
-          // biniyor, ses kontrolünü tıklanamaz yapıyordu. AppBar'a taşımak
-          // çakışmayı kökten çözüyor.
+          // Sıralama: Ayarlar -> Bağlantıdan ekle -> Dosya ekle -> Yeni liste.
+          // Ayarlar en solda: araç kurulumu diğer düğmelerin ÖN KOŞULU, akış
+          // soldan sağa "önce kur, sonra ekle" diye okunuyor.
+          IconButton(
+            tooltip: l10n.musicSettings,
+            icon: const Icon(Icons.settings_outlined),
+            onPressed: _openSettings,
+          ),
+          IconButton(
+            tooltip: l10n.musicAddLink,
+            icon: const Icon(Icons.add_link),
+            onPressed: _addFromLink,
+          ),
           IconButton(
             tooltip: l10n.musicImport,
             icon: _busy
@@ -78,10 +99,24 @@ class _MusicPageState extends ConsumerState<MusicPage> {
             onSelect: (id) => setState(() => _playlistId = id),
             onRename: _renamePlaylist,
             onDelete: _deletePlaylist,
+            onAddChild: _createSubPlaylist,
+            onAddRoot: _createPlaylist,
           ),
           const Divider(height: 1),
           Expanded(
-            child: tracks.isEmpty
+            // Secili liste bir KATEGORI ise (alt listesi var) parcalar duz
+            // liste yerine acilir bolumler halinde gosteriliyor.
+            child: category != null
+                ? _CategoryBody(
+                    category: category,
+                    children: playlists
+                        .where((p) => p.parentId == category.id)
+                        .toList(),
+                    onAddChild: () => _createSubPlaylist(category),
+                    onChildMenu: _playlistMenu,
+                    onTrackMenu: _trackMenu,
+                  )
+                : tracks.isEmpty
                 ? Center(
                     child: Padding(
                       padding: const EdgeInsets.all(32),
@@ -104,10 +139,23 @@ class _MusicPageState extends ConsumerState<MusicPage> {
                     onReorder: _reorder,
                   ),
           ),
+          const MusicDownloadStrip(),
           const MusicPlayerBar(),
         ],
       ),
     );
+  }
+
+  /// Bağlantıdan ekleme kutusu. Parça o an seçili listeye düşer.
+  ///
+  /// Kutu `true` ile kapanırsa yt-dlp kurulu değil demektir; kullanıcı oradaki
+  /// düğmeyle kuruluma yönlendiriliyor, ayarları burada açıyoruz.
+  Future<void> _addFromLink() async {
+    final wantsSettings = await showDialog<bool>(
+      context: context,
+      builder: (context) => MusicLinkDialog(playlistId: _playlistId),
+    );
+    if (wantsSettings == true && mounted) await _openSettings();
   }
 
   Future<void> _importFiles() async {
@@ -133,6 +181,84 @@ class _MusicPageState extends ConsumerState<MusicPage> {
     final name = await _askText(context, L10n.of(context).musicNewPlaylist);
     if (name == null || name.isEmpty) return;
     final id = await ref.read(musicRepositoryProvider).createPlaylist(name);
+    if (mounted) setState(() => _playlistId = id);
+  }
+
+  /// Alt liste başlığının menüsü (yeniden adlandır / sil).
+  Future<void> _playlistMenu(MusicPlaylist playlist) async {
+    final l10n = L10n.of(context);
+    final action = await showModalBottomSheet<String>(
+      context: context,
+      builder: (context) => SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              leading: const Icon(Icons.edit_outlined),
+              title: Text(l10n.musicRenamePlaylist),
+              onTap: () => Navigator.pop(context, 'rename'),
+            ),
+            ListTile(
+              leading: const Icon(Icons.delete_outline),
+              title: Text(l10n.delete),
+              onTap: () => Navigator.pop(context, 'delete'),
+            ),
+          ],
+        ),
+      ),
+    );
+    if (action == 'rename') await _renamePlaylist(playlist);
+    if (action == 'delete') await _deletePlaylist(playlist);
+  }
+
+  /// Kategori görünümündeki parça menüsü.
+  Future<void> _trackMenu(MusicTrack track) async {
+    final l10n = L10n.of(context);
+    final action = await showModalBottomSheet<String>(
+      context: context,
+      builder: (context) => SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              leading: const Icon(Icons.edit_outlined),
+              title: Text(l10n.musicRenameTrack),
+              onTap: () => Navigator.pop(context, 'rename'),
+            ),
+            ListTile(
+              leading: const Icon(Icons.drive_file_move_outlined),
+              title: Text(l10n.musicMoveTo),
+              onTap: () => Navigator.pop(context, 'move'),
+            ),
+            ListTile(
+              leading: const Icon(Icons.delete_outline),
+              title: Text(l10n.delete),
+              onTap: () => Navigator.pop(context, 'delete'),
+            ),
+          ],
+        ),
+      ),
+    );
+    if (!mounted) return;
+    switch (action) {
+      case 'rename':
+        await _renameTrack(track);
+      case 'move':
+        final playlists = ref.read(musicPlaylistsProvider).value ?? const [];
+        final target = await _pickPlaylistSheet(context, playlists);
+        if (target != null) await _moveTrack(track, target.$1);
+      case 'delete':
+        await _deleteTrack(track);
+    }
+  }
+
+  /// [parent] kategorisinin altına yeni bir liste açar ve ona geçer.
+  Future<void> _createSubPlaylist(MusicPlaylist parent) async {
+    final name = await _askText(context, L10n.of(context).musicNewSubList);
+    if (name == null || name.isEmpty || !mounted) return;
+    final id = await ref
+        .read(musicRepositoryProvider)
+        .createPlaylist(name, parentId: parent.id);
     if (mounted) setState(() => _playlistId = id);
   }
 
@@ -190,6 +316,13 @@ class _MusicPageState extends ConsumerState<MusicPage> {
 
   Future<void> _reorder(List<String> orderedIds) =>
       ref.read(musicRepositoryProvider).reorder(orderedIds);
+
+  Future<void> _openSettings() async {
+    await showDialog<void>(
+      context: context,
+      builder: (context) => const MusicSettingsDialog(),
+    );
+  }
 }
 
 Future<String?> _askText(
@@ -223,14 +356,26 @@ Future<String?> _askText(
   );
 }
 
-/// Üstteki liste (başlık) çubuğu: "Tümü" yerine listesizler + her liste bir çip.
-class _PlaylistBar extends StatelessWidget {
+/// Üstteki liste (başlık) çubuğu: listesizler + her kök liste bir çip.
+///
+/// Kategori olan (alt listesi bulunan) çiplerin yanında küçük bir ok durur;
+/// oka basılınca o kategorinin alt listeleri **hemen altında** ikinci bir
+/// satır olarak açılır. Çipler yatay kaydırılabilir kaldığı için sayfanın
+/// dikey alanı yalnızca bir kategori açıkken artıyor.
+///
+/// Her iki satırın da (kök çipler + açık kategorinin alt çipleri) BOŞ
+/// alanına sağ tıklayınca o satıra uygun "liste oluştur" seçeneği çıkar —
+/// bir liste eklemek için artık mevcut bir çipin uzun basma menüsüne
+/// gitmek gerekmiyor.
+class _PlaylistBar extends StatefulWidget {
   const _PlaylistBar({
     required this.playlists,
     required this.selected,
     required this.onSelect,
     required this.onRename,
     required this.onDelete,
+    required this.onAddChild,
+    required this.onAddRoot,
   });
 
   final List<MusicPlaylist> playlists;
@@ -238,36 +383,111 @@ class _PlaylistBar extends StatelessWidget {
   final ValueChanged<String?> onSelect;
   final ValueChanged<MusicPlaylist> onRename;
   final ValueChanged<MusicPlaylist> onDelete;
+  final ValueChanged<MusicPlaylist> onAddChild;
 
+  /// Kök satırın boş alanına sağ tıklanınca çağrılır (yeni KÖK liste).
+  final VoidCallback onAddRoot;
+
+  @override
+  State<_PlaylistBar> createState() => _PlaylistBarState();
+}
+
+class _PlaylistBarState extends State<_PlaylistBar> {
   @override
   Widget build(BuildContext context) {
     final l10n = L10n.of(context);
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      child: Row(
-        children: [
-          ChoiceChip(
-            label: Text(l10n.musicUnfiled),
-            selected: selected == null,
-            onSelected: (_) => onSelect(null),
-          ),
-          for (final p in playlists) ...[
-            const SizedBox(width: 8),
-            GestureDetector(
-              // Uzun bas = yeniden adlandir/sil; cip icine ikon sigmiyor.
-              onLongPress: () => _menu(context, p),
-              onSecondaryTap: () => _menu(context, p),
-              child: ChoiceChip(
-                label: Text(p.name),
-                selected: selected == p.id,
-                onSelected: (_) => onSelect(p.id),
+    final roots = widget.playlists.where((p) => p.parentId == null).toList();
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        // Yatay `SingleChildScrollView` DEGIL, `Wrap`: kaydirilabilir alan
+        // bos noktalardaki isaretci olaylarini da yutuyor ve disaridaki sag
+        // tik dedektoru (opaque olsa bile) hic tetiklenmiyordu. `Wrap`'te
+        // ciplerin kaplamadigi her nokta dogrudan bu dedektore dusuyor.
+        // Yan fayda: cok liste varken ekran disina tasmak yerine alt satira
+        // sariyor.
+        GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onSecondaryTapUp: (details) =>
+              _emptySpaceMenu(context, details.globalPosition, parent: null),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
+            child: SizedBox(
+              width: double.infinity,
+              child: Wrap(
+                spacing: 8,
+                runSpacing: 4,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                children: [
+                  ChoiceChip(
+                    label: Text(l10n.musicUnfiled),
+                    selected: widget.selected == null,
+                    onSelected: (_) => widget.onSelect(null),
+                  ),
+                  // Yalnizca KOK listeler cip: alt listeler artik govdede
+                  // dikey acilir bolumler halinde (bkz. `_CategoryBody`).
+                  for (final p in roots)
+                    _PlaylistChip(
+                      playlist: p,
+                      selected: widget.selected == p.id,
+                      onSelect: () => widget.onSelect(p.id),
+                      onMenu: () => _menu(context, p),
+                    ),
+                ],
               ),
             ),
-          ],
-        ],
-      ),
+          ),
+        ),
+        const SizedBox(height: 8),
+      ],
     );
+  }
+
+  /// Boş alana sağ tıklanınca açılan mini menü.
+  ///
+  /// [parent] dolu ise açık kategorinin alt satırındayız: tek seçenek, o
+  /// kategorinin altına yeni liste. `null` ise kök satırdayız; orada "yeni
+  /// kök liste" her zaman, "yeni alt liste" ise seçili bir kök liste varsa
+  /// çıkar — yoksa **ilk** alt listeyi oluşturacak hiçbir yol kalmıyordu
+  /// (alt satır ancak zaten alt liste varken çiziliyor).
+  Future<void> _emptySpaceMenu(
+    BuildContext context,
+    Offset position, {
+    required MusicPlaylist? parent,
+  }) async {
+    final l10n = L10n.of(context);
+
+    // Kök satırda: seçili kök liste, alt liste eklenebilecek aday.
+    final selectedRoot = parent != null
+        ? null
+        : widget.playlists
+              .where((p) => p.id == widget.selected && p.parentId == null)
+              .firstOrNull;
+
+    final action = await showMenuAtPosition<String>(context, position, [
+      if (parent == null)
+        PopupMenuItem(
+          value: 'root',
+          child: menuRow(
+            Icons.create_new_folder_outlined,
+            l10n.musicNewPlaylist,
+          ),
+        ),
+      if (parent != null || selectedRoot != null)
+        PopupMenuItem(
+          value: 'child',
+          child: menuRow(
+            Icons.subdirectory_arrow_right,
+            parent != null
+                ? l10n.musicNewSubList
+                : '${l10n.musicNewSubList} — ${selectedRoot!.name}',
+          ),
+        ),
+    ]);
+
+    if (action == 'root') widget.onAddRoot();
+    if (action == 'child') widget.onAddChild(parent ?? selectedRoot!);
   }
 
   Future<void> _menu(BuildContext context, MusicPlaylist playlist) async {
@@ -283,6 +503,14 @@ class _PlaylistBar extends StatelessWidget {
               title: Text(l10n.musicRenamePlaylist),
               onTap: () => Navigator.pop(context, 'rename'),
             ),
+            // Alt kategori yalnızca kök listelere eklenebiliyor: arayüz iki
+            // kademe gösteriyor, üçüncü kademe açılsa çizilemezdi.
+            if (playlist.parentId == null)
+              ListTile(
+                leading: const Icon(Icons.create_new_folder_outlined),
+                title: Text(l10n.musicNewSubList),
+                onTap: () => Navigator.pop(context, 'child'),
+              ),
             ListTile(
               leading: const Icon(Icons.delete_outline),
               title: Text(l10n.delete),
@@ -292,8 +520,276 @@ class _PlaylistBar extends StatelessWidget {
         ),
       ),
     );
-    if (action == 'rename') onRename(playlist);
-    if (action == 'delete') onDelete(playlist);
+    if (action == 'rename') widget.onRename(playlist);
+    if (action == 'child') widget.onAddChild(playlist);
+    if (action == 'delete') widget.onDelete(playlist);
+  }
+}
+
+/// Tek kök liste çipi.
+class _PlaylistChip extends StatelessWidget {
+  const _PlaylistChip({
+    required this.playlist,
+    required this.selected,
+    required this.onSelect,
+    required this.onMenu,
+  });
+
+  final MusicPlaylist playlist;
+  final bool selected;
+  final VoidCallback onSelect;
+  final VoidCallback onMenu;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      // Uzun bas / sag tik = yeniden adlandir, alt liste ekle, sil.
+      onLongPress: onMenu,
+      onSecondaryTap: onMenu,
+      child: ChoiceChip(
+        selected: selected,
+        onSelected: (_) => onSelect(),
+        label: Text(playlist.name),
+      ),
+    );
+  }
+}
+
+/// Alt listesi olan bir kök liste seçiliyken gösterilen gövde.
+///
+/// Alt listeler çip DEĞİL: her biri kendi başlığı olan, oka basınca içindeki
+/// parçaları **aşağı doğru açan** dikey bir bölüm. Üstte seçili kategorinin
+/// adı ve ona doğrudan alt liste / dosya ekleme düğmeleri durur.
+class _CategoryBody extends ConsumerStatefulWidget {
+  const _CategoryBody({
+    required this.category,
+    required this.children,
+    required this.onAddChild,
+    required this.onChildMenu,
+    required this.onTrackMenu,
+  });
+
+  final MusicPlaylist category;
+  final List<MusicPlaylist> children;
+  final VoidCallback onAddChild;
+  final ValueChanged<MusicPlaylist> onChildMenu;
+  final ValueChanged<MusicTrack> onTrackMenu;
+
+  @override
+  ConsumerState<_CategoryBody> createState() => _CategoryBodyState();
+}
+
+class _CategoryBodyState extends ConsumerState<_CategoryBody> {
+  /// Açık alt listeler. Birden fazlası aynı anda açık kalabilir — masada
+  /// "savaş" ve "gerilim" parçalarını yan yana görmek isteniyor.
+  final _open = <String>{};
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = L10n.of(context);
+    final theme = Theme.of(context);
+    final all = ref.watch(allMusicTracksProvider).value ?? const <MusicTrack>[];
+
+    // Kategorinin KENDI parcalari (alt listeye konmamis olanlar).
+    final ownTracks = all
+        .where((t) => t.playlistId == widget.category.id)
+        .toList();
+
+    // Kategori adı BURADA yazmıyor: üstteki çip çubuğunda hangi listenin
+    // seçili olduğu zaten görünüyor, ikinci kez yazmak yer harcıyordu.
+    return CustomScrollView(
+      slivers: [
+        SliverList(
+          delegate: SliverChildListDelegate([
+            for (final track in ownTracks)
+              _SectionTrackTile(
+                track: track,
+                queue: ownTracks,
+                onMenu: () => widget.onTrackMenu(track),
+              ),
+            for (final child in widget.children)
+              _SubListSection(
+                playlist: child,
+                tracks: all.where((t) => t.playlistId == child.id).toList(),
+                expanded: _open.contains(child.id),
+                onToggle: () => setState(
+                  () => _open.contains(child.id)
+                      ? _open.remove(child.id)
+                      : _open.add(child.id),
+                ),
+                onMenu: () => widget.onChildMenu(child),
+                onTrackMenu: widget.onTrackMenu,
+              ),
+          ]),
+        ),
+        // Parçaların ALTINDAKİ boş alan. `ListView` içine konan sade bir
+        // GestureDetector işe yaramaz: kaydırılabilir alan boş noktalardaki
+        // işaretçi olaylarını yutuyor. `SliverFillRemaining` o boşluğu
+        // GERÇEK bir widget hâline getiriyor, sağ tık böylece ulaşıyor.
+        SliverFillRemaining(
+          hasScrollBody: false,
+          child: GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onSecondaryTapUp: (details) =>
+                _emptyAreaMenu(details.globalPosition),
+            child: widget.children.isEmpty && ownTracks.isEmpty
+                ? Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(32),
+                      child: Text(
+                        l10n.musicEmpty,
+                        textAlign: TextAlign.center,
+                        style: theme.textTheme.bodyMedium,
+                      ),
+                    ),
+                  )
+                : const SizedBox.expand(),
+          ),
+        ),
+      ],
+    );
+  }
+
+  /// Parçaların altındaki boşluğa sağ tık: bu kategoriye alt liste ekle.
+  Future<void> _emptyAreaMenu(Offset position) async {
+    final l10n = L10n.of(context);
+    final action = await showMenuAtPosition<String>(context, position, [
+      PopupMenuItem(
+        value: 'child',
+        child: menuRow(Icons.create_new_folder_outlined, l10n.musicNewSubList),
+      ),
+    ]);
+    if (action == 'child') widget.onAddChild();
+  }
+}
+
+/// Tek bir alt liste bölümü: başlık (ok + ad + tümünü çal) ve açıkken parçalar.
+class _SubListSection extends ConsumerWidget {
+  const _SubListSection({
+    required this.playlist,
+    required this.tracks,
+    required this.expanded,
+    required this.onToggle,
+    required this.onMenu,
+    required this.onTrackMenu,
+  });
+
+  final MusicPlaylist playlist;
+  final List<MusicTrack> tracks;
+  final bool expanded;
+  final VoidCallback onToggle;
+  final VoidCallback onMenu;
+  final ValueChanged<MusicTrack> onTrackMenu;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = L10n.of(context);
+    final theme = Theme.of(context);
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        // Baslik satirinin TAMAMI acma/kapama: kucuk oka nisan almak
+        // gerekmiyor, ok yalnizca durumu gosteriyor.
+        InkWell(
+          onTap: onToggle,
+          onLongPress: onMenu,
+          onSecondaryTap: onMenu,
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border(
+                left: BorderSide(color: theme.colorScheme.primary, width: 3),
+              ),
+              color: theme.colorScheme.surfaceContainer,
+            ),
+            padding: const EdgeInsets.fromLTRB(8, 6, 4, 6),
+            child: Row(
+              children: [
+                Icon(
+                  expanded ? Icons.expand_more : Icons.chevron_right,
+                  size: 20,
+                ),
+                const SizedBox(width: 6),
+                Expanded(
+                  child: Text(
+                    playlist.name,
+                    overflow: TextOverflow.ellipsis,
+                    style: theme.textTheme.titleSmall,
+                  ),
+                ),
+                if (tracks.isNotEmpty)
+                  IconButton(
+                    tooltip: l10n.musicPlay,
+                    icon: const Icon(Icons.play_arrow, size: 20),
+                    visualDensity: VisualDensity.compact,
+                    onPressed: () => ref
+                        .read(musicControllerProvider.notifier)
+                        .play(tracks.first, queue: tracks),
+                  ),
+              ],
+            ),
+          ),
+        ),
+        if (expanded)
+          for (final track in tracks)
+            _SectionTrackTile(
+              track: track,
+              queue: tracks,
+              indented: true,
+              onMenu: () => onTrackMenu(track),
+            ),
+      ],
+    );
+  }
+}
+
+/// Bölüm içindeki tek parça satırı.
+class _SectionTrackTile extends ConsumerWidget {
+  const _SectionTrackTile({
+    required this.track,
+    required this.queue,
+    required this.onMenu,
+    this.indented = false,
+  });
+
+  final MusicTrack track;
+  final List<MusicTrack> queue;
+  final VoidCallback onMenu;
+  final bool indented;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = Theme.of(context);
+    final current = ref.watch(musicControllerProvider).track;
+    final isCurrent = current?.id == track.id;
+
+    return ListTile(
+      dense: true,
+      contentPadding: EdgeInsets.only(left: indented ? 32 : 12, right: 8),
+      leading: Icon(
+        isCurrent ? Icons.graphic_eq : Icons.music_note_outlined,
+        size: 18,
+        color: isCurrent ? theme.colorScheme.primary : null,
+      ),
+      title: Text(
+        track.title,
+        overflow: TextOverflow.ellipsis,
+        style: TextStyle(
+          fontWeight: isCurrent ? FontWeight.w600 : null,
+          color: isCurrent ? theme.colorScheme.primary : null,
+        ),
+      ),
+      subtitle: track.durationMs > 0
+          ? Text(formatMusicDuration(Duration(milliseconds: track.durationMs)))
+          : null,
+      onTap: () =>
+          ref.read(musicControllerProvider.notifier).play(track, queue: queue),
+      onLongPress: onMenu,
+      trailing: IconButton(
+        icon: const Icon(Icons.more_vert, size: 18),
+        onPressed: onMenu,
+      ),
+    );
   }
 }
 
@@ -375,7 +871,10 @@ class _TrackList extends ConsumerWidget {
                     case 'rename':
                       onRename(track);
                     case 'move':
-                      final target = await _pickPlaylist(context);
+                      final target = await _pickPlaylistSheet(
+                        context,
+                        playlists,
+                      );
                       if (target != null) onMove(track, target.$1);
                     case 'delete':
                       onDelete(track);
@@ -397,33 +896,80 @@ class _TrackList extends ConsumerWidget {
       },
     );
   }
+}
 
-  /// Seçilen listeyi `(id,)` olarak döner; iptal edilirse `null`.
-  /// Kayıt `null` id ile "listesiz" anlamına geldiği için tek elemanlı record.
-  Future<(String?,)?> _pickPlaylist(BuildContext context) async {
-    final l10n = L10n.of(context);
-    return showModalBottomSheet<(String?,)>(
-      context: context,
-      builder: (context) => SafeArea(
-        child: ListView(
-          shrinkWrap: true,
-          children: [
+/// Verilen **ekran** noktasında bir açılır menü gösterir.
+///
+/// `showMenu` konumu OVERLAY'e göre yorumluyor; elimizdeki ise ekran
+/// koordinatı. Uygulama `StatefulShellRoute.indexedStack` kullandığı için her
+/// sekmenin kendi Navigator/Overlay'i var ve bu overlay soldaki gezinme menüsü
+/// kadar sağa kaymış durumda — ekran koordinatını olduğu gibi vermek menüyü
+/// tam o kayma kadar sağda açıyordu. `globalToLocal` bunu düzeltir.
+Future<T?> showMenuAtPosition<T>(
+  BuildContext context,
+  Offset globalPosition,
+  List<PopupMenuEntry<T>> items,
+) {
+  final overlay = Overlay.of(context).context.findRenderObject() as RenderBox;
+  final local = overlay.globalToLocal(globalPosition);
+  return showMenu<T>(
+    context: context,
+    position: RelativeRect.fromRect(
+      Rect.fromLTWH(local.dx, local.dy, 0, 0),
+      Offset.zero & overlay.size,
+    ),
+    items: items,
+  );
+}
+
+/// Menü satırı: ikon + etiket.
+Widget menuRow(IconData icon, String label) => Row(
+  children: [
+    Icon(icon, size: 18),
+    const SizedBox(width: 8),
+    Flexible(child: Text(label, overflow: TextOverflow.ellipsis)),
+  ],
+);
+
+/// Seçilen listeyi `(id,)` olarak döner; iptal edilirse `null`.
+/// Kayıt `null` id ile "listesiz" anlamına geldiği için tek elemanlı record.
+///
+/// Üst seviyede: hem düz parça listesi hem kategori görünümü kullanıyor.
+Future<(String?,)?> _pickPlaylistSheet(
+  BuildContext context,
+  List<MusicPlaylist> playlists,
+) {
+  final l10n = L10n.of(context);
+  return showModalBottomSheet<(String?,)>(
+    context: context,
+    builder: (context) => SafeArea(
+      child: ListView(
+        shrinkWrap: true,
+        children: [
+          ListTile(
+            leading: const Icon(Icons.inbox_outlined),
+            title: Text(l10n.musicUnfiled),
+            onTap: () => Navigator.pop(context, (null,)),
+          ),
+          // Kök listeler, her birinin hemen ardından girintili alt listeleri.
+          for (final root in playlists.where((p) => p.parentId == null)) ...[
             ListTile(
-              leading: const Icon(Icons.inbox_outlined),
-              title: Text(l10n.musicUnfiled),
-              onTap: () => Navigator.pop(context, (null,)),
+              leading: const Icon(Icons.folder_outlined),
+              title: Text(root.name),
+              onTap: () => Navigator.pop(context, (root.id,)),
             ),
-            for (final p in playlists)
+            for (final child in playlists.where((p) => p.parentId == root.id))
               ListTile(
-                leading: const Icon(Icons.folder_outlined),
-                title: Text(p.name),
-                onTap: () => Navigator.pop(context, (p.id,)),
+                contentPadding: const EdgeInsets.only(left: 40, right: 16),
+                leading: const Icon(Icons.subdirectory_arrow_right, size: 18),
+                title: Text(child.name),
+                onTap: () => Navigator.pop(context, (child.id,)),
               ),
           ],
-        ),
+        ],
       ),
-    );
-  }
+    ),
+  );
 }
 
 /// Alt çalar çubuğu: şu an çalan + oynat/duraklat/durdur, ileri/geri, konum
@@ -571,4 +1117,58 @@ String formatMusicDuration(Duration d) {
     return '$hours:${minutes.toString().padLeft(2, '0')}:$seconds';
   }
   return '$minutes:$seconds';
+}
+
+/// Müzik ayarları diyalogu: yt-dlp kurulum/yönetim.
+class MusicSettingsDialog extends ConsumerWidget {
+  const MusicSettingsDialog({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = L10n.of(context);
+    final theme = Theme.of(context);
+    final states = ref.watch(toolInstallerProvider);
+    final installer = ref.read(toolInstallerProvider.notifier);
+
+    return AlertDialog(
+      title: Text(l10n.musicSettings),
+      content: SizedBox(
+        width: 420,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('yt-dlp', style: theme.textTheme.titleMedium),
+              const SizedBox(height: 8),
+              Text(
+                l10n.musicToolPurpose,
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
+                ),
+              ),
+              const SizedBox(height: 16),
+              for (final tool in InstallableTool.values)
+                ToolInstallTile(tool: tool, state: states[tool]!),
+              const SizedBox(height: 16),
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton.icon(
+                  icon: const Icon(Icons.refresh, size: 16),
+                  label: Text(l10n.musicToolRecheck),
+                  onPressed: installer.refresh,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: Text(l10n.close),
+        ),
+      ],
+    );
+  }
 }

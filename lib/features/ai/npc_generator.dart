@@ -1,4 +1,4 @@
-import 'dart:convert';
+import 'ai_json.dart';
 
 /// NPC üreteci: meslek + cinsiyet + tür/ırk + (opsiyonel) isim + ek bilgilerle
 /// oyuna hazır bir yardımcı karakter tasarlar. Çıktı sıkı bir JSON nesnesidir
@@ -16,8 +16,49 @@ enum NpcGender {
   final String promptDescriptor;
 }
 
+/// NPC'nin PARTİYE karşı tutumu.
+///
+/// Serbest bırakılınca model neredeyse her seferinde yardımsever bir karakter
+/// yazıyor; tutumu sabitlemek masadaki çeşitliliği DM'in eline verir.
+enum NpcDisposition {
+  any('any attitude you choose'),
+  friendly('warm and helpful toward the party'),
+  neutral('indifferent — has their own business, neither helps nor hinders'),
+  wary('suspicious and guarded, needs to be won over'),
+  hostile('actively opposed to the party, though not necessarily violent'),
+  deceptive('outwardly pleasant but working against the party in secret');
+
+  const NpcDisposition(this.promptDescriptor);
+  final String promptDescriptor;
+}
+
+/// NPC'nin kampanyadaki AĞIRLIĞI: ne kadar derinlik üretilsin.
+///
+/// Bir kez görünüp kaybolacak bir seyyar satıcıya üç paragraf geçmiş yazmak
+/// hem token hem DM zamanı israfı; tekrar eden bir kişiye tek satır yazmak
+/// ise yetersiz.
+enum NpcImportance {
+  walkOn('a one-scene walk-on character — keep everything brief'),
+  recurring('a recurring character the party will meet several times'),
+  major('a major character central to the campaign — give real depth');
+
+  const NpcImportance(this.promptDescriptor);
+  final String promptDescriptor;
+}
+
 /// Ayrıştırılmış NPC. [secret] yalnız DM'e; diğerleri oyuncuya gösterilebilir.
+///
+/// Son dört alan MASA alanıdır — hazırlıkta değil, oyun anında kullanılır ve
+/// hepsi boş gelebilir (eski yanıtlar / kesilmiş üretim):
+///  * [voice] — nasıl konuştuğu: ses tonu, ağız, tekrarladığı kelime. DM'in
+///    canlandırırken tutunacağı tek şey; klasik üreteçlerin en büyük eksiği.
+///  * [mannerism] — gözle görülür bir tik/alışkanlık.
+///  * [wants] — ŞU AN ne istiyor. Sahnedeki davranışını bu belirler.
+///  * [firstLine] — masada olduğu gibi okunabilecek bir açılış repliği.
 typedef NpcResult = ({
+  /// Yapısal ayrıştırma tuttu mu (bkz. `ai_json.dart`). `false` ise model
+  /// geçerli JSON döndürmedi ve [appearance] ham metnin tamamını taşır.
+  bool parsed,
   String name,
   String summary,
   String race,
@@ -31,6 +72,10 @@ typedef NpcResult = ({
   String flaw,
   String hook,
   String secret,
+  String voice,
+  String mannerism,
+  String wants,
+  String firstLine,
 });
 
 /// Üretilecek NPC'nin dünyadaki bir başka düğümle ilişkisi. [targetName] karşı
@@ -47,6 +92,8 @@ typedef NpcRelationContext = ({String targetName, String bondName});
   required String languageName,
   String locationName = '',
   List<NpcRelationContext> relations = const [],
+  NpcDisposition disposition = NpcDisposition.any,
+  NpcImportance importance = NpcImportance.recurring,
 }) {
   final prof = profession.trim();
   final r = race.trim();
@@ -69,7 +116,8 @@ typedef NpcRelationContext = ({String targetName, String bondName});
       '{"name": "...", "summary": "...", "race": "...", "gender": "...", '
       '"age": "...", "alignment": "...", "appearance": "...", '
       '"personality": "...", "ideal": "...", "bond": "...", "flaw": "...", '
-      '"hook": "...", "secret": "..."}\n'
+      '"hook": "...", "secret": "...", "voice": "...", "mannerism": "...", '
+      '"wants": "...", "firstLine": "..."}\n'
       '"name" = karaktere uygun bir isim (kullanıcı isim verdiyse aynen onu '
       'kullan). "summary" = tek satırlık özet (tür, cinsiyet, yaklaşık yaş, '
       'meslek). "race" = tür/ırk. "gender" = cinsiyet. "age" = yaklaşık yaş '
@@ -78,8 +126,17 @@ typedef NpcRelationContext = ({String targetName, String bondName});
       'detay. "personality" = huy, konuşma tarzı ve bir alışkanlık/tik. '
       '"ideal", "bond", "flaw" = birer kısa cümle. "hook" = oyuncuların onunla '
       'nasıl etkileşebileceği ya da bir olay kancası. "secret" = yalnız DM\'in '
-      'bileceği gizli bir sır veya gerçek. Kaliteden ödün verme ama her alanı '
-      'kısa ve öz tut.'
+      'bileceği gizli bir sır veya gerçek. '
+      // Asagidaki dort alan MASA icin: DM karakteri canlandirirken bunlari
+      // okur. Genel tarif degil, dogrudan oynanabilir olmalari sart.
+      '"voice" = NASIL konuştuğu: ses tonu, tempo, ağız/şive, sürekli '
+      'tekrarladığı bir kelime ya da kalıp. DM masada bunu okuyup sesi hemen '
+      'kurabilmeli — "kibar konuşur" gibi genel bir tarif YAZMA. '
+      '"mannerism" = gözle görülür tek bir tik/alışkanlık. '
+      '"wants" = ŞU AN, bu sahnede ne istiyor (uzun vadeli hedef değil). '
+      '"firstLine" = karakterin ağzından, masada olduğu gibi sesli '
+      'okunabilecek TEK bir açılış repliği; tırnak işareti koyma. '
+      'Kaliteden ödün verme ama her alanı kısa ve öz tut.'
       // Konum ve iliskiler yalnizca kaydetme aninda bag kurmakla kalmaz,
       // URETIMI de yonlendirir: NPC'nin gecmisi bulundugu yere ve
       // tanidiklarina dokunsun, yoksa baglar sonradan yapistirilmis gibi kalir.
@@ -92,6 +149,8 @@ typedef NpcRelationContext = ({String targetName, String bondName});
     ..write('Meslek: ${prof.isEmpty ? 'serbest' : prof}. ')
     ..write('Cinsiyet: ${gender.promptDescriptor}. ')
     ..write('Tür/ırk: ${r.isEmpty ? 'serbest (sen seç)' : r}. ')
+    ..write('Partiye tutumu: ${disposition.promptDescriptor}. ')
+    ..write('Kampanyadaki ağırlığı: ${importance.promptDescriptor}. ')
     ..write(n.isEmpty ? 'İsim: sen üret. ' : 'İsim: $n. ');
   if (loc.isNotEmpty) user.write('Bağlı olduğu yer: $loc. ');
   if (rels.isNotEmpty) {
@@ -138,44 +197,48 @@ String buildPortraitPrompt(NpcResult r) {
   return b.toString();
 }
 
-/// Modelin JSON yanıtını NPC alanlarına ayrıştırır. ```json çitlerini ve JSON
-/// dışı önek/soneki tolere eder; ayrıştırılamazsa tüm metni [appearance]'e koyar.
+/// Modelin JSON yanıtını NPC alanlarına ayrıştırır.
+///
+/// ```json çitlerini, JSON dışı önek/soneki ve KESİLMİŞ yanıtı tolere eder
+/// (bkz. `ai_json.dart`). Hiçbir şey kurtarılamazsa [NpcResult.parsed] `false`
+/// döner ve ham metin [appearance]'te durur — arayüz bunu NPC gibi değil,
+/// uyarı olarak göstermeli.
 NpcResult parseNpcResult(String raw) {
   final text = raw.trim();
-  final start = text.indexOf('{');
-  final end = text.lastIndexOf('}');
-  if (start != -1 && end > start) {
-    try {
-      final map = jsonDecode(text.substring(start, end + 1)) as Map;
-      String f(String k) => '${map[k] ?? ''}'.trim();
-      final result = (
-        name: f('name'),
-        summary: f('summary'),
-        race: f('race'),
-        gender: f('gender'),
-        age: f('age'),
-        alignment: f('alignment'),
-        appearance: f('appearance'),
-        personality: f('personality'),
-        ideal: f('ideal'),
-        bond: f('bond'),
-        flaw: f('flaw'),
-        hook: f('hook'),
-        secret: f('secret'),
-      );
-      final anyField = [
-        result.name,
-        result.summary,
-        result.appearance,
-        result.personality,
-        result.hook,
-      ].any((s) => s.isNotEmpty);
-      if (anyField) return result;
-    } catch (_) {
-      // JSON değilse aşağıda düz metne düşer.
-    }
+  final map = decodeAiJsonObject(text);
+  if (map != null) {
+    String f(String k) => aiField(map, k);
+    final result = (
+      parsed: true,
+      name: f('name'),
+      summary: f('summary'),
+      race: f('race'),
+      gender: f('gender'),
+      age: f('age'),
+      alignment: f('alignment'),
+      appearance: f('appearance'),
+      personality: f('personality'),
+      ideal: f('ideal'),
+      bond: f('bond'),
+      flaw: f('flaw'),
+      hook: f('hook'),
+      secret: f('secret'),
+      voice: f('voice'),
+      mannerism: f('mannerism'),
+      wants: f('wants'),
+      firstLine: f('firstLine'),
+    );
+    final anyField = [
+      result.name,
+      result.summary,
+      result.appearance,
+      result.personality,
+      result.hook,
+    ].any((s) => s.isNotEmpty);
+    if (anyField) return result;
   }
   return (
+    parsed: false,
     name: '',
     summary: '',
     race: '',
@@ -189,5 +252,9 @@ NpcResult parseNpcResult(String raw) {
     flaw: '',
     hook: '',
     secret: '',
+    voice: '',
+    mannerism: '',
+    wants: '',
+    firstLine: '',
   );
 }

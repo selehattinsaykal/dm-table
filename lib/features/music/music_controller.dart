@@ -22,6 +22,15 @@ final musicTracksProvider = StreamProvider.family<List<MusicTrack>, String?>(
       ref.watch(musicRepositoryProvider).watchTracks(playlistId: playlistId),
 );
 
+/// TÜM parçalar (liste farkı gözetmeden).
+///
+/// Kategori görünümü aynı anda birden çok alt listenin parçalarını çizdiği
+/// için gerekli: her alt liste için ayrı bir aile sağlayıcısı izlemek yerine
+/// tek akış alınıp bellekte gruplanıyor.
+final allMusicTracksProvider = StreamProvider<List<MusicTrack>>(
+  (ref) => ref.watch(musicRepositoryProvider).watchTracks(all: true),
+);
+
 /// Tekrar biçimi: kapalı, tüm liste, yalnız o an çalan tek parça.
 enum MusicLoopMode { off, all, one }
 

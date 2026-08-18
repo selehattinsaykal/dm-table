@@ -696,4 +696,124 @@ void main() {
       expect(await world.watchBondTypes().first, isEmpty);
     });
   });
+
+  group('haritasiz yer (place) pini', () {
+    test('arkasindaki lokasyon TUM lokasyon listesinde gozukur', () async {
+      final bolge = await world.createLocation(name: 'Bölge');
+      // Haritasiz yer: kendi Locations kaydi var ama harita gorseli yok.
+      final harabe = await world.createLocation(
+        name: 'Yıkık Değirmen',
+        parentId: bolge,
+        description: 'Görev için işaret',
+      );
+      await world.addPin(
+        locationId: bolge,
+        kind: PinKind.place,
+        label: 'Yıkık Değirmen',
+        x: 0.4,
+        y: 0.6,
+        targetId: harabe,
+        noteText: 'Görev için işaret',
+      );
+
+      // Gorev/seyahat seciciler bu akisi okuyor.
+      final all = await world.watchAllLocations().first;
+      final found = all.firstWhere((l) => l.id == harabe);
+      expect(found.name, 'Yıkık Değirmen');
+      expect(found.mapImagePath, isNull, reason: 'haritasi olmamali');
+    });
+
+    test('resolveTarget yerin adini ve aciklamasini doner', () async {
+      final bolge = await world.createLocation(name: 'Bölge');
+      final harabe = await world.createLocation(
+        name: 'Yıkık Değirmen',
+        parentId: bolge,
+        description: 'Kurtlar burada toplanıyor',
+      );
+      await world.addPin(
+        locationId: bolge,
+        kind: PinKind.place,
+        label: 'Yıkık Değirmen',
+        x: 0.4,
+        y: 0.6,
+        targetId: harabe,
+      );
+
+      final pin = (await world.pins(bolge)).single;
+      final target = await world.resolveTarget(pin);
+      expect(target?.label, 'Yıkık Değirmen');
+      expect(target?.subtitle, 'Kurtlar burada toplanıyor');
+    });
+
+    test('pin silinince arkasindaki lokasyon DA silinir', () async {
+      final bolge = await world.createLocation(name: 'Bölge');
+      final harabe = await world.createLocation(
+        name: 'Yıkık Değirmen',
+        parentId: bolge,
+      );
+      await world.addPin(
+        locationId: bolge,
+        kind: PinKind.place,
+        label: 'Yıkık Değirmen',
+        x: 0.4,
+        y: 0.6,
+        targetId: harabe,
+      );
+
+      await world.deletePin((await world.pins(bolge)).single.id);
+
+      expect(
+        await world.find(harabe),
+        isNull,
+        reason: 'yer kaydi pine ait; pin gidince o da gitmeli',
+      );
+    });
+
+    test('alt yer pini silinince hedef lokasyon KALIR', () async {
+      // Karsit durum: `location` pini VAR OLAN bir yeri isaret eder, o yer
+      // pinden bagimsiz yasar. Silme mantigi yalnizca `place`e ozel olmali.
+      final bolge = await world.createLocation(name: 'Bölge');
+      final sehir = await world.createLocation(name: 'Şehir', parentId: bolge);
+      await world.addPin(
+        locationId: bolge,
+        kind: PinKind.location,
+        label: 'Şehir',
+        x: 0.2,
+        y: 0.2,
+        targetId: sehir,
+      );
+
+      await world.deletePin((await world.pins(bolge)).single.id);
+
+      expect(await world.find(sehir), isNotNull);
+    });
+
+    test(
+      'lokasyon silinince place pini de silinir (sarkitta kalmaz)',
+      () async {
+        final bolge = await world.createLocation(name: 'Bölge');
+        final harabe = await world.createLocation(
+          name: 'Yıkık Değirmen',
+          parentId: bolge,
+        );
+        await world.addPin(
+          locationId: bolge,
+          kind: PinKind.place,
+          label: 'Yıkık Değirmen',
+          x: 0.4,
+          y: 0.6,
+          targetId: harabe,
+        );
+        expect(await world.pins(bolge), hasLength(1));
+
+        await world.deleteLocation(harabe);
+
+        expect(
+          await world.pins(bolge),
+          isEmpty,
+          reason: 'hedefi silinen place pini kalmamali',
+        );
+      },
+    );
+  });
 }

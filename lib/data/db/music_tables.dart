@@ -7,6 +7,14 @@ import 'package:drift/drift.dart';
 class MusicPlaylists extends Table {
   TextColumn get id => text()();
   TextColumn get name => text()();
+
+  /// Ust kategori; `null` = kok liste.
+  ///
+  /// Tek kademe derinlik varsayilmiyor ama arayuz kok + bir alt kademe
+  /// gosteriyor: "Savas > Boss" yeter, daha derini masada gezinmeyi
+  /// zorlastirirdi.
+  TextColumn get parentId => text().nullable()();
+
   IntColumn get sortOrder => integer().withDefault(const Constant(0))();
   DateTimeColumn get createdAt => dateTime().withDefault(currentDateAndTime)();
 

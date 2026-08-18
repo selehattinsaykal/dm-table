@@ -9,6 +9,7 @@ import '../domain/rules/combat_conditions.dart';
 import '../domain/rules/legendary_actions.dart';
 import 'db/combat_tables.dart';
 import 'db/database.dart';
+import 'encounter_briefing.dart';
 
 /// [CombatRepository.advanceTurn] sonucu: sirasi gelen katilimci ve o turda
 /// suresi biten durumlar (DM'e "X sona erdi" hatirlatmasi icin).
@@ -87,6 +88,87 @@ class CombatRepository {
         .insert(EncountersCompanion.insert(id: id, name: name));
     return id;
   }
+
+  // --- Brifing ve ganimet ---------------------------------------------------
+
+  /// Karsilasmanin DM brifingi (kazanma kosulu, taktik, arazi...).
+  EncounterBriefing briefingOf(Encounter e) =>
+      encounterBriefingFromJson(e.briefingJson);
+
+  Future<void> setBriefing(String encounterId, EncounterBriefing b) =>
+      (db.update(db.encounters)..where((t) => t.id.equals(encounterId))).write(
+        EncountersCompanion(
+          // Tamamen bos brifing null yazilir: panel "hic girilmemis" ile
+          // "girilmis ama bos" arasinda ayrim yapmak zorunda kalmasin.
+          briefingJson: Value(
+            briefingIsEmpty(b) ? null : encounterBriefingToJson(b),
+          ),
+        ),
+      );
+
+  /// Savastan cikacak ganimet.
+  EncounterLoot lootOf(Encounter e) => encounterLootFromJson(e.lootJson);
+
+  Future<void> setLoot(String encounterId, EncounterLoot loot) =>
+      (db.update(db.encounters)..where((t) => t.id.equals(encounterId))).write(
+        EncountersCompanion(
+          lootJson: Value(lootIsEmpty(loot) ? null : encounterLootToJson(loot)),
+        ),
+      );
+
+  /// Ganimete bir esya ekler. [itemKey]/[magicItemKey] verilmezse esya
+  /// "kutuphanede yok" olarak isaretlenir (bkz. [lootItemResolved]).
+  Future<void> addLootItem(
+    String encounterId, {
+    required String name,
+    bool magic = false,
+    String? itemKey,
+    String? magicItemKey,
+  }) async {
+    final e = await findEncounter(encounterId);
+    if (e == null) return;
+    final loot = lootOf(e);
+    await setLoot(encounterId, (
+      coinsCp: loot.coinsCp,
+      items: [
+        ...loot.items,
+        (
+          id: _uuid.v4(),
+          name: name,
+          magic: magic,
+          itemKey: itemKey,
+          magicItemKey: magicItemKey,
+        ),
+      ],
+    ));
+  }
+
+  Future<void> removeLootItem(String encounterId, String itemId) async {
+    final e = await findEncounter(encounterId);
+    if (e == null) return;
+    final loot = lootOf(e);
+    await setLoot(encounterId, (
+      coinsCp: loot.coinsCp,
+      items: [
+        for (final i in loot.items)
+          if (i.id != itemId) i,
+      ],
+    ));
+  }
+
+  Future<void> setLootCoins(String encounterId, int coinsCp) async {
+    final e = await findEncounter(encounterId);
+    if (e == null) return;
+    final loot = lootOf(e);
+    await setLoot(encounterId, (
+      coinsCp: coinsCp < 0 ? 0 : coinsCp,
+      items: loot.items,
+    ));
+  }
+
+  Future<Encounter?> findEncounter(String id) => (db.select(
+    db.encounters,
+  )..where((t) => t.id.equals(id))).getSingleOrNull();
 
   Future<void> deleteEncounter(String id) async {
     // Tipli API: ham SQL Drift akislarini yenilemiyor (silinen karsilasma

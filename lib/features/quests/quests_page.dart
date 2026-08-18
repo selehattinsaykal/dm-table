@@ -339,6 +339,14 @@ class _QuestEditPageState extends ConsumerState<QuestEditPage> {
 
   bool _loaded = false;
 
+  /// Duzenleme modu; KAPALI baslar (bkz. `app/ui/edit_mode.dart`). Bir goreve
+  /// bakmak — masada en sik yapilan sey — artik bos bir form duvari degil,
+  /// okunur bir ozet.
+  ///
+  /// PAYLASIM bolumu bu modun DISINDA: gorevi oyunculara acmak bir hazirlik
+  /// degil, oyun sirasindaki asil hamledir.
+  bool _editing = false;
+
   static const _units = [1000, 100, 10, 1];
 
   @override
@@ -406,9 +414,22 @@ class _QuestEditPageState extends ConsumerState<QuestEditPage> {
         rewardItems: _rewardItems,
       );
 
+  /// Kaydedince sayfayi KAPATMIYORUZ, okuma moduna donuyoruz: DM yazdiginin
+  /// sonucunu gorsun.
   Future<void> _save() async {
     await _persist();
-    if (mounted) Navigator.pop(context);
+    if (mounted) setState(() => _editing = false);
+  }
+
+  /// Vazgec: diskteki hâli geri yükler, okuma moduna doner.
+  Future<void> _cancel() async {
+    setState(() {
+      _editing = false;
+      _loaded = false;
+      _rewardItems.clear();
+      _selectedTargets.clear();
+    });
+    await _load();
   }
 
   void _addItem() {
@@ -491,13 +512,29 @@ class _QuestEditPageState extends ConsumerState<QuestEditPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(l10n.questEditTitle),
+        // Okuma modunda gorevin BASLIGI ustte: hangi goreve baktigin belli olsun.
+        title: Text(
+          _editing || _title.text.trim().isEmpty
+              ? l10n.questEditTitle
+              : _title.text.trim(),
+        ),
         actions: [
-          TextButton.icon(
-            onPressed: _loaded ? _save : null,
-            icon: const Icon(Icons.save_outlined, size: 18),
-            label: Text(l10n.save),
-          ),
+          if (_editing) ...[
+            TextButton.icon(
+              onPressed: _loaded ? _save : null,
+              icon: const Icon(Icons.save_outlined, size: 18),
+              label: Text(l10n.save),
+            ),
+            IconButton(
+              tooltip: l10n.editModeDiscard,
+              icon: const Icon(Icons.close),
+              onPressed: _loaded ? _cancel : null,
+            ),
+          ] else
+            EditModeButton(
+              editing: false,
+              onToggle: () => setState(() => _editing = true),
+            ),
         ],
       ),
       body: !_loaded
@@ -505,54 +542,145 @@ class _QuestEditPageState extends ConsumerState<QuestEditPage> {
           : ListView(
               padding: const EdgeInsets.all(16),
               children: [
-                TextField(
-                  controller: _title,
-                  decoration: InputDecoration(
-                    labelText: l10n.questTitleLabel,
-                    border: const OutlineInputBorder(),
+                if (_editing) ...[
+                  TextField(
+                    controller: _title,
+                    decoration: InputDecoration(
+                      labelText: l10n.questTitleLabel,
+                      border: const OutlineInputBorder(),
+                    ),
                   ),
-                ),
-                const SizedBox(height: 12),
-                TextField(
-                  controller: _quest,
-                  minLines: 3,
-                  maxLines: 8,
-                  decoration: InputDecoration(
-                    labelText: l10n.questTextLabel,
-                    helperText: l10n.questTextHelper,
-                    border: const OutlineInputBorder(),
+                  const SizedBox(height: 12),
+                  TextField(
+                    controller: _quest,
+                    minLines: 3,
+                    maxLines: 8,
+                    decoration: InputDecoration(
+                      labelText: l10n.questTextLabel,
+                      helperText: l10n.questTextHelper,
+                      border: const OutlineInputBorder(),
+                    ),
                   ),
-                ),
-                const SizedBox(height: 12),
-                TextField(
-                  controller: _reward,
-                  minLines: 1,
-                  maxLines: 3,
-                  decoration: InputDecoration(
-                    labelText: l10n.questRewardLabel,
-                    border: const OutlineInputBorder(),
+                  const SizedBox(height: 12),
+                  TextField(
+                    controller: _reward,
+                    minLines: 1,
+                    maxLines: 3,
+                    decoration: InputDecoration(
+                      labelText: l10n.questRewardLabel,
+                      border: const OutlineInputBorder(),
+                    ),
                   ),
-                ),
+                  const SizedBox(height: 20),
+                  _rewardSection(theme, l10n),
+                  const SizedBox(height: 20),
+                  TextField(
+                    controller: _dm,
+                    minLines: 2,
+                    maxLines: 8,
+                    decoration: InputDecoration(
+                      labelText: l10n.questDmLabel,
+                      helperText: l10n.questDmHelper,
+                      helperStyle: TextStyle(color: theme.colorScheme.tertiary),
+                      border: const OutlineInputBorder(),
+                    ),
+                  ),
+                ] else
+                  ..._readSections(theme, l10n),
                 const SizedBox(height: 20),
-                _rewardSection(theme, l10n),
-                const SizedBox(height: 20),
-                TextField(
-                  controller: _dm,
-                  minLines: 2,
-                  maxLines: 8,
-                  decoration: InputDecoration(
-                    labelText: l10n.questDmLabel,
-                    helperText: l10n.questDmHelper,
-                    helperStyle: TextStyle(color: theme.colorScheme.tertiary),
-                    border: const OutlineInputBorder(),
-                  ),
-                ),
-                const SizedBox(height: 20),
+                // Paylasim her iki modda da acik: gorevi oyunculara acmak
+                // oyun sirasindaki hamle, hazirlik degil.
                 _shareSection(theme, l10n, quest),
               ],
             ),
     );
   }
+
+  /// Okuma modu: doldurulmus alanlar okunur metin olarak, bos olanlar hiç.
+  List<Widget> _readSections(ThemeData theme, L10n l10n) {
+    final quest = _quest.text.trim();
+    final reward = _reward.text.trim();
+    final dm = _dm.text.trim();
+    final coins = _coinTotal();
+    final hasRealReward = coins > 0 || _rewardItems.isNotEmpty;
+
+    return [
+      if (quest.isNotEmpty)
+        ReadOnlyField(label: l10n.questTextLabel, value: quest),
+      if (reward.isNotEmpty)
+        ReadOnlyField(label: l10n.questRewardLabel, value: reward),
+      if (hasRealReward) _rewardSummary(theme, l10n, coins),
+      if (dm.isNotEmpty)
+        // DM notu okuma modunda da AYRISMALI: oyuncuya okunacak metinle
+        // ayni gorunurse masada yanlislikla sesli okunur.
+        Card(
+          color: theme.colorScheme.tertiaryContainer,
+          child: Padding(
+            padding: const EdgeInsets.all(14),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Icon(
+                      Icons.visibility_off,
+                      size: 16,
+                      color: theme.colorScheme.onTertiaryContainer,
+                    ),
+                    const SizedBox(width: 6),
+                    Text(
+                      l10n.questDmLabel,
+                      style: theme.textTheme.titleSmall?.copyWith(
+                        color: theme.colorScheme.onTertiaryContainer,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 6),
+                SelectableText(
+                  dm,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: theme.colorScheme.onTertiaryContainer,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      if (quest.isEmpty && reward.isEmpty && dm.isEmpty && !hasRealReward)
+        const EmptyRecordHint(),
+    ];
+  }
+
+  /// Gerçek ödülün okunur özeti (para + eşyalar).
+  Widget _rewardSummary(ThemeData theme, L10n l10n, int coins) => Card(
+    child: Padding(
+      padding: const EdgeInsets.all(14),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(l10n.questRealReward, style: theme.textTheme.titleSmall),
+          const SizedBox(height: 8),
+          if (coins > 0) Text(formatCoins(coins)),
+          for (final item in _rewardItems)
+            Padding(
+              padding: const EdgeInsets.only(top: 4),
+              child: Row(
+                children: [
+                  Icon(
+                    item.magic ? Icons.auto_awesome : Icons.backpack_outlined,
+                    size: 18,
+                    color: item.magic ? theme.colorScheme.tertiary : null,
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(child: Text(item.name)),
+                ],
+              ),
+            ),
+        ],
+      ),
+    ),
+  );
 
   /// Gerçek ödül: para + eşyalar. Görev tamamlanınca kabul eden oyunculara
   /// ORTAK ganimet havuzu olarak açılır.

@@ -19,6 +19,7 @@ import '../compendium/conditions_tab.dart';
 import '../compendium/detail_sheets.dart';
 import '../session/session_log_providers.dart';
 import 'combat_providers.dart';
+import 'encounter_panels.dart';
 
 /// Savas ekrani.
 ///
@@ -34,13 +35,32 @@ class EncounterPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final encounter = ref.watch(encounterProvider(encounterId)).value;
     final combatants = ref.watch(combatantsProvider(encounterId));
-    final repo = ref.read(combatRepositoryProvider);
     final l10n = L10n.of(context);
 
     return Scaffold(
       appBar: AppBar(
         title: Text(encounter?.name ?? l10n.combatEncounterName),
         actions: [
+          // Dar ekranda yan paneller kolona sigmaz; ayni widget'lar burada
+          // sheet olarak acilir (bkz. `encounter_panels.dart`).
+          if (!_isWide(context)) ...[
+            IconButton(
+              tooltip: l10n.encPanelBriefing,
+              icon: const Icon(Icons.description_outlined),
+              onPressed: () => _openPanelSheet(
+                context,
+                EncounterBriefingPanel(encounterId: encounterId),
+              ),
+            ),
+            IconButton(
+              tooltip: l10n.encPanelLoot,
+              icon: const Icon(Icons.diamond_outlined),
+              onPressed: () => _openPanelSheet(
+                context,
+                EncounterLootPanel(encounterId: encounterId),
+              ),
+            ),
+          ],
           IconButton(
             tooltip: l10n.combatAwardXp,
             icon: const Icon(Icons.military_tech_outlined),
@@ -62,62 +82,115 @@ class EncounterPage extends ConsumerWidget {
         context,
         combatants,
         loading: const AppLoading(),
-        data: (rows) => Column(
-          children: [
-            if (encounter != null)
-              _TurnBar(
-                encounter: encounter,
-                combatants: rows,
-                onStart: () {
-                  repo.start(encounterId);
-                },
-                onNext: () async {
-                  final messenger = ScaffoldMessenger.of(context);
-                  final result = await repo.advanceTurn(encounterId);
-                  if (result.expired.isNotEmpty) {
-                    messenger.showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          l10n.combatConditionsExpired(
-                            result.combatantName ?? '',
-                            result.expired.join(', '),
-                          ),
-                        ),
-                      ),
-                    );
-                  }
-                },
-                onEnd: () {
-                  repo.end(encounterId);
-                },
-              ),
-            _BudgetBar(encounterId: encounterId),
-            Expanded(
-              child: rows.isEmpty
-                  ? Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(32),
-                        child: Text(
-                          l10n.combatAddHint,
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    )
-                  : ListView.builder(
-                      padding: const EdgeInsets.only(bottom: 24),
-                      itemCount: rows.length,
-                      itemBuilder: (context, i) => _CombatantTile(
-                        combatant: rows[i],
-                        isActive:
-                            encounter != null &&
-                            encounter.started &&
-                            encounter.activeIndex == i,
+        // Ana panel (initiative) her zaman ana alan; yan paneller yalnizca
+        // genis ekranda saginda bir kolon olarak durur.
+        data: (rows) => _isWide(context)
+            ? Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(child: _mainPanel(context, ref, encounter, rows)),
+                  const VerticalDivider(width: 1),
+                  SizedBox(
+                    width: _sidePanelWidth,
+                    child: ListView(
+                      padding: const EdgeInsets.all(12),
+                      children: [
+                        EncounterBriefingPanel(encounterId: encounterId),
+                        EncounterLootPanel(encounterId: encounterId),
+                      ],
+                    ),
+                  ),
+                ],
+              )
+            : _mainPanel(context, ref, encounter, rows),
+      ),
+    );
+  }
+
+  /// Yan panellerin sigacagi esik. `Breakpoints.rail` (720) yalnizca yan
+  /// navigasyon icin; initiative listesi + 340px panel ondan fazlasini ister.
+  static const _wideBreakpoint = 1100.0;
+  static const _sidePanelWidth = 340.0;
+
+  static bool _isWide(BuildContext context) =>
+      MediaQuery.sizeOf(context).width >= _wideBreakpoint;
+
+  static Future<void> _openPanelSheet(BuildContext context, Widget panel) =>
+      showModalBottomSheet<void>(
+        context: context,
+        isScrollControlled: true,
+        showDragHandle: true,
+        builder: (_) => SafeArea(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.fromLTRB(12, 0, 12, 16),
+            child: panel,
+          ),
+        ),
+      );
+
+  /// Savas takibinin ASIL paneli: tur cubugu, butce ve initiative listesi.
+  Widget _mainPanel(
+    BuildContext context,
+    WidgetRef ref,
+    Encounter? encounter,
+    List<Combatant> rows,
+  ) {
+    final repo = ref.read(combatRepositoryProvider);
+    final l10n = L10n.of(context);
+    return Column(
+      children: [
+        if (encounter != null)
+          _TurnBar(
+            encounter: encounter,
+            combatants: rows,
+            onStart: () {
+              repo.start(encounterId);
+            },
+            onNext: () async {
+              final messenger = ScaffoldMessenger.of(context);
+              final result = await repo.advanceTurn(encounterId);
+              if (result.expired.isNotEmpty) {
+                messenger.showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      l10n.combatConditionsExpired(
+                        result.combatantName ?? '',
+                        result.expired.join(', '),
                       ),
                     ),
-            ),
-          ],
+                  ),
+                );
+              }
+            },
+            onEnd: () {
+              repo.end(encounterId);
+            },
+          ),
+        _BudgetBar(encounterId: encounterId),
+        Expanded(
+          child: rows.isEmpty
+              ? Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(32),
+                    child: Text(
+                      l10n.combatAddHint,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                )
+              : ListView.builder(
+                  padding: const EdgeInsets.only(bottom: 24),
+                  itemCount: rows.length,
+                  itemBuilder: (context, i) => _CombatantTile(
+                    combatant: rows[i],
+                    isActive:
+                        encounter != null &&
+                        encounter.started &&
+                        encounter.activeIndex == i,
+                  ),
+                ),
         ),
-      ),
+      ],
     );
   }
 

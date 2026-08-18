@@ -3,12 +3,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../app/ai_settings_provider.dart';
 import '../../data/combat_repository.dart';
+import '../../data/db/database.dart';
+import '../../data/loot_resolver.dart';
 import '../../data/providers.dart';
 import '../../domain/rules/challenge_rating.dart';
 import '../../domain/rules/encounter_budget.dart';
 import '../../l10n/app_localizations.dart';
 import '../characters/character_providers.dart';
 import '../combat/combat_providers.dart';
+import '../world/world_providers.dart';
 import 'ai_tools_shared.dart';
 import 'encounter_generator.dart';
 
@@ -33,6 +36,27 @@ class _EncounterToolState extends ConsumerState<EncounterTool> {
 
   /// Hedef zorluk: bütçenin hangi eşiği alınacak.
   EncounterDifficulty _difficulty = EncounterDifficulty.moderate;
+  EncounterObjective _objective = EncounterObjective.any;
+  EncounterSetup _setup = EncounterSetup.any;
+
+  /// Karşılaşmanın geçtiği yer (kampanyadan, isteğe bağlı).
+  String? _locationId;
+
+  /// Seçili yeri isteme kısa bağlam olarak biçimlendirir.
+  String? _locationContext() {
+    final id = _locationId;
+    if (id == null) return null;
+    final locations =
+        ref.read(allLocationsProvider).value ?? const <Location>[];
+    final loc = locations.where((l) => l.id == id).firstOrNull;
+    if (loc == null) return null;
+    final desc = loc.description.trim();
+    if (desc.isEmpty) return loc.name;
+    final clipped = desc.length <= 160
+        ? desc
+        : '${desc.substring(0, 160).trimRight()}…';
+    return '${loc.name} — $clipped';
+  }
 
   @override
   void initState() {
@@ -49,6 +73,26 @@ class _EncounterToolState extends ConsumerState<EncounterTool> {
     _environment.dispose();
     super.dispose();
   }
+
+  String _objectiveLabel(L10n l10n, EncounterObjective o) => switch (o) {
+    EncounterObjective.any => l10n.encObjAny,
+    EncounterObjective.defeat => l10n.encObjDefeat,
+    EncounterObjective.survive => l10n.encObjSurvive,
+    EncounterObjective.protect => l10n.encObjProtect,
+    EncounterObjective.retrieve => l10n.encObjRetrieve,
+    EncounterObjective.escape => l10n.encObjEscape,
+    EncounterObjective.stop => l10n.encObjStop,
+  };
+
+  String _setupLabel(L10n l10n, EncounterSetup s) => switch (s) {
+    EncounterSetup.any => l10n.encSetupAny,
+    EncounterSetup.ambush => l10n.encSetupAmbush,
+    EncounterSetup.ambushed => l10n.encSetupAmbushed,
+    EncounterSetup.patrol => l10n.encSetupPatrol,
+    EncounterSetup.lair => l10n.encSetupLair,
+    EncounterSetup.guardPost => l10n.encSetupGuard,
+    EncounterSetup.negotiable => l10n.encSetupNegotiable,
+  };
 
   String _difficultyLabel(L10n l10n, EncounterDifficulty d) => switch (d) {
     EncounterDifficulty.trivial => l10n.questDiffVeryEasy,
@@ -110,6 +154,9 @@ class _EncounterToolState extends ConsumerState<EncounterTool> {
       candidates: candidates,
       languageName: l10n.localeName == 'tr' ? 'Türkçe' : 'English',
       environment: _environment.text,
+      objective: _objective,
+      setup: _setup,
+      locationContext: _locationContext(),
     );
     if (!mounted) return;
     await _run.generate(
@@ -118,6 +165,9 @@ class _EncounterToolState extends ConsumerState<EncounterTool> {
       built.system,
       built.user,
       () => setState(() {}),
+      // Hedef + takviye + olcekleme + hazine ek bolumler; varsayilan butce
+      // JSON'i kesebiliyordu.
+      maxTokens: 3072,
     );
   }
 
@@ -173,6 +223,26 @@ class _EncounterToolState extends ConsumerState<EncounterTool> {
           style: theme.textTheme.bodySmall,
         ),
         const SizedBox(height: 12),
+        // Kazanma kosulu: 5e savaslarinin hepsinin "herkesi oldur"e
+        // donmesini kiran tek kol.
+        AiEnumChips<EncounterObjective>(
+          label: l10n.encounterObjective,
+          values: EncounterObjective.values,
+          selected: _objective,
+          enabled: !_run.loading,
+          labelOf: (o) => _objectiveLabel(l10n, o),
+          onSelected: (v) => setState(() => _objective = v),
+        ),
+        const SizedBox(height: 12),
+        AiEnumChips<EncounterSetup>(
+          label: l10n.encounterSetup,
+          values: EncounterSetup.values,
+          selected: _setup,
+          enabled: !_run.loading,
+          labelOf: (s) => _setupLabel(l10n, s),
+          onSelected: (v) => setState(() => _setup = v),
+        ),
+        const SizedBox(height: 12),
         TextField(
           controller: _environment,
           decoration: InputDecoration(
@@ -180,6 +250,19 @@ class _EncounterToolState extends ConsumerState<EncounterTool> {
             helperText: l10n.encounterEnvironmentHint,
             border: const OutlineInputBorder(),
           ),
+        ),
+        const SizedBox(height: 12),
+        AiOptionalPicker(
+          label: l10n.encounterLocation,
+          noneLabel: l10n.questTargetNone,
+          hint: l10n.encounterLocationHint,
+          entries: [
+            for (final l in ref.watch(allLocationsProvider).value ?? const [])
+              (l.id, l.name),
+          ],
+          value: _locationId,
+          enabled: !_run.loading,
+          onChanged: (v) => setState(() => _locationId = v),
         ),
         const SizedBox(height: 16),
         if (result == null)
@@ -205,50 +288,81 @@ class _EncounterToolState extends ConsumerState<EncounterTool> {
     ThemeData theme,
     EncounterResult r,
   ) => [
-    if (r.name.isNotEmpty)
-      Padding(
-        padding: const EdgeInsets.only(bottom: 8),
-        child: Text(r.name, style: theme.textTheme.titleLarge),
+    // Gecerli JSON gelmediyse (cogunlukla yanit kesilmis) elimizdeki tek sey
+    // ham metin; bunu karsilasma gibi gostermek yaniltici olur.
+    if (!r.parsed) ...[
+      AiErrorBox(message: l10n.encounterParseFailed, detail: r.summary),
+      const SizedBox(height: 12),
+      FilledButton.icon(
+        onPressed: () => setState(() {
+          _run.result = null;
+          _run.error = null;
+        }),
+        icon: const Icon(Icons.refresh, size: 18),
+        label: Text(l10n.aiRegenerate),
       ),
-    if (r.summary.isNotEmpty)
-      AiSection(title: l10n.encounterSummary, body: r.summary),
-    if (r.monsters.isNotEmpty)
-      AiSection(
-        title: l10n.encounterMonsters,
-        body: [for (final m in r.monsters) '${m.count}× ${m.name}'].join('\n'),
-      ),
-    if (r.terrain.isNotEmpty)
-      AiSection(title: l10n.encounterTerrain, body: r.terrain),
-    if (r.tactics.isNotEmpty)
-      AiSection(title: l10n.encounterTactics, body: r.tactics),
-    if (r.dm.isNotEmpty)
-      AiSection(
-        title: l10n.questSectionDm,
-        body: r.dm,
-        dmOnly: true,
-        note: l10n.questDmOnly,
-      ),
-    const SizedBox(height: 12),
-    Wrap(
-      spacing: 8,
-      runSpacing: 8,
-      children: [
-        FilledButton.icon(
-          onPressed: r.monsters.isEmpty
-              ? null
-              : () => _createEncounter(l10n, r),
-          icon: const Icon(Icons.shield_outlined, size: 18),
-          label: Text(l10n.encounterCreate),
+    ] else ...[
+      if (r.name.isNotEmpty)
+        Padding(
+          padding: const EdgeInsets.only(bottom: 8),
+          child: Text(r.name, style: theme.textTheme.titleLarge),
         ),
-        TextButton(
-          onPressed: () => setState(() {
-            _run.result = null;
-            _run.error = null;
-          }),
-          child: Text(l10n.aiRegenerate),
+      if (r.summary.isNotEmpty)
+        AiSection(title: l10n.encounterSummary, body: r.summary),
+      if (r.monsters.isNotEmpty)
+        AiSection(
+          title: l10n.encounterMonsters,
+          body: [
+            for (final m in r.monsters) '${m.count}× ${m.name}',
+          ].join('\n'),
         ),
-      ],
-    ),
+      // Kazanma kosulu canavarlardan HEMEN sonra: savasin nasil bittigini
+      // bilmeden taktik okumanin anlami yok.
+      if (r.objective.isNotEmpty)
+        AiSection(title: l10n.encounterObjectiveSection, body: r.objective),
+      if (r.terrain.isNotEmpty)
+        AiSection(title: l10n.encounterTerrain, body: r.terrain),
+      if (r.tactics.isNotEmpty)
+        AiSection(title: l10n.encounterTactics, body: r.tactics),
+      if (r.reinforcements.isNotEmpty)
+        AiSection(
+          title: l10n.encounterReinforcements,
+          body: r.reinforcements,
+          dmOnly: true,
+        ),
+      if (r.scaling.isNotEmpty)
+        AiSection(title: l10n.encounterScaling, body: r.scaling, dmOnly: true),
+      if (r.treasure.isNotEmpty)
+        AiSection(title: l10n.encounterTreasure, body: r.treasure),
+      if (r.dm.isNotEmpty)
+        AiSection(
+          title: l10n.questSectionDm,
+          body: r.dm,
+          dmOnly: true,
+          note: l10n.questDmOnly,
+        ),
+      const SizedBox(height: 12),
+      Wrap(
+        spacing: 8,
+        runSpacing: 8,
+        children: [
+          FilledButton.icon(
+            onPressed: r.monsters.isEmpty
+                ? null
+                : () => _createEncounter(l10n, r),
+            icon: const Icon(Icons.shield_outlined, size: 18),
+            label: Text(l10n.encounterCreate),
+          ),
+          TextButton(
+            onPressed: () => setState(() {
+              _run.result = null;
+              _run.error = null;
+            }),
+            child: Text(l10n.aiRegenerate),
+          ),
+        ],
+      ),
+    ],
   ];
 
   /// Üretilen karşılaşmayı gerçek savaşa çevirir: adlar kütüphanede aranır,
@@ -276,6 +390,31 @@ class _EncounterToolState extends ConsumerState<EncounterTool> {
         count: group.count,
         rollHitPoints: true,
       );
+    }
+
+    // Brifing: uretilen her sey savas ekraninin yan panellerinde durur.
+    // Eskiden bu metinler yalnizca AI sekmesinde kaliyordu ve DM savasi
+    // yonetirken taktikleri/kazanma kosulunu gorememis oluyordu.
+    await combat.setBriefing(encounterId, (
+      summary: r.summary,
+      objective: r.objective,
+      tactics: r.tactics,
+      terrain: r.terrain,
+      reinforcements: r.reinforcements,
+      scaling: r.scaling,
+      dmNotes: r.dm,
+    ));
+
+    // Ganimet: uretilen ADLAR kutuphaneye cozulur. Cozulemeyenler SILINMEZ,
+    // "kutuphanede yok" isaretiyle kalir (bkz. LootResolver).
+    if (r.treasureCoinsCp > 0 || r.treasureItems.isNotEmpty) {
+      final resolved = await LootResolver(
+        compendium,
+      ).resolveAll(r.treasureItems);
+      await combat.setLoot(encounterId, (
+        coinsCp: r.treasureCoinsCp,
+        items: resolved,
+      ));
     }
 
     if (!mounted) return;

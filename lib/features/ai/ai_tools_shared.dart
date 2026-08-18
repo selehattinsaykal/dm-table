@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../app/ai_settings_provider.dart';
 import '../../app/theme.dart';
 import '../../data/ai/ai_service.dart';
+import '../../data/db/database.dart';
 import '../../l10n/app_localizations.dart';
 
 /// AI araclarinin ORTAK parcalari.
@@ -24,13 +25,17 @@ class AiRunState {
   /// bu satir soyluyor.
   String? errorDetail;
 
+  /// [maxTokens] varsayilani cogu arac icin yeterli; cok bolumlu ciktisi olan
+  /// araclar (bkz. gorev ureteci: asamalar + kancalar + komplikasyonlar)
+  /// bunu yukseltir, aksi halde JSON ORTASINDA kesilir ve ayristirilamaz.
   Future<void> generate(
     BuildContext context,
     WidgetRef ref,
     String system,
     String user,
-    VoidCallback refresh,
-  ) async {
+    VoidCallback refresh, {
+    int maxTokens = 2048,
+  }) async {
     final l10n = L10n.of(context);
     final ai = ref.read(aiSettingsProvider);
     loading = true;
@@ -41,7 +46,7 @@ class AiRunState {
     try {
       final text = await AiService(
         ai,
-      ).generate(systemPrompt: system, userPrompt: user);
+      ).generate(systemPrompt: system, userPrompt: user, maxTokens: maxTokens);
       result = text;
     } on AiException catch (e) {
       error = aiErrorMessage(l10n, e.message);
@@ -275,3 +280,327 @@ class AiSection extends StatelessWidget {
 }
 
 /// Kullanıcıya bir Kayıtlar sayfası seçtirir; sayfa yoksa uyarı + null.
+
+/// Etiketli tek-secimli chip satiri. Gorev ureteci dort ayri enum'u ayni
+/// bicimde sordugu icin ortak; her biri icin Wrap kopyalamak yerine.
+class AiEnumChips<T> extends StatelessWidget {
+  const AiEnumChips({
+    super.key,
+    required this.label,
+    required this.values,
+    required this.selected,
+    required this.enabled,
+    required this.labelOf,
+    required this.onSelected,
+  });
+
+  final String label;
+  final List<T> values;
+  final T selected;
+  final bool enabled;
+  final String Function(T) labelOf;
+  final ValueChanged<T> onSelected;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(label, style: theme.textTheme.labelLarge),
+        const SizedBox(height: 6),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            for (final v in values)
+              ChoiceChip(
+                label: Text(labelOf(v)),
+                selected: selected == v,
+                onSelected: enabled ? (_) => onSelected(v) : null,
+              ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class AiOptionalPicker extends StatelessWidget {
+  const AiOptionalPicker({
+    super.key,
+    required this.label,
+    required this.noneLabel,
+    required this.hint,
+    required this.entries,
+    required this.value,
+    required this.enabled,
+    required this.onChanged,
+  });
+
+  final String label;
+  final String noneLabel;
+  final String hint;
+
+  /// (id, görünen ad) çiftleri.
+  final List<(String, String)> entries;
+  final String? value;
+  final bool enabled;
+  final ValueChanged<String?> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final safe = entries.any((e) => e.$1 == value) ? value : null;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        DropdownButtonFormField<String?>(
+          initialValue: safe,
+          isExpanded: true,
+          decoration: InputDecoration(labelText: label),
+          items: [
+            DropdownMenuItem(value: null, child: Text(noneLabel)),
+            for (final e in entries)
+              DropdownMenuItem(
+                value: e.$1,
+                child: Text(e.$2, overflow: TextOverflow.ellipsis),
+              ),
+          ],
+          onChanged: enabled ? onChanged : null,
+        ),
+        SizedBox(height: context.spacing.xs),
+        Text(
+          hint,
+          style: theme.textTheme.bodySmall?.copyWith(
+            color: theme.colorScheme.onSurfaceVariant,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+/// Hiyerarşik lokasyon seçici.
+///
+/// Kök ("temel") lokasyonlar liste hâlinde durur; alt lokasyonu olanların
+/// yanında küçük bir ok bulunur ve ona basılınca alt lokasyonlar **girintili
+/// olarak altında** açılır. Böylece derin bir dünya ağacı, düz bir açılır
+/// listede yüzlerce satır olmadan gezilebiliyor.
+///
+/// Seçim her kademeden yapılabilir: bir bölgeyi de, onun içindeki tek bir
+/// hanı da seçmek serbest.
+class AiLocationTreePicker extends StatefulWidget {
+  const AiLocationTreePicker({
+    super.key,
+    required this.label,
+    required this.noneLabel,
+    required this.hint,
+    required this.nodes,
+    required this.value,
+    required this.enabled,
+    required this.onChanged,
+  });
+
+  final String label;
+  final String noneLabel;
+  final String hint;
+
+  /// TÜM lokasyonlar (düz liste); ağaç [LocationNode.parentId]'den kuruluyor.
+  final List<LocationNode> nodes;
+
+  final String? value;
+  final bool enabled;
+  final ValueChanged<String?> onChanged;
+
+  @override
+  State<AiLocationTreePicker> createState() => _AiLocationTreePickerState();
+}
+
+class _AiLocationTreePickerState extends State<AiLocationTreePicker> {
+  final _open = <String>{};
+
+  @override
+  void initState() {
+    super.initState();
+    // Seçili olan derinlerdeyse ona giden yolu açık başlat; aksi hâlde
+    // kutu açıldığında seçili öğe görünmezdi.
+    var cursor = widget.nodes
+        .where((n) => n.id == widget.value)
+        .firstOrNull
+        ?.parentId;
+    while (cursor != null) {
+      _open.add(cursor);
+      cursor = widget.nodes.where((n) => n.id == cursor).firstOrNull?.parentId;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final roots = widget.nodes.where((n) => n.parentId == null).toList();
+    final selected = widget.nodes
+        .where((n) => n.id == widget.value)
+        .firstOrNull;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        InputDecorator(
+          decoration: InputDecoration(
+            labelText: widget.label,
+            enabled: widget.enabled,
+          ),
+          child: ConstrainedBox(
+            // Dünya ağacı büyüyünce form sayfasını yutmasın diye sınırlı;
+            // içeride kaydırılıyor.
+            constraints: const BoxConstraints(maxHeight: 220),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _row(
+                    context,
+                    id: null,
+                    name: widget.noneLabel,
+                    depth: 0,
+                    hasChildren: false,
+                  ),
+                  for (final root in roots) ..._branch(context, root, 0),
+                ],
+              ),
+            ),
+          ),
+        ),
+        if (selected != null) ...[
+          SizedBox(height: context.spacing.xs),
+          Text(
+            _path(selected),
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: theme.colorScheme.primary,
+            ),
+          ),
+        ],
+        SizedBox(height: context.spacing.xs),
+        Text(
+          widget.hint,
+          style: theme.textTheme.bodySmall?.copyWith(
+            color: theme.colorScheme.onSurfaceVariant,
+          ),
+        ),
+      ],
+    );
+  }
+
+  /// [node] ve (açıksa) tüm alt dalları.
+  List<Widget> _branch(BuildContext context, LocationNode node, int depth) {
+    final children = widget.nodes.where((n) => n.parentId == node.id).toList();
+    return [
+      _row(
+        context,
+        id: node.id,
+        name: node.name,
+        depth: depth,
+        hasChildren: children.isNotEmpty,
+      ),
+      if (_open.contains(node.id))
+        for (final child in children) ..._branch(context, child, depth + 1),
+    ];
+  }
+
+  Widget _row(
+    BuildContext context, {
+    required String? id,
+    required String name,
+    required int depth,
+    required bool hasChildren,
+  }) {
+    final theme = Theme.of(context);
+    final isSelected = widget.value == id;
+    final isOpen = id != null && _open.contains(id);
+
+    return InkWell(
+      onTap: widget.enabled ? () => widget.onChanged(id) : null,
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(depth * 16.0, 4, 4, 4),
+        child: Row(
+          children: [
+            // Ok SEÇİMDEN ayrı: dalı açmak onu seçmek anlamına gelmiyor.
+            SizedBox(
+              width: 28,
+              child: hasChildren
+                  ? InkWell(
+                      onTap: widget.enabled
+                          ? () => setState(
+                              () => isOpen ? _open.remove(id) : _open.add(id!),
+                            )
+                          : null,
+                      borderRadius: BorderRadius.circular(12),
+                      child: Icon(
+                        isOpen ? Icons.expand_more : Icons.chevron_right,
+                        size: 20,
+                      ),
+                    )
+                  : null,
+            ),
+            if (isSelected)
+              Icon(
+                Icons.check_circle,
+                size: 16,
+                color: theme.colorScheme.primary,
+              ),
+            if (isSelected) const SizedBox(width: 6),
+            Expanded(
+              child: Text(
+                name,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontWeight: isSelected ? FontWeight.w600 : null,
+                  color: isSelected ? theme.colorScheme.primary : null,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// "Bölge > Şehir > Han" — seçilenin nerede olduğunu tek bakışta verir.
+  String _path(LocationNode node) {
+    final parts = <String>[node.name];
+    var cursor = node.parentId;
+    while (cursor != null) {
+      final parent = widget.nodes.where((n) => n.id == cursor).firstOrNull;
+      if (parent == null) break;
+      parts.insert(0, parent.name);
+      cursor = parent.parentId;
+    }
+    return parts.join(' › ');
+  }
+}
+
+/// [AiLocationTreePicker]'ın ihtiyaç duyduğu asgari lokasyon bilgisi.
+///
+/// Drift'in `Location` tipine bağlanmamak için ayrı: seçici böylece test
+/// edilebiliyor ve ileride başka bir kaynaktan da beslenebilir.
+class LocationNode {
+  const LocationNode({
+    required this.id,
+    required this.name,
+    required this.parentId,
+  });
+
+  final String id;
+  final String name;
+  final String? parentId;
+}
+
+/// Drift `Location` listesini seçicinin anladığı düğümlere çevirir.
+extension LocationNodes on List<Location> {
+  List<LocationNode> toNodes() => [
+    for (final l in this)
+      LocationNode(id: l.id, name: l.name, parentId: l.parentId),
+  ];
+}

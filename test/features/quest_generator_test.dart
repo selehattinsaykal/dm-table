@@ -126,6 +126,193 @@ void main() {
       expect(r.dm, isEmpty);
       expect(r.rewardCoinsCp, 0);
       expect(r.rewardItems, isEmpty);
+      // Planlama alanlari da bos gelmeli, null degil: arayuz bos olani cizmez.
+      expect(r.hooks, isEmpty);
+      expect(r.stages, isEmpty);
+      expect(r.complications, isEmpty);
+      expect(r.failure, isEmpty);
+      expect(r.keyNpcs, isEmpty);
+    });
+  });
+
+  group('parseQuestResult: planlama alanları', () {
+    test('kancalar, aşamalar, komplikasyonlar ve karakterler ayrışır', () {
+      final r = parseQuestResult(
+        '{"quest":"Q",'
+        '"hooks":["Handa bir ilan","Kanlı bir at döner"],'
+        '"stages":[{"title":"Yola çık","detail":"Orman kenarı"},'
+        '{"title":"Harabe","detail":"Kule çöküyor"}],'
+        '"complications":["Köprü yıkılmış"],'
+        '"failure":"Köy kışı çıkaramaz",'
+        '"keyNpcs":[{"name":"Mira","role":"hancı"}]}',
+      );
+      expect(r.hooks, ['Handa bir ilan', 'Kanlı bir at döner']);
+      expect(r.stages.length, 2);
+      expect(r.stages.first.title, 'Yola çık');
+      expect(r.stages.first.detail, 'Orman kenarı');
+      expect(r.complications, ['Köprü yıkılmış']);
+      expect(r.failure, 'Köy kışı çıkaramaz');
+      expect(r.keyNpcs.single.name, 'Mira');
+      expect(r.keyNpcs.single.role, 'hancı');
+    });
+
+    test('düz string dizileri de kabul edilir', () {
+      final r = parseQuestResult(
+        '{"quest":"Q","stages":["Yola çık","Harabe"],'
+        '"keyNpcs":["Mira"]}',
+      );
+      expect(r.stages.map((s) => s.title), ['Yola çık', 'Harabe']);
+      expect(r.stages.first.detail, isEmpty);
+      expect(r.keyNpcs.single.name, 'Mira');
+      expect(r.keyNpcs.single.role, isEmpty);
+    });
+
+    test('boş/bozuk kalemler atılır', () {
+      final r = parseQuestResult(
+        '{"quest":"Q","hooks":["  ","Gerçek kanca"],'
+        '"stages":[{"title":"","detail":""},{"title":"Var"}],'
+        '"keyNpcs":[{"role":"adsız"},{"name":"Mira"}]}',
+      );
+      expect(r.hooks, ['Gerçek kanca']);
+      expect(r.stages.single.title, 'Var');
+      expect(r.keyNpcs.single.name, 'Mira');
+    });
+  });
+
+  group('parseQuestResult: kesilmiş yanıt kurtarma', () {
+    test('ortadan kesilen JSON tamamlanan alanları kurtarır', () {
+      // Model token butcesini doldurup "stages" ortasinda kesilmis.
+      final r = parseQuestResult(
+        '{"title":"Kayıp Kervan","quest":"Kervanı bul","reward":"200 altın",'
+        '"dm":"Kervancı yalan söylüyor",'
+        '"hooks":["Handa bir ilan"],'
+        '"stages":[{"title":"Yola çık","detail":"Orman ke',
+      );
+      expect(r.parsed, isTrue);
+      expect(r.title, 'Kayıp Kervan');
+      expect(r.quest, 'Kervanı bul');
+      expect(r.reward, '200 altın');
+      expect(r.dm, 'Kervancı yalan söylüyor');
+      expect(r.hooks, ['Handa bir ilan']);
+      // Yarim kalan alan dusdu, tamamlananlar durdu.
+      expect(r.stages, isEmpty);
+    });
+
+    test('kaçışlı tırnak kesme noktasını şaşırtmaz', () {
+      final r = parseQuestResult(
+        r'{"title":"Han \"Yeşil Ejder\"","quest":"Q","reward":"R",'
+        r'"dm":"D","complications":["yarım',
+      );
+      expect(r.parsed, isTrue);
+      expect(r.title, 'Han "Yeşil Ejder"');
+      expect(r.complications, isEmpty);
+    });
+
+    test('hiç tam alan yoksa parsed false ve ham metin döner', () {
+      const raw = '{"title":"Yarım kalan başlı';
+      final r = parseQuestResult(raw);
+      expect(r.parsed, isFalse);
+      expect(r.quest, raw);
+    });
+
+    test('sağlam JSON hâlâ parsed true', () {
+      final r = parseQuestResult('{"quest":"Q","reward":"R","dm":"D"}');
+      expect(r.parsed, isTrue);
+      expect(r.quest, 'Q');
+    });
+
+    test('JSON olmayan düz metin parsed false', () {
+      final r = parseQuestResult('Sadece düz bir görev metni.');
+      expect(r.parsed, isFalse);
+    });
+  });
+
+  group('buildQuestPrompt: süre sınırı', () {
+    test('süre verilince prompta somut olarak yazılır', () {
+      final p = buildQuestPrompt(
+        partySize: 4,
+        partyLevel: 3,
+        difficulty: QuestDifficulty.medium,
+        setting: '',
+        languageName: 'Türkçe',
+        urgency: QuestUrgency.hard,
+        deadline: (amount: 3, unit: QuestTimeUnit.days),
+      );
+      expect(p.user, contains('3 days'));
+      expect(p.user, contains('AÇIKÇA'));
+    });
+
+    test('baskı yokken süre yok sayılır', () {
+      final p = buildQuestPrompt(
+        partySize: 4,
+        partyLevel: 3,
+        difficulty: QuestDifficulty.medium,
+        setting: '',
+        languageName: 'Türkçe',
+        deadline: (amount: 3, unit: QuestTimeUnit.days),
+      );
+      expect(p.user, isNot(contains('3 days')));
+    });
+
+    test('kapsam büyüdükçe token bütçesi büyür', () {
+      expect(
+        QuestScope.oneShot.maxTokens,
+        lessThan(QuestScope.shortArc.maxTokens),
+      );
+      expect(
+        QuestScope.shortArc.maxTokens,
+        lessThan(QuestScope.campaignArc.maxTokens),
+      );
+    });
+  });
+
+  group('buildQuestPrompt: yeni girdiler', () {
+    test('alınan yer, karşı taraf ve devamı ayrı etiketlerle girer', () {
+      final p = buildQuestPrompt(
+        partySize: 4,
+        partyLevel: 3,
+        difficulty: QuestDifficulty.medium,
+        setting: '',
+        languageName: 'Türkçe',
+        giverLocation: 'Yeşil Ejder Hanı',
+        antagonistNpc: 'Kara Baron',
+        followsUpQuest: 'Kayıp Çocuk',
+      );
+      expect(p.user, contains('Görevin alındığı yer'));
+      expect(p.user, contains('Yeşil Ejder Hanı'));
+      expect(p.user, contains('Karşı taraf: Kara Baron.'));
+      expect(p.user, contains('Bu görev şunun devamı: Kayıp Çocuk.'));
+    });
+
+    test('tür/kapsam/ton/aciliyet prompta yazılır, aşama sayısı kapsamdan', () {
+      final p = buildQuestPrompt(
+        partySize: 4,
+        partyLevel: 3,
+        difficulty: QuestDifficulty.medium,
+        setting: '',
+        languageName: 'Türkçe',
+        kind: QuestKind.heist,
+        scope: QuestScope.campaignArc,
+        tone: QuestTone.morallyGrey,
+        urgency: QuestUrgency.hard,
+      );
+      expect(p.user, contains(QuestKind.heist.promptDescriptor));
+      expect(p.user, contains(QuestTone.morallyGrey.promptDescriptor));
+      expect(p.user, contains(QuestUrgency.hard.promptDescriptor));
+      expect(p.user, contains('${QuestScope.campaignArc.stageCount} aşama'));
+    });
+
+    test('system: yeni bölümleri şemada ister', () {
+      final p = buildQuestPrompt(
+        partySize: 4,
+        partyLevel: 3,
+        difficulty: QuestDifficulty.medium,
+        setting: '',
+        languageName: 'Türkçe',
+      );
+      for (final key in ['hooks', 'stages', 'complications', 'failure']) {
+        expect(p.system, contains('"$key"'));
+      }
     });
   });
 

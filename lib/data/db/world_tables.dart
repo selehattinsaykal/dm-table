@@ -5,6 +5,14 @@ enum PinKind {
   /// Icine girilebilen alt lokasyon; kendi haritasi olabilir.
   location,
 
+  /// Haritasi OLMAYAN yer: uzerine bilgi/not yazilir, icine GIRILMEZ.
+  ///
+  /// Yine de gercek bir `Locations` kaydi acar -- amac tam olarak bu: gorev
+  /// ureticisinde, seyahat planlayicida ve lokasyon seciclerinde normal bir
+  /// yer gibi gozuksun. `location`dan farki, tiklayinca alt haritaya
+  /// gecilmemesi; harita gorseli hic yok.
+  place,
+
   /// Serbest not.
   note,
 

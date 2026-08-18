@@ -89,7 +89,7 @@ class AppDatabase extends _$AppDatabase {
       );
 
   @override
-  int get schemaVersion => 31;
+  int get schemaVersion => 33;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -283,6 +283,20 @@ class AppDatabase extends _$AppDatabase {
         await m.createTable(musicPlaylists);
         await m.createTable(musicTracks);
         await m.createTable(calendarReminders);
+      }
+      if (from < 32) {
+        // Karsilasma paneli: DM brifingi + savastan cikacak ganimet.
+        await m.addColumn(encounters, encounters.briefingJson);
+        await m.addColumn(encounters, encounters.lootJson);
+      }
+      if (from < 33 && from >= 31) {
+        // Muzik listelerinde kategori (alt liste) hiyerarsisi.
+        //
+        // `from >= 31` sarti SART: `musicPlaylists` v31 blogunda createTable
+        // ile kuruluyor ve createTable GUNCEL semayi (parentId dahil) yaziyor.
+        // Daha eski bir veritabani o yoldan gelince sutun zaten var olur,
+        // ikinci kez eklemek "duplicate column name" ile patlar.
+        await m.addColumn(musicPlaylists, musicPlaylists.parentId);
       }
     },
     onCreate: (m) async {

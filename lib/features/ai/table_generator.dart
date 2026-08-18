@@ -4,7 +4,7 @@
 /// `encounter_generator.dart` ile aynı ayrım.
 library;
 
-import 'dart:convert';
+import 'ai_json.dart';
 
 /// Tablonun atmosferi; istemde düzyazı olarak geçer.
 enum TableTone {
@@ -68,25 +68,22 @@ typedef TableResult = ({
 /// ham metinden satır satır çıkarılır (model kimi zaman düz liste döndürüyor).
 TableResult parseTableResult(String raw, {int fallbackDiceSides = 20}) {
   final text = raw.trim();
-  final start = text.indexOf('{');
-  final end = text.lastIndexOf('}');
-  if (start != -1 && end > start) {
-    try {
-      final map = jsonDecode(text.substring(start, end + 1)) as Map;
-      final rows = _rowsFrom(map['rows']);
-      if (rows.isNotEmpty) {
-        final rawSides = map['diceSides'];
-        return (
-          name: '${map['name'] ?? ''}'.trim(),
-          category: '${map['category'] ?? ''}'.trim(),
-          diceSides: rawSides is num
-              ? rawSides.round()
-              : int.tryParse('$rawSides') ?? fallbackDiceSides,
-          rows: rows,
-        );
-      }
-    } on Object {
-      // JSON degilse asagida duz metne duser.
+  // Kesilmis yanit da kurtarilir: uzun tablolarda (d100) yanit token
+  // butcesini doldurup ortadan kesilebiliyor; o durumda gelen satirlar
+  // kaybolmasin (bkz. `ai_json.dart`).
+  final map = decodeAiJsonObject(text);
+  if (map != null) {
+    final rows = _rowsFrom(map['rows']);
+    if (rows.isNotEmpty) {
+      final rawSides = map['diceSides'];
+      return (
+        name: aiField(map, 'name'),
+        category: aiField(map, 'category'),
+        diceSides: rawSides is num
+            ? rawSides.round()
+            : int.tryParse('$rawSides') ?? fallbackDiceSides,
+        rows: rows,
+      );
     }
   }
 

@@ -2738,6 +2738,7 @@ class _PlayerPin extends StatelessWidget {
 
 IconData iconForPinKind(String kind) => switch (kind) {
   'location' => Icons.place,
+  'place' => Icons.signpost,
   'npc' => Icons.person,
   'shop' => Icons.storefront,
   'encounter' => Icons.shield,

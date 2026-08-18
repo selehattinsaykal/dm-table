@@ -158,6 +158,7 @@ Future<String?> showTravelPlanner(
   required Location location,
   required List<MapPin> pins,
   List<JourneyStop> initialStops = const [],
+  VoidCallback? onDrawOnMap,
 }) => showModalBottomSheet<String>(
   context: context,
   isScrollControlled: true,
@@ -166,6 +167,7 @@ Future<String?> showTravelPlanner(
     location: location,
     pins: pins,
     initialStops: initialStops,
+    onDrawOnMap: onDrawOnMap,
   ),
 );
 
@@ -174,6 +176,7 @@ class _TravelPlanner extends ConsumerStatefulWidget {
     required this.location,
     required this.pins,
     this.initialStops = const [],
+    this.onDrawOnMap,
   });
 
   final Location location;
@@ -181,6 +184,10 @@ class _TravelPlanner extends ConsumerStatefulWidget {
 
   /// Haritaya cizilerek gelen rota (bkz. `LocationPage` rota modu).
   final List<JourneyStop> initialStops;
+
+  /// "Haritada ciz"e basilinca: sheet kapanir ve cagiran sayfa rota cizme
+  /// moduna gecer. Null ise dugme hic gosterilmez (harita yoksa anlamsiz).
+  final VoidCallback? onDrawOnMap;
 
   @override
   ConsumerState<_TravelPlanner> createState() => _TravelPlannerState();
@@ -373,10 +380,40 @@ class _TravelPlannerState extends ConsumerState<_TravelPlanner> {
   );
 
   Widget _routeSection(L10n l10n, ThemeData theme, TravelPlan plan) {
+    // Durak toplamanin iki yolu: pin listesinden secmek ya da haritaya
+    // cizmek. Ikisi de burada -- "seyahat planla" tek giris oldugu icin
+    // haritaya cizme yolu da bu panelden baslamali.
+    final actions = Wrap(
+      spacing: 8,
+      children: [
+        TextButton.icon(
+          onPressed: _addStop,
+          icon: const Icon(Icons.add_location_alt_outlined, size: 18),
+          label: Text(l10n.travelAddStop),
+        ),
+        if (widget.onDrawOnMap case final draw?)
+          TextButton.icon(
+            onPressed: () {
+              Navigator.pop(context);
+              draw();
+            },
+            icon: const Icon(Icons.route_outlined, size: 18),
+            label: Text(l10n.travelDrawRoute),
+          ),
+      ],
+    );
+
     // Pin yoksa bile rota kurulabilir: duraklar haritaya dogrudan
-    // dokunularak da konabiliyor.
+    // dokunularak da konabiliyor -- bu yuzden burada da cizme yolu durur.
     if (widget.pins.isEmpty && _stops.isEmpty) {
-      return Text(l10n.travelNoPins, style: theme.textTheme.bodySmall);
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(l10n.travelNoPins, style: theme.textTheme.bodySmall),
+          const SizedBox(height: 4),
+          actions,
+        ],
+      );
     }
 
     return Column(
@@ -437,14 +474,7 @@ class _TravelPlannerState extends ConsumerState<_TravelPlanner> {
               ),
             ),
           ),
-        Align(
-          alignment: Alignment.centerLeft,
-          child: TextButton.icon(
-            onPressed: _addStop,
-            icon: const Icon(Icons.add_location_alt_outlined, size: 18),
-            label: Text(l10n.travelAddStop),
-          ),
-        ),
+        Align(alignment: Alignment.centerLeft, child: actions),
       ],
     );
   }

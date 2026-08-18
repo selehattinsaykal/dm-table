@@ -60,6 +60,9 @@ class L10nEn extends L10n {
   String get musicNewPlaylist => 'New list';
 
   @override
+  String get musicNewSubList => 'New sub-list';
+
+  @override
   String get musicRenamePlaylist => 'Rename list';
 
   @override
@@ -107,6 +110,100 @@ class L10nEn extends L10n {
   String musicMissingFile(String title) {
     return '$title — file not found';
   }
+
+  @override
+  String get musicAddLink => 'Add from link';
+
+  @override
+  String get musicLinkTitle => 'Add music from a link';
+
+  @override
+  String get musicLinkHint =>
+      'Paste a YouTube link (or any link yt-dlp supports)';
+
+  @override
+  String get musicLinkDownload => 'Download';
+
+  @override
+  String get musicLinkNotice =>
+      'Paste a YouTube link to download the audio into your library. Other sites supported by yt-dlp work as well.';
+
+  @override
+  String get musicSettings => 'Music settings';
+
+  @override
+  String get musicToolPurpose =>
+      'Required for downloading from YouTube and the other sites yt-dlp supports.';
+
+  @override
+  String get musicToolRecheck => 'Check again';
+
+  @override
+  String get musicToolInstallAction => 'Install';
+
+  @override
+  String get musicToolInstalled => 'Installed';
+
+  @override
+  String get musicToolNotInstalled => 'Not installed';
+
+  @override
+  String get musicToolChecking => 'Checking…';
+
+  @override
+  String musicToolDownloading(String percent) {
+    return 'Downloading: $percent%';
+  }
+
+  @override
+  String get musicToolExtracting => 'Extracting…';
+
+  @override
+  String get musicToolInstalling => 'Installing…';
+
+  @override
+  String musicToolError(String message) {
+    return 'Error: $message';
+  }
+
+  @override
+  String get musicToolMissingHint =>
+      'yt-dlp is not installed yet, so links cannot be downloaded. Install it from music settings.';
+
+  @override
+  String get musicOpenSettings => 'Open settings';
+
+  @override
+  String get musicLinkBad => 'That is not a valid web link.';
+
+  @override
+  String get musicToolMissing => 'Download tools not found';
+
+  @override
+  String get musicToolMissingBody =>
+      'YouTube needs yt-dlp. Use the \"Music Download Tools\" panel on the Music page for auto-install, or paste the path below.';
+
+  @override
+  String get musicToolPath => 'Path to yt-dlp (optional)';
+
+  @override
+  String get musicToolInstall => 'Installation instructions';
+
+  @override
+  String get musicDownloads => 'Downloads';
+
+  @override
+  String get musicDownloadClear => 'Clear finished';
+
+  @override
+  String get musicDownloadFailed => 'Download failed';
+
+  @override
+  String get musicForbidden =>
+      'Access denied (403). This is usually protected or licensed content; if you are sure it is not, check that the tools are up to date.';
+
+  @override
+  String get musicDownloadDone => 'Added to library';
 
   @override
   String get settingsLanguage => 'Language';
@@ -257,10 +354,324 @@ class L10nEn extends L10n {
   String get questTargetHint => 'Optional — the quest leads here.';
 
   @override
+  String get npcDisposition => 'Attitude to party';
+
+  @override
+  String get npcDispAny => 'Any';
+
+  @override
+  String get npcDispFriendly => 'Friendly';
+
+  @override
+  String get npcDispNeutral => 'Indifferent';
+
+  @override
+  String get npcDispWary => 'Wary';
+
+  @override
+  String get npcDispHostile => 'Hostile';
+
+  @override
+  String get npcDispDeceptive => 'Two-faced';
+
+  @override
+  String get npcImportance => 'Weight';
+
+  @override
+  String get npcImpWalkOn => 'Walk-on';
+
+  @override
+  String get npcImpRecurring => 'Recurring';
+
+  @override
+  String get npcImpMajor => 'Major';
+
+  @override
+  String get npcSectionVoice => 'Voice and manner';
+
+  @override
+  String get npcSectionMannerism => 'Manner';
+
+  @override
+  String get npcSectionWants => 'Wants right now';
+
+  @override
+  String get npcSectionFirstLine => 'Opening line';
+
+  @override
+  String get npcFirstLineNote => 'Read it aloud as written';
+
+  @override
+  String get npcParseFailed =>
+      'The model didn’t return a valid NPC — the response was most likely cut off. Try again.';
+
+  @override
+  String get encPanelBriefing => 'Briefing';
+
+  @override
+  String get encPanelBriefingEmpty =>
+      'No briefing for this encounter yet. Fill it in with the pencil, or generate one from the AI encounter tool.';
+
+  @override
+  String get encPanelLoot => 'Loot';
+
+  @override
+  String get encPanelLootEmpty =>
+      'No loot defined for this fight. Add some with +.';
+
+  @override
+  String get encLootAdd => 'Add item';
+
+  @override
+  String get encLootAddHint =>
+      'The name is looked up in the library; if found, the full entry is added.';
+
+  @override
+  String get encLootCoins => 'Coins';
+
+  @override
+  String get encLootNoCoins => 'No coins — tap to add';
+
+  @override
+  String get encLootInLibrary => 'In the library';
+
+  @override
+  String get encLootNotInLibrary => 'Not in the library — name only';
+
+  @override
+  String encLootUnresolvedHint(int count) {
+    return '$count item(s) were not found in the library; they go to the bag as names only.';
+  }
+
+  @override
+  String get encLootGrant => 'Give loot to the party';
+
+  @override
+  String get encLootGranted => 'Loot moved to the bag';
+
+  @override
+  String get encLootNoInventory =>
+      'Create a party bag from the Loot tab first.';
+
+  @override
+  String get encLootPickInventory => 'Which bag?';
+
+  @override
+  String get encounterObjective => 'Win condition';
+
+  @override
+  String get encObjAny => 'Any';
+
+  @override
+  String get encObjDefeat => 'Defeat all';
+
+  @override
+  String get encObjSurvive => 'Survive';
+
+  @override
+  String get encObjProtect => 'Protect';
+
+  @override
+  String get encObjRetrieve => 'Grab and go';
+
+  @override
+  String get encObjEscape => 'Escape';
+
+  @override
+  String get encObjStop => 'Stop it';
+
+  @override
+  String get encounterSetup => 'Setup';
+
+  @override
+  String get encSetupAny => 'Any';
+
+  @override
+  String get encSetupAmbush => 'They ambush';
+
+  @override
+  String get encSetupAmbushed => 'Party can ambush';
+
+  @override
+  String get encSetupPatrol => 'Patrol';
+
+  @override
+  String get encSetupLair => 'Lair';
+
+  @override
+  String get encSetupGuard => 'Chokepoint';
+
+  @override
+  String get encSetupNegotiable => 'Can be talked down';
+
+  @override
+  String get encounterLocation => 'Location';
+
+  @override
+  String get encounterLocationHint => 'Optional — the scene is set here.';
+
+  @override
+  String get encounterObjectiveSection => 'Win condition';
+
+  @override
+  String get encounterReinforcements => 'Reinforcements';
+
+  @override
+  String get encounterScaling => 'Dial it up or down';
+
+  @override
+  String get encounterTreasure => 'Treasure';
+
+  @override
+  String get encounterParseFailed =>
+      'The model didn’t return a valid encounter — the response was most likely cut off. Try again.';
+
+  @override
+  String get questLinksSection => 'Links';
+
+  @override
+  String get questGiverLocation => 'Where the quest is taken';
+
+  @override
+  String get questGiverLocationHint =>
+      'Optional — the quest is offered here (separate from the target).';
+
+  @override
+  String get questAntagonist => 'Opposition';
+
+  @override
+  String get questAntagonistHint =>
+      'Optional — the NPC working against the quest.';
+
+  @override
+  String get questFollowsUp => 'Follows up on';
+
+  @override
+  String get questFollowsUpHint => 'Optional — writes a sequel to this quest.';
+
+  @override
+  String get questKind => 'Quest type';
+
+  @override
+  String get questKindAny => 'Any';
+
+  @override
+  String get questKindRetrieve => 'Retrieve';
+
+  @override
+  String get questKindEliminate => 'Eliminate';
+
+  @override
+  String get questKindEscort => 'Escort';
+
+  @override
+  String get questKindRescue => 'Rescue';
+
+  @override
+  String get questKindInvestigate => 'Investigate';
+
+  @override
+  String get questKindDelivery => 'Delivery';
+
+  @override
+  String get questKindDefend => 'Defend';
+
+  @override
+  String get questKindExplore => 'Explore';
+
+  @override
+  String get questKindDiplomacy => 'Diplomacy';
+
+  @override
+  String get questKindHeist => 'Heist';
+
+  @override
+  String get questScope => 'Scope';
+
+  @override
+  String get questScopeOneShot => 'One session';
+
+  @override
+  String get questScopeShortArc => 'Short arc';
+
+  @override
+  String get questScopeCampaign => 'Campaign arc';
+
+  @override
+  String get questTone => 'Tone';
+
+  @override
+  String get questToneAny => 'Any';
+
+  @override
+  String get questToneHeroic => 'Heroic';
+
+  @override
+  String get questToneMysterious => 'Mysterious';
+
+  @override
+  String get questToneGrim => 'Grim';
+
+  @override
+  String get questToneComedic => 'Comedic';
+
+  @override
+  String get questToneGrey => 'Morally grey';
+
+  @override
+  String get questUrgency => 'Time pressure';
+
+  @override
+  String get questUrgencyNone => 'None';
+
+  @override
+  String get questUrgencySoft => 'Worsens with delay';
+
+  @override
+  String get questUrgencyHard => 'Hard deadline';
+
+  @override
+  String get questDeadline => 'Deadline';
+
+  @override
+  String get questUnitHours => 'hours';
+
+  @override
+  String get questUnitDays => 'days';
+
+  @override
+  String get questUnitWeeks => 'weeks';
+
+  @override
+  String get questUnitMonths => 'months';
+
+  @override
+  String get questParseFailed =>
+      'The model didn’t return a valid quest — the response was most likely cut off. Try again with a smaller scope.';
+
+  @override
   String get questSectionQuest => 'Quest text';
 
   @override
   String get questSectionReward => 'Reward';
+
+  @override
+  String get questSectionHooks => 'Hooks';
+
+  @override
+  String get questHooksNote => 'Use another if the party ignores the first';
+
+  @override
+  String get questSectionStages => 'Stages';
+
+  @override
+  String get questSectionComplications => 'Complications';
+
+  @override
+  String get questSectionFailure => 'If they fail';
+
+  @override
+  String get questSectionKeyNpcs => 'Cast';
 
   @override
   String get questSectionDm => 'DM-only notes';
@@ -1466,7 +1877,27 @@ class L10nEn extends L10n {
   String get worldTapToPlacePin => 'Tap the map to place a pin.';
 
   @override
-  String get worldPinDragHint => 'Drag pins to move them. Tap to edit.';
+  String get worldPinDragHint =>
+      'Edit mode is on: drag pins to move them, long-press for their settings.';
+
+  @override
+  String get editModeOn => 'Edit mode on — tap to turn off';
+
+  @override
+  String get editModeOff => 'View mode — tap to edit';
+
+  @override
+  String get editModeEmptyRecord =>
+      'This record is still empty. Turn on edit mode to fill it in.';
+
+  @override
+  String get editModeDiscard => 'Discard';
+
+  @override
+  String get worldPinHiddenFromPlayers => 'Hidden from players';
+
+  @override
+  String get worldPinVisibleToPlayers => 'Visible to players';
 
   @override
   String get worldNoMap => 'No map';
@@ -1474,6 +1905,9 @@ class L10nEn extends L10n {
   @override
   String get worldNoMapHint =>
       'After uploading a map you can place pins on it and enter sub-locations from them.';
+
+  @override
+  String get worldNoMapViewModeHint => 'Turn on edit mode to upload a map.';
 
   @override
   String get worldMapNotFound => 'Map file not found.';
@@ -1586,6 +2020,9 @@ class L10nEn extends L10n {
   String travelAnnounce(Object days) {
     return 'The party travelled for $days days.';
   }
+
+  @override
+  String get travelPlanAction => 'Plan travel';
 
   @override
   String get travelDrawRoute => 'Draw route on map';
@@ -1808,6 +2245,13 @@ class L10nEn extends L10n {
 
   @override
   String get worldKindLocation => 'Sub-location';
+
+  @override
+  String get worldKindPlace => 'Location';
+
+  @override
+  String get worldPinPlaceHint =>
+      'A place without its own map: you cannot enter it, but it is recorded as a location and shows up in quests, travel and location pickers. Write what the players should learn about it below.';
 
   @override
   String get worldKindNpc => 'NPC';

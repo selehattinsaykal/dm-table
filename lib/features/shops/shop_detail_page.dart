@@ -14,13 +14,30 @@ import 'shop_owner_field.dart';
 import 'shop_providers.dart';
 
 /// Magaza kurucu: stok ekle, fiyat/adet ayarla, oyunculara ac.
-class ShopDetailPage extends ConsumerWidget {
+class ShopDetailPage extends ConsumerStatefulWidget {
   const ShopDetailPage({required this.shopId, super.key});
 
   final String shopId;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ShopDetailPage> createState() => _ShopDetailPageState();
+}
+
+class _ShopDetailPageState extends ConsumerState<ShopDetailPage> {
+  /// Duzenleme modu; KAPALI baslar (bkz. `app/ui/edit_mode.dart`).
+  ///
+  /// AYRIM: oyuncuyla ANLIK iliskiyi kuran anahtarlar (kapali, oyunculara
+  /// acik, haritadan erisilebilir, onay gerekir) bu modun DISINDA kalir —
+  /// bunlar hazirlik degil, oyun sirasindaki hamlelerdir; pin gorunurlugu ve
+  /// gorev paylasimi da ayni kurala tabi. Dukkanin ICERIGINI/yapilandirmasini
+  /// degistiren her sey (isleten NPC, fiyat carpani, yenileme periyodu, stok)
+  /// moda baglidir.
+  bool _editing = false;
+
+  String get shopId => widget.shopId;
+
+  @override
+  Widget build(BuildContext context) {
     final shop = ref.watch(shopProvider(shopId)).value;
     final entries = ref.watch(shopEntriesProvider(shopId));
 
@@ -33,25 +50,34 @@ class ShopDetailPage extends ConsumerWidget {
       appBar: AppBar(
         title: Text(shop.name),
         actions: [
-          IconButton(
-            tooltip: l10n.sdAddFromLibrary,
-            icon: const Icon(Icons.library_add),
-            onPressed: () => _addFromCompendium(context, ref),
-          ),
-          PopupMenuButton<String>(
-            itemBuilder: (context) => [
-              PopupMenuItem(value: 'item', child: Text(l10n.sdCreateOwnItem)),
-              PopupMenuItem(value: 'magic', child: Text(l10n.sdCreateOwnMagic)),
-              PopupMenuItem(value: 'free', child: Text(l10n.sdAddFreeLine)),
-            ],
-            onSelected: (v) => _addCustom(context, ref, v),
+          if (_editing) ...[
+            IconButton(
+              tooltip: l10n.sdAddFromLibrary,
+              icon: const Icon(Icons.library_add),
+              onPressed: () => _addFromCompendium(context, ref),
+            ),
+            PopupMenuButton<String>(
+              itemBuilder: (context) => [
+                PopupMenuItem(value: 'item', child: Text(l10n.sdCreateOwnItem)),
+                PopupMenuItem(
+                  value: 'magic',
+                  child: Text(l10n.sdCreateOwnMagic),
+                ),
+                PopupMenuItem(value: 'free', child: Text(l10n.sdAddFreeLine)),
+              ],
+              onSelected: (v) => _addCustom(context, ref, v),
+            ),
+          ],
+          EditModeButton(
+            editing: _editing,
+            onToggle: () => setState(() => _editing = !_editing),
           ),
         ],
       ),
       body: ListView(
         padding: const EdgeInsets.fromLTRB(12, 12, 12, 32),
         children: [
-          _SettingsCard(shop: shop),
+          _SettingsCard(shop: shop, editing: _editing),
           const SizedBox(height: 12),
           entries.when(
             loading: () => const AppLoading(),
@@ -64,7 +90,11 @@ class ShopDetailPage extends ConsumerWidget {
                 : Column(
                     children: [
                       for (final entry in rows)
-                        _StockTile(entry: entry, shopId: shopId),
+                        _StockTile(
+                          entry: entry,
+                          shopId: shopId,
+                          editing: _editing,
+                        ),
                     ],
                   ),
           ),
@@ -122,9 +152,10 @@ class ShopDetailPage extends ConsumerWidget {
 }
 
 class _SettingsCard extends ConsumerWidget {
-  const _SettingsCard({required this.shop});
+  const _SettingsCard({required this.shop, required this.editing});
 
   final Shop shop;
+  final bool editing;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -172,10 +203,12 @@ class _SettingsCard extends ConsumerWidget {
                             ),
                           ),
                     ),
-                  const Icon(Icons.edit_outlined, size: 18),
+                  if (editing) const Icon(Icons.edit_outlined, size: 18),
                 ],
               ),
-              onTap: () => _editOwner(context, ref, shop),
+              // Goruntuleme modunda satir yalnizca BILGI; isleten NPC'yi
+              // degistirmek bir hazirlik islemi.
+              onTap: editing ? () => _editOwner(context, ref, shop) : null,
             ),
             const SizedBox(height: 4),
             Row(
@@ -201,13 +234,17 @@ class _SettingsCard extends ConsumerWidget {
                 ),
               ],
             ),
+            // Fiyat carpani icerik/yapilandirma: yalnizca duzenleme modunda
+            // oynanir, aksi halde masada kaydirirken fiyatlar degisiyordu.
             Slider(
               value: shop.priceMultiplier.clamp(0.5, 3),
               min: 0.5,
               max: 3,
               divisions: 25,
               label: '×${shop.priceMultiplier.toStringAsFixed(2)}',
-              onChanged: (v) => repo.update(shop.id, priceMultiplier: v),
+              onChanged: editing
+                  ? (v) => repo.update(shop.id, priceMultiplier: v)
+                  : null,
             ),
             const Divider(height: 24),
             SwitchListTile(
@@ -239,7 +276,7 @@ class _SettingsCard extends ConsumerWidget {
               onChanged: (on) => repo.update(shop.id, requiresApproval: on),
             ),
             const Divider(height: 24),
-            _RestockRow(shop: shop),
+            _RestockRow(shop: shop, editing: editing),
           ],
         ),
       ),
@@ -288,9 +325,10 @@ class _SettingsCard extends ConsumerWidget {
 /// satir menusundeki "yenileme adedi" ile belirlenir — periyot acik olsa bile
 /// `restockQuantity` verilmemis satirlar dokunulmadan kalir.
 class _RestockRow extends ConsumerWidget {
-  const _RestockRow({required this.shop});
+  const _RestockRow({required this.shop, required this.editing});
 
   final Shop shop;
+  final bool editing;
 
   /// Hazir periyotlar: kapali, gunluk, haftalik, iki haftalik, aylik, mevsimlik.
   static const _options = [0, 1, 7, 14, 30, 90];
@@ -317,7 +355,9 @@ class _RestockRow extends ConsumerWidget {
                   days == 0 ? l10n.sdRestockOff : l10n.sdRestockEvery(days),
                 ),
                 selected: shop.restockDays == days,
-                onSelected: (_) => repo.update(shop.id, restockDays: days),
+                onSelected: editing
+                    ? (_) => repo.update(shop.id, restockDays: days)
+                    : null,
               ),
             // Hazir periyotlarin disinda bir deger (elle girilmis) kaybolmasin.
             if (!_options.contains(shop.restockDays))
@@ -334,10 +374,15 @@ class _RestockRow extends ConsumerWidget {
 }
 
 class _StockTile extends ConsumerWidget {
-  const _StockTile({required this.entry, required this.shopId});
+  const _StockTile({
+    required this.entry,
+    required this.shopId,
+    required this.editing,
+  });
 
   final ShopEntry entry;
   final String shopId;
+  final bool editing;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -411,64 +456,72 @@ class _StockTile extends ConsumerWidget {
                 ],
               ),
             ),
-            PopupMenuButton<String>(
-              itemBuilder: (context) => [
-                PopupMenuItem(value: 'price', child: Text(l10n.sdEditPrice)),
-                PopupMenuItem(value: 'qty', child: Text(l10n.sdEditQuantity)),
-                PopupMenuItem(
-                  value: 'unlimited',
-                  child: Text(l10n.sdMakeUnlimited),
-                ),
-                PopupMenuItem(value: 'restock', child: Text(l10n.sdRestockQty)),
-                PopupMenuItem(value: 'remove', child: Text(l10n.remove)),
-              ],
-              onSelected: (action) async {
-                switch (action) {
-                  case 'price':
-                    final gp = await _askNumber(
-                      context,
-                      title: l10n.sdPriceTitle(entry.name),
-                      initial: entry.priceCp ~/ 100,
-                      suffix: 'gp',
-                    );
-                    if (gp != null) {
-                      await repo.updateStock(
-                        entry.stock.id,
-                        priceCpOverride: gp * 100,
+            // Satir menusunun her secenegi stogu degistirir (fiyat, adet,
+            // sinirsiz, yenileme, kaldir); goruntuleme modunda hic cikmaz.
+            if (editing)
+              PopupMenuButton<String>(
+                itemBuilder: (context) => [
+                  PopupMenuItem(value: 'price', child: Text(l10n.sdEditPrice)),
+                  PopupMenuItem(value: 'qty', child: Text(l10n.sdEditQuantity)),
+                  PopupMenuItem(
+                    value: 'unlimited',
+                    child: Text(l10n.sdMakeUnlimited),
+                  ),
+                  PopupMenuItem(
+                    value: 'restock',
+                    child: Text(l10n.sdRestockQty),
+                  ),
+                  PopupMenuItem(value: 'remove', child: Text(l10n.remove)),
+                ],
+                onSelected: (action) async {
+                  switch (action) {
+                    case 'price':
+                      final gp = await _askNumber(
+                        context,
+                        title: l10n.sdPriceTitle(entry.name),
+                        initial: entry.priceCp ~/ 100,
+                        suffix: 'gp',
                       );
-                      ref.invalidate(shopEntriesProvider(shopId));
-                    }
-                  case 'qty':
-                    if (!context.mounted) return;
-                    final qty = await _askNumber(
-                      context,
-                      title: l10n.sdQtyTitle(entry.name),
-                      initial: entry.unlimited ? 1 : entry.stock.quantity,
-                    );
-                    if (qty != null) {
-                      await repo.updateStock(entry.stock.id, quantity: qty);
-                    }
-                  case 'unlimited':
-                    await repo.updateStock(entry.stock.id, quantity: -1);
-                  case 'restock':
-                    if (!context.mounted) return;
-                    final target = await _askRestockQuantity(
-                      context,
-                      title: l10n.sdRestockQtyTitle(entry.name),
-                      initial: entry.stock.restockQuantity,
-                    );
-                    if (target != null) {
-                      await repo.updateStock(
-                        entry.stock.id,
-                        restockQuantity: target.clear ? null : target.quantity,
-                        clearRestockQuantity: target.clear,
+                      if (gp != null) {
+                        await repo.updateStock(
+                          entry.stock.id,
+                          priceCpOverride: gp * 100,
+                        );
+                        ref.invalidate(shopEntriesProvider(shopId));
+                      }
+                    case 'qty':
+                      if (!context.mounted) return;
+                      final qty = await _askNumber(
+                        context,
+                        title: l10n.sdQtyTitle(entry.name),
+                        initial: entry.unlimited ? 1 : entry.stock.quantity,
                       );
-                    }
-                  case 'remove':
-                    await repo.removeStock(entry.stock.id);
-                }
-              },
-            ),
+                      if (qty != null) {
+                        await repo.updateStock(entry.stock.id, quantity: qty);
+                      }
+                    case 'unlimited':
+                      await repo.updateStock(entry.stock.id, quantity: -1);
+                    case 'restock':
+                      if (!context.mounted) return;
+                      final target = await _askRestockQuantity(
+                        context,
+                        title: l10n.sdRestockQtyTitle(entry.name),
+                        initial: entry.stock.restockQuantity,
+                      );
+                      if (target != null) {
+                        await repo.updateStock(
+                          entry.stock.id,
+                          restockQuantity: target.clear
+                              ? null
+                              : target.quantity,
+                          clearRestockQuantity: target.clear,
+                        );
+                      }
+                    case 'remove':
+                      await repo.removeStock(entry.stock.id);
+                  }
+                },
+              ),
           ],
         ),
       ),

@@ -74,6 +74,8 @@ class _NpcToolState extends ConsumerState<_NpcTool> {
   final _name = TextEditingController();
   final _extra = TextEditingController();
   NpcGender _gender = NpcGender.random;
+  NpcDisposition _disposition = NpcDisposition.any;
+  NpcImportance _importance = NpcImportance.recurring;
   final _run = AiRunState();
 
   /// NPC'nin bagli oldugu yer (opsiyonel) ve o bagin turu.
@@ -107,6 +109,21 @@ class _NpcToolState extends ConsumerState<_NpcTool> {
     NpcGender.female => l10n.npcGenderFemale,
     NpcGender.other => l10n.npcGenderOther,
     NpcGender.random => l10n.npcGenderRandom,
+  };
+
+  String _dispositionLabel(L10n l10n, NpcDisposition d) => switch (d) {
+    NpcDisposition.any => l10n.npcDispAny,
+    NpcDisposition.friendly => l10n.npcDispFriendly,
+    NpcDisposition.neutral => l10n.npcDispNeutral,
+    NpcDisposition.wary => l10n.npcDispWary,
+    NpcDisposition.hostile => l10n.npcDispHostile,
+    NpcDisposition.deceptive => l10n.npcDispDeceptive,
+  };
+
+  String _importanceLabel(L10n l10n, NpcImportance i) => switch (i) {
+    NpcImportance.walkOn => l10n.npcImpWalkOn,
+    NpcImportance.recurring => l10n.npcImpRecurring,
+    NpcImportance.major => l10n.npcImpMajor,
   };
 
   /// Secili konum ve iliskileri modele verilecek ADLARA cevirir. Ad
@@ -150,6 +167,8 @@ class _NpcToolState extends ConsumerState<_NpcTool> {
       languageName: l10n.localeName == 'tr' ? 'Türkçe' : 'English',
       locationName: location?.name ?? '',
       relations: _relationContexts(npcs, bonds),
+      disposition: _disposition,
+      importance: _importance,
     );
     setState(() {
       _portrait = null;
@@ -236,6 +255,24 @@ class _NpcToolState extends ConsumerState<_NpcTool> {
                 onSelected: busy ? null : (_) => setState(() => _gender = g),
               ),
           ],
+        ),
+        SizedBox(height: context.spacing.md),
+        AiEnumChips<NpcDisposition>(
+          label: l10n.npcDisposition,
+          values: NpcDisposition.values,
+          selected: _disposition,
+          enabled: !busy,
+          labelOf: (d) => _dispositionLabel(l10n, d),
+          onSelected: (v) => setState(() => _disposition = v),
+        ),
+        SizedBox(height: context.spacing.md),
+        AiEnumChips<NpcImportance>(
+          label: l10n.npcImportance,
+          values: NpcImportance.values,
+          selected: _importance,
+          enabled: !busy,
+          labelOf: (i) => _importanceLabel(l10n, i),
+          onSelected: (v) => setState(() => _importance = v),
         ),
         SizedBox(height: context.spacing.md),
         TextField(
@@ -337,6 +374,23 @@ class _NpcToolState extends ConsumerState<_NpcTool> {
     List<Npc> npcs,
     List<BondType> bonds,
   ) {
+    // Gecerli JSON gelmediyse (cogunlukla yanit kesilmis) ham metni NPC gibi
+    // gostermek yaniltici; hata olarak soyle ve yeniden uretmeyi oner.
+    if (!r.parsed) {
+      return [
+        AiErrorBox(message: l10n.npcParseFailed, detail: r.appearance),
+        const SizedBox(height: 12),
+        FilledButton.icon(
+          onPressed: () => setState(() {
+            _run.result = null;
+            _run.error = null;
+          }),
+          icon: const Icon(Icons.refresh, size: 18),
+          label: Text(l10n.aiRegenerate),
+        ),
+      ];
+    }
+
     final personality = StringBuffer(r.personality.trim());
     void trait(String label, String v) {
       if (v.trim().isEmpty) return;
@@ -381,6 +435,24 @@ class _NpcToolState extends ConsumerState<_NpcTool> {
         AiSection(
           title: l10n.npcSectionPersonality,
           body: personality.toString(),
+        ),
+      // MASA alanlari: DM karakteri canlandirirken bunlari okur, bu yuzden
+      // kancadan ONCE ve bir arada duruyorlar.
+      if (r.voice.isNotEmpty || r.mannerism.isNotEmpty)
+        AiSection(
+          title: l10n.npcSectionVoice,
+          body: [
+            if (r.voice.isNotEmpty) r.voice,
+            if (r.mannerism.isNotEmpty) r.mannerism,
+          ].join('\n'),
+        ),
+      if (r.wants.isNotEmpty)
+        AiSection(title: l10n.npcSectionWants, body: r.wants),
+      if (r.firstLine.isNotEmpty)
+        AiSection(
+          title: l10n.npcSectionFirstLine,
+          body: '“${r.firstLine}”',
+          note: l10n.npcFirstLineNote,
         ),
       if (r.hook.isNotEmpty)
         AiSection(title: l10n.npcSectionHook, body: r.hook),
@@ -466,8 +538,44 @@ class _NpcToolState extends ConsumerState<_NpcTool> {
     trait(l10n.npcTraitBond, r.bond);
     trait(l10n.npcTraitFlaw, r.flaw);
     para(l10n.npcSectionPersonality, pers.toString());
+    para(
+      l10n.npcSectionVoice,
+      [
+        if (r.voice.isNotEmpty) r.voice,
+        if (r.mannerism.isNotEmpty) r.mannerism,
+      ].join('\n'),
+    );
+    para(l10n.npcSectionWants, r.wants);
+    para(
+      l10n.npcSectionFirstLine,
+      r.firstLine.isEmpty ? '' : '“${r.firstLine}”',
+    );
     para(l10n.npcSectionHook, r.hook);
     if (includeSecret) para(l10n.npcSectionSecret, r.secret);
+    return b.toString().trim();
+  }
+
+  /// Yapisal sutunu olmayan MASA alanlarini NPC'nin "Notlar" alanina yazar.
+  ///
+  /// `Npcs` semasinda ses/tavir/istek/replik icin sutun yok. Bunun icin sema
+  /// gocu acmak (yedekleme/geri yukleme uyumlulugu dahil) bu alanlarin
+  /// degdiginden fazla risk; etiketli metin olarak notlarda duruyorlar ve NPC
+  /// sayfasinda oldugu gibi okunuyorlar.
+  String _tableNotes(L10n l10n, NpcResult r) {
+    final b = StringBuffer(r.summary.trim());
+    void line(String label, String value) {
+      if (value.trim().isEmpty) return;
+      if (b.isNotEmpty) b.write('\n\n');
+      b.write('$label: ${value.trim()}');
+    }
+
+    line(l10n.npcSectionVoice, r.voice);
+    line(l10n.npcSectionMannerism, r.mannerism);
+    line(l10n.npcSectionWants, r.wants);
+    line(
+      l10n.npcSectionFirstLine,
+      r.firstLine.isEmpty ? '' : '“${r.firstLine}”',
+    );
     return b.toString().trim();
   }
 
@@ -489,7 +597,7 @@ class _NpcToolState extends ConsumerState<_NpcTool> {
       role: _profession.text.trim().isNotEmpty
           ? _profession.text.trim()
           : r.summary,
-      description: r.summary,
+      description: _tableNotes(l10n, r),
       race: r.race.isNotEmpty ? r.race : _race.text.trim(),
       gender: r.gender,
       age: r.age,
@@ -647,31 +755,21 @@ class _LocationPicker extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        DropdownButtonFormField<String?>(
-          initialValue: safe,
-          isExpanded: true,
-          decoration: InputDecoration(labelText: l10n.npcBoundLocation),
-          items: [
-            DropdownMenuItem(
-              value: null,
-              child: Text(l10n.npcBoundLocationNone),
-            ),
-            for (final loc in locations)
-              DropdownMenuItem(
-                value: loc.id,
-                child: Text(loc.name, overflow: TextOverflow.ellipsis),
-              ),
-          ],
-          onChanged: enabled
-              ? (id) => onChanged(
-                  id,
-                  // Yer seçilince bağ türü boş kalmasın: ilkini varsayılan yap.
-                  id == null
-                      ? null
-                      : (selectedBond ??
-                            (bonds.isNotEmpty ? bonds.first.code : null)),
-                )
-              : null,
+        AiLocationTreePicker(
+          label: l10n.npcBoundLocation,
+          noneLabel: l10n.npcBoundLocationNone,
+          hint: l10n.npcBoundLocationHint,
+          nodes: locations.toNodes(),
+          value: safe,
+          enabled: enabled,
+          onChanged: (id) => onChanged(
+            id,
+            // Yer seçilince bağ türü boş kalmasın: ilkini varsayılan yap.
+            id == null
+                ? null
+                : (selectedBond ??
+                      (bonds.isNotEmpty ? bonds.first.code : null)),
+          ),
         ),
         if (safe != null) ...[
           SizedBox(height: context.spacing.sm),
@@ -683,13 +781,6 @@ class _LocationPicker extends StatelessWidget {
             onChanged: (code) => onChanged(safe, code),
           ),
         ],
-        SizedBox(height: context.spacing.xs),
-        Text(
-          l10n.npcBoundLocationHint,
-          style: theme.textTheme.bodySmall?.copyWith(
-            color: theme.colorScheme.onSurfaceVariant,
-          ),
-        ),
       ],
     );
   }
@@ -946,10 +1037,25 @@ class _QuestToolState extends ConsumerState<_QuestTool> {
   int _partySize = 4;
   int _partyLevel = 3;
   QuestDifficulty _difficulty = QuestDifficulty.medium;
+  QuestKind _kind = QuestKind.any;
+  QuestScope _scope = QuestScope.oneShot;
+  QuestTone _tone = QuestTone.any;
+  QuestUrgency _urgency = QuestUrgency.none;
 
-  // İsteğe bağlı: görevi veren NPC ve hedef lokasyon (null = serbest).
+  /// Somut süre (yalnız süre baskısı varken sorulur).
+  int _deadlineAmount = 3;
+  QuestTimeUnit _deadlineUnit = QuestTimeUnit.days;
+
+  // İsteğe bağlı bağlar (null = serbest bırak, üretici kendi seçsin).
   String? _giverNpcId;
+
+  /// Görevin ALINDIĞI yer — hedef lokasyondan ayrı bir alan. Parti görevi
+  /// handa alır ama olay dağdaki harabede geçer; tek alanla bu ikisi
+  /// karışıyordu.
+  String? _giverLocationId;
   String? _targetLocationId;
+  String? _antagonistNpcId;
+  String? _followsUpQuestId;
 
   final _run = AiRunState();
 
@@ -967,21 +1073,74 @@ class _QuestToolState extends ConsumerState<_QuestTool> {
     QuestDifficulty.veryHard => l10n.questDiffVeryHard,
   };
 
+  String _kindLabel(L10n l10n, QuestKind k) => switch (k) {
+    QuestKind.any => l10n.questKindAny,
+    QuestKind.retrieve => l10n.questKindRetrieve,
+    QuestKind.eliminate => l10n.questKindEliminate,
+    QuestKind.escort => l10n.questKindEscort,
+    QuestKind.rescue => l10n.questKindRescue,
+    QuestKind.investigate => l10n.questKindInvestigate,
+    QuestKind.delivery => l10n.questKindDelivery,
+    QuestKind.defend => l10n.questKindDefend,
+    QuestKind.explore => l10n.questKindExplore,
+    QuestKind.diplomacy => l10n.questKindDiplomacy,
+    QuestKind.heist => l10n.questKindHeist,
+  };
+
+  String _scopeLabel(L10n l10n, QuestScope s) => switch (s) {
+    QuestScope.oneShot => l10n.questScopeOneShot,
+    QuestScope.shortArc => l10n.questScopeShortArc,
+    QuestScope.campaignArc => l10n.questScopeCampaign,
+  };
+
+  String _toneLabel(L10n l10n, QuestTone t) => switch (t) {
+    QuestTone.any => l10n.questToneAny,
+    QuestTone.heroic => l10n.questToneHeroic,
+    QuestTone.mysterious => l10n.questToneMysterious,
+    QuestTone.grim => l10n.questToneGrim,
+    QuestTone.comedic => l10n.questToneComedic,
+    QuestTone.morallyGrey => l10n.questToneGrey,
+  };
+
+  String _urgencyLabel(L10n l10n, QuestUrgency u) => switch (u) {
+    QuestUrgency.none => l10n.questUrgencyNone,
+    QuestUrgency.soft => l10n.questUrgencySoft,
+    QuestUrgency.hard => l10n.questUrgencyHard,
+  };
+
+  String _unitLabel(L10n l10n, QuestTimeUnit u) => switch (u) {
+    QuestTimeUnit.hours => l10n.questUnitHours,
+    QuestTimeUnit.days => l10n.questUnitDays,
+    QuestTimeUnit.weeks => l10n.questUnitWeeks,
+    QuestTimeUnit.months => l10n.questUnitMonths,
+  };
+
   Future<void> _generate() async {
     final l10n = L10n.of(context);
     final npcs = ref.read(npcsProvider).value ?? const <Npc>[];
     final locations =
         ref.read(allLocationsProvider).value ?? const <Location>[];
+    final quests = ref.read(questsProvider).value ?? const <Quest>[];
     final built = buildQuestPrompt(
       partySize: _partySize,
       partyLevel: _partyLevel,
       difficulty: _difficulty,
       setting: _setting.text,
       languageName: l10n.localeName == 'tr' ? 'Türkçe' : 'English',
+      kind: _kind,
+      scope: _scope,
+      tone: _tone,
+      urgency: _urgency,
+      deadline: _urgency.takesDeadline
+          ? (amount: _deadlineAmount, unit: _deadlineUnit)
+          : null,
       questGiverNpc: _giverContext(_findNpc(npcs, _giverNpcId)),
+      antagonistNpc: _giverContext(_findNpc(npcs, _antagonistNpcId)),
+      giverLocation: _targetContext(_findLocation(locations, _giverLocationId)),
       targetLocation: _targetContext(
         _findLocation(locations, _targetLocationId),
       ),
+      followsUpQuest: _questContext(_findQuest(quests, _followsUpQuestId)),
     );
     await _run.generate(
       context,
@@ -989,7 +1148,29 @@ class _QuestToolState extends ConsumerState<_QuestTool> {
       built.system,
       built.user,
       () => setState(() {}),
+      // Asamalar + kancalar + komplikasyonlar + yan karakterler tek yanitta
+      // geliyor; butce KAPSAMA gore olceklenir, sabit butce kampanya
+      // yaylarinda JSON'i ortasindan kesiyordu.
+      maxTokens: _scope.maxTokens,
     );
+  }
+
+  Quest? _findQuest(List<Quest> quests, String? id) {
+    if (id == null) return null;
+    for (final q in quests) {
+      if (q.id == id) return q;
+    }
+    return null;
+  }
+
+  /// Devamı yazılacak görevi prompta kısa bağlam olarak biçimlendirir.
+  String? _questContext(Quest? q) {
+    if (q == null) return null;
+    final parts = <String>[
+      q.title.trim().isEmpty ? '(adsız görev)' : q.title.trim(),
+    ];
+    if (q.questText.trim().isNotEmpty) parts.add(_clip(q.questText.trim()));
+    return parts.join(' — ');
   }
 
   Npc? _findNpc(List<Npc> npcs, String? id) {
@@ -1044,6 +1225,7 @@ class _QuestToolState extends ConsumerState<_QuestTool> {
     final npcs = ref.watch(npcsProvider).value ?? const <Npc>[];
     final locations =
         ref.watch(allLocationsProvider).value ?? const <Location>[];
+    final quests = ref.watch(questsProvider).value ?? const <Quest>[];
 
     return ListView(
       padding: const EdgeInsets.all(16),
@@ -1082,6 +1264,56 @@ class _QuestToolState extends ConsumerState<_QuestTool> {
           ],
         ),
         const SizedBox(height: 12),
+        AiEnumChips<QuestKind>(
+          label: l10n.questKind,
+          values: QuestKind.values,
+          selected: _kind,
+          enabled: !_run.loading,
+          labelOf: (k) => _kindLabel(l10n, k),
+          onSelected: (v) => setState(() => _kind = v),
+        ),
+        const SizedBox(height: 12),
+        AiEnumChips<QuestScope>(
+          label: l10n.questScope,
+          values: QuestScope.values,
+          selected: _scope,
+          enabled: !_run.loading,
+          labelOf: (s) => _scopeLabel(l10n, s),
+          onSelected: (v) => setState(() => _scope = v),
+        ),
+        const SizedBox(height: 12),
+        AiEnumChips<QuestTone>(
+          label: l10n.questTone,
+          values: QuestTone.values,
+          selected: _tone,
+          enabled: !_run.loading,
+          labelOf: (t) => _toneLabel(l10n, t),
+          onSelected: (v) => setState(() => _tone = v),
+        ),
+        const SizedBox(height: 12),
+        AiEnumChips<QuestUrgency>(
+          label: l10n.questUrgency,
+          values: QuestUrgency.values,
+          selected: _urgency,
+          enabled: !_run.loading,
+          labelOf: (u) => _urgencyLabel(l10n, u),
+          onSelected: (v) => setState(() => _urgency = v),
+        ),
+        // Somut süre yalnız baskı varken sorulur: "baskı yok" seçiliyken
+        // süre sormak kullanıcıyı anlamsız bir karara zorlar.
+        if (_urgency.takesDeadline) ...[
+          const SizedBox(height: 12),
+          _DeadlineRow(
+            label: l10n.questDeadline,
+            amount: _deadlineAmount,
+            unit: _deadlineUnit,
+            enabled: !_run.loading,
+            unitLabel: (u) => _unitLabel(l10n, u),
+            onAmountChanged: (v) => setState(() => _deadlineAmount = v),
+            onUnitChanged: (v) => setState(() => _deadlineUnit = v),
+          ),
+        ],
+        const SizedBox(height: 12),
         TextField(
           controller: _setting,
           decoration: InputDecoration(
@@ -1089,8 +1321,8 @@ class _QuestToolState extends ConsumerState<_QuestTool> {
             border: const OutlineInputBorder(),
           ),
         ),
-        const SizedBox(height: 12),
-        _OptionalEntityDropdown(
+        SectionHeader(label: l10n.questLinksSection, icon: Icons.link),
+        AiOptionalPicker(
           label: l10n.questGiverNpc,
           noneLabel: l10n.questGiverNone,
           hint: l10n.questGiverHint,
@@ -1100,14 +1332,47 @@ class _QuestToolState extends ConsumerState<_QuestTool> {
           onChanged: (v) => setState(() => _giverNpcId = v),
         ),
         const SizedBox(height: 12),
-        _OptionalEntityDropdown(
+        AiLocationTreePicker(
+          label: l10n.questGiverLocation,
+          noneLabel: l10n.questTargetNone,
+          hint: l10n.questGiverLocationHint,
+          nodes: locations.toNodes(),
+          value: _giverLocationId,
+          enabled: !_run.loading,
+          onChanged: (v) => setState(() => _giverLocationId = v),
+        ),
+        const SizedBox(height: 12),
+        AiLocationTreePicker(
           label: l10n.questTargetLocation,
           noneLabel: l10n.questTargetNone,
           hint: l10n.questTargetHint,
-          entries: [for (final l in locations) (l.id, l.name)],
+          nodes: locations.toNodes(),
           value: _targetLocationId,
           enabled: !_run.loading,
           onChanged: (v) => setState(() => _targetLocationId = v),
+        ),
+        const SizedBox(height: 12),
+        AiOptionalPicker(
+          label: l10n.questAntagonist,
+          noneLabel: l10n.questGiverNone,
+          hint: l10n.questAntagonistHint,
+          entries: [for (final n in npcs) (n.id, n.name)],
+          value: _antagonistNpcId,
+          enabled: !_run.loading,
+          onChanged: (v) => setState(() => _antagonistNpcId = v),
+        ),
+        const SizedBox(height: 12),
+        AiOptionalPicker(
+          label: l10n.questFollowsUp,
+          noneLabel: l10n.questGiverNone,
+          hint: l10n.questFollowsUpHint,
+          entries: [
+            for (final q in quests)
+              (q.id, q.title.trim().isEmpty ? '—' : q.title),
+          ],
+          value: _followsUpQuestId,
+          enabled: !_run.loading,
+          onChanged: (v) => setState(() => _followsUpQuestId = v),
         ),
         const SizedBox(height: 16),
         if (result == null)
@@ -1140,12 +1405,63 @@ class _QuestToolState extends ConsumerState<_QuestTool> {
     QuestResult r,
     bool sessionRunning,
   ) {
+    // Model gecerli JSON dondurmediyse (cogunlukla yanit kesilmis) elimizdeki
+    // tek sey ham metin. Bunu sessizce "gorev metni" diye gostermek yaniltici:
+    // DM neyin eksik oldugunu bilmeli ve yeniden uretebilmeli.
+    if (!r.parsed) {
+      return [
+        AiErrorBox(message: l10n.questParseFailed, detail: r.quest),
+        const SizedBox(height: 12),
+        FilledButton.icon(
+          onPressed: () => setState(() {
+            _run.result = null;
+            _run.error = null;
+          }),
+          icon: const Icon(Icons.refresh, size: 18),
+          label: Text(l10n.aiRegenerate),
+        ),
+      ];
+    }
+
     return [
       AiSection(title: l10n.questSectionQuest, body: r.quest),
       if (r.reward.isNotEmpty)
         AiSection(title: l10n.questSectionReward, body: r.reward),
       if (r.rewardCoinsCp > 0 || r.rewardItems.isNotEmpty)
         _QuestRewardLoot(result: r),
+      // Asagisi tamamen DM'e ozel PLANLAMA malzemesi; oyunculara giden
+      // kopyaya (bkz. _playerText) hicbiri girmez.
+      if (r.hooks.isNotEmpty)
+        AiSection(
+          title: l10n.questSectionHooks,
+          body: _bullets(r.hooks),
+          dmOnly: true,
+          note: l10n.questHooksNote,
+        ),
+      if (r.stages.isNotEmpty)
+        AiSection(
+          title: l10n.questSectionStages,
+          body: _stagesText(r.stages),
+          dmOnly: true,
+        ),
+      if (r.complications.isNotEmpty)
+        AiSection(
+          title: l10n.questSectionComplications,
+          body: _bullets(r.complications),
+          dmOnly: true,
+        ),
+      if (r.failure.isNotEmpty)
+        AiSection(
+          title: l10n.questSectionFailure,
+          body: r.failure,
+          dmOnly: true,
+        ),
+      if (r.keyNpcs.isNotEmpty)
+        AiSection(
+          title: l10n.questSectionKeyNpcs,
+          body: _npcsText(r.keyNpcs),
+          dmOnly: true,
+        ),
       if (r.dm.isNotEmpty)
         AiSection(
           title: l10n.questSectionDm,
@@ -1215,7 +1531,9 @@ class _QuestToolState extends ConsumerState<_QuestTool> {
       title: title,
       questText: r.quest,
       reward: r.reward,
-      dmNotes: r.dm,
+      // Kancalar, aşamalar, komplikasyonlar ve yan karakterler de DM notuna
+      // girer; aksi halde üretilen planın çoğu kaydedince kaybolurdu.
+      dmNotes: _questDmNotes(l10n, r),
       rewardCoinsCp: r.rewardCoinsCp,
       rewardItems: r.rewardItems,
     );
@@ -1263,7 +1581,8 @@ class _QuestToolState extends ConsumerState<_QuestTool> {
 
   Future<void> _copyAll(L10n l10n, QuestResult r) async {
     final b = StringBuffer(_playerText(l10n, r));
-    if (r.dm.isNotEmpty) b.write('\n\n${l10n.questSectionDm}: ${r.dm}');
+    final dm = _questDmNotes(l10n, r);
+    if (dm.isNotEmpty) b.write('\n\n$dm');
     await Clipboard.setData(ClipboardData(text: b.toString()));
     if (mounted) {
       ScaffoldMessenger.of(
@@ -1276,54 +1595,53 @@ class _QuestToolState extends ConsumerState<_QuestTool> {
 /// Görev üretecinde isteğe bağlı seçim (görev veren NPC / hedef lokasyon).
 /// [value] null ise "yok (serbest)" seçili demektir; kayıt silinmişse güvenle
 /// null'a düşer.
-class _OptionalEntityDropdown extends StatelessWidget {
-  const _OptionalEntityDropdown({
+/// Somut süre satırı: sayı kaydırıcısı + birim chip'leri ("3 gün").
+class _DeadlineRow extends StatelessWidget {
+  const _DeadlineRow({
     required this.label,
-    required this.noneLabel,
-    required this.hint,
-    required this.entries,
-    required this.value,
+    required this.amount,
+    required this.unit,
     required this.enabled,
-    required this.onChanged,
+    required this.unitLabel,
+    required this.onAmountChanged,
+    required this.onUnitChanged,
   });
 
   final String label;
-  final String noneLabel;
-  final String hint;
-
-  /// (id, görünen ad) çiftleri.
-  final List<(String, String)> entries;
-  final String? value;
+  final int amount;
+  final QuestTimeUnit unit;
   final bool enabled;
-  final ValueChanged<String?> onChanged;
+  final String Function(QuestTimeUnit) unitLabel;
+  final ValueChanged<int> onAmountChanged;
+  final ValueChanged<QuestTimeUnit> onUnitChanged;
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final safe = entries.any((e) => e.$1 == value) ? value : null;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        DropdownButtonFormField<String?>(
-          initialValue: safe,
-          isExpanded: true,
-          decoration: InputDecoration(labelText: label),
-          items: [
-            DropdownMenuItem(value: null, child: Text(noneLabel)),
-            for (final e in entries)
-              DropdownMenuItem(
-                value: e.$1,
-                child: Text(e.$2, overflow: TextOverflow.ellipsis),
+        AiSliderRow(
+          label: label,
+          value: amount,
+          min: 1,
+          // 30 hem "30 gün" hem "30 saat" için makul bir tavan; daha uzunu
+          // için birim yükseltilir.
+          max: 30,
+          enabled: enabled,
+          onChanged: onAmountChanged,
+        ),
+        const SizedBox(height: 6),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            for (final u in QuestTimeUnit.values)
+              ChoiceChip(
+                label: Text(unitLabel(u)),
+                selected: unit == u,
+                onSelected: enabled ? (_) => onUnitChanged(u) : null,
               ),
           ],
-          onChanged: enabled ? onChanged : null,
-        ),
-        SizedBox(height: context.spacing.xs),
-        Text(
-          hint,
-          style: theme.textTheme.bodySmall?.copyWith(
-            color: theme.colorScheme.onSurfaceVariant,
-          ),
         ),
       ],
     );
@@ -1446,6 +1764,49 @@ Future<void> _insertToCodex(
 
 /// Görevi üç bölüm olarak seçilen Kayıtlar sayfasına ekler; DM açıklaması
 /// DM'e özel callout (🔒) olur.
+/// Madde imli liste metni.
+String _bullets(List<String> items) =>
+    [for (final i in items) '• $i'].join('\n');
+
+/// Aşamalar: numaralı başlık, altında açıklaması.
+String _stagesText(List<QuestStage> stages) {
+  final b = StringBuffer();
+  for (final (i, s) in stages.indexed) {
+    if (b.isNotEmpty) b.write('\n\n');
+    b.write(s.title.isEmpty ? '${i + 1}.' : '${i + 1}. ${s.title}');
+    if (s.detail.isNotEmpty) b.write('\n${s.detail}');
+  }
+  return b.toString();
+}
+
+String _npcsText(List<QuestNpcBrief> npcs) => [
+  for (final n in npcs)
+    n.role.isEmpty ? '• ${n.name}' : '• ${n.name} — ${n.role}',
+].join('\n');
+
+/// Görev kaydının DM notu: üretilen tüm planlama malzemesi tek metinde.
+///
+/// Neden tek alan: `Quests` şemasında aşama/kanca/komplikasyon için sütun yok.
+/// Bunun için şema göçü açmak (yedekleme/geri yükleme uyumluluğu dahil) bu
+/// özelliğin değdiğinden fazla risk taşıyordu; biçimli metin DM notunda durur
+/// ve görev sayfasında olduğu gibi okunur.
+String _questDmNotes(L10n l10n, QuestResult r) {
+  final b = StringBuffer();
+  void section(String title, String body) {
+    if (body.trim().isEmpty) return;
+    if (b.isNotEmpty) b.write('\n\n');
+    b.write('$title\n$body');
+  }
+
+  section(l10n.questSectionHooks, _bullets(r.hooks));
+  section(l10n.questSectionStages, _stagesText(r.stages));
+  section(l10n.questSectionComplications, _bullets(r.complications));
+  section(l10n.questSectionFailure, r.failure);
+  section(l10n.questSectionKeyNpcs, _npcsText(r.keyNpcs));
+  section(l10n.questSectionDm, r.dm);
+  return b.toString();
+}
+
 Future<void> _insertQuestToCodex(
   BuildContext context,
   WidgetRef ref,
@@ -1468,11 +1829,14 @@ Future<void> _insertQuestToCodex(
       data: {'text': '**${l10n.questSectionReward}:** ${r.reward}'},
     );
   }
-  if (r.dm.isNotEmpty) {
+  // DM'e özel her şey TEK kilitli blokta: Codex sayfasında oyuncuya
+  // gösterilebilecek metinle karışmasın.
+  final dmNotes = _questDmNotes(l10n, r);
+  if (dmNotes.isNotEmpty) {
     await repo.addBlock(
       pageId,
       CodexBlockType.callout,
-      data: {'emoji': '🔒', 'text': '${l10n.questSectionDm}: ${r.dm}'},
+      data: {'emoji': '🔒', 'text': dmNotes},
     );
   }
   if (context.mounted) {
