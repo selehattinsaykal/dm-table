@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../domain/ai/ai_settings.dart';
 
 /// AI ayarlarını `shared_preferences` ile okur/yazar. Anahtar yalnızca cihazda
-/// kalır; LAN senkronuna veya yedeğe DAHİL EDİLMEZ.
+/// kalır; yedeğe DAHİL EDİLMEZ.
 class AiSettingsController extends Notifier<AiSettings> {
   static const _kProvider = 'ai.provider';
   static const _kApiKey = 'ai.apiKey';

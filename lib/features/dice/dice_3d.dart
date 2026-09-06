@@ -3,12 +3,11 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-/// Zar atma 3B animasyonu -- hem DM (Windows) hem oyuncu paneli kullanir.
+/// Zar atma 3B animasyonu.
 ///
 /// [DiceRoll] tipinden bagimsizdir: cagiran taraf ilkel degerleri (sides,
 /// headline, total...) ve yerellestirilmis metinleri (kritik/hüsran/zar)
-/// gecirir. Boylece iki farkli DiceRoll siniifi da (protokol / domain) ayni
-/// gorseli paylasir.
+/// gecirir. Boylece kural katmanini hic tanimadan tek basina test edilebilir.
 
 // ---------------------------------------------------------------------------
 // Geometri: her zar tipi icin bir kati cisim.

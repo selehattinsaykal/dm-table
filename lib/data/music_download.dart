@@ -160,8 +160,18 @@ class MusicDownloader {
   /// bir gün bu da 403 vermeye başlarsa değiştirilecek tek yer burası.
   static const _playerClient = 'android';
 
+  /// Bu platformda baglanti indirme MUMKUN mu?
+  ///
+  /// yt-dlp harici bir CALISTIRILABILIR ve `Process` ile cagriliyor. Android
+  /// uygulamalari kendi sanal alaninda rastgele ikili calistiramaz, indirici
+  /// de yalnizca Windows icin paketleniyor. Ozelligi orada "kurulu degil"
+  /// diye gostermek yaniltici olurdu -- hicbir zaman kurulamayacak.
+  static bool get supportedHere =>
+      Platform.isWindows || Platform.isLinux || Platform.isMacOS;
+
   /// Çalışan yt-dlp komutunu döner; bulunamazsa `null`.
   Future<String?> resolveExecutable() async {
+    if (!supportedHere) return null;
     final custom = executablePath?.trim();
     for (final name in [
       if (custom != null && custom.isNotEmpty) custom,

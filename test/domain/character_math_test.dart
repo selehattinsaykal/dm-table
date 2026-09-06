@@ -338,4 +338,57 @@ void main() {
     );
     expect(build.carryCapacity, 225);
   });
+
+  group('zirh egitimi ve alet yeterliligi', () {
+    CharacterBuild build({
+      String? armorCategory,
+      bool shield = false,
+      Set<String> armorProficiencies = const {},
+      Set<String> tools = const {},
+    }) => CharacterBuild(
+      abilities: const AbilityScores(),
+      classes: [fighter(5)],
+      armor: armorCategory == null
+          ? null
+          : ArmorPiece(baseAc: 14, category: armorCategory),
+      hasShield: shield,
+      armorProficiencies: armorProficiencies,
+      toolProficiencies: tools,
+    );
+
+    test('egitimi olan zirhta ceza yok', () {
+      final b = build(armorCategory: 'medium', armorProficiencies: {'medium'});
+      expect(b.untrainedArmor, isFalse);
+      expect(b.hasArmorPenalty, isFalse);
+    });
+
+    test('egitimi olmayan zirhta ceza var', () {
+      final b = build(armorCategory: 'heavy', armorProficiencies: {'light'});
+      expect(b.untrainedArmor, isTrue);
+      expect(b.hasArmorPenalty, isTrue);
+    });
+
+    test('zirh giyilmiyorsa ceza yok', () {
+      expect(build().hasArmorPenalty, isFalse);
+    });
+
+    test('kalkan egitimi ayri kontrol edilir', () {
+      final b = build(shield: true, armorProficiencies: {'light'});
+      expect(b.untrainedShield, isTrue);
+      expect(b.untrainedArmor, isFalse);
+      expect(b.hasArmorPenalty, isTrue);
+    });
+
+    test('alet yeterliligi yeterlilik bonusu ekler', () {
+      final b = build(tools: {"Thieves' Tools"});
+      // 5. seviyede yeterlilik bonusu +3.
+      expect(b.toolModifier("Thieves' Tools"), 3);
+      expect(b.toolModifier("Smith's Tools"), 0);
+    });
+
+    test('alet eslesmesi buyuk/kucuk harfe duyarsiz', () {
+      final b = build(tools: {"Thieves' Tools"});
+      expect(b.toolModifier("thieves' tools"), 3);
+    });
+  });
 }

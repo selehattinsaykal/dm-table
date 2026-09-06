@@ -3,8 +3,7 @@ import 'package:drift/drift.dart';
 /// DM bilgi tabani ("Kayitlar"): ic ice sayfalar + blok tabanli icerik.
 ///
 /// Notion/Obsidian benzeri: her sayfa sirali bloklardan olusur, bloklar
-/// baska sayfalara/entity'lere/zarlara baglanabilir. Icerik tumuyle DM'e
-/// ozel (oyunculara gitmez).
+/// baska sayfalara/entity'lere/zarlara baglanabilir.
 
 /// Ic ice sayfa agaci.
 class CodexPages extends Table {

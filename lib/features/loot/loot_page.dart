@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../app/ui/async_view.dart';
 import '../../app/ui/ui.dart';
 import '../../data/db/database.dart';
 import '../../data/loot_repository.dart';
+import '../../data/content_tr.dart';
 import '../../data/providers.dart';
 import '../../l10n/app_localizations.dart';
-import '../session/session_page.dart';
+import 'party_inventory_page.dart';
 
 final lootRepositoryProvider = Provider<LootRepository>(
   (ref) => LootRepository(ref.watch(databaseProvider)),
@@ -18,7 +20,7 @@ final lootSetsProvider = StreamProvider<List<LootSet>>(
 );
 
 /// Ganimet setleri: DM önceden eşya + para hazırlar, masada tek dokunuşla
-/// oyunculara sunar.
+/// ortak parti kesesine aktarır.
 ///
 /// Ortak parti keseleri buradan **Karakterler** sekmesine taşındı: set bir
 /// şablon, ortak kese ise masadaki partinin canlı eşyası — ikisi farklı şeyler.
@@ -114,19 +116,86 @@ class _LootSetTile extends ConsumerWidget {
       trailing: FilledButton.icon(
         onPressed: (items.isEmpty && set.coinsCp <= 0)
             ? null
-            : () {
-                ref
-                    .read(sessionServiceProvider)
-                    .giveLoot(coinsCp: set.coinsCp, items: items);
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(l10n.lootOffered(set.name)),
-                    duration: const Duration(seconds: 2),
-                  ),
-                );
-              },
-        icon: const Icon(Icons.visibility, size: 18),
-        label: Text(l10n.lootShow),
+            : () => _grant(context, ref, l10n, items),
+        icon: const Icon(Icons.move_down, size: 18),
+        label: Text(l10n.lootGrant),
+      ),
+    );
+  }
+
+  /// Seti bir ortak parti kesesine BOSALTIR.
+  ///
+  /// Eskiden bu dugme seti oyuncu panellerine "sunuyordu"; oyuncular kendi
+  /// aralarinda paylasiyordu. Panel kalkinca ayni hareketin masadaki
+  /// karsiligi kaldi: ganimet ortak keseye gider, dagitimi DM yapar.
+  ///
+  /// Set SILINMEZ: bir sablon, tek kullanimlik bir havuz degil -- ayni
+  /// "goblin kampi ganimeti" birden fazla kez verilebilir.
+  Future<void> _grant(
+    BuildContext context,
+    WidgetRef ref,
+    L10n l10n,
+    List<LootItemData> items,
+  ) async {
+    final inventories =
+        ref.read(partyInventoriesProvider).value ?? const <PartyInventory>[];
+    if (inventories.isEmpty) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l10n.lootNoPartyBag)));
+      return;
+    }
+
+    // Tek kese varsa sormuyoruz: masada en sik durum bu ve ek bir dokunus
+    // hicbir sey secmiyor.
+    final target = inventories.length == 1
+        ? inventories.first.id
+        : await showModalBottomSheet<String>(
+            context: context,
+            showDragHandle: true,
+            builder: (context) => SafeArea(
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  for (final inv in inventories)
+                    ListTile(
+                      leading: const Icon(Icons.backpack_outlined),
+                      title: Text(inv.name),
+                      onTap: () => Navigator.pop(context, inv.id),
+                    ),
+                ],
+              ),
+            ),
+          );
+    if (target == null) return;
+
+    final repo = ref.read(partyInventoryRepositoryProvider);
+    if (set.coinsCp > 0) {
+      await repo.depositCoins(target, amountCp: set.coinsCp);
+    }
+    // Her satira YENI bir id: kesedeki `id` alma isleminin tek tutamagi
+    // (yaris korumasi, bkz. PartyInventoryRepository). Set bir sablon oldugu
+    // icin ayni set iki kez verilse bile satirlar ayrismali.
+    const uuid = Uuid();
+    for (final item in items) {
+      await repo.depositItem(
+        target,
+        item: (
+          id: uuid.v4(),
+          name: item.name,
+          magic: item.magic,
+          itemKey: null,
+          magicItemKey: null,
+          desc: null,
+          quantity: 1,
+        ),
+      );
+    }
+    if (!context.mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(l10n.lootGranted(set.name)),
+        duration: const Duration(seconds: 2),
       ),
     );
   }
@@ -302,7 +371,9 @@ class _LootSetEditPageState extends ConsumerState<LootSetEditPage> {
                 item.magic ? Icons.auto_awesome : Icons.backpack_outlined,
                 color: item.magic ? theme.colorScheme.tertiary : null,
               ),
-              title: Text(item.name),
+              title: Text(
+                itemNameTr(contentNamesTrOf(context, ref), item.name),
+              ),
               trailing: IconButton(
                 icon: const Icon(Icons.remove_circle_outline),
                 onPressed: () => setState(() => _items.removeAt(i)),
@@ -343,8 +414,7 @@ class _LootSetEditPageState extends ConsumerState<LootSetEditPage> {
 
 /// Bakiri okunur paraya cevirir (pp/gp/sp/cp).
 ///
-/// Ortak parti kesesi sayfasi da bunu kullanir; dorduncu bir kopya yazma
-/// (oyuncu paneli ve session_service'te ayri surumleri var).
+/// Ortak parti kesesi sayfasi da bunu kullanir; ikinci bir kopya yazma.
 String formatLootCoins(int cp) {
   if (cp == 0) return '0 gp';
   final pp = cp ~/ 1000;
@@ -468,7 +538,12 @@ class CompendiumLootPickerDialogState
                                   ? theme.colorScheme.tertiary
                                   : null,
                             ),
-                            title: Text(row.name),
+                            title: Text(
+                              itemNameTr(
+                                contentNamesTrOf(context, ref),
+                                row.name,
+                              ),
+                            ),
                             trailing: isAdded
                                 ? Icon(
                                     Icons.check_circle,

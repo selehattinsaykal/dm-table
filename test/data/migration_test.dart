@@ -39,9 +39,13 @@ void main() {
   /// **Migration zincirinin `addColumn` yaptigi HER tablo burada bulunmali**
   /// (`createTable` yapanlar gerekmez, migration kendisi kurar). Su an:
   /// `locations` (v24), `combatants` (v27), `shops` + `shop_stock` (v28),
-  /// `encounters` (v32).
-  /// Yeni bir `addColumn` migration'i eklenirse ilgili tablo buraya da
-  /// eklenmeli, yoksa bu test "no such table" ile patlar.
+  /// `encounters` (v32, v49), `characters` (v34, v35, v38),
+  /// `character_items` (v38), `bond_types` (v50 satir EKLIYOR).
+  /// v36 `createTable` oldugu icin fixture'a eklenmesi gerekmiyor.
+  ///
+  /// Yeni bir `addColumn` (ya da mevcut bir tabloya INSERT yapan) migration
+  /// eklenirse ilgili tablo buraya da eklenmeli, yoksa bu test
+  /// "no such table" ile patlar -- v50'de tam olarak bu oldu.
   AppDatabase openOverV23(File file) => AppDatabase(
     NativeDatabase(
       file,
@@ -128,6 +132,72 @@ void main() {
             quantity INTEGER NOT NULL DEFAULT -1,
             sort_order INTEGER NOT NULL DEFAULT 0,
             PRIMARY KEY (id)
+          )
+        ''');
+        raw.execute('''
+          CREATE TABLE IF NOT EXISTS characters (
+            id TEXT NOT NULL,
+            name TEXT NOT NULL,
+            player_name TEXT NULL,
+            species_key TEXT NULL,
+            background_key TEXT NULL,
+            alignment TEXT NULL,
+            strength INTEGER NOT NULL DEFAULT 10,
+            dexterity INTEGER NOT NULL DEFAULT 10,
+            constitution INTEGER NOT NULL DEFAULT 10,
+            intelligence INTEGER NOT NULL DEFAULT 10,
+            wisdom INTEGER NOT NULL DEFAULT 10,
+            charisma INTEGER NOT NULL DEFAULT 10,
+            experience_points INTEGER NOT NULL DEFAULT 0,
+            hit_points_max INTEGER NOT NULL DEFAULT 0,
+            hit_points_current INTEGER NOT NULL DEFAULT 0,
+            temporary_hit_points INTEGER NOT NULL DEFAULT 0,
+            death_save_successes INTEGER NOT NULL DEFAULT 0,
+            death_save_failures INTEGER NOT NULL DEFAULT 0,
+            exhaustion INTEGER NOT NULL DEFAULT 0,
+            inspiration INTEGER NOT NULL DEFAULT 0,
+            coins_cp INTEGER NOT NULL DEFAULT 0,
+            armor_class_override INTEGER NULL,
+            speed_override INTEGER NULL,
+            conditions_json TEXT NOT NULL DEFAULT '[]',
+            hit_dice_used_json TEXT NOT NULL DEFAULT '{}',
+            spell_slots_used_json TEXT NOT NULL DEFAULT '{}',
+            portrait_path TEXT NULL,
+            notes TEXT NOT NULL DEFAULT '',
+            appearance TEXT NOT NULL DEFAULT '',
+            personality TEXT NOT NULL DEFAULT '',
+            ideal TEXT NOT NULL DEFAULT '',
+            bond TEXT NOT NULL DEFAULT '',
+            flaw TEXT NOT NULL DEFAULT '',
+            created_at INTEGER NOT NULL DEFAULT 0,
+            updated_at INTEGER NOT NULL DEFAULT 0,
+            PRIMARY KEY (id)
+          )
+        ''');
+        raw.execute('''
+          CREATE TABLE IF NOT EXISTS character_items (
+            id TEXT NOT NULL,
+            character_id TEXT NOT NULL,
+            item_key TEXT NULL,
+            magic_item_key TEXT NULL,
+            custom_name TEXT NULL,
+            custom_desc TEXT NULL,
+            quantity INTEGER NOT NULL DEFAULT 1,
+            equipped INTEGER NOT NULL DEFAULT 0,
+            attuned INTEGER NOT NULL DEFAULT 0,
+            sort_order INTEGER NOT NULL DEFAULT 0,
+            PRIMARY KEY (id)
+          )
+        ''');
+        // v17'de acilmis; v23'ten gelen GERCEK bir dosyada bu tablo var.
+        // v50 buraya "uyelik" bag turunu ekliyor.
+        raw.execute('''
+          CREATE TABLE IF NOT EXISTS bond_types (
+            code TEXT NOT NULL,
+            name TEXT NOT NULL,
+            color INTEGER NOT NULL,
+            sort_order INTEGER NOT NULL DEFAULT 0,
+            PRIMARY KEY (code)
           )
         ''');
         raw.execute('PRAGMA user_version = 23;');
@@ -378,6 +448,37 @@ void main() {
         .getSingle();
     expect(row.data['briefing_json'], contains('Sag cik'));
     expect(row.data['loot_json'], contains('500'));
+
+    await db.close();
+  });
+
+  test('v23 -> guncel: ekipman yuvasi kolonlari olusur', () async {
+    final file = File(p.join(tmp.path, 'v23_equip_slots.sqlite'));
+    final db = openOverV23(file);
+
+    await db.customStatement(
+      "INSERT INTO character_items (id, character_id, custom_name) "
+      "VALUES ('i1', 'c1', 'Miğfer')",
+    );
+    await db.customStatement(
+      "UPDATE character_items SET slot = 'head' WHERE id = 'i1'",
+    );
+    await db.customStatement(
+      "INSERT INTO characters (id, name) VALUES ('c1', 'Thorin')",
+    );
+    await db.customStatement(
+      'UPDATE characters SET slot_capacities_json = ? WHERE id = ?',
+      ['{"head":2}', 'c1'],
+    );
+
+    final item = await db
+        .customSelect('SELECT slot FROM character_items')
+        .getSingle();
+    expect(item.data['slot'], 'head');
+    final character = await db
+        .customSelect('SELECT slot_capacities_json FROM characters')
+        .getSingle();
+    expect(character.data['slot_capacities_json'], '{"head":2}');
 
     await db.close();
   });

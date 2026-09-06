@@ -75,3 +75,13 @@ String encodeConditions(List<CombatCondition> conditions) =>
   }
   return (next: next, expired: expired);
 }
+
+/// Konsantrasyon kurtarmasinin DC'si: 10 ya da hasarin YARISI, hangisi
+/// buyukse (5e).
+///
+/// Masada en cok unutulan kural bu; hasar uygulandigi anda hatirlatilmasi
+/// icin ayri bir fonksiyon.
+int concentrationSaveDc(int damage) {
+  final half = damage ~/ 2;
+  return half > 10 ? half : 10;
+}

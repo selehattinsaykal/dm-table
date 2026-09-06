@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../data/character_image_store.dart';
@@ -8,17 +9,66 @@ import '../../data/codex_media_store.dart';
 import '../../data/db/database.dart';
 import '../../data/providers.dart';
 import '../../domain/codex/codex_block.dart';
+import '../../domain/codex/codex_style.dart';
 import '../../domain/rules/dice.dart';
 import '../../l10n/app_localizations.dart';
 import '../characters/character_providers.dart';
 import '../world/pick_image_file.dart';
 import 'codex_autocomplete.dart';
+import 'codex_charts.dart';
+import 'codex_counter.dart';
 import 'codex_providers.dart';
+import 'codex_style_ui.dart';
+import 'codex_timer.dart';
+
+part 'codex_editors_data.dart';
+part 'codex_editors_media.dart';
+part 'codex_editors_controls.dart';
 
 final _codexImages = CharacterImageStore();
 final _codexMedia = CodexMediaStore();
 
-/// Bir blogu tipine gore duzenler ve kaydeder. Divider'in duzenleyicisi yok.
+/// Blok verisindeki "gorunum" alanlari. Bir blok duzenlendiginde tur-ozel
+/// alanlar yeniden yazilir; bunlar ise korunur (aksi halde her duzenlemede
+/// blogun genisligi/hizasi sifirlanirdi).
+const _styleKeys = {
+  'width',
+  'align',
+  'height',
+  'tone',
+  'size',
+  'style',
+  'thickness',
+  'fit',
+  'radius',
+  'frame',
+  'loop',
+  'muted',
+  'chipStyle',
+  'palette',
+  'zebra',
+  'dense',
+  'borders',
+  'ordered',
+  'marker',
+  'strike',
+  'progress',
+  'rule',
+  'dropCap',
+  'compact',
+  'showValues',
+  'showGrid',
+  'showLegend',
+  'sort',
+  'border',
+};
+
+Map<String, dynamic> _styleOf(Map<String, dynamic> data) => {
+  for (final entry in data.entries)
+    if (_styleKeys.contains(entry.key)) entry.key: entry.value,
+};
+
+/// Bir blogu tipine gore duzenler ve kaydeder.
 Future<void> editCodexBlock(
   BuildContext context,
   WidgetRef ref,
@@ -36,7 +86,7 @@ Future<void> editCodexBlock(
   Map<String, dynamic>? result;
   switch (type) {
     case CodexBlockType.divider:
-      return;
+      result = await _sheet(context, _DividerEditor(data: data));
     case CodexBlockType.heading:
       result = await _sheet(
         context,
@@ -75,6 +125,10 @@ Future<void> editCodexBlock(
       );
     case CodexBlockType.chart:
       result = await _sheet(context, _ChartEditor(data: data));
+    case CodexBlockType.counter:
+      result = await _sheet(context, _CounterEditor(data: data));
+    case CodexBlockType.timer:
+      result = await _sheet(context, _TimerEditor(data: data));
     case CodexBlockType.image:
       result = await _editImage(context, data, l10n);
     case CodexBlockType.video:
@@ -86,10 +140,15 @@ Future<void> editCodexBlock(
     case CodexBlockType.entityLink:
       result = await _editEntityLink(context, ref, data);
     case CodexBlockType.characterEmbed:
-      result = await _editCharacterEmbed(context, ref);
+      result = await _editCharacterEmbed(context, ref, data);
   }
   if (result != null) {
-    await ref.read(codexRepositoryProvider).updateBlock(block.id, result);
+    // Once eski gorunum alanlari, sonra editorun dondurdukleri: editor bir
+    // gorunum alanini degistirdiyse onun degeri kazanir.
+    await ref.read(codexRepositoryProvider).updateBlock(block.id, {
+      ..._styleOf(data),
+      ...result,
+    });
   }
 }
 
@@ -127,8 +186,19 @@ class _HeadingEditorState extends State<_HeadingEditor> {
     final l10n = L10n.of(context);
     return _EditorFrame(
       title: l10n.codexBlockHeading,
-      onSave: () =>
-          Navigator.pop(context, {'level': _level, 'text': _controller.text}),
+      data: widget.data,
+      onSave: () => {'level': _level, 'text': _controller.text},
+      appearance: (context, style, update) => [
+        _ToneSelector(style: style, update: update),
+        _TextSizeSlider(style: style, update: update),
+        _StyleSwitch(
+          label: l10n.codexHeadingRule,
+          keyName: 'rule',
+          fallback: false,
+          style: style,
+          update: update,
+        ),
+      ],
       children: [
         SegmentedButton<int>(
           segments: const [
@@ -169,24 +239,39 @@ class _TextEditorState extends State<_TextEditor> {
     text: '${widget.data['text'] ?? ''}',
   );
   @override
-  Widget build(BuildContext context) => _EditorFrame(
-    title: widget.title,
-    onSave: () => Navigator.pop(context, {'text': _controller.text}),
-    children: [
-      CodexInlineField(
-        controller: _controller,
-        pageTitles: widget.pageTitles,
-        autofocus: true,
-        maxLines: 8,
-        minLines: 3,
-        decoration: InputDecoration(
-          border: const OutlineInputBorder(),
-          helperText: L10n.of(context).codexTextHint,
-          helperMaxLines: 3,
+  Widget build(BuildContext context) {
+    final l10n = L10n.of(context);
+    return _EditorFrame(
+      title: widget.title,
+      data: widget.data,
+      onSave: () => {'text': _controller.text},
+      appearance: (context, style, update) => [
+        _ToneSelector(style: style, update: update),
+        _TextSizeSlider(style: style, update: update),
+        _StyleSwitch(
+          label: l10n.codexDropCap,
+          keyName: 'dropCap',
+          fallback: false,
+          style: style,
+          update: update,
         ),
-      ),
-    ],
-  );
+      ],
+      children: [
+        CodexInlineField(
+          controller: _controller,
+          pageTitles: widget.pageTitles,
+          autofocus: true,
+          maxLines: 8,
+          minLines: 3,
+          decoration: InputDecoration(
+            border: const OutlineInputBorder(),
+            helperText: l10n.codexTextHint,
+            helperMaxLines: 3,
+          ),
+        ),
+      ],
+    );
+  }
 }
 
 class _CalloutEditor extends StatefulWidget {
@@ -209,10 +294,22 @@ class _CalloutEditorState extends State<_CalloutEditor> {
     final l10n = L10n.of(context);
     return _EditorFrame(
       title: l10n.codexBlockCallout,
-      onSave: () => Navigator.pop(context, {
+      data: widget.data,
+      onSave: () => {
         'emoji': _emoji.text.trim().isEmpty ? '💡' : _emoji.text.trim(),
         'text': _text.text,
-      }),
+      },
+      appearance: (context, style, update) => [
+        _ToneSelector(style: style, update: update),
+        _TextSizeSlider(style: style, update: update),
+        _StyleSwitch(
+          label: l10n.codexCalloutBorder,
+          keyName: 'border',
+          fallback: true,
+          style: style,
+          update: update,
+        ),
+      ],
       children: [
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -240,6 +337,60 @@ class _CalloutEditorState extends State<_CalloutEditor> {
               ),
             ),
           ],
+        ),
+      ],
+    );
+  }
+}
+
+// --- Ayraç ---------------------------------------------------------------
+
+class _DividerEditor extends StatefulWidget {
+  const _DividerEditor({required this.data});
+  final Map<String, dynamic> data;
+  @override
+  State<_DividerEditor> createState() => _DividerEditorState();
+}
+
+class _DividerEditorState extends State<_DividerEditor> {
+  late CodexDividerStyle _style = CodexDividerStyle.fromName(
+    widget.data['style'],
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = L10n.of(context);
+    return _EditorFrame(
+      title: l10n.codexBlockDivider,
+      data: widget.data,
+      onSave: () => {'style': _style.name},
+      children: [
+        _EnumChips<CodexDividerStyle>(
+          label: l10n.codexDividerStyle,
+          values: CodexDividerStyle.values,
+          selected: _style,
+          labelFor: (s) => switch (s) {
+            CodexDividerStyle.ornament => l10n.codexDividerOrnament,
+            CodexDividerStyle.line => l10n.codexDividerLine,
+            CodexDividerStyle.dashed => l10n.codexDividerDashed,
+            CodexDividerStyle.thick => l10n.codexDividerThick,
+            CodexDividerStyle.dots => l10n.codexDividerDots,
+            CodexDividerStyle.space => l10n.codexDividerSpace,
+          },
+          onSelected: (s) => setState(() => _style = s),
+        ),
+      ],
+      appearance: (context, style, update) => [
+        _ToneSelector(style: style, update: update),
+        _StyleSlider(
+          label: l10n.codexDividerThick,
+          keyName: 'thickness',
+          fallback: 1,
+          min: 0.5,
+          max: 6,
+          style: style,
+          update: update,
+          format: (v) => v.toStringAsFixed(1),
         ),
       ],
     );
@@ -314,6 +465,7 @@ class _ItemsEditorState extends State<_ItemsEditor> {
       title: widget.checklist
           ? l10n.codexBlockChecklist
           : l10n.codexBlockBulleted,
+      data: widget.data,
       onSave: () {
         final items = <Object>[];
         for (var i = 0; i < _controllers.length; i++) {
@@ -321,8 +473,50 @@ class _ItemsEditorState extends State<_ItemsEditor> {
           if (t.isEmpty) continue;
           items.add(widget.checklist ? {'text': t, 'done': _done[i]} : t);
         }
-        Navigator.pop(context, {'items': items});
+        return {'items': items};
       },
+      appearance: (context, style, update) => [
+        _TextSizeSlider(style: style, update: update),
+        if (widget.checklist) ...[
+          _StyleSwitch(
+            label: l10n.codexChecklistProgress,
+            keyName: 'progress',
+            fallback: false,
+            style: style,
+            update: update,
+          ),
+          _StyleSwitch(
+            label: l10n.codexChecklistStrike,
+            keyName: 'strike',
+            fallback: true,
+            style: style,
+            update: update,
+          ),
+        ] else ...[
+          _StyleSwitch(
+            label: l10n.codexListOrdered,
+            keyName: 'ordered',
+            fallback: false,
+            style: style,
+            update: update,
+          ),
+          if (style['ordered'] != true)
+            _EnumChips<String>(
+              label: l10n.codexListMarker,
+              values: const ['•', '–', '◆', '›', '★', '⚔'],
+              selected: '${style['marker'] ?? '•'}',
+              labelFor: (m) => m,
+              onSelected: (m) => update(() => style['marker'] = m),
+            ),
+        ],
+        _StyleSwitch(
+          label: l10n.codexListDense,
+          keyName: 'dense',
+          fallback: false,
+          style: style,
+          update: update,
+        ),
+      ],
       children: [
         for (var i = 0; i < _controllers.length; i++)
           Padding(
@@ -330,6 +524,11 @@ class _ItemsEditorState extends State<_ItemsEditor> {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                if (widget.checklist)
+                  Checkbox(
+                    value: _done[i],
+                    onChanged: (v) => setState(() => _done[i] = v ?? false),
+                  ),
                 Expanded(
                   child: CodexInlineField(
                     controller: _controllers[i],
@@ -384,11 +583,16 @@ class _DiceEditorState extends State<_DiceEditor> {
     final valid = parseDiceExpression(_expr.text) != null;
     return _EditorFrame(
       title: l10n.codexBlockDice,
+      data: widget.data,
       canSave: valid,
-      onSave: () => Navigator.pop(context, {
+      onSave: () => {
         'label': _label.text.trim(),
         'expression': _expr.text.trim(),
-      }),
+      },
+      appearance: (context, style, update) => [
+        _ChipStyleSelector(style: style, update: update),
+        _ToneSelector(style: style, update: update),
+      ],
       children: [
         TextField(
           controller: _label,
@@ -409,719 +613,25 @@ class _DiceEditorState extends State<_DiceEditor> {
             border: const OutlineInputBorder(),
           ),
         ),
-      ],
-    );
-  }
-}
-
-// --- Tablo ---------------------------------------------------------------
-
-class _TableEditor extends StatefulWidget {
-  const _TableEditor({required this.data, required this.pageTitles});
-  final Map<String, dynamic> data;
-  final List<String> pageTitles;
-  @override
-  State<_TableEditor> createState() => _TableEditorState();
-}
-
-class _TableEditorState extends State<_TableEditor> {
-  // CodexInlineField controller gerektirdigi icin her hucre bir controller.
-  late List<List<TextEditingController>> _rows;
-  late bool _header;
-
-  @override
-  void initState() {
-    super.initState();
-    _header = widget.data['header'] as bool? ?? true;
-    final raw = ((widget.data['rows'] as List? ?? const []))
-        .map((r) => (r as List).map((c) => '$c').toList())
-        .toList();
-    if (raw.isEmpty) {
-      _rows = [
-        [TextEditingController(), TextEditingController()],
-        [TextEditingController(), TextEditingController()],
-      ];
-    } else {
-      _rows = [
-        for (final row in raw)
-          [for (final cell in row) TextEditingController(text: cell)],
-      ];
-    }
-  }
-
-  @override
-  void dispose() {
-    for (final row in _rows) {
-      for (final c in row) {
-        c.dispose();
-      }
-    }
-    super.dispose();
-  }
-
-  int get _cols => _rows.isEmpty ? 0 : _rows.first.length;
-
-  void _addRow() => setState(() {
-    _rows.add([for (var i = 0; i < _cols; i++) TextEditingController()]);
-  });
-
-  void _removeRow(int r) => setState(() {
-    for (final c in _rows[r]) {
-      c.dispose();
-    }
-    _rows.removeAt(r);
-  });
-
-  void _addColumn() => setState(() {
-    for (final row in _rows) {
-      row.add(TextEditingController());
-    }
-  });
-
-  void _removeColumn() => setState(() {
-    for (final row in _rows) {
-      row.removeLast().dispose();
-    }
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = L10n.of(context);
-    return _EditorFrame(
-      title: l10n.codexBlockTable,
-      onSave: () => Navigator.pop(context, {
-        'header': _header,
-        'rows': [
-          for (final row in _rows) [for (final c in row) c.text],
-        ],
-      }),
-      children: [
-        SwitchListTile(
-          contentPadding: EdgeInsets.zero,
-          title: Text(l10n.codexTableHeader),
-          value: _header,
-          onChanged: (v) => setState(() => _header = v),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 8),
-          child: Text(
-            l10n.codexTextHint,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: Theme.of(context).colorScheme.outline,
-            ),
-          ),
-        ),
-        for (var r = 0; r < _rows.length; r++)
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 2),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                for (var c = 0; c < _cols; c++)
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 2),
-                      child: CodexInlineField(
-                        controller: _rows[r][c],
-                        pageTitles: widget.pageTitles,
-                        decoration: const InputDecoration(
-                          isDense: true,
-                          border: OutlineInputBorder(),
-                        ),
-                      ),
-                    ),
-                  ),
-                IconButton(
-                  icon: const Icon(Icons.remove_circle_outline, size: 20),
-                  onPressed: _rows.length > 1 ? () => _removeRow(r) : null,
-                ),
-              ],
-            ),
-          ),
-        Row(
-          children: [
-            TextButton.icon(
-              icon: const Icon(Icons.add),
-              label: Text(l10n.codexTableAddRow),
-              onPressed: _addRow,
-            ),
-            TextButton.icon(
-              icon: const Icon(Icons.view_column_outlined),
-              label: Text(l10n.codexTableAddColumn),
-              onPressed: _addColumn,
-            ),
-            if (_cols > 1)
-              IconButton(
-                tooltip: l10n.codexTableRemoveColumn,
-                icon: const Icon(Icons.remove),
-                onPressed: _removeColumn,
-              ),
-          ],
-        ),
-      ],
-    );
-  }
-}
-
-// --- Grafik --------------------------------------------------------------
-
-class _ChartEditor extends StatefulWidget {
-  const _ChartEditor({required this.data});
-  final Map<String, dynamic> data;
-  @override
-  State<_ChartEditor> createState() => _ChartEditorState();
-}
-
-class _ChartEditorState extends State<_ChartEditor> {
-  late final _title = TextEditingController(
-    text: '${widget.data['title'] ?? ''}',
-  );
-  late List<({String label, String value})> _items;
-
-  @override
-  void initState() {
-    super.initState();
-    _items = [
-      for (final e in (widget.data['items'] as List? ?? const []))
-        (label: '${(e as Map)['label'] ?? ''}', value: '${e['value'] ?? ''}'),
-    ];
-    if (_items.isEmpty) _items = [(label: '', value: '')];
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = L10n.of(context);
-    return _EditorFrame(
-      title: l10n.codexBlockChart,
-      onSave: () {
-        final items = [
-          for (final e in _items)
-            if (e.label.trim().isNotEmpty)
-              {
-                'label': e.label.trim(),
-                'value': num.tryParse(e.value.trim()) ?? 0,
-              },
-        ];
-        Navigator.pop(context, {'title': _title.text.trim(), 'items': items});
-      },
-      children: [
-        TextField(
-          controller: _title,
-          decoration: InputDecoration(
-            labelText: l10n.codexChartTitle,
-            border: const OutlineInputBorder(),
-          ),
-        ),
         const SizedBox(height: 8),
-        for (var i = 0; i < _items.length; i++)
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4),
-            child: Row(
-              children: [
-                Expanded(
-                  flex: 2,
-                  child: TextFormField(
-                    initialValue: _items[i].label,
-                    decoration: InputDecoration(
-                      labelText: l10n.codexChartLabel,
-                      isDense: true,
-                      border: const OutlineInputBorder(),
-                    ),
-                    onChanged: (v) =>
-                        _items[i] = (label: v, value: _items[i].value),
-                  ),
-                ),
-                const SizedBox(width: 8),
-                SizedBox(
-                  width: 90,
-                  child: TextFormField(
-                    initialValue: _items[i].value,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      labelText: l10n.codexChartValue,
-                      isDense: true,
-                      border: const OutlineInputBorder(),
-                    ),
-                    onChanged: (v) =>
-                        _items[i] = (label: _items[i].label, value: v),
-                  ),
-                ),
-                IconButton(
-                  icon: const Icon(Icons.remove_circle_outline),
-                  onPressed: _items.length > 1
-                      ? () => setState(() => _items.removeAt(i))
-                      : null,
-                ),
-              ],
-            ),
-          ),
-        Align(
-          alignment: Alignment.centerLeft,
-          child: TextButton.icon(
-            icon: const Icon(Icons.add),
-            label: Text(l10n.codexAddItem),
-            onPressed: () => setState(() => _items.add((label: '', value: ''))),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-// --- Görsel --------------------------------------------------------------
-
-Future<Map<String, dynamic>?> _editImage(
-  BuildContext context,
-  Map<String, dynamic> data,
-  L10n l10n,
-) async {
-  final captionController = TextEditingController(
-    text: '${data['caption'] ?? ''}',
-  );
-  var path = data['path'] as String?;
-  return showModalBottomSheet<Map<String, dynamic>>(
-    context: context,
-    isScrollControlled: true,
-    showDragHandle: true,
-    builder: (context) => StatefulBuilder(
-      builder: (context, setState) => _EditorFrame(
-        title: l10n.codexBlockImage,
-        onSave: () => Navigator.pop(context, {
-          'path': path,
-          'caption': captionController.text,
-        }),
-        children: [
-          OutlinedButton.icon(
-            icon: const Icon(Icons.upload),
-            label: Text(
-              path == null ? l10n.sheetUploadPhoto : l10n.sheetChange,
-            ),
-            onPressed: () async {
-              final file = await pickImageFile();
-              if (file == null) return;
-              try {
-                final stored = await _codexImages.store(file);
-                setState(() => path = stored);
-              } on FormatException catch (e) {
-                if (context.mounted) {
-                  ScaffoldMessenger.of(
-                    context,
-                  ).showSnackBar(SnackBar(content: Text(e.message)));
-                }
-              }
-            },
-          ),
-          const SizedBox(height: 12),
-          TextField(
-            controller: captionController,
-            decoration: InputDecoration(
-              labelText: l10n.codexImageCaption,
-              border: const OutlineInputBorder(),
-            ),
-          ),
-        ],
-      ),
-    ),
-  );
-}
-
-// --- Video ---------------------------------------------------------------
-
-Future<Map<String, dynamic>?> _editVideo(
-  BuildContext context,
-  Map<String, dynamic> data,
-  L10n l10n,
-) async {
-  final captionController = TextEditingController(
-    text: '${data['caption'] ?? ''}',
-  );
-  var path = data['path'] as String?;
-  return showModalBottomSheet<Map<String, dynamic>>(
-    context: context,
-    isScrollControlled: true,
-    showDragHandle: true,
-    builder: (context) => StatefulBuilder(
-      builder: (context, setState) => _EditorFrame(
-        title: l10n.codexBlockVideo,
-        onSave: () => Navigator.pop(context, {
-          'path': path,
-          'caption': captionController.text,
-        }),
-        children: [
-          OutlinedButton.icon(
-            icon: const Icon(Icons.upload),
-            label: Text(
-              path == null ? l10n.codexVideoUpload : l10n.sheetChange,
-            ),
-            onPressed: () async {
-              final file = await pickVideoFile();
-              if (file == null) return;
-              final stored = await _codexMedia.store(file);
-              setState(() => path = stored);
-            },
-          ),
-          if (path != null)
-            Padding(
-              padding: const EdgeInsets.only(top: 8),
-              child: Row(
-                children: [
-                  const Icon(Icons.movie_outlined, size: 18),
-                  const SizedBox(width: 6),
-                  Expanded(
-                    child: Text(
-                      l10n.codexVideoSelected,
-                      style: Theme.of(context).textTheme.bodySmall,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          const SizedBox(height: 12),
-          TextField(
-            controller: captionController,
-            decoration: InputDecoration(
-              labelText: l10n.codexImageCaption,
-              border: const OutlineInputBorder(),
-            ),
-          ),
-        ],
-      ),
-    ),
-  );
-}
-
-// --- Harici bağlantı -----------------------------------------------------
-
-class _LinkEditor extends StatefulWidget {
-  const _LinkEditor({required this.data});
-  final Map<String, dynamic> data;
-  @override
-  State<_LinkEditor> createState() => _LinkEditorState();
-}
-
-class _LinkEditorState extends State<_LinkEditor> {
-  late final _url = TextEditingController(text: '${widget.data['url'] ?? ''}');
-  late final _label = TextEditingController(
-    text: '${widget.data['label'] ?? ''}',
-  );
-  @override
-  Widget build(BuildContext context) {
-    final l10n = L10n.of(context);
-    return _EditorFrame(
-      title: l10n.codexBlockLink,
-      onSave: () => Navigator.pop(context, {
-        'url': _url.text.trim(),
-        'label': _label.text.trim(),
-      }),
-      children: [
-        TextField(
-          controller: _url,
-          autofocus: true,
-          keyboardType: TextInputType.url,
-          decoration: InputDecoration(
-            labelText: l10n.codexLinkUrl,
-            hintText: 'https://…',
-            border: const OutlineInputBorder(),
-          ),
-        ),
-        const SizedBox(height: 12),
-        TextField(
-          controller: _label,
-          decoration: InputDecoration(
-            labelText: l10n.codexLinkLabel,
-            border: const OutlineInputBorder(),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-// --- Sayfa bağlantısı ----------------------------------------------------
-
-Future<Map<String, dynamic>?> _editPageLink(
-  BuildContext context,
-  WidgetRef ref,
-  Map<String, dynamic> data,
-) async {
-  final l10n = L10n.of(context);
-  final pages = ref.read(codexPagesProvider).value ?? const [];
-  var targetId = data['pageId'] as String?;
-  final labelController = TextEditingController(text: '${data['label'] ?? ''}');
-  return showModalBottomSheet<Map<String, dynamic>>(
-    context: context,
-    isScrollControlled: true,
-    showDragHandle: true,
-    builder: (context) => StatefulBuilder(
-      builder: (context, setState) => _EditorFrame(
-        title: l10n.codexBlockPageLink,
-        onSave: () => Navigator.pop(context, {
-          'pageId': targetId,
-          'label': labelController.text.trim().isEmpty
-              ? (pages.where((p) => p.id == targetId).firstOrNull?.title ?? '')
-              : labelController.text.trim(),
-        }),
-        children: [
-          DropdownButtonFormField<String>(
-            initialValue: targetId,
-            isExpanded: true,
-            decoration: InputDecoration(
-              labelText: l10n.codexLinkTargetPage,
-              border: const OutlineInputBorder(),
-            ),
-            items: [
-              for (final p in pages)
-                DropdownMenuItem(
-                  value: p.id,
-                  child: Text(
-                    p.title.isEmpty ? l10n.codexUntitled : p.title,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-            ],
-            onChanged: (v) => setState(() => targetId = v),
-          ),
-          const SizedBox(height: 12),
-          TextField(
-            controller: labelController,
-            decoration: InputDecoration(
-              labelText: l10n.codexLinkLabel,
-              border: const OutlineInputBorder(),
-            ),
-          ),
-        ],
-      ),
-    ),
-  );
-}
-
-// --- Entity bağlantısı (canavar/büyü/eşya/karakter) ----------------------
-
-Future<Map<String, dynamic>?> _editEntityLink(
-  BuildContext context,
-  WidgetRef ref,
-  Map<String, dynamic> data,
-) async {
-  final result =
-      await showDialog<({CodexEntityKind kind, String key, String label})>(
-        context: context,
-        builder: (context) => _EntityPickerDialog(
-          initialKind: CodexEntityKind.fromName('${data['kind'] ?? 'monster'}'),
-        ),
-      );
-  if (result == null) return null;
-  return {'kind': result.kind.name, 'key': result.key, 'label': result.label};
-}
-
-// --- Karakter gömme ------------------------------------------------------
-
-Future<Map<String, dynamic>?> _editCharacterEmbed(
-  BuildContext context,
-  WidgetRef ref,
-) async {
-  final l10n = L10n.of(context);
-  // future'i bekle: Kayitlar sekmesine dogrudan gelindiginde charactersProvider
-  // henuz abone olunmamis olabilir; .value o an null doner (liste bos gorunur).
-  final all = await ref.read(charactersProvider.future);
-  if (!context.mounted) return null;
-  return showDialog<Map<String, dynamic>>(
-    context: context,
-    builder: (context) => AlertDialog(
-      title: Text(l10n.codexBlockCharacter),
-      content: SizedBox(
-        width: 400,
-        height: 360,
-        child: all.isEmpty
-            ? Center(child: Text(l10n.combatNeedCharacter))
-            : ListView(
-                children: [
-                  for (final c in all)
-                    ListTile(
-                      leading: const Icon(Icons.person),
-                      title: Text(c.name),
-                      onTap: () => Navigator.pop(context, {
-                        'characterId': c.id,
-                        'name': c.name,
-                      }),
-                    ),
-                ],
-              ),
-      ),
-      actions: [
-        TextButton(
-          onPressed: () => Navigator.pop(context),
-          child: Text(l10n.cancel),
-        ),
-      ],
-    ),
-  );
-}
-
-class _EntityPickerDialog extends ConsumerStatefulWidget {
-  const _EntityPickerDialog({required this.initialKind});
-  final CodexEntityKind initialKind;
-  @override
-  ConsumerState<_EntityPickerDialog> createState() =>
-      _EntityPickerDialogState();
-}
-
-class _EntityPickerDialogState extends ConsumerState<_EntityPickerDialog> {
-  late CodexEntityKind _kind = widget.initialKind;
-  String _query = '';
-
-  Future<List<({String key, String name})>> _search() async {
-    final repo = ref.read(compendiumRepositoryProvider);
-    switch (_kind) {
-      case CodexEntityKind.monster:
-        return [
-          for (final m in await repo.searchMonsters(query: _query, limit: 40))
-            (key: m.key, name: m.name),
-        ];
-      case CodexEntityKind.spell:
-        return [
-          for (final s in await repo.searchSpells(query: _query, limit: 40))
-            (key: s.key, name: s.name),
-        ];
-      case CodexEntityKind.item:
-        return [
-          for (final i in await repo.searchItems(query: _query, limit: 40))
-            (key: i.key, name: i.name),
-        ];
-      case CodexEntityKind.magicItem:
-        return [
-          for (final mi in await repo.searchMagicItems(
-            query: _query,
-            limit: 40,
-          ))
-            (key: mi.key, name: mi.name),
-        ];
-      case CodexEntityKind.character:
-        final all = await ref.read(charactersProvider.future);
-        final q = _query.toLowerCase();
-        return [
-          for (final c in all)
-            if (q.isEmpty || c.name.toLowerCase().contains(q))
-              (key: c.id, name: c.name),
-        ];
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = L10n.of(context);
-    return AlertDialog(
-      title: Text(l10n.codexBlockEntityLink),
-      content: SizedBox(
-        width: 420,
-        height: 460,
-        child: Column(
+        Wrap(
+          spacing: 6,
           children: [
-            SegmentedButton<CodexEntityKind>(
-              showSelectedIcon: false,
-              segments: [
-                ButtonSegment(
-                  value: CodexEntityKind.monster,
-                  label: Text(l10n.compendiumMonsters),
-                ),
-                ButtonSegment(
-                  value: CodexEntityKind.spell,
-                  label: Text(l10n.compendiumSpells),
-                ),
-                ButtonSegment(
-                  value: CodexEntityKind.item,
-                  label: Text(l10n.compendiumItems),
-                ),
-                ButtonSegment(
-                  value: CodexEntityKind.magicItem,
-                  label: Text(l10n.compendiumMagicItems),
-                ),
-                ButtonSegment(
-                  value: CodexEntityKind.character,
-                  label: Text(l10n.navCharacters),
-                ),
-              ],
-              selected: {_kind},
-              onSelectionChanged: (s) => setState(() => _kind = s.first),
-            ),
-            const SizedBox(height: 8),
-            TextField(
-              decoration: InputDecoration(
-                hintText: l10n.searchHint,
-                prefixIcon: const Icon(Icons.search),
-                isDense: true,
-                border: const OutlineInputBorder(),
+            for (final preset in const [
+              '1d20',
+              '1d20+5',
+              '2d6+3',
+              '1d4',
+              '1d8',
+              '1d100',
+            ])
+              ActionChip(
+                label: Text(preset),
+                onPressed: () => setState(() => _expr.text = preset),
               ),
-              onChanged: (v) => setState(() => _query = v),
-            ),
-            const SizedBox(height: 8),
-            Expanded(
-              child: FutureBuilder<List<({String key, String name})>>(
-                future: _search(),
-                builder: (context, snap) {
-                  final rows = snap.data ?? const [];
-                  return ListView.builder(
-                    itemCount: rows.length,
-                    itemBuilder: (context, i) => ListTile(
-                      dense: true,
-                      title: Text(rows[i].name),
-                      onTap: () => Navigator.pop(context, (
-                        kind: _kind,
-                        key: rows[i].key,
-                        label: rows[i].name,
-                      )),
-                    ),
-                  );
-                },
-              ),
-            ),
           ],
         ),
-      ),
-      actions: [
-        TextButton(
-          onPressed: () => Navigator.pop(context),
-          child: Text(l10n.cancel),
-        ),
       ],
-    );
-  }
-}
-
-// --- Ortak editör çerçevesi ---------------------------------------------
-
-class _EditorFrame extends StatelessWidget {
-  const _EditorFrame({
-    required this.title,
-    required this.onSave,
-    required this.children,
-    this.canSave = true,
-  });
-
-  final String title;
-  final VoidCallback onSave;
-  final List<Widget> children;
-  final bool canSave;
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = L10n.of(context);
-    final theme = Theme.of(context);
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text(title, style: theme.textTheme.titleLarge),
-          const SizedBox(height: 12),
-          ...children,
-          const SizedBox(height: 16),
-          FilledButton(
-            onPressed: canSave ? onSave : null,
-            child: Text(l10n.save),
-          ),
-        ],
-      ),
     );
   }
 }

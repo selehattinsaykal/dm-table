@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Uyarlanir (adaptive) launcher ikonu, API 26+.
+
+  On plan ve arka plan AYRI katman: sistem ikisini birlikte maskeleyip
+  (daire, squircle, kare...) hareket ettiriyor. Arka plan uygulamanin koyu
+  temasiyla ayni (`@color/ic_launcher_background`); on plan
+  `tools/build_icon.dart` tarafindan guvenli alana oturtulmus logo.
+-->
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <background android:drawable="@color/ic_launcher_background"/>
+    <foreground android:drawable="@mipmap/ic_launcher_foreground"/>
+    <monochrome android:drawable="@mipmap/ic_launcher_foreground"/>
+</adaptive-icon>

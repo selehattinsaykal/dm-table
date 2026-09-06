@@ -5,12 +5,12 @@ import '../campaign/campaign.dart';
 import '../campaign/campaign_paths.dart';
 import 'calendar_tables.dart';
 import 'character_tables.dart';
+import 'clock_tables.dart';
 import 'codex_tables.dart';
 import 'combat_tables.dart';
 import 'journey_tables.dart';
 import 'loot_tables.dart';
 import 'music_tables.dart';
-import 'notes_tables.dart';
 import 'party_tables.dart';
 import 'quest_tables.dart';
 import 'random_table_tables.dart';
@@ -49,13 +49,13 @@ part 'database.g.dart';
     WorldLinks,
     BondTypes,
     Npcs,
+    Factions,
     LootSets,
     PartyInventories,
     RandomTables,
     Journeys,
     MusicPlaylists,
     MusicTracks,
-    CharacterNotes,
     SessionLogEntries,
     CodexPages,
     CodexBlocks,
@@ -67,6 +67,11 @@ part 'database.g.dart';
     CalendarEras,
     ChronicleEvents,
     CalendarReminders,
+    ContentSources,
+    EncounterTemplates,
+    Macros,
+    DowntimeActivities,
+    Clocks,
   ],
 )
 class AppDatabase extends _$AppDatabase {
@@ -89,7 +94,57 @@ class AppDatabase extends _$AppDatabase {
       );
 
   @override
-  int get schemaVersion => 33;
+  int get schemaVersion => 51;
+
+  /// Sutunu YOKSA ekler.
+  ///
+  /// **Neden gerekli:** drift `onUpgrade`'i tek bir islem (transaction) icinde
+  /// kosturmuyor. Zincirin ortasinda bir adim patlarsa ondan onceki
+  /// `ALTER TABLE ... ADD COLUMN`lar dosyada KALIR ama `user_version`
+  /// ilerlemez; bir sonraki acilista ayni blok bastan kosar ve bu kez
+  /// "duplicate column" ile patlar. Dosya iki hata arasinda sikisir.
+  ///
+  /// Bu tam olarak v42'ye gecişte yasandi: v41 blogu sutunu ekledikten sonra
+  /// tabloyu URETILMIS bir sorguyla okumaya calisti (o sorgu tablonun guncel
+  /// kolonlarini ister, oysa yenileri bir sonraki blokta ekleniyor) ve
+  /// patladi. Yeni blok yazarken hem bu yardimci hem de "migration icinde
+  /// tablo okurken ham SQL" kurali gecerli.
+  Future<void> _addColumnIfMissing(
+    Migrator m,
+    TableInfo<Table, dynamic> table,
+    GeneratedColumn<Object> column,
+  ) async {
+    final rows = await customSelect(
+      'PRAGMA table_info(${table.actualTableName})',
+    ).get();
+    // Tablo HIC YOKSA: bu veritabani o tablodan onceki bir surumden geliyor
+    // demektir ve zincirin daha erken bir adimindaki `createTable` onu
+    // GUNCEL kolonlariyla kuracak. Burada ALTER denemek "no such table" ile
+    // patlardi.
+    if (rows.isEmpty) return;
+    final existing = {for (final row in rows) row.read<String>('name')};
+    if (existing.contains(column.name)) return;
+    await m.addColumn(table, column);
+  }
+
+  /// Sutunu VARSA dusurur.
+  ///
+  /// [_addColumnIfMissing]'in aynasi ve ayni sebeple var: v48 artik yasamayan
+  /// (oyuncu paneline ozel) sutunlari dusuruyor, ama ayni veritabani zincirin
+  /// hangi adimindan geldigine gore o sutunu hic edinmemis olabilir --
+  /// `onCreate` guncel semayi yaziyor. Kosulsuz `DROP COLUMN` orada
+  /// "no such column" ile patlardi.
+  ///
+  /// Tablo adi ve sutun adi HAM METIN: sutunlar bu surumde tablo
+  /// tanimlarindan silindigi icin uretilmis bir `GeneratedColumn` referansi
+  /// artik yok.
+  Future<void> _dropColumnIfPresent(String table, String column) async {
+    final rows = await customSelect('PRAGMA table_info($table)').get();
+    if (rows.isEmpty) return;
+    final existing = {for (final row in rows) row.read<String>('name')};
+    if (!existing.contains(column)) return;
+    await customStatement('ALTER TABLE $table DROP COLUMN $column');
+  }
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -128,21 +183,12 @@ class AppDatabase extends _$AppDatabase {
         await m.addColumn(characters, characters.bond);
         await m.addColumn(characters, characters.flaw);
       }
-      if (from < 7) {
-        // Haritadan dukkan erisimi.
-        await m.addColumn(shops, shops.mapAccessible);
-      }
+      // v7 (haritadan dukkan erisimi), v9 (oyuncu notlari) ve v10 (oyuncunun
+      // kendi inisiyatifini atmasi) BOS BIRAKILDI: uc adimin da actigi
+      // tablo/sutun v48'de dusuruldu, yani once yaratip sonra silmek olurdu.
       if (from < 8) {
         // Ganimet setleri.
         await m.createTable(lootSets);
-      }
-      if (from < 9) {
-        // Oyuncu notlari (karaktere bagli).
-        await m.createTable(characterNotes);
-      }
-      if (from < 10) {
-        // Inisiyatifi oyuncular kendi atsin: atildi bayragi.
-        await m.addColumn(combatants, combatants.initiativeRolled);
       }
       if (from < 11) {
         // Canavar portreleri.
@@ -158,7 +204,7 @@ class AppDatabase extends _$AppDatabase {
         await m.createTable(codexBlocks);
       }
       if (from < 14) {
-        // Gorevler: DM gorevleri, oyunculara hedefli, kabul/ret.
+        // Gorevler.
         await m.createTable(quests);
       }
       if (from < 15) {
@@ -221,12 +267,10 @@ class AppDatabase extends _$AppDatabase {
         await m.addColumn(npcs, npcs.nodeRadius);
       }
       if (from < 21) {
-        // Gorev odulleri (gercek esya + para) ve oylamali paylasim.
-        await m.addColumn(quests, quests.shareMode);
-        await m.addColumn(quests, quests.voteStatus);
+        // Gorev odulleri (gercek esya + para). Ayni adimda gelen oylama
+        // sutunlari (shareMode/voteStatus/rewardPoolJson) v48'de dusuruldu.
         await m.addColumn(quests, quests.rewardCoinsCp);
         await m.addColumn(quests, quests.rewardItemsJson);
-        await m.addColumn(quests, quests.rewardPoolJson);
       }
       if (from < 22) {
         // Oyun-ici takvim + tarihce. Kampanya = ayri veritabani oldugu icin
@@ -297,6 +341,147 @@ class AppDatabase extends _$AppDatabase {
         // Daha eski bir veritabani o yoldan gelince sutun zaten var olur,
         // ikinci kez eklemek "duplicate column name" ile patlar.
         await m.addColumn(musicPlaylists, musicPlaylists.parentId);
+      }
+      if (from < 34) {
+        // Oyuncunun kendi buyulerini secmesi: kalan degistirme hakki.
+        await m.addColumn(characters, characters.spellChangesAvailable);
+      }
+      if (from < 35) {
+        // Konsantrasyon takibi.
+        await m.addColumn(characters, characters.concentrationSpell);
+      }
+      if (from < 37) {
+        // AI ile istege bagli ceviri (v36) kaldirildi: kutuphane metinlerinin
+        // Turkcesi artik `assets/data/tr/*.json` ile paketle birlikte geliyor,
+        // yani onbellege gerek yok. Tablo v36'dan gecen veritabanlarinda
+        // duruyor olabilir.
+        await customStatement('DROP TABLE IF EXISTS content_translations');
+      }
+      if (from < 38) {
+        // Ekipman yuvalari: kusanilan esyanin yeri ve karakter bazinda
+        // duzenlenebilen yuva sinirlari.
+        await m.addColumn(characterItems, characterItems.slot);
+        await m.addColumn(characters, characters.slotCapacitiesJson);
+      }
+      if (from < 42) {
+        // Dunya grafiginde katlama. Ayni adimda gelen savas haritasi
+        // sutunlari (jeton yonu/kilidi, isik, karanlik gorusu, sahne sesi)
+        // v48'de tabloyla birlikte dusuruldu.
+        await _addColumnIfMissing(m, locations, locations.graphCollapsed);
+      }
+      // v43 (noktasal isik/ses kaynaklari), v44 (cizim ve tile katmanlari) ve
+      // v45 (kor gorusu/titresim duyusu/hakiki gorus) BOS: hepsi savas
+      // haritasi tablolarina aitti, v48'de dusuruldu.
+      if (from < 46) {
+        // Kullanicinin tanimladigi icerik kaynaklari.
+        await m.createTable(contentSources);
+      }
+      if (from < 47) {
+        // Savas takibi: reaksiyon, hasar turu savunmalari, olum kurtarmasi.
+        await _addColumnIfMissing(m, combatants, combatants.reactionUsed);
+        await _addColumnIfMissing(m, combatants, combatants.defensesJson);
+        await _addColumnIfMissing(m, combatants, combatants.deathSaveSuccesses);
+        await _addColumnIfMissing(m, combatants, combatants.deathSaveFailures);
+        // Tur sayaci ve in (lair) eylemi.
+        await _addColumnIfMissing(m, encounters, encounters.turnLimitSeconds);
+        await _addColumnIfMissing(m, encounters, encounters.lairActionText);
+        await _addColumnIfMissing(m, encounters, encounters.lairInitiative);
+        // Karsilasma kaliplari, makrolar, bos zaman faaliyetleri.
+        await m.createTable(encounterTemplates);
+        await m.createTable(macros);
+        await m.createTable(downtimeActivities);
+      }
+      if (from < 48) {
+        // Uygulama TEK KISILIK bir DM aracina donduruldu: yerel ag sunucusu,
+        // oyuncu web paneli ve savas haritasi kaldirildi. Bu blok o iki
+        // ozelligin geride biraktigi semayi temizler.
+        //
+        // Neden gercekten DUSURULUYOR (bosta birakilmiyor): savas haritasi
+        // tablolari kampanya dosyasinin en buyuk parcasiydi -- jeton, sis
+        // katmani ve tile satirlari. Okunmayan bir tablo olarak birakmak
+        // yedek arsivini ve kampanya birlestirmeyi de bosuna sisirirdi.
+        //
+        // GERI DONUSU YOK: bu satirlarin yedegi alinmadiysa savas haritalari
+        // ve oyuncu notlari kalici olarak gider.
+        for (final table in const [
+          'battle_maps',
+          'battle_walls',
+          'battle_tokens',
+          'battle_levels',
+          'battle_fog_layers',
+          'battle_templates',
+          'battle_lights',
+          'battle_sounds',
+          'battle_drawings',
+          'battle_tiles',
+          'character_notes',
+        ]) {
+          await customStatement('DROP TABLE IF EXISTS $table');
+        }
+
+        // Yalnizca "oyuncu ne goruyor?" sorusunu cevaplamak icin var olan
+        // sutunlar. Kesif/gizleme kavraminin kendisi de gitti: izleyen
+        // olmayinca gorunurluk bayraginin anlami kalmiyor.
+        const droppedColumns = <String, List<String>>{
+          'locations': ['revealed', 'map_preview_path'],
+          'map_pins': ['revealed'],
+          'shops': ['open_to_players', 'map_accessible', 'requires_approval'],
+          'quests': [
+            'shared',
+            'acceptances_json',
+            'share_mode',
+            'vote_status',
+            'reward_pool_json',
+          ],
+          'combatants': ['initiative_rolled', 'hidden_from_players'],
+          // Makronun "kime gorunsun" alani (dm/player/both); artik tek
+          // izleyici var.
+          'macros': ['scope'],
+        };
+        for (final entry in droppedColumns.entries) {
+          for (final column in entry.value) {
+            await _dropColumnIfPresent(entry.key, column);
+          }
+        }
+      }
+      if (from < 49) {
+        // Karsilasma <-> yer bagi. Bu bag eskiden savas haritasi tablosunda
+        // (`battle_maps.encounter_id`) dolayli olarak duruyordu ve harita
+        // v48'de kaldirilinca koptu; artik karsilasmanin kendi sutunu.
+        await _addColumnIfMissing(m, encounters, encounters.locationId);
+      }
+      if (from < 50) {
+        // Fraksiyonlar: dunya grafiginin ucuncu dugum tipi.
+        await m.createTable(factions);
+
+        // "Uyelik" bag turu. `ensureDefaultBondTypes` yalnizca tablo TAMAMEN
+        // bossa tohumluyor (kullanicinin sildigi/adlandirdigi turler geri
+        // gelmesin diye), yani mevcut kampanyalar yeni varsayilani oradan
+        // ALAMAZ. Bu yuzden burada, tek seferlik ekleniyor.
+        //
+        // Adi Ingilizce: migration'in dili yok. DM bag turu ayarlarindan tek
+        // dokunusla degistirebiliyor; taze kampanyalar zaten cevirisini
+        // `defaultBondTypes` uzerinden aliyor.
+        //
+        // Once `createTable`: bu adim BASKA bir adimin actigi tabloya yaziyor
+        // ve boyle bir bagimlilik sessizce kirilgan. `createTable` zaten
+        // "IF NOT EXISTS", yani var olan tabloya dokunmuyor; karsiligindaysa
+        // blok kendi kendine yetiyor ve zincirin hangi surumden basladigindan
+        // bagimsiz calisiyor.
+        await m.createTable(bondTypes);
+        await into(bondTypes).insert(
+          BondTypesCompanion.insert(
+            code: 'membership',
+            name: 'Membership',
+            color: 0xFF8D6E63,
+            sortOrder: const Value(9),
+          ),
+          mode: InsertMode.insertOrIgnore,
+        );
+      }
+      if (from < 51) {
+        // Ilerleme saatleri (progress clocks).
+        await m.createTable(clocks);
       }
     },
     onCreate: (m) async {

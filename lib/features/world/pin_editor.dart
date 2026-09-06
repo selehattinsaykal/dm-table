@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../data/db/database.dart';
 import '../../data/db/world_tables.dart';
 import '../../data/loot_repository.dart';
-import '../../data/pin_visibility.dart';
+import '../../app/theme.dart';
 import '../../l10n/app_localizations.dart';
 import '../combat/combat_providers.dart';
 import '../loot/loot_page.dart';
@@ -24,47 +24,23 @@ Future<void> showPinEditor(
   MapPin? pin,
   double? x,
   double? y,
-  bool initialRevealed = false,
-  bool? visibleToPlayers,
 }) => showModalBottomSheet<void>(
   context: context,
   isScrollControlled: true,
   showDragHandle: true,
   builder: (context) => Padding(
     padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-    child: _PinEditor(
-      locationId: locationId,
-      pin: pin,
-      x: x,
-      y: y,
-      initialRevealed: initialRevealed,
-      visibleToPlayers: visibleToPlayers,
-    ),
+    child: _PinEditor(locationId: locationId, pin: pin, x: x, y: y),
   ),
 );
 
 class _PinEditor extends ConsumerStatefulWidget {
-  const _PinEditor({
-    required this.locationId,
-    this.pin,
-    this.x,
-    this.y,
-    this.initialRevealed = false,
-    this.visibleToPlayers,
-  });
+  const _PinEditor({required this.locationId, this.pin, this.x, this.y});
 
   final String locationId;
   final MapPin? pin;
   final double? x;
   final double? y;
-
-  /// Yeni pinin varsayilan gorunurlugu (yer oyunculara acilmissa true gelir).
-  final bool initialRevealed;
-
-  /// Mevcut pinin oyunculara GERCEK gorunurlugu. Pinin kendi bayragindan
-  /// okunamaz (yer/dukkan pinleri hedeflerinin durumuna bakar), bu yuzden
-  /// cagiran taraf hesaplayip verir; bkz. `data/pin_visibility.dart`.
-  final bool? visibleToPlayers;
 
   @override
   ConsumerState<_PinEditor> createState() => _PinEditorState();
@@ -75,14 +51,11 @@ class _PinEditorState extends ConsumerState<_PinEditor> {
   late final _note = TextEditingController(text: widget.pin?.noteText ?? '');
   late PinKind _kind = widget.pin?.kind ?? PinKind.note;
   late String? _targetId = widget.pin?.targetId;
-  late bool _revealed =
-      widget.visibleToPlayers ?? widget.pin?.revealed ?? widget.initialRevealed;
   late String? _lootSetId = widget.pin?.lootSetId;
 
   bool get _isNew => widget.pin == null;
 
-  /// Hazine pini oyunculara aciksa (revealed) ganimeti etkilesimli mi?
-  /// Yeni hazine pininde loot set secilmis olmali.
+  /// Bagli ganimet seti pin olusturulduktan sonra degistirilemez.
   bool get _treasureLocked =>
       _kind == PinKind.treasure && !_isNew && widget.pin?.lootSetId != null;
 
@@ -210,20 +183,6 @@ class _PinEditorState extends ConsumerState<_PinEditor> {
                 if (_label.text.trim().isEmpty) _label.text = name;
               }),
             ),
-          const SizedBox(height: 8),
-          SwitchListTile(
-            contentPadding: EdgeInsets.zero,
-            title: Text(l10n.worldShowToPlayers),
-            subtitle: Text(
-              _kind == PinKind.location
-                  // Location-pin acildiginda oyuncu, hedef yerin haritasi
-                  // varsa pine dokunarak o alt haritaya girebilir.
-                  ? l10n.worldPinRevealLocationHint
-                  : l10n.worldPinRevealHint,
-            ),
-            value: _revealed,
-            onChanged: (v) => setState(() => _revealed = v),
-          ),
           const SizedBox(height: 16),
           Row(
             children: [
@@ -264,13 +223,6 @@ class _PinEditorState extends ConsumerState<_PinEditor> {
 
   Future<void> _save() async {
     final repo = ref.read(worldRepositoryProvider);
-    final shops = ref.read(shopRepositoryProvider);
-
-    // Gorunurluk her zaman AYRI yazilir: anahtarin hangi kaydi degistirecegi
-    // pin turune bagli (yer pininde hedef lokasyon, dukkan pininde dukkan,
-    // digerlerinde pinin kendisi). `updatePin(revealed:)` ile yazmak yer
-    // pinlerinde hicbir ise yaramiyordu -- sunucu o bayraga bakmiyor.
-    String? pinId = widget.pin?.id;
 
     // Haritasiz yer, ARKASINDA gercek bir lokasyon kaydi tutar: gorev
     // ureticisi, seyahat planlayici ve lokasyon secicileri `Locations`
@@ -295,7 +247,7 @@ class _PinEditorState extends ConsumerState<_PinEditor> {
 
     if (_isNew) {
       // Hazine pini bir ganimet setine baglandiysa setin kopyasi "kalan
-      // ganimet" olarak pin'e yazilir; oyuncular esya/para aldikca azalir.
+      // ganimet" olarak pin'e yazilir; DM dagittikca azalir.
       final lootJson = (_kind == PinKind.treasure && _lootSetId != null)
           ? await _initialLootJson(_lootSetId!)
           : null;
@@ -310,8 +262,6 @@ class _PinEditorState extends ConsumerState<_PinEditor> {
         lootSetId: _lootSetId,
         lootDataJson: lootJson,
       );
-      final pins = await repo.pins(widget.locationId);
-      pinId = pins.last.id;
     } else {
       await repo.updatePin(
         widget.pin!.id,
@@ -320,15 +270,6 @@ class _PinEditorState extends ConsumerState<_PinEditor> {
         targetId: _targetId,
       );
     }
-
-    await setPinPlayerVisibility(
-      kind: _kind,
-      targetId: _targetId,
-      visible: _revealed,
-      world: repo,
-      shops: shops,
-      pinId: pinId,
-    );
 
     if (mounted) Navigator.pop(context);
   }
@@ -355,57 +296,31 @@ String pinKindLabel(L10n l10n, PinKind kind) => switch (kind) {
 /// Pinin SALT-OKUNUR ozeti (goruntuleme modu).
 ///
 /// Goruntuleme modunda pine dokunmak duzenleyiciyi acmaz — masada yanlislikla
-/// bir pini degistirmek istemiyoruz. Yine de tek bir yazma islemi burada
-/// birakildi: pini oyunculara acmak/kapamak. Bu bir HAZIRLIK degil, oyun
-/// sirasindaki asil hamledir ("burayi artik goruyorlar"), ve kazara olacak
-/// bir jest degil — panel bilincli olarak acilir.
+/// bir pini degistirmek istemiyoruz.
 Future<void> showPinInfo(
   BuildContext context,
   WidgetRef ref, {
   required MapPin pin,
-  required bool visibleToPlayers,
 }) => showModalBottomSheet<void>(
   context: context,
   showDragHandle: true,
-  builder: (context) => _PinInfo(pin: pin, visibleToPlayers: visibleToPlayers),
+  builder: (context) => _PinInfo(pin: pin),
 );
 
-class _PinInfo extends ConsumerStatefulWidget {
-  const _PinInfo({required this.pin, required this.visibleToPlayers});
+class _PinInfo extends ConsumerWidget {
+  const _PinInfo({required this.pin});
 
   final MapPin pin;
 
-  /// Pinin oyunculara GERCEK gorunurlugu (bkz. `data/pin_visibility.dart`).
-  final bool visibleToPlayers;
-
   @override
-  ConsumerState<_PinInfo> createState() => _PinInfoState();
-}
-
-class _PinInfoState extends ConsumerState<_PinInfo> {
-  late bool _revealed = widget.visibleToPlayers;
-
-  /// Anahtar pin turune gore DOGRU kaydi degistirir: yer pininde hedef
-  /// lokasyon acilir/kapanir -- yani dugum grafigindeki "oyunculara goster"
-  /// ile birebir ayni islem.
-  Future<void> _setRevealed(bool value) async {
-    setState(() => _revealed = value);
-    await setPinPlayerVisibility(
-      kind: widget.pin.kind,
-      targetId: widget.pin.targetId,
-      visible: value,
-      world: ref.read(worldRepositoryProvider),
-      shops: ref.read(shopRepositoryProvider),
-      pinId: widget.pin.id,
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final l10n = L10n.of(context);
-    final pin = widget.pin;
-    final color = pinKindColor(pin.kind, theme.colorScheme);
+    final color = pinKindColor(
+      pin.kind,
+      theme.colorScheme,
+      context.fantasyColors,
+    );
 
     return SafeArea(
       child: Padding(
@@ -446,18 +361,6 @@ class _PinInfoState extends ConsumerState<_PinInfo> {
               const SizedBox(height: 16),
               Text(pin.noteText, style: theme.textTheme.bodyMedium),
             ],
-            const SizedBox(height: 8),
-            SwitchListTile(
-              contentPadding: EdgeInsets.zero,
-              title: Text(l10n.worldShowToPlayers),
-              subtitle: Text(
-                _revealed
-                    ? l10n.worldPinVisibleToPlayers
-                    : l10n.worldPinHiddenFromPlayers,
-              ),
-              value: _revealed,
-              onChanged: _setRevealed,
-            ),
             const SizedBox(height: 8),
             Align(
               alignment: Alignment.centerRight,

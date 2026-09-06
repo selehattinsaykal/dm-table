@@ -6,8 +6,8 @@
 //   flutter run -d chrome -t lib/dev_theme_preview.dart
 //   flutter build web -t lib/dev_theme_preview.dart -o build/theme_preview
 //
-// Not: `main.dart` ve `main_player.dart` bu dosyayi import ETMEZ, dolayisiyla
-// urun derlemelerine dahil olmaz.
+// Not: `main.dart` bu dosyayi import ETMEZ, dolayisiyla urun derlemelerine
+// dahil olmaz.
 import 'package:flutter/material.dart';
 
 import 'app/theme.dart';
@@ -21,7 +21,7 @@ class _PreviewApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
     debugShowCheckedModeBanner: false,
-    theme: AppTheme.light,
+    theme: AppTheme.light(),
     home: const _SideBySide(),
   );
 }
@@ -36,14 +36,14 @@ class _SideBySide extends StatelessWidget {
     children: [
       Expanded(
         child: Theme(
-          data: AppTheme.light,
+          data: AppTheme.light(),
           child: const ParchmentOverlay(child: _Gallery(title: 'Parşömen')),
         ),
       ),
       const VerticalDivider(width: 1),
       Expanded(
         child: Theme(
-          data: AppTheme.dark,
+          data: AppTheme.dark(),
           child: const ParchmentOverlay(child: _Gallery(title: 'Meşe & Kor')),
         ),
       ),

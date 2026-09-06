@@ -136,6 +136,7 @@ Widget buildCodexInline(
   String text, {
   void Function(CodexInlineToken token)? onTap,
   TextStyle? style,
+  TextAlign? textAlign,
 }) {
   final theme = Theme.of(context);
 
@@ -220,5 +221,9 @@ Widget buildCodexInline(
         _ => chip(token),
       },
   ];
-  return Text.rich(TextSpan(children: spans), style: style);
+  return Text.rich(
+    TextSpan(children: spans),
+    style: style,
+    textAlign: textAlign,
+  );
 }

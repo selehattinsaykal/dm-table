@@ -40,15 +40,12 @@ class Locations extends Table {
 
   TextColumn get description => text().withDefault(const Constant(''))();
 
-  /// DM'e ozel notlar; oyunculara asla gonderilmez.
+  /// DM'e ozel notlar.
   TextColumn get secretNotes => text().withDefault(const Constant(''))();
 
   /// Harita gorselinin uygulama klasorune gore yolu. Mutlak yol saklanmaz:
   /// Android yeniden kurulumda uygulama klasorunun yolunu degistirebiliyor.
   TextColumn get mapImagePath => text().nullable()();
-
-  /// Oyunculara gonderilen kucultulmus surum.
-  TextColumn get mapPreviewPath => text().nullable()();
 
   /// Haritanin piksel olculeri; pin koordinatlarini en-boy oranina gore
   /// dogru yerlestirmek icin.
@@ -62,9 +59,6 @@ class Locations extends Table {
   RealColumn get mapWidthMiles => real().nullable()();
   RealColumn get mapHeightMiles => real().nullable()();
 
-  /// Oyuncular bu lokasyonu daha once gordu mu? (Kesif kaydi.)
-  BoolColumn get revealed => boolean().withDefault(const Constant(false))();
-
   /// Dunya grafigindeki (DM-only dugum-agi) serbest konum. Null = henuz
   /// yerlestirilmedi; grafik ilk acilista simulasyonla dizer, sonra kalici olur.
   RealColumn get graphX => real().nullable()();
@@ -72,6 +66,14 @@ class Locations extends Table {
 
   /// Dugum (küre) gorsel boyutu (DM-only). Null = varsayilan (yer=30, npc=21).
   RealColumn get nodeRadius => real().nullable()();
+
+  /// Dunya grafiginde alt yerleri KATLANMIS mi?
+  ///
+  /// Yuz lokasyonlu bir dunyada ag okunmaz hale geliyordu. Katlanmis bir
+  /// dugum cocuklarini gizler ve uzerinde kac tane oldugunu yazar; alt yerin
+  /// baglantilari da uste tasinir ki ag kopmasin.
+  BoolColumn get graphCollapsed =>
+      boolean().withDefault(const Constant(false))();
 
   IntColumn get sortOrder => integer().withDefault(const Constant(0))();
   DateTimeColumn get createdAt => dateTime().withDefault(currentDateAndTime)();
@@ -82,10 +84,11 @@ class Locations extends Table {
 
 /// Dunya grafigindeki iki dugum arasindaki yonsuz baglanti (kenar).
 ///
-/// Uclar YER ya da NPC olabilir; [aKind]/[bKind] hangisi oldugunu soyler
-/// ('location'/'npc'). Bu yuzden [aId]/[bId] FK ile bir tabloya baglanmaz
-/// (foreign_keys zaten OFF). [type] bagin turudur (bkz. BondType: dostluk,
-/// dusmanlik, ticaret...). Agac [Locations.parentId]'den bagimsiz, coktan-coga.
+/// Uclar YER, NPC ya da FRAKSIYON olabilir; [aKind]/[bKind] hangisi oldugunu
+/// soyler ('location'/'npc'/'faction'). Bu yuzden [aId]/[bId] FK ile bir
+/// tabloya baglanmaz (foreign_keys zaten OFF). [type] bagin turudur (bkz.
+/// BondType: dostluk, dusmanlik, ticaret, uyelik...). Agac
+/// [Locations.parentId]'den bagimsiz, coktan-coga.
 class WorldLinks extends Table {
   TextColumn get id => text()();
   TextColumn get aId => text()();
@@ -129,7 +132,7 @@ class MapPins extends Table {
   /// Haritanin sol-ust kosesine gore 0..1 arasi oran.
   ///
   /// Piksel yerine oran saklaniyor: ayni harita telefonda, tablette ve
-  /// oyuncunun tarayicisinda farkli olculerde ciziliyor.
+  /// masaustunde farkli olculerde ciziliyor.
   RealColumn get x => real()();
   RealColumn get y => real()();
 
@@ -140,17 +143,57 @@ class MapPins extends Table {
   /// Not pinlerinin icerigi.
   TextColumn get noteText => text().withDefault(const Constant(''))();
 
-  /// Oyuncular bu pini goruyor mu?
-  BoolColumn get revealed => boolean().withDefault(const Constant(false))();
-
   // --- Ganimet (treasure pinleri icin) ---
 
   /// Baglanan ganimet seti ID'si. Treasure pini olustururken secilir.
   TextColumn get lootSetId => text().nullable()();
 
   /// Kalan ganimet: `{"coinsCp": 150, "items": [{"name":"...","magic":false}]}`.
-  /// Oyuncular esya/para aldikca guncellenir; bossa pin otomatik silinir.
+  /// DM dagittikca guncellenir; bossa pin otomatik silinir.
   TextColumn get lootDataJson => text().nullable()();
+
+  DateTimeColumn get createdAt => dateTime().withDefault(currentDateAndTime)();
+
+  @override
+  Set<Column> get primaryKey => {id};
+}
+
+/// Kampanyadaki ORGUTLER: loncalar, tarikatlar, hanedanlar, sucete...
+///
+/// **Neden ayri bir varlik:** dunya grafiginde su ana kadar yalnizca YER ve
+/// KISI vardi. Oysa masada surekli sorulan uc soru var ve ucuncusunun yeri
+/// yoktu: "burasi neresi", "bu kim", **"bunlar kim ve ne istiyor"**. Fraksiyon
+/// bir NPC degil (lideri olur ama kendisi olmez), bir yer de degil (merkezi
+/// olur ama tasinabilir).
+///
+/// Uyelik ve dusmanlik AYRI tutulmuyor: ikisi de [WorldLinks] uzerinden tipli
+/// bir bag. Boylece grafik tek bir kenar modeliyle calismaya devam ediyor ve
+/// "Kizil Hancerler ile Tuccar Loncasi dusman" ile "Gundren, Kizil Hancerler
+/// uyesi" ayni ekranda ayni sekilde cizilebiliyor.
+class Factions extends Table {
+  TextColumn get id => text()();
+  TextColumn get name => text()();
+
+  /// Orgutun turu, serbest metin: "lonca", "tarikat", "hanedan", "cete".
+  /// Sabit bir enum DEGIL cunku her masanin kendi sozlugu var.
+  TextColumn get kind => text().withDefault(const Constant(''))();
+
+  TextColumn get description => text().withDefault(const Constant(''))();
+
+  /// Orgutun ACIK amaci: masada en cok sorulan sey bu.
+  TextColumn get goal => text().withDefault(const Constant(''))();
+
+  /// DM'e ozel notlar (gercek amac, ihanet, sirlar).
+  TextColumn get secretNotes => text().withDefault(const Constant(''))();
+
+  /// Arma/sembol gorseli. NPC portreleriyle ayni depoyu paylasir
+  /// (`CharacterImageStore`), ayri bir klasore gerek yok.
+  TextColumn get portraitPath => text().nullable()();
+
+  /// Dunya grafigindeki serbest konum ve dugum boyutu; yer/NPC ile ayni desen.
+  RealColumn get graphX => real().nullable()();
+  RealColumn get graphY => real().nullable()();
+  RealColumn get nodeRadius => real().nullable()();
 
   DateTimeColumn get createdAt => dateTime().withDefault(currentDateAndTime)();
 
@@ -177,7 +220,7 @@ class Npcs extends Table {
   TextColumn get flaw => text().withDefault(const Constant(''))();
   TextColumn get hook => text().withDefault(const Constant(''))();
 
-  /// DM'e ozel; oyunculara gonderilmez.
+  /// DM'e ozel notlar.
   TextColumn get secretNotes => text().withDefault(const Constant(''))();
 
   /// Bagli oldugu canavar stat blogu (varsa) -- savasa dogrudan eklemek icin.

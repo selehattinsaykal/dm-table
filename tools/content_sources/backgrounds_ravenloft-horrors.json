@@ -1,0 +1,121 @@
+[
+  {
+    "key": "ravenloft-horrors_haunted-one",
+    "name": "Haunted One",
+    "document": "ravenloft-horrors",
+    "desc": "",
+    "benefits": [
+      {
+        "name": "Ability Scores",
+        "desc": "Constitution, Wisdom, Charisma",
+        "type": "ability_score"
+      },
+      {
+        "name": "Skill Proficiencies",
+        "desc": "Arcana and Survival",
+        "type": "skill_proficiency"
+      },
+      {
+        "name": "Feat",
+        "desc": "Survivor",
+        "type": "feat"
+      },
+      {
+        "name": "Equipment",
+        "desc": "*Choose A or B:* (a) Gaming Set (same as above), Crowbar, Holy Water (1 flask), Mirror, Oil (2 flasks), Signal Whistle, Tinderbox, Traveler's Clothes, Torches, Waterskin, 14 GP; or (b) 50 GP",
+        "type": "equipment"
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "ravenloft-horrors_investigator",
+    "name": "Investigator",
+    "document": "ravenloft-horrors",
+    "desc": "",
+    "benefits": [
+      {
+        "name": "Ability Scores",
+        "desc": "Intelligence, Wisdom, Charisma",
+        "type": "ability_score"
+      },
+      {
+        "name": "Skill Proficiencies",
+        "desc": "Insight and Investigation",
+        "type": "skill_proficiency"
+      },
+      {
+        "name": "Tool Proficiency",
+        "desc": "Disguise Kit",
+        "type": "tool_proficiency"
+      },
+      {
+        "name": "Feat",
+        "desc": "Sharp Eye",
+        "type": "feat"
+      },
+      {
+        "name": "Equipment",
+        "desc": "*Choose A or B:* (a) Disguise Kit, Manacles, Shovel, Traveler's Clothes, Vials, 16 GP; or (b) 50 GP",
+        "type": "equipment"
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "ravenloft-horrors_mist-wanderer",
+    "name": "Mist Wanderer",
+    "document": "ravenloft-horrors",
+    "desc": "",
+    "benefits": [
+      {
+        "name": "Ability Scores",
+        "desc": "Dexterity, Constitution, Wisdom",
+        "type": "ability_score"
+      },
+      {
+        "name": "Skill Proficiencies",
+        "desc": "Survival and Stealth",
+        "type": "skill_proficiency"
+      },
+      {
+        "name": "Equipment",
+        "desc": "*Choose A or B:* (a) Artisan's Tools (same as above), Lamp, Oil (5 flasks), Pouch, Rope, Tinderbox, Traveler's Clothes, 30 GP; or (b) 50 GP",
+        "type": "equipment"
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "ravenloft-horrors_spirit-medium",
+    "name": "Spirit Medium",
+    "document": "ravenloft-horrors",
+    "desc": "",
+    "benefits": [
+      {
+        "name": "Ability Scores",
+        "desc": "Constitution, Intelligence, Wisdom",
+        "type": "ability_score"
+      },
+      {
+        "name": "Skill Proficiencies",
+        "desc": "Insight and Religion",
+        "type": "skill_proficiency"
+      },
+      {
+        "name": "Equipment",
+        "desc": "*Choose A or B:* (a) Dagger, Gaming Set (same as above), Basket, Bell, Candles, Ink, Ink Pen, Paper (5 sheets), Tinderbox, Traveler's Clothes, 32 GP; or (b) 50 GP",
+        "type": "equipment"
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  }
+]

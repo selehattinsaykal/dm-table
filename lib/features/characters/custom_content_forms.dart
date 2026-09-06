@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../domain/models/ability.dart';
 import '../../l10n/app_localizations.dart';
+import '../../l10n/game_terms.dart';
 import 'character_providers.dart';
 import 'creation_wizard.dart' show customContentRepositoryProvider;
 
@@ -61,10 +62,13 @@ class _SpeciesFormState extends ConsumerState<_SpeciesForm> {
                 labelText: l10n.ccSize,
                 border: const OutlineInputBorder(),
               ),
-              items: const [
-                DropdownMenuItem(value: 'Small', child: Text('Small')),
-                DropdownMenuItem(value: 'Medium', child: Text('Medium')),
-                DropdownMenuItem(value: 'Large', child: Text('Large')),
+              items: [
+                DropdownMenuItem(value: 'Small', child: Text(l10n.ccSizeSmall)),
+                DropdownMenuItem(
+                  value: 'Medium',
+                  child: Text(l10n.ccSizeMedium),
+                ),
+                DropdownMenuItem(value: 'Large', child: Text(l10n.ccSizeLarge)),
               ],
               onChanged: (v) => setState(() => _size = v ?? 'Medium'),
             ),
@@ -286,7 +290,7 @@ class _BackgroundFormState extends ConsumerState<_BackgroundForm> {
                 children: [
                   for (final a in Ability.values)
                     FilterChip(
-                      label: Text(a.short),
+                      label: Text(l10n.abilityShort(a)),
                       selected: _abilities.contains(a),
                       onSelected: (on) => setState(() {
                         if (on && _abilities.length < 3) {
@@ -310,7 +314,7 @@ class _BackgroundFormState extends ConsumerState<_BackgroundForm> {
                 children: [
                   for (final s in Skill.values)
                     FilterChip(
-                      label: Text(s.label),
+                      label: Text(l10n.skillName(s)),
                       selected: _skills.contains(s),
                       onSelected: (on) => setState(() {
                         if (on && _skills.length < 2) {

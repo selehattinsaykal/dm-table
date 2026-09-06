@@ -7,7 +7,9 @@ import '../../data/providers.dart';
 import '../../domain/models/ability.dart';
 import '../../domain/rules/challenge_rating.dart';
 import '../../domain/rules/cr_estimator.dart';
+import '../../data/content_tr.dart';
 import '../../l10n/app_localizations.dart';
+import '../../l10n/game_terms.dart';
 import 'compendium_providers.dart';
 
 /// CR olcutleri paketten okunur; `tools/build_cr_benchmarks.dart` uretir.
@@ -62,6 +64,7 @@ class _MonsterCreatorPageState extends ConsumerState<MonsterCreatorPage> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final l10n = L10n.of(context);
+    final glossary = glossaryTrOf(context, ref);
     final estimator = ref.watch(crEstimatorProvider).value;
     final estimate = estimator?.estimate(
       hitPoints: _hitPoints,
@@ -104,7 +107,13 @@ class _MonsterCreatorPageState extends ConsumerState<MonsterCreatorPage> {
                             'Gargantuan',
                           ]
                           .map(
-                            (s) => DropdownMenuItem(value: s, child: Text(s)),
+                            (s) => DropdownMenuItem(
+                              value: s,
+                              // Deger veritabanina INGILIZCE yaziliyor
+                              // (stat blok ve filtreler ona bakiyor);
+                              // gorunen etiket sozlukten geliyor.
+                              child: Text(glossary.term('sizes', s)),
+                            ),
                           )
                           .toList(),
                   onChanged: (v) => setState(() => _size = v ?? 'Medium'),
@@ -136,7 +145,10 @@ class _MonsterCreatorPageState extends ConsumerState<MonsterCreatorPage> {
                             'Undead',
                           ]
                           .map(
-                            (s) => DropdownMenuItem(value: s, child: Text(s)),
+                            (s) => DropdownMenuItem(
+                              value: s,
+                              child: Text(glossary.term('creatureTypes', s)),
+                            ),
                           )
                           .toList(),
                   onChanged: (v) => setState(() => _type = v ?? 'Humanoid'),
@@ -173,7 +185,7 @@ class _MonsterCreatorPageState extends ConsumerState<MonsterCreatorPage> {
           const SizedBox(height: 8),
           for (final ability in Ability.values)
             _NumberRow(
-              label: ability.label,
+              label: l10n.abilityName(ability),
               value: _scores[ability]!,
               min: 1,
               max: 30,
@@ -431,9 +443,7 @@ class _ActionsSection extends StatelessWidget {
                   maxLines: 4,
                   decoration: InputDecoration(
                     labelText: l10n.formDescription,
-                    hintText:
-                        'Melee Attack Roll: +5, reach 5 ft. 8 (1d10 + 3) '
-                        'Piercing damage.',
+                    hintText: l10n.formActionDescHint,
                     border: const OutlineInputBorder(),
                   ),
                 ),

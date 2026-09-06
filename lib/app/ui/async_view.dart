@@ -16,8 +16,6 @@ import 'states.dart';
 /// ekranda ayni sekilde calisiyor.
 ///
 /// [onRetry] genelde `() => ref.invalidate(birProvider)` olur.
-/// DIKKAT: `sessionServiceProvider` ASLA invalidate edilmemeli (dispose'ta
-/// LAN sunucusunu durdurur) — oturum ekranlarinda [onRetry] bos birakilir.
 Widget asyncView<T>(
   BuildContext context,
   AsyncValue<T> value, {

@@ -82,6 +82,7 @@ class BackupRepository {
     'world_links',
     'bond_types',
     'npcs',
+    'factions',
     'loot_sets',
     // Ortak parti keseleri ve rastgele tablolar: DM'in elle kurdugu icerik,
     // yedeksiz kalirsa geri yuklemede sessizce KAYBOLUYORDU.
@@ -89,7 +90,6 @@ class BackupRepository {
     'random_tables',
     // Suren yolculuk (rota + ilerleme); yarim kalan yolculuk da tasinsin.
     'journeys',
-    'character_notes',
     // Kayitlar (Codex): once sayfalar (ust satirlar), sonra bloklar.
     'codex_pages',
     'codex_blocks',
@@ -110,6 +110,17 @@ class BackupRepository {
     // Muzik kutuphanesi: once listeler, sonra parcalar.
     'music_playlists',
     'music_tracks',
+    // Kullanicinin tanimladigi icerik kaynaklari (adresler); yeni cihazda
+    // elle yeniden girmek zorunda kalmasin.
+    'content_sources',
+    // Hazirlik araclari: kayitli karsilasma kaliplari, zar makrolari ve
+    // bos zaman faaliyetleri. Ucu de elle kurulmus, paketten yeniden
+    // uretilemez -- yedege girmezlerse geri yuklemede sessizce kaybolurlar.
+    'encounter_templates',
+    'macros',
+    'downtime_activities',
+    // Ilerleme saatleri.
+    'clocks',
   ];
 
   /// Kutuphane tablolari; yalnizca DM'in kendi ekledikleri yedeklenir.

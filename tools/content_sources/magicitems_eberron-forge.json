@@ -1,0 +1,168 @@
+[
+  {
+    "key": "eberron-forge_boots-of-the-winding-path",
+    "name": "Boots of the Winding Path",
+    "document": "eberron-forge",
+    "desc": "While wearing these boots, you can take a Bonus Action to teleport up to 15 feet to an unoccupied space you can see. You must have occupied that space at some point during the current turn.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": null,
+    "crossreferences": {
+      "to": []
+    },
+    "rarity": {
+      "name": "Uncommon",
+      "key": "uncommon",
+      "rank": 2
+    },
+    "requires_attunement": true,
+    "attunement_detail": null
+  },
+  {
+    "key": "eberron-forge_helm-of-awareness",
+    "name": "Helm of Awareness",
+    "document": "eberron-forge",
+    "desc": "While wearing this helmet, you have Advantage on Initiative rolls.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": null,
+    "crossreferences": {
+      "to": []
+    },
+    "rarity": {
+      "name": "Uncommon",
+      "key": "uncommon",
+      "rank": 2
+    },
+    "requires_attunement": false,
+    "attunement_detail": null
+  },
+  {
+    "key": "eberron-forge_manifold-tool",
+    "name": "Manifold Tool",
+    "document": "eberron-forge",
+    "desc": "This tool takes the form of a wrench, a screwdriver, or another basic tool. As a Magic action, you can touch the item and transform it into a type of Artisan's Tools of your choice. Whatever form the tool takes, you have proficiency with it when you use it.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": null,
+    "crossreferences": {
+      "to": []
+    },
+    "rarity": {
+      "name": "Common",
+      "key": "common",
+      "rank": 1
+    },
+    "requires_attunement": true,
+    "attunement_detail": null
+  },
+  {
+    "key": "eberron-forge_mind-sharpener",
+    "name": "Mind Sharpener",
+    "document": "eberron-forge",
+    "desc": "The item has 4 charges. When you fail a Constitution saving throw to maintain Concentration, you can take a Reaction and expend 1 of the item's charges to succeed instead. The item regains 1d4 expended charges daily at dawn.",
+    "category": {
+      "name": "Ring",
+      "key": "ring"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": null,
+    "crossreferences": {
+      "to": []
+    },
+    "rarity": {
+      "name": "Uncommon",
+      "key": "uncommon",
+      "rank": 2
+    },
+    "requires_attunement": true,
+    "attunement_detail": null
+  },
+  {
+    "key": "eberron-forge_repulsion-shield",
+    "name": "Repulsion Shield",
+    "document": "eberron-forge",
+    "desc": "You gain a +1 bonus to Armor Class while wielding this shield.\n\nThe shield has 4 charges. While holding it, when a Large or smaller creature within 5 feet of you hits you with a melee attack roll, you can take a Reaction to expend 1 of the shield's charges and push the attacker up to 15 feet straight away. The shield regains 1d4 expended charges daily at dawn.",
+    "category": {
+      "name": "Shield",
+      "key": "shield"
+    },
+    "weapon": null,
+    "armor": {
+      "name": "Repulsion Shield",
+      "key": "repulsion-shield",
+      "category": "shield",
+      "ac_base": 2,
+      "ac_display": null,
+      "ac_add_dexmod": false,
+      "ac_cap_dexmod": null,
+      "grants_stealth_disadvantage": false,
+      "strength_score_required": null
+    },
+    "size": null,
+    "weight": "6.000",
+    "weight_unit": "lb",
+    "cost": null,
+    "crossreferences": {
+      "to": []
+    },
+    "rarity": {
+      "name": "Uncommon",
+      "key": "uncommon",
+      "rank": 2
+    },
+    "requires_attunement": false,
+    "attunement_detail": null
+  },
+  {
+    "key": "eberron-forge_spell-refueling-ring",
+    "name": "Spell-Refueling Ring",
+    "document": "eberron-forge",
+    "desc": "While wearing this ring, you can recover one expended spell slot as a Bonus Action. The recovered slot can be of level 3 or lower. Once used, the ring can't be used again until the next dawn.",
+    "category": {
+      "name": "Ring",
+      "key": "ring"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": null,
+    "crossreferences": {
+      "to": []
+    },
+    "rarity": {
+      "name": "Uncommon",
+      "key": "uncommon",
+      "rank": 2
+    },
+    "requires_attunement": true,
+    "attunement_detail": "by a spellcaster"
+  }
+]

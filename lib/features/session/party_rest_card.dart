@@ -9,7 +9,6 @@ import '../calendar/calendar_providers.dart';
 import '../calendar/restock_notice.dart';
 import '../characters/character_providers.dart';
 import 'session_log_providers.dart';
-import 'session_page.dart';
 
 /// Parti molası: DM tüm ekibe (ya da seçtiklerine) kısa/uzun mola verir.
 ///
@@ -176,12 +175,6 @@ class _PartyRestCardState extends ConsumerState<PartyRestCard> {
               ? l10n.restLoggedLong(targets.length)
               : '${l10n.restLoggedLong(targets.length)} — ${advanced.label}',
         );
-    // Oturum acıksa oyuncular da haberdar olsun.
-    final session = ref.read(sessionControllerProvider);
-    if (session.isRunning) {
-      await ref.read(sessionServiceProvider).announce(l10n.restAnnounceLong);
-    }
-
     if (mounted) {
       setState(() => _busy = false);
       ScaffoldMessenger.of(context).showSnackBar(
@@ -193,25 +186,13 @@ class _PartyRestCardState extends ConsumerState<PartyRestCard> {
     }
   }
 
-  /// Kısa mola: dinlenmeyi oyunculara AÇAR, hit dice'ı DM harcamaz.
+  /// Kısa mola: masadaki her karakter için hit dice harcama paneli açar.
   ///
-  /// 5e'de hit die harcamak oyuncunun kararıdır (kaç tane, ne zaman). Eskiden
-  /// DM bu panelden tek tek harcatıyordu; artık DM yalnızca dinlenmeyi açıyor,
-  /// oyuncular kendi panellerinden istedikleri kadar harcıyor.
+  /// 5e'de hit die harcamak oyuncunun kararıdır (kaç tane, ne zaman). Masada
+  /// kararı oyuncu verir, sayıyı DM işler: panel her karakter için tek tek
+  /// "zar harca" düğmesi gösterir, toptan uygulamaz.
   Future<void> _openShortRest(List<Character> targets) async {
     if (targets.isEmpty) return;
-    final session = ref.read(sessionControllerProvider);
-    if (!session.isRunning) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(L10n.of(context).restNeedSession)));
-      return;
-    }
-
-    await ref.read(sessionServiceProvider).setShortRest({
-      for (final c in targets) c.id,
-    });
-    if (!mounted) return;
     await showModalBottomSheet<void>(
       context: context,
       showDragHandle: true,
@@ -221,9 +202,8 @@ class _PartyRestCardState extends ConsumerState<PartyRestCard> {
   }
 }
 
-/// Açık kısa dinlenmenin DM tarafı: kim kaç hit dice harcadı, canlı.
-///
-/// Kapatıldığında dinlenme de kapanır — oyuncuların paneli kaybolur.
+/// Kısa dinlenme paneli: her karakterin canı, kalan hit dice'ı ve zar harcama
+/// düğmesi.
 class _ShortRestSheet extends ConsumerStatefulWidget {
   const _ShortRestSheet({required this.targets});
 
@@ -238,7 +218,7 @@ class _ShortRestSheetState extends ConsumerState<_ShortRestSheet> {
   Widget build(BuildContext context) {
     final l10n = L10n.of(context);
     final theme = Theme.of(context);
-    // Canli karakter listesi: oyuncu hit die harcadikca can/zar guncellenir.
+    // Canli karakter listesi: zar harcandikca can ve kalan zar guncellenir.
     final live = ref.watch(charactersProvider).value ?? const <Character>[];
     final byId = {for (final c in live) c.id: c};
 
@@ -274,13 +254,10 @@ class _ShortRestSheetState extends ConsumerState<_ShortRestSheet> {
     );
   }
 
-  Future<void> _close() async {
-    await ref.read(sessionServiceProvider).setShortRest(const {});
-    if (mounted) Navigator.pop(context);
-  }
+  void _close() => Navigator.pop(context);
 }
 
-/// Tek karakterin dinlenme satiri: can + kalan hit dice (salt gosterim).
+/// Tek karakterin dinlenme satiri: can, kalan hit dice ve zar harcama.
 class _HitDiceRow extends ConsumerWidget {
   const _HitDiceRow({required this.character});
 
@@ -290,6 +267,7 @@ class _HitDiceRow extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = L10n.of(context);
     final status = ref.watch(hitDiceStatusProvider(character.id)).value;
+    final left = status == null ? 0 : status.total - status.used;
 
     return ListTile(
       contentPadding: EdgeInsets.zero,
@@ -298,7 +276,27 @@ class _HitDiceRow extends ConsumerWidget {
         status == null
             ? '${character.hitPointsCurrent}/${character.hitPointsMax} HP'
             : '${character.hitPointsCurrent}/${character.hitPointsMax} HP · '
-                  '${l10n.restHitDiceLeft(status.total - status.used, status.total)}',
+                  '${l10n.restHitDiceLeft(left, status.total)}',
+      ),
+      // Zar KARAKTER BASINA ve TEK TEK atiliyor: kac tane harcanacagi
+      // oyuncunun karari, DM yalnizca sonucu isliyor.
+      trailing: OutlinedButton.icon(
+        onPressed: left <= 0 ? null : () => _spend(context, ref, l10n),
+        icon: const Icon(Icons.casino_outlined, size: 18),
+        label: Text(l10n.restSpendHitDie),
+      ),
+    );
+  }
+
+  Future<void> _spend(BuildContext context, WidgetRef ref, L10n l10n) async {
+    final spend = await ref
+        .read(characterRepositoryProvider)
+        .spendHitDie(character.id);
+    if (spend == null || !context.mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(l10n.restHitDieSpent(character.name, spend.healed)),
+        duration: const Duration(seconds: 2),
       ),
     );
   }

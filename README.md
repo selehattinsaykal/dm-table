@@ -4,12 +4,12 @@
 
 <br>
 
-**A LAN-synced Dungeon Master toolkit for D&D 2024 — campaign, combat and world management on the DM's screen, with a live player panel in everyone else's browser.**
+**A single-seat Dungeon Master toolkit for D&D 2024 — campaign, combat, world and session management on the DM's screen. Fully offline.**
 
 [![Flutter](https://img.shields.io/badge/Flutter-3.44-02569B?logo=flutter&logoColor=white)](https://flutter.dev)
 [![Dart](https://img.shields.io/badge/Dart-3.12-0175C2?logo=dart&logoColor=white)](https://dart.dev)
-[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Web%20player-informational)](#just-want-to-run-a-session-no-install-no-flutter-nothing-to-build)
-[![Tests](https://img.shields.io/badge/tests-925%20passing-2ea043)](#testing)
+[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Android-informational)](#just-want-to-run-a-session-no-install-no-flutter-nothing-to-build)
+[![Tests](https://img.shields.io/badge/tests-1174%20passing-2ea043)](#testing)
 [![License: GPL v3](https://img.shields.io/badge/license-GPL--3.0-blue)](LICENSE)
 [![Content](https://img.shields.io/badge/content-SRD%205.2%20%2B%20non--redistributable-lightgrey)](NOTICE.md)
 [![Download](https://img.shields.io/github/v/release/selehattinsaykal/dm-table?label=download&color=c2410c)](../../releases/latest)
@@ -25,32 +25,18 @@
 3. Double-click **`dm_table.exe`** inside the extracted folder. That's the whole install.
 4. Right-click `dm_table.exe` → **Send to → Desktop (create shortcut)** if you want an icon for next time.
 
-The first time you open a table, Windows will ask for firewall access — tick **private networks**,
-otherwise players on your Wi-Fi/LAN won't be able to connect. Everyone else just opens the QR code or
-the address shown on screen in their phone/laptop browser; they install nothing.
+No firewall prompt, no network setup, no accounts: the app never opens a socket.
 
-There is currently **no macOS/Linux/Android build** — the app runs on Windows, and reaches every
-player through their browser instead.
+Windows and Android are supported; there is currently no macOS/Linux/iOS build.
 
 ## What it is
 
-DM Table is a **self-hosted** table companion. The DM runs the Windows desktop app; it starts an
-HTTP + WebSocket server on the local network and serves a full player web panel from its own assets.
-Players join by scanning a QR code — no accounts, no cloud, no internet connection required.
+DM Table is the **DM's own screen**, and only that. Everything lives in one local SQLite file per
+campaign: the SRD library, your characters, the world graph, the calendar, your notes. Nothing is
+uploaded, nothing is served, nothing needs a network.
 
-Everything the players see is **derived from the DM's database and pushed as snapshots**. The DM is
-the single source of truth: players send requests, the server validates them, writes them, and
-broadcasts the new table state to everyone.
-
-```
-DM app (Windows)                               Players (any browser on the LAN)
-┌──────────────────────────────┐               ┌────────────────────────────┐
-│  Campaign SQLite (drift)     │               │  Character sheet · dice    │
-│  Rules engine · SRD 5.2      │  snapshots →  │  Inventory · quests · map  │
-│  Combat · world · calendar   │  ← requests   │  Chat · shops · loot       │
-│  HTTP + WebSocket server ────┼───── LAN ─────┤  Served from the DM device │
-└──────────────────────────────┘               └────────────────────────────┘
-```
+Player characters live here too — the DM creates them with the guided wizard, keeps their sheets up
+to date and reads them at the table. There is no player-facing client.
 
 ## Highlights
 
@@ -58,26 +44,30 @@ DM app (Windows)                               Players (any browser on the LAN)
 |---|---|
 | **Campaigns** | Each campaign is its own SQLite file + media folder. Create, switch, delete, back up and restore — including *restore a backup as a new campaign* without touching the live one. |
 | **SRD 5.2 library** | 505 creatures, 407 spells, 1 361 items & magic items, 60 classes/subclasses, backgrounds, species, feats and conditions — bundled offline, searchable, with full stat blocks. |
-| **Characters** | Guided creation wizard, character sheet, level-up with subclass previews, homebrew features with usage counters, portraits. Players can build their own characters from the panel. |
-| **Combat** | Initiative with player-rolled entries, attack → damage flow, conditions with rules text, death saves, legendary actions & resistances, CR/XP encounter budget, monster portraits. |
-| **World** | Force-directed graph of locations *and* NPCs with editable bond types, maps with pins (treasure, shops, sub-maps), reveal-to-players toggles, backlinks. |
+| **Characters** | Guided creation wizard, character sheet, level-up with subclass previews, homebrew features with usage counters, portraits, PDF export. |
+| **Combat** | Initiative tracker, attack → damage flow, conditions with rules text, death saves, legendary actions & resistances, CR/XP encounter budget, monster portraits, turn timer. |
+| **World** | Force-directed graph of locations, NPCs *and* factions with editable bond types, region maps with pins (treasure, shops, sub-maps), backlinks. |
+| **Factions** | Guilds, cults, houses and gangs as first-class nodes: kind, goal, emblem, DM notes, and typed bonds (membership, enmity, trade) to anyone and anywhere. |
+| **Clocks** | Blades-style segmented progress clocks for sieges, rituals and spreading rumours — standalone or attached to a quest or faction. |
 | **Travel** | Map scale in miles, multi-stop routes drawn on the map, SRD pace rules, and **ongoing journeys** that survive tab switches, with random-encounter checks per travel segment. |
 | **Calendar** | Fully custom calendar (months, weekday names, seasons, eras), chronicle timeline, recurring reminders, and calendar-driven shop restocking. |
 | **Codex** | Notion-style nested DM notes: 15 block types, inline rich text, `[[wiki links]]`, slash commands (`/r`, `/monster`, `/spell`, `/page`…), drag & drop, search. |
-| **Quests & loot** | Share quests with specific players, individual accept/reject or party vote, reward pools that land in inventories exactly once, party purses, shops with stock and open/closed state. |
+| **Session** | Session log, in-memory roll log, clocks, party rest, downtime activities, dice macros, session recap and backups on one screen. |
+| **Quests & loot** | Quests with owners and concrete rewards, loot sets that pour into shared party bags, shops with stock, price multipliers and restock periods. |
 | **Random tables** | Editable d-anything tables with validation, a 39-culture offline name generator, starter tables in EN/TR. |
-| **AI tools (opt-in)** | Bring your own key (Gemini / OpenAI / Claude) for NPC, quest, encounter and random-table generation. **Keys are stored on the device only and never touch the LAN.** |
+| **AI tools (opt-in)** | Bring your own key (Gemini / OpenAI / Claude) for NPC, quest, encounter and random-table generation. **Keys are stored on the device only.** |
 | **Music** | Playlists and tracks copied into the campaign folder, included in backups. |
-| **Bilingual** | Every visible string — DM app, player panel and server messages — exists in English and Turkish. |
+| **Export** | Codex tree → Markdown, campaign → JSON. Readable anywhere; a companion to the restorable `.zip` backup, not a replacement. |
+| **Bilingual** | Every visible string exists in English and Turkish, checked by a test. |
 
 ## Screenshots
 
 <!--
   Drop PNGs into docs/screenshots/ and reference them here, e.g.
 
-  | Session | Combat | Player panel |
+  | Session | Combat | World |
   |---|---|---|
-  | ![](docs/screenshots/session.png) | ![](docs/screenshots/combat.png) | ![](docs/screenshots/player.png) |
+  | ![](docs/screenshots/session.png) | ![](docs/screenshots/combat.png) | ![](docs/screenshots/world.png) |
 -->
 
 _Screenshots coming soon._
@@ -87,10 +77,10 @@ _Screenshots coming soon._
 Two hand-built themes rather than stock Material: **Parchment** (warm cream, ink red, bronze) for
 light mode and **Stone & Ember** (warm black, ember red, gold) for dark mode. Headings use
 [Cinzel](https://fonts.google.com/specimen/Cinzel); long-form reading surfaces use
-[EB Garamond](https://fonts.google.com/specimen/EB+Garamond), subset to Latin + Turkish (851 KB → 186 KB)
-because the player panel is downloaded over the LAN and every megabyte counts. Body UI stays on the
-system sans for legibility. Colors, spacing and breakpoints are exposed as theme extensions
-(`context.fantasyColors`, `context.spacing`, `Breakpoints`) instead of scattered magic numbers.
+[EB Garamond](https://fonts.google.com/specimen/EB+Garamond), subset to Latin + Turkish
+(851 KB → 186 KB). Body UI stays on the system sans for legibility. Colors, spacing and breakpoints
+are exposed as theme extensions (`context.fantasyColors`, `context.spacing`, `Breakpoints`) instead
+of scattered magic numbers.
 
 ## Building from source
 
@@ -105,75 +95,56 @@ if you just want to play.
 ### Build
 
 ```bash
-git clone https://github.com/selehattinsaykal/dm-table.git
-cd dm-table
 flutter pub get
-flutter build windows --release
+flutter build windows --release          # Windows
+flutter build apk --release --split-per-abi   # Android
 ```
 
-The executable lands in `build/windows/x64/runner/Release/dm_table.exe`.
+The executable lands in `build/windows/x64/runner/Release/dm_table.exe`; the APKs land in
+`build/app/outputs/flutter-apk/` (~42 MB for `arm64-v8a`).
 
-The DM app targets **Windows only**; there is no Android/iOS/macOS/Linux runner in this repository.
-Players do not install anything — they use the web panel the DM serves.
+`android/` builds and runs with the debug signing key so `flutter build apk` works out of the box —
+a release you actually distribute needs
+[your own keystore](https://docs.flutter.dev/deployment/android#signing-the-app).
 
-### Player panel
-
-The player panel is a separate entry point (`lib/main_player.dart`) compiled to web and **embedded in
-the DM app** as an asset bundle (`assets/player_web/`, ~27 MB) that the DM device serves over the LAN.
-The prebuilt bundle is committed, so a fresh clone builds as-is. Rebuild it whenever you change the
-panel or the wire protocol:
-
-```bash
-dart run tools/build_player_web.dart
-```
-
-> The tool also rewrites the `player_web` asset block in `pubspec.yaml` (Flutter does not scan asset
-> directories recursively) and prunes ~21 MB of unused renderer/plugin payload.
+Downloading music from a link needs `yt-dlp`, an external executable; that feature is
+**desktop-only** and hides itself on Android. macOS/iOS/Linux runners are not in this repository.
 
 ## Running a session
 
 Same steps whether you downloaded the release zip or built from source:
 
 1. Open the app, pick or create a campaign — the SRD library is imported into it on first run.
-2. Go to **Session → open the table**; the server starts on port 8080, or the next free port.
-3. Players scan the QR code or open `http://<dm-ip>:8080` and claim a character.
-4. Windows asks for firewall access on first start — allow **private networks**, or nobody can connect.
+2. Add the party's characters (**Characters → +**) or restore a backup.
+3. Work from the **Session** tab: log, rolls, rests, downtime and macros are all there.
 
 ## Architecture
 
 ```mermaid
 flowchart LR
   subgraph DM["DM app — lib/main.dart"]
-    UI["features/*<br/>17 route branches"]
+    UI["features/*<br/>16 route branches"]
     RULES["domain/rules<br/>pure, testable"]
-    DB[("drift SQLite<br/>schema v31")]
-    SRV["net/table_server.dart<br/>shelf + WebSocket"]
+    DB[("drift SQLite<br/>schema v51")]
     UI --> RULES
     UI --> DB
-    DB -- "tableUpdates(), 120 ms debounce" --> SRV
+    DB -- "watch() streams" --> UI
   end
-  subgraph P["Player panel — lib/main_player.dart"]
-    PC["PlayerController"]
-    PUI["player/*"]
-    PC --> PUI
-  end
-  SRV -- "TableSnapshot, filtered per player" --> PC
-  PC -- "ClientMessage, validated server-side" --> SRV
 ```
 
 **Conventions worth knowing before contributing:**
 
-- **DM authority.** Nothing in a client message is trusted — character identity comes from the
-  server's claim map, and rules values are re-read from the database.
-- **Per-player filtering.** One base snapshot is built per broadcast and re-scoped per socket
-  (quests, party purses, chat whispers). Adding a field to `TableSnapshot.copyWith` without
-  forwarding it there is a silent failure mode — there is a regression test for exactly that.
-- **Server-side i18n.** The DM doesn't know a player's language, so server messages travel as codes
-  (`encodeServerMsg`/`decodeServerMsg`) and are translated in the browser.
+- **Rules live in `domain/`.** Anything that can be a pure function is one, so it can be tested
+  without a widget tree or a database.
 - **Migrations.** A new column needs the table definition *and* an `addColumn` migration *and*
   `schemaVersion++`. Ordinary tests build a fresh database and would not catch a missing migration —
   `test/data/migration_test.dart` opens a real legacy schema on purpose.
 - **Drift streams.** Raw `customStatement` writes do not notify watchers; use the typed API.
+- **A migration step must be self-sufficient.** If it writes into a table another step creates, call
+  `createTable` (which is `IF NOT EXISTS`) first — otherwise the chain breaks depending on which
+  version the database started from.
+- **Campaign switching replaces the whole `ProviderContainer`** rather than invalidating the database
+  provider, so disposal runs leaf-to-root (see `lib/main.dart`).
 
 More detail lives in [CONTRIBUTING.md](CONTRIBUTING.md).
 
@@ -184,17 +155,14 @@ lib/
   app/          theme, shell, router, design tokens, content gate
   data/         drift database, repositories, campaign registry, media stores
   domain/       pure rules: calendar, travel, encounters, random tables, point buy
-  features/     one folder per surface (session, combat, world, codex, ai, …)
-  net/          protocol, table server, session service
-  player/       the player web panel
-  l10n/         app_en.arb · app_tr.arb
+  features/     one folder per surface (session, combat, world, codex, clocks, ai, …)
+  l10n/         app_en.arb · app_tr.arb (key parity is a test)
 assets/
   data/         SRD 5.2 content (gzipped JSON) + starter tables
-  player_web/   compiled player panel, served over the LAN
   fonts/ logo/ rules/
-tools/          build_player_web.dart · fetch_open5e.dart · build_icon.dart
+tools/          fetch_open5e.dart · convert_5etools.dart · build_icon.dart (also Android icons)
   content_sources/  hand-maintained JSON merged into the bundles (never shipped)
-test/           102 files, 925 tests
+test/           108 files, 1 174 tests
 ```
 
 ## Testing
@@ -204,15 +172,14 @@ flutter analyze
 flutter test
 ```
 
-The suite covers the rules engine, repositories, schema migrations, the wire protocol and a set of
-widget regressions. CI runs both on every push — see [.github/workflows/ci.yml](.github/workflows/ci.yml).
+The suite covers the rules engine, repositories, schema migrations and a set of widget regressions.
+CI runs both on every push — see [.github/workflows/ci.yml](.github/workflows/ci.yml).
 
 ## Privacy
 
-No telemetry, no accounts, no cloud. The campaign database, media and backups stay on the DM's
-machine, and the LAN server only talks to devices on the same network. AI features are opt-in and use
-**your own** API key, stored in the device's local preferences — it is never written to the database,
-never included in a backup and never sent over the LAN.
+No telemetry, no accounts, no cloud, no network listener. The campaign database, media and backups
+stay on the DM's machine. AI features are opt-in and use **your own** API key, stored in the device's
+local preferences — it is never written to the database and never included in a backup.
 
 ## License
 

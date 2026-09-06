@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Uyarlanir ikonun arka plan rengi. Uygulamanin koyu temasindaki tuval
+  rengiyle ayni (bkz. `app/theme.dart`), boylece ikon acilis ekranindan
+  kopuk durmuyor.
+-->
+<resources>
+    <color name="ic_launcher_background">#0D0D0D</color>
+</resources>

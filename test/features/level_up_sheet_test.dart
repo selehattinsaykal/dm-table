@@ -28,12 +28,16 @@ void main() {
 
   tearDown(() async => db.close());
 
-  Future<void> seed(String classKey, {int toLevel = 1}) async {
+  Future<void> seed(
+    String classKey, {
+    int toLevel = 1,
+    AbilityScores abilities = const AbilityScores(constitution: 14),
+  }) async {
     await repo.createLevelOneCharacter(
       id: id,
       name: 'Vex',
       classKey: classKey,
-      abilities: const AbilityScores(constitution: 14),
+      abilities: abilities,
       savingThrows: const {},
       skills: const {},
       hitDieSides: 6,
@@ -210,7 +214,7 @@ void main() {
 
     // INT satirindaki arti butonuna iki kez bas.
     final intRow = find.ancestor(
-      of: find.text('Intelligence'),
+      of: find.text('Zekâ'),
       matching: find.byType(Row),
     );
     final plus = find.descendant(
@@ -233,7 +237,15 @@ void main() {
   });
 
   testWidgets('multiclass: baska sinif secilebilir', (tester) async {
-    await seed('srd-2024_wizard');
+    // 2024 kurali: Wizard -> Fighter icin INT 13 ve (STR ya da DEX) 13.
+    await seed(
+      'srd-2024_wizard',
+      abilities: const AbilityScores(
+        dexterity: 14,
+        constitution: 14,
+        intelligence: 14,
+      ),
+    );
     await pump(tester);
 
     await tester.tap(find.widgetWithText(ChoiceChip, 'Fighter'));
@@ -248,6 +260,26 @@ void main() {
     final levels = await repo.classLevels(id);
     expect(levels.length, 2);
     expect((await repo.buildFor(id)).totalLevel, 2);
+
+    await unmount(tester);
+  });
+
+  testWidgets('multiclass: yetenek esigi tutmuyorsa kaydedilemez', (
+    tester,
+  ) async {
+    // INT 16 Wizard ama STR/DEX 10: Fighter alinamaz.
+    await seed(
+      'srd-2024_wizard',
+      abilities: const AbilityScores(constitution: 14, intelligence: 16),
+    );
+    await pump(tester);
+
+    await tester.tap(find.widgetWithText(ChoiceChip, 'Fighter'));
+    await tester.pumpAndSettle();
+
+    final save = find.widgetWithText(FilledButton, 'Fighter 1 olarak kaydet');
+    expect(tester.widget<FilledButton>(save).onPressed, isNull);
+    expect(find.textContaining('Bu sınıfa geçmek için'), findsOneWidget);
 
     await unmount(tester);
   });

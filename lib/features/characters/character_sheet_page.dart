@@ -1,24 +1,43 @@
 import 'dart:convert';
 
+import 'dart:io';
+
+import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../app/ui/async_view.dart';
 import '../../app/ui/ui.dart';
 import '../../data/character_repository.dart';
+import '../../data/content_tr.dart';
+import '../../data/db/character_tables.dart';
 import '../../data/db/database.dart';
 import '../../domain/models/ability.dart';
 import '../../domain/models/character_build.dart';
 import '../../domain/rules/character_math.dart';
 import '../../domain/rules/dice.dart';
+import '../../domain/rules/equipment_slots.dart';
 import '../../domain/rules/experience.dart';
+import '../../domain/rules/proficiency_parsing.dart';
+import '../../domain/rules/spell_casting.dart';
+import '../../domain/search_text.dart';
+import '../../domain/rules/spell_preparation.dart';
 import '../../l10n/app_localizations.dart';
+import '../../l10n/game_terms.dart';
 import '../compendium/compendium_providers.dart';
+import '../compendium/detail_sheets.dart';
 import '../dice/dice_sheet.dart';
+import '../dice/roll_log.dart';
 import '../world/pick_image_file.dart';
 import 'character_avatar.dart';
+import 'character_edit_page.dart';
+import 'character_pdf.dart';
 import 'character_providers.dart';
 import 'level_up_sheet.dart';
+
+part 'character_sheet_vitals.dart';
+part 'character_sheet_inventory.dart';
+part 'character_sheet_spells.dart';
 
 /// Karakter kagidi.
 ///
@@ -46,10 +65,27 @@ class CharacterSheetPage extends ConsumerWidget {
             icon: const Icon(Icons.casino_outlined),
             onPressed: () => showDiceSheet(
               context,
-              onRolled: (roll) => showRollResult(context, roll),
+              onRolled: (roll) {
+                ref.read(rollLogProvider.notifier).add(roll);
+                showRollResult(context, roll);
+              },
             ),
           ),
           _RestButton(characterId: characterId),
+          IconButton(
+            tooltip: l10n.exportPdf,
+            icon: const Icon(Icons.picture_as_pdf_outlined),
+            onPressed: () => _exportPdf(context, ref, characterId),
+          ),
+          IconButton(
+            tooltip: l10n.sheetEdit,
+            icon: const Icon(Icons.edit_outlined),
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => CharacterEditPage(characterId: characterId),
+              ),
+            ),
+          ),
           TextButton.icon(
             onPressed: () => Navigator.of(context).push(
               MaterialPageRoute(
@@ -77,9 +113,9 @@ class CharacterSheetPage extends ConsumerWidget {
             const SizedBox(height: 12),
             _AbilitiesCard(stats: b),
             const SizedBox(height: 12),
-            _SavesCard(stats: b),
+            _SavesCard(characterId: characterId, stats: b),
             const SizedBox(height: 12),
-            _SkillsCard(stats: b),
+            _SkillsCard(characterId: characterId, stats: b),
             const SizedBox(height: 12),
             _SpellSlotsCard(characterId: characterId, character: c),
             const SizedBox(height: 12),
@@ -87,9 +123,13 @@ class CharacterSheetPage extends ConsumerWidget {
             const SizedBox(height: 12),
             _ResourcesCard(characterId: characterId),
             const SizedBox(height: 12),
+            _ProficienciesCard(characterId: characterId),
+            const SizedBox(height: 12),
             _FeaturesCard(characterId: characterId),
             const SizedBox(height: 12),
             _InventoryCard(characterId: characterId),
+            const SizedBox(height: 12),
+            _ConcentrationCard(character: c),
             const SizedBox(height: 12),
             _ConditionCard(character: c),
             const SizedBox(height: 12),
@@ -107,6 +147,34 @@ class CharacterSheetPage extends ConsumerWidget {
 }
 
 /// "Wizard 5 (Evoker) · Goliath · Soldier" seklinde tek satirlik kimlik.
+Future<void> _exportPdf(
+  BuildContext context,
+  WidgetRef ref,
+  String characterId,
+) async {
+  final l10n = L10n.of(context);
+  final messenger = ScaffoldMessenger.of(context);
+
+  final character = await ref.read(characterProvider(characterId).future);
+  final build = await ref.read(characterBuildProvider(characterId).future);
+
+  final bytes = await buildCharacterPdf(character: character, build: build);
+
+  final location = await getSaveLocation(
+    suggestedName: '${character.name}.pdf',
+    acceptedTypeGroups: const [
+      XTypeGroup(label: 'PDF', extensions: ['pdf']),
+    ],
+  );
+  if (location == null) return;
+
+  await File(location.path).writeAsBytes(bytes);
+  messenger.showSnackBar(
+    SnackBar(content: Text(l10n.exportPdfDone(location.path))),
+  );
+}
+
+/// Kullanim sonucunu gosterir: saldiri atisi, hasar zari, kurtarma DC'si.
 class _ClassLine extends ConsumerWidget {
   const _ClassLine({required this.characterId});
 
@@ -186,6 +254,226 @@ class _ResourcesCard extends ConsumerWidget {
   }
 }
 
+/// Zirh egitimi, silah/alet yeterlilikleri, diller ve silah ustaliklari.
+///
+/// Satirlarin cogu sinif, gecmis ve feat'lerden TURETILIYOR
+/// (`syncDerivedProficiencies`); kagitta gosteriliyor ve yalnizca elle
+/// eklenenler yonetiliyor. Turetilmis bir satir silinemez: kaynak degisince
+/// zaten kendiliginden gidiyor, elle silinse bir sonraki senkronda geri gelir
+/// ve kullaniciya "silinmiyor" gibi gorunurdu.
+class _ProficienciesCard extends ConsumerWidget {
+  const _ProficienciesCard({required this.characterId});
+
+  final String characterId;
+
+  /// Bolum -> degerlerin cevrildigi sozluk bolumu.
+  static const _sections = <(ProficiencyKind, String)>[
+    (ProficiencyKind.armor, 'armorTraining'),
+    (ProficiencyKind.weapon, 'weaponProficiencies'),
+    (ProficiencyKind.tool, 'tools'),
+    (ProficiencyKind.language, 'languages'),
+    (ProficiencyKind.weaponMastery, 'tools'),
+  ];
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = Theme.of(context);
+    final l10n = L10n.of(context);
+    final glossary = glossaryTrOf(context, ref);
+    final rows =
+        ref.watch(characterProficienciesProvider(characterId)).value ??
+        const <CharacterProficiency>[];
+    final pending =
+        ref.watch(proficiencyChoicesProvider(characterId)).value ?? const [];
+
+    String title(ProficiencyKind kind) => switch (kind) {
+      ProficiencyKind.armor => l10n.sheetArmorTraining,
+      ProficiencyKind.weapon => l10n.sheetWeaponProficiencies,
+      ProficiencyKind.tool => l10n.sheetToolProficiencies,
+      ProficiencyKind.language => l10n.sheetLanguages,
+      _ => l10n.sheetWeaponMastery,
+    };
+
+    return _ListCard(
+      title: l10n.sheetProficiencies,
+      trailing: pending.isEmpty
+          ? null
+          : Tooltip(
+              message: l10n.sheetProficiencySourceHint,
+              child: Chip(
+                visualDensity: VisualDensity.compact,
+                label: Text(
+                  l10n.sheetProficiencyPending(
+                    pending.fold<int>(0, (sum, p) => sum + p.choice.count),
+                  ),
+                ),
+              ),
+            ),
+      children: [
+        for (final (kind, section) in _sections) ...[
+          Padding(
+            padding: const EdgeInsets.only(top: 10, bottom: 2),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    title(kind),
+                    style: theme.textTheme.labelLarge?.copyWith(
+                      color: theme.colorScheme.primary,
+                    ),
+                  ),
+                ),
+                IconButton(
+                  visualDensity: VisualDensity.compact,
+                  tooltip: l10n.sheetAddProficiency,
+                  icon: const Icon(Icons.add_circle_outline, size: 20),
+                  onPressed: () => _add(context, ref, kind),
+                ),
+              ],
+            ),
+          ),
+          Builder(
+            builder: (context) {
+              final mine = rows.where((r) => r.kind == kind).toList()
+                ..sort(
+                  (a, b) => compareTurkish(
+                    glossary.term(section, a.value),
+                    glossary.term(section, b.value),
+                  ),
+                );
+              if (mine.isEmpty) {
+                return Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    l10n.sheetNoProficiencies,
+                    style: theme.textTheme.bodySmall,
+                  ),
+                );
+              }
+              return Wrap(
+                spacing: 6,
+                runSpacing: 6,
+                children: [
+                  for (final row in mine)
+                    Chip(
+                      visualDensity: VisualDensity.compact,
+                      label: Text(glossary.term(section, row.value)),
+                      // Kaynak rozeti: masada en sik sorulan sey "bu nereden
+                      // geldi?".
+                      avatar: Tooltip(
+                        message: glossary.term(
+                          'proficiencySources',
+                          row.source.name,
+                        ),
+                        child: Icon(_sourceIcon(row.source), size: 16),
+                      ),
+                      onDeleted: row.source == ProficiencySource.manual
+                          ? () => ref
+                                .read(characterRepositoryProvider)
+                                .removeProficiency(
+                                  characterId,
+                                  kind: kind,
+                                  value: row.value,
+                                )
+                          : null,
+                    ),
+                ],
+              );
+            },
+          ),
+        ],
+        const SizedBox(height: 10),
+        Text(
+          l10n.sheetProficiencySourceHint,
+          style: theme.textTheme.bodySmall?.copyWith(
+            color: theme.colorScheme.outline,
+          ),
+        ),
+      ],
+    );
+  }
+
+  static IconData _sourceIcon(ProficiencySource source) => switch (source) {
+    ProficiencySource.characterClass => Icons.shield_outlined,
+    ProficiencySource.background => Icons.history_edu_outlined,
+    ProficiencySource.feat => Icons.star_outline,
+    ProficiencySource.species => Icons.person_outline,
+    ProficiencySource.manual => Icons.edit_outlined,
+  };
+
+  Future<void> _add(
+    BuildContext context,
+    WidgetRef ref,
+    ProficiencyKind kind,
+  ) async {
+    final l10n = L10n.of(context);
+    // Bir geri cagirim: `ref.watch` kullanilamaz, saglayicilar bekleniyor.
+    final glossary = l10n.localeName == 'tr'
+        ? await ref.read(glossaryTrProvider.future)
+        : GlossaryTr.empty;
+
+    final (String title, String section, List<String> options) = switch (kind) {
+      ProficiencyKind.armor => (
+        l10n.sheetArmorTraining,
+        'armorTraining',
+        ArmorTraining.all,
+      ),
+      ProficiencyKind.weapon => (
+        l10n.sheetWeaponProficiencies,
+        'weaponProficiencies',
+        const [
+          WeaponProficiency.simple,
+          WeaponProficiency.martial,
+          WeaponProficiency.martialLight,
+          WeaponProficiency.martialFinesseOrLight,
+          'improvised',
+        ],
+      ),
+      ProficiencyKind.language => (
+        l10n.sheetPickLanguage,
+        'languages',
+        await ref.read(languageOptionsProvider.future),
+      ),
+      ProficiencyKind.weaponMastery => (
+        l10n.sheetPickWeapon,
+        'tools',
+        await ref.read(masteryWeaponsProvider.future),
+      ),
+      _ => (
+        l10n.sheetPickTool,
+        'tools',
+        await ref.read(toolOptionsProvider(ToolGroup.any).future),
+      ),
+    };
+    if (!context.mounted) return;
+
+    final sorted = [...options]
+      ..sort(
+        (a, b) => compareTurkish(
+          glossary.term(section, a),
+          glossary.term(section, b),
+        ),
+      );
+    final picked = await showDialog<String>(
+      context: context,
+      builder: (context) => SimpleDialog(
+        title: Text(title),
+        children: [
+          for (final option in sorted)
+            SimpleDialogOption(
+              onPressed: () => Navigator.pop(context, option),
+              child: Text(glossary.term(section, option)),
+            ),
+        ],
+      ),
+    );
+    if (picked == null) return;
+    await ref
+        .read(characterRepositoryProvider)
+        .addManualProficiency(characterId, kind: kind, value: picked);
+  }
+}
+
 /// Seviye atladikca biriken sinif yetenekleri.
 class _FeaturesCard extends ConsumerWidget {
   const _FeaturesCard({required this.characterId});
@@ -197,14 +485,43 @@ class _FeaturesCard extends ConsumerWidget {
     final features =
         ref.watch(characterFeaturesProvider(characterId)).value ?? const [];
 
+    // Yetenek adi ve metni kagida INGILIZCE yaziliyor (kural ayristiricilari
+    // ve yeniden uretilen veriyle eslesme icin); Turkcesi burada, gosterim
+    // aninda uygulaniyor -- kutuphanedeki sinif sayfasiyla ayni katman.
+    final classTr = contentTrOf(context, ref, 'classes');
+    final optionTr = contentTrOf(context, ref, 'optionalfeatures');
+    final names = contentNamesTrOf(context, ref);
+    final glossary = glossaryTrOf(context, ref);
+    // Alt sinif yetenekleri de `source: <sinif anahtari>` ile kaydediliyor,
+    // ama cevirileri alt sinif kaydinda duruyor; ikisi de aranabilsin diye
+    // karakterin secili alt siniflari toplaniyor.
+    final subclassKeys = <String>[
+      for (final row
+          in ref.watch(classLevelsProvider(characterId)).value ??
+              const <CharacterClassLevel>[])
+        ?row.subclassKey,
+    ];
+
     final theme = Theme.of(context);
     final l10n = L10n.of(context);
     return _ListCard(
       title: l10n.sheetFeatures,
-      trailing: IconButton(
-        tooltip: l10n.sheetAddFeature,
-        icon: const Icon(Icons.add_circle_outline),
-        onPressed: () => _editFeature(context, ref, null),
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // Sinif secenekleri (Invocation, Metamagic, Maneuver...): kural
+          // metinleri vardi ama secim yapilamiyordu.
+          IconButton(
+            tooltip: l10n.sheetAddClassOption,
+            icon: const Icon(Icons.auto_fix_high_outlined),
+            onPressed: () => _pickClassOption(context, ref, characterId),
+          ),
+          IconButton(
+            tooltip: l10n.sheetAddFeature,
+            icon: const Icon(Icons.add_circle_outline),
+            onPressed: () => _editFeature(context, ref, null),
+          ),
+        ],
       ),
       children: [
         if (features.isEmpty)
@@ -219,7 +536,10 @@ class _FeaturesCard extends ConsumerWidget {
             title: Row(
               children: [
                 Expanded(
-                  child: Text(f.name, style: theme.textTheme.bodyMedium),
+                  child: Text(
+                    _featureName(names, glossary, f),
+                    style: theme.textTheme.bodyMedium,
+                  ),
                 ),
                 if (f.usesMax != null)
                   Padding(
@@ -263,11 +583,67 @@ class _FeaturesCard extends ConsumerWidget {
               if (f.description.isNotEmpty)
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: Text(f.description, style: theme.textTheme.bodySmall),
+                  // Yetenek metinleri tablo tasiyor (alt sinif buyu listesi,
+                  // yoldas stat blogu); duz metin olarak okunmuyorlardi.
+                  child: f.source == 'feat' && f.featureKey != null
+                      ? FeatRuleText(
+                          featKey: f.featureKey!,
+                          fallback: f.description,
+                        )
+                      : GameText(
+                          _featureText(classTr, optionTr, subclassKeys, f),
+                        ),
                 ),
             ],
           ),
       ],
+    );
+  }
+
+  /// Elle eklenen yetenekler (`manual`) kullanicinin kendi metni: dokunulmaz.
+  ///
+  /// Sinif secenekleri kagida "Metamagic: Careful Spell" gibi BIRLESIK bir adla
+  /// yaziliyor; iki parca ayri sozluklerden geliyor.
+  static String _featureName(
+    GlossaryTr names,
+    GlossaryTr glossary,
+    CharacterFeature f,
+  ) {
+    if (f.source == 'manual') return f.name;
+    if (f.source == 'option') {
+      final colon = f.name.indexOf(': ');
+      if (colon < 0) return names.term('classOptions', f.name);
+      final type = glossary.term(
+        'classOptionTypes',
+        f.name.substring(0, colon),
+      );
+      final name = names.term('classOptions', f.name.substring(colon + 2));
+      return '$type: $name';
+    }
+    if (f.source == 'feat') return names.term('feats', f.name);
+    return names.term('classFeatures', f.name);
+  }
+
+  /// Metnin cevirisi kaynaga gore farkli dosyada: sinif secenekleri
+  /// `optionalfeatures_tr.json` icinde kendi anahtarlariyla, sinif ve alt sinif
+  /// yetenekleri `classes_tr.json` icinde ilgili kaydin `features/` bolumunde.
+  /// Feat'ler ayri ele aliniyor ([FeatRuleText]).
+  static String _featureText(
+    ContentTr classTr,
+    ContentTr optionTr,
+    List<String> subclassKeys,
+    CharacterFeature f,
+  ) {
+    if (f.source == 'manual') return f.description;
+    if (f.source == 'option') {
+      final key = f.featureKey;
+      return key == null ? f.description : optionTr.desc(key, f.description);
+    }
+    return classTr.partAmong(
+      [...subclassKeys, f.source],
+      'features',
+      f.name,
+      f.description,
     );
   }
 
@@ -439,468 +815,119 @@ class _FeatureUsesTracker extends ConsumerWidget {
   }
 }
 
-// --- Can puani ------------------------------------------------------------
+Future<void> _pickClassOption(
+  BuildContext context,
+  WidgetRef ref,
+  String characterId,
+) async {
+  final l10n = L10n.of(context);
+  // Secim listesi kutuphane kayitlarini gosteriyor; ceviri katmani kagitla
+  // ayni (bkz. `_FeaturesCard`). Burasi bir build degil bir geri cagirim
+  // oldugu icin `contentTrOf` (ve `ref.watch`) kullanilamaz; saglayicilar
+  // beklenerek OKUNUYOR.
+  final turkish = l10n.localeName == 'tr';
+  final tr = turkish
+      ? await ref.read(contentTrProvider('optionalfeatures').future)
+      : ContentTr.empty;
+  final names = turkish
+      ? await ref.read(contentNamesTrProvider.future)
+      : GlossaryTr.empty;
+  final glossary = turkish
+      ? await ref.read(glossaryTrProvider.future)
+      : GlossaryTr.empty;
+  final options = await ref.read(
+    classOptionChoicesProvider(characterId).future,
+  );
+  if (!context.mounted) return;
+  if (options.isEmpty) {
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(l10n.sheetNoClassOptions)));
+    return;
+  }
 
-class _HitPointsCard extends ConsumerStatefulWidget {
-  const _HitPointsCard({required this.character});
-
-  final Character character;
-
-  @override
-  ConsumerState<_HitPointsCard> createState() => _HitPointsCardState();
-}
-
-class _HitPointsCardState extends ConsumerState<_HitPointsCard> {
-  int _amount = 1;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final l10n = L10n.of(context);
-    final c = widget.character;
-    final repo = ref.read(characterRepositoryProvider);
-    final ratio = c.hitPointsMax == 0
-        ? 0.0
-        : c.hitPointsCurrent / c.hitPointsMax;
-
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.baseline,
-              textBaseline: TextBaseline.alphabetic,
-              children: [
-                Text(
-                  '${c.hitPointsCurrent}',
-                  style: theme.textTheme.displaySmall?.copyWith(
-                    color: c.hitPointsCurrent == 0
-                        ? theme.colorScheme.error
-                        : null,
-                  ),
-                ),
-                Text(
-                  ' / ${c.hitPointsMax}',
-                  style: theme.textTheme.titleMedium,
-                ),
-                if (c.temporaryHitPoints > 0) ...[
-                  const SizedBox(width: 12),
-                  Chip(
-                    label: Text(l10n.sheetTempHp(c.temporaryHitPoints)),
-                    visualDensity: VisualDensity.compact,
-                  ),
-                ],
-                const Spacer(),
-                Text('HP', style: theme.textTheme.labelLarge),
-              ],
-            ),
-            const SizedBox(height: 8),
-            LinearProgressIndicator(
-              value: ratio.clamp(0.0, 1.0),
-              minHeight: 6,
-              color: ratio <= 0.25
-                  ? theme.colorScheme.error
-                  : theme.colorScheme.primary,
-            ),
-            const SizedBox(height: 16),
-            Row(
-              children: [
-                Expanded(
-                  child: FilledButton.tonalIcon(
-                    onPressed: () => repo.applyDamage(c.id, _amount),
-                    icon: const Icon(Icons.remove),
-                    label: Text(l10n.sheetDamage),
-                  ),
-                ),
-                const SizedBox(width: 8),
-                SizedBox(
-                  width: 92,
-                  child: TextFormField(
-                    initialValue: '$_amount',
-                    textAlign: TextAlign.center,
-                    keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(isDense: true),
-                    onChanged: (v) => _amount = int.tryParse(v) ?? 0,
-                  ),
-                ),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: FilledButton.tonalIcon(
-                    onPressed: () => repo.applyHealing(c.id, _amount),
-                    icon: const Icon(Icons.add),
-                    label: Text(l10n.sheetHeal),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 8),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: TextButton.icon(
-                onPressed: () => repo.setTemporaryHitPoints(c.id, _amount),
-                icon: const Icon(Icons.shield_outlined, size: 18),
-                label: Text(l10n.sheetGrantTempHp),
-              ),
-            ),
-            if (c.hitPointsCurrent == 0) ...[
-              const Divider(height: 24),
-              _DeathSaves(character: c),
-            ],
-          ],
-        ),
+  final byType = <String, List<Map<String, dynamic>>>{};
+  for (final o in options) {
+    (byType['${o['type_name']}'] ??= []).add(o);
+  }
+  // Siralama GORUNEN ada gore: liste Ingilizce ada gore dizilirse Turkce
+  // okuyana rastgele siralanmis gorunuyor.
+  for (final group in byType.values) {
+    group.sort(
+      (a, b) => compareTurkish(
+        names.term('classOptions', '${a['name']}'),
+        names.term('classOptions', '${b['name']}'),
       ),
     );
   }
-}
 
-/// Deneyim puani (XP) izleme. Seviye atlama elle yapildigi icin bu kart
-/// yalnizca toplam XP'yi ve sonraki seviye esigine ilerlemeyi gosterir.
-class _ExperienceCard extends StatelessWidget {
-  const _ExperienceCard({required this.character});
-
-  final Character character;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final l10n = L10n.of(context);
-    final xp = character.experiencePoints;
-    final level = Experience.levelForXp(xp);
-    final next = Experience.xpToNext(xp);
-
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Row(
-              children: [
-                Icon(
-                  Icons.military_tech_outlined,
-                  color: theme.colorScheme.primary,
-                ),
-                const SizedBox(width: 8),
-                Text(l10n.sheetExperience, style: theme.textTheme.titleMedium),
-                const Spacer(),
-                Text('$xp XP', style: theme.textTheme.titleMedium),
-              ],
-            ),
-            const SizedBox(height: 8),
-            LinearProgressIndicator(
-              value: Experience.progress(xp),
-              minHeight: 6,
-            ),
-            const SizedBox(height: 6),
-            Text(
-              next == null
-                  ? l10n.sheetXpMaxLevel(level)
-                  : l10n.sheetXpToNext(next.nextLevel, next.xpNeeded),
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: theme.colorScheme.outline,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _DeathSaves extends ConsumerWidget {
-  const _DeathSaves({required this.character});
-
-  final Character character;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final repo = ref.read(characterRepositoryProvider);
-    final theme = Theme.of(context);
-    final l10n = L10n.of(context);
-
-    Widget row(String label, int value, Color color, ValueChanged<int> onSet) =>
-        Row(
-          children: [
-            SizedBox(
-              width: 90,
-              child: Text(label, style: theme.textTheme.bodySmall),
-            ),
-            for (var i = 1; i <= 3; i++)
-              IconButton(
-                visualDensity: VisualDensity.compact,
-                icon: Icon(
-                  i <= value ? Icons.circle : Icons.circle_outlined,
-                  size: 20,
-                  color: i <= value ? color : theme.colorScheme.outline,
-                ),
-                // Dolu son daireye basmak geri alir.
-                onPressed: () => onSet(i == value ? i - 1 : i),
-              ),
-          ],
-        );
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(l10n.sheetDeathSaves, style: theme.textTheme.titleSmall),
-        row(
-          l10n.sheetSuccess,
-          character.deathSaveSuccesses,
-          theme.colorScheme.primary,
-          (v) => repo.setDeathSaves(character.id, successes: v),
-        ),
-        row(
-          l10n.sheetFailure,
-          character.deathSaveFailures,
-          theme.colorScheme.error,
-          (v) => repo.setDeathSaves(character.id, failures: v),
-        ),
-      ],
-    );
-  }
-}
-
-// --- Temel degerler -------------------------------------------------------
-
-class _CoreStatsCard extends StatelessWidget {
-  const _CoreStatsCard({required this.character, required this.stats});
-
-  final Character character;
-  final CharacterBuild stats;
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = L10n.of(context);
-    final entries = <(String, String)>[
-      ('AC', '${character.armorClassOverride ?? stats.armorClass}'),
-      (l10n.sheetInitiative, formatSigned(stats.initiative)),
-      (l10n.sheetSpeed, '${character.speedOverride ?? stats.baseSpeed} ft'),
-      (l10n.sheetProficiency, formatSigned(stats.proficiencyBonus)),
-      (l10n.sheetPassivePerception, '${stats.passivePerception}'),
-      (l10n.sheetCarry, '${stats.carryCapacity} lb'),
-    ];
-
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-        child: Wrap(
-          alignment: WrapAlignment.spaceEvenly,
-          runSpacing: 12,
-          children: [
-            for (final (label, value) in entries)
-              SizedBox(
-                width: 104,
-                child: _Stat(label: label, value: value),
-              ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _Stat extends StatelessWidget {
-  const _Stat({required this.label, required this.value});
-
-  final String label;
-  final String value;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Column(
-      children: [
-        Text(value, style: theme.textTheme.titleLarge),
-        Text(
-          label,
-          style: theme.textTheme.labelSmall?.copyWith(
-            color: theme.colorScheme.outline,
+  final picked = await showModalBottomSheet<Map<String, dynamic>>(
+    context: context,
+    isScrollControlled: true,
+    showDragHandle: true,
+    builder: (context) => DraggableScrollableSheet(
+      expand: false,
+      initialChildSize: 0.75,
+      builder: (context, controller) => ListView(
+        controller: controller,
+        padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
+        children: [
+          Text(
+            l10n.sheetAddClassOption,
+            style: Theme.of(context).textTheme.titleMedium,
           ),
-        ),
-      ],
-    );
-  }
-}
-
-// --- Yetenekler -----------------------------------------------------------
-
-class _AbilitiesCard extends StatelessWidget {
-  const _AbilitiesCard({required this.stats});
-
-  final CharacterBuild stats;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final l10n = L10n.of(context);
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-        child: Row(
-          children: [
-            for (final a in Ability.values)
-              Expanded(
-                // Stat'a dokununca yetenek kontrolu (d20 + modifier) atilir.
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(8),
-                  onTap: () => rollAndShow(
-                    context,
-                    label: l10n.sheetAbilityCheck(a.label),
-                    modifier: stats.abilityModifier(a),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 4),
-                    child: Column(
-                      children: [
-                        Text(a.short, style: theme.textTheme.labelSmall),
-                        Text(
-                          formatSigned(stats.abilityModifier(a)),
-                          style: theme.textTheme.titleLarge,
+          for (final entry in byType.entries) ...[
+            Padding(
+              padding: const EdgeInsets.only(top: 12, bottom: 4),
+              child: Text(
+                glossary.term('classOptionTypes', entry.key),
+                style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+              ),
+            ),
+            for (final option in entry.value)
+              ExpansionTile(
+                tilePadding: EdgeInsets.zero,
+                title: Text(names.term('classOptions', '${option['name']}')),
+                subtitle: '${option['prerequisite'] ?? ''}'.isEmpty
+                    ? null
+                    : Text(
+                        glossary.term(
+                          'classOptionPrerequisites',
+                          '${option['prerequisite']}',
                         ),
-                        Text(
-                          '${stats.abilities[a]}',
-                          style: theme.textTheme.bodySmall?.copyWith(
-                            color: theme.colorScheme.outline,
-                          ),
-                        ),
-                      ],
+                        style: Theme.of(context).textTheme.labelSmall,
+                      ),
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: GameText(
+                      tr.desc('${option['key']}', '${option['desc'] ?? ''}'),
                     ),
                   ),
-                ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton.icon(
+                      onPressed: () => Navigator.of(context).pop(option),
+                      icon: const Icon(Icons.add, size: 18),
+                      label: Text(l10n.sheetAddClassOptionAction),
+                    ),
+                  ),
+                ],
               ),
           ],
-        ),
+        ],
       ),
-    );
-  }
-}
-
-// --- Kurtarma atislari ----------------------------------------------------
-
-class _SavesCard extends StatelessWidget {
-  const _SavesCard({required this.stats});
-
-  final CharacterBuild stats;
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = L10n.of(context);
-    return _ListCard(
-      title: l10n.sheetSavingThrows,
-      children: [
-        for (final a in Ability.values)
-          _ProficiencyRow(
-            proficient: stats.saveProficiencies.contains(a),
-            label: a.label,
-            value: stats.savingThrow(a),
-            rollLabel: l10n.sheetAbilitySave(a.label),
-          ),
-      ],
-    );
-  }
-}
-
-// --- Beceriler ------------------------------------------------------------
-
-class _SkillsCard extends StatelessWidget {
-  const _SkillsCard({required this.stats});
-
-  final CharacterBuild stats;
-
-  @override
-  Widget build(BuildContext context) => _ListCard(
-    title: L10n.of(context).sheetSkills,
-    children: [
-      for (final s in Skill.values)
-        _ProficiencyRow(
-          proficient: stats.skillProficiencies.contains(s),
-          expertise: stats.skillExpertise.contains(s),
-          label: s.label,
-          trailing: s.ability.short,
-          value: stats.skillModifier(s),
-          rollLabel: s.label,
-        ),
-    ],
+    ),
   );
+  if (picked == null) return;
+  await ref
+      .read(characterRepositoryProvider)
+      .addClassOption(characterId, picked);
 }
 
-class _ProficiencyRow extends StatelessWidget {
-  const _ProficiencyRow({
-    required this.proficient,
-    required this.label,
-    required this.value,
-    required this.rollLabel,
-    this.expertise = false,
-    this.trailing,
-  });
-
-  final bool proficient;
-  final bool expertise;
-  final String label;
-  final int value;
-
-  /// Zar gunlugunde/bildiriminde gorunecek ad ("Gizlilik", "DEX kurtarma").
-  final String rollLabel;
-  final String? trailing;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    // Satira dokununca d20 + bu deger atilir; masada en cok istenen kisayol.
-    return InkWell(
-      onTap: () => rollAndShow(context, label: rollLabel, modifier: value),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 6),
-        child: Row(
-          children: [
-            Icon(
-              expertise
-                  ? Icons.star
-                  : (proficient ? Icons.circle : Icons.circle_outlined),
-              size: 14,
-              color: proficient
-                  ? theme.colorScheme.primary
-                  : theme.colorScheme.outlineVariant,
-            ),
-            const SizedBox(width: 10),
-            Expanded(child: Text(label, style: theme.textTheme.bodyMedium)),
-            if (trailing != null)
-              Text(
-                trailing!,
-                style: theme.textTheme.labelSmall?.copyWith(
-                  color: theme.colorScheme.outline,
-                ),
-              ),
-            const SizedBox(width: 10),
-            SizedBox(
-              width: 36,
-              child: Text(
-                formatSigned(value),
-                textAlign: TextAlign.end,
-                style: theme.textTheme.titleSmall,
-              ),
-            ),
-            const Icon(Icons.casino_outlined, size: 16),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-/// d20 + [modifier] atar ve sonucu bildirimle gosterir. DM tarafi yerel;
-/// avantaj/dezavantaj icin basili tutmak yerine sadelik adina duz atis.
-void rollAndShow(
-  BuildContext context, {
-  required String label,
-  required int modifier,
-}) {
-  final roll = DiceRoller().d20(label: label, modifier: modifier);
-  showRollResult(context, roll);
-}
-
+/// Konsantrasyon tutulan buyu; hasar alinca kurtarma DC'sini hatirlatir.
 // --- Buyu yuvalari --------------------------------------------------------
 
 class _SpellSlotsCard extends ConsumerWidget {
@@ -1071,392 +1098,6 @@ class _ConditionCard extends ConsumerWidget {
   }
 }
 
-// --- Envanter -------------------------------------------------------------
-
-/// Karakterin esyalari. DM buradan ekler, adet degistirir, giydirir, siler.
-class _InventoryCard extends ConsumerWidget {
-  const _InventoryCard({required this.characterId});
-
-  final String characterId;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final items =
-        ref.watch(characterItemsProvider(characterId)).value ?? const [];
-    final repo = ref.read(characterRepositoryProvider);
-    final theme = Theme.of(context);
-    final l10n = L10n.of(context);
-
-    return _ListCard(
-      title: l10n.sheetInventory,
-      children: [
-        if (items.isEmpty)
-          Text(l10n.sheetBagEmpty, style: theme.textTheme.bodySmall)
-        else
-          for (final item in items) _ItemRow(item: item, repo: repo),
-        const SizedBox(height: 4),
-        Align(
-          alignment: Alignment.centerLeft,
-          child: TextButton.icon(
-            onPressed: () => _addItem(context, ref),
-            icon: const Icon(Icons.add, size: 18),
-            label: Text(l10n.sheetAddItem),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Future<void> _addItem(BuildContext context, WidgetRef ref) async {
-    final picked = await showModalBottomSheet<_PickedItem>(
-      context: context,
-      isScrollControlled: true,
-      showDragHandle: true,
-      builder: (context) => const _AddItemSheet(),
-    );
-    if (picked == null) return;
-    await ref
-        .read(characterRepositoryProvider)
-        .addItem(
-          characterId: characterId,
-          itemKey: picked.itemKey,
-          magicItemKey: picked.magicItemKey,
-          customName: picked.customName,
-        );
-  }
-}
-
-class _ItemRow extends ConsumerWidget {
-  const _ItemRow({required this.item, required this.repo});
-
-  final CharacterItem item;
-  final CharacterRepository repo;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final theme = Theme.of(context);
-    final resolved = ref.watch(itemNameProvider(item)).value ?? '…';
-    final name = resolved.isEmpty
-        ? L10n.of(context).sheetUnknownItem
-        : resolved;
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 2),
-      child: Row(
-        children: [
-          IconButton(
-            visualDensity: VisualDensity.compact,
-            tooltip: item.equipped
-                ? L10n.of(context).sheetUnequip
-                : L10n.of(context).sheetEquip,
-            icon: Icon(
-              item.equipped ? Icons.check_circle : Icons.circle_outlined,
-              size: 18,
-              color: item.equipped ? theme.colorScheme.primary : null,
-            ),
-            onPressed: () => repo.setEquipped(item.id, !item.equipped),
-          ),
-          Expanded(child: Text(name, style: theme.textTheme.bodyMedium)),
-          IconButton(
-            visualDensity: VisualDensity.compact,
-            icon: const Icon(Icons.remove, size: 18),
-            onPressed: () => repo.setItemQuantity(item.id, item.quantity - 1),
-          ),
-          Text('${item.quantity}', style: theme.textTheme.titleSmall),
-          IconButton(
-            visualDensity: VisualDensity.compact,
-            icon: const Icon(Icons.add, size: 18),
-            onPressed: () => repo.setItemQuantity(item.id, item.quantity + 1),
-          ),
-          IconButton(
-            visualDensity: VisualDensity.compact,
-            icon: const Icon(Icons.delete_outline, size: 18),
-            onPressed: () => repo.removeItem(item.id),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-/// Eklenecek esyanin secimi.
-class _PickedItem {
-  const _PickedItem({this.itemKey, this.magicItemKey, this.customName});
-
-  final String? itemKey;
-  final String? magicItemKey;
-  final String? customName;
-}
-
-/// Kutuphaneden esya/buyulu esya arayip ekler, ya da serbest bir satir yazar.
-class _AddItemSheet extends ConsumerStatefulWidget {
-  const _AddItemSheet();
-
-  @override
-  ConsumerState<_AddItemSheet> createState() => _AddItemSheetState();
-}
-
-class _AddItemSheetState extends ConsumerState<_AddItemSheet> {
-  int _tab = 0; // 0 esya, 1 buyulu esya, 2 serbest
-  final _customName = TextEditingController();
-
-  @override
-  void dispose() {
-    _customName.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final itemQuery = ref.watch(itemQueryProvider);
-    final magicQuery = ref.watch(magicItemQueryProvider);
-    final l10n = L10n.of(context);
-
-    return DraggableScrollableSheet(
-      expand: false,
-      initialChildSize: 0.7,
-      maxChildSize: 0.95,
-      builder: (context, scrollController) => Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
-            child: SegmentedButton<int>(
-              segments: [
-                ButtonSegment(value: 0, label: Text(l10n.sheetItemTab)),
-                ButtonSegment(value: 1, label: Text(l10n.sheetMagicTab)),
-                ButtonSegment(value: 2, label: Text(l10n.sheetCustomTab)),
-              ],
-              selected: {_tab},
-              onSelectionChanged: (s) => setState(() => _tab = s.first),
-            ),
-          ),
-          if (_tab == 2)
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  children: [
-                    TextField(
-                      controller: _customName,
-                      autofocus: true,
-                      decoration: InputDecoration(
-                        labelText: l10n.sheetItemName,
-                        border: const OutlineInputBorder(),
-                      ),
-                      onChanged: (_) => setState(() {}),
-                    ),
-                    const SizedBox(height: 12),
-                    FilledButton(
-                      onPressed: _customName.text.trim().isEmpty
-                          ? null
-                          : () => Navigator.pop(
-                              context,
-                              _PickedItem(customName: _customName.text.trim()),
-                            ),
-                      child: Text(l10n.add),
-                    ),
-                  ],
-                ),
-              ),
-            )
-          else ...[
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: l10n.searchHint,
-                  prefixIcon: const Icon(Icons.search),
-                  border: const OutlineInputBorder(),
-                  isDense: true,
-                ),
-                onChanged: (v) => _tab == 0
-                    ? ref
-                          .read(itemQueryProvider.notifier)
-                          .set(itemQuery.copyWith(text: v))
-                    : ref
-                          .read(magicItemQueryProvider.notifier)
-                          .set(magicQuery.copyWith(text: v)),
-              ),
-            ),
-            const SizedBox(height: 8),
-            Expanded(
-              child: _tab == 0
-                  ? _ItemResults(scrollController: scrollController)
-                  : _MagicResults(scrollController: scrollController),
-            ),
-          ],
-        ],
-      ),
-    );
-  }
-}
-
-class _ItemResults extends ConsumerWidget {
-  const _ItemResults({required this.scrollController});
-
-  final ScrollController scrollController;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final results = ref.watch(itemResultsProvider);
-    return asyncView(
-      context,
-      results,
-      loading: const AppLoading(),
-      onRetry: () => ref.invalidate(itemResultsProvider),
-      data: (rows) => ListView.builder(
-        controller: scrollController,
-        itemCount: rows.length,
-        itemBuilder: (context, i) => ListTile(
-          dense: true,
-          title: Text(rows[i].name),
-          subtitle: Text(rows[i].category ?? ''),
-          onTap: () =>
-              Navigator.pop(context, _PickedItem(itemKey: rows[i].key)),
-        ),
-      ),
-    );
-  }
-}
-
-class _MagicResults extends ConsumerWidget {
-  const _MagicResults({required this.scrollController});
-
-  final ScrollController scrollController;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final results = ref.watch(magicItemResultsProvider);
-    return asyncView(
-      context,
-      results,
-      loading: const AppLoading(),
-      onRetry: () => ref.invalidate(magicItemResultsProvider),
-      data: (rows) => ListView.builder(
-        controller: scrollController,
-        itemCount: rows.length,
-        itemBuilder: (context, i) => ListTile(
-          dense: true,
-          title: Text(rows[i].name),
-          subtitle: Text(rows[i].rarity ?? ''),
-          onTap: () =>
-              Navigator.pop(context, _PickedItem(magicItemKey: rows[i].key)),
-        ),
-      ),
-    );
-  }
-}
-
-// --- Kese -----------------------------------------------------------------
-
-/// Kese: her para birimi (pp/gp/sp/cp) icin ayri mini alan. Toplam bakir
-/// olarak saklanir (1 pp = 1000, 1 gp = 100, 1 sp = 10 cp).
-class _PurseCard extends ConsumerStatefulWidget {
-  const _PurseCard({required this.character});
-
-  final Character character;
-
-  @override
-  ConsumerState<_PurseCard> createState() => _PurseCardState();
-}
-
-class _PurseCardState extends ConsumerState<_PurseCard> {
-  late final _pp = TextEditingController();
-  late final _gp = TextEditingController();
-  late final _sp = TextEditingController();
-  late final _cp = TextEditingController();
-  bool _dirty = false;
-
-  static const _units = [1000, 100, 10, 1];
-
-  @override
-  void initState() {
-    super.initState();
-    _fill(widget.character.coinsCp);
-  }
-
-  @override
-  void didUpdateWidget(_PurseCard old) {
-    super.didUpdateWidget(old);
-    // Disaridan (satin alma, DM) degistiyse ve kullanici duzenlemiyorsa yansit.
-    if (!_dirty && widget.character.coinsCp != old.character.coinsCp) {
-      _fill(widget.character.coinsCp);
-    }
-  }
-
-  void _fill(int cp) {
-    var rest = cp;
-    final controllers = [_pp, _gp, _sp, _cp];
-    for (var i = 0; i < _units.length; i++) {
-      controllers[i].text = '${rest ~/ _units[i]}';
-      rest %= _units[i];
-    }
-  }
-
-  int _valueOf(TextEditingController c) => int.tryParse(c.text.trim()) ?? 0;
-
-  Future<void> _save() async {
-    final total =
-        _valueOf(_pp) * 1000 +
-        _valueOf(_gp) * 100 +
-        _valueOf(_sp) * 10 +
-        _valueOf(_cp);
-    await ref
-        .read(characterRepositoryProvider)
-        .setCoins(widget.character.id, total);
-    if (mounted) setState(() => _dirty = false);
-  }
-
-  @override
-  void dispose() {
-    for (final c in [_pp, _gp, _sp, _cp]) {
-      c.dispose();
-    }
-    super.dispose();
-  }
-
-  Widget _coinField(TextEditingController controller, String label) => Expanded(
-    child: TextField(
-      controller: controller,
-      keyboardType: TextInputType.number,
-      textAlign: TextAlign.center,
-      onChanged: (_) {
-        if (!_dirty) setState(() => _dirty = true);
-      },
-      decoration: InputDecoration(
-        labelText: label,
-        isDense: true,
-        border: const OutlineInputBorder(),
-      ),
-    ),
-  );
-
-  @override
-  Widget build(BuildContext context) => _ListCard(
-    title: L10n.of(context).sheetPurse,
-    children: [
-      Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          _coinField(_pp, 'pp'),
-          const SizedBox(width: 6),
-          _coinField(_gp, 'gp'),
-          const SizedBox(width: 6),
-          _coinField(_sp, 'sp'),
-          const SizedBox(width: 6),
-          _coinField(_cp, 'cp'),
-          const SizedBox(width: 8),
-          IconButton.filled(
-            tooltip: L10n.of(context).save,
-            onPressed: _dirty ? _save : null,
-            icon: const Icon(Icons.check),
-          ),
-        ],
-      ),
-    ],
-  );
-}
-
 // --- Ortak -----------------------------------------------------------------
 
 class _ListCard extends StatelessWidget {
@@ -1550,7 +1191,7 @@ class _PortraitCard extends ConsumerWidget {
     final path = character.portraitPath;
 
     Future<void> upload() async {
-      final picked = await pickImageFile();
+      final picked = await pickImageFile(typeLabel: l10n.fileTypeImage);
       if (picked == null) return;
       try {
         await repo.setPortrait(character.id, picked);
@@ -1605,250 +1246,6 @@ class _PortraitCard extends ConsumerWidget {
 }
 
 /// Bilinen buyuler; yalnizca buyu yapan karakterlerde gorunur.
-class _KnownSpellsCard extends ConsumerWidget {
-  const _KnownSpellsCard({required this.characterId});
-
-  final String characterId;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final theme = Theme.of(context);
-    final slots = ref.watch(spellSlotsProvider(characterId)).value ?? const {};
-    final pact = ref.watch(pactMagicProvider(characterId)).value;
-    // Buyu yuvasi yoksa (buyu yapmayan sinif) karti hic gosterme.
-    if (slots.isEmpty && pact == null) return const SizedBox.shrink();
-
-    final spells =
-        ref.watch(knownSpellsProvider(characterId)).value ?? const [];
-    final repo = ref.read(characterRepositoryProvider);
-    final l10n = L10n.of(context);
-
-    Future<void> addSpell() async {
-      final classKeys = (await repo.classLevels(
-        characterId,
-      )).map((l) => l.classKey).toList();
-      if (!context.mounted) return;
-      final spell = await showDialog<Spell>(
-        context: context,
-        builder: (context) => _SpellPickerDialog(classKeys: classKeys),
-      );
-      if (spell == null) return;
-      await repo.addKnownSpell(characterId, spell.key);
-      ref.invalidate(knownSpellsProvider(characterId));
-    }
-
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    l10n.sheetSpells,
-                    style: theme.textTheme.titleMedium,
-                  ),
-                ),
-                TextButton.icon(
-                  onPressed: addSpell,
-                  icon: const Icon(Icons.add, size: 18),
-                  label: Text(l10n.sheetAddSpell),
-                ),
-              ],
-            ),
-            if (spells.isEmpty)
-              Text(l10n.sheetNoSpellsAdded, style: theme.textTheme.bodySmall)
-            else
-              for (final s in spells)
-                Row(
-                  children: [
-                    SizedBox(
-                      width: 26,
-                      child: Text(
-                        s.level == 0 ? 'C' : '${s.level}',
-                        textAlign: TextAlign.center,
-                        style: theme.textTheme.labelLarge,
-                      ),
-                    ),
-                    Expanded(
-                      child: Text(
-                        s.name,
-                        style: TextStyle(
-                          fontWeight: s.prepared || s.alwaysPrepared
-                              ? FontWeight.bold
-                              : null,
-                        ),
-                      ),
-                    ),
-                    if (s.alwaysPrepared)
-                      Padding(
-                        padding: const EdgeInsets.only(right: 8),
-                        child: Text(
-                          l10n.sheetAlways,
-                          style: theme.textTheme.labelSmall?.copyWith(
-                            color: theme.colorScheme.outline,
-                          ),
-                        ),
-                      )
-                    else
-                      IconButton(
-                        visualDensity: VisualDensity.compact,
-                        tooltip: s.prepared
-                            ? l10n.sheetPrepared
-                            : l10n.sheetPrepare,
-                        icon: Icon(
-                          s.prepared
-                              ? Icons.check_circle
-                              : Icons.circle_outlined,
-                          size: 18,
-                          color: s.prepared ? theme.colorScheme.primary : null,
-                        ),
-                        onPressed: () async {
-                          await repo.togglePrepared(
-                            characterId,
-                            s.spellKey,
-                            !s.prepared,
-                          );
-                          ref.invalidate(knownSpellsProvider(characterId));
-                        },
-                      ),
-                    IconButton(
-                      visualDensity: VisualDensity.compact,
-                      tooltip: l10n.delete,
-                      icon: const Icon(Icons.remove_circle_outline, size: 18),
-                      onPressed: () async {
-                        await repo.removeSpell(characterId, s.spellKey);
-                        ref.invalidate(knownSpellsProvider(characterId));
-                      },
-                    ),
-                  ],
-                ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-/// Kutuphaneden buyu secme dialogu; secilen [Spell]'i doner. Varsayilan olarak
-/// karakterin siniflarina uygun buyulere filtreler.
-class _SpellPickerDialog extends ConsumerStatefulWidget {
-  const _SpellPickerDialog({required this.classKeys});
-
-  /// Karakterin sinif anahtarlari; filtre bunlara gore.
-  final List<String> classKeys;
-
-  @override
-  ConsumerState<_SpellPickerDialog> createState() => _SpellPickerDialogState();
-}
-
-class _SpellPickerDialogState extends ConsumerState<_SpellPickerDialog> {
-  final _search = TextEditingController();
-  late bool _onlyClass = widget.classKeys.isNotEmpty;
-
-  /// Anahtarin son parcasi ('srd-2024_wizard' -> 'wizard'); farkli onekleri
-  /// eslestirmek icin.
-  static String _tail(String key) =>
-      key.contains('_') ? key.substring(key.lastIndexOf('_') + 1) : key;
-
-  bool _matchesClass(Spell s) {
-    final want = widget.classKeys.map(_tail).toSet();
-    final has = s.classesCsv
-        .split(',')
-        .where((e) => e.isNotEmpty)
-        .map(_tail)
-        .toSet();
-    return want.intersection(has).isNotEmpty;
-  }
-
-  @override
-  void dispose() {
-    _search.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final query = ref.watch(spellQueryProvider);
-    final results = ref.watch(spellResultsProvider);
-    final l10n = L10n.of(context);
-
-    return AlertDialog(
-      title: Text(l10n.sheetAddSpell),
-      content: SizedBox(
-        width: 460,
-        height: 520,
-        child: Column(
-          children: [
-            TextField(
-              controller: _search,
-              autofocus: true,
-              decoration: InputDecoration(
-                hintText: l10n.sheetSearchSpell,
-                prefixIcon: const Icon(Icons.search),
-                border: const OutlineInputBorder(),
-              ),
-              onChanged: (v) => ref
-                  .read(spellQueryProvider.notifier)
-                  .set(query.copyWith(text: v)),
-            ),
-            if (widget.classKeys.isNotEmpty)
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 8),
-                  child: FilterChip(
-                    label: Text(l10n.sheetOnlyClassSpells),
-                    selected: _onlyClass,
-                    onSelected: (v) => setState(() => _onlyClass = v),
-                  ),
-                ),
-              ),
-            const SizedBox(height: 8),
-            Expanded(
-              child: asyncView(
-                context,
-                results,
-                loading: const AppLoading(),
-                data: (all) {
-                  final rows = _onlyClass && widget.classKeys.isNotEmpty
-                      ? all.where(_matchesClass).toList()
-                      : all;
-                  return rows.isEmpty
-                      ? Center(child: Text(l10n.noResults))
-                      : ListView.builder(
-                          itemCount: rows.length,
-                          itemBuilder: (context, i) {
-                            final s = rows[i];
-                            return ListTile(
-                              dense: true,
-                              title: Text(s.name),
-                              subtitle: Text(
-                                s.level == 0 ? 'Cantrip' : 'Level ${s.level}',
-                              ),
-                              onTap: () => Navigator.pop(context, s),
-                            );
-                          },
-                        );
-                },
-              ),
-            ),
-          ],
-        ),
-      ),
-      actions: [
-        TextButton(
-          onPressed: () => Navigator.pop(context),
-          child: Text(l10n.close),
-        ),
-      ],
-    );
-  }
-}
-
-/// Hikaye ve kisilik alanlari (2024 kagidi): serbest metin, DM duzenler.
 class _StoryCard extends ConsumerStatefulWidget {
   const _StoryCard({required this.character});
 

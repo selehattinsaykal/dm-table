@@ -1,5 +1,9 @@
 /// DM bilgi tabani blok turleri. Her blogun verisi `dataJson` icinde tutulur;
 /// alan semasi asagida her tur icin acikliktir.
+///
+/// Tur-ozel alanlarin YANINDA her blok, `CodexLayout` ve stil jetonlarini da
+/// ayni haritada tasiyabilir (`width`, `align`, `height`, `tone`, `style`...);
+/// bkz. `codex_style.dart`. Bunlar istege baglidir, yoksa varsayilana duser.
 enum CodexBlockType {
   /// {level: 1..3, text}
   heading,
@@ -31,8 +35,19 @@ enum CodexBlockType {
   /// {header: bool, rows: [[String]]}
   table,
 
-  /// {title, items: [{label, value: num}]} — cubuk grafik
+  /// {title, type: CodexChartType, items: [{label, value: num, color?: int}],
+  /// palette, showValues, showLegend, showGrid} — cok turlu grafik
   chart,
+
+  /// {title, style: CodexCounterStyle, items: [{label, value, min?, max?,
+  /// step, icon?}]} — goruntule modunda arti/eksi ile degisen sayaclar
+  /// (mesale turu, erzak, gunler, oturum sayaci...)
+  counter,
+
+  /// {title, mode: CodexTimerMode, duration: saniye, startedAt, accumulated,
+  /// style: CodexTimerStyle, alarm, loop} — gercek zamanli sure sayaci
+  /// (tur suresi, mesalenin yanma suresi, bulmaca sayaci)
+  timer,
 
   /// {label, expression: "2d6+3"} — goruntule modunda tiklaninca atilir
   dice,

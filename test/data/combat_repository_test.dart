@@ -254,13 +254,12 @@ void main() {
       return (await characters.find(id))!;
     }
 
-    test('oyuncu katilimci atilmamis (initiativeRolled false) girer', () async {
+    test('oyuncu katilimci initiative 0 ile girer', () async {
       await combat.addCharacters(
         encounterId: encounterId,
         characters: [await makeCharacter('pc1')],
       );
       final row = (await combat.combatants(encounterId)).single;
-      expect(row.initiativeRolled, isFalse);
       expect(row.initiative, 0);
     });
 
@@ -276,13 +275,11 @@ void main() {
       final rows = await combat.combatants(encounterId);
       final pc = rows.firstWhere((r) => r.characterId == 'pc1');
       final goblin = rows.firstWhere((r) => r.name == 'Goblin');
-      expect(pc.initiativeRolled, isFalse, reason: 'oyuncu kendi atmali');
-      expect(pc.initiative, 0);
-      expect(goblin.initiativeRolled, isTrue);
+      expect(pc.initiative, 0, reason: 'zari masadaki oyuncu atar');
       expect(goblin.initiative, greaterThan(0));
     });
 
-    test('setInitiative degeri yazar ve atildi bayragini kaldirir', () async {
+    test('setInitiative degeri yazar', () async {
       await combat.addCharacters(
         encounterId: encounterId,
         characters: [await makeCharacter('pc1')],
@@ -293,7 +290,6 @@ void main() {
 
       final row = (await combat.combatants(encounterId)).single;
       expect(row.initiative, 17);
-      expect(row.initiativeRolled, isTrue);
     });
   });
 
@@ -475,6 +471,46 @@ void main() {
       final row = (await combat.combatants(encounterId)).single;
       expect(row.legendaryMax, 1);
       expect(row.legendarySpent, 0);
+    });
+  });
+
+  group('elle sıralama', () {
+    test('sürüklenen satır yeni yerine oturur ve sıra bozulmaz', () async {
+      for (final (name, init) in [('A', 20), ('B', 15), ('C', 10)]) {
+        await combat.addAdhoc(
+          encounterId: encounterId,
+          name: name,
+          initiative: init,
+        );
+      }
+      expect((await combat.combatants(encounterId)).map((c) => c.name), [
+        'A',
+        'B',
+        'C',
+      ]);
+
+      // C'yi en uste tasi.
+      await combat.reorderCombatants(encounterId, 2, 0);
+      final rows = await combat.combatants(encounterId);
+      expect(rows.map((c) => c.name), ['C', 'A', 'B']);
+      // Liste azalan initiative kuralini bozmamali.
+      for (var i = 1; i < rows.length; i++) {
+        expect(
+          rows[i].initiative,
+          lessThanOrEqualTo(rows[i - 1].initiative),
+          reason: 'sıra azalan initiative ile tutarlı kalmalı',
+        );
+      }
+    });
+
+    test('aynı yere bırakmak hiçbir şey değiştirmez', () async {
+      await combat.addAdhoc(encounterId: encounterId, name: 'A', initiative: 5);
+      await combat.addAdhoc(encounterId: encounterId, name: 'B', initiative: 3);
+      await combat.reorderCombatants(encounterId, 1, 1);
+      expect((await combat.combatants(encounterId)).map((c) => c.name), [
+        'A',
+        'B',
+      ]);
     });
   });
 }

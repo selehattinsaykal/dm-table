@@ -15,7 +15,6 @@ class DiceRoll {
     this.source,
     this.advantage = Advantage.none,
     this.keptIndex,
-    this.seq,
   });
 
   /// "Gizlilik", "Perception", "Longsword" gibi ne icin atildigini soyleyen ad.
@@ -30,18 +29,14 @@ class DiceRoll {
   /// Sonuclarin toplami + modifier (avantaj/dezavantajda secilen zar).
   final int total;
 
-  /// Atisi yapan kisi (oyuncu adi); DM'in atislarinda null.
+  /// Atisin kimin adina yapildigi ("Kaan", "Kizil Ejder"); serbest atislarda
+  /// null. Zar gunlugunde satirin basinda gorunur.
   final String? source;
 
   final Advantage advantage;
 
   /// Avantaj/dezavantajda [results] icinde hangi zarin sayildigi.
   final int? keptIndex;
-
-  /// Paylasilan gunlukteki artan sira numarasi. Sunucu [pushRoll]'da atar;
-  /// istemci "yeni atis" ile "gecmis atis"i ve kendi atisini bununla ayirt
-  /// eder. Gunluk disindaki (anlik hesap) atislarda null.
-  final int? seq;
 
   /// "d20: 17 + 5" gibi okunur ozet.
   String get detail {
@@ -61,49 +56,6 @@ class DiceRoll {
         ? '$count$dice ($rolls)$mod'
         : '$dice ($rolls)$mod';
   }
-
-  /// Ayni atisi verilen sira numarasiyla kopyalar (sunucu gunluge iterken).
-  DiceRoll withSeq(int seq) => DiceRoll(
-    label: label,
-    sides: sides,
-    count: count,
-    modifier: modifier,
-    results: results,
-    total: total,
-    source: source,
-    advantage: advantage,
-    keptIndex: keptIndex,
-    seq: seq,
-  );
-
-  Map<String, dynamic> toJson() => {
-    'label': label,
-    'sides': sides,
-    'count': count,
-    'modifier': modifier,
-    'results': results,
-    'total': total,
-    'source': source,
-    'advantage': advantage.name,
-    'keptIndex': keptIndex,
-    if (seq != null) 'seq': seq,
-  };
-
-  static DiceRoll fromJson(Map<String, dynamic> json) => DiceRoll(
-    label: json['label'] as String? ?? '',
-    sides: json['sides'] as int? ?? 20,
-    count: json['count'] as int? ?? 1,
-    modifier: json['modifier'] as int? ?? 0,
-    results: (json['results'] as List? ?? const []).cast<int>(),
-    total: json['total'] as int? ?? 0,
-    source: json['source'] as String?,
-    advantage: Advantage.values.firstWhere(
-      (a) => a.name == json['advantage'],
-      orElse: () => Advantage.none,
-    ),
-    keptIndex: json['keptIndex'] as int?,
-    seq: json['seq'] as int?,
-  );
 }
 
 /// d20 atislarinda avantaj/dezavantaj.

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../data/content_tr.dart';
 import '../../l10n/app_localizations.dart';
 import '../characters/character_providers.dart';
 import '../shops/shop_providers.dart' show customContentProvider;
@@ -70,6 +71,7 @@ class _SpellFormState extends ConsumerState<_SpellForm> {
         classDefs.values.where((c) => c.subclassOf == null).toList()
           ..sort((a, b) => a.name.compareTo(b.name));
     final l10n = L10n.of(context);
+    final glossary = glossaryTrOf(context, ref);
     return AlertDialog(
       title: Text(l10n.compendiumCreateSpell),
       content: SizedBox(
@@ -99,9 +101,9 @@ class _SpellFormState extends ConsumerState<_SpellForm> {
                         border: const OutlineInputBorder(),
                       ),
                       items: [
-                        const DropdownMenuItem(
+                        DropdownMenuItem(
                           value: 0,
-                          child: Text('Cantrip'),
+                          child: Text(l10n.formCantrip),
                         ),
                         for (var l = 1; l <= 9; l++)
                           DropdownMenuItem(
@@ -123,7 +125,12 @@ class _SpellFormState extends ConsumerState<_SpellForm> {
                       items: [
                         const DropdownMenuItem(value: null, child: Text('—')),
                         for (final s in _schools)
-                          DropdownMenuItem(value: s, child: Text(s)),
+                          // Deger Ingilizce kaydediliyor; okul filtreleri ve
+                          // SRD verisi o yazima bakiyor.
+                          DropdownMenuItem(
+                            value: s,
+                            child: Text(glossary.term('schools', s)),
+                          ),
                       ],
                       onChanged: (v) => setState(() => _school = v),
                     ),
@@ -134,7 +141,7 @@ class _SpellFormState extends ConsumerState<_SpellForm> {
               TextField(
                 controller: _castingTime,
                 decoration: InputDecoration(
-                  labelText: 'Casting time',
+                  labelText: l10n.formCastingTime,
                   hintText: l10n.formCastingTimeHint,
                   border: const OutlineInputBorder(),
                 ),
@@ -200,13 +207,13 @@ class _SpellFormState extends ConsumerState<_SpellForm> {
               ],
               SwitchListTile(
                 contentPadding: EdgeInsets.zero,
-                title: const Text('Concentration'),
+                title: Text(l10n.filterConcentration),
                 value: _concentration,
                 onChanged: (v) => setState(() => _concentration = v),
               ),
               SwitchListTile(
                 contentPadding: EdgeInsets.zero,
-                title: const Text('Ritual'),
+                title: Text(l10n.filterRitual),
                 value: _ritual,
                 onChanged: (v) => setState(() => _ritual = v),
               ),

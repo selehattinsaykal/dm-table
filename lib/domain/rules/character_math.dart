@@ -4,8 +4,8 @@ import '../models/character_build.dart';
 /// Karakter kagidindaki turetilmis degerlerin tamami.
 ///
 /// Hepsi saf fonksiyon: ayni [CharacterBuild] her zaman ayni sonucu verir.
-/// Arayuz, oyuncu paneli ve savas takipcisi ayni hesaplari kullansin diye
-/// tek yerde toplandi.
+/// Karakter kagidi, sihirbaz ve savas takipcisi ayni hesaplari kullansin
+/// diye tek yerde toplandi.
 extension CharacterMath on CharacterBuild {
   /// Toplam karakter seviyesine gore yeterlilik bonusu.
   int get proficiencyBonus {
@@ -34,6 +34,11 @@ extension CharacterMath on CharacterBuild {
     }
     return abilities.modifier(skill.ability) + bonus + exhaustionPenalty;
   }
+
+  /// Bir alet kontrolune eklenecek bonus: yeterlilik varsa yeterlilik bonusu,
+  /// yoksa 0. Bitkinlik cezasi burada da gecerli.
+  int toolModifier(String tool) =>
+      (proficientWithTool(tool) ? proficiencyBonus : 0) + exhaustionPenalty;
 
   /// Pasif skor: 10 + ilgili beceri modifieri.
   int passiveSkill(Skill skill) => 10 + skillModifier(skill);
@@ -133,6 +138,9 @@ extension CharacterMath on CharacterBuild {
       proficiencyBonus + abilities.modifier(spellcastingAbility);
 }
 
+/// Ayni anda bagli tutulabilecek buyulu esya sayisi (5e sabiti).
+const maxAttunedItems = 3;
+
 /// Sinif anahtarindan buyu yetenegini verir.
 ///
 /// SRD verisinde bu alan yok (sinif kaydinda `primary_abilities` bos
@@ -142,7 +150,7 @@ Ability? spellcastingAbilityFor(String classKey) {
   return switch (key) {
     'bard' || 'paladin' || 'sorcerer' || 'warlock' => Ability.charisma,
     'cleric' || 'druid' || 'ranger' => Ability.wisdom,
-    'wizard' => Ability.intelligence,
+    'wizard' || 'artificer' => Ability.intelligence,
     _ => null,
   };
 }

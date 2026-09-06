@@ -62,19 +62,18 @@ void main() {
     expect(r.total, r.results[r.keptIndex!] - 2);
   });
 
-  test('JSON tur atlayınca aynı kalır', () {
+  test('avantajda sayilan zar toplama girer', () {
     final r = DiceRoller(Random(5)).d20(
       modifier: 4,
       label: 'Stealth',
       source: 'Selim',
       advantage: Advantage.advantage,
     );
-    final back = DiceRoll.fromJson(r.toJson());
-    expect(back.label, 'Stealth');
-    expect(back.total, r.total);
-    expect(back.source, 'Selim');
-    expect(back.advantage, Advantage.advantage);
-    expect(back.results, r.results);
-    expect(back.keptIndex, r.keptIndex);
+    expect(r.results, hasLength(2));
+    expect(r.keptIndex, isNotNull);
+    expect(r.total, r.results[r.keptIndex!] + 4);
+    expect(r.source, 'Selim');
+    // Sayilan zar detayda koseli parantezle isaretlenir.
+    expect(r.detail, contains('['));
   });
 }

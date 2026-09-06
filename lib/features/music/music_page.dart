@@ -9,6 +9,7 @@ import '../../data/db/database.dart';
 import '../../data/music_store.dart';
 import '../../l10n/app_localizations.dart';
 import 'music_controller.dart';
+import 'music_download_controller.dart';
 import 'music_link_dialog.dart';
 import 'tool_installer.dart';
 
@@ -63,16 +64,23 @@ class _MusicPageState extends ConsumerState<MusicPage> {
           // Sıralama: Ayarlar -> Bağlantıdan ekle -> Dosya ekle -> Yeni liste.
           // Ayarlar en solda: araç kurulumu diğer düğmelerin ÖN KOŞULU, akış
           // soldan sağa "önce kur, sonra ekle" diye okunuyor.
-          IconButton(
-            tooltip: l10n.musicSettings,
-            icon: const Icon(Icons.settings_outlined),
-            onPressed: _openSettings,
-          ),
-          IconButton(
-            tooltip: l10n.musicAddLink,
-            icon: const Icon(Icons.add_link),
-            onPressed: _addFromLink,
-          ),
+          //
+          // Indirme YALNIZCA masaustunde: harici bir calistirilabilir
+          // (yt-dlp) gerekiyor ve Android bunu hicbir zaman kuramaz. Iki
+          // dugme de orada gizleniyor, cunku ayarlar sayfasinin tek isi o
+          // aracin kurulumu (bkz. `MusicDownloader.supportedHere`).
+          if (ref.watch(musicDownloadSupportedProvider)) ...[
+            IconButton(
+              tooltip: l10n.musicSettings,
+              icon: const Icon(Icons.settings_outlined),
+              onPressed: _openSettings,
+            ),
+            IconButton(
+              tooltip: l10n.musicAddLink,
+              icon: const Icon(Icons.add_link),
+              onPressed: _addFromLink,
+            ),
+          ],
           IconButton(
             tooltip: l10n.musicImport,
             icon: _busy
@@ -140,6 +148,7 @@ class _MusicPageState extends ConsumerState<MusicPage> {
                   ),
           ),
           const MusicDownloadStrip(),
+          const _AmbienceBar(),
           const MusicPlayerBar(),
         ],
       ),
@@ -160,8 +169,11 @@ class _MusicPageState extends ConsumerState<MusicPage> {
 
   Future<void> _importFiles() async {
     final files = await openFiles(
-      acceptedTypeGroups: const [
-        XTypeGroup(label: 'Ses', extensions: MusicStore.extensions),
+      acceptedTypeGroups: [
+        XTypeGroup(
+          label: L10n.of(context).fileTypeAudio,
+          extensions: MusicStore.extensions,
+        ),
       ],
     );
     if (files.isEmpty) return;
@@ -1169,6 +1181,69 @@ class MusicSettingsDialog extends ConsumerWidget {
           child: Text(l10n.close),
         ),
       ],
+    );
+  }
+}
+
+/// Ortam sesi seridi.
+///
+/// Muzik cubugunun HEMEN USTUNDE ve ayni dilde: iki katman yan yana
+/// gorunsun, biri digerinin ayari saniImasin. Yalnizca bir ortam sesi
+/// secilmisken cikiyor -- bos bir serit masada yer yemesin.
+class _AmbienceBar extends ConsumerWidget {
+  const _AmbienceBar();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = L10n.of(context);
+    final theme = Theme.of(context);
+    final state = ref.watch(ambienceControllerProvider);
+    final controller = ref.read(ambienceControllerProvider.notifier);
+    final track = state.track;
+    if (track == null) return const SizedBox.shrink();
+
+    return Material(
+      color: theme.colorScheme.surfaceContainer,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        child: Row(
+          children: [
+            Icon(Icons.graphic_eq, size: 18, color: theme.colorScheme.tertiary),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(l10n.musicAmbience, style: theme.textTheme.labelSmall),
+                  Text(
+                    track.title,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: theme.textTheme.bodySmall,
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              width: 110,
+              child: Slider(
+                value: state.volume,
+                onChanged: controller.setVolume,
+              ),
+            ),
+            IconButton(
+              icon: Icon(state.playing ? Icons.pause : Icons.play_arrow),
+              onPressed: controller.toggle,
+            ),
+            IconButton(
+              tooltip: l10n.musicAmbienceStop,
+              icon: const Icon(Icons.stop),
+              onPressed: controller.stop,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

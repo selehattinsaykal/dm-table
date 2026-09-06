@@ -6,9 +6,8 @@ import 'dice_3d.dart';
 
 /// Genel zar atma paneli.
 ///
-/// DM tarafinda dogrudan kullanilir; sonuc [onRolled] ile geri doner (DM
-/// isterse paylasilan gunluge iter). Oyuncu tarafinda benzer bir panel var
-/// ama atisi sunucuya gonderiyor.
+/// Sonuc [onRolled] ile geri doner; cagiran taraf onu gostermekle birlikte
+/// zar gunlugune de yazar (bkz. `roll_log.dart`).
 Future<void> showDiceSheet(
   BuildContext context, {
   required void Function(DiceRoll roll) onRolled,
@@ -38,13 +37,14 @@ class _DiceSheetState extends State<_DiceSheet> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = L10n.of(context);
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 32),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text('Zar at', style: theme.textTheme.titleLarge),
+          Text(l10n.diceRollTitle, style: theme.textTheme.titleLarge),
           const SizedBox(height: 12),
           if (_last != null)
             Card(
@@ -65,7 +65,7 @@ class _DiceSheetState extends State<_DiceSheet> {
           const SizedBox(height: 12),
           Row(
             children: [
-              Text('Adet', style: theme.textTheme.bodyMedium),
+              Text(l10n.diceCount, style: theme.textTheme.bodyMedium),
               IconButton(
                 icon: const Icon(Icons.remove_circle_outline),
                 onPressed: _count > 1 ? () => setState(() => _count--) : null,
@@ -76,7 +76,7 @@ class _DiceSheetState extends State<_DiceSheet> {
                 onPressed: _count < 20 ? () => setState(() => _count++) : null,
               ),
               const Spacer(),
-              Text('Ek', style: theme.textTheme.bodyMedium),
+              Text(l10n.diceModifier, style: theme.textTheme.bodyMedium),
               IconButton(
                 icon: const Icon(Icons.remove_circle_outline),
                 onPressed: () => setState(() => _modifier--),

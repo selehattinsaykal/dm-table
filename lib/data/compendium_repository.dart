@@ -97,6 +97,7 @@ class CompendiumRepository {
     double? maxCr,
     Set<String> creatureTypes = const {},
     Set<SourceType> sources = const {},
+    Set<String> documents = const {},
     int limit = pageSize,
   }) {
     final q = db.select(db.monsters);
@@ -116,6 +117,9 @@ class CompendiumRepository {
     if (sources.isNotEmpty) {
       q.where((t) => t.sourceType.isInValues(sources.toList()));
     }
+    if (documents.isNotEmpty) {
+      q.where((t) => t.document.isIn(documents.toList()));
+    }
     q
       ..orderBy([
         (t) => OrderingTerm(expression: t.challengeRating),
@@ -132,6 +136,7 @@ class CompendiumRepository {
     String? classKey,
     bool concentrationOnly = false,
     bool ritualOnly = false,
+    Set<String> documents = const {},
     int limit = pageSize,
   }) {
     final q = db.select(db.spells);
@@ -142,6 +147,9 @@ class CompendiumRepository {
     if (classKey != null) q.where((t) => t.classesCsv.like('%$classKey%'));
     if (concentrationOnly) q.where((t) => t.concentration.equals(true));
     if (ritualOnly) q.where((t) => t.ritual.equals(true));
+    if (documents.isNotEmpty) {
+      q.where((t) => t.document.isIn(documents.toList()));
+    }
     q
       ..orderBy([
         (t) => OrderingTerm(expression: t.level),
@@ -154,6 +162,7 @@ class CompendiumRepository {
   Future<List<Item>> searchItems({
     String query = '',
     Set<String> categories = const {},
+    Set<String> documents = const {},
     int limit = pageSize,
   }) {
     final q = db.select(db.items);
@@ -161,6 +170,9 @@ class CompendiumRepository {
     if (needle.isNotEmpty) q.where((t) => t.nameLower.like('%$needle%'));
     if (categories.isNotEmpty) {
       q.where((t) => t.category.isIn(categories.toList()));
+    }
+    if (documents.isNotEmpty) {
+      q.where((t) => t.document.isIn(documents.toList()));
     }
     q
       ..orderBy([(t) => OrderingTerm(expression: t.nameLower)])
@@ -172,6 +184,7 @@ class CompendiumRepository {
     String query = '',
     Set<String> rarities = const {},
     bool? requiresAttunement,
+    Set<String> documents = const {},
     int limit = pageSize,
   }) {
     final q = db.select(db.magicItems);
@@ -180,6 +193,9 @@ class CompendiumRepository {
     if (rarities.isNotEmpty) q.where((t) => t.rarity.isIn(rarities.toList()));
     if (requiresAttunement != null) {
       q.where((t) => t.requiresAttunement.equals(requiresAttunement));
+    }
+    if (documents.isNotEmpty) {
+      q.where((t) => t.document.isIn(documents.toList()));
     }
     q
       ..orderBy([
@@ -190,23 +206,60 @@ class CompendiumRepository {
     return q.get();
   }
 
-  Future<List<Feat>> searchFeats({String query = '', int limit = pageSize}) {
+  Future<List<Feat>> searchFeats({
+    String query = '',
+    Set<String> documents = const {},
+    int limit = pageSize,
+  }) {
     final q = db.select(db.feats);
     final needle = searchNormalize(query.trim());
     if (needle.isNotEmpty) q.where((t) => t.nameLower.like('%$needle%'));
+    if (documents.isNotEmpty) {
+      q.where((t) => t.document.isIn(documents.toList()));
+    }
     q
       ..orderBy([(t) => OrderingTerm(expression: t.nameLower)])
       ..limit(limit);
     return q.get();
   }
 
+  /// Sinif ve alt siniflar. Kagitta yalnizca karakterin sinifi gorunuyordu;
+  /// kutuphaneden bakmak icin ayri bir arama gerekiyor.
+  Future<List<ClassDefinition>> searchClasses({
+    String query = '',
+    Set<String> documents = const {},
+    int limit = pageSize,
+  }) {
+    final q = db.select(db.classDefinitions);
+    final needle = searchNormalize(query.trim());
+    if (needle.isNotEmpty) q.where((t) => t.nameLower.like('%$needle%'));
+    if (documents.isNotEmpty) {
+      q.where((t) => t.document.isIn(documents.toList()));
+    }
+    q
+      ..orderBy([(t) => OrderingTerm(expression: t.nameLower)])
+      ..limit(limit);
+    return q.get();
+  }
+
+  /// Bir sinifin seviye seviye ilerleme satirlari (tablo icin).
+  Future<List<ClassProgression>> progressionOf(String classKey) =>
+      (db.select(db.classProgressions)
+            ..where((t) => t.classKey.equals(classKey))
+            ..orderBy([(t) => OrderingTerm(expression: t.level)]))
+          .get();
+
   Future<List<SpeciesEntry>> searchSpecies({
     String query = '',
+    Set<String> documents = const {},
     int limit = pageSize,
   }) {
     final q = db.select(db.speciesEntries);
     final needle = searchNormalize(query.trim());
     if (needle.isNotEmpty) q.where((t) => t.nameLower.like('%$needle%'));
+    if (documents.isNotEmpty) {
+      q.where((t) => t.document.isIn(documents.toList()));
+    }
     q
       ..orderBy([(t) => OrderingTerm(expression: t.nameLower)])
       ..limit(limit);
@@ -215,11 +268,15 @@ class CompendiumRepository {
 
   Future<List<Background>> searchBackgrounds({
     String query = '',
+    Set<String> documents = const {},
     int limit = pageSize,
   }) {
     final q = db.select(db.backgrounds);
     final needle = searchNormalize(query.trim());
     if (needle.isNotEmpty) q.where((t) => t.nameLower.like('%$needle%'));
+    if (documents.isNotEmpty) {
+      q.where((t) => t.document.isIn(documents.toList()));
+    }
     q
       ..orderBy([(t) => OrderingTerm(expression: t.nameLower)])
       ..limit(limit);
@@ -258,6 +315,33 @@ class CompendiumRepository {
         .customSelect(
           'SELECT rarity AS v FROM magic_items '
           'WHERE v IS NOT NULL GROUP BY rarity ORDER BY MIN(rarity_rank)',
+        )
+        .get();
+    return rows.map((r) => r.read<String>('v')).toList();
+  }
+
+  /// Kutuphanedeki tum kaynak kitaplarin listesi (filtre cipi icin).
+  ///
+  /// `srd-2024`, `phb-2024`, `mm-2024`, `eberron-forge`, `ravenloft-horrors`,
+  /// `faerun-heroes` gibi belge anahtarlari. NULL olanlar atlanir.
+  Future<List<String>> distinctDocuments() async {
+    final rows = await db
+        .customSelect(
+          'SELECT DISTINCT document AS v FROM monsters '
+          'WHERE v IS NOT NULL '
+          'UNION '
+          'SELECT DISTINCT document AS v FROM spells WHERE v IS NOT NULL '
+          'UNION '
+          'SELECT DISTINCT document AS v FROM items WHERE v IS NOT NULL '
+          'UNION '
+          'SELECT DISTINCT document AS v FROM magic_items WHERE v IS NOT NULL '
+          'UNION '
+          'SELECT DISTINCT document AS v FROM feats WHERE v IS NOT NULL '
+          'UNION '
+          'SELECT DISTINCT document AS v FROM species_entries WHERE v IS NOT NULL '
+          'UNION '
+          'SELECT DISTINCT document AS v FROM backgrounds WHERE v IS NOT NULL '
+          'ORDER BY v',
         )
         .get();
     return rows.map((r) => r.read<String>('v')).toList();

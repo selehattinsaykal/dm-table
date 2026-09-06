@@ -6,12 +6,16 @@ import 'package:path/path.dart' as p;
 
 import '../../app/ui/async_view.dart';
 import '../../app/ui/ui.dart';
+import '../../data/content_tr.dart';
+import '../../data/db/database.dart';
 import '../../data/providers.dart';
 import '../../domain/rules/challenge_rating.dart';
+import '../../domain/search_text.dart';
 import '../../domain/rules/magic_item_pricing.dart';
 import '../../l10n/app_localizations.dart';
 import '../shops/custom_item_forms.dart';
 import '../world/pick_image_file.dart';
+import 'class_detail.dart';
 import 'compendium_providers.dart';
 import 'conditions_tab.dart';
 import 'custom_spell_form.dart';
@@ -25,7 +29,7 @@ class CompendiumPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = L10n.of(context);
     return DefaultTabController(
-      length: 8,
+      length: 9,
       child: Scaffold(
         // Her sekmenin kendi "ekle" butonu: canavar / buyu / esya / buyulu esya.
         floatingActionButton: Consumer(
@@ -67,6 +71,7 @@ class CompendiumPage extends StatelessWidget {
               Tab(text: l10n.compendiumSpells),
               Tab(text: l10n.compendiumItems),
               Tab(text: l10n.compendiumMagicItems),
+              Tab(text: l10n.compendiumClasses),
               Tab(text: l10n.compendiumFeats),
               Tab(text: l10n.compendiumSpecies),
               Tab(text: l10n.compendiumBackgrounds),
@@ -80,6 +85,7 @@ class CompendiumPage extends StatelessWidget {
             _SpellTab(),
             _ItemTab(),
             _MagicItemTab(),
+            _ClassTab(),
             _FeatTab(),
             _SpeciesTab(),
             _BackgroundTab(),
@@ -194,6 +200,8 @@ class _MonsterTab extends ConsumerWidget {
     final query = ref.watch(monsterQueryProvider);
     final results = ref.watch(monsterResultsProvider);
     final types = ref.watch(creatureTypesProvider).value ?? const [];
+    final documents = ref.watch(documentsProvider).value ?? const [];
+    final glossary = glossaryTrOf(context, ref);
     final notifier = ref.read(monsterQueryProvider.notifier);
 
     return _TabScaffold(
@@ -210,17 +218,34 @@ class _MonsterTab extends ConsumerWidget {
         ),
         for (final t in types)
           FilterChip(
-            label: Text(t),
+            // Filtre DEGERI Ingilizce kaliyor; yalnizca etiket cevriliyor.
+            label: Text(glossary.term('creatureTypes', t)),
             selected: query.types.contains(t),
             onSelected: (on) => notifier.set(
               query.copyWith(types: <String>{...query.types}..toggle(t, on)),
+            ),
+          ),
+        for (final d in documents)
+          FilterChip(
+            label: Text(_sourcebookLabel(l10n, d)),
+            selected: query.documents.contains(d),
+            onSelected: (on) => notifier.set(
+              query.copyWith(
+                documents: <String>{...query.documents}..toggle(d, on),
+              ),
             ),
           ),
       ],
       results: results,
       itemBuilder: (context, m) => ListTile(
         title: Text(m.name),
-        subtitle: Text([m.size, m.creatureType].whereType<String>().join(' ')),
+        subtitle: Text(
+          [
+            if (m.size != null) glossary.term('sizes', m.size!),
+            if (m.creatureType != null)
+              glossary.term('creatureTypes', m.creatureType!),
+          ].join(' '),
+        ),
         trailing: _CrBadge(cr: m.challengeRating),
         onTap: () => showDetailSheet(context, MonsterDetail(monster: m)),
       ),
@@ -348,6 +373,8 @@ class _SpellTab extends ConsumerWidget {
     final l10n = L10n.of(context);
     final query = ref.watch(spellQueryProvider);
     final results = ref.watch(spellResultsProvider);
+    final documents = ref.watch(documentsProvider).value ?? const [];
+    final glossary = glossaryTrOf(context, ref);
 
     final update = ref.read(spellQueryProvider.notifier).set;
 
@@ -359,32 +386,42 @@ class _SpellTab extends ConsumerWidget {
       filters: [
         for (var level = 0; level <= 9; level++)
           FilterChip(
-            label: Text(level == 0 ? 'Cantrip' : '$level'),
+            label: Text(level == 0 ? l10n.spellCantrip : '$level'),
             selected: query.levels.contains(level),
             onSelected: (on) => update(
               query.copyWith(levels: <int>{...query.levels}..toggle(level, on)),
             ),
           ),
         FilterChip(
-          label: const Text('Concentration'),
+          label: Text(l10n.filterConcentration),
           selected: query.concentrationOnly,
           onSelected: (on) => update(query.copyWith(concentrationOnly: on)),
         ),
         FilterChip(
-          label: const Text('Ritual'),
+          label: Text(l10n.filterRitual),
           selected: query.ritualOnly,
           onSelected: (on) => update(query.copyWith(ritualOnly: on)),
         ),
+        for (final d in documents)
+          FilterChip(
+            label: Text(_sourcebookLabel(l10n, d)),
+            selected: query.documents.contains(d),
+            onSelected: (on) => update(
+              query.copyWith(
+                documents: <String>{...query.documents}..toggle(d, on),
+              ),
+            ),
+          ),
       ],
       results: results,
       itemBuilder: (context, s) => ListTile(
         title: Text(s.name),
         subtitle: Text(
           [
-            s.level == 0 ? 'Cantrip' : 'Level ${s.level}',
-            if (s.school != null) s.school!,
-            if (s.concentration) 'Conc.',
-            if (s.ritual) 'Ritual',
+            s.level == 0 ? l10n.spellCantrip : l10n.spellLevelN(s.level),
+            if (s.school != null) glossary.term('schools', s.school!),
+            if (s.concentration) l10n.spellConcentrationShort,
+            if (s.ritual) l10n.filterRitual,
           ].join(' · '),
         ),
         onTap: () => showDetailSheet(context, SpellDetail(spell: s)),
@@ -404,8 +441,24 @@ class _ItemTab extends ConsumerWidget {
     final l10n = L10n.of(context);
     final query = ref.watch(itemQueryProvider);
     final results = ref.watch(itemResultsProvider);
+    final glossary = glossaryTrOf(context, ref);
+    final names = contentNamesTrOf(context, ref);
     final categories = ref.watch(itemCategoriesProvider).value ?? const [];
+    final documents = ref.watch(documentsProvider).value ?? const [];
     final update = ref.read(itemQueryProvider.notifier).set;
+
+    // Ad ekranda Turkce, veritabaninda Ingilizce: arama ve siralama GORUNEN
+    // ada gore burada. Ingilizce ad da eslesiyor -- kural kitabindan bakan
+    // DM "longsword" yazabilsin.
+    String shown(Item i) => itemNameTr(names, i.name);
+    final visible = results.whenData(
+      (rows) => filterByShownName(
+        rows,
+        query.text,
+        shown: shown,
+        original: (i) => i.name,
+      ),
+    );
 
     return _TabScaffold(
       searchText: query.text,
@@ -423,11 +476,21 @@ class _ItemTab extends ConsumerWidget {
               ),
             ),
           ),
+        for (final d in documents)
+          FilterChip(
+            label: Text(_sourcebookLabel(l10n, d)),
+            selected: query.documents.contains(d),
+            onSelected: (on) => update(
+              query.copyWith(
+                documents: <String>{...query.documents}..toggle(d, on),
+              ),
+            ),
+          ),
       ],
-      results: results,
+      results: visible,
       itemBuilder: (context, i) => ListTile(
-        title: Text(i.name),
-        subtitle: Text(i.category ?? ''),
+        title: Text(shown(i)),
+        subtitle: Text(glossary.term('itemCategories', i.category ?? '')),
         trailing: Text(
           i.costCp == null ? '—' : formatCoins(i.costCp!),
           style: Theme.of(context).textTheme.labelMedium,
@@ -449,8 +512,27 @@ class _MagicItemTab extends ConsumerWidget {
     final l10n = L10n.of(context);
     final query = ref.watch(magicItemQueryProvider);
     final results = ref.watch(magicItemResultsProvider);
+    final glossary = glossaryTrOf(context, ref);
+    final names = contentNamesTrOf(context, ref);
     final rarities = ref.watch(raritiesProvider).value ?? const [];
+    final documents = ref.watch(documentsProvider).value ?? const [];
     final update = ref.read(magicItemQueryProvider.notifier).set;
+
+    // Nadirlik siralamasi SQL'den geliyor; ad siralamasi Turkceye gore
+    // burada, arama ise hem Turkce hem Ingilizce ada bakiyor.
+    String shown(MagicItem i) => itemNameTr(names, i.name);
+    final visible = results.whenData(
+      (rows) => filterByShownName(
+        rows,
+        query.text,
+        shown: shown,
+        original: (i) => i.name,
+        sortKey: (a, b) {
+          final rarity = (a.rarityRank ?? 99).compareTo(b.rarityRank ?? 99);
+          return rarity != 0 ? rarity : compareTurkish(shown(a), shown(b));
+        },
+      ),
+    );
 
     return _TabScaffold(
       searchText: query.text,
@@ -469,18 +551,28 @@ class _MagicItemTab extends ConsumerWidget {
             ),
           ),
         FilterChip(
-          label: const Text('Attunement'),
+          label: Text(l10n.filterAttunement),
           selected: query.attunementOnly,
           onSelected: (on) => update(query.copyWith(attunementOnly: on)),
         ),
+        for (final d in documents)
+          FilterChip(
+            label: Text(_sourcebookLabel(l10n, d)),
+            selected: query.documents.contains(d),
+            onSelected: (on) => update(
+              query.copyWith(
+                documents: <String>{...query.documents}..toggle(d, on),
+              ),
+            ),
+          ),
       ],
-      results: results,
+      results: visible,
       itemBuilder: (context, i) => ListTile(
-        title: Text(i.name),
+        title: Text(shown(i)),
         subtitle: Text(
           [
-            if (i.rarity != null) i.rarity!,
-            if (i.requiresAttunement) 'attunement',
+            if (i.rarity != null) glossary.term('itemRarities', i.rarity!),
+            if (i.requiresAttunement) l10n.filterAttunement,
           ].join(' · '),
         ),
         trailing: Text(
@@ -496,6 +588,59 @@ class _MagicItemTab extends ConsumerWidget {
 
 // --- Feat'ler -----------------------------------------------------------
 
+/// Siniflar ve alt siniflar.
+class _ClassTab extends ConsumerWidget {
+  const _ClassTab();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = L10n.of(context);
+    final query = ref.watch(classQueryProvider);
+    final results = ref.watch(classResultsProvider);
+    final documents = ref.watch(documentsProvider).value ?? const [];
+    final update = ref.read(classQueryProvider.notifier).set;
+
+    return _TabScaffold(
+      searchText: query.text,
+      onSearch: (v) => update(query.copyWith(text: v)),
+      hasFilters: query.documents.isNotEmpty,
+      onClearFilters: () => update(const TextQuery()),
+      filters: [
+        for (final d in documents)
+          FilterChip(
+            label: Text(_sourcebookLabel(l10n, d)),
+            selected: query.documents.contains(d),
+            onSelected: (on) => update(
+              query.copyWith(
+                documents: <String>{...query.documents}..toggle(d, on),
+              ),
+            ),
+          ),
+      ],
+      results: results,
+      itemBuilder: (context, c) => ListTile(
+        title: Text(c.name),
+        // Alt sinif satirinda hangi sinifa ait oldugu yazar; liste alfabetik
+        // oldugu icin "Champion" tek basina anlamsiz kaliyordu.
+        subtitle: c.subclassOf == null
+            ? null
+            : Text(_subclassParentLabel(c.subclassOf!)),
+        onTap: () => showDetailSheet(context, ClassDetail(definition: c)),
+      ),
+      l10n: l10n,
+    );
+  }
+
+  /// "srd-2024_bard" -> "Bard".
+  static String _subclassParentLabel(String classKey) {
+    final slug = classKey.split('_').last;
+    return slug
+        .split('-')
+        .map((w) => w.isEmpty ? w : '${w[0].toUpperCase()}${w.substring(1)}')
+        .join(' ');
+  }
+}
+
 class _FeatTab extends ConsumerWidget {
   const _FeatTab();
 
@@ -504,17 +649,49 @@ class _FeatTab extends ConsumerWidget {
     final l10n = L10n.of(context);
     final query = ref.watch(featQueryProvider);
     final results = ref.watch(featResultsProvider);
+    final documents = ref.watch(documentsProvider).value ?? const [];
+    final names = contentNamesTrOf(context, ref);
     final update = ref.read(featQueryProvider.notifier).set;
+
+    // Ekranda Turkce ad var, veritabaninda Ingilizce; arama ve siralama
+    // GORUNEN ada gore burada yapiliyor. Aksi halde "Silah Ustası" yazan
+    // kullanici hicbir sey bulamiyor ve liste, gizli Ingilizce ada gore
+    // siralandigi icin rastgele dizilmis gorunuyordu.
+    String shown(Feat f) => names.term('feats', f.name);
+    final needle = searchFold(query.text.trim());
+    final visible = results.whenData(
+      (rows) =>
+          rows
+              .where(
+                (f) =>
+                    needle.isEmpty ||
+                    searchFold(shown(f)).contains(needle) ||
+                    searchFold(f.name).contains(needle),
+              )
+              .toList()
+            ..sort((a, b) => compareTurkish(shown(a), shown(b))),
+    );
 
     return _TabScaffold(
       searchText: query.text,
       onSearch: (v) => update(query.copyWith(text: v)),
-      hasFilters: false,
+      hasFilters: query.documents.isNotEmpty,
       onClearFilters: () => update(const TextQuery()),
-      filters: const [],
-      results: results,
+      filters: [
+        for (final d in documents)
+          FilterChip(
+            label: Text(_sourcebookLabel(l10n, d)),
+            selected: query.documents.contains(d),
+            onSelected: (on) => update(
+              query.copyWith(
+                documents: <String>{...query.documents}..toggle(d, on),
+              ),
+            ),
+          ),
+      ],
+      results: visible,
       itemBuilder: (context, f) => ListTile(
-        title: Text(f.name),
+        title: Text(shown(f)),
         onTap: () => showDetailSheet(context, FeatDetail(feat: f)),
       ),
       l10n: l10n,
@@ -532,14 +709,26 @@ class _SpeciesTab extends ConsumerWidget {
     final l10n = L10n.of(context);
     final query = ref.watch(speciesQueryProvider);
     final results = ref.watch(speciesResultsProvider);
+    final documents = ref.watch(documentsProvider).value ?? const [];
     final update = ref.read(speciesQueryProvider.notifier).set;
 
     return _TabScaffold(
       searchText: query.text,
       onSearch: (v) => update(query.copyWith(text: v)),
-      hasFilters: false,
+      hasFilters: query.documents.isNotEmpty,
       onClearFilters: () => update(const TextQuery()),
-      filters: const [],
+      filters: [
+        for (final d in documents)
+          FilterChip(
+            label: Text(_sourcebookLabel(l10n, d)),
+            selected: query.documents.contains(d),
+            onSelected: (on) => update(
+              query.copyWith(
+                documents: <String>{...query.documents}..toggle(d, on),
+              ),
+            ),
+          ),
+      ],
       results: results,
       itemBuilder: (context, s) => ListTile(
         title: Text(s.name),
@@ -560,14 +749,26 @@ class _BackgroundTab extends ConsumerWidget {
     final l10n = L10n.of(context);
     final query = ref.watch(backgroundQueryProvider);
     final results = ref.watch(backgroundResultsProvider);
+    final documents = ref.watch(documentsProvider).value ?? const [];
     final update = ref.read(backgroundQueryProvider.notifier).set;
 
     return _TabScaffold(
       searchText: query.text,
       onSearch: (v) => update(query.copyWith(text: v)),
-      hasFilters: false,
+      hasFilters: query.documents.isNotEmpty,
       onClearFilters: () => update(const TextQuery()),
-      filters: const [],
+      filters: [
+        for (final d in documents)
+          FilterChip(
+            label: Text(_sourcebookLabel(l10n, d)),
+            selected: query.documents.contains(d),
+            onSelected: (on) => update(
+              query.copyWith(
+                documents: <String>{...query.documents}..toggle(d, on),
+              ),
+            ),
+          ),
+      ],
       results: results,
       itemBuilder: (context, b) => ListTile(
         title: Text(b.name),
@@ -716,3 +917,14 @@ class _SearchFieldState extends State<_SearchField> {
 extension<T> on Set<T> {
   void toggle(T value, bool on) => on ? add(value) : remove(value);
 }
+
+/// Belge anahtarini (or. 'srd-2024') gosterim adina cevirir.
+String _sourcebookLabel(L10n l10n, String doc) => switch (doc) {
+  'srd-2024' => l10n.sourcebookSrd,
+  'phb-2024' => l10n.sourcebookPhb,
+  'mm-2024' => l10n.sourcebookMm,
+  'eberron-forge' => l10n.sourcebookEberron,
+  'ravenloft-horrors' => l10n.sourcebookRavenloft,
+  'faerun-heroes' => l10n.sourcebookFaerun,
+  _ => doc,
+};

@@ -19,9 +19,13 @@ DM Table is an independent, unofficial project. It is not affiliated with, endor
 approved by Wizards of the Coast LLC. *Dungeons & Dragons* and *D&D* are trademarks of Wizards of the
 Coast LLC.
 
-`assets/data/conditions_tr.json` and `assets/data/starter_tables.json` are Turkish translations and
-original tables written for this project; they follow the SRD's CC BY 4.0 terms where derived from
-SRD text.
+`assets/data/conditions_tr.json`, `assets/data/tr/*.json` and `assets/data/starter_tables.json` are
+Turkish translations and original tables written for this project; they follow the SRD's CC BY 4.0
+terms where derived from SRD text.
+
+The English descriptions in `tools/content_sources/desc_overrides.json` are original wording written
+for this project, used to fill entries the upstream data ships empty or malformed. They are not
+copied from any publisher's book.
 
 ## Additional 2024 rules content — not CC BY
 
@@ -48,19 +52,11 @@ will be taken down.
 Subsetting was done with `fontTools.subset`; the OFL permits modification and redistribution under
 the same license.
 
-## Compiled player panel
-
-`assets/player_web/` is a committed build artifact produced from this repository's own source
-(`lib/main_player.dart`) by `tools/build_player_web.dart`. It embeds the Flutter engine's CanvasKit
-runtime, which is distributed by Google under the terms shipped alongside it (BSD-3-Clause for
-Flutter, and the licenses listed in `assets/player_web/assets/NOTICES`).
-
 ## Dart/Flutter dependencies
 
 Runtime dependencies are declared in `pubspec.yaml` and resolved from [pub.dev](https://pub.dev);
 each keeps its own license (predominantly BSD-3-Clause / MIT / Apache-2.0). A generated list for any
-build is available in `assets/player_web/assets/NOTICES` for the web bundle, and via
-`flutter build … && <app> --licenses` style tooling for the desktop build.
+build is available via `flutter build … && <app> --licenses` style tooling.
 
 ## Application icon and logo
 

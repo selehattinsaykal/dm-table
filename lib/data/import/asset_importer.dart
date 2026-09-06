@@ -1,6 +1,4 @@
 import 'dart:convert';
-// Yalnizca DM tarafi (Android/Windows) bu dosyayi kullanir; oyuncu paneli
-// web derlemesinin import grafigine girmedigi icin dart:io sorun degil.
 import 'dart:io' show gzip;
 
 import 'package:drift/drift.dart';
@@ -28,7 +26,9 @@ class AssetImporter {
   /// v2: 2024 PHB/DMG/MM icerikleri (canavar, buyu, esya, irk, gecmis, feat)
   /// kullanicilarin cihazinda aktarilsin diye zorunlu yeniden aktarma.
   /// v3: DMG normal esyalari + buyulu esya nadirlik ranklarinin duzeltilmesi.
-  static const importerVersion = 3;
+  /// v4: Yeni kaynak kitaplari (Eberron: Forge of the Artificer, Ravenloft: The
+  /// Horrors Within, Forgotten Realms: Heroes of Faerûn) eklendi.
+  static const importerVersion = 4;
 
   static const _referenceKinds = [
     'conditions',
@@ -42,6 +42,8 @@ class AssetImporter {
     'environments',
     'languages',
     'abilities',
+    // Sinif secenekleri: Eldritch Invocation, Metamagic, Maneuver, Rune.
+    'optionalfeatures',
   ];
 
   /// Ice aktarma gerekiyorsa yapar. [onProgress] arayuzde ilerleme gostermek
@@ -85,6 +87,11 @@ class AssetImporter {
             .map((e) => e is Map ? e['key'] : e)
             .whereType<String>()
             .join(',');
+        final hp = row['hit_points'];
+        final hpValue = hp is Map
+            ? (hp['average'] as num?)?.toInt()
+            : (hp as num?)?.toInt();
+
         return MonstersCompanion.insert(
           key: row['key'] as String,
           name: row['name'] as String,
@@ -97,9 +104,16 @@ class AssetImporter {
           challengeRating: Value(
             (row['challenge_rating'] as num?)?.toDouble() ?? 0,
           ),
-          armorClass: Value(row['armor_class'] as int?),
-          hitPoints: Value(row['hit_points'] as int?),
-          experiencePoints: Value(row['experience_points'] as int?),
+          armorClass: Value(
+            row['armor_class'] is Map
+                ? (row['armor_class']['ac'] as num?)?.toInt()
+                : (row['armor_class'] as num?)?.toInt(),
+          ),
+          hitPoints: Value(hpValue),
+          experiencePoints: Value(
+            (row['experience_points'] as num?)?.toInt() ??
+                (row['xp'] as num?)?.toInt(),
+          ),
           environmentsCsv: Value(environments),
         );
       });
@@ -301,11 +315,31 @@ class AssetImporter {
     return (jsonDecode(json) as List).cast<Map<String, dynamic>>();
   }
 
-  static SourceType _sourceOf(Map<String, dynamic> row) =>
-      row['document'] == 'srd-2024' ? SourceType.srd : SourceType.ogl;
+  /// Yeni kaynak kitaplari (Eberron, Ravenloft, Faerûn) open5e API'sinde yok;
+  /// elle hazirlanmis dosyalardan geliyor. Hepsi `SourceType.ogl` olarak
+  /// isaretlenir ki yeniden ice aktarmada silinmesin.
+  static const _oglDocuments = {
+    'phb-2024',
+    'mm-2024',
+    'eberron-forge',
+    'ravenloft-horrors',
+    'faerun-heroes',
+  };
 
-  static String? _nestedName(Object? value) =>
-      value is Map ? value['name'] as String? : null;
+  static SourceType _sourceOf(Map<String, dynamic> row) {
+    final doc = row['document'] as String?;
+    if (doc == 'srd-2024') return SourceType.srd;
+    if (doc != null && _oglDocuments.contains(doc)) return SourceType.ogl;
+    return SourceType.ogl;
+  }
+
+  static String? _nestedName(Object? value) {
+    if (value is Map) {
+      final name = value['name'];
+      return name?.toString();
+    }
+    return null;
+  }
 
   static String _lower(String value) => searchNormalize(value);
 }

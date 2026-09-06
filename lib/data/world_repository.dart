@@ -17,6 +17,14 @@ typedef PinTarget = ({String label, String? subtitle});
 /// referans.
 typedef Backlink = ({String locationId, String locationName, String pinLabel});
 
+/// Bir dugumun tek bir baglantisi, KARSI UC acisindan normalize edilmis.
+typedef NodeBond = ({
+  String linkId,
+  String type,
+  String otherId,
+  String otherKind,
+});
+
 /// Dunya agaci: lokasyonlar, harita pinleri, NPC'ler.
 class WorldRepository {
   WorldRepository(
@@ -65,8 +73,26 @@ class WorldRepository {
     db.locations,
   )..orderBy([(t) => OrderingTerm(expression: t.createdAt)])).watch();
 
+  /// "Haritasiz yer" ([PinKind.place]) pinlerinin arkasindaki lokasyon
+  /// kimlikleri.
+  ///
+  /// Bu kayitlar GERCEK yer degil, harita uzerindeki isaretler: gorev
+  /// ureticisinde ve seyahat planlayicida gozuksunler diye `Locations`
+  /// tablosuna yaziliyorlar (bkz. `PinKind.place`). Dunya dugum agina
+  /// girmemeleri gerekiyor -- oraya girince agi doldurup asil yerleri
+  /// bogiyorlar.
+  Stream<Set<String>> watchMarkerLocationIds() =>
+      (db.select(
+        db.mapPins,
+      )..where((t) => t.kind.equalsValue(PinKind.place))).watch().map(
+        (rows) => {
+          for (final row in rows)
+            if (row.targetId != null) row.targetId!,
+        },
+      );
+
   /// Grafikteki serbest konumu kaydeder. Yalnizca surukleme bitince / oturunca
-  /// cagrilir; her frame degil (aksi halde tableUpdates -> LAN'a gereksiz yayin).
+  /// cagrilir; her frame degil (aksi halde her piksel bir yazma olurdu).
   Future<void> setGraphPosition(String id, double x, double y) async {
     await (db.update(db.locations)..where((t) => t.id.equals(id))).write(
       LocationsCompanion(graphX: Value(x), graphY: Value(y)),
@@ -74,7 +100,7 @@ class WorldRepository {
   }
 
   /// Birden cok dugumun konumunu TEK transaction'da yazar (grafik oturunca).
-  /// Boylece tableUpdates yayini bir kez tetiklenir (LAN'a N ayri yayin degil).
+  /// Boylece tableUpdates yayini bir kez tetiklenir (N ayri yazma degil).
   Future<void> saveGraphPositions(
     List<({String id, double x, double y})> positions,
   ) async {
@@ -127,10 +153,10 @@ class WorldRepository {
     String? name,
     String? description,
     String? secretNotes,
-    bool? revealed,
     int? mapWidth,
     int? mapHeight,
     double? nodeRadius,
+    bool? graphCollapsed,
   }) async {
     await (db.update(db.locations)..where((t) => t.id.equals(id))).write(
       LocationsCompanion(
@@ -141,27 +167,16 @@ class WorldRepository {
         secretNotes: secretNotes == null
             ? const Value.absent()
             : Value(secretNotes),
-        revealed: revealed == null ? const Value.absent() : Value(revealed),
         mapWidth: mapWidth == null ? const Value.absent() : Value(mapWidth),
         mapHeight: mapHeight == null ? const Value.absent() : Value(mapHeight),
         nodeRadius: nodeRadius == null
             ? const Value.absent()
             : Value(nodeRadius),
+        graphCollapsed: graphCollapsed == null
+            ? const Value.absent()
+            : Value(graphCollapsed),
       ),
     );
-  }
-
-  /// Lokasyonu oyunculara gorunur yapar/gizler. Gorunur yapinca uzerindeki
-  /// pinleri de otomatik gorunur yapar (haritasi acilan yerin pinleri elle
-  /// tek tek acilmasin diye). Gizlerken pinlere dokunmuyoruz -- zaten harita
-  /// istemciye hic gitmez.
-  Future<void> setRevealed(String locationId, bool revealed) async {
-    await updateLocation(locationId, revealed: revealed);
-    if (revealed) {
-      await (db.update(db.mapPins)
-            ..where((t) => t.locationId.equals(locationId)))
-          .write(const MapPinsCompanion(revealed: Value(true)));
-    }
   }
 
   /// Bir lokasyonu ve altindaki her seyi siler.
@@ -175,7 +190,7 @@ class WorldRepository {
     for (final locationId in toDelete) {
       final location = await find(locationId);
       if (location != null) {
-        await images.delete(location.mapImagePath, location.mapPreviewPath);
+        await images.delete(location.mapImagePath);
       }
       await (db.delete(
         db.mapPins,
@@ -329,6 +344,25 @@ class WorldRepository {
     });
   }
 
+  Future<void> setFactionGraphPosition(String id, double x, double y) async {
+    await (db.update(db.factions)..where((t) => t.id.equals(id))).write(
+      FactionsCompanion(graphX: Value(x), graphY: Value(y)),
+    );
+  }
+
+  Future<void> saveFactionGraphPositions(
+    List<({String id, double x, double y})> positions,
+  ) async {
+    if (positions.isEmpty) return;
+    await db.transaction(() async {
+      for (final p in positions) {
+        await (db.update(db.factions)..where((t) => t.id.equals(p.id))).write(
+          FactionsCompanion(graphX: Value(p.x), graphY: Value(p.y)),
+        );
+      }
+    });
+  }
+
   Future<List<String>> _subtreeIds(String rootId) async {
     final result = <String>[];
     final queue = <String>[rootId];
@@ -368,27 +402,25 @@ class WorldRepository {
     )..where((t) => t.id.equals(locationId))).write(
       LocationsCompanion(
         mapImagePath: Value(stored.imagePath),
-        mapPreviewPath: Value(stored.previewPath),
         mapWidth: Value(stored.width),
         mapHeight: Value(stored.height),
       ),
     );
 
     if (previous != null) {
-      await images.delete(previous.mapImagePath, previous.mapPreviewPath);
+      await images.delete(previous.mapImagePath);
     }
   }
 
   Future<void> removeMapImage(String locationId) async {
     final location = await find(locationId);
     if (location == null) return;
-    await images.delete(location.mapImagePath, location.mapPreviewPath);
+    await images.delete(location.mapImagePath);
     await (db.update(
       db.locations,
     )..where((t) => t.id.equals(locationId))).write(
       const LocationsCompanion(
         mapImagePath: Value(null),
-        mapPreviewPath: Value(null),
         mapWidth: Value(null),
         mapHeight: Value(null),
         // Gorsel gidince olcek de gider: haritasi olmayan bir yerde mil
@@ -469,7 +501,6 @@ class WorldRepository {
     double? x,
     double? y,
     String? noteText,
-    bool? revealed,
     String? targetId,
     String? lootDataJson,
   }) async {
@@ -479,7 +510,6 @@ class WorldRepository {
         x: x == null ? const Value.absent() : Value(x),
         y: y == null ? const Value.absent() : Value(y),
         noteText: noteText == null ? const Value.absent() : Value(noteText),
-        revealed: revealed == null ? const Value.absent() : Value(revealed),
         targetId: targetId == null ? const Value.absent() : Value(targetId),
         lootDataJson: lootDataJson == null
             ? const Value.absent()
@@ -591,9 +621,9 @@ class WorldRepository {
 
   /// Hazine pininin kalan TUM ganimetini (esyalar + para) alir ve pini siler.
   ///
-  /// Donduren `items`/`coinsCp`: aktarilacak ganimet; cagiran bunlari
-  /// oyuncunun envanterine ekler. Yarim kalmis bir hazine "Tumunu al" ile
-  /// tek islemde tuketilir; pin DB'den silinir.
+  /// Donduren `items`/`coinsCp`: aktarilacak ganimet; cagiran bunlari hedef
+  /// envantere ekler. Yarim kalmis bir hazine "Tumunu al" ile tek islemde
+  /// tuketilir; pin DB'den silinir.
   Future<
     ({
       String? error,
@@ -822,6 +852,43 @@ class WorldRepository {
     );
   }
 
+  /// NPC'yi ve ona bagli her seyi siler; GERI ALMA islevi doner.
+  ///
+  /// Silme kaskad: haritadaki pinler ve grafik baglantilari da gidiyor.
+  /// Geri alma yalnizca NPC satirini koysaydi, kullanici "geri alindi"
+  /// bildirimini gorup pinlerini kaybetmis olurdu -- o yuzden silinen her
+  /// sey burada yakalaniyor.
+  Future<Future<void> Function()> deleteNpcUndoable(String id) async {
+    final npc = await findNpc(id);
+    final pins =
+        await (db.select(db.mapPins)..where(
+              (t) => t.targetId.equals(id) & t.kind.equalsValue(PinKind.npc),
+            ))
+            .get();
+    final links = await (db.select(
+      db.worldLinks,
+    )..where((t) => t.aId.equals(id) | t.bId.equals(id))).get();
+
+    await deleteNpc(id);
+
+    return () async {
+      if (npc == null) return;
+      await db.transaction(() async {
+        await db.into(db.npcs).insertOnConflictUpdate(npc.toCompanion(false));
+        for (final pin in pins) {
+          await db
+              .into(db.mapPins)
+              .insertOnConflictUpdate(pin.toCompanion(false));
+        }
+        for (final link in links) {
+          await db
+              .into(db.worldLinks)
+              .insertOnConflictUpdate(link.toCompanion(false));
+        }
+      });
+    };
+  }
+
   Future<void> deleteNpc(String id) async {
     final npc = await findNpc(id);
     await db.transaction(() async {
@@ -839,4 +906,111 @@ class WorldRepository {
     });
     await portraits.delete(npc?.portraitPath);
   }
+
+  // --- Fraksiyonlar -------------------------------------------------------
+
+  Stream<List<Faction>> watchFactions() => (db.select(
+    db.factions,
+  )..orderBy([(t) => OrderingTerm(expression: t.name)])).watch();
+
+  Future<List<Faction>> allFactions() => (db.select(
+    db.factions,
+  )..orderBy([(t) => OrderingTerm(expression: t.name)])).get();
+
+  Stream<Faction?> watchFaction(String id) => (db.select(
+    db.factions,
+  )..where((t) => t.id.equals(id))).watchSingleOrNull();
+
+  Future<Faction?> findFaction(String id) =>
+      (db.select(db.factions)..where((t) => t.id.equals(id))).getSingleOrNull();
+
+  Future<String> createFaction({required String name, String kind = ''}) async {
+    final id = 'faction-${_uuid.v4()}';
+    await db
+        .into(db.factions)
+        .insert(
+          FactionsCompanion.insert(id: id, name: name, kind: Value(kind)),
+        );
+    return id;
+  }
+
+  Future<void> updateFaction(
+    String id, {
+    String? name,
+    String? kind,
+    String? description,
+    String? goal,
+    String? secretNotes,
+    double? nodeRadius,
+  }) async {
+    Value<String> v(String? s) => s == null ? const Value.absent() : Value(s);
+    await (db.update(db.factions)..where((t) => t.id.equals(id))).write(
+      FactionsCompanion(
+        name: v(name),
+        kind: v(kind),
+        description: v(description),
+        goal: v(goal),
+        secretNotes: v(secretNotes),
+        nodeRadius: nodeRadius == null
+            ? const Value.absent()
+            : Value(nodeRadius),
+      ),
+    );
+  }
+
+  Future<void> setFactionEmblem(String id, File source) async {
+    final previous = await findFaction(id);
+    final stored = await portraits.store(source);
+    await (db.update(db.factions)..where((t) => t.id.equals(id))).write(
+      FactionsCompanion(portraitPath: Value(stored)),
+    );
+    await portraits.delete(previous?.portraitPath);
+  }
+
+  Future<void> clearFactionEmblem(String id) async {
+    final faction = await findFaction(id);
+    if (faction == null) return;
+    await (db.update(db.factions)..where((t) => t.id.equals(id))).write(
+      const FactionsCompanion(portraitPath: Value(null)),
+    );
+    await portraits.delete(faction.portraitPath);
+  }
+
+  Future<void> deleteFaction(String id) async {
+    final faction = await findFaction(id);
+    await db.transaction(() async {
+      await (db.delete(
+        db.worldLinks,
+      )..where((t) => t.aId.equals(id) | t.bId.equals(id))).go();
+      await (db.delete(db.factions)..where((t) => t.id.equals(id))).go();
+    });
+    await portraits.delete(faction?.portraitPath);
+  }
+
+  /// Bir dugumun (yer/NPC/fraksiyon) TUM baglantilari, iki yonde de.
+  ///
+  /// Grafik kenarlari yonsuz: bir bag ya `aId` ya `bId` ucunda duruyor.
+  /// Cagiran taraf "karsi uc kim" diye ugrasmasin diye burada normalize
+  /// ediliyor.
+  Future<List<NodeBond>> bondsOf(String nodeId) async {
+    final rows = await (db.select(
+      db.worldLinks,
+    )..where((t) => t.aId.equals(nodeId) | t.bId.equals(nodeId))).get();
+    return [
+      for (final row in rows)
+        (
+          linkId: row.id,
+          type: row.type,
+          otherId: row.aId == nodeId ? row.bId : row.aId,
+          otherKind: row.aId == nodeId ? row.bKind : row.aKind,
+        ),
+    ];
+  }
+
+  /// Bir dugumun adini turune gore cozer; kayit silinmisse null.
+  Future<String?> nodeName(String kind, String id) async => switch (kind) {
+    'npc' => (await findNpc(id))?.name,
+    'faction' => (await findFaction(id))?.name,
+    _ => (await find(id))?.name,
+  };
 }

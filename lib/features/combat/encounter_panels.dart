@@ -5,9 +5,11 @@ import '../../app/theme.dart';
 import '../../data/encounter_briefing.dart';
 import '../../data/loot_resolver.dart';
 import '../../data/party_inventory_repository.dart';
+import '../../data/db/database.dart';
 import '../../data/providers.dart';
 import '../../domain/rules/magic_item_pricing.dart';
 import '../../l10n/app_localizations.dart';
+import '../world/world_providers.dart';
 import 'combat_providers.dart';
 
 /// Savas ekraninin YAN PANELLERI.
@@ -45,43 +47,49 @@ class EncounterBriefingPanel extends ConsumerWidget {
         icon: const Icon(Icons.edit_outlined, size: 18),
         onPressed: () => _edit(context, ref, b),
       ),
-      child: briefingIsEmpty(b)
-          ? Text(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Yer bagi brifingin BOS olup olmamasindan bagimsiz duruyor:
+          // "bu dovus nerede geciyor" sorusu metin yazilmamis bir
+          // karsilasmada da sorulur.
+          EncounterLocationRow(encounterId: encounterId),
+          if (briefingIsEmpty(b))
+            Text(
               l10n.encPanelBriefingEmpty,
               style: theme.textTheme.bodySmall?.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
               ),
             )
-          : Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Kazanma kosulu EN USTTE ve vurgulu: savasin nasil bittigini
-                // bilmeden taktik okumanin anlami yok.
-                if (b.objective.isNotEmpty)
-                  _Field(
-                    label: l10n.encounterObjectiveSection,
-                    value: b.objective,
-                    emphasize: true,
-                  ),
-                if (b.summary.isNotEmpty)
-                  _Field(label: l10n.encounterSummary, value: b.summary),
-                if (b.tactics.isNotEmpty)
-                  _Field(label: l10n.encounterTactics, value: b.tactics),
-                if (b.terrain.isNotEmpty)
-                  _Field(label: l10n.encounterTerrain, value: b.terrain),
-                if (b.reinforcements.isNotEmpty)
-                  _Field(
-                    label: l10n.encounterReinforcements,
-                    value: b.reinforcements,
-                  ),
-                if (b.scaling.isNotEmpty)
-                  _Field(label: l10n.encounterScaling, value: b.scaling),
-                if (b.dmNotes.isNotEmpty)
-                  _Field(label: l10n.questSectionDm, value: b.dmNotes),
-              ],
-            ),
+          else
+            ..._briefingFields(l10n, b),
+        ],
+      ),
     );
   }
+
+  List<Widget> _briefingFields(L10n l10n, EncounterBriefing b) => [
+    // Kazanma kosulu EN USTTE ve vurgulu: savasin nasil bittigini bilmeden
+    // taktik okumanin anlami yok.
+    if (b.objective.isNotEmpty)
+      _Field(
+        label: l10n.encounterObjectiveSection,
+        value: b.objective,
+        emphasize: true,
+      ),
+    if (b.summary.isNotEmpty)
+      _Field(label: l10n.encounterSummary, value: b.summary),
+    if (b.tactics.isNotEmpty)
+      _Field(label: l10n.encounterTactics, value: b.tactics),
+    if (b.terrain.isNotEmpty)
+      _Field(label: l10n.encounterTerrain, value: b.terrain),
+    if (b.reinforcements.isNotEmpty)
+      _Field(label: l10n.encounterReinforcements, value: b.reinforcements),
+    if (b.scaling.isNotEmpty)
+      _Field(label: l10n.encounterScaling, value: b.scaling),
+    if (b.dmNotes.isNotEmpty)
+      _Field(label: l10n.questSectionDm, value: b.dmNotes),
+  ];
 
   Future<void> _edit(
     BuildContext context,
@@ -96,6 +104,126 @@ class EncounterBriefingPanel extends ConsumerWidget {
     );
     if (result == null) return;
     await ref.read(combatRepositoryProvider).setBriefing(encounterId, result);
+  }
+}
+
+/// Karsilasmanin gectigi yer: baglar, degistirir, bagi kaldirir.
+///
+/// **Neden brifingin icinde:** yer bir arac cubugu eylemi degil, karsilasmanin
+/// bir OZELLIGI. Ayni panelde durunca "bu dovus nerede, ne icin, arazi ne"
+/// tek bakista okunuyor.
+///
+/// Bagli yer SILINMIS olabilir (dunya agacindan kaldirilan bir oda); o zaman
+/// satir bagi "kopuk" gosterir ve DM yeniden secebilir. Sessizce bos gostermek
+/// "hic baglamamisim" yanilgisi yaratirdi.
+class EncounterLocationRow extends ConsumerWidget {
+  const EncounterLocationRow({required this.encounterId, super.key});
+
+  final String encounterId;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = L10n.of(context);
+    final theme = Theme.of(context);
+    final encounter = ref.watch(encounterProvider(encounterId)).value;
+    final locationId = encounter?.locationId;
+
+    final all = ref.watch(allLocationsProvider).value ?? const <Location>[];
+    final linked = locationId == null
+        ? null
+        : all.where((l) => l.id == locationId).firstOrNull;
+
+    final label = switch ((locationId, linked)) {
+      (null, _) => l10n.encLocationNone,
+      (_, null) => l10n.encLocationMissing,
+      (_, final found?) => found.name,
+    };
+
+    return Padding(
+      padding: EdgeInsets.only(bottom: context.spacing.sm),
+      child: Row(
+        children: [
+          Icon(
+            Icons.place_outlined,
+            size: 16,
+            color: locationId == null
+                ? theme.colorScheme.outline
+                : context.fantasyColors.brass,
+          ),
+          SizedBox(width: context.spacing.xs),
+          Expanded(
+            child: Text(
+              label,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: theme.textTheme.bodyMedium?.copyWith(
+                color: linked == null ? theme.colorScheme.outline : null,
+                fontStyle: locationId != null && linked == null
+                    ? FontStyle.italic
+                    : null,
+              ),
+            ),
+          ),
+          if (locationId != null)
+            IconButton(
+              tooltip: l10n.encLocationClear,
+              icon: const Icon(Icons.link_off, size: 18),
+              onPressed: () => ref
+                  .read(combatRepositoryProvider)
+                  .setLocation(encounterId, null),
+            ),
+          IconButton(
+            tooltip: l10n.encLocationPick,
+            icon: const Icon(Icons.edit_location_alt_outlined, size: 18),
+            onPressed: () => _pick(context, ref, all),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _pick(
+    BuildContext context,
+    WidgetRef ref,
+    List<Location> all,
+  ) async {
+    final l10n = L10n.of(context);
+    // Haritasiz "yer pini" kayitlari da listede: karsilasma bir odada oldugu
+    // kadar bir yol ayriminda da gecebilir.
+    final sorted = [...all]..sort((a, b) => a.name.compareTo(b.name));
+
+    final picked = await showModalBottomSheet<String>(
+      context: context,
+      showDragHandle: true,
+      isScrollControlled: true,
+      builder: (context) => SafeArea(
+        child: sorted.isEmpty
+            ? Padding(
+                padding: EdgeInsets.all(context.spacing.lg),
+                child: Text(l10n.encLocationNoLocations),
+              )
+            : ListView(
+                shrinkWrap: true,
+                children: [
+                  ListTile(
+                    dense: true,
+                    enabled: false,
+                    title: Text(l10n.encLocationPick),
+                  ),
+                  const Divider(height: 1),
+                  for (final location in sorted)
+                    ListTile(
+                      dense: true,
+                      leading: const Icon(Icons.place_outlined, size: 18),
+                      title: Text(location.name),
+                      onTap: () => Navigator.pop(context, location.id),
+                    ),
+                ],
+              ),
+      ),
+    );
+    if (picked == null) return;
+    await ref.read(combatRepositoryProvider).setLocation(encounterId, picked);
   }
 }
 

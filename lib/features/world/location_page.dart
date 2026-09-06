@@ -5,9 +5,9 @@ import '../../app/ui/ui.dart';
 import '../../data/db/database.dart';
 import '../../data/db/world_tables.dart';
 import '../../data/journey_repository.dart';
-import '../../data/pin_visibility.dart';
 import '../../l10n/app_localizations.dart';
-import '../shops/shop_providers.dart';
+import '../combat/combat_providers.dart';
+import '../combat/encounter_page.dart';
 import 'journey_providers.dart';
 import 'journey_sheet.dart';
 import 'map_view.dart';
@@ -44,7 +44,7 @@ class _LocationPageState extends ConsumerState<LocationPage> {
   /// dogrudan surukelenebiliyordu — haritayi kaydirmak isterken bir sehri
   /// yerinden oynatmak sessizce veriyi bozuyor. Artik icerigi degistiren her
   /// jest (pin ekle/tasi/duzenle, harita yukle, yeri sil) bu modun arkasinda;
-  /// kapaliyken harita oyuncunun gordugu haline yakin, salt-okunur durur.
+  /// kapaliyken harita salt-okunur durur.
   ///
   /// Alt yerlere gecerken SIFIRLANMAZ (bkz. [_go]): mod bir "durus"tur --
   /// hazirlik yapan DM birkac harita gezerken her seferinde yeniden acmasin.
@@ -84,17 +84,8 @@ class _LocationPageState extends ConsumerState<LocationPage> {
       return const Scaffold(body: AppLoading());
     }
     final l10n = L10n.of(context);
-    final journey = ref.watch(activeJourneyProvider).value;
 
-    // Pinin oyunculara gorunup gorunmedigi pinin kendi bayragindan okunamaz:
-    // yer/dukkan pinleri HEDEFLERININ durumuna bakar. Kumeler `ref.watch` ile
-    // kuruluyor ki dugum grafiginde bir yer acilinca harita da aninda tazelensin.
-    final access = _accessibleSets(
-      location: location,
-      trail: trail,
-      children: ref.watch(childLocationsProvider(_id)).value ?? const [],
-      shops: ref.watch(shopsProvider).value ?? const [],
-    );
+    final journey = ref.watch(activeJourneyProvider).value;
 
     return Scaffold(
       appBar: AppBar(
@@ -207,8 +198,8 @@ class _LocationPageState extends ConsumerState<LocationPage> {
                   )
                 else if (journey != null && journey.locationId == _id)
                   _JourneyBanner(journey: journey)
-                // Serit YALNIZCA duzenleme modunda: goruntuleme modunda
-                // harita, oyuncunun gordugune yakin sekilde temiz kalmali.
+                // Serit YALNIZCA duzenleme modunda: goruntulerken harita
+                // temiz kalmali.
                 else if (_editMode && location.mapImagePath != null)
                   MaterialBanner(
                     content: Text(l10n.worldPinDragHint),
@@ -223,8 +214,6 @@ class _LocationPageState extends ConsumerState<LocationPage> {
                           location: location,
                           pins: pins,
                           editing: _editMode,
-                          accessibleLocations: access.locations,
-                          accessibleShops: access.shops,
                           route: [
                             for (final s in _routeStops) (x: s.x, y: s.y),
                           ],
@@ -249,6 +238,7 @@ class _LocationPageState extends ConsumerState<LocationPage> {
                                     .updatePin(pin.id, x: x, y: y),
                         ),
                 ),
+                _EncountersStrip(locationId: _id),
                 _ChildrenStrip(locationId: _id, onOpen: _go),
               ],
             ),
@@ -313,7 +303,9 @@ class _LocationPageState extends ConsumerState<LocationPage> {
   }
 
   Future<void> _pickMap(Location location) async {
-    final picked = await pickImageFile();
+    final picked = await pickImageFile(
+      typeLabel: L10n.of(context).fileTypeImage,
+    );
     if (picked == null || !mounted) return;
 
     setState(() => _busy = true);
@@ -330,39 +322,10 @@ class _LocationPageState extends ConsumerState<LocationPage> {
     }
   }
 
-  /// Haritada bos bir noktaya dokunulunca yeni pin akisini baslatir. Yeni pin,
-  /// yer oyunculara gorunurse varsayilan olarak gorunur gelir.
+  /// Haritada bos bir noktaya dokunulunca yeni pin akisini baslatir.
   Future<void> _createPinAt(double x, double y) async {
     setState(() => _placingPin = false);
-    final revealed = ref.read(locationProvider(_id)).value?.revealed ?? false;
-    await showPinEditor(
-      context,
-      ref,
-      locationId: _id,
-      x: x,
-      y: y,
-      initialRevealed: revealed,
-    );
-  }
-
-  /// Bir pinin oyunculara GERCEKTEN gorunup gorunmedigi.
-  ///
-  /// Panel acilirken anahtarin baslangic degeri icin gerekir; `build` disinda
-  /// cagrildigi icin saglayicilari `read` ile okur.
-  bool _pinVisible(MapPin pin) {
-    final location = ref.read(locationProvider(_id)).value;
-    if (location == null) return pin.revealed;
-    final access = _accessibleSets(
-      location: location,
-      trail: ref.read(breadcrumbProvider(_id)).value ?? const [],
-      children: ref.read(childLocationsProvider(_id)).value ?? const [],
-      shops: ref.read(shopsProvider).value ?? const [],
-    );
-    return pinVisibleToPlayers(
-      pin,
-      accessibleLocations: access.locations,
-      accessibleShops: access.shops,
-    );
+    await showPinEditor(context, ref, locationId: _id, x: x, y: y);
   }
 
   /// Duzenleme modunu ac/kapa. Kapatirken pin yerlestirme modu da duser:
@@ -440,15 +403,9 @@ class _LocationPageState extends ConsumerState<LocationPage> {
     await showJourneySheet(context, ref);
   }
 
-  /// Pin ayarlari (tur, etiket, gorunurluk, hedef...).
+  /// Pin ayarlari (tur, etiket, hedef...).
   Future<void> _editPin(MapPin pin) async {
-    await showPinEditor(
-      context,
-      ref,
-      locationId: _id,
-      pin: pin,
-      visibleToPlayers: _pinVisible(pin),
-    );
+    await showPinEditor(context, ref, locationId: _id, pin: pin);
   }
 
   Future<void> _openPin(MapPin pin) async {
@@ -464,43 +421,9 @@ class _LocationPageState extends ConsumerState<LocationPage> {
     if (_editMode) {
       await _editPin(pin);
     } else {
-      await showPinInfo(
-        context,
-        ref,
-        pin: pin,
-        visibleToPlayers: _pinVisible(pin),
-      );
+      await showPinInfo(context, ref, pin: pin);
     }
   }
-}
-
-/// Oyuncunun girebildigi alt yerler + haritadan erisilebilir dukkanlar.
-///
-/// Sunucudaki kuralin (bkz. `SessionService._accessibleMapLocationIds`) bu
-/// haritaya bakan parcasi. Yalnizca BU yerin cocuklari hesaplanir; haritadaki
-/// yer pinleri zaten yalnizca buradaki alt yerlere isaret edebilir.
-///
-/// Zincir sarti onemli: ust yerlerden biri kapaliysa alt yer acik olsa bile
-/// oyuncuya gitmez, dolayisiyla pini de gizli sayilmali.
-({Set<String> locations, Set<String> shops}) _accessibleSets({
-  required Location location,
-  required List<Location> trail,
-  required List<Location> children,
-  required List<Shop> shops,
-}) {
-  final chainOpen = location.revealed && trail.every((l) => l.revealed);
-  return (
-    locations: {
-      for (final child in children)
-        // Haritasi olmayan yere "girilemez", acik olsa bile.
-        if (chainOpen && child.revealed && child.mapPreviewPath != null)
-          child.id,
-    },
-    shops: {
-      for (final shop in shops)
-        if (shop.mapAccessible) shop.id,
-    },
-  );
 }
 
 /// Rota cizerken gorunen serit: kac durak var, geri al / vazgec / planla.
@@ -658,6 +581,50 @@ class _NoMap extends StatelessWidget {
 }
 
 /// Haritada pini olmayan alt yerler de erisilebilir kalsin diye alt serit.
+/// Bu yerde gecen karsilasmalar; yoksa hic yer kaplamaz.
+///
+/// Bagin OKUMA ucu: karsilasma sayfasinda "nerede geciyor" secilir, burada
+/// "burada ne oluyor" okunur. Hazirlik yaparken DM'in en cok sordugu sey bu.
+class _EncountersStrip extends ConsumerWidget {
+  const _EncountersStrip({required this.locationId});
+
+  final String locationId;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final encounters =
+        ref.watch(encountersAtProvider(locationId)).value ?? const [];
+    if (encounters.isEmpty) return const SizedBox.shrink();
+
+    final theme = Theme.of(context);
+    return SizedBox(
+      height: 56,
+      child: Material(
+        color: theme.colorScheme.surfaceContainerHigh,
+        child: ListView.separated(
+          scrollDirection: Axis.horizontal,
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          itemCount: encounters.length,
+          separatorBuilder: (_, _) => const SizedBox(width: 8),
+          itemBuilder: (context, i) => ActionChip(
+            avatar: Icon(
+              encounters[i].started ? Icons.shield : Icons.shield_outlined,
+              size: 18,
+              color: encounters[i].started ? theme.colorScheme.primary : null,
+            ),
+            label: Text(encounters[i].name),
+            onPressed: () => Navigator.of(context, rootNavigator: true).push(
+              MaterialPageRoute(
+                builder: (_) => EncounterPage(encounterId: encounters[i].id),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class _ChildrenStrip extends ConsumerWidget {
   const _ChildrenStrip({required this.locationId, required this.onOpen});
 

@@ -18,6 +18,10 @@ List<BondSeed> defaultBondTypes(L10n l10n) => [
   (code: 'rivalry', name: l10n.bondRivalry, color: 0xFFFF7043, sort: 6),
   (code: 'love', name: l10n.bondLove, color: 0xFFEC407A, sort: 7),
   (code: 'vassalage', name: l10n.bondVassalage, color: 0xFF26A69A, sort: 8),
+  // Fraksiyon uyeligi. Mevcut kampanyalar bunu v50 migration'inda aliyor
+  // (`ensureDefaultBondTypes` yalnizca TAMAMEN bos tabloyu tohumluyor);
+  // burasi taze kampanyalarin cevirili surumu.
+  (code: 'membership', name: l10n.bondMembership, color: 0xFF8D6E63, sort: 9),
 ];
 
 /// Bilinmeyen/silinmis bir tur koduna dusen kenarlar icin yedek renk.

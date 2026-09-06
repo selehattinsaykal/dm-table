@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../data/content_tr.dart';
 import '../../l10n/app_localizations.dart';
 import '../compendium/compendium_providers.dart';
 import 'shop_providers.dart';
@@ -166,6 +167,7 @@ class _MagicItemFormState extends ConsumerState<_MagicItemForm> {
   @override
   Widget build(BuildContext context) {
     final l10n = L10n.of(context);
+    final glossary = glossaryTrOf(context, ref);
     return AlertDialog(
       title: Text(l10n.compendiumCreateMagicItem),
       content: SizedBox(
@@ -193,7 +195,11 @@ class _MagicItemFormState extends ConsumerState<_MagicItemForm> {
                 ),
                 items: [
                   for (final e in _rarities.entries)
-                    DropdownMenuItem(value: e.key, child: Text(e.value)),
+                    // Anahtar (`very-rare`) kaydediliyor, etiket cevriliyor.
+                    DropdownMenuItem(
+                      value: e.key,
+                      child: Text(glossary.term('itemRarities', e.value)),
+                    ),
                 ],
                 onChanged: (v) => setState(() => _rarity = v ?? 'uncommon'),
               ),

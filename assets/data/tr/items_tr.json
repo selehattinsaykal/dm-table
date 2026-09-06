@@ -1,0 +1,1062 @@
+{
+  "_comment": "Turkish translation of the shipped items bundle. Display-time overlay loaded by lib/data/content_tr.dart; the database keeps the English text because the rules parsers read it. Game terms (AC, DC, Hit Points, spell/class/item names, condition names) stay in English on purpose. Entries that are not listed here are shown in English.",
+  "srd-2024_battleaxe": {
+    "desc": "Tek ağızlı bir savaş baltası; başı ağır, tek elle de iki elle de savrulacak şekilde dengelenmiştir."
+  },
+  "srd-2024_blowgun": {
+    "desc": "Bir nefeste iğne fırlatan, uzun ve içi boş bir boru. Sessizdir ve isabet edene kadar fark edilmesi zordur."
+  },
+  "srd-2024_club": {
+    "desc": "Bir ucu kalınlaşan sert bir odun parçası. Var olan en ucuz silahtır ve hâlâ iş görür."
+  },
+  "srd-2024_dagger": {
+    "desc": "Yakın iş için yapılmış kısa bir bıçak: hızlı çekilir, kolay saklanır ve atıldığında da aynı işi görür."
+  },
+  "srd-2024_dart": {
+    "desc": "Ağırlıklandırılmış bir atma çivisi; bir avuç taşınacak kadar küçüktür ve parmaklarla atılır."
+  },
+  "srd-2024_flail": {
+    "desc": "Zincire bağlı dikenli bir baş. Ustalaşması zordur ama kaldırılmış bir kalkanın etrafından dolanır."
+  },
+  "srd-2024_glaive": {
+    "desc": "Uzun bir sapa geçirilmiş geniş bir bıçak; düşmanın karşılık veremeyeceği bir mesafeden kesmek için yapılmıştır."
+  },
+  "srd-2024_greataxe": {
+    "desc": "Kocaman hilal biçimli başı olan iki elli bir balta. İnceliği yoktur, ondan sağ çıkan da pek olmaz."
+  },
+  "srd-2024_greatclub": {
+    "desc": "İki elle savrulan bir ağaç dalı ya da yontulmuş kütük. Kaba, ucuz ve görmezden gelinmesi çok zor."
+  },
+  "srd-2024_greatsword": {
+    "desc": "Eskrim için değil, geniş ve geri dönüşü olmayan savuruşlar için yapılmış uzun, iki elli bir kılıç."
+  },
+  "srd-2024_halberd": {
+    "desc": "Uzun bir sırığın ucunda bir balta ağzı ve bir mızrak ucu: çengeller, keser ve atlıları uzak tutar."
+  },
+  "srd-2024_hand-crossbow": {
+    "desc": "Tek elle nişan alınıp ateşlenecek kadar küçük bir crossbow; bir yayın göze batacağı yerlerde tercih edilir."
+  },
+  "srd-2024_handaxe": {
+    "desc": "Atılacak kadar hafif kısa bir balta; dövüşün çok ötesinde işe yarar."
+  },
+  "srd-2024_heavy-crossbow": {
+    "desc": "Kuşatma silahı gibi vuran, yeniden doldurması da o kadar süren destekli bir crossbow."
+  },
+  "srd-2024_javelin": {
+    "desc": "Atmak için dengelenmiş hafif bir mızrak; gerekirse elde de iş görür."
+  },
+  "srd-2024_lance": {
+    "desc": "Eyerden kullanılmak üzere yapılmış uzun bir mızrak; gücü atın kendisi verir."
+  },
+  "srd-2024_light-crossbow": {
+    "desc": "Omuzdan atılan bir crossbow; herkesin bir öğleden sonrada öğrenip isabet ettirebileceği kadar basittir."
+  },
+  "srd-2024_light-hammer": {
+    "desc": "Vurmak kadar atmak için de yapılmış küçük bir çekiç."
+  },
+  "srd-2024_longbow": {
+    "desc": "Porsuk ya da karaağaçtan yapılmış uzun bir yay; oku bir shortbow'un menzilinin çok ötesine taşır."
+  },
+  "srd-2024_longsword": {
+    "desc": "Askerin kılıcı: tek elle, gerektiğinde iki elle kullanılan düz ve çift ağızlı bir namlu."
+  },
+  "srd-2024_mace": {
+    "desc": "Kısa bir sapın ucunda ağırlıklandırılmış metal bir baş; bir bıçağın ancak çizeceği şeyi ezmek için yapılmıştır."
+  },
+  "srd-2024_maul": {
+    "desc": "İki elli bir balyoz. Zırhı kesmez; içindekini çökertir."
+  },
+  "srd-2024_morningstar": {
+    "desc": "Sağlam bir sapın ucunda dikenli bir baş; zincir zırhtan kaymak yerine onu delip geçmek için yapılmıştır."
+  },
+  "srd-2024_musket": {
+    "desc": "Uzun namlulu bir ateşli silah. Doldurması yavaş, sesi de her sohbeti bitirecek kadar yüksektir."
+  },
+  "srd-2024_pike": {
+    "desc": "Aşırı uzun bir mızrak. Sıra hâlinde dizildiğinde bir hücumu daha gelmeden durdurur."
+  },
+  "srd-2024_pistol": {
+    "desc": "Bir paltonun altında taşınıp göz açıp kapayana dek çekilebilen kısa bir ateşli silah."
+  },
+  "srd-2024_quarterstaff": {
+    "desc": "Sağlam bir tahta sırık; silah olduğu kadar baston da sayılır -- ki asıl mesele budur."
+  },
+  "srd-2024_rapier": {
+    "desc": "Dört vuruş yapmaktansa bir vuruşu doğru yere koymayı yeğleyenler için ince bir saplama kılıcı."
+  },
+  "srd-2024_scimitar": {
+    "desc": "Kavisli ve tek ağızlı bir kılıç; elde hafiftir ve çabuk geri döner."
+  },
+  "srd-2024_shortbow": {
+    "desc": "Hareket hâlinde ya da at sırtında çekilebilen derli toplu bir yay."
+  },
+  "srd-2024_shortsword": {
+    "desc": "Kalabalıkta, bir koridorda ya da ikinci elde dövüşülecek kadar kısa bir saplama kılıcı."
+  },
+  "srd-2024_sickle": {
+    "desc": "Kavisli bir tarım bıçağı. Ekin biçer; gerekirse bir sapı kavradığı kolaylıkla bir uzvu da kavrar."
+  },
+  "srd-2024_sling": {
+    "desc": "İki kayışa bağlı deri bir yuva. Yerin olduğu hemen her yerde mermisi bedavadır."
+  },
+  "srd-2024_spear": {
+    "desc": "Var olan en eski silah: bir sapın ucunda bir uç; elde de iyidir, atıldığında da."
+  },
+  "srd-2024_trident": {
+    "desc": "Balıkçılıktan gelen üç uçlu bir mızrak; savuşturması zor, üzerinden kurtulması daha zordur."
+  },
+  "srd-2024_war-pick": {
+    "desc": "Bir sapın ucunda dar bir çivi; kılıcın kötü olduğu tek iş için yapılmıştır: levha zırhı geçmek."
+  },
+  "srd-2024_warhammer": {
+    "desc": "Çivi için değil zırh için yapılmış, farkını hissettirecek kadar ağır bir çekiç."
+  },
+  "srd-2024_whip": {
+    "desc": "Kol boyunu aşan örgülü bir deri kırbaç; yaralamaktan çok acıtır."
+  },
+  "srd-2024_breastplate": {
+    "desc": "Derinin üzerine giyilen, kolları ve bacakları serbest bırakan oturmuş bir göğüs ve sırt levhası."
+  },
+  "srd-2024_chain-mail": {
+    "desc": "Altına dolgu giyilen, birbirine geçmiş halkalardan tam bir zırh. Ağır, gürültülü ve kesilmesi çok zor."
+  },
+  "srd-2024_chain-shirt": {
+    "desc": "Kıyafetin altına giyilen bir zincir gömlek; sıradan bir yolcu gibi geçecek kadar sessizdir."
+  },
+  "srd-2024_half-plate-armor": {
+    "desc": "Hayati bölgelere levha, kalanına zincir ve deri -- korumanın çoğu, ağırlığın azı."
+  },
+  "srd-2024_hide-armor": {
+    "desc": "Kalın kürkler ve kabaca tabaklanmış postlar. Kaba iştir ama bir bıçağı çevirir ve neredeyse hiçbir şeye mal olmaz."
+  },
+  "srd-2024_leather-armor": {
+    "desc": "Kaynatılmış deriden, biçime sertleştirilmiş bir zırh; üzerinde olduğunu unutacak kadar hafiftir."
+  },
+  "srd-2024_padded-armor": {
+    "desc": "Kapitone kumaş katmanları. Satılan en ucuz zırhtır ve her adımda hışırdar."
+  },
+  "srd-2024_plate-armor": {
+    "desc": "Zincir ve dolgunun üzerine tepeden tırnağa biçimlendirilmiş çelik. Parayla alınabilecek en iyi koruma; giymek için de bir yardımcı gerekir."
+  },
+  "srd-2024_ring-mail": {
+    "desc": "Üzerine ağır halkalar dikilmiş deri. Modası geçmiş ve hantaldır ama yoksul bir muhafızın alabileceği budur."
+  },
+  "srd-2024_scale-mail": {
+    "desc": "Deri bir taban üzerine bindirilmiş metal pullar; karşılık veren bir şeyin derisi gibi."
+  },
+  "srd-2024_shield": {
+    "desc": "Tek elle taşınan ahşap ya da metal bir levha. Hayatta kalmanın en ucuz tek yolu."
+  },
+  "srd-2024_splint-armor": {
+    "desc": "Deriye perçinlenmiş dikey metal şeritler; zincirin üzerine giyilir. Koruyucudur, bir o kadar da katı."
+  },
+  "srd-2024_studded-leather-armor": {
+    "desc": "Sık perçinlerle güçlendirilmiş deri; zincirin ağırlığı olmadan zincirin dişini verir."
+  },
+  "srd-2024_alchemists-supplies": {
+    "desc": "Yetenek: Zekâ. Kullanım: Bir maddeyi teşhis et (DC 15), ya da ateş yak (DC 15). Üretim: Asit, Alchemist's Fire, Component Pouch, Oil, Paper, Perfume"
+  },
+  "srd-2024_arrows-20": {
+    "desc": "Arrow kullanan silahlar için mermi. 20'lik paketler hâlinde gelir. Genellikle bir Quiver içinde taşınır."
+  },
+  "srd-2024_bolts-20": {
+    "desc": "Bolt kullanan silahlar için mermi. 20'lik paketler hâlinde gelir. Genellikle bir Case içinde taşınır."
+  },
+  "srd-2024_brewers-supplies": {
+    "desc": "Yetenek: Zekâ. Kullanım: Zehirlenmiş içeceği fark et (DC 15), ya da alkolü teşhis et (DC 10). Üretim: Antitoxin"
+  },
+  "srd-2024_bullets-firearm-10": {
+    "desc": "Firearm Bullet kullanan silahlar için mermi. 10'lik paketler hâlinde gelir. Genellikle bir Pouch içinde taşınır."
+  },
+  "srd-2024_bullets-sling-20": {
+    "desc": "Sling Bullet kullanan silahlar için mermi. 20'lik paketler hâlinde gelir. Genellikle bir Pouch içinde taşınır."
+  },
+  "srd-2024_burglars-pack": {
+    "desc": "Burglar's Pack şunları içerir: Backpack, Ball Bearings, Bell, 10 Candles, Crowbar, Hooded Lantern, 7 şişe Oil, 5 günlük Rations, Rope, Tinderbox ve Waterskin."
+  },
+  "srd-2024_calligraphers-supplies": {
+    "desc": "Yetenek: Çeviklik. Kullanım: Sahteciliğe karşı koruyan gösterişli süslemelerle metin yaz (DC 15). Üretim: Ink, *Spell Scroll*"
+  },
+  "srd-2024_carpenters-tools": {
+    "desc": "Yetenek: Güç. Kullanım: Bir kapıyı ya da kabı mühürle veya zorla aç (DC 20). Üretim: Sopa, Büyük Sopa, Quarterstaff, Barrel, Chest, Ladder, Pole, Portable Ram, Torch"
+  },
+  "srd-2024_cartographers-tools": {
+    "desc": "Yetenek: Bilgelik. Kullanım: Küçük bir alanın haritasını çiz (DC 15). Üretim: Map"
+  },
+  "srd-2024_cobblers-tools": {
+    "desc": "Yetenek: Çeviklik. Kullanım: Ayakkabıyı, giyenin bir sonraki Çeviklik (Akrobasi) kontrolünde avantaj verecek şekilde değiştir (DC 10). Üretim: Climber's Kit"
+  },
+  "srd-2024_cooks-utensils": {
+    "desc": "Yetenek: Bilgelik. Kullanım: Yemeğin tadını iyileştir (DC 10), ya da bozuk ya da zehirli yemeği fark et (DC 15). Üretim: Rations"
+  },
+  "srd-2024_diplomats-pack": {
+    "desc": "Diplomat's Pack şunları içerir: Chest, Fine Clothes, Ink, 5 Ink Pens, Lamp, 2 Map or Scroll Cases, 4 şişe Oil, 5 yaprak Paper, 5 yaprak Parchment, Perfume ve Tinderbox."
+  },
+  "srd-2024_disguise-kit": {
+    "desc": "Yetenek: Karizma. Kullanım: Makyaj yap (DC 10). Üretim: Costume"
+  },
+  "srd-2024_dungeoneers-pack": {
+    "desc": "Dungeoneer's Pack şunları içerir: Backpack, Caltrops, Crowbar, 2 şişe Oil, 10 günlük Rations, Rope, Tinderbox, 10 Torches ve Waterskin."
+  },
+  "srd-2024_entertainers-pack": {
+    "desc": "Entertainer's Pack şunları içerir: Backpack, Bedroll, Bell, Bullseye Lantern, 3 Costumes, Mirror, 8 şişe Oil, 9 günlük Rations, Tinderbox ve Waterskin."
+  },
+  "srd-2024_explorers-pack": {
+    "desc": "Explorer's Pack şunları içerir: Backpack, Bedroll, 2 şişe Oil, 10 günlük Rations, Rope, Tinderbox, 10 Torches ve Waterskin."
+  },
+  "srd-2024_forgery-kit": {
+    "desc": "Yetenek: Çeviklik. Kullanım: Başkasının el yazısıyla en fazla 10 kelime taklit et (DC 15), ya da bir mühür mumunu çoğalt (DC 20)"
+  },
+  "srd-2024_gaming-set-dice": {
+    "desc": "Yetenek: Bilgelik. Kullanım: Birinin hile yapıp yapmadığını anla (DC 10), ya da oyunu kazan (DC 20)"
+  },
+  "srd-2024_gaming-set-dragonchess": {
+    "desc": "Yetenek: Zekâ. Kullanım: Rakibinin ruh hâlini ve niyetini anla (DC 15), ya da oyunu kazan (DC 20)"
+  },
+  "srd-2024_gaming-set-playing-cards": {
+    "desc": "Yetenek: Karizma. Kullanım: Rakibinin ruh hâlini ve niyetini anla (DC 15), ya da oyunu kazan (DC 20)"
+  },
+  "srd-2024_gaming-set-three-dragon-ante": {
+    "desc": "Yetenek: Karizma. Kullanım: Rakibinin ruh hâlini ve niyetini anla (DC 15), ya da oyunu kazan (DC 20)"
+  },
+  "srd-2024_glassblowers-tools": {
+    "desc": "Yetenek: Zekâ. Kullanım: Cam bir nesnenin son 24 saatte ne taşıdığını anla (DC 15). Üretim: Glass Bottle, Magnifying Glass, Spyglass, Vial"
+  },
+  "srd-2024_herbalism-kit": {
+    "desc": "Yetenek: Zekâ. Kullanım: Bir bitkiyi teşhis et (DC 15). Üretim: Antitoxin, Potion of Healing"
+  },
+  "srd-2024_jewelers-tools": {
+    "desc": "Yetenek: Zekâ. Kullanım: Bir değerli taşın değerini anla (DC 15). Üretim: Arcane Focus, Holy Symbol"
+  },
+  "srd-2024_leatherworkers-tools": {
+    "desc": "Yetenek: Çeviklik. Kullanım: Deri bir eşyaya desen işle (DC 10). Üretim: Sling, Whip, Hide Armor, Leather Armor, Studded Leather Armor, Backpack, Crossbow Bolt Case, Map or Scroll Case, Parchment, Pouch, Quiver, Waterskin"
+  },
+  "srd-2024_masons-tools": {
+    "desc": "Yetenek: Güç. Kullanım: Taşa bir sembol ya da delik oy (DC 10). Üretim: Block and Tackle"
+  },
+  "srd-2024_musical-instrument-bagpipes": {
+    "desc": "Yetenek: Karizma. Kullanım: Bir müzik parçasını tanı (DC 15)"
+  },
+  "srd-2024_musical-instrument-drum": {
+    "desc": "Yetenek: Karizma. Kullanım: Bir müzik parçasını tanı (DC 15)"
+  },
+  "srd-2024_musical-instrument-dulcimer": {
+    "desc": "Yetenek: Karizma. Kullanım: Bir müzik parçasını tanı (DC 15)"
+  },
+  "srd-2024_musical-instrument-flute": {
+    "desc": "Yetenek: Karizma. Kullanım: Bir müzik parçasını tanı (DC 15)"
+  },
+  "srd-2024_musical-instrument-horn": {
+    "desc": "Yetenek: Karizma. Kullanım: Bir müzik parçasını tanı (DC 15)"
+  },
+  "srd-2024_musical-instrument-lute": {
+    "desc": "Yetenek: Karizma. Kullanım: Bir müzik parçasını tanı (DC 15)"
+  },
+  "srd-2024_musical-instrument-lyre": {
+    "desc": "Yetenek: Karizma. Kullanım: Bir müzik parçasını tanı (DC 15)"
+  },
+  "srd-2024_musical-instrument-pan-flute": {
+    "desc": "Yetenek: Karizma. Kullanım: Bir müzik parçasını tanı (DC 15)"
+  },
+  "srd-2024_musical-instrument-shawm": {
+    "desc": "Yetenek: Karizma. Kullanım: Bir müzik parçasını tanı (DC 15)"
+  },
+  "srd-2024_musical-instrument-viol": {
+    "desc": "Yetenek: Karizma. Kullanım: Bir müzik parçasını tanı (DC 15)"
+  },
+  "srd-2024_navigators-tools": {
+    "desc": "Yetenek: Bilgelik. Kullanım: Rota çiz (DC 15), ya da konum belirle (DC 15)"
+  },
+  "srd-2024_needles-50": {
+    "desc": "Needle kullanan silahlar için mermi. 50'lik paketler hâlinde gelir. Genellikle bir Pouch içinde taşınır."
+  },
+  "srd-2024_painters-supplies": {
+    "desc": "Yetenek: Bilgelik. Kullanım: Gördüğün bir şeyin tanınabilir bir resmini yap (DC 10). Üretim: Druidic Focus, Holy Symbol"
+  },
+  "srd-2024_poisoners-kit": {
+    "desc": "Yetenek: Zekâ. Kullanım: Zehirlenmiş bir nesneyi fark et (DC 10). Üretim: Basic Poison"
+  },
+  "srd-2024_potters-tools": {
+    "desc": "Yetenek: Zekâ. Kullanım: Seramik bir nesnenin son 24 saatte ne taşıdığını anla (DC 15). Üretim: Jug, Lamp"
+  },
+  "srd-2024_priests-pack": {
+    "desc": "Priest's Pack şunları içerir: Backpack, Blanket, Holy Water, Lamp, 7 günlük Rations, Robe ve Tinderbox."
+  },
+  "srd-2024_scholars-pack": {
+    "desc": "Scholar's Pack şunları içerir: Backpack, Book, Ink, Ink Pen, Lamp, 10 şişe Oil, 10 yaprak Parchment ve Tinderbox."
+  },
+  "srd-2024_smiths-tools": {
+    "desc": "Yetenek: Güç. Kullanım: Bir kapıyı ya da kabı zorla aç (DC 20). Üretim: Any Melee weapon (except Sopa, Büyük Sopa, Quarterstaff ve Whip), Orta armor (except Hide), Heavy armor, Ball Bearings, Bucket, Caltrops, Zincir, Crowbar, Firearm Bullets, Grappling Hook, Iron Pot, Iron Spikes, Sling Bullets"
+  },
+  "srd-2024_thieves-tools": {
+    "desc": "Yetenek: Çeviklik. Kullanım: Kilit aç (DC 15), ya da tuzak etkisizleştir (DC 15)"
+  },
+  "srd-2024_tinkers-tools": {
+    "desc": "Yetenek: Çeviklik. Kullanım: Hurdadan, 1 dakika sonra dağılan Ufak bir eşya kur (DC 20). Üretim: Musket, Tabanca, Bell, Bullseye Lantern, Flask, Hooded Lantern, Hunting Trap, Lock, Manacles, Mirror, Shovel, Signal Whistle, Tinderbox"
+  },
+  "srd-2024_weavers-tools": {
+    "desc": "Yetenek: Çeviklik. Kullanım: Kıyafetteki yırtığı onar (DC 10), ya da Ufak bir desen dik (DC 10). Üretim: Padded Armor, Basket, Bedroll, Blanket, Fine Clothes, Net, Robe, Rope, Sack, String, Tent, Traveler's Clothes"
+  },
+  "srd-2024_woodcarvers-tools": {
+    "desc": "Yetenek: Çeviklik. Kullanım: Ahşaba bir desen oy (DC 10). Üretim: Sopa, Büyük Sopa, Quarterstaff, Ranged weapons (except Tabanca, Musket ve Sling), Arcane Focus, Arrows, Bolts, Druidic Focus, Ink Pen, İğneler"
+  },
+  "xphbxdmg-alexandrite": {
+    "desc": "Koyu yeşil bir değerli taş."
+  },
+  "xphbxdmg-amber": {
+    "desc": "Sulu altın rengiyle koyu altın arası bir değerli taş."
+  },
+  "xphbxdmg-amethyst": {
+    "desc": "Koyu mor bir değerli taş."
+  },
+  "xphbxdmg-aquamarine": {
+    "desc": "Soluk mavi-yeşil bir değerli taş."
+  },
+  "xphbxdmg-azurite": {
+    "desc": "Benekli koyu mavi bir değerli taş."
+  },
+  "xphbxdmg-banded-agate": {
+    "desc": "Kahverengi, mavi, beyaz ya da kırmızı çizgili bir değerli taş."
+  },
+  "xphbxdmg-black-opal": {
+    "desc": "Siyah beneklerle ve altın zerreleriyle kaplı koyu yeşil bir değerli taş."
+  },
+  "xphbxdmg-black-pearl": {
+    "desc": "Saf siyah bir değerli taş."
+  },
+  "xphbxdmg-black-sapphire": {
+    "desc": "Parıltılı vurgulara sahip parlak siyah bir değerli taş."
+  },
+  "xphbxdmg-bloodstone": {
+    "desc": "Kırmızı zerreli koyu gri bir değerli taş."
+  },
+  "xphbxdmg-blue-quartz": {
+    "desc": "Soluk mavi bir değerli taş."
+  },
+  "xphbxdmg-blue-sapphire": {
+    "desc": "Orta mavi bir değerli taş."
+  },
+  "xphbxdmg-blue-spinel": {
+    "desc": "Koyu mavi bir değerli taş."
+  },
+  "xphbxdmg-carnelian": {
+    "desc": "Turuncuyla kızıl kahve arası bir değerli taş."
+  },
+  "xphbxdmg-chalcedony": {
+    "desc": "Beyaz bir değerli taş."
+  },
+  "xphbxdmg-chrysoberyl": {
+    "desc": "Sarımsı yeşille soluk yeşil arası bir değerli taş."
+  },
+  "xphbxdmg-chrysoprase": {
+    "desc": "Yeşil bir değerli taş."
+  },
+  "xphbxdmg-citrine": {
+    "desc": "Soluk sarımsı kahve bir değerli taş."
+  },
+  "xphbxdmg-coral": {
+    "desc": "Kızıl bir değerli taş."
+  },
+  "xphbxdmg-emerald": {
+    "desc": "Koyu ve parlak yeşil bir değerli taş."
+  },
+  "xphbxdmg-fire-opal": {
+    "desc": "Ateş kırmızısı bir değerli taş."
+  },
+  "xphbxdmg-hematite": {
+    "desc": "Grimsi siyah bir değerli taş."
+  },
+  "xphbxdmg-jacinth": {
+    "desc": "Ateş turuncusu bir değerli taş."
+  },
+  "xphbxdmg-jet": {
+    "desc": "Koyu siyah bir değerli taş."
+  },
+  "xphbxdmg-lapis-lazuli": {
+    "desc": "Sarı zerreli açık ve koyu mavi bir değerli taş."
+  },
+  "xphbxdmg-malachite": {
+    "desc": "Damarlı açık ve koyu yeşil bir değerli taş."
+  },
+  "xphbxdmg-moss-agate": {
+    "desc": "Yosunumsu gri ya da yeşil izler taşıyan pembe veya sarımsı beyaz bir değerli taş."
+  },
+  "xphbxdmg-obsidian": {
+    "desc": "Siyah bir değerli taş."
+  },
+  "xphbxdmg-opal": {
+    "desc": "Yeşil ve altın benekli soluk mavi bir değerli taş."
+  },
+  "xphbxdmg-peridot": {
+    "desc": "Koyu zeytin yeşili bir değerli taş."
+  },
+  "xphbxdmg-rhodochrosite": {
+    "desc": "Açık pembe bir değerli taş."
+  },
+  "xphbxdmg-ruby": {
+    "desc": "Berrak kırmızıyla koyu kızıl arası bir değerli taş."
+  },
+  "xphbxdmg-sardonyx": {
+    "desc": "Kırmızı ve beyaz bantlı bir değerli taş."
+  },
+  "xphbxdmg-tiger-eye": {
+    "desc": "Altın merkezli kahverengi bir değerli taş."
+  },
+  "xphbxdmg-topaz": {
+    "desc": "Altın sarısı bir değerli taş."
+  },
+  "xphbxdmg-turquoise": {
+    "desc": "Açık mavi-yeşil bir değerli taş."
+  },
+  "xphbxdmg-yellow-sapphire": {
+    "desc": "Ateş sarısı ya da sarımsı yeşil bir değerli taş."
+  },
+  "xphbxdmg-zircon": {
+    "desc": "Soluk mavi-yeşil bir değerli taş."
+  },
+  "phb-2024_dice-set": {
+    "desc": "- Yetenek: Bilgelik\n\n- Kullanım: Birinin hile yapıp yapmadığını anla (DC 10), ya da oyunu kazan (DC 20)"
+  },
+  "phb-2024_dragonchess-set": {
+    "desc": "- Yetenek: Bilgelik\n\n- Kullanım: Birinin hile yapıp yapmadığını anla (DC 10), ya da oyunu kazan (DC 20)"
+  },
+  "phb-2024_playing-cards": {
+    "desc": "- Yetenek: Bilgelik\n\n- Kullanım: Birinin hile yapıp yapmadığını anla (DC 10), ya da oyunu kazan (DC 20)"
+  },
+  "phb-2024_three-dragon-ante-set": {
+    "desc": "- Yetenek: Bilgelik\n\n- Kullanım: Birinin hile yapıp yapmadığını anla (DC 10), ya da oyunu kazan (DC 20)"
+  },
+  "phb-2024_alchemists-supplies": {
+    "desc": "- Yetenek: Zekâ\n\n- Kullanım: Bir maddeyi teşhis et (DC 15), ya da ateş yak (DC 15)\n\n- Üretim: Asit, Alchemist's Fire, Component Pouch, Oil, Paper, Perfume"
+  },
+  "phb-2024_bagpipes": {
+    "desc": "- Yetenek: Karizma\n\n- Kullanım: Bildiğin bir ezgiyi çal (DC 10), ya da doğaçlama bir şarkı söyle (DC 15)"
+  },
+  "phb-2024_brewers-supplies": {
+    "desc": "- Yetenek: Zekâ\n\n- Kullanım: Zehirlenmiş içeceği fark et (DC 15), ya da alkolü teşhis et (DC 10)\n\n- Üretim: Antitoxin"
+  },
+  "phb-2024_calligraphers-supplies": {
+    "desc": "- Yetenek: Çeviklik\n\n- Kullanım: Sahteciliğe karşı koruyan gösterişli süslemelerle metin yaz (DC 15)\n\n- Üretim: Ink, Spell Scroll"
+  },
+  "phb-2024_carpenters-tools": {
+    "desc": "- Yetenek: Güç\n\n- Kullanım: Bir kapıyı ya da kabı mühürle veya zorla aç (DC 20)\n\n- Üretim: Sopa, Büyük Sopa, Quarterstaff, Barrel, Chest, Ladder, Pole, Portable Ram, Torch"
+  },
+  "phb-2024_cartographers-tools": {
+    "desc": "- Yetenek: Bilgelik\n\n- Kullanım: Küçük bir alanın haritasını çiz (DC 15)\n\n- Üretim: Map"
+  },
+  "phb-2024_cobblers-tools": {
+    "desc": "- Yetenek: Çeviklik\n\n- Kullanım: Ayakkabıyı, giyenin bir sonraki Çeviklik (Akrobasi) kontrolünde avantaj verecek şekilde değiştir (DC 10)\n\n- Üretim: Climber's Kit"
+  },
+  "phb-2024_cooks-utensils": {
+    "desc": "- Yetenek: Bilgelik\n\n- Kullanım: Yemeğin tadını iyileştir (DC 10), ya da bozuk ya da zehirli yemeği fark et (DC 15)\n\n- Üretim: Rations"
+  },
+  "phb-2024_drum": {
+    "desc": "- Yetenek: Karizma\n\n- Kullanım: Bildiğin bir ezgiyi çal (DC 10), ya da doğaçlama bir şarkı söyle (DC 15)"
+  },
+  "phb-2024_dulcimer": {
+    "desc": "- Yetenek: Karizma\n\n- Kullanım: Bildiğin bir ezgiyi çal (DC 10), ya da doğaçlama bir şarkı söyle (DC 15)"
+  },
+  "phb-2024_flute": {
+    "desc": "- Yetenek: Karizma\n\n- Kullanım: Bildiğin bir ezgiyi çal (DC 10), ya da doğaçlama bir şarkı söyle (DC 15)"
+  },
+  "phb-2024_glassblowers-tools": {
+    "desc": "- Yetenek: Zekâ\n\n- Kullanım: Cam bir nesnenin son 24 saatte ne taşıdığını anla (DC 15)\n\n- Üretim: Glass Bottle, Magnifying Glass, Spyglass, Vial"
+  },
+  "phb-2024_horn": {
+    "desc": "- Yetenek: Karizma\n\n- Kullanım: Bildiğin bir ezgiyi çal (DC 10), ya da doğaçlama bir şarkı söyle (DC 15)"
+  },
+  "phb-2024_jewelers-tools": {
+    "desc": "- Yetenek: Zekâ\n\n- Kullanım: Bir değerli taşın değerini anla (DC 15)\n\n- Üretim: Arcane Focus, Holy Symbol"
+  },
+  "phb-2024_leatherworkers-tools": {
+    "desc": "- Yetenek: Çeviklik\n\n- Kullanım: Deri bir eşyaya desen işle (DC 10)\n\n- Üretim: Sling, Whip, Hide Armor, Leather Armor, Studded Leather Armor, Backpack, Crossbow Bolt Case, Map or Scroll Case, Parchment, Pouch, Quiver, Waterskin"
+  },
+  "phb-2024_lute": {
+    "desc": "- Yetenek: Karizma\n\n- Kullanım: Bildiğin bir ezgiyi çal (DC 10), ya da doğaçlama bir şarkı söyle (DC 15)"
+  },
+  "phb-2024_lyre": {
+    "desc": "- Yetenek: Karizma\n\n- Kullanım: Bildiğin bir ezgiyi çal (DC 10), ya da doğaçlama bir şarkı söyle (DC 15)"
+  },
+  "phb-2024_masons-tools": {
+    "desc": "- Yetenek: Güç\n\n- Kullanım: Taşa bir sembol ya da delik oy (DC 10)\n\n- Üretim: Block and Tackle"
+  },
+  "phb-2024_painters-supplies": {
+    "desc": "- Yetenek: Bilgelik\n\n- Kullanım: Gördüğün bir şeyin tanınabilir bir resmini yap (DC 10)\n\n- Üretim: Druidic Focus, Holy Symbol"
+  },
+  "phb-2024_pan-flute": {
+    "desc": "- Yetenek: Karizma\n\n- Kullanım: Bildiğin bir ezgiyi çal (DC 10), ya da doğaçlama bir şarkı söyle (DC 15)"
+  },
+  "phb-2024_potters-tools": {
+    "desc": "- Yetenek: Zekâ\n\n- Kullanım: Seramik bir nesnenin son 24 saatte ne taşıdığını anla (DC 15)\n\n- Üretim: Jug, Lamp"
+  },
+  "phb-2024_shawm": {
+    "desc": "- Yetenek: Karizma\n\n- Kullanım: Bildiğin bir ezgiyi çal (DC 10), ya da doğaçlama bir şarkı söyle (DC 15)"
+  },
+  "phb-2024_smiths-tools": {
+    "desc": "- Yetenek: Güç\n\n- Kullanım: Bir kapıyı ya da kabı zorla aç (DC 20)\n\n- Üretim: Any Melee weapon (except Sopa, Büyük Sopa, Quarterstaff ve Whip), Orta armor (except Hide), Heavy armor, Ball Bearings, Bucket, Caltrops, Zincir, Crowbar, Firearm Bullets, Grappling Hook, Iron Pot, Iron Spikes, Sling Bullets"
+  },
+  "phb-2024_tinkers-tools": {
+    "desc": "- Yetenek: Çeviklik\n\n- Kullanım: Hurdadan, 1 dakika sonra dağılan Ufak bir eşya kur (DC 20)\n\n- Üretim: Musket, Tabanca, Bell, Bullseye Lantern, Flask, Hooded Lantern, Hunting Trap, Lock, Manacles, Mirror, Shovel, Signal Whistle, Tinderbox"
+  },
+  "phb-2024_viol": {
+    "desc": "- Yetenek: Karizma\n\n- Kullanım: Bildiğin bir ezgiyi çal (DC 10), ya da doğaçlama bir şarkı söyle (DC 15)"
+  },
+  "phb-2024_weavers-tools": {
+    "desc": "- Yetenek: Çeviklik\n\n- Kullanım: Kıyafetteki yırtığı onar (DC 10), ya da Ufak bir desen dik (DC 10)\n\n- Üretim: Padded Armor, Basket, Bedroll, Blanket, Fine Clothes, Net, Robe, Rope, Sack, String, Tent, Traveler's Clothes"
+  },
+  "phb-2024_woodcarvers-tools": {
+    "desc": "- Yetenek: Çeviklik\n\n- Kullanım: Ahşaba bir desen oy (DC 10)\n\n- Üretim: Sopa, Büyük Sopa, Quarterstaff, Ranged weapons (except Tabanca, Musket ve Sling), Arcane Focus, Arrows, Bolts, Druidic Focus, Ink Pen, İğneler"
+  },
+  "xphbxdmg-diamond": {
+    "desc": "Mavimsi beyaz, kanarya sarısı, pembe, kahverengi ya da mavi bir değerli taş."
+  },
+  "xphbxdmg-eye-agate": {
+    "desc": "Gri, beyaz, kahverengi, mavi ya da yeşil halkalı bir değerli taş."
+  },
+  "xphbxdmg-garnet": {
+    "desc": "Kırmızı, kahverengimsi yeşil ya da menekşe bir değerli taş."
+  },
+  "xphbxdmg-jade": {
+    "desc": "Açık yeşil, koyu yeşil ya da beyaz bir değerli taş."
+  },
+  "xphbxdmg-jasper": {
+    "desc": "Mavi, siyah ya da kahverengi bir değerli taş."
+  },
+  "xphbxdmg-moonstone": {
+    "desc": "Soluk mavi parıltılı beyaz bir değerli taş."
+  },
+  "xphbxdmg-onyx": {
+    "desc": "Siyah beyaz bantlı ya da tamamen siyah veya beyaz bir değerli taş."
+  },
+  "xphbxdmg-pearl": {
+    "desc": "Parlak beyaz, sarı ya da pembe bir değerli taş."
+  },
+  "xphbxdmg-quartz": {
+    "desc": "Beyaz, dumanlı gri ya da sarı bir değerli taş."
+  },
+  "xphbxdmg-spinel": {
+    "desc": "Kırmızı, kızıl kahve ya da koyu yeşil bir değerli taş."
+  },
+  "xphbxdmg-star-rose-quartz": {
+    "desc": "Merkezinde beyaz yıldız deseni olan gül rengi bir değerli taş."
+  },
+  "xphbxdmg-star-ruby": {
+    "desc": "Merkezinde beyaz yıldız deseni olan bir ruby."
+  },
+  "xphbxdmg-star-sapphire": {
+    "desc": "Merkezinde beyaz yıldız deseni olan mavi bir sapphire."
+  },
+  "xphbxdmg-tourmaline": {
+    "desc": "Soluk yeşil, mavi, kahverengi ya da kırmızı bir değerli taş."
+  },
+  "srd-2024_acid": {
+    "desc": "Attack eylemini aldığında, saldırılarından birinin yerine bir şişe asit fırlatabilirsin. 20 feet içinde görebildiğin bir yaratığı ya da nesneyi hedef al. Hedef Çeviklik kurtarma zarı yapar (DC 8 + Çeviklik modifiyerin + Yeterlilik Bonusun); başarısız olursa 2d6 asit hasar alır."
+  },
+  "srd-2024_alchemists-fire": {
+    "desc": "Attack eylemini aldığında, saldırılarından birinin yerine bir şişe Alchemist's Fire fırlatabilirsin. 20 feet içinde görebildiğin bir yaratığı ya da nesneyi hedef al. Hedef Çeviklik kurtarma zarı yapar (DC 8 + Çeviklik modifiyerin + Yeterlilik Bonusun); başarısız olursa 1d4 ateş hasar alır ve yanmaya başlar (bkz. \"Rules Glossary\")."
+  },
+  "srd-2024_antitoxin": {
+    "desc": "Bonus Eylem olarak bir şişe Antitoxin içip 1 saat boyunca zehirlenmiş durumundan kaçınmak ya da onu sona erdirmek için yaptığın kurtarma zarlarında avantaj kazanabilirsin."
+  },
+  "srd-2024_holy-water": {
+    "desc": "Attack eylemini aldığında, saldırılarından birinin yerine bir şişe Holy Water fırlatabilirsin. 20 feet içinde görebildiğin bir yaratığı hedef al. Hedef şeytani ya da ölümsüz ise Çeviklik kurtarma zarı yapar (DC 8 + Çeviklik modifiyerin + Yeterlilik Bonusun) ve başarısız olursa 2d8 ışıma hasar alır."
+  },
+  "srd-2024_poison-basic": {
+    "desc": "Bonus Eylem olarak bir şişe Basic Poison ile bir silahı ya da en fazla üç mermiyi kaplayabilirsin. Zehirli silahtan veya mermiden delici ya da kesici hasar alan bir yaratık ek olarak 1d4 zehir hasar alır. Sürüldükten sonra zehir 1 dakika boyunca ya da hasarını verene kadar -- hangisi önce olursa -- etkisini korur."
+  },
+  "phb-2024_basic-poison": {
+    "desc": "Bonus Eylem olarak bir şişe Basic Poison ile bir silahı ya da en fazla üç mermiyi kaplayabilirsin. Zehirli silahtan veya mermiden delici ya da kesici hasar alan bir yaratık ek olarak 1d4 zehir hasar alır. Sürüldükten sonra zehir 1 dakika boyunca ya da hasarını verene kadar -- hangisi önce olursa -- etkisini korur."
+  },
+  "srd-2024_oil": {
+    "desc": "Oil ile bir yaratığı, nesneyi ya da alanı ıslatabilir veya onu yakıt olarak kullanabilirsin.\n\nBir Yaratığı ya da Nesneyi Islatmak. Attack eylemini aldığında, saldırılarından birinin yerine bir şişe Oil fırlatabilirsin. 20 feet içindeki bir yaratığı ya da nesneyi hedef al. Hedef Çeviklik kurtarma zarı yapar (DC 8 + Çeviklik modifiyerin + Yeterlilik Bonusun); başarısız olursa yağa bulanır. Yağ kurumadan (1 dakika içinde) hedef ateş hasar alırsa, yanan yağdan fazladan 5 ateş hasar alır.\n\nBir Alanı Islatmak. Kullanma eylemi harcayarak bir şişe Oil'i düz zemine dökebilir, 5 feet içinde 5 feetlik kare bir alanı kaplayabilirsin. Ateşlenirse yağ, yakıldığı andan 2 tur sonraki sıranın sonuna kadar (yaklaşık 12 saniye) yanar ve alana giren ya da sırasını orada bitiren her yaratığa 5 ateş hasar verir. Bir yaratık bu hasarı her sırada yalnızca bir kez alır.\n\nYakıt. Oil, Lamp ve Lantern'lar için yakıttır. Yakıldıktan sonra bir şişe Oil bir Lamp ya da Lantern'da 6 saat yanar. Bu sürenin kesintisiz olması gerekmez; yanan yağı (Utilize eylemiyle) söndürüp toplam 6 saat yanana kadar yeniden tutuşturabilirsin."
+  },
+  "srd-2024_potion-of-healing": {
+    "desc": "Bu iksir büyülü bir eşyadır. Bonus Eylem olarak içebilir ya da 5 feet içindeki başka bir yaratığa içirebilirsin. Şişedeki büyülü kırmızı sıvıyı içen yaratık 2d4 + 2 can geri kazanır."
+  },
+  "srd-2024_potions-of-healing": {
+    "desc": "Bu iksiri içtiğinde can geri kazanırsın. Miktar, iksirin nadirliğine bağlıdır.\n\nGücü ne olursa olsun, iksirin kırmızı sıvısı çalkalandığında parıldar.\n\n| İksir | Geri Kazanılan HP | Nadirlik |\n|---|---|---|\n| Potion of Healing | 2d4 + 2 | Common |\n| Potion of Healing (greater) | 4d4 + 4 | Az Bulunur |\n| Potion of Healing (superior) | 8d4 + 8 | Nadir |\n| Potion of Healing (supreme) | 10d4 + 20 | Çok Nadir |"
+  },
+  "srd-2024_potion-of-giant-strength": {
+    "desc": "Bu iksiri içtiğinde Güç değerin 1 saat boyunca değişir. Hangi değere çıkacağını giant'ın türü belirler (aşağıdaki tabloya bak). Güçün zaten o değere eşit ya da ondan büyükse iksirin sana etkisi olmaz.\n\nİksirin saydam sıvısında, bir giant'ın tırnağını andıran bir ışık kıymığı yüzer.\n\n| İksir | Str. | Nadirlik |\n|---|---|---|\n| Potion of Giant Strength (hill) | 21 | Az Bulunur |\n| Potion of Giant Strength (frost or stone) | 23 | Nadir |\n| Potion of Giant Strength (fire) | 25 | Nadir |\n| Potion of Giant Strength (cloud) | 27 | Çok Nadir |\n| Potion of Giant Strength (storm) | 29 | Efsanevi |"
+  },
+  "srd-2024_spell-scroll": {
+    "desc": "Spell Scroll (Cantrip) ve Spell Scroll (Level 1), üzerinde sırasıyla bir cantrip ya da 1. seviye bir büyünün sözleri yazılı büyülü eşyalardır; hangi büyü olduğunu parşömeni yapan belirler. Büyü sınıfının büyü listesindeyse parşömeni okuyup büyüyü normal casting time'ıyla ve Materyal bileşen sağlamadan kullanabilirsin. Büyü kurtarma zarı ya da saldırı zarı gerektiriyorsa büyü kurtarma DC 13, saldırı bonusu +5'tir. Kullanım tamamlandığında parşömen dağılır."
+  },
+  "srd-2024_ball-bearings": {
+    "desc": "Kullanma eylemi olarak Ball Bearings'i kesesinden dökebilirsin. 10 feet içinde düz, 10 feetlik kare bir alana yayılırlar. Bu alana bir sırada ilk kez giren yaratık DC 10 Çeviklik kurtarma zarı yapar; başarısız olursa yere serilmiş durumuna düşer. Ball Bearings'i toplamak 10 dakika sürer."
+  },
+  "srd-2024_caltrops": {
+    "desc": "Kullanma eylemi olarak Caltrops'u torbasından dökerek 5 feet içinde 5 feetlik kare bir alanı kaplayabilirsin. Bu alana bir sırada ilk kez giren yaratık DC 15 Çeviklik kurtarma zarı yapar; başarısız olursa 1 delici hasar alır ve bir sonraki sırasının başına kadar hızı 0'a düşer. Caltrops'u toplamak 10 dakika sürer."
+  },
+  "srd-2024_hunting-trap": {
+    "desc": "Kullanma eylemi olarak bir Hunting Trap kurabilirsin: ortasındaki basınç plakasına basıldığında kapanan testere dişli çelik bir halka. Tuzak, ağır bir zincirle bir ağaca ya da toprağa çakılmış bir kazığa sabitlenir. Plakaya basan yaratık DC 13 Çeviklik kurtarma zarı yapar; başarısız olursa 1d4 delici hasar alır ve bir sonraki sırasının başına kadar hızı 0'a düşer. Sonrasında yaratık tuzaktan kurtulana kadar hareketi zincirin boyuyla sınırlıdır (genellikle 3 feet). Bir yaratık eylemini harcayıp DC 13 Güç (Atletizm) kontrolü yapabilir; başarırsa kendini ya da erişimindeki başka bir yaratığı kurtarır. Başarısız her kontrol, tuzaktaki yaratığa 1 delici hasar verir."
+  },
+  "srd-2024_net": {
+    "desc": "Attack eylemini aldığında, saldırılarından birinin yerine bir Net atabilirsin. 15 feet içinde görebildiğin bir yaratığı hedef al. Hedef Çeviklik kurtarma zarı yapar (DC 8 + Çeviklik modifiyerin + Yeterlilik Bonusun); başarısız olursa kurtulana kadar kısıtlanmış duruma düşer. Kocaman ya da daha büyük bir hedef otomatik olarak başarılı olur. Kurtulmak için hedef ya da 5 feet yakınındaki bir yaratık eylem harcayıp DC 10 Güç (Atletizm) kontrolü yapmalıdır. Net'i yok etmek de (AC 10; 5 HP; ezici, zehir ve zihinsel hasara bağışıklık) hedefi kurtarır ve etkiyi bitirir."
+  },
+  "srd-2024_chain": {
+    "desc": "Kullanma eylemi olarak, 5 feet içindeki kavranmış, aciz ya da kısıtlanmış durumdaki isteksiz bir yaratığa Zincir sarabilirsin; bunun için DC 13 Güç (Atletizm) kontrolünde başarılı olman gerekir. Yaratığın bacakları bağlanırsa yaratık kurtulana kadar kısıtlanmış durumda kalır. Zincirden kurtulmak, eylem harcayıp DC 18 Çeviklik (Akrobasi) kontrolünde başarılı olmayı gerektirir. Zinciri koparmak ise eylem harcayıp DC 20 Güç (Atletizm) kontrolünde başarılı olmayı gerektirir."
+  },
+  "srd-2024_manacles": {
+    "desc": "Kullanma eylemi olarak, 5 feet içindeki kavranmış, aciz ya da kısıtlanmış durumdaki isteksiz Küçük veya Orta bir yaratığı Manacles ile bağlayabilirsin; bunun için DC 13 Çeviklik (El Çabukluğu) kontrolünde başarılı olman gerekir. Bağlıyken yaratık saldırı zarlarında dezavantajlıdır; Manacles sabit bir zincire ya da kancaya takılıysa yaratık kısıtlanmış olur. Manacles'tan kurtulmak eylem harcayıp DC 20 Çeviklik (El Çabukluğu) kontrolünde başarılı olmayı gerektirir. Kırmak ise eylem harcayıp DC 25 Güç (Atletizm) kontrolünde başarılı olmayı gerektirir. Her Manacles bir anahtarla gelir. Anahtar yoksa bir yaratık Thieves' Tools kullanıp DC 15 Çeviklik (El Çabukluğu) kontrolünde başarılı olarak kilidini açabilir."
+  },
+  "srd-2024_rope": {
+    "desc": "Kullanma eylemi olarak, DC 10 Çeviklik (El Çabukluğu) kontrolünde başarılı olursan Rope ile düğüm atabilirsin. Rope, DC 20 Güç (Atletizm) kontrolüyle koparılabilir. İsteksiz bir yaratığı ancak kavranmış, aciz ya da kısıtlanmış durumdaysa bağlayabilirsin. Yaratığın bacakları bağlanırsa yaratık kurtulana kadar kısıtlanmış durumda kalır. Rope'tan kurtulmak, eylem harcayıp DC 15 Çeviklik (Akrobasi) kontrolünde başarılı olmayı gerektirir."
+  },
+  "srd-2024_lock": {
+    "desc": "Lock bir anahtarla gelir. Anahtar yoksa bir yaratık Thieves' Tools kullanıp DC 15 Çeviklik (El Çabukluğu) kontrolünde başarılı olarak bu kilidi açabilir."
+  },
+  "srd-2024_grappling-hook": {
+    "desc": "Kullanma eylemi olarak Grappling Hook'u 50 feet içindeki bir korkuluğa, çıkıntıya ya da başka bir tutamağa fırlatabilirsin; DC 13 Çeviklik (Akrobasi) kontrolünde başarılı olursan kanca tutunur. Kancaya bir Rope bağladıysan ardından tırmanabilirsin."
+  },
+  "srd-2024_climbers-kit": {
+    "desc": "Climber's Kit bot uçları, eldivenler, kazıklar ve bir emniyet kemeri içerir. Kullanma eylemi olarak kendini sabitlemek için kullanabilirsin; bunu yaptığında sabitleme noktasından en fazla 25 feet düşebilir ve Bonus Eylem ile sabitlemeyi çözmeden oradan 25 feet'ten fazla uzaklaşamazsın."
+  },
+  "srd-2024_healers-kit": {
+    "desc": "Healer's Kit on kullanımlıktır. Kullanma eylemi olarak bir kullanımını harcayıp, 0 canda baygın durumdaki bir yaratığı Bilgelik (Tıp) kontrolü yapmaya gerek kalmadan sabitleyebilirsin."
+  },
+  "srd-2024_ram-portable": {
+    "desc": "Portable Ram ile kapıları kırabilirsin. Bunu yaparken Güç kontrolüne +4 bonus alırsın. Başka bir karakter koçbaşını kullanmana yardım ederse bu kontrolde avantajlı olursun."
+  },
+  "phb-2024_portable-ram": {
+    "desc": "Portable Ram ile kapıları kırabilirsin. Bunu yaparken Güç kontrolüne +4 bonus alırsın. Başka bir karakter koçbaşını kullanmana yardım ederse bu kontrolde avantajlı olursun."
+  },
+  "srd-2024_spikes-iron": {
+    "desc": "Iron Spikes onluk demetler hâlinde gelir. Kullanma eylemi olarak Hafif Çekiç gibi künt bir nesneyle bir kazığı ahşaba, toprağa ya da benzeri bir malzemeye çakabilirsin. Böylece bir kapıyı sıkıştırabilir ya da kazığa Rope veya Zincir bağlayabilirsin."
+  },
+  "phb-2024_iron-spike": {
+    "desc": "Iron Spikes onluk demetler hâlinde gelir. Kullanma eylemi olarak Hafif Çekiç gibi künt bir nesneyle bir kazığı ahşaba, toprağa ya da benzeri bir malzemeye çakabilirsin. Böylece bir kapıyı sıkıştırabilir ya da kazığa Rope veya Zincir bağlayabilirsin."
+  },
+  "phb-2024_iron-spikes": {
+    "desc": "Iron Spikes onluk demetler hâlinde gelir. Kullanma eylemi olarak Hafif Çekiç gibi künt bir nesneyle bir kazığı ahşaba, toprağa ya da benzeri bir malzemeye çakabilirsin. Böylece bir kapıyı sıkıştırabilir ya da kazığa Rope veya Zincir bağlayabilirsin."
+  },
+  "srd-2024_crowbar": {
+    "desc": "Crowbar kullanmak, kaldıraç gücünün işe yaradığı Güç kontrollerinde sana avantaj verir."
+  },
+  "srd-2024_block-and-tackle": {
+    "desc": "Block and Tackle, normalde kaldırabileceğin ağırlığın dört katını yukarı çekmeni sağlar."
+  },
+  "srd-2024_shovel": {
+    "desc": "1 saat çalışarak Shovel ile toprakta ya da benzeri bir malzemede her kenarı 5 feet olan bir çukur kazabilirsin."
+  },
+  "srd-2024_pole": {
+    "desc": "Pole 10 feet uzunluğundadır. 10 feet uzaklıktaki bir şeye dokunmak için kullanabilirsin. High ya da Long Jump'ın parçası olarak Güç (Atletizm) kontrolü yapman gerekiyorsa, sırıkla atlayıp bu kontrolde avantaj kazanabilirsin."
+  },
+  "srd-2024_ladder": {
+    "desc": "Ladder 10 feet yüksekliğindedir. Üzerinde inip çıkmak için tırmanman gerekir."
+  },
+  "srd-2024_string": {
+    "desc": "String 10 feet uzunluğundadır. Kullanma eylemi olarak düğüm atabilirsin."
+  },
+  "srd-2024_magnifying-glass": {
+    "desc": "Magnifying Glass, çok ayrıntılı bir eşyayı değerlendirmek ya da incelemek için yapılan her yetenek kontrolünde avantaj verir. Onunla ateş yakmak, odaklanacak kadar güneş ışığı parlaklığında bir ışık, tutuşacak kav ve ateşin alması için yaklaşık 5 dakika gerektirir."
+  },
+  "srd-2024_spyglass": {
+    "desc": "Spyglass ile bakılan nesneler iki katı büyüklükte görünür."
+  },
+  "srd-2024_mirror": {
+    "desc": "Elde taşınan çelik bir Mirror kişisel bakım için olduğu kadar köşe ardını gözetlemek ve ışığı işaret olarak yansıtmak için de işe yarar."
+  },
+  "srd-2024_tinderbox": {
+    "desc": "Tinderbox; çakmaktaşı, çakmak çeliği ve kav (genellikle hafif yağa batırılmış kuru bez) taşıyan küçük bir kaptır ve ateş yakmakta kullanılır. Onunla bir Candle, Lamp, Lantern ya da Torch -- veya yakıtı açıkta olan başka bir şeyi -- yakmak Bonus Eylem alır. Başka herhangi bir ateşi yakmak 1 dakika sürer."
+  },
+  "srd-2024_candle": {
+    "desc": "Yanan bir Candle 1 saat boyunca 5 feet yarıçapında parlak ışık, 5 feet daha loş ışık yayar."
+  },
+  "srd-2024_torch": {
+    "desc": "Torch 1 saat yanar; 20 feet yarıçapında parlak ışık, 20 feet daha loş ışık yayar. Attack eylemini aldığında Torch ile Simple Melee silah olarak saldırabilirsin. İsabet edersen hedef 1 ateş hasar alır."
+  },
+  "srd-2024_lamp": {
+    "desc": "Lamp yakıt olarak Oil yakar; 15 feet yarıçapında parlak ışık, 30 feet daha loş ışık yayar."
+  },
+  "srd-2024_lantern-bullseye": {
+    "desc": "Bullseye Lantern yakıt olarak Oil yakar; 60 feetlik bir Koni içinde parlak ışık, 60 feet daha loş ışık yayar."
+  },
+  "phb-2024_bullseye-lantern": {
+    "desc": "Bullseye Lantern yakıt olarak Oil yakar; 60 feetlik bir Koni içinde parlak ışık, 60 feet daha loş ışık yayar."
+  },
+  "srd-2024_lantern-hooded": {
+    "desc": "Hooded Lantern yakıt olarak Oil yakar; 30 feet yarıçapında parlak ışık, 30 feet daha loş ışık yayar. Bonus Eylem olarak kapağını indirip ışığı 5 feet yarıçapında loş ışıka düşürebilir ya da yeniden kaldırabilirsin."
+  },
+  "phb-2024_hooded-lantern": {
+    "desc": "Hooded Lantern yakıt olarak Oil yakar; 30 feet yarıçapında parlak ışık, 30 feet daha loş ışık yayar. Bonus Eylem olarak kapağını indirip ışığı 5 feet yarıçapında loş ışıka düşürebilir ya da yeniden kaldırabilirsin."
+  },
+  "srd-2024_bell": {
+    "desc": "Kullanma eylemi olarak çalındığında Bell, 60 feet uzaklıktan duyulabilen bir ses çıkarır."
+  },
+  "srd-2024_signal-whistle": {
+    "desc": "Kullanma eylemi olarak üflendiğinde Signal Whistle, 600 feet uzaklıktan duyulabilen bir ses çıkarır."
+  },
+  "srd-2024_book": {
+    "desc": "Book kurgu ya da kurgu dışı olabilir. Konusuyla ilgili doğru bilgi veren bir kurgu dışı Book'a başvurursan, o konuda yaptığın Zekâ (Gizemli Bilgi, Tarih, Doğa ya da Din) kontrollerine +5 bonus alırsın."
+  },
+  "srd-2024_map": {
+    "desc": "Doğru bir Map'e başvurursan, üzerinde gösterilen yerde yolunu bulmak için yaptığın Bilgelik (Hayatta Kalma) kontrollerine +5 bonus alırsın."
+  },
+  "srd-2024_ink": {
+    "desc": "Ink 1 ons'luk şişelerde gelir; yaklaşık 500 sayfa yazmaya yetecek kadar mürekkep içerir."
+  },
+  "srd-2024_ink-pen": {
+    "desc": "Ink Pen, Ink ile birlikte yazmak ya da çizmek için kullanılır."
+  },
+  "srd-2024_paper": {
+    "desc": "Bir yaprak Paper'a yaklaşık 250 kelime el yazısı sığar."
+  },
+  "srd-2024_parchment": {
+    "desc": "Bir yaprak Parchment'a yaklaşık 250 kelime el yazısı sığar."
+  },
+  "srd-2024_perfume": {
+    "desc": "Perfume 4 ons'luk şişelerde gelir. Kendine sürdükten sonraki 1 saat boyunca, 5 feet içindeki Kayıtsız bir insansısı etkilemek için yaptığın Karizma (İkna) kontrollerinde avantajlısın."
+  },
+  "srd-2024_rations": {
+    "desc": "Rations; kurutulmuş et, kuru meyve, peksimet ve kuruyemiş gibi yolculuğa hazır yiyeceklerden oluşur. Yememenin risklerini için \"Rules Glossary\" içindeki \"Malnutrition\" başlığına bak."
+  },
+  "srd-2024_component-pouch": {
+    "desc": "Component Pouch su geçirmezdir ve büyülerinin bedelsiz bütün Materyal bileşenlerini tutan bölmelerle doludur."
+  },
+  "srd-2024_costume": {
+    "desc": "Costume giyerken, temsil ettiği kişiyi ya da kişi tipini taklit etmek için yaptığın her yetenek kontrolünde avantajlısın."
+  },
+  "srd-2024_robe": {
+    "desc": "Robe'un mesleki ya da törensel bir anlamı vardır. Bazı etkinlikler ve mekânlar yalnızca belirli renkleri veya sembolleri taşıyan Robe giyenleri kabul eder."
+  },
+  "srd-2024_clothes-fine": {
+    "desc": "Fine Clothes pahalı kumaşlardan yapılır ve ustaca işlenmiş ayrıntılarla süslenir. Bazı etkinlikler ve mekânlar yalnızca bu kıyafetleri giyenleri kabul eder."
+  },
+  "phb-2024_fine-clothes": {
+    "desc": "Fine Clothes pahalı kumaşlardan yapılır ve ustaca işlenmiş ayrıntılarla süslenir. Bazı etkinlikler ve mekânlar yalnızca bu kıyafetleri giyenleri kabul eder."
+  },
+  "srd-2024_clothes-travelers": {
+    "desc": "Traveler's Clothes, çeşitli ortamlarda yolculuk için tasarlanmış dayanıklı giysilerdir."
+  },
+  "phb-2024_travelers-clothes": {
+    "desc": "Traveler's Clothes, çeşitli ortamlarda yolculuk için tasarlanmış dayanıklı giysilerdir."
+  },
+  "srd-2024_bedroll": {
+    "desc": "Bedroll'da Küçük ya da Orta bir yaratık uyuyabilir. Bedroll'dayken aşırı soğuğa karşı yapılan kurtarma zarlarında otomatik olarak başarılı olursun (bkz. \"Gameplay Toolbox\")."
+  },
+  "srd-2024_blanket": {
+    "desc": "Bir battaniyeye sarılıyken aşırı soğuğa karşı yapılan kurtarma zarlarında avantajlısın (bkz. \"Gameplay Toolbox\")."
+  },
+  "srd-2024_tent": {
+    "desc": "Tent'te en fazla iki Küçük ya da Orta yaratık uyuyabilir."
+  },
+  "srd-2024_backpack": {
+    "desc": "Backpack, 1 küp feet hacimde 30 pound'a kadar taşır. Ayrıca eyer çantası olarak da kullanılabilir."
+  },
+  "srd-2024_barrel": {
+    "desc": "Barrel 40 galona kadar sıvı ya da 4 küp feet'e kadar kuru mal alır."
+  },
+  "srd-2024_basket": {
+    "desc": "Basket, 2 küp feet hacimde 40 pound'a kadar alır."
+  },
+  "srd-2024_bucket": {
+    "desc": "Bucket yarım küp feet'e kadar içerik alır."
+  },
+  "srd-2024_chest": {
+    "desc": "Chest 12 küp feet'e kadar içerik alır."
+  },
+  "srd-2024_sack": {
+    "desc": "Sack, 1 küp feet hacimde 30 pound'a kadar alır."
+  },
+  "srd-2024_pouch": {
+    "desc": "Pouch, küp feet'in beşte biri hacimde 6 pound'a kadar alır."
+  },
+  "srd-2024_flask": {
+    "desc": "Flask 1 pint'e kadar alır."
+  },
+  "srd-2024_vial": {
+    "desc": "Vial 4 ons'a kadar alır."
+  },
+  "srd-2024_jug": {
+    "desc": "Jug 1 galona kadar alır."
+  },
+  "srd-2024_pot-iron": {
+    "desc": "Iron Pot 1 galona kadar alır."
+  },
+  "phb-2024_iron-pot": {
+    "desc": "Iron Pot 1 galona kadar alır."
+  },
+  "srd-2024_bottle-glass": {
+    "desc": "Glass Bottle 1,5 pint'e kadar alır."
+  },
+  "phb-2024_glass-bottle": {
+    "desc": "Glass Bottle 1,5 pint'e kadar alır."
+  },
+  "srd-2024_waterskin": {
+    "desc": "Waterskin 4 pint'e kadar alır. Yeterince su içmezsen susuz kalma riskiyle karşılaşırsın (bkz. \"Rules Glossary\")."
+  },
+  "srd-2024_quiver": {
+    "desc": "Quiver 20 Arrow'a kadar alır."
+  },
+  "srd-2024_case-crossbow-bolt": {
+    "desc": "Crossbow Bolt Case 20 Bolt'a kadar alır."
+  },
+  "phb-2024_crossbow-bolt-case": {
+    "desc": "Crossbow Bolt Case 20 Bolt'a kadar alır."
+  },
+  "srd-2024_case-map-or-scroll": {
+    "desc": "Map or Scroll Case 10 yaprak kâğıt ya da 5 yaprak parşömen alır."
+  },
+  "phb-2024_map-or-scroll-case": {
+    "desc": "Map or Scroll Case 10 yaprak kâğıt ya da 5 yaprak parşömen alır."
+  },
+  "srd-2024_druidic-focus-sprig-of-mistletoe": {
+    "desc": "Druidic Focus, primal büyüyü aktarmak için oyulmuş, kurdeleyle bağlanmış ya da boyanmıştır. Bir Druid veya Ranger böyle bir nesneyi Büyü Odağı olarak kullanabilir."
+  },
+  "srd-2024_druidic-focus-yew-wand": {
+    "desc": "Druidic Focus, primal büyüyü aktarmak için oyulmuş, kurdeleyle bağlanmış ya da boyanmıştır. Bir Druid veya Ranger böyle bir nesneyi Büyü Odağı olarak kullanabilir."
+  },
+  "srd-2024_druidic-focus-wooden-staff": {
+    "desc": "Druidic Focus, primal büyüyü aktarmak için oyulmuş, kurdeleyle bağlanmış ya da boyanmıştır. Bir Druid veya Ranger böyle bir nesneyi Büyü Odağı olarak kullanabilir. Bu asa aynı zamanda Quarterstaff olarak da kullanılabilir."
+  },
+  "srd-2024_holy-symbol-amulet": {
+    "desc": "Holy Symbol Amulet, kutsal büyüyü aktarmak için mücevherlenmiş ya da boyanmıştır. Bir Cleric veya Paladin onu Büyü Odağı olarak kullanabilir. Boyna takılabilir ya da elde tutulur."
+  },
+  "srd-2024_holy-symbol-emblem": {
+    "desc": "Holy Symbol Emblem, kutsal büyüyü aktarmak için mücevherlenmiş ya da boyanmıştır. Bir Cleric veya Paladin onu Büyü Odağı olarak kullanabilir. Bir kumaşın (örneğin bir tabard ya da sancak) veya bir Shield'in üzerinde taşınmalıdır."
+  },
+  "srd-2024_holy-symbol-reliquary": {
+    "desc": "Holy Symbol Reliquary, kutsal büyüyü aktarmak için mücevherlenmiş ya da boyanmıştır. Bir Cleric veya Paladin onu Büyü Odağı olarak kullanabilir. Elde tutulmalıdır."
+  },
+  "phb-2024_amulet": {
+    "desc": "Bir Amulet'in işe yarar bir Holy Symbol olması için takılması ya da elde tutulması gerekir."
+  },
+  "phb-2024_emblem": {
+    "desc": "Bir Emblem'in işe yarar bir Holy Symbol olması için bir kumaşın (örneğin bir tabard ya da sancak) veya bir Shield'in üzerinde taşınması gerekir."
+  },
+  "phb-2024_reliquary": {
+    "desc": "Bir Reliquary'nin işe yarar bir Holy Symbol olması için elde tutulması gerekir."
+  },
+  "srd-2024_camel": {
+    "desc": "Ağır yük taşıyabilen, çölde yaşayan bir binek."
+  },
+  "srd-2024_elephant": {
+    "desc": "Aşırı ağır yükler taşıyabilen devasa bir binek."
+  },
+  "srd-2024_horse-draft": {
+    "desc": "Ağır yük çekmek için yetiştirilmiş güçlü bir at."
+  },
+  "srd-2024_horse-riding": {
+    "desc": "Binmek ve orta ağırlıkta yük taşımak için eğitilmiş bir at."
+  },
+  "srd-2024_warhorse": {
+    "desc": "Savaş ve ağır yük taşımak için eğitilmiş bir at."
+  },
+  "srd-2024_pony": {
+    "desc": "Küçük biniciler ve hafif yükler için uygun küçük bir at."
+  },
+  "srd-2024_mule": {
+    "desc": "Güvenilirliği ve taşıma kapasitesiyle bilinen dayanıklı bir binek."
+  },
+  "srd-2024_mastiff": {
+    "desc": "Dövüş ve küçük yük taşımak için eğitilmiş iri bir köpek."
+  },
+  "srd-2024_feed-per-day": {
+    "desc": "Bir binek için günlük yem."
+  },
+  "srd-2024_saddle-riding": {
+    "desc": "Binek atlar için standart bir eyer."
+  },
+  "srd-2024_saddle-military": {
+    "desc": "Dövüş için tasarlanmış, eyerde kalma kontrollerinde advantage veren bir eyer."
+  },
+  "srd-2024_saddle-exotic": {
+    "desc": "Su altı ya da uçan yaratıklar gibi sıra dışı binekler için tasarlanmış bir eyer."
+  },
+  "phb-2024_riding-saddle": {
+    "desc": "Bir eyer; gem, dizgin, yular ve eyeri kullanmak için gereken diğer teçhizatla birlikte gelir."
+  },
+  "phb-2024_military-saddle": {
+    "desc": "Bir eyer; gem, dizgin, yular ve eyeri kullanmak için gereken diğer teçhizatla birlikte gelir. Military Saddle, eyerde kalmak için yaptığın her yetenek kontrolünde avantaj verir."
+  },
+  "phb-2024_exotic-saddle": {
+    "desc": "Bir eyer; gem, dizgin, yular ve eyeri kullanmak için gereken diğer teçhizatla birlikte gelir. Su altı ya da uçan bir bineğe binmek için Exotic Saddle gerekir."
+  },
+  "srd-2024_carriage": {
+    "desc": "Atların çektiği, yolcu taşımak için tasarlanmış dört tekerlekli bir araç."
+  },
+  "srd-2024_cart": {
+    "desc": "Tek atın çektiği, yük taşımak için tasarlanmış iki tekerlekli bir araç."
+  },
+  "srd-2024_chariot": {
+    "desc": "Atların çektiği, hız ve dövüş için tasarlanmış iki tekerlekli bir araç."
+  },
+  "srd-2024_wagon": {
+    "desc": "Atların çektiği, ağır yük taşımak için tasarlanmış dört tekerlekli bir araç."
+  },
+  "srd-2024_sled": {
+    "desc": "Kar ve buz üzerinde yolculuk için tasarlanmış bir araç."
+  },
+  "srd-2024_airship": {
+    "desc": "Havada yolculuk edebilen büyülü bir uçan gemi."
+  },
+  "srd-2024_galley": {
+    "desc": "Kürek ve yelkenle ilerleyen büyük bir savaş gemisi."
+  },
+  "srd-2024_keelboat": {
+    "desc": "Omurgalı küçük bir nehir teknesi."
+  },
+  "srd-2024_longship": {
+    "desc": "Akın ve keşif için tasarlanmış hızlı bir gemi."
+  },
+  "srd-2024_rowboat": {
+    "desc": "Küreklerle ilerleyen küçük bir tekne."
+  },
+  "srd-2024_sailing-ship": {
+    "desc": "Yelkenle ilerleyen büyük bir gemi."
+  },
+  "srd-2024_warship": {
+    "desc": "Deniz muharebesi için tasarlanmış ağır silahlı bir gemi."
+  },
+  "phb-2024_arrow": {
+    "desc": "Arrow'lar, ammunition özelliği olan bir silahla menzilli saldırı yapmak için kullanılır. Silahla her saldırdığında bir mermi harcarsın. Mermiyi bir sadaktan, kutudan ya da başka bir kaptan çekmek saldırının parçasıdır (tek elli bir silahı doldurmak için boş bir el gerekir). Savaşın sonunda bir dakika ayırıp savaş alanını arayarak harcadığın mermilerin yarısını geri toplayabilirsin.\n\nArrow'lar genellikle ayrıca satın alınan bir Quiver içinde taşınır."
+  },
+  "phb-2024_bolt": {
+    "desc": "Crossbow bolt'ları, ammunition özelliği olan bir silahla menzilli saldırı yapmak için kullanılır. Silahla her saldırdığında bir mermi harcarsın. Mermiyi bir sadaktan, kutudan ya da başka bir kaptan çekmek saldırının parçasıdır (tek elli bir silahı doldurmak için boş bir el gerekir). Savaşın sonunda bir dakika ayırıp savaş alanını arayarak harcadığın mermilerin yarısını geri toplayabilirsin.\n\nBolt'lar genellikle ayrıca satın alınan bir Crossbow Bolt Case içinde taşınır."
+  },
+  "phb-2024_needle": {
+    "desc": "Blowgun iğneleri, ammunition özelliği olan bir silahla menzilli saldırı yapmak için kullanılır. Silahla her saldırdığında bir mermi harcarsın. Mermiyi bir sadaktan, kutudan ya da başka bir kaptan çekmek saldırının parçasıdır (tek elli bir silahı doldurmak için boş bir el gerekir). Savaşın sonunda bir dakika ayırıp savaş alanını arayarak harcadığın mermilerin yarısını geri toplayabilirsin.\n\nNeedle'lar genellikle ayrıca satın alınan bir Pouch içinde taşınır."
+  },
+  "phb-2024_sling-bullet": {
+    "desc": "Sling bullet'ları, ammunition özelliği olan bir silahla menzilli saldırı yapmak için kullanılır. Silahla her saldırdığında bir mermi harcarsın. Mermiyi bir sadaktan, kutudan ya da başka bir kaptan çekmek saldırının parçasıdır (tek elli bir silahı doldurmak için boş bir el gerekir). Savaşın sonunda bir dakika ayırıp savaş alanını arayarak harcadığın mermilerin yarısını geri toplayabilirsin.\n\nSling Bullet'lar genellikle ayrıca satın alınan bir Pouch içinde taşınır."
+  },
+  "phb-2024_sling-bullets-20": {
+    "desc": "Sling bullet'ları, ammunition özelliği olan bir silahla menzilli saldırı yapmak için kullanılır. Silahla her saldırdığında bir mermi harcarsın. Mermiyi bir sadaktan, kutudan ya da başka bir kaptan çekmek saldırının parçasıdır (tek elli bir silahı doldurmak için boş bir el gerekir). Savaşın sonunda bir dakika ayırıp savaş alanını arayarak harcadığın mermilerin yarısını geri toplayabilirsin.\n\nSling Bullet'lar genellikle ayrıca satın alınan bir Pouch içinde taşınır."
+  },
+  "phb-2024_firearm-bullet": {
+    "desc": "Firearm Bullet'lar modern bir ateşli silahta kullanıldığında yok olur."
+  },
+  "phb-2024_firearm-bullets-10": {
+    "desc": "Firearm Bullet'lar modern bir ateşli silahta kullanıldığında yok olur."
+  },
+  "xphbxdmg-assassins-blood": {
+    "desc": "Assassin's Blood'a maruz kalan bir yaratık DC 10 Dayanıklılık kurtarma zarı yapar. Başarısız olursa 6 (1d12) zehir hasar alır ve 24 saat boyunca zehirlenmiş duruma düşer. Başarılı olursa yalnızca hasarın yarısını alır."
+  },
+  "xphbxdmg-burnt-othur-fumes": {
+    "desc": "Burnt Othur Fumes'a maruz kalan bir yaratık DC 13 Dayanıklılık kurtarma zarında başarılı olmalı, yoksa 10 (3d6) zehir hasar alır ve her sırasının başında kurtarma zarı tekrarlar. Art arda başarısız olduğu her seferde 3 (1d6) zehir hasar alır. Üç başarılı kurtarma zarından sonra zehir sona erer."
+  },
+  "xphbxdmg-carrion-crawler-mucus": {
+    "desc": "Carrion Crawler Mucus'a maruz kalan bir yaratık DC 13 Dayanıklılık kurtarma zarında başarılı olmalı, yoksa 1 dakika boyunca zehirlenmiş duruma düşer. Bu şekilde zehirlenmiş durumdayken yaratık aynı zamanda felçlidir. Yaratık her sırasının sonunda kurtarma zarı tekrarlar ve başarılı olursa etki üzerinden kalkar."
+  },
+  "xphbxdmg-essence-of-ether": {
+    "desc": "Essence of Ether'e maruz kalan bir yaratık DC 15 Dayanıklılık kurtarma zarında başarılı olmalı, yoksa 8 saat boyunca zehirlenmiş duruma düşer. Bu şekilde zehirlenmiş durumdayken yaratık aynı zamanda baygındır. Hasar alırsa ya da başka bir yaratık eylem harcayıp onu sarsarak uyandırırsa uyanır."
+  },
+  "xphbxdmg-lolths-sting": {
+    "desc": "Lolth's Sting'e maruz kalan bir yaratık DC 13 Dayanıklılık kurtarma zarında başarılı olmalı, yoksa 1 saat boyunca zehirlenmiş duruma düşer. Saving throw'u 5 ya da daha fazla farkla kaybederse, bu şekilde zehirlenmiş durumdayken aynı zamanda baygın olur. Hasar alırsa ya da başka bir yaratık eylem harcayıp onu sarsarak uyandırırsa uyanır."
+  },
+  "xphbxdmg-malice": {
+    "desc": "Malice'e maruz kalan bir yaratık DC 15 Dayanıklılık kurtarma zarında başarılı olmalı, yoksa 1 saat boyunca zehirlenmiş duruma düşer. Bu şekilde zehirlenmiş durumdayken yaratık aynı zamanda kördür."
+  },
+  "xphbxdmg-midnight-tears": {
+    "desc": "Midnight Tears yutan bir yaratık gece yarısına kadar hiçbir etki görmez. Zehirlenmiş durumunu sona erdiren herhangi bir etki bu zehri etkisizleştirir. Zehir gece yarısından önce etkisizleştirilmemişse yaratık DC 17 Dayanıklılık kurtarma zarı yapar; başarısız olursa 31 (9d6) zehir hasar, başarılı olursa yarısını alır."
+  },
+  "xphbxdmg-oil-of-taggit": {
+    "desc": "Oil of Taggit'e maruz kalan bir yaratık DC 13 Dayanıklılık kurtarma zarında başarılı olmalı, yoksa 24 saat boyunca zehirlenmiş duruma düşer. Bu şekilde zehirlenmiş durumdayken yaratık aynı zamanda baygındır. Hasar alırsa uyanır."
+  },
+  "xphbxdmg-pale-tincture": {
+    "desc": "Pale Tincture'a maruz kalan bir yaratık DC 16 Dayanıklılık kurtarma zarında başarılı olmalı, yoksa 3 (1d6) zehir hasar alır ve zehirlenmiş duruma düşer. Zehirlenmiş yaratık her 24 saatte bir kurtarma zarı tekrarlar ve başarısız olduğunda 3 (1d6) zehir hasar alır. Yaratık zehirlenmiş kaldığı sürece zehrin verdiği hasar hiçbir şekilde iyileştirilemez. Zehre karşı yedi başarılı kurtarma zarından sonra yaratık artık zehirlenmiş değildir."
+  },
+  "xphbxdmg-purple-worm-poison": {
+    "desc": "Purple Worm Poison'a maruz kalan bir yaratık DC 21 Dayanıklılık kurtarma zarı yapar; başarısız olursa 35 (10d6) zehir hasar, başarılı olursa yarısını alır."
+  },
+  "xphbxdmg-serpent-venom": {
+    "desc": "Serpent Venom'a maruz kalan bir yaratık DC 11 Dayanıklılık kurtarma zarında başarılı olmalıdır; başarısız olursa 10 (3d6) zehir hasar, başarılı olursa yarısını alır."
+  },
+  "xphbxdmg-torpor": {
+    "desc": "Torpor zehrine maruz kalan bir yaratık DC 15 Dayanıklılık kurtarma zarında başarılı olmalı, yoksa 4d6 saat boyunca zehirlenmiş duruma düşer. Bu şekilde zehirlenmiş durumdayken yaratığın hızı yarıya iner."
+  },
+  "xphbxdmg-truth-serum": {
+    "desc": "Truth Serum'a maruz kalan bir yaratık DC 11 Dayanıklılık kurtarma zarında başarılı olmalı, yoksa 1 saat boyunca zehirlenmiş duruma düşer. Zehirlenmiş yaratık bile bile yalan söyleyemez."
+  },
+  "xphbxdmg-wyvern-poison": {
+    "desc": "Wyvern Poison'a maruz kalan bir yaratık DC 14 Dayanıklılık kurtarma zarı yapar; başarısız olursa 24 (7d6) zehir hasar, başarılı olursa yarısını alır."
+  },
+  "xphbxdmg-bomb": {
+    "desc": "Bir eylem olarak bir Bomb'u yakıp 60 feet uzaklıktaki bir noktaya fırlatabilirsin; orada patlar. O noktada merkezlenen 5 feet yarıçapındaki Küre içindeki her yaratık DC 12 Çeviklik kurtarma zarı yapar; başarısız olursa 3d6 ateş hasar, başarılı olursa yarısını alır."
+  },
+  "xphbxdmg-dynamite-stick": {
+    "desc": "Bir eylem olarak bir Dynamite Stick'i yakıp 60 feet uzaklıktaki bir noktaya fırlatabilirsin; orada patlar. O noktada merkezlenen 5 feet yarıçapındaki Küre içindeki her yaratık DC 12 Çeviklik kurtarma zarı yapar; başarısız olursa 3d6 kuvvet hasar, başarılı olursa yarısını alır. İki ya da daha fazla Dynamite Stick'i aynı anda patlayacak şekilde birbirine bağlamak 1 dakika sürer. İlkinden sonraki her çubuk hasarı 1d6 (en fazla 10d6), etkinin yarıçapını da 5 feet (en fazla 20 feet) artırır. Dinamiti daha uzun bir fitille -- örneğin 1 dakika ya da 10 dakika sonra patlayacak şekilde -- kurmak 1 dakika sürer."
+  },
+  "xphbxdmg-fragmentation-grenade": {
+    "desc": "Küre içindeki her yaratık DC 15 Çeviklik kurtarma zarı yapar; başarısız olursa 17 (5d6) delici hasar, başarılı olursa yarısını alır."
+  },
+  "xphbxdmg-smoke-grenade": {
+    "desc": "Küren kapladığı alan 1 dakika boyunca dumanla Heavily Obscured olur. Güçlü bir rüzgâr (örneğin Gust of Wind büyüsü) dumanı dağıtır."
+  },
+  "xphbxdmg-gunpowder-keg": {
+    "desc": "Gunpowder dolu bir fıçıyı tutuşturmak onu patlatır. Fıçı patladığında, fıçıda merkezlenen 10 feet yarıçapındaki Küre içindeki her yaratık DC 12 Çeviklik kurtarma zarı yapar; başarısız olursa 24 (7d6) ateş hasar, başarılı olursa yarısını alır."
+  },
+  "xphbxdmg-gunpowder-powder-horn": {
+    "desc": "Gunpowder dolu bir barut boynuzunu tutuşturmak onu patlatır. Boynuz patladığında, boynuzda merkezlenen 10 feet yarıçapındaki Küre içindeki her yaratık DC 12 Çeviklik kurtarma zarı yapar; başarısız olursa 10 (3d6) ateş hasar, başarılı olursa yarısını alır."
+  },
+  "faerun-heroes_axe-beak": {
+    "desc": "Axe Beak stat bloğunu kullan."
+  },
+  "faerun-heroes_flying-snake": {
+    "desc": "Evcil uçan yılanlar Flying Snake stat bloğunu kullanır."
+  },
+  "faerun-heroes_sled-dog": {
+    "desc": "Bir kızak köpeği Wolf stat bloğunu kullanır (bkz. Monster Manual). Tek başına kızak çeken bir kızak köpeği, 1 saat çektikten sonra Kısa Dinlenme almalıdır; almazsa 1 bitkinlik seviyesi alır."
+  },
+  "faerun-heroes_bright-fungal-cloak": {
+    "desc": "Bright Fungal Cloak giyerken Bonus Eylem harcayarak pelerini toplayabilir ya da açabilirsin. Pelerin açıkken 5 feet yarıçapında parlak ışık, 5 feet daha loş ışık yayar.\n\nBright Fungal Cloak'a bir pound mantar dikilmiştir. Bu mantar yiyecek olarak tüketilebilir. Mantarın tamamı tüketildiğinde pelerin sıradan bir Traveler's Clothes takımına dönüşür."
+  },
+  "faerun-heroes_warm-fungal-clothing": {
+    "desc": "Warm Fungal Clothing giyerken aşırı soğuğun etkilerine karşı yapılan kurtarma zarlarında otomatik olarak başarılı olursun. Aşırı soğuk kuralları için Dungeon Master's Guide'ın 3. bölümüne bak. Fungal Clothing'e bir pound mantar dikilmiştir. Bu mantar yiyecek olarak tüketilebilir. Mantarın tamamı tüketildiğinde giysi sıradan bir Traveler's Clothes takımına dönüşür."
+  },
+  "faerun-heroes_desert-clothing": {
+    "desc": "Desert Clothing giyerken ve Orta ya da Heavy zırh giymiyorken, aşırı sıcağın etkilerine karşı yapılan kurtarma zarlarında otomatik olarak başarılı olursun."
+  },
+  "faerun-heroes_winter-camouflage": {
+    "desc": "Winter Camouflage'ı uygun bir ortamda giydiğin sürece Çeviklik (Gizlilik) kontrollerinde avantajlısın."
+  },
+  "faerun-heroes_monster-camouflage": {
+    "desc": "Monster Camouflage takımı, örneğin bir owlbear gibi bir hayvan ya da canavarımsı görünümündedir. Kılık değiştirdiğini anlamak için bir yaratığın Study eylemiyle görünüşünü incelemesi ve DC 10 Zekâ (Araştırma ya da Doğa) kontrolünde başarılı olması gerekir. Yaratık 30 feet yakınındaysa bu kontrolde avantajlıdır; taklit ettiğin canavarın yapamayacağı bir şey yaparsan kontrolde otomatik olarak başarılı olur."
+  },
+  "faerun-heroes_devil-mask": {
+    "desc": "Devil Mask taktığın sürece, gerçek kimliğini ya da niyetini anlamak için yapılan Zekâ (Araştırma) ve Bilgelik (Sezgi) kontrollerinde diğer yaratıklar dezavantajlıdır."
+  },
+  "faerun-heroes_garb-of-light-and-shadow": {
+    "desc": "Bu kıyafet, Gloaming Court ya da Summer Court gibi tek bir Domain of Delight'a ait perilerin hoşuna gider. Giydiğin sürece, o Domain of Delight ile ilişkili perileri etkilemek için yapılan yetenek kontrollerinde avantajlısın."
+  },
+  "faerun-heroes_genie-robe": {
+    "desc": "Bu cübbe, belirli bir elemental Plane (Air, Earth, ateş, Water) ile ilişkili elementalların hoşuna gider. Genie Robe giydiğin sürece, o düzlemle ilişkili elementalları etkilemek için yapılan yetenek kontrollerinde avantajlısın."
+  },
+  "faerun-heroes_locking-spellbook": {
+    "desc": "Deri ciltli bu 100 sayfalık kitap Spellbook olarak kullanılabilir. Anahtarıyla birlikte gelen bir kilitle kapanır. Kullanma eylemi olarak bir yaratık Thieves' Tools ile kilidi açmayı deneyebilir; bunun için DC 15 Çeviklik (El Çabukluğu) kontrolünde başarılı olması gerekir."
+  },
+  "faerun-heroes_covered-wagon": {
+    "desc": "Bu araç, dayanıklı bir brandayla örtülmüş bir Wagon'dur. İçinde seyahat eden bir yaratık dörtte üç sipere sahiptir."
+  },
+  "faerun-heroes_cult-of-the-dragon-trinket": {
+    "desc": "Tablo: Cult of the ejderha Hatıraları\n\n| 1d6 | Hatıra |\n|---|---|\n| 1 | Deri bir kordona geçirilmiş ejderha pençesi kolye |\n| 2 | Küçük pirinç bir kutuda bir dracolich'in külleri |\n| 3 | Bilinmeyen bir ejderhanın inine ait harita |\n| 4 | Üzerine Draconic bir rün kazınmış siyah inci |\n| 5 | Kehribar içinde korunmuş bir damla ejderha kanı |\n| 6 | Mor bir ipek parçası |"
+  },
+  "faerun-heroes_emerald-enclave-trinket": {
+    "desc": "Tablo: Emerald Enclave Hatıraları\n\n| 1d6 | Hatıra |\n|---|---|\n| 1 | Hiç solmayan meşe yapraklarından yapılmış bir çift küpe |\n| 2 | Dallardan yapılmış minyatür bir kulübe maketi |\n| 3 | Şişe içinde yeşil parlayan bir ateşböceği |\n| 4 | Kulağa tutulduğunda yaprak hışırtısı gibi ses veren bir sukabağı |\n| 5 | Deri bir kayışa geçirilmiş, korunmuş bir tavşan ayağı |\n| 6 | Elvish bir rün biçimindeki bir boynuz |"
+  },
+  "faerun-heroes_harper-trinket": {
+    "desc": "Tablo: Harper Hatıraları\n\n| 1d6 | Hatıra |\n|---|---|\n| 1 | Kırık bir mızıka |\n| 2 | Gizli bölmesi olan bir pudralık |\n| 3 | 2 feet uzunluğunda bir tavus kuşu tüyü |\n| 4 | İki yüzü de tura olan hileli bir madeni para |\n| 5 | Bir çift kırmızı camlı gözlük |\n| 6 | Bilinmeyen bir çalgı için yazılmış bir nota tomarı |"
+  },
+  "faerun-heroes_lords-alliance-trinket": {
+    "desc": "Tablo: Lords' Alliance Hatıraları\n\n| 1d6 | Hatıra |\n|---|---|\n| 1 | Yenilmiş bir ordunun sancağından bir parça |\n| 2 | Ünlü bir küheylanın adı kazınmış bir gem ve dizgin |\n| 3 | Ünlü bir savaşta kullanılmış bir kılıcın kırık ağzı |\n| 4 | Esrarengiz biçimde kaybolan bir lordun sol eldiveni |\n| 5 | Oynar eklemli bir oyuncak at ve şövalye |\n| 6 | Kimliği belirsiz bir lordun armasını taşıyan bir omuzluk |"
+  },
+  "faerun-heroes_order-of-the-gauntlet-trinket": {
+    "desc": "Tablo: Order of the Gauntlet Hatıraları\n\n| 1d6 | Hatıra |\n|---|---|\n| 1 | Kurşun ağırlığında beyaz bir tüy |\n| 2 | Vitray camdan yapılmış boş bir şişe |\n| 3 | Altın zerreli tek bir tütsü konisi |\n| 4 | İpek bir göz bandı |\n| 5 | Bir çift kelepçenin tek yarısı |\n| 6 | Kararmış bir serpme kabı |"
+  },
+  "faerun-heroes_purple-dragon-knight-trinket": {
+    "desc": "Tablo: Purple ejderha Knight Hatıraları\n\n| 1d6 | Hatıra |\n|---|---|\n| 1 | Bir amethyst dragon yavrusunun pençesi |\n| 2 | Ejderha gözüne benzetilerek kesilmiş sıradan bir mor kuvars |\n| 3 | Yalnızca amethyst dragon'ların duyabildiği bir işaret düdüğü |\n| 4 | Kehribara gömülü bir nakkuşu yumurtası |\n| 5 | Biledigi her ağzı hafifçe parıldatan bir bileği taşı |\n| 6 | Öldürülmüş bir rakip mızrak dövüşçüsünden alınmış bir el siperi |"
+  },
+  "faerun-heroes_red-wizard-trinket": {
+    "desc": "Tablo: Red Wizard Hatıraları\n\n| 1d6 | Hatıra |\n|---|---|\n| 1 | Taşlaşmış porsuk ağacından yapılmış budaklı bir asa |\n| 2 | Bilinmeyen bir hayvanın korunmuş kalbini taşıyan cam bir kavanoz |\n| 3 | Obsidyenden oyulmuş bir unicorn figürü |\n| 4 | Kendi kemiklerinden birinden yapılmış bir dövme iğnesi |\n| 5 | Akrep biçiminde bronz bir muska |\n| 6 | Kızıl çelikten bir ustura |"
+  },
+  "faerun-heroes_zhentarim-trinket": {
+    "desc": "Tablo: Zhentarim Hatıraları\n\n| 1d6 | Hatıra |\n|---|---|\n| 1 | Üzerine adın kazınmış kırık bir hançer |\n| 2 | Hep sana dönen cam bir göz |\n| 3 | Altın renkli bir yılan dişi |\n| 4 | Sahte bir altın sikke |\n| 5 | Kristal bir dövme iğnesi |\n| 6 | Kırışmaya, yırtılmaya ve ateşe dayanıklı bir parşömen parçası üzerinde bir sözleşme |"
+  },
+  "srd-2024_ioun-stone": {
+    "desc": "Yaklaşık bir bilye büyüklüğünde olan Ioun Stone'lar, bazı dünyalarda saygı gören bilgi ve kehanet tanrısı Ioun'un adını taşır. Her biri kendine özgü bir şekil ve renk birleşimi olan pek çok Ioun Stone türü vardır. Büyü eylemi harcayıp bir Ioun Stone'u havaya attığında, taş 1d3 feet uzaklıkta başının çevresinde döner ve bu sırada faydasını sana verir. Aynı anda başının çevresinde en fazla üç Ioun Stone dönebilir. Başının çevresinde dönen her Ioun Stone, üzerinde taşıdığın bir nesne sayılır. Dönen taş diğer yaratıklarla ve nesnelerle temastan kaçınır, çarpışmamak için yörüngesini ayarlar ve başka yaratıkların ona saldırma veya onu kapma girişimlerini boşa çıkarır. Kullanma eylemi olarak başının çevresinde dönen istediğin sayıda Ioun Stone'u yakalayıp kaldırabilirsin. Bir Ioun Stone'a olan Uyumun, taş başının çevresinde dönerken sona ererse taş sen düşürmüşsün gibi yere düşer. Taşın türü nadirliğini ve etkilerini belirler.\n\nAbsorption (Çok Nadir). Bu soluk lavanta rengi elipsoit başının çevresinde döndüğü sürece, görebildiğin bir yaratığın kullandığı 4. seviye ya da daha düşük bir büyüyü iptal etmek için Tepki harcayabilirsin. İptal edilen büyünün etkisi olmaz ve onu kullanmak için harcanan her kaynak boşa gider. Taş toplam 20 seviyelik büyü iptal ettiğinde tükenir, donuk griye döner ve büyüsünü kaybeder.\n\nAgility (Çok Nadir). Bu koyu kırmızı küre başının çevresinde döndüğü sürece Çeviklikn 2 artar (en fazla 20'ye kadar).\n\nAwareness (Nadir). Bu koyu mavi eşkenar dörtgen başının çevresinde döndüğü sürece İnisiyatif atışlarında ve Bilgelik (Algı) kontrollerinde avantajlısın.\n\nFortitude (Çok Nadir). Bu pembe eşkenar dörtgen başının çevresinde döndüğü sürece Dayanıklılığın 2 artar (en fazla 20'ye kadar).\n\nGreater Absorption (Efsanevi). Bu ebrulu lavanta-yeşil elipsoit başının çevresinde döndüğü sürece, görebildiğin bir yaratığın kullandığı 8. seviye ya da daha düşük bir büyüyü iptal etmek için Tepki harcayabilirsin. İptal edilen büyünün etkisi olmaz ve onu kullanmak için harcanan her kaynak boşa gider. Taş toplam 20 seviyelik büyü iptal ettiğinde tükenir, donuk griye döner ve büyüsünü kaybeder.\n\nSezgi (Çok Nadir). Bu akkor mavi küre başının çevresinde döndüğü sürece Bilgeliğin 2 artar (en fazla 20'ye kadar).\n\nIntellect (Çok Nadir). Bu ebrulu kızıl-mavi küre başının çevresinde döndüğü sürece Zekâin 2 artar (en fazla 20'ye kadar).\n\nLeadership (Çok Nadir). Bu ebrulu pembe-yeşil küre başının çevresinde döndüğü sürece Karizman 2 artar (en fazla 20'ye kadar).\n\nMastery (Efsanevi). Bu soluk yeşil prizma başının çevresinde döndüğü sürece Yeterlilik Bonusun 1 artar.\n\nKoruma (Nadir). Bu tozlu gül rengi prizma başının çevresinde döndüğü sürece ACına +1 bonus alırsın.\n\nYenilenme (Efsanevi). En az 1 canın varsa, bu inci beyazı iğ başının çevresinde döndüğü her saatin sonunda 15 can geri kazanırsın.\n\nReserve (Nadir). Bu canlı mor prizma, içine kullanılan büyüleri sen onları kullanana kadar saklar. Taş aynı anda 4 seviyeye kadar büyü tutabilir. Bulunduğunda içinde, DM'in seçtiği 1d4 seviyelik saklı büyü vardır. Herhangi bir yaratık, büyüyü kullanırken taşa dokunarak 1 ile 4 arası seviyede bir büyüyü taşa aktarabilir. Büyünün taşa saklanmak dışında bir etkisi olmaz. Taş büyüyü tutamıyorsa büyü etkisiz şekilde harcanır. Büyüyü kullanmak için harcanan slot'un seviyesi ne kadar yer kapladığını belirler. Bu taş başının çevresinde dönerken içinde saklı herhangi bir büyüyü kullanabilirsin. Büyü, asıl kullanıcının slot seviyesini, büyü kurtarma DCını, büyü saldırı bonusunu ve spellcasting yeteneğini kullanır; bunun dışında sen kullanmışsın gibi işler. Taştan kullanılan büyü artık taşta saklı değildir ve yer açılır.\n\nGüç (Çok Nadir). Bu soluk mavi eşkenar dörtgen başının çevresinde döndüğü sürece Güçün 2 artar (en fazla 20'ye kadar).\n\nSustenance (Nadir). Bu berrak iğ başının çevresinde döndüğü sürece yemeye ya da içmeye ihtiyacın olmaz."
+  },
+  "phb-2024_trinket": {
+    "desc": "Karakterini yaparken Trinkets tablosunda bir kez zar atıp Ufak bir hatıra kazanabilirsin: gizemin hafifçe dokunduğu basit bir eşya. DM de bu tabloyu kullanabilir; bir zindan odasını doldurmaya ya da bir yaratığın ceplerine bir şeyler koymaya yarar.\n\nTablo: Trinkets\n| 1d100 | Hatıra |\n|---|---|\n| 01 | Mumyalanmış bir goblin eli |\n| 02 | Ay ışığında hafifçe parlayan bir kristal |\n| 03 | Bilinmeyen bir diyarda basılmış bir altın sikke |\n| 04 | Bilmediğin bir dilde yazılmış bir günlük |\n| 05 | Hiç kararmayan pirinç bir yüzük |\n| 06 | Camdan yapılmış eski bir satranç taşı |\n| 07 | Bir çift aşık kemiği zar; her birinin normalde altı gelmesi gereken yüzünde bir kafatası var |\n| 08 | Yanında uyuduğunda huzursuz rüyalar gördüren, kâbus gibi bir yaratığı betimleyen küçük bir put |\n| 09 | Birinin saçından bir tutam |\n| 10 | Bilmediğin bir diyardaki bir arsanın tapusu |\n| 11 | Bilinmeyen bir malzemeden yapılmış 1 ons'luk bir blok |\n| 12 | İğnelerle delik deşik edilmiş küçük bir bez bebek |\n| 13 | Bilinmeyen bir yaratığın dişi |\n| 14 | Kocaman bir pul; belki bir ejderhadan |\n| 15 | Parlak yeşil bir tüy |\n| 16 | Üzerinde senin suretin olan eski bir kehanet kartı |\n| 17 | İçinde kıpırdayan duman olan cam bir küre |\n| 18 | Parlak kırmızı kabuklu 1 pound'luk bir yumurta |\n| 19 | Baloncuk üfleyen bir pipo |\n| 20 | İçinde salamura sıvısında yüzen bir et parçası olan cam kavanoz |\n| 21 | Çocukluğundan belli belirsiz hatırladığın bir ezgiyi çalan, gnome yapımı bir müzik kutusu |\n| 22 | Kendini beğenmiş bir halfling'in ahşap heykelciği |\n| 23 | Üzerine tuhaf rünler kazınmış pirinç bir küre |\n| 24 | Çok renkli taş bir disk |\n| 25 | Gümüş bir kuzgun ikonu |\n| 26 | Kırk yedi diş içeren bir kese; biri çürük |\n| 27 | Dokunulduğunda hep ılık gelen bir obsidyen parçası |\n| 28 | Deri bir kolyeye geçirilmiş bir ejderha pençesi |\n| 29 | Bir çift eski çorap |\n| 30 | Sayfaları mürekkebi, tebeşiri, grafiti ya da başka hiçbir izi tutmayan boş bir kitap |\n| 31 | Beş köşeli yıldız biçiminde gümüş bir rozet |\n| 32 | Bir akrabana ait olan bir bıçak |\n| 33 | Tırnak kesikleriyle dolu cam bir şişe |\n| 34 | Bir ucunda iki küçük metal kap olan, ıslandığında kıvılcım saçan dikdörtgen metal bir aygıt |\n| 35 | Bir insana göre boyutlandırılmış, pullu beyaz bir eldiven |\n| 36 | Yüz minik cebi olan bir yelek |\n| 37 | Ağırlığı olmayan bir taş |\n| 38 | Bir goblin çizimi |\n| 39 | Parfüm kokan boş bir cam şişe |\n| 40 | Senin dışında herkese kömür parçası gibi görünen bir değerli taş |\n| 41 | Eski bir sancaktan bir kumaş parçası |\n| 42 | Kayıp bir lejyonerin rütbe arması |\n| 43 | Tokmağı olmayan gümüş bir çan |\n| 44 | Bir lambanın içinde mekanik bir kanarya |\n| 45 | Altında bir sürü ayak varmış gibi oyulmuş minyatür bir sandık |\n| 46 | Berrak cam bir şişenin içinde ölü bir sprite |\n| 47 | Ağzı olmayan ama içi sıvı, kum, örümcek ya da kırık camla doluymuş gibi ses çıkaran metal bir kutu |\n| 48 | İçinde saat mekanizmalı bir japon balığının yüzdüğü, suyla dolu cam bir küre |\n| 49 | Sapına M harfi kazınmış gümüş bir kaşık |\n| 50 | Altın renkli ahşaptan yapılmış bir düdük |\n| 51 | El büyüklüğünde ölü bir bok böceği |\n| 52 | İki oyuncak asker; birinin başı yok |\n| 53 | Farklı boyutlarda düğmelerle dolu küçük bir kutu |\n| 54 | Yakılamayan bir mum |\n| 55 | Kapısı olmayan minyatür bir kafes |\n| 56 | Eski bir anahtar |\n| 57 | Çözülemeyen bir hazine haritası |\n| 58 | Kırık bir kılıcın kabzası |\n| 59 | Bir tavşan ayağı |\n| 60 | Cam bir göz |\n| 61 | Berbat görünüşlü birinin kabartma portresi |\n| 62 | Bir sikke büyüklüğünde gümüş bir kafatası |\n| 63 | Kaymaktaşından bir maske |\n| 64 | Kokan, yapış yapış siyah bir tütsü konisi |\n| 65 | Takıldığında güzel rüyalar gördüren bir gece takkesi |\n| 66 | Kemikten yapılmış tek bir caltrop |\n| 67 | Camı olmayan altın bir monokl çerçevesi |\n| 68 | Her yüzü farklı renkte 1 inçlik bir küp |\n| 69 | Kristal bir kapı tokmağı |\n| 70 | Pembe tozla dolu bir paket |\n| 71 | İki parşömen parçasına nota olarak yazılmış, güzel bir şarkının bir bölümü |\n| 72 | İçinde gerçek bir gözyaşı olan gümüş damla küpe |\n| 73 | Üzerine rahatsız edici bir ayrıntıyla sefalet sahneleri işlenmiş bir yumurta kabuğu |\n| 74 | Açıldığında uykulu bir kedi beliren bir yelpaze |\n| 75 | Bir takım kemik kaval |\n| 76 | Görgü ve nezaket üzerine bir kitabın arasında preslenmiş dört yapraklı bir yonca |\n| 77 | Üzerine mekanik bir düzenek çizilmiş bir parşömen yaprağı |\n| 78 | Bulduğun hiçbir ağza uymayan süslü bir kın |\n| 79 | Bir cinayetin işlendiği partiye ait bir davetiye |\n| 80 | Merkezinde bir fare kafası kazınmış bronz bir pentakl |\n| 81 | Bir archmage'in adı işlenmiş mor bir mendil |\n| 82 | Bir tapınağın, kalenin ya da başka bir yapının yarım kat planı |\n| 83 | Katları açıldığında şık bir şapkaya dönüşen bir kumaş parçası |\n| 84 | Uzak bir şehirdeki bankaya yatırılmış paranın makbuzu |\n| 85 | Yedi sayfası eksik bir günlük |\n| 86 | Kapağında \"dreams\" yazan boş gümüş bir enfiye kutusu |\n| 87 | Bilinmeyen bir tanrıya adanmış demir bir kutsal sembol |\n| 88 | Efsanevi bir kahramanın yükselişi ve düşüşü hakkında, son bölümü eksik bir kitap |\n| 89 | Bir şişe ejderha kanı |\n| 90 | Elf işi kadim bir ok |\n| 91 | Hiç bükülmeyen bir iğne |\n| 92 | Dwarf işi süslü bir broş |\n| 93 | \"The Wizard of Wines Winery, Red ejderha Ezme, 331422-W\" yazan güzel etiketli boş bir şarap şişesi |\n| 94 | Çok renkli, sırlı yüzeyi olan bir mozaik karo |\n| 95 | Taşlaşmış bir fare |\n| 96 | Ejderha kafatası ve çapraz kemiklerle süslenmiş siyah bir korsan bayrağı |\n| 97 | Kimse bakmıyorken hareket eden minik mekanik bir yengeç ya da örümcek |\n| 98 | Üzerinde \"Griffon Grease\" yazan, iç yağı dolu cam bir kavanoz |\n| 99 | Seramik tabanlı ahşap bir kutuda, gövdesinin iki ucunda da baş olan yaşayan bir solucan |\n| 00 | Bir kahramanın küllerini taşıyan metal bir vazo |"
+  }
+}

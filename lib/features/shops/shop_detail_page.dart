@@ -6,6 +6,8 @@ import '../../app/ui/ui.dart';
 import '../../data/db/database.dart';
 import '../../data/shop_repository.dart';
 import '../../domain/rules/magic_item_pricing.dart';
+import '../../domain/search_text.dart';
+import '../../data/content_tr.dart';
 import '../../l10n/app_localizations.dart';
 import '../compendium/compendium_providers.dart';
 import '../world/npc_detail_page.dart';
@@ -13,7 +15,7 @@ import 'custom_item_forms.dart';
 import 'shop_owner_field.dart';
 import 'shop_providers.dart';
 
-/// Magaza kurucu: stok ekle, fiyat/adet ayarla, oyunculara ac.
+/// Magaza kurucu: stok ekle, fiyat/adet ayarla, ac/kapa.
 class ShopDetailPage extends ConsumerStatefulWidget {
   const ShopDetailPage({required this.shopId, super.key});
 
@@ -26,12 +28,10 @@ class ShopDetailPage extends ConsumerStatefulWidget {
 class _ShopDetailPageState extends ConsumerState<ShopDetailPage> {
   /// Duzenleme modu; KAPALI baslar (bkz. `app/ui/edit_mode.dart`).
   ///
-  /// AYRIM: oyuncuyla ANLIK iliskiyi kuran anahtarlar (kapali, oyunculara
-  /// acik, haritadan erisilebilir, onay gerekir) bu modun DISINDA kalir —
-  /// bunlar hazirlik degil, oyun sirasindaki hamlelerdir; pin gorunurlugu ve
-  /// gorev paylasimi da ayni kurala tabi. Dukkanin ICERIGINI/yapilandirmasini
-  /// degistiren her sey (isleten NPC, fiyat carpani, yenileme periyodu, stok)
-  /// moda baglidir.
+  /// AYRIM: dunyanin O ANKI durumunu degistiren anahtar (dukkan kapali mi)
+  /// bu modun DISINDA kalir — hazirlik degil, oyun sirasindaki hamledir.
+  /// Dukkanin ICERIGINI/yapilandirmasini degistiren her sey (isleten NPC,
+  /// fiyat carpani, yenileme periyodu, stok) moda baglidir.
   bool _editing = false;
 
   String get shopId => widget.shopId;
@@ -254,27 +254,6 @@ class _SettingsCard extends ConsumerWidget {
               value: shop.closed,
               onChanged: (on) => repo.update(shop.id, closed: on),
             ),
-            SwitchListTile(
-              contentPadding: EdgeInsets.zero,
-              title: Text(l10n.sdOpenToPlayers),
-              subtitle: Text(l10n.sdOpenHint),
-              value: shop.openToPlayers,
-              onChanged: (on) => repo.openOnly(on ? shop.id : null),
-            ),
-            SwitchListTile(
-              contentPadding: EdgeInsets.zero,
-              title: Text(l10n.sdMapAccessible),
-              subtitle: Text(l10n.sdMapAccessibleHint),
-              value: shop.mapAccessible,
-              onChanged: (on) => repo.update(shop.id, mapAccessible: on),
-            ),
-            SwitchListTile(
-              contentPadding: EdgeInsets.zero,
-              title: Text(l10n.sdRequireApproval),
-              subtitle: Text(l10n.sdRequireApprovalHint),
-              value: shop.requiresApproval,
-              onChanged: (on) => repo.update(shop.id, requiresApproval: on),
-            ),
             const Divider(height: 24),
             _RestockRow(shop: shop, editing: editing),
           ],
@@ -400,7 +379,10 @@ class _StockTile extends ConsumerWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(entry.name, style: theme.textTheme.titleSmall),
+                  Text(
+                    itemNameTr(contentNamesTrOf(context, ref), entry.name),
+                    style: theme.textTheme.titleSmall,
+                  ),
                   Text(
                     [
                       if (entry.category != null) entry.category!,
@@ -695,9 +677,21 @@ class _PlainList extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final results = ref.watch(itemResultsProvider);
+    final glossary = glossaryTrOf(context, ref);
+    final names = contentNamesTrOf(context, ref);
+    // Metin aramasi SQL'de degil burada: ad ekranda Turkce (bkz.
+    // `itemResultsProvider`).
+    final visible = results.whenData(
+      (rows) => filterByShownName(
+        rows,
+        ref.watch(itemQueryProvider).text,
+        shown: (i) => itemNameTr(names, i.name),
+        original: (i) => i.name,
+      ),
+    );
     return asyncView(
       context,
-      results,
+      visible,
       loading: const AppLoading(),
       onRetry: () => ref.invalidate(itemResultsProvider),
       data: (rows) => ListView.builder(
@@ -706,8 +700,10 @@ class _PlainList extends ConsumerWidget {
           final item = rows[i];
           return ListTile(
             dense: true,
-            title: Text(item.name),
-            subtitle: Text(item.category ?? ''),
+            title: Text(itemNameTr(names, item.name)),
+            subtitle: Text(
+              glossary.term('itemCategories', item.category ?? ''),
+            ),
             trailing: Text(
               item.costCp == null ? '—' : formatCoins(item.costCp!),
             ),
@@ -726,9 +722,20 @@ class _MagicList extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final results = ref.watch(magicItemResultsProvider);
+    final glossary = glossaryTrOf(context, ref);
+    final names = contentNamesTrOf(context, ref);
+    final visible = results.whenData(
+      (rows) => filterByShownName(
+        rows,
+        ref.watch(magicItemQueryProvider).text,
+        shown: (i) => itemNameTr(names, i.name),
+        original: (i) => i.name,
+        sortKey: (a, b) => (a.rarityRank ?? 99).compareTo(b.rarityRank ?? 99),
+      ),
+    );
     return asyncView(
       context,
-      results,
+      visible,
       loading: const AppLoading(),
       onRetry: () => ref.invalidate(magicItemResultsProvider),
       data: (rows) => ListView.builder(
@@ -737,8 +744,8 @@ class _MagicList extends ConsumerWidget {
           final item = rows[i];
           return ListTile(
             dense: true,
-            title: Text(item.name),
-            subtitle: Text(item.rarity ?? ''),
+            title: Text(itemNameTr(names, item.name)),
+            subtitle: Text(glossary.term('itemRarities', item.rarity ?? '')),
             trailing: Text(
               item.costCp == null ? '—' : formatCoins(item.costCp!),
             ),

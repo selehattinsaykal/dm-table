@@ -1,4 +1,8 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
+
+import 'app_settings.dart';
 
 /// Uygulamanin "fantastik kimlik" tonlari: ColorScheme'in genel rollerine
 /// (primary/secondary/tertiary) tam oturmayan, anlamli isimle erisilen ozel
@@ -16,6 +20,9 @@ class AppFantasyColors extends ThemeExtension<AppFantasyColors> {
     required this.vellum,
     required this.rule,
     required this.moss,
+    required this.onWax,
+    required this.verdigris,
+    required this.arcane,
     required this.grain,
   });
 
@@ -50,6 +57,27 @@ class AppFantasyColors extends ThemeExtension<AppFantasyColors> {
   /// Yosun/bakir yesili — olumlu durum (kabul edildi, tamamlandi).
   final Color moss;
 
+  /// Muhur uzerindeki metin/ikon rengi.
+  ///
+  /// AYRI bir jeton: [wax] koyu bir zemin oldugu icin uzerine gelen yazi her
+  /// iki temada da ACIK kalmali. `ink`/`parchment` bunu karsilamaz — onlarin
+  /// anlami temaya gore ters donuyor (koyu temada `parchment` koyu bir yuzey).
+  final Color onWax;
+
+  /// Patina (oksitlenmis bakir yesili) — SOGUK karsit eksen.
+  ///
+  /// Palet bastan sona sicak (parsomen/mese/pirinc/kor) oldugu icin
+  /// "bilgi/isaret" anlami tasiyan ogeler kirmiziyla ayni aileye dusuyor ve
+  /// tehlikeyle karisiyordu. Patina hem donemsel olarak dogru (yaslanmis
+  /// bronz), hem de altinin tamamlayicisi: yan yana geldiklerinde ikisi de
+  /// belirginlesiyor.
+  final Color verdigris;
+
+  /// Solgun ametist — nadir/degerli anlami (hazine, buyulu esya).
+  ///
+  /// Altindan ayri tutuluyor: altin "ticaret", ametist "odul".
+  final Color arcane;
+
   /// Parsomen/tas dokusunun tanecik rengi; prosedurel doku boyayicisi
   /// (`ParchmentTexture`) bu tonu cok dusuk alfayla serper.
   final Color grain;
@@ -68,6 +96,9 @@ class AppFantasyColors extends ThemeExtension<AppFantasyColors> {
       vellum: isDark ? const Color(0xFF241D17) : const Color(0xFFFBF4E4),
       rule: isDark ? const Color(0xFF4A3F35) : const Color(0xFFC9B893),
       moss: isDark ? const Color(0xFF7FA06A) : const Color(0xFF4F6B3C),
+      onWax: const Color(0xFFF6ECD8),
+      verdigris: isDark ? const Color(0xFF63B3A6) : const Color(0xFF2F6B60),
+      arcane: isDark ? const Color(0xFFB292C8) : const Color(0xFF6B4A82),
       grain: isDark ? const Color(0xFFFFFFFF) : const Color(0xFF5A4632),
     );
   }
@@ -82,6 +113,9 @@ class AppFantasyColors extends ThemeExtension<AppFantasyColors> {
     Color? vellum,
     Color? rule,
     Color? moss,
+    Color? onWax,
+    Color? verdigris,
+    Color? arcane,
     Color? grain,
   }) => AppFantasyColors(
     parchment: parchment ?? this.parchment,
@@ -92,6 +126,9 @@ class AppFantasyColors extends ThemeExtension<AppFantasyColors> {
     vellum: vellum ?? this.vellum,
     rule: rule ?? this.rule,
     moss: moss ?? this.moss,
+    onWax: onWax ?? this.onWax,
+    verdigris: verdigris ?? this.verdigris,
+    arcane: arcane ?? this.arcane,
     grain: grain ?? this.grain,
   );
 
@@ -105,6 +142,9 @@ class AppFantasyColors extends ThemeExtension<AppFantasyColors> {
     vellum: Color.lerp(vellum, other?.vellum, t)!,
     rule: Color.lerp(rule, other?.rule, t)!,
     moss: Color.lerp(moss, other?.moss, t)!,
+    onWax: Color.lerp(onWax, other?.onWax, t)!,
+    verdigris: Color.lerp(verdigris, other?.verdigris, t)!,
+    arcane: Color.lerp(arcane, other?.arcane, t)!,
     grain: Color.lerp(grain, other?.grain, t)!,
   );
 }
@@ -189,13 +229,13 @@ extension RadiiContext on BuildContext {
       Theme.of(this).extension<AppRadii>() ?? const AppRadii();
 }
 
-/// Duyarli duzen esikleri. Daha once dosyalara serpilmis sihirli sayilardi
-/// (DM kabugu 720, oyuncu paneli 760/1080); artik tek kaynak.
+/// Duyarli duzen esikleri. Daha once dosyalara serpilmis sihirli sayilardi;
+/// artik tek kaynak.
 abstract final class Breakpoints {
   /// Bu genislikten itibaren yan navigasyon rayi (telefonda alt bar/drawer).
   static const double rail = 720;
 
-  /// Oyuncu panelinde okunabilir metin sutununun azami genisligi.
+  /// Uzun metin sutununun azami genisligi (Kayitlar govdesi, lore).
   static const double readableContent = 1080;
 }
 
@@ -209,6 +249,18 @@ abstract final class AppMotion {
   /// Agir bir kapak/kapi acilmasi hissi: hizli baslar, yumusak oturur.
   static const Curve enter = Curves.easeOutCubic;
   static const Curve exit = Curves.easeInCubic;
+}
+
+/// Erisilebilirlik: sistem "animasyonlari azalt" diyorsa sureyi sifirlar.
+///
+/// Tek yerden okunsun diye burada: bu kontrol daha once yalnizca tek bir
+/// widget'ta (parilti) yapiliyordu, geri kalan her animasyon vestibuler
+/// duyarliligi olan kullanicida da tam hiziyla oynuyordu.
+///
+/// Kullanim: `AnimatedContainer(duration: context.motionOr(AppMotion.normal))`
+extension MotionContext on BuildContext {
+  Duration motionOr(Duration d) =>
+      (MediaQuery.maybeDisableAnimationsOf(this) ?? false) ? Duration.zero : d;
 }
 
 /// Uygulamanin gorsel kimligi: orta cag el yazmasi + modern okunabilirlik.
@@ -232,13 +284,34 @@ abstract final class AppTheme {
   /// kalir: kucuk etiketler ve rakam alanlari sans'ta daha net okunur.
   static const reading = 'EBGaramond';
 
-  static ThemeData get dark => _build(Brightness.dark);
-  static ThemeData get light => _build(Brightness.light);
+  static ThemeData dark([
+    AppDensity density = AppDensity.compact,
+    bool highContrast = false,
+  ]) => _build(Brightness.dark, density, highContrast);
 
-  static ThemeData _build(Brightness brightness) {
+  static ThemeData light([
+    AppDensity density = AppDensity.compact,
+    bool highContrast = false,
+  ]) => _build(Brightness.light, density, highContrast);
+
+  static ThemeData _build(
+    Brightness brightness,
+    AppDensity density, [
+    bool highContrast = false,
+  ]) {
     final isDark = brightness == Brightness.dark;
     final base = ColorScheme.fromSeed(seedColor: _seed, brightness: brightness);
     const radii = AppRadii();
+
+    // Yogunluk carpani: 1 = eski (ferah) olculer. Dolgu ve yukseklikler tek
+    // bir sayidan turetiliyor ki "sikilastir" dedigimizde arayuz orantili
+    // kucultsun, bazi yerler kucuk bazi yerler eski kalmasin.
+    final pad = switch (density) {
+      AppDensity.compact => 0.72,
+      AppDensity.normal => 0.88,
+      AppDensity.comfortable => 1.0,
+    };
+    double p(double value) => (value * pad).roundToDouble();
 
     // Algoritmik uyumu koru; kimligi (parsomen/mese + pirinc) enjekte et.
     final scheme = isDark
@@ -279,13 +352,32 @@ abstract final class AppTheme {
             outlineVariant: const Color(0xFFCFC0A0),
           );
 
+    // YUKSEK KONTRAST: paleti degistirmiyoruz (parsomen/mese kimligi
+    // korunuyor), metni ve kenarliklari ucuna kadar aciyoruz/koyulastiriyoruz.
+    // Asil sorun renk secimi degil, ince gri kenarliklarin ve ikincil
+    // metnin masadaki isikta kaybolmasiydi.
+    final tuned = !highContrast
+        ? scheme
+        : scheme.copyWith(
+            onSurface: isDark
+                ? const Color(0xFFFFF8EC)
+                : const Color(0xFF120D08),
+            onSurfaceVariant: isDark
+                ? const Color(0xFFE6D8BF)
+                : const Color(0xFF2E251A),
+            outline: isDark ? const Color(0xFFB8A88F) : const Color(0xFF4A3E2C),
+            outlineVariant: isDark
+                ? const Color(0xFF6E6152)
+                : const Color(0xFF8D7C60),
+          );
+
     final scaffold = isDark ? const Color(0xFF14100D) : parchment;
 
     final theme = ThemeData(
-      colorScheme: scheme,
+      colorScheme: tuned,
       scaffoldBackgroundColor: scaffold,
       splashFactory: InkSparkle.splashFactory,
-      visualDensity: VisualDensity.standard,
+      visualDensity: density.visualDensity,
       extensions: [
         AppFantasyColors(
           parchment: isDark ? const Color(0xFF2E261F) : parchment,
@@ -298,20 +390,28 @@ abstract final class AppTheme {
           vellum: isDark ? const Color(0xFF241D17) : const Color(0xFFFBF4E4),
           rule: isDark ? const Color(0xFF4A3F35) : const Color(0xFFC9B893),
           moss: isDark ? const Color(0xFF7FA06A) : const Color(0xFF4F6B3C),
+          // Muhur zemini her iki temada da koyu; uzerindeki yazi sabit acik.
+          onWax: const Color(0xFFF6ECD8),
+          verdigris: isDark ? const Color(0xFF63B3A6) : const Color(0xFF2F6B60),
+          arcane: isDark ? const Color(0xFFB292C8) : const Color(0xFF6B4A82),
           grain: isDark ? const Color(0xFFFFFFFF) : const Color(0xFF5A4632),
         ),
-        const AppSpacing(),
+        // Bosluk olcegi de yogunlukla kuculur: ekranlar `context.spacing`
+        // kullandigi icin tek yerden daralmis oluyorlar.
+        AppSpacing(xs: p(4), sm: p(8), md: p(16), lg: p(24), xl: p(32)),
         radii,
       ],
       dividerTheme: DividerThemeData(
-        color: scheme.outlineVariant,
-        thickness: 1,
+        color: tuned.outlineVariant,
+        // Yuksek kontrastta ayirici cizgiler kalinlasiyor: bolum sinirlari
+        // uzaktan da okunsun.
+        thickness: highContrast ? 1.5 : 1,
         space: 1,
       ),
       appBarTheme: AppBarTheme(
         backgroundColor: scaffold,
         surfaceTintColor: Colors.transparent,
-        foregroundColor: scheme.onSurface,
+        foregroundColor: tuned.onSurface,
         elevation: 0,
         scrolledUnderElevation: 2,
         centerTitle: false,
@@ -321,48 +421,48 @@ abstract final class AppTheme {
           fontWeight: FontWeight.w600,
           // Orta cag kitabesi hissi: basliklar biraz genis harf araliginda.
           letterSpacing: 0.8,
-          color: scheme.onSurface,
+          color: tuned.onSurface,
         ),
       ),
       cardTheme: CardThemeData(
         elevation: 0,
-        color: scheme.surfaceContainerLow,
+        color: tuned.surfaceContainerLow,
         margin: EdgeInsets.zero,
         clipBehavior: Clip.antiAlias,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(radii.lg),
-          side: BorderSide(color: scheme.outlineVariant),
+          side: BorderSide(color: tuned.outlineVariant),
         ),
       ),
       inputDecorationTheme: InputDecorationTheme(
         isDense: true,
         filled: true,
-        fillColor: scheme.surfaceContainerHigh.withValues(alpha: 0.5),
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 14,
-          vertical: 12,
+        fillColor: tuned.surfaceContainerHigh.withValues(alpha: 0.5),
+        contentPadding: EdgeInsets.symmetric(
+          horizontal: p(14),
+          vertical: p(12),
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(radii.md),
-          borderSide: BorderSide(color: scheme.outlineVariant),
+          borderSide: BorderSide(color: tuned.outlineVariant),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(radii.md),
-          borderSide: BorderSide(color: scheme.outlineVariant),
+          borderSide: BorderSide(color: tuned.outlineVariant),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(radii.md),
-          borderSide: BorderSide(color: scheme.primary, width: 1.6),
+          borderSide: BorderSide(color: tuned.primary, width: 1.6),
         ),
         // Hata metni alanin HEMEN altinda kalir (UX: hatayi alanin yaninda
         // goster, sayfanin tepesinde toplama).
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(radii.md),
-          borderSide: BorderSide(color: scheme.error, width: 1.4),
+          borderSide: BorderSide(color: tuned.error, width: 1.4),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(radii.md),
-          borderSide: BorderSide(color: scheme.error, width: 1.8),
+          borderSide: BorderSide(color: tuned.error, width: 1.8),
         ),
       ),
       filledButtonTheme: FilledButtonThemeData(
@@ -370,9 +470,9 @@ abstract final class AppTheme {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(radii.md),
           ),
-          // Dokunma hedefi >= 44px: yatay 18 / dikey 14 padding + metin
-          // yuksekligi bunu guvenle asar.
-          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 14),
+          // Dokunma hedefi yogunlukla birlikte kisalir; en sikida bile
+          // 40px'in altina inmiyor (metin yuksekligi + dikey dolgu).
+          padding: EdgeInsets.symmetric(horizontal: p(18), vertical: p(14)),
           textStyle: const TextStyle(
             fontWeight: FontWeight.w600,
             letterSpacing: 0.3,
@@ -385,7 +485,7 @@ abstract final class AppTheme {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(radii.md),
           ),
-          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 14),
+          padding: EdgeInsets.symmetric(horizontal: p(18), vertical: p(14)),
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
@@ -393,8 +493,8 @@ abstract final class AppTheme {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(radii.md),
           ),
-          side: BorderSide(color: scheme.outline),
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+          side: BorderSide(color: tuned.outline),
+          padding: EdgeInsets.symmetric(horizontal: p(16), vertical: p(14)),
         ),
       ),
       textButtonTheme: TextButtonThemeData(
@@ -402,14 +502,15 @@ abstract final class AppTheme {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(radii.sm),
           ),
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+          padding: EdgeInsets.symmetric(horizontal: p(12), vertical: p(12)),
         ),
       ),
       iconButtonTheme: IconButtonThemeData(
         style: IconButton.styleFrom(
-          // Ikon-butonlar varsayilan olarak 40px'e dusebiliyordu; masada
-          // telefonla kullanildigi icin 44x44 minimuma sabitlendi.
-          minimumSize: const Size(44, 44),
+          // Dokunma hedefi: ferah modda 44x44, sikilastikca 36x36'ya kadar
+          // iner. 36 masaustunde rahat, dokunmatikte kullanan ferah moda
+          // gecebiliyor.
+          minimumSize: Size(p(44) + 12, p(44) + 12),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(radii.md),
           ),
@@ -417,17 +518,20 @@ abstract final class AppTheme {
       ),
       chipTheme: ChipThemeData(
         showCheckmark: false,
-        side: BorderSide(color: scheme.outlineVariant),
-        backgroundColor: scheme.surfaceContainerHigh.withValues(alpha: 0.4),
-        selectedColor: scheme.primary.withValues(alpha: 0.16),
+        side: BorderSide(color: tuned.outlineVariant),
+        backgroundColor: tuned.surfaceContainerHigh.withValues(alpha: 0.4),
+        selectedColor: tuned.primary.withValues(alpha: 0.16),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(radii.md),
         ),
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
-        labelStyle: TextStyle(fontSize: 13, color: scheme.onSurface),
+        padding: EdgeInsets.symmetric(horizontal: p(10), vertical: p(7)),
+        labelStyle: TextStyle(fontSize: 13, color: tuned.onSurface),
       ),
       listTileTheme: ListTileThemeData(
-        visualDensity: VisualDensity.compact,
+        visualDensity: density.visualDensity,
+        minVerticalPadding: p(8),
+        horizontalTitleGap: p(12),
+        contentPadding: EdgeInsets.symmetric(horizontal: p(16)),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(radii.md),
         ),
@@ -437,12 +541,12 @@ abstract final class AppTheme {
             ? const Color(0xFF201A15)
             : const Color(0xFFEEE1C6),
         surfaceTintColor: Colors.transparent,
-        indicatorColor: scheme.primary.withValues(alpha: 0.20),
+        indicatorColor: tuned.primary.withValues(alpha: 0.20),
         indicatorShape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(radii.md),
         ),
         elevation: 0,
-        height: 68,
+        height: p(68) + 8,
         labelTextStyle: WidgetStateProperty.resolveWith(
           (states) => TextStyle(
             fontSize: 11.5,
@@ -450,8 +554,8 @@ abstract final class AppTheme {
                 ? FontWeight.w600
                 : FontWeight.w400,
             color: states.contains(WidgetState.selected)
-                ? scheme.primary
-                : scheme.onSurfaceVariant,
+                ? tuned.primary
+                : tuned.onSurfaceVariant,
           ),
         ),
       ),
@@ -459,26 +563,26 @@ abstract final class AppTheme {
         backgroundColor: isDark
             ? const Color(0xFF201A15)
             : const Color(0xFFEEE1C6),
-        indicatorColor: scheme.primary.withValues(alpha: 0.20),
+        indicatorColor: tuned.primary.withValues(alpha: 0.20),
         indicatorShape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(radii.md),
         ),
-        selectedIconTheme: IconThemeData(color: scheme.primary),
+        selectedIconTheme: IconThemeData(color: tuned.primary),
         selectedLabelTextStyle: TextStyle(
-          color: scheme.primary,
+          color: tuned.primary,
           fontWeight: FontWeight.w600,
           fontSize: 12,
         ),
         unselectedLabelTextStyle: TextStyle(
-          color: scheme.onSurfaceVariant,
+          color: tuned.onSurfaceVariant,
           fontSize: 12,
         ),
       ),
       tabBarTheme: TabBarThemeData(
-        labelColor: scheme.primary,
-        unselectedLabelColor: scheme.onSurfaceVariant,
-        indicatorColor: scheme.primary,
-        dividerColor: scheme.outlineVariant,
+        labelColor: tuned.primary,
+        unselectedLabelColor: tuned.onSurfaceVariant,
+        indicatorColor: tuned.primary,
+        dividerColor: tuned.outlineVariant,
         labelStyle: const TextStyle(
           fontFamily: _display,
           fontWeight: FontWeight.w600,
@@ -487,7 +591,7 @@ abstract final class AppTheme {
         unselectedLabelStyle: const TextStyle(fontFamily: _display),
       ),
       dialogTheme: DialogThemeData(
-        backgroundColor: scheme.surfaceContainerLow,
+        backgroundColor: tuned.surfaceContainerLow,
         surfaceTintColor: Colors.transparent,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(radii.xl),
@@ -500,11 +604,11 @@ abstract final class AppTheme {
           fontSize: 19,
           fontWeight: FontWeight.w600,
           letterSpacing: 0.5,
-          color: scheme.onSurface,
+          color: tuned.onSurface,
         ),
       ),
       bottomSheetTheme: BottomSheetThemeData(
-        backgroundColor: scheme.surfaceContainerLow,
+        backgroundColor: tuned.surfaceContainerLow,
         surfaceTintColor: Colors.transparent,
         showDragHandle: true,
         shape: RoundedRectangleBorder(
@@ -524,19 +628,19 @@ abstract final class AppTheme {
         ),
       ),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
-        backgroundColor: scheme.primary,
-        foregroundColor: scheme.onPrimary,
+        backgroundColor: tuned.primary,
+        foregroundColor: tuned.onPrimary,
         elevation: 2,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(radii.lg),
         ),
       ),
       popupMenuTheme: PopupMenuThemeData(
-        color: scheme.surfaceContainerHigh,
+        color: tuned.surfaceContainerHigh,
         surfaceTintColor: Colors.transparent,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(radii.lg),
-          side: BorderSide(color: scheme.outlineVariant),
+          side: BorderSide(color: tuned.outlineVariant),
         ),
       ),
       tooltipTheme: TooltipThemeData(
@@ -550,23 +654,31 @@ abstract final class AppTheme {
         textStyle: const TextStyle(color: Color(0xFFECE0CB), fontSize: 12),
       ),
       progressIndicatorTheme: ProgressIndicatorThemeData(
-        color: scheme.primary,
-        linearTrackColor: scheme.surfaceContainerHigh,
-        circularTrackColor: scheme.surfaceContainerHigh,
+        color: tuned.primary,
+        linearTrackColor: tuned.surfaceContainerHigh,
+        circularTrackColor: tuned.surfaceContainerHigh,
       ),
     );
 
-    return theme.copyWith(textTheme: _text(theme.textTheme, scheme));
+    return theme.copyWith(
+      textTheme: _text(theme.textTheme, scheme, density.textScale),
+    );
   }
 
   /// Basliklar serif + genis harf araligi (orta cag kitabesi); govde temiz,
   /// ferah ve modern.
-  static TextTheme _text(TextTheme t, ColorScheme scheme) {
+  static TextTheme _text(TextTheme t, ColorScheme scheme, double scale) {
+    // Yogunluk metni de hafifce oynatiyor. Alt sinir 11 px: bunun altinda
+    // masada koyu bir haritanin yaninda okunmuyor.
+    double? size(TextStyle? s) =>
+        s?.fontSize == null ? null : math.max(11, s!.fontSize! * scale);
+
     TextStyle? head(TextStyle? s, {double spacing = 0.5}) => s?.copyWith(
       fontFamily: _display,
       fontWeight: FontWeight.w600,
       letterSpacing: spacing,
       color: scheme.onSurface,
+      fontSize: size(s),
     );
     return t.copyWith(
       displayLarge: head(t.displayLarge, spacing: 1.0),
@@ -576,16 +688,30 @@ abstract final class AppTheme {
       headlineMedium: head(t.headlineMedium, spacing: 0.7),
       headlineSmall: head(t.headlineSmall, spacing: 0.6),
       titleLarge: head(t.titleLarge),
+      titleMedium: t.titleMedium?.copyWith(fontSize: size(t.titleMedium)),
+      titleSmall: t.titleSmall?.copyWith(fontSize: size(t.titleSmall)),
       // Govde: satir yuksekligi 1.5 (UX kurali) — 1.4'ten yukseltildi.
-      bodyLarge: t.bodyLarge?.copyWith(height: 1.5),
-      bodyMedium: t.bodyMedium?.copyWith(height: 1.5),
-      bodySmall: t.bodySmall?.copyWith(height: 1.45),
+      bodyLarge: t.bodyLarge?.copyWith(
+        height: 1.5,
+        fontSize: size(t.bodyLarge),
+      ),
+      bodyMedium: t.bodyMedium?.copyWith(
+        height: 1.5,
+        fontSize: size(t.bodyMedium),
+      ),
+      bodySmall: t.bodySmall?.copyWith(
+        height: 1.45,
+        fontSize: size(t.bodySmall),
+      ),
+      labelLarge: t.labelLarge?.copyWith(fontSize: size(t.labelLarge)),
+      labelMedium: t.labelMedium?.copyWith(fontSize: size(t.labelMedium)),
       // Kucuk buyuk-harf etiketler (overline) donemsel serifte: "OTURUM",
       // "ENVANTER" gibi bolum etiketleri madeni kitabe gibi durur.
       labelSmall: t.labelSmall?.copyWith(
         fontFamily: _display,
         fontWeight: FontWeight.w600,
         letterSpacing: 1.1,
+        fontSize: size(t.labelSmall),
       ),
     );
   }

@@ -117,6 +117,18 @@ class CodexRepository {
             ..orderBy([(t) => OrderingTerm(expression: t.sortOrder)]))
           .watch();
 
+  /// Tum sayfalardaki belirli turdeki bloklar.
+  ///
+  /// Sure sayaci uyarilari icin: hangi sayfada oldugu fark etmeksizin calisan
+  /// sayaclarin izlenmesi gerekir (bkz. `CodexTimerAlerts`).
+  Stream<List<CodexBlock>> watchBlocksOfType(CodexBlockType type) => (db.select(
+    db.codexBlocks,
+  )..where((t) => t.type.equals(type.name))).watch();
+
+  Future<CodexBlock?> block(String blockId) => (db.select(
+    db.codexBlocks,
+  )..where((t) => t.id.equals(blockId))).getSingleOrNull();
+
   Future<List<CodexBlock>> blocks(String pageId) =>
       (db.select(db.codexBlocks)
             ..where((t) => t.pageId.equals(pageId))
@@ -153,6 +165,48 @@ class CodexRepository {
 
   Future<void> deleteBlock(String blockId) async {
     await (db.delete(db.codexBlocks)..where((t) => t.id.equals(blockId))).go();
+  }
+
+  /// Blogu ayni sayfada, hemen ardina kopyalar. Sonraki bloklarin sortOrder'i
+  /// bir kaydirilir; boylece kopya arada kalir (sona atilmaz).
+  Future<String?> duplicateBlock(String blockId) async {
+    final source = await (db.select(
+      db.codexBlocks,
+    )..where((t) => t.id.equals(blockId))).getSingleOrNull();
+    if (source == null) return null;
+
+    final rows = await blocks(source.pageId);
+    final index = rows.indexWhere((b) => b.id == blockId);
+    if (index < 0) return null;
+
+    final id = 'bl-${_uuid.v4()}';
+    rows.insert(
+      index + 1,
+      source.copyWith(id: id, sortOrder: source.sortOrder + 1),
+    );
+    await db.transaction(() async {
+      await db
+          .into(db.codexBlocks)
+          .insert(
+            CodexBlocksCompanion.insert(
+              id: id,
+              pageId: source.pageId,
+              type: source.type,
+              sortOrder: Value(source.sortOrder + 1),
+              dataJson: Value(source.dataJson),
+            ),
+          );
+      await db.batch((b) {
+        for (var i = 0; i < rows.length; i++) {
+          b.update(
+            db.codexBlocks,
+            CodexBlocksCompanion(sortOrder: Value(i)),
+            where: (t) => t.id.equals(rows[i].id),
+          );
+        }
+      });
+    });
+    return id;
   }
 
   /// Bloklari serbestce yeniden siralar (surukle-birak). [newIndex] ogenin

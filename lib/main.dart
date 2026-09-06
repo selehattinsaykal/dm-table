@@ -16,7 +16,7 @@ import 'data/campaign/campaign_paths.dart';
 import 'data/campaign/campaign_registry.dart';
 import 'data/media_root.dart';
 import 'data/providers.dart';
-import 'features/session/session_page.dart';
+import 'features/codex/codex_timer_alerts.dart';
 import 'l10n/app_localizations.dart';
 
 Future<void> main() async {
@@ -39,6 +39,11 @@ Future<void> main() async {
   final mediaRoot = active.isDefault
       ? null
       : await CampaignPaths.mediaRoot(active);
+  MediaRoot.current = mediaRoot;
+  // Kok ONBELLEGE aliniyor: cizim yolu (jeton portresi, harita gorsel
+  // katmani) goreli yollari SENKRON cozmek zorunda ve orada `await`
+  // edilemiyor. Isitilmazsa yollar goreli kalir ve hicbir gorsel yuklenmez.
+  await MediaRoot.warmUp();
 
   runApp(
     CampaignRoot(prefs: prefs, registry: registry, initialMediaRoot: mediaRoot),
@@ -50,14 +55,14 @@ Future<void> main() async {
 /// Kampanya değiştirmek = veritabanını değiştirmek. Bunu `databaseProvider`'ı
 /// yerinde invalidate ederek yapmak YANLIŞ olurdu: Riverpod `invalidateSelf`'te
 /// provider'ın kendi `onDispose`'unu senkron çalıştırır, bağımlılarını yalnızca
-/// "değişmiş olabilir" diye işaretler — yani `db.close()`, ona bağlı LAN
-/// sunucusunun `stop()`'undan ÖNCE çalışır ve canlı sunucu kapalı bir
+/// "değişmiş olabilir" diye işaretler — yani `db.close()`, ona bağlı bir
+/// tüketicinin kapanışından ÖNCE çalışır ve canlı bir okuyucu kapalı bir
 /// veritabanına sorgu atar.
 ///
-/// Bunun yerine kabın (`ProviderContainer`) tamamı yenilenir:
-/// `dispose()` yapraktan köke doğru çalıştığı için `SessionService` → `AppDatabase`
-/// sırası garanti olur. Yeni `GoRouter` de kurulur — kampanya A'da açılmış bir
-/// karakter sayfası kampanya B'de var olmayan bir kimliğe bakardı.
+/// Bunun yerine kabın (`ProviderContainer`) tamamı yenilenir: `dispose()`
+/// yapraktan köke doğru çalıştığı için depoların `AppDatabase`'den önce
+/// kapanması garanti olur. Yeni `GoRouter` de kurulur — kampanya A'da açılmış
+/// bir karakter sayfası kampanya B'de var olmayan bir kimliğe bakardı.
 class CampaignRoot extends StatefulWidget {
   const CampaignRoot({
     required this.prefs,
@@ -110,10 +115,6 @@ class _CampaignRootState extends State<CampaignRoot> {
     if (!mounted) return;
     setState(() => _switching = true);
 
-    // Sunucuyu ONCE ve await ederek kapat: soketler temiz kapansin, bagli
-    // oyuncular yarim mesajla kalmasin.
-    await _container.read(sessionControllerProvider.notifier).stop();
-
     final mediaRoot = next.isDefault
         ? null
         : await CampaignPaths.mediaRoot(next);
@@ -157,9 +158,6 @@ class _CampaignRootState extends State<CampaignRoot> {
 }
 
 /// DM uygulamasi (Android + Windows).
-///
-/// Oyuncu paneli ayri bir entrypoint'tir: `lib/main_player.dart`, web'e
-/// derlenip bu uygulamanin icinden LAN uzerinden servis edilir.
 class DmApp extends ConsumerStatefulWidget {
   const DmApp({super.key});
 
@@ -168,16 +166,20 @@ class DmApp extends ConsumerStatefulWidget {
 }
 
 class _DmAppState extends ConsumerState<DmApp> {
+  /// Uyaridan sayfa acabilmek icin kok gezinti anahtari (rota agacinin
+  /// disindan cagrilir).
+  final _navigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
+
   // Router her build'de yeniden kurulursa navigasyon yigini sifirlanir.
-  final _router = buildRouter();
+  late final _router = buildRouter(navigatorKey: _navigatorKey);
 
   @override
   Widget build(BuildContext context) {
     final settings = ref.watch(appSettingsProvider);
     return MaterialApp.router(
       onGenerateTitle: (context) => L10n.of(context).appTitle,
-      theme: AppTheme.light,
-      darkTheme: AppTheme.dark,
+      theme: AppTheme.light(settings.density, settings.highContrast),
+      darkTheme: AppTheme.dark(settings.density, settings.highContrast),
       themeMode: settings.themeMode,
       locale: settings.lang.locale,
       localizationsDelegates: const [
@@ -191,7 +193,14 @@ class _DmAppState extends ConsumerState<DmApp> {
       debugShowCheckedModeBanner: false,
       // Kagit taneciği tum arayuzun uzerinde tek katman olarak durur
       // (Navigator'in ustunde: sayfalar, dialoglar, sheet'ler dahil).
-      builder: (context, child) => ParchmentOverlay(child: child!),
+      // Sure sayaci uyarisi MaterialApp'in ICINDE dinlenir: bildirim hem
+      // ceviriye hem ScaffoldMessenger'a ihtiyac duyar, ikisi de burada.
+      builder: (context, child) => ParchmentOverlay(
+        child: CodexTimerAlertListener(
+          navigatorKey: _navigatorKey,
+          child: child!,
+        ),
+      ),
     );
   }
 }

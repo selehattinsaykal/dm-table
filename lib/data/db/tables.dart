@@ -170,3 +170,78 @@ class ContentVersions extends Table {
   @override
   Set<Column> get primaryKey => {id};
 }
+
+/// Kullanicinin tanimladigi 5etools bicimli icerik kaynagi.
+///
+/// **Adres KODA GOMULU DEGIL:** uygulama sabit bir kaynakla gelmiyor,
+/// kullanici hangi adresi kullanacagina kendi karar veriyor (kendi homebrew
+/// deposu, kendi disa aktardigi dosyalar, erisim hakki olan bir arsiv).
+/// Bu tablo yalnizca o tercihi hatirliyor.
+class ContentSources extends Table {
+  TextColumn get id => text()();
+  TextColumn get name => text()();
+
+  /// Veri klasorunun koku; kesif buradan `index.json` okuyor.
+  TextColumn get baseUrl => text()();
+
+  /// Son basarili ice aktarmanin zamani; listede "ne zaman cektim" yazsin.
+  DateTimeColumn get lastImportedAt => dateTime().nullable()();
+
+  DateTimeColumn get createdAt => dateTime().withDefault(currentDateAndTime)();
+
+  @override
+  Set<Column> get primaryKey => {id};
+}
+
+/// Sik kullanilan zar/eylem kisayolu.
+///
+/// "Bir daha 4d6 at", "uzun yay saldirisi" gibi tekrarlayan atislari tek
+/// dokunusa indiriyor. Ifade [rollExpression] ile cozuluyor, yani makro yeni
+/// bir zar dili GETIRMIYOR.
+class Macros extends Table {
+  TextColumn get id => text()();
+  TextColumn get name => text()();
+
+  /// Zar ifadesi, or. `2d6+3` ya da `4d6kh3`.
+  TextColumn get expression => text()();
+
+  /// Yalnizca bu karaktere ait makro; null = genel.
+  TextColumn get characterId => text().nullable()();
+
+  IntColumn get sortOrder => integer().withDefault(const Constant(0))();
+  DateTimeColumn get createdAt => dateTime().withDefault(currentDateAndTime)();
+
+  @override
+  Set<Column> get primaryKey => {id};
+}
+
+/// Iki oturum arasindaki bos zaman faaliyeti (zanaat, arastirma, is bulma).
+///
+/// Takvimle bagli: [startDay] oyun-ici gun sayaci (bkz. `CalendarRepository`),
+/// [days] faaliyetin kac gun surdugu. Gun ilerledikce arayuz kalan gunu
+/// gosteriyor; bitince "tamamlandi" olarak isaretlenebiliyor.
+class DowntimeActivities extends Table {
+  TextColumn get id => text()();
+  TextColumn get characterId => text().nullable()();
+
+  /// Faaliyet turu anahtar olarak (`craft`, `research`, `work`, `train`,
+  /// `recuperate`, `carouse`, `custom`); etiketi arayuz cevirisi veriyor.
+  TextColumn get kind => text().withDefault(const Constant('custom'))();
+
+  TextColumn get title => text()();
+  TextColumn get notes => text().withDefault(const Constant(''))();
+
+  IntColumn get days => integer().withDefault(const Constant(1))();
+
+  /// Oyun-ici baslangic gunu; null = takvime bagli degil.
+  IntColumn get startDay => integer().nullable()();
+
+  /// Faaliyetin sonucu (zar sonucu, bulunan bilgi, kazanilan para).
+  TextColumn get outcome => text().withDefault(const Constant(''))();
+
+  BoolColumn get done => boolean().withDefault(const Constant(false))();
+  DateTimeColumn get createdAt => dateTime().withDefault(currentDateAndTime)();
+
+  @override
+  Set<Column> get primaryKey => {id};
+}

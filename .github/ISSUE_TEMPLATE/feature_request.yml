@@ -17,17 +17,6 @@ body:
     validations:
       required: true
 
-  - type: dropdown
-    id: side
-    attributes:
-      label: Which side is affected?
-      options:
-        - DM app (Windows)
-        - Player panel
-        - Both
-    validations:
-      required: true
-
   - type: checkboxes
     id: content
     attributes:

@@ -1,0 +1,750 @@
+[
+  {
+    "key": "faerun-heroes_boon-of-bloodshed",
+    "name": "Boon of Bloodshed",
+    "document": "faerun-heroes",
+    "desc": "You gain the following benefits.\n\nKiller's Fortune. When an enemy you can see is reduced to 0 Hit Points, you gain Advantage on the next attack roll you make before the end of your next turn.\n\nPower from Pain. Once per turn, when you make an attack roll while Bloodied, you can deal extra damage to the target equal to your Proficiency Bonus. The extra damage's type is the same as the attack's type.",
+    "benefits": [
+      {
+        "name": "Killer's Fortune",
+        "desc": "When an enemy you can see is reduced to 0 Hit Points, you gain Advantage on the next attack roll you make before the end of your next turn."
+      },
+      {
+        "name": "Power from Pain",
+        "desc": "Once per turn, when you make an attack roll while Bloodied, you can deal extra damage to the target equal to your Proficiency Bonus. The extra damage's type is the same as the attack's type."
+      }
+    ],
+    "prerequisite": "Level 19+",
+    "has_prerequisite": true,
+    "type": "Epic Boon",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_boon-of-bountiful-health",
+    "name": "Boon of Bountiful Health",
+    "document": "faerun-heroes",
+    "desc": "You gain the following benefits.\n\nAugmented Health. When you gain Temporary Hit Points, increase the number of Temporary Hit Points you gain by 5.\n\nSuperior Recuperation. When you spend one or more Hit Point Dice to regain Hit Points, you can instead use the highest number possible for each die.",
+    "benefits": [
+      {
+        "name": "Augmented Health",
+        "desc": "When you gain Temporary Hit Points, increase the number of Temporary Hit Points you gain by 5."
+      },
+      {
+        "name": "Superior Recuperation",
+        "desc": "When you spend one or more Hit Point Dice to regain Hit Points, you can instead use the highest number possible for each die."
+      }
+    ],
+    "prerequisite": "Level 19+",
+    "has_prerequisite": true,
+    "type": "Epic Boon",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_boon-of-communication",
+    "name": "Boon of Communication",
+    "document": "faerun-heroes",
+    "desc": "You gain the following benefits.\n\nCunning Speaker. You don't have Disadvantage on ability checks to influence Hostile creatures.\n\nGifted Interpreter. You understand the literal meaning of any language you hear or see signed, and you can understand the literal meaning of any written language you see.\n\nMental Communication. You gain telepathy with a range of 120 feet.",
+    "benefits": [
+      {
+        "name": "Cunning Speaker",
+        "desc": "You don't have Disadvantage on ability checks to influence Hostile creatures."
+      },
+      {
+        "name": "Gifted Interpreter",
+        "desc": "You understand the literal meaning of any language you hear or see signed, and you can understand the literal meaning of any written language you see."
+      },
+      {
+        "name": "Mental Communication",
+        "desc": "You gain telepathy with a range of 120 feet."
+      }
+    ],
+    "prerequisite": "Level 19+",
+    "has_prerequisite": true,
+    "type": "Epic Boon",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_boon-of-desperate-resilience",
+    "name": "Boon of Desperate Resilience",
+    "document": "faerun-heroes",
+    "desc": "You gain the following benefits.\n\nDefense of Body and Mind. While you are Bloodied, you have Resistance to every damage type except Force.",
+    "benefits": [
+      {
+        "name": "Defense of Body and Mind",
+        "desc": "While you are Bloodied, you have Resistance to every damage type except Force."
+      }
+    ],
+    "prerequisite": "Level 19+",
+    "has_prerequisite": true,
+    "type": "Epic Boon",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_boon-of-exquisite-radiance",
+    "name": "Boon of Exquisite Radiance",
+    "document": "faerun-heroes",
+    "desc": "You gain the following benefits.\n\nEternal Rest. Creatures you reduce to 0 Hit Points can't become Undead.\n\nPowerful Radiance. When you make a damage roll that deals Radiant damage, you can instead use the highest number possible for each damage die. Once you use this benefit, you can't do so again until you finish a Long Rest.",
+    "benefits": [
+      {
+        "name": "Eternal Rest",
+        "desc": "Creatures you reduce to 0 Hit Points can't become Undead."
+      },
+      {
+        "name": "Powerful Radiance",
+        "desc": "When you make a damage roll that deals Radiant damage, you can instead use the highest number possible for each damage die. Once you use this benefit, you can't do so again until you finish a Long Rest."
+      }
+    ],
+    "prerequisite": "Level 19+",
+    "has_prerequisite": true,
+    "type": "Epic Boon",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_boon-of-fluid-forms",
+    "name": "Boon of Fluid Forms",
+    "document": "faerun-heroes",
+    "desc": "You gain the following benefits.\n\nShapechanger. You can take a Magic action to shape-shift into a Beast, Humanoid, or Monstrosity with a Challenge Rating no higher than 10. When you shape-shift, you gain a number of Temporary Hit Points equal to the Hit Points of the form. The shape-shifting effect lasts for 1 hour, and it ends early if you have no Temporary Hit Points left or if you take a Magic action to return to your true form.\n\nYour game statistics are replaced by the stat block of the chosen form, but you retain your creature type; alignment; personality; Intelligence, Wisdom, and Charisma scores; Hit Points; Hit Point Dice; proficiencies; and ability to communicate. If you have the Spellcasting or Pact Magic feature, you retain it too. Upon shape-shifting, you determine whether your equipment drops to the ground or changes in size and shape to fit the new form while you're in it.\n\nOnce you use this benefit, you can't do so again until you finish a Long Rest.\n\nHardy Transformation. When you gain Temporary Hit Points when you shape-shift, increase that number of Temporary Hit Points by 20.",
+    "benefits": [
+      {
+        "name": "Shapechanger",
+        "desc": "You can take a Magic action to shape-shift into a Beast, Humanoid, or Monstrosity with a Challenge Rating no higher than 10. When you shape-shift, you gain a number of Temporary Hit Points equal to the Hit Points of the form. The shape-shifting effect lasts for 1 hour, and it ends early if you have no Temporary Hit Points left or if you take a Magic action to return to your true form.\n\nYour game statistics are replaced by the stat block of the chosen form, but you retain your creature type; alignment; personality; Intelligence, Wisdom, and Charisma scores; Hit Points; Hit Point Dice; proficiencies; and ability to communicate. If you have the Spellcasting or Pact Magic feature, you retain it too. Upon shape-shifting, you determine whether your equipment drops to the ground or changes in size and shape to fit the new form while you're in it.\n\nOnce you use this benefit, you can't do so again until you finish a Long Rest."
+      },
+      {
+        "name": "Hardy Transformation",
+        "desc": "When you gain Temporary Hit Points when you shape-shift, increase that number of Temporary Hit Points by 20."
+      }
+    ],
+    "prerequisite": "Level 19+",
+    "has_prerequisite": true,
+    "type": "Epic Boon",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_boon-of-fortunes-favor",
+    "name": "Boon of Fortune's Favor",
+    "document": "faerun-heroes",
+    "desc": "You gain the following benefits.\n\nSaving Throw Reroll. When you fail a saving throw, you can reroll it and must use the new roll. Once you use this benefit, you can't do so again until the start of your next turn.",
+    "benefits": [
+      {
+        "name": "Saving Throw Reroll",
+        "desc": "When you fail a saving throw, you can reroll it and must use the new roll. Once you use this benefit, you can't do so again until the start of your next turn."
+      }
+    ],
+    "prerequisite": "Level 19+",
+    "has_prerequisite": true,
+    "type": "Epic Boon",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_boon-of-poison-mastery",
+    "name": "Boon of Poison Mastery",
+    "document": "faerun-heroes",
+    "desc": "You gain the following benefits.\n\nAntitoxic. You have Immunity to Poison damage and the Poisoned condition.\n\nPerfect Poisoner. Once per turn, when you roll dice to determine Poison damage a creature takes from your attack, spell, or feature, you can instead use the highest number possible for each die.",
+    "benefits": [
+      {
+        "name": "Antitoxic",
+        "desc": "You have Immunity to Poison damage and the Poisoned condition."
+      },
+      {
+        "name": "Perfect Poisoner",
+        "desc": "Once per turn, when you roll dice to determine Poison damage a creature takes from your attack, spell, or feature, you can instead use the highest number possible for each die."
+      }
+    ],
+    "prerequisite": "Level 19+",
+    "has_prerequisite": true,
+    "type": "Epic Boon",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_boon-of-revelry",
+    "name": "Boon of Revelry",
+    "document": "faerun-heroes",
+    "desc": "You gain the following benefits.\n\nInspire Dance. You always have the Otto's Irresistible Dance spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it that way when you finish a Long Rest. You can also cast the spell using any spell slots you have of the appropriate level.\n\nWhen you cast the spell, it requires no spell components, and taking damage doesn't break your Concentration on it.\n\nSing Out. While a creature that failed its saving throw against your Otto's Irresistible Dance has the Charmed condition from that spell, it can't cast spells with Verbal components, and it sings delightful nonsense if it can sing.",
+    "benefits": [
+      {
+        "name": "Inspire Dance",
+        "desc": "You always have the Otto's Irresistible Dance spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it that way when you finish a Long Rest. You can also cast the spell using any spell slots you have of the appropriate level.\n\nWhen you cast the spell, it requires no spell components, and taking damage doesn't break your Concentration on it."
+      },
+      {
+        "name": "Sing Out",
+        "desc": "While a creature that failed its saving throw against your Otto's Irresistible Dance has the Charmed condition from that spell, it can't cast spells with Verbal components, and it sings delightful nonsense if it can sing."
+      }
+    ],
+    "prerequisite": "Level 19+",
+    "has_prerequisite": true,
+    "type": "Epic Boon",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_boon-of-terror",
+    "name": "Boon of Terror",
+    "document": "faerun-heroes",
+    "desc": "You gain the following benefits.\n\nFearless. You have Immunity to the Frightened condition.\n\nFlee, Fools!. When a creature with the Frightened condition starts its turn within 60 feet of you, you can take a Reaction to stoke its terror, provided you can see the creature and it isn't behind Total Cover. If you do so, the creature must succeed on a Wisdom saving throw (DC 8 plus your Charisma modifier and your Proficiency Bonus) or spend its turn moving away from you by the fastest available means. Once you use this benefit, you can't use it again until you finish a Short or Long Rest.\n\nIntimidating. You gain Proficiency in the Intimidation skill if you don't already have it. You also gain Expertise in Intimidation.",
+    "benefits": [
+      {
+        "name": "Fearless",
+        "desc": "You have Immunity to the Frightened condition."
+      },
+      {
+        "name": "Flee, Fools!",
+        "desc": "When a creature with the Frightened condition starts its turn within 60 feet of you, you can take a Reaction to stoke its terror, provided you can see the creature and it isn't behind Total Cover. If you do so, the creature must succeed on a Wisdom saving throw (DC 8 plus your Charisma modifier and your Proficiency Bonus) or spend its turn moving away from you by the fastest available means. Once you use this benefit, you can't use it again until you finish a Short or Long Rest."
+      },
+      {
+        "name": "Intimidating",
+        "desc": "You gain Proficiency in the Intimidation skill if you don't already have it. You also gain Expertise in Intimidation."
+      }
+    ],
+    "prerequisite": "Level 19+",
+    "has_prerequisite": true,
+    "type": "Epic Boon",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_boon-of-the-bright-sun",
+    "name": "Boon of the Bright Sun",
+    "document": "faerun-heroes",
+    "desc": "You gain the following benefits.\n\nDaylight Presence. As a Bonus Action, you radiate a 30-foot Emanation of Bright Light that is sunlight. If any of the Emanation's area overlaps with an area of Darkness created by a spell, that spell is dispelled. The Emanation lasts until you dismiss it (no action required), die, or have the Incapacitated condition.\n\nFortifying Light. When your Daylight Presence is active, at the start of each of your turns, you and allies you can see in your Daylight Presence gain 10 Temporary Hit Points.",
+    "benefits": [
+      {
+        "name": "Daylight Presence",
+        "desc": "As a Bonus Action, you radiate a 30-foot Emanation of Bright Light that is sunlight. If any of the Emanation's area overlaps with an area of Darkness created by a spell, that spell is dispelled. The Emanation lasts until you dismiss it (no action required), die, or have the Incapacitated condition."
+      },
+      {
+        "name": "Fortifying Light",
+        "desc": "When your Daylight Presence is active, at the start of each of your turns, you and allies you can see in your Daylight Presence gain 10 Temporary Hit Points."
+      }
+    ],
+    "prerequisite": "Level 19+",
+    "has_prerequisite": true,
+    "type": "Epic Boon",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_boon-of-the-furious-storm",
+    "name": "Boon of the Furious Storm",
+    "document": "faerun-heroes",
+    "desc": "You gain the following benefits.\n\nEye of the Storm. You have Resistance to Lightning and Thunder damage. While you are Bloodied, you have Immunity to Lightning and Thunder damage.\n\nStorm's Strength. Creatures have Disadvantage on saving throws against your spells that deal Lightning or Thunder damage.",
+    "benefits": [
+      {
+        "name": "Eye of the Storm",
+        "desc": "You have Resistance to Lightning and Thunder damage. While you are Bloodied, you have Immunity to Lightning and Thunder damage."
+      },
+      {
+        "name": "Storm's Strength",
+        "desc": "Creatures have Disadvantage on saving throws against your spells that deal Lightning or Thunder damage."
+      }
+    ],
+    "prerequisite": "Level 19+, Spellcasting feature",
+    "has_prerequisite": true,
+    "type": "Epic Boon",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_boon-of-the-soul-drinker",
+    "name": "Boon of the Soul Drinker",
+    "document": "faerun-heroes",
+    "desc": "You gain the following benefits.\n\nGrave Resistance. You have Resistance to Cold damage and Necrotic damage.\n\nSiphon Life. When an enemy within 120 feet of you is reduced to 0 Hit Points, you can take a Reaction to regain 50 Hit Points. Once you use this benefit, you can't use it again until you finish a Short or Long Rest.",
+    "benefits": [
+      {
+        "name": "Grave Resistance",
+        "desc": "You have Resistance to Cold damage and Necrotic damage."
+      },
+      {
+        "name": "Siphon Life",
+        "desc": "When an enemy within 120 feet of you is reduced to 0 Hit Points, you can take a Reaction to regain 50 Hit Points. Once you use this benefit, you can't use it again until you finish a Short or Long Rest."
+      }
+    ],
+    "prerequisite": "Level 19+",
+    "has_prerequisite": true,
+    "type": "Epic Boon",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_cold-caster",
+    "name": "Cold Caster",
+    "document": "faerun-heroes",
+    "desc": "You gain the following benefits.\n\nCantrip. You learn the Ray of Frost cantrip. If you already know it, you learn a different Wizard cantrip of your choice. The spell's spellcasting ability is the ability increased by this feat.\n\nFrostbite. Once per turn when you hit a creature with an attack roll and deal Cold damage, you can temporarily negate the creature's defenses. The creature subtracts 1d4 from the next saving throw it makes before the end of your next turn.",
+    "benefits": [
+      {
+        "name": "Cantrip",
+        "desc": "You learn the Ray of Frost cantrip. If you already know it, you learn a different Wizard cantrip of your choice. The spell's spellcasting ability is the ability increased by this feat."
+      },
+      {
+        "name": "Frostbite",
+        "desc": "Once per turn when you hit a creature with an attack roll and deal Cold damage, you can temporarily negate the creature's defenses. The creature subtracts 1d4 from the next saving throw it makes before the end of your next turn."
+      }
+    ],
+    "prerequisite": "Level 4+",
+    "has_prerequisite": true,
+    "type": "General",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_cult-of-the-dragon-initiate",
+    "name": "Cult of the Dragon Initiate",
+    "document": "faerun-heroes",
+    "desc": "You gain the following benefits.\n\nDragon's Tongue. You know Draconic. If you already know Draconic when you select this feat, you instead learn one language of your choice from the language tables in the Player's Handbook or Chapter 2 of this book.\n\nDragon's Terror. You can take a Magic action to instill terror in a creature you can see within 30 feet of yourself. The target must succeed on a Wisdom saving throw (DC 8 plus your Wisdom modifier and Proficiency Bonus) or have the Frightened condition until the end of your next turn. If the target succeeds on the save or when the effect ends for a target, the target is immune to this effect for 24 hours.\n\nInspired by Fear. When you cause a creature to have the Frightened condition and you are the source of its fear, you can gain Heroic Inspiration if you lack it. Once you use this benefit, you can't use it again until you finish a Short or Long Rest.",
+    "benefits": [
+      {
+        "name": "Dragon's Tongue",
+        "desc": "You know Draconic. If you already know Draconic when you select this feat, you instead learn one language of your choice from the language tables in the Player's Handbook or Chapter 2 of this book."
+      },
+      {
+        "name": "Dragon's Terror",
+        "desc": "You can take a Magic action to instill terror in a creature you can see within 30 feet of yourself. The target must succeed on a Wisdom saving throw (DC 8 plus your Wisdom modifier and Proficiency Bonus) or have the Frightened condition until the end of your next turn. If the target succeeds on the save or when the effect ends for a target, the target is immune to this effect for 24 hours."
+      },
+      {
+        "name": "Inspired by Fear",
+        "desc": "When you cause a creature to have the Frightened condition and you are the source of its fear, you can gain Heroic Inspiration if you lack it. Once you use this benefit, you can't use it again until you finish a Short or Long Rest."
+      }
+    ],
+    "prerequisite": "",
+    "has_prerequisite": false,
+    "type": "Origin",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_dragonscarred",
+    "name": "Dragonscarred",
+    "document": "faerun-heroes",
+    "desc": "You gain the following benefits.\n\nDamage Resistance. When you gain this feat, choose Acid, Cold, Fire, Lightning, or Poison. You have Resistance to the chosen damage type.\n\nFearsome Power. When you deal damage to a creature as part of the Attack or Magic action on your turn, you can use the Dragon's Terror benefit of the Cult of the Dragon Initiate feat as a Bonus Action this turn.",
+    "benefits": [
+      {
+        "name": "Damage Resistance",
+        "desc": "When you gain this feat, choose Acid, Cold, Fire, Lightning, or Poison. You have Resistance to the chosen damage type."
+      },
+      {
+        "name": "Fearsome Power",
+        "desc": "When you deal damage to a creature as part of the Attack or Magic action on your turn, you can use the Dragon's Terror benefit of the Cult of the Dragon Initiate feat as a Bonus Action this turn."
+      }
+    ],
+    "prerequisite": "Level 4+",
+    "has_prerequisite": true,
+    "type": "General",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_emerald-enclave-fledgling",
+    "name": "Emerald Enclave Fledgling",
+    "document": "faerun-heroes",
+    "desc": "You gain the following benefits.\n\nSpeak with Animals. You always have the Speak with Animals spell prepared and can cast it with any spell slots you have. Intelligence, Wisdom, or Charisma is your spellcasting ability for this spell (choose when you select this feat). When you cast this spell as a Ritual, its duration is 8 hours.\n\nTag Team. When you take the Help action, you can switch places with a willing ally within 5 feet of yourself as part of that same action. This movement doesn't provoke Opportunity Attacks. You can't use this benefit if the ally has the Incapacitated condition.",
+    "benefits": [
+      {
+        "name": "Speak with Animals",
+        "desc": "You always have the Speak with Animals spell prepared and can cast it with any spell slots you have. Intelligence, Wisdom, or Charisma is your spellcasting ability for this spell (choose when you select this feat). When you cast this spell as a Ritual, its duration is 8 hours."
+      },
+      {
+        "name": "Tag Team",
+        "desc": "When you take the Help action, you can switch places with a willing ally within 5 feet of yourself as part of that same action. This movement doesn't provoke Opportunity Attacks. You can't use this benefit if the ally has the Incapacitated condition."
+      }
+    ],
+    "prerequisite": "",
+    "has_prerequisite": false,
+    "type": "Origin",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_enclave-magic",
+    "name": "Enclave Magic",
+    "document": "faerun-heroes",
+    "desc": "You gain the following benefits.\n\nFriend to Animals. You have Advantage on ability checks when taking the Influence action with Beasts.\n\nTwo Hearts, One Mind. You always have the Beast Sense spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest. When you cast it without a spell slot using this feature, it doesn't require Concentration. You can also cast the spell using any spell slots you have of the appropriate level. The spell's spellcasting ability is the ability increased by this feat.",
+    "benefits": [
+      {
+        "name": "Friend to Animals",
+        "desc": "You have Advantage on ability checks when taking the Influence action with Beasts."
+      },
+      {
+        "name": "Two Hearts, One Mind",
+        "desc": "You always have the Beast Sense spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest. When you cast it without a spell slot using this feature, it doesn't require Concentration. You can also cast the spell using any spell slots you have of the appropriate level. The spell's spellcasting ability is the ability increased by this feat."
+      }
+    ],
+    "prerequisite": "Level 4+",
+    "has_prerequisite": true,
+    "type": "General",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_fairy-trickster",
+    "name": "Fairy Trickster",
+    "document": "faerun-heroes",
+    "desc": "You gain the following benefits.\n\nFaerie Trod Trotter. When you take the Disengage action on your turn, Difficult Terrain doesn't cost you extra movement for the rest of that turn.\n\nFlustering Strike. When you hit a creature with an attack roll, you can attempt to fluster the target. The target must succeed on a Wisdom saving throw (DC 8 plus the ability modifier of the score increased by this feat and your Proficiency Bonus) or have Disadvantage on saving throws until the end of your next turn.\n\nYou can use this benefit a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest.",
+    "benefits": [
+      {
+        "name": "Faerie Trod Trotter",
+        "desc": "When you take the Disengage action on your turn, Difficult Terrain doesn't cost you extra movement for the rest of that turn."
+      },
+      {
+        "name": "Flustering Strike",
+        "desc": "When you hit a creature with an attack roll, you can attempt to fluster the target. The target must succeed on a Wisdom saving throw (DC 8 plus the ability modifier of the score increased by this feat and your Proficiency Bonus) or have Disadvantage on saving throws until the end of your next turn.\n\nYou can use this benefit a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest."
+      }
+    ],
+    "prerequisite": "Level 4+",
+    "has_prerequisite": true,
+    "type": "General",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_genie-magic",
+    "name": "Genie Magic",
+    "document": "faerun-heroes",
+    "desc": "You gain the following benefits.\n\nWish Magic. As a Magic action, you can cast a level 1 spell of your choice from the Sorcerer spell list that has a casting time of an action. Once you use this benefit, you can't do so again until you finish a Long Rest. The spell's spellcasting ability is the ability increased by this feat.\n\nWhen you reach level 11, the spell you cast with this feat is cast as though using a level 2 spell slot.\n\nWhen you reach level 17, the spell is cast as though using a level 3 spell slot.",
+    "benefits": [
+      {
+        "name": "Wish Magic",
+        "desc": "As a Magic action, you can cast a level 1 spell of your choice from the Sorcerer spell list that has a casting time of an action. Once you use this benefit, you can't do so again until you finish a Long Rest. The spell's spellcasting ability is the ability increased by this feat.\n\nWhen you reach level 11, the spell you cast with this feat is cast as though using a level 2 spell slot.\n\nWhen you reach level 17, the spell is cast as though using a level 3 spell slot."
+      }
+    ],
+    "prerequisite": "Level 4+",
+    "has_prerequisite": true,
+    "type": "General",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_harper-agent",
+    "name": "Harper Agent",
+    "document": "faerun-heroes",
+    "desc": "You gain the following benefits.\n\nThieves' Cant. You know Thieves' Cant.\n\nInstrument Training. You gain proficiency with a Musical Instrument of your choice.\n\nDistracting Melody. When you take the Help action to assist an ally's attack roll, the enemy you're distracting can be within 30 feet of you, rather than within 5 feet of you, provided the enemy can see or hear you.",
+    "benefits": [
+      {
+        "name": "Thieves' Cant",
+        "desc": "You know Thieves' Cant."
+      },
+      {
+        "name": "Instrument Training",
+        "desc": "You gain proficiency with a Musical Instrument of your choice."
+      },
+      {
+        "name": "Distracting Melody",
+        "desc": "When you take the Help action to assist an ally's attack roll, the enemy you're distracting can be within 30 feet of you, rather than within 5 feet of you, provided the enemy can see or hear you."
+      }
+    ],
+    "prerequisite": "",
+    "has_prerequisite": false,
+    "type": "Origin",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_harper-teamwork",
+    "name": "Harper Teamwork",
+    "document": "faerun-heroes",
+    "desc": "You gain the following benefits.\n\nWithering Wordplay. When you take the Help action to assist an ally's attack roll against an enemy, that enemy also has Disadvantage on the first saving throw it makes before the start of your next turn.\n\nInspiring Willpower. If you succeed on a saving throw to end the Frightened or Paralyzed condition on yourself, you can choose one ally you can see within 30 feet of yourself that has the same condition. That condition immediately ends for that ally.",
+    "benefits": [
+      {
+        "name": "Withering Wordplay",
+        "desc": "When you take the Help action to assist an ally's attack roll against an enemy, that enemy also has Disadvantage on the first saving throw it makes before the start of your next turn."
+      },
+      {
+        "name": "Inspiring Willpower",
+        "desc": "If you succeed on a saving throw to end the Frightened or Paralyzed condition on yourself, you can choose one ally you can see within 30 feet of yourself that has the same condition. That condition immediately ends for that ally."
+      }
+    ],
+    "prerequisite": "Level 4+",
+    "has_prerequisite": true,
+    "type": "General",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_lordly-resolve",
+    "name": "Lordly Resolve",
+    "document": "faerun-heroes",
+    "desc": "You gain the following benefits.\n\nStandard Bearer. As a Bonus Action, choose up to three creatures within 60 feet of yourself that can see you. Each target can immediately take a Reaction to right itself and end the Prone condition, provided its Speed isn't 0. Additionally, you bolster the targets' resolve, which lasts for 1 minute or until you have the Incapacitated condition. While bolstered, a target can't be possessed or gain the Charmed or Frightened condition; if a target is already possessed, Charmed, or Frightened, the target has Advantage on any new saving throw against the relevant effect.\n\nOnce you use this benefit, you can't do so again until you finish a Long Rest.",
+    "benefits": [
+      {
+        "name": "Standard Bearer",
+        "desc": "As a Bonus Action, choose up to three creatures within 60 feet of yourself that can see you. Each target can immediately take a Reaction to right itself and end the Prone condition, provided its Speed isn't 0. Additionally, you bolster the targets' resolve, which lasts for 1 minute or until you have the Incapacitated condition. While bolstered, a target can't be possessed or gain the Charmed or Frightened condition; if a target is already possessed, Charmed, or Frightened, the target has Advantage on any new saving throw against the relevant effect.\n\nOnce you use this benefit, you can't do so again until you finish a Long Rest."
+      }
+    ],
+    "prerequisite": "Level 4+",
+    "has_prerequisite": true,
+    "type": "General",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_lords-alliance-agent",
+    "name": "Lords' Alliance Agent",
+    "document": "faerun-heroes",
+    "desc": "You gain the following benefits.\n\nInspiring Strike. Once per turn when you score a Critical Hit against a creature, you can choose an ally within 30 feet of yourself who can see or hear you and who lacks Heroic Inspiration. That ally gains Heroic Inspiration.\n\nReassert Honor. When an enemy you can see deals damage to an ally of yours that is within 5 feet of you, you have Advantage on your next attack roll against that enemy before the end of your next turn.",
+    "benefits": [
+      {
+        "name": "Inspiring Strike",
+        "desc": "Once per turn when you score a Critical Hit against a creature, you can choose an ally within 30 feet of yourself who can see or hear you and who lacks Heroic Inspiration. That ally gains Heroic Inspiration."
+      },
+      {
+        "name": "Reassert Honor",
+        "desc": "When an enemy you can see deals damage to an ally of yours that is within 5 feet of you, you have Advantage on your next attack roll against that enemy before the end of your next turn."
+      }
+    ],
+    "prerequisite": "",
+    "has_prerequisite": false,
+    "type": "Origin",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_mythal-touched",
+    "name": "Mythal Touched",
+    "document": "faerun-heroes",
+    "desc": "You gain the following benefits.\n\nMythal Ward. If a spell attack hits you or you fail a saving throw against a spell, you can take a Reaction to roll on the Mythal-Touched Magic table to create a magical effect. If an effect requires a saving throw, the DC equals 8 plus the modifier of the ability increased by this feat and your Proficiency Bonus.\n\nYou can use this benefit a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest.\n\nTable: Mythal-Touched Magic\n| 1d20 | Effect |\n|---|---|\n| 1-2 | You and each creature within 15 feet of you make a Dexterity saving throw, taking Force damage equal to 1d8 times the level of the triggering spell on a failed save or half as much damage on a successful one. |\n| 3-7 | You and the triggering spell's caster form a telepathic link for 1 hour. |\n| 8-10 | Gravity is reversed in a 15-foot-radius, 60-foot-tall Cylinder centered on you for 1 minute, per the Reverse Gravity spell. |\n| 11-13 | You and the triggering spell's caster each make a Constitution saving throw. On a failed save, the creature has the Stunned condition until the end of its next turn. |\n| 14-17 | You gain a +2 bonus to AC for 1 minute, potentially turning the triggering spell into a miss if it was a spell attack. |\n| 18-19 | Any flammable, nonmagical object within 10 feet of the triggering spell's caster that isn't being worn or carried by another creature bursts into flame, takes 1d4 Fire damage, and is burning. |\n| 20 | The triggering spell dissipates with no effect, and the action, Bonus Action, or Reaction used to cast it is wasted. If that spell was cast with a spell slot, the slot isn't expended. |",
+    "benefits": [
+      {
+        "name": "Mythal Ward",
+        "desc": "If a spell attack hits you or you fail a saving throw against a spell, you can take a Reaction to roll on the Mythal-Touched Magic table to create a magical effect. If an effect requires a saving throw, the DC equals 8 plus the modifier of the ability increased by this feat and your Proficiency Bonus.\n\nYou can use this benefit a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest.\n\nTable: Mythal-Touched Magic\n| 1d20 | Effect |\n|---|---|\n| 1-2 | You and each creature within 15 feet of you make a Dexterity saving throw, taking Force damage equal to 1d8 times the level of the triggering spell on a failed save or half as much damage on a successful one. |\n| 3-7 | You and the triggering spell's caster form a telepathic link for 1 hour. |\n| 8-10 | Gravity is reversed in a 15-foot-radius, 60-foot-tall Cylinder centered on you for 1 minute, per the Reverse Gravity spell. |\n| 11-13 | You and the triggering spell's caster each make a Constitution saving throw. On a failed save, the creature has the Stunned condition until the end of its next turn. |\n| 14-17 | You gain a +2 bonus to AC for 1 minute, potentially turning the triggering spell into a miss if it was a spell attack. |\n| 18-19 | Any flammable, nonmagical object within 10 feet of the triggering spell's caster that isn't being worn or carried by another creature bursts into flame, takes 1d4 Fire damage, and is burning. |\n| 20 | The triggering spell dissipates with no effect, and the action, Bonus Action, or Reaction used to cast it is wasted. If that spell was cast with a spell slot, the slot isn't expended. |"
+      }
+    ],
+    "prerequisite": "Level 4+",
+    "has_prerequisite": true,
+    "type": "General",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_orders-resilience",
+    "name": "Order's Resilience",
+    "document": "faerun-heroes",
+    "desc": "You gain the following benefits.\n\nResurge. When you have the Prone condition, you can right yourself with only 5 feet of movement.\n\nStronger Together. If you are within 5 feet of an ally that doesn't have the Incapacitated condition, you and that ally have Advantage on Strength saving throws. You can't use this benefit while you have the Incapacitated condition.",
+    "benefits": [
+      {
+        "name": "Resurge",
+        "desc": "When you have the Prone condition, you can right yourself with only 5 feet of movement."
+      },
+      {
+        "name": "Stronger Together",
+        "desc": "If you are within 5 feet of an ally that doesn't have the Incapacitated condition, you and that ally have Advantage on Strength saving throws. You can't use this benefit while you have the Incapacitated condition."
+      }
+    ],
+    "prerequisite": "Level 4+",
+    "has_prerequisite": true,
+    "type": "General",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_purple-dragon-commandant",
+    "name": "Purple Dragon Commandant",
+    "document": "faerun-heroes",
+    "desc": "You gain the following benefits.\n\nEncourage Ally. As a Bonus Action, you bolster one ally you can see within 30 feet. The ally gains Temporary Hit Points equal to 2d6 plus the modifier of the ability score increased by this feat. You can take this Bonus Action a number of times equal to your Proficiency Bonus, and you regain all uses when you finish a Long Rest.\n\nLast Stand. You have Advantage on attack rolls while Bloodied.",
+    "benefits": [
+      {
+        "name": "Encourage Ally",
+        "desc": "As a Bonus Action, you bolster one ally you can see within 30 feet. The ally gains Temporary Hit Points equal to 2d6 plus the modifier of the ability score increased by this feat. You can take this Bonus Action a number of times equal to your Proficiency Bonus, and you regain all uses when you finish a Long Rest."
+      },
+      {
+        "name": "Last Stand",
+        "desc": "You have Advantage on attack rolls while Bloodied."
+      }
+    ],
+    "prerequisite": "Level 4+, Martial proficiency",
+    "has_prerequisite": true,
+    "type": "General",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_purple-dragon-rook",
+    "name": "Purple Dragon Rook",
+    "document": "faerun-heroes",
+    "desc": "You gain the following benefits.\n\nEntreat. You gain proficiency in one of the following skills: Insight, Performance, or Persuasion.\n\nRallying Cry. When you roll Initiative and don't have the Incapacitated condition, you can choose a number of creatures equal to your Proficiency Bonus that you can see within 30 feet of yourself. Those creatures gain Heroic Inspiration.\n\nOnce you use this benefit, you can't do so again until you finish a Long Rest.",
+    "benefits": [
+      {
+        "name": "Entreat",
+        "desc": "You gain proficiency in one of the following skills: Insight, Performance, or Persuasion."
+      },
+      {
+        "name": "Rallying Cry",
+        "desc": "When you roll Initiative and don't have the Incapacitated condition, you can choose a number of creatures equal to your Proficiency Bonus that you can see within 30 feet of yourself. Those creatures gain Heroic Inspiration.\n\nOnce you use this benefit, you can't do so again until you finish a Long Rest."
+      }
+    ],
+    "prerequisite": "",
+    "has_prerequisite": false,
+    "type": "Origin",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_spellfire-adept",
+    "name": "Spellfire Adept",
+    "document": "faerun-heroes",
+    "desc": "You gain the following benefits.\n\nFueled Spellfire. Once per turn, when a spell you cast deals Radiant damage, you can expend up to two Hit Point Dice, roll them, and add the total rolled to one damage roll of the spell.\n\nSearing Spellfire. When you make a damage roll that deals Radiant damage, it ignores Resistance to Radiant damage.",
+    "benefits": [
+      {
+        "name": "Fueled Spellfire",
+        "desc": "Once per turn, when a spell you cast deals Radiant damage, you can expend up to two Hit Point Dice, roll them, and add the total rolled to one damage roll of the spell."
+      },
+      {
+        "name": "Searing Spellfire",
+        "desc": "When you make a damage roll that deals Radiant damage, it ignores Resistance to Radiant damage."
+      }
+    ],
+    "prerequisite": "Level 4+",
+    "has_prerequisite": true,
+    "type": "General",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_spellfire-spark",
+    "name": "Spellfire Spark",
+    "document": "faerun-heroes",
+    "desc": "You gain the following benefits.\n\nMagic Absorption. Once per turn, when you take damage from a spell or magical effect, you reduce the total damage taken by 1d4. You can't use this benefit if you have the Incapacitated condition.\n\nSpellfire Flame. You learn the Sacred Flame cantrip. Intelligence, Wisdom, or Charisma is your spellcasting ability for this spell (choose when you select this feat). You can also cast this cantrip as a Bonus Action a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest.",
+    "benefits": [
+      {
+        "name": "Magic Absorption",
+        "desc": "Once per turn, when you take damage from a spell or magical effect, you reduce the total damage taken by 1d4. You can't use this benefit if you have the Incapacitated condition."
+      },
+      {
+        "name": "Spellfire Flame",
+        "desc": "You learn the Sacred Flame cantrip. Intelligence, Wisdom, or Charisma is your spellcasting ability for this spell (choose when you select this feat). You can also cast this cantrip as a Bonus Action a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest."
+      }
+    ],
+    "prerequisite": "",
+    "has_prerequisite": false,
+    "type": "Origin",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_street-justice",
+    "name": "Street Justice",
+    "document": "faerun-heroes",
+    "desc": "You gain the following benefits.\n\nHeadlock. Your allies have Advantage on attack rolls against a creature Grappled by you.\n\nSturdy Knot. When you use Chain, Manacles, or Rope to bind a creature, add your Proficiency Bonus to the DC to escape or burst the Chain, Manacles, or Rope.\n\nTough Talk. A creature's Hostile attitude doesn't impose Disadvantage on your Charisma (Intimidation) checks to influence that creature.",
+    "benefits": [
+      {
+        "name": "Headlock",
+        "desc": "Your allies have Advantage on attack rolls against a creature Grappled by you."
+      },
+      {
+        "name": "Sturdy Knot",
+        "desc": "When you use Chain, Manacles, or Rope to bind a creature, add your Proficiency Bonus to the DC to escape or burst the Chain, Manacles, or Rope."
+      },
+      {
+        "name": "Tough Talk",
+        "desc": "A creature's Hostile attitude doesn't impose Disadvantage on your Charisma (Intimidation) checks to influence that creature."
+      }
+    ],
+    "prerequisite": "Level 4+",
+    "has_prerequisite": true,
+    "type": "General",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_tyro-of-the-gauntlet",
+    "name": "Tyro of the Gauntlet",
+    "document": "faerun-heroes",
+    "desc": "You gain the following benefits.\n\nStand as One. When an ally within 5 feet of you is subjected to an effect that would push or pull it, you can take a Reaction to prevent that ally from being pushed or pulled. To receive this benefit, the ally can't have the Incapacitated condition.\n\nVigilant. When you take the Ready action, the next attack roll made against you has Disadvantage before the start of your next turn.",
+    "benefits": [
+      {
+        "name": "Stand as One",
+        "desc": "When an ally within 5 feet of you is subjected to an effect that would push or pull it, you can take a Reaction to prevent that ally from being pushed or pulled. To receive this benefit, the ally can't have the Incapacitated condition."
+      },
+      {
+        "name": "Vigilant",
+        "desc": "When you take the Ready action, the next attack roll made against you has Disadvantage before the start of your next turn."
+      }
+    ],
+    "prerequisite": "",
+    "has_prerequisite": false,
+    "type": "Origin",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_zhentarim-ruffian",
+    "name": "Zhentarim Ruffian",
+    "document": "faerun-heroes",
+    "desc": "You gain the following benefits.\n\nExploit Opening. When you roll damage for an Opportunity Attack, you can roll the damage dice twice and use either roll against the target.\n\nFamily First. If you have Heroic Inspiration when you roll Initiative, you can expend it to give yourself and your allies Advantage on that Initiative roll.",
+    "benefits": [
+      {
+        "name": "Exploit Opening",
+        "desc": "When you roll damage for an Opportunity Attack, you can roll the damage dice twice and use either roll against the target."
+      },
+      {
+        "name": "Family First",
+        "desc": "If you have Heroic Inspiration when you roll Initiative, you can expend it to give yourself and your allies Advantage on that Initiative roll."
+      }
+    ],
+    "prerequisite": "",
+    "has_prerequisite": false,
+    "type": "Origin",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_zhentarim-tactics",
+    "name": "Zhentarim Tactics",
+    "document": "faerun-heroes",
+    "desc": "You gain the following benefits.\n\nRetaliate. Immediately after a creature within 5 feet of you hits you with a melee attack, you can make an Opportunity Attack against that creature.\n\nVersatile Merc. When you finish a Long Rest, choose a skill in which you have proficiency. You have Expertise in that skill until you finish your next Long Rest.",
+    "benefits": [
+      {
+        "name": "Retaliate",
+        "desc": "Immediately after a creature within 5 feet of you hits you with a melee attack, you can make an Opportunity Attack against that creature."
+      },
+      {
+        "name": "Versatile Merc",
+        "desc": "When you finish a Long Rest, choose a skill in which you have proficiency. You have Expertise in that skill until you finish your next Long Rest."
+      }
+    ],
+    "prerequisite": "Level 4+",
+    "has_prerequisite": true,
+    "type": "General",
+    "crossreferences": {
+      "to": []
+    }
+  }
+]

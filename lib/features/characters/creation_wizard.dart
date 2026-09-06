@@ -6,7 +6,9 @@ import '../../data/custom_content_repository.dart';
 import '../../data/providers.dart';
 import '../../domain/models/ability.dart';
 import '../../domain/rules/origin_parsing.dart';
+import '../../data/content_tr.dart';
 import '../../l10n/app_localizations.dart';
+import '../../l10n/game_terms.dart';
 import '../world/pick_image_file.dart';
 import 'character_draft.dart';
 import 'character_providers.dart';
@@ -172,6 +174,7 @@ class _CreationWizardState extends ConsumerState<CreationWizard> {
             hitDieSides: core.hitDieSides,
             startingGoldGp: gold,
             startingItems: startingItems,
+            originFeatName: benefits?.featName,
           );
 
       // Secilen portre varsa karaktere bagla.
@@ -206,6 +209,7 @@ class _IdentityStep extends ConsumerWidget {
     final species = ref.watch(speciesOptionsProvider);
     final traits = ref.watch(speciesTraitsProvider(draft.speciesKey)).value;
     final l10n = L10n.of(context);
+    final glossary = glossaryTrOf(context, ref);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -242,7 +246,9 @@ class _IdentityStep extends ConsumerWidget {
             const SizedBox(width: 12),
             OutlinedButton.icon(
               onPressed: () async {
-                final picked = await pickImageFile();
+                final picked = await pickImageFile(
+                  typeLabel: l10n.fileTypeImage,
+                );
                 if (picked != null) {
                   notifier.update(draft.copyWith(portraitFile: picked));
                 }
@@ -308,7 +314,8 @@ class _IdentityStep extends ConsumerWidget {
               children: [
                 for (final size in traits.sizes)
                   ChoiceChip(
-                    label: Text(size),
+                    // Deger Ingilizce kaydediliyor; yalnizca etiket cevriliyor.
+                    label: Text(glossary.term('sizes', size)),
                     selected: draft.size == size,
                     onSelected: (_) =>
                         notifier.update(draft.copyWith(size: size)),
@@ -316,7 +323,7 @@ class _IdentityStep extends ConsumerWidget {
               ],
             ),
           ] else if (traits.sizes.isNotEmpty)
-            _InfoRow(l10n.ccSize, traits.sizes.single),
+            _InfoRow(l10n.ccSize, glossary.term('sizes', traits.sizes.single)),
         ],
       ],
     );
@@ -337,6 +344,7 @@ class _BackgroundStep extends ConsumerWidget {
         .watch(backgroundBenefitsProvider(draft.backgroundKey))
         .value;
     final l10n = L10n.of(context);
+    final names = contentNamesTrOf(context, ref);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -380,7 +388,7 @@ class _BackgroundStep extends ConsumerWidget {
           if (benefits.skills.isNotEmpty)
             _InfoRow(
               l10n.sheetSkills,
-              benefits.skills.map((s) => s.label).join(', '),
+              benefits.skills.map(l10n.skillName).join(', '),
             ),
           if (benefits.toolText != null)
             _InfoRow(l10n.cwTool, benefits.toolText!),
@@ -388,7 +396,7 @@ class _BackgroundStep extends ConsumerWidget {
             _InfoRow(
               l10n.cwBackgroundFeat,
               [
-                benefits.featName!,
+                names.term('feats', benefits.featName!),
                 if (benefits.featNote != null) '(${benefits.featNote})',
               ].join(' '),
             ),
@@ -439,6 +447,7 @@ class _OriginAllocator extends ConsumerWidget {
     final draft = ref.watch(characterDraftProvider);
     final notifier = ref.read(characterDraftProvider.notifier);
     final current = draft.originIncreases;
+    final l10n = L10n.of(context);
 
     void apply(Map<Ability, int> next) =>
         notifier.update(draft.copyWith(originIncreases: next));
@@ -451,7 +460,10 @@ class _OriginAllocator extends ConsumerWidget {
       }
       return Wrap(
         spacing: 8,
-        children: [for (final a in options) Chip(label: Text('${a.short} +1'))],
+        children: [
+          for (final a in options)
+            Chip(label: Text('${l10n.abilityShort(a)} +1')),
+        ],
       );
     }
 
@@ -470,7 +482,7 @@ class _OriginAllocator extends ConsumerWidget {
                     children: [
                       for (final a in options)
                         ChoiceChip(
-                          label: Text(a.short),
+                          label: Text(l10n.abilityShort(a)),
                           selected: current[a] == bonus,
                           onSelected: (_) {
                             final next = {
@@ -533,7 +545,7 @@ class _ClassStep extends ConsumerWidget {
           _InfoRow(l10n.cwHitDie, 'd${core.hitDieSides}'),
           _InfoRow(
             l10n.sheetSavingThrows,
-            core.savingThrows.map((a) => a.label).join(', '),
+            core.savingThrows.map(l10n.abilityName).join(', '),
           ),
           if (core.weaponText != null)
             _InfoRow(l10n.cwWeapons, core.weaponText!),
@@ -644,6 +656,7 @@ class _AbilityRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = L10n.of(context);
     final base = draft.baseScores[ability];
     final bonus = draft.originIncreases[ability] ?? 0;
     final total = base + bonus;
@@ -662,7 +675,10 @@ class _AbilityRow extends StatelessWidget {
         children: [
           SizedBox(
             width: 44,
-            child: Text(ability.short, style: theme.textTheme.titleSmall),
+            child: Text(
+              l10n.abilityShort(ability),
+              style: theme.textTheme.titleSmall,
+            ),
           ),
           IconButton(
             icon: const Icon(Icons.remove_circle_outline),
@@ -733,7 +749,7 @@ class _SkillsStep extends ConsumerWidget {
           const SizedBox(height: 8),
           Text(
             l10n.cwFromBackground(
-              fromBackground.map((s) => s.label).join(', '),
+              fromBackground.map(l10n.skillName).join(', '),
             ),
             style: Theme.of(context).textTheme.bodySmall,
           ),
@@ -742,8 +758,8 @@ class _SkillsStep extends ConsumerWidget {
         for (final skill in options)
           CheckboxListTile(
             dense: true,
-            title: Text(skill.label),
-            subtitle: Text(skill.ability.short),
+            title: Text(l10n.skillName(skill)),
+            subtitle: Text(l10n.abilityShort(skill.ability)),
             // Kokenden gelen beceriler zaten var; tekrar secilemez.
             value:
                 draft.chosenSkills.contains(skill) ||
@@ -877,6 +893,7 @@ class _SummaryStep extends ConsumerWidget {
     final scores = draft.finalScores;
     final hp = (core?.hitDieSides ?? 8) + scores.modifier(Ability.constitution);
     final l10n = L10n.of(context);
+    final names = contentNamesTrOf(context, ref);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -892,24 +909,27 @@ class _SummaryStep extends ConsumerWidget {
         const Divider(height: 24),
         for (final a in Ability.values)
           _InfoRow(
-            a.label,
+            l10n.abilityName(a),
             '${scores[a]}  (${scores.modifier(a) >= 0 ? '+' : ''}${scores.modifier(a)})',
           ),
         const Divider(height: 24),
         _InfoRow(l10n.levelUpHitPoints, '$hp'),
         _InfoRow(
           l10n.sheetSavingThrows,
-          core?.savingThrows.map((a) => a.label).join(', ') ?? '—',
+          core?.savingThrows.map(l10n.abilityName).join(', ') ?? '—',
         ),
         _InfoRow(
           l10n.sheetSkills,
           {
             ...draft.chosenSkills,
             ...?benefits?.skills,
-          }.map((s) => s.label).join(', '),
+          }.map(l10n.skillName).join(', '),
         ),
         if (benefits?.featName != null)
-          _InfoRow(l10n.cwBackgroundFeat, benefits!.featName!),
+          _InfoRow(
+            l10n.cwBackgroundFeat,
+            names.term('feats', benefits!.featName!),
+          ),
       ],
     );
   }

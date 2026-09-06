@@ -1,18 +1,21 @@
 {
-  "fetchedAt": "2026-08-03T05:30:00.000000Z",
+  "fetchedAt": "2026-08-21T11:47:53.908574Z",
   "source": "https://api.open5e.com/v2",
   "documents": [
-    "srd-2024"
+    "srd-2024",
+    "eberron-forge",
+    "ravenloft-horrors",
+    "faerun-heroes"
   ],
   "endpoints": {
-    "creatures": 505,
-    "spells": 407,
-    "items": 352,
-    "magicitems": 1009,
-    "classes": 60,
-    "backgrounds": 16,
-    "species": 17,
-    "feats": 81,
+    "creatures": 619,
+    "spells": 427,
+    "items": 460,
+    "magicitems": 1019,
+    "classes": 81,
+    "backgrounds": 55,
+    "species": 26,
+    "feats": 150,
     "weaponproperties": 17,
     "skills": 20,
     "conditions": 21,
@@ -25,6 +28,7 @@
     "itemcategories": 24,
     "environments": 31,
     "languages": 19,
-    "abilities": 6
+    "abilities": 6,
+    "optionalfeatures": 62
   }
 }

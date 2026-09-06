@@ -27,29 +27,20 @@ void main() {
     expect(q.reward, '200 altın');
     expect(q.dmNotes, 'Aslında kaçmadı');
     expect(q.done, isFalse);
-    expect(q.shared, isFalse);
+    expect(QuestRepository.targetsOf(q), isEmpty);
   });
 
-  test('setShared hedefleri JSON olarak yazar, setDone', () async {
+  test('setTargets ustlenenleri JSON olarak yazar, setDone', () async {
     final id = await repo.create();
-    await repo.setShared(id, shared: true, targets: ['c1', 'c2']);
+    await repo.setTargets(id, ['c1', 'c2']);
     var q = (await repo.find(id))!;
-    expect(q.shared, isTrue);
     expect(QuestRepository.targetsOf(q), ['c1', 'c2']);
 
     await repo.setDone(id, true);
     q = (await repo.find(id))!;
     expect(q.done, isTrue);
-    expect(q.shared, isTrue); // done shared'ı bozmaz
-  });
-
-  test('setAcceptance characterId→bool haritası biriktirir', () async {
-    final id = await repo.create();
-    await repo.setAcceptance(id, 'c1', true);
-    await repo.setAcceptance(id, 'c2', false);
-    await repo.setAcceptance(id, 'c1', false); // fikir değiştirme
-    final acc = QuestRepository.acceptancesOf((await repo.find(id))!);
-    expect(acc, {'c1': false, 'c2': false});
+    // Tamamlamak ustlenenleri bozmaz.
+    expect(QuestRepository.targetsOf(q), ['c1', 'c2']);
   });
 
   test('delete kaldırır', () async {

@@ -1,0 +1,1715 @@
+[
+  {
+    "key": "phb-2024_aberrant-spirit",
+    "name": "Aberrant Spirit",
+    "document": "phb-2024",
+    "type": {
+      "name": "Aberration",
+      "key": "aberration"
+    },
+    "size": {
+      "name": "Medium",
+      "key": "medium"
+    },
+    "challenge_rating": 0.0,
+    "proficiency_bonus": null,
+    "speed": {
+      "unit": "feet",
+      "walk": 30,
+      "fly": 30
+    },
+    "speed_all": {
+      "unit": "feet",
+      "walk": 30,
+      "fly": 30
+    },
+    "category": "Monsters",
+    "subcategory": null,
+    "alignment": "neutral",
+    "languages": {
+      "as_string": "Deep Speech, understands the languages you know",
+      "data": []
+    },
+    "armor_class": 11,
+    "armor_detail": "11 + the spell's level",
+    "hit_points": 0,
+    "hit_dice": "40 + 10 for each spell level above 4",
+    "experience_points": 10,
+    "ability_scores": {
+      "strength": 16,
+      "dexterity": 10,
+      "constitution": 15,
+      "intelligence": 16,
+      "wisdom": 10,
+      "charisma": 6
+    },
+    "modifiers": {
+      "strength": 3,
+      "dexterity": 0,
+      "constitution": 2,
+      "intelligence": 3,
+      "wisdom": 0,
+      "charisma": -2
+    },
+    "initiative_bonus": 0,
+    "saving_throws": {},
+    "saving_throws_all": {
+      "strength": 3,
+      "dexterity": 0,
+      "constitution": 2,
+      "intelligence": 3,
+      "wisdom": 0,
+      "charisma": -2
+    },
+    "skill_bonuses": {},
+    "skill_bonuses_all": {},
+    "passive_perception": 10,
+    "darkvision_range": 60,
+    "blindsight_range": 0,
+    "tremorsense_range": 0,
+    "truesight_range": 0,
+    "normal_sight_range": null,
+    "resistances_and_immunities": {
+      "damage_resistances_display": "",
+      "damage_resistances": [],
+      "damage_immunities_display": "psychic",
+      "damage_immunities": [],
+      "damage_vulnerabilities_display": "",
+      "damage_vulnerabilities": [],
+      "condition_immunities_display": "",
+      "condition_immunities": []
+    },
+    "traits": [
+      {
+        "name": "Regeneration (Slaad Only)",
+        "desc": "The spirit regains 5 Hit Points at the start of its turn if it has at least 1 Hit Point."
+      },
+      {
+        "name": "Whispering Aura (Mind Flayer Only)",
+        "desc": "At the start of each of the spirit's turns, the spirit emits psionic energy if it doesn't have the Incapacitated condition. Wisdom Saving Throw: DC equals your spell save DC, each creature (other than you) within 5 feet of the spirit. Failure: 2d6 Psychic damage."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Multiattack",
+        "desc": "The spirit makes a number of attacks equal to half this spell's level (round down).",
+        "action_type": "ACTION",
+        "order_in_statblock": 0,
+        "attacks": []
+      },
+      {
+        "name": "Claw (Slaad Only)",
+        "desc": "Melee Attack Roll: your spell attack modifier, reach 5 ft. Hit: 1d10 + 3 + summonSpellLevel Slashing damage, and the target can't regain Hit Points until the start of the spirit's next turn.",
+        "action_type": "ACTION",
+        "order_in_statblock": 1,
+        "attacks": []
+      },
+      {
+        "name": "Eye Ray (Beholderkin Only)",
+        "desc": "Ranged Attack Roll: your spell attack modifier, range 150 ft. Hit: 1d8 + 3 + summonSpellLevel Psychic damage.",
+        "action_type": "ACTION",
+        "order_in_statblock": 2,
+        "attacks": []
+      },
+      {
+        "name": "Psychic Slam (Mind Flayer Only)",
+        "desc": "Melee Attack Roll: your spell attack modifier, reach 5 ft. Hit: 1d8 + 3 + summonSpellLevel Psychic damage.",
+        "action_type": "ACTION",
+        "order_in_statblock": 3,
+        "attacks": []
+      }
+    ],
+    "environments": [],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_animated-object",
+    "name": "Animated Object",
+    "document": "phb-2024",
+    "type": {
+      "name": "Construct",
+      "key": "construct"
+    },
+    "size": {
+      "name": "Tiny",
+      "key": "tiny"
+    },
+    "challenge_rating": 0.0,
+    "proficiency_bonus": null,
+    "speed": {
+      "unit": "feet",
+      "walk": 30
+    },
+    "speed_all": {
+      "unit": "feet",
+      "walk": 30
+    },
+    "category": "Monsters",
+    "subcategory": null,
+    "alignment": "unaligned",
+    "languages": {
+      "as_string": "understands the languages you know",
+      "data": []
+    },
+    "armor_class": 15,
+    "armor_detail": null,
+    "hit_points": 0,
+    "hit_dice": "10 (Medium or smaller), 20 (Large), 40 (Huge)",
+    "experience_points": 10,
+    "ability_scores": {
+      "strength": 16,
+      "dexterity": 10,
+      "constitution": 10,
+      "intelligence": 3,
+      "wisdom": 3,
+      "charisma": 1
+    },
+    "modifiers": {
+      "strength": 3,
+      "dexterity": 0,
+      "constitution": 0,
+      "intelligence": -4,
+      "wisdom": -4,
+      "charisma": -5
+    },
+    "initiative_bonus": 0,
+    "saving_throws": {},
+    "saving_throws_all": {
+      "strength": 3,
+      "dexterity": 0,
+      "constitution": 0,
+      "intelligence": -4,
+      "wisdom": -4,
+      "charisma": -5
+    },
+    "skill_bonuses": {},
+    "skill_bonuses_all": {},
+    "passive_perception": 6,
+    "darkvision_range": 0,
+    "blindsight_range": 30,
+    "tremorsense_range": 0,
+    "truesight_range": 0,
+    "normal_sight_range": null,
+    "resistances_and_immunities": {
+      "damage_resistances_display": "",
+      "damage_resistances": [],
+      "damage_immunities_display": "",
+      "damage_immunities": [],
+      "damage_vulnerabilities_display": "",
+      "damage_vulnerabilities": [],
+      "condition_immunities_display": "",
+      "condition_immunities": []
+    },
+    "traits": [],
+    "actions": [
+      {
+        "name": "Slam",
+        "desc": "Melee Attack Roll: your spell attack modifier, reach 5 ft. Hit: Force damage equal to 1d4 + 3, 2d6 + 3 + your spellcasting ability modifier (Large), or 2d12 + 3 + your spellcasting ability modifier (Huge).",
+        "action_type": "ACTION",
+        "order_in_statblock": 0,
+        "attacks": []
+      }
+    ],
+    "environments": [],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_beast-of-the-land",
+    "name": "Beast of the Land",
+    "document": "phb-2024",
+    "type": {
+      "name": "Beast",
+      "key": "beast"
+    },
+    "size": {
+      "name": "Medium",
+      "key": "medium"
+    },
+    "challenge_rating": 0.0,
+    "proficiency_bonus": null,
+    "speed": {
+      "unit": "feet",
+      "walk": 40,
+      "climb": 40
+    },
+    "speed_all": {
+      "unit": "feet",
+      "walk": 40,
+      "climb": 40
+    },
+    "category": "Monsters",
+    "subcategory": null,
+    "alignment": "neutral",
+    "languages": {
+      "as_string": "understands the languages you know",
+      "data": []
+    },
+    "armor_class": 13,
+    "armor_detail": "13 plus your Wisdom modifier",
+    "hit_points": 0,
+    "hit_dice": "5 plus five times your Ranger level (the beast has a number of Hit Dice [d8s] equal to your Ranger level)",
+    "experience_points": 10,
+    "ability_scores": {
+      "strength": 14,
+      "dexterity": 14,
+      "constitution": 15,
+      "intelligence": 8,
+      "wisdom": 14,
+      "charisma": 11
+    },
+    "modifiers": {
+      "strength": 2,
+      "dexterity": 2,
+      "constitution": 2,
+      "intelligence": -1,
+      "wisdom": 2,
+      "charisma": 0
+    },
+    "initiative_bonus": 2,
+    "saving_throws": {},
+    "saving_throws_all": {
+      "strength": 2,
+      "dexterity": 2,
+      "constitution": 2,
+      "intelligence": -1,
+      "wisdom": 2,
+      "charisma": 0
+    },
+    "skill_bonuses": {},
+    "skill_bonuses_all": {},
+    "passive_perception": 12,
+    "darkvision_range": 60,
+    "blindsight_range": 0,
+    "tremorsense_range": 0,
+    "truesight_range": 0,
+    "normal_sight_range": null,
+    "resistances_and_immunities": {
+      "damage_resistances_display": "",
+      "damage_resistances": [],
+      "damage_immunities_display": "",
+      "damage_immunities": [],
+      "damage_vulnerabilities_display": "",
+      "damage_vulnerabilities": [],
+      "condition_immunities_display": "",
+      "condition_immunities": []
+    },
+    "traits": [
+      {
+        "name": "Primal Bond",
+        "desc": "Add your Proficiency Bonus to any ability check or saving throw the beast makes."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Beast's Strike",
+        "desc": "Melee Attack Roll: your spell attack modifier, reach 5 ft. Hit: 1d8 + 2 plus your Wisdom modifier Bludgeoning, Piercing, or Slashing damage (your choice when you summon the beast). If the beast moved at least 20 feet straight toward the target before the hit, the target takes an extra 1d6 damage of the same type, and the target has the Prone condition if it is a Large or smaller creature.",
+        "action_type": "ACTION",
+        "order_in_statblock": 0,
+        "attacks": []
+      }
+    ],
+    "environments": [],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_beast-of-the-sea",
+    "name": "Beast of the Sea",
+    "document": "phb-2024",
+    "type": {
+      "name": "Beast",
+      "key": "beast"
+    },
+    "size": {
+      "name": "Medium",
+      "key": "medium"
+    },
+    "challenge_rating": 0.0,
+    "proficiency_bonus": null,
+    "speed": {
+      "unit": "feet",
+      "walk": 5,
+      "swim": 60
+    },
+    "speed_all": {
+      "unit": "feet",
+      "walk": 5,
+      "swim": 60
+    },
+    "category": "Monsters",
+    "subcategory": null,
+    "alignment": "neutral",
+    "languages": {
+      "as_string": "understands the languages you know",
+      "data": []
+    },
+    "armor_class": 13,
+    "armor_detail": "13 plus your Wisdom modifier",
+    "hit_points": 0,
+    "hit_dice": "5 plus five times your Ranger level (the beast has a number of Hit Dice [d8s] equal to your Ranger level)",
+    "experience_points": 10,
+    "ability_scores": {
+      "strength": 14,
+      "dexterity": 14,
+      "constitution": 15,
+      "intelligence": 8,
+      "wisdom": 14,
+      "charisma": 11
+    },
+    "modifiers": {
+      "strength": 2,
+      "dexterity": 2,
+      "constitution": 2,
+      "intelligence": -1,
+      "wisdom": 2,
+      "charisma": 0
+    },
+    "initiative_bonus": 2,
+    "saving_throws": {},
+    "saving_throws_all": {
+      "strength": 2,
+      "dexterity": 2,
+      "constitution": 2,
+      "intelligence": -1,
+      "wisdom": 2,
+      "charisma": 0
+    },
+    "skill_bonuses": {},
+    "skill_bonuses_all": {},
+    "passive_perception": 12,
+    "darkvision_range": 90,
+    "blindsight_range": 0,
+    "tremorsense_range": 0,
+    "truesight_range": 0,
+    "normal_sight_range": null,
+    "resistances_and_immunities": {
+      "damage_resistances_display": "",
+      "damage_resistances": [],
+      "damage_immunities_display": "",
+      "damage_immunities": [],
+      "damage_vulnerabilities_display": "",
+      "damage_vulnerabilities": [],
+      "condition_immunities_display": "",
+      "condition_immunities": []
+    },
+    "traits": [
+      {
+        "name": "Amphibious",
+        "desc": "The beast can breathe air and water."
+      },
+      {
+        "name": "Primal Bond",
+        "desc": "Add your Proficiency Bonus to any ability check or saving throw the beast makes."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Beast's Strike",
+        "desc": "Melee Attack Roll: your spell attack modifier, reach 5 ft. Hit: 1d6 + 2 plus your Wisdom modifier Bludgeoning or Piercing damage (your choice when you summon the beast), and the target has the Grappled condition (escape DC equals your spell save DC).",
+        "action_type": "ACTION",
+        "order_in_statblock": 0,
+        "attacks": []
+      }
+    ],
+    "environments": [],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_beast-of-the-sky",
+    "name": "Beast of the Sky",
+    "document": "phb-2024",
+    "type": {
+      "name": "Beast",
+      "key": "beast"
+    },
+    "size": {
+      "name": "Small",
+      "key": "small"
+    },
+    "challenge_rating": 0.0,
+    "proficiency_bonus": null,
+    "speed": {
+      "unit": "feet",
+      "walk": 10,
+      "fly": 60
+    },
+    "speed_all": {
+      "unit": "feet",
+      "walk": 10,
+      "fly": 60
+    },
+    "category": "Monsters",
+    "subcategory": null,
+    "alignment": "neutral",
+    "languages": {
+      "as_string": "understands the languages you know",
+      "data": []
+    },
+    "armor_class": 13,
+    "armor_detail": "13 plus your Wisdom modifier",
+    "hit_points": 0,
+    "hit_dice": "4 plus four times your Ranger level (the beast has a number of Hit Dice [d6s] equal to your Ranger level)",
+    "experience_points": 10,
+    "ability_scores": {
+      "strength": 6,
+      "dexterity": 16,
+      "constitution": 13,
+      "intelligence": 8,
+      "wisdom": 14,
+      "charisma": 11
+    },
+    "modifiers": {
+      "strength": -2,
+      "dexterity": 3,
+      "constitution": 1,
+      "intelligence": -1,
+      "wisdom": 2,
+      "charisma": 0
+    },
+    "initiative_bonus": 3,
+    "saving_throws": {},
+    "saving_throws_all": {
+      "strength": -2,
+      "dexterity": 3,
+      "constitution": 1,
+      "intelligence": -1,
+      "wisdom": 2,
+      "charisma": 0
+    },
+    "skill_bonuses": {},
+    "skill_bonuses_all": {},
+    "passive_perception": 12,
+    "darkvision_range": 60,
+    "blindsight_range": 0,
+    "tremorsense_range": 0,
+    "truesight_range": 0,
+    "normal_sight_range": null,
+    "resistances_and_immunities": {
+      "damage_resistances_display": "",
+      "damage_resistances": [],
+      "damage_immunities_display": "",
+      "damage_immunities": [],
+      "damage_vulnerabilities_display": "",
+      "damage_vulnerabilities": [],
+      "condition_immunities_display": "",
+      "condition_immunities": []
+    },
+    "traits": [
+      {
+        "name": "Flyby",
+        "desc": "The beast doesn't provoke Opportunity Attacks when it flies out of an enemy's reach."
+      },
+      {
+        "name": "Primal Bond",
+        "desc": "Add your Proficiency Bonus to any ability check or saving throw the beast makes."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Beast's Strike",
+        "desc": "Melee Attack Roll: your spell attack modifier, reach 5 ft. Hit: 1d4 + 3 plus your Wisdom modifier Slashing damage.",
+        "action_type": "ACTION",
+        "order_in_statblock": 0,
+        "attacks": []
+      }
+    ],
+    "environments": [],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_bestial-spirit",
+    "name": "Bestial Spirit",
+    "document": "phb-2024",
+    "type": {
+      "name": "Beast",
+      "key": "beast"
+    },
+    "size": {
+      "name": "Small",
+      "key": "small"
+    },
+    "challenge_rating": 0.0,
+    "proficiency_bonus": null,
+    "speed": {
+      "unit": "feet",
+      "walk": 30,
+      "climb": 30,
+      "fly": 60,
+      "swim": 30
+    },
+    "speed_all": {
+      "unit": "feet",
+      "walk": 30,
+      "climb": 30,
+      "fly": 60,
+      "swim": 30
+    },
+    "category": "Monsters",
+    "subcategory": null,
+    "alignment": "neutral",
+    "languages": {
+      "as_string": "understands the languages you know",
+      "data": []
+    },
+    "armor_class": 11,
+    "armor_detail": "11 + the spell's level",
+    "hit_points": 0,
+    "hit_dice": "20 (Air only) or 30 (Land and Water only) + 5 for each spell level above 2",
+    "experience_points": 10,
+    "ability_scores": {
+      "strength": 18,
+      "dexterity": 11,
+      "constitution": 16,
+      "intelligence": 4,
+      "wisdom": 14,
+      "charisma": 5
+    },
+    "modifiers": {
+      "strength": 4,
+      "dexterity": 0,
+      "constitution": 3,
+      "intelligence": -3,
+      "wisdom": 2,
+      "charisma": -3
+    },
+    "initiative_bonus": 0,
+    "saving_throws": {},
+    "saving_throws_all": {
+      "strength": 4,
+      "dexterity": 0,
+      "constitution": 3,
+      "intelligence": -3,
+      "wisdom": 2,
+      "charisma": -3
+    },
+    "skill_bonuses": {},
+    "skill_bonuses_all": {},
+    "passive_perception": 12,
+    "darkvision_range": 60,
+    "blindsight_range": 0,
+    "tremorsense_range": 0,
+    "truesight_range": 0,
+    "normal_sight_range": null,
+    "resistances_and_immunities": {
+      "damage_resistances_display": "",
+      "damage_resistances": [],
+      "damage_immunities_display": "",
+      "damage_immunities": [],
+      "damage_vulnerabilities_display": "",
+      "damage_vulnerabilities": [],
+      "condition_immunities_display": "",
+      "condition_immunities": []
+    },
+    "traits": [
+      {
+        "name": "Flyby (Air Only)",
+        "desc": "The spirit doesn't provoke Opportunity Attacks when it flies out of an enemy's reach."
+      },
+      {
+        "name": "Pack Tactics (Land and Water Only)",
+        "desc": "The spirit has Advantage on an attack roll against a creature if at least one of the spirit's allies is within 5 feet of the creature and the ally doesn't have the Incapacitated condition."
+      },
+      {
+        "name": "Water Breathing (Water Only)",
+        "desc": "The spirit can breathe only underwater."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Multiattack",
+        "desc": "The spirit makes a number of Rend attacks equal to half this spell's level (round down).",
+        "action_type": "ACTION",
+        "order_in_statblock": 0,
+        "attacks": []
+      },
+      {
+        "name": "Rend",
+        "desc": "Melee Attack Roll: your spell attack modifier, reach 5 ft. Hit: 1d8 + 4 + summonSpellLevel Piercing damage.",
+        "action_type": "ACTION",
+        "order_in_statblock": 1,
+        "attacks": []
+      }
+    ],
+    "environments": [],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_celestial-spirit",
+    "name": "Celestial Spirit",
+    "document": "phb-2024",
+    "type": {
+      "name": "Celestial",
+      "key": "celestial"
+    },
+    "size": {
+      "name": "Large",
+      "key": "large"
+    },
+    "challenge_rating": 0.0,
+    "proficiency_bonus": null,
+    "speed": {
+      "unit": "feet",
+      "walk": 30,
+      "fly": 40
+    },
+    "speed_all": {
+      "unit": "feet",
+      "walk": 30,
+      "fly": 40
+    },
+    "category": "Monsters",
+    "subcategory": null,
+    "alignment": "neutral",
+    "languages": {
+      "as_string": "Celestial, understands the languages you know",
+      "data": []
+    },
+    "armor_class": 11,
+    "armor_detail": "11 + the spell's level + 2 (Defender only)",
+    "hit_points": 0,
+    "hit_dice": "40 + 10 for each spell level above 5",
+    "experience_points": 10,
+    "ability_scores": {
+      "strength": 16,
+      "dexterity": 14,
+      "constitution": 16,
+      "intelligence": 10,
+      "wisdom": 14,
+      "charisma": 16
+    },
+    "modifiers": {
+      "strength": 3,
+      "dexterity": 2,
+      "constitution": 3,
+      "intelligence": 0,
+      "wisdom": 2,
+      "charisma": 3
+    },
+    "initiative_bonus": 2,
+    "saving_throws": {},
+    "saving_throws_all": {
+      "strength": 3,
+      "dexterity": 2,
+      "constitution": 3,
+      "intelligence": 0,
+      "wisdom": 2,
+      "charisma": 3
+    },
+    "skill_bonuses": {},
+    "skill_bonuses_all": {},
+    "passive_perception": 12,
+    "darkvision_range": 60,
+    "blindsight_range": 0,
+    "tremorsense_range": 0,
+    "truesight_range": 0,
+    "normal_sight_range": null,
+    "resistances_and_immunities": {
+      "damage_resistances_display": "radiant",
+      "damage_resistances": [],
+      "damage_immunities_display": "",
+      "damage_immunities": [],
+      "damage_vulnerabilities_display": "",
+      "damage_vulnerabilities": [],
+      "condition_immunities_display": "charmed, frightened",
+      "condition_immunities": []
+    },
+    "traits": [],
+    "actions": [
+      {
+        "name": "Multiattack",
+        "desc": "The spirit makes a number of attacks equal to half this spell's level (round down).",
+        "action_type": "ACTION",
+        "order_in_statblock": 0,
+        "attacks": []
+      },
+      {
+        "name": "Radiant Bow (Avenger Only)",
+        "desc": "Ranged Attack Roll: your spell attack modifier, range 600 ft. Hit: 2d6 + 2 + summonSpellLevel Radiant damage.",
+        "action_type": "ACTION",
+        "order_in_statblock": 1,
+        "attacks": []
+      },
+      {
+        "name": "Radiant Mace (Defender Only)",
+        "desc": "Melee Attack Roll: your spell attack modifier, reach 5 ft. Hit: 1d10 + 3 + summonSpellLevel Radiant damage, and the spirit can choose itself or another creature it can see within 10 feet of the target. The chosen creature gains 1d10 Temporary Hit Points.",
+        "action_type": "ACTION",
+        "order_in_statblock": 2,
+        "attacks": []
+      },
+      {
+        "name": "Healing Touch (1/Day)",
+        "desc": "The spirit touches another creature. The target regains Hit Points equal to 2d8 + summonSpellLevel.",
+        "action_type": "ACTION",
+        "order_in_statblock": 3,
+        "attacks": []
+      }
+    ],
+    "environments": [],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_construct-spirit",
+    "name": "Construct Spirit",
+    "document": "phb-2024",
+    "type": {
+      "name": "Construct",
+      "key": "construct"
+    },
+    "size": {
+      "name": "Medium",
+      "key": "medium"
+    },
+    "challenge_rating": 0.0,
+    "proficiency_bonus": null,
+    "speed": {
+      "unit": "feet",
+      "walk": 30
+    },
+    "speed_all": {
+      "unit": "feet",
+      "walk": 30
+    },
+    "category": "Monsters",
+    "subcategory": null,
+    "alignment": "neutral",
+    "languages": {
+      "as_string": "Understands the languages you know",
+      "data": []
+    },
+    "armor_class": 13,
+    "armor_detail": "13 + the spell's level",
+    "hit_points": 0,
+    "hit_dice": "40 + 15 for each spell level above 4",
+    "experience_points": 10,
+    "ability_scores": {
+      "strength": 18,
+      "dexterity": 10,
+      "constitution": 18,
+      "intelligence": 14,
+      "wisdom": 11,
+      "charisma": 5
+    },
+    "modifiers": {
+      "strength": 4,
+      "dexterity": 0,
+      "constitution": 4,
+      "intelligence": 2,
+      "wisdom": 0,
+      "charisma": -3
+    },
+    "initiative_bonus": 0,
+    "saving_throws": {},
+    "saving_throws_all": {
+      "strength": 4,
+      "dexterity": 0,
+      "constitution": 4,
+      "intelligence": 2,
+      "wisdom": 0,
+      "charisma": -3
+    },
+    "skill_bonuses": {},
+    "skill_bonuses_all": {},
+    "passive_perception": 10,
+    "darkvision_range": 60,
+    "blindsight_range": 0,
+    "tremorsense_range": 0,
+    "truesight_range": 0,
+    "normal_sight_range": null,
+    "resistances_and_immunities": {
+      "damage_resistances_display": "poison",
+      "damage_resistances": [],
+      "damage_immunities_display": "",
+      "damage_immunities": [],
+      "damage_vulnerabilities_display": "",
+      "damage_vulnerabilities": [],
+      "condition_immunities_display": "charmed, exhaustion, frightened, paralyzed, poisoned",
+      "condition_immunities": []
+    },
+    "traits": [
+      {
+        "name": "Heated Body (Metal Only)",
+        "desc": "A creature that hits the spirit with a melee attack or that starts its turn in a grapple with the spirit takes 1d10 Fire damage."
+      },
+      {
+        "name": "Stony Lethargy (Stone Only)",
+        "desc": "When a creature starts its turn within 10 feet of the spirit, the spirit can target it with magical energy if the spirit can see it. Wisdom Saving Throw: DC equals your spell save DC, the target. Failure: Until the start of its next turn, the target can't make Opportunity Attacks, and its Speed is halved."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Multiattack",
+        "desc": "The spirit makes a number of Slam attacks equal to half this spell's level (round down).",
+        "action_type": "ACTION",
+        "order_in_statblock": 0,
+        "attacks": []
+      },
+      {
+        "name": "Slam",
+        "desc": "Melee Attack Roll: your spell attack modifier, reach 5 ft. Hit: 1d8 + 4 + summonSpellLevel Bludgeoning damage.",
+        "action_type": "ACTION",
+        "order_in_statblock": 1,
+        "attacks": []
+      },
+      {
+        "name": "Berserk Lashing (Clay Only)",
+        "desc": "Trigger: The spirit takes damage from a creature. Response: The spirit makes a Slam attack against that creature if possible, or the spirit moves up to half its Speed toward that creature without provoking Opportunity Attacks.",
+        "action_type": "REACTION",
+        "order_in_statblock": 0,
+        "attacks": []
+      }
+    ],
+    "environments": [],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_draconic-spirit",
+    "name": "Draconic Spirit",
+    "document": "phb-2024",
+    "type": {
+      "name": "Dragon",
+      "key": "dragon"
+    },
+    "size": {
+      "name": "Large",
+      "key": "large"
+    },
+    "challenge_rating": 0.0,
+    "proficiency_bonus": null,
+    "speed": {
+      "unit": "feet",
+      "walk": 30,
+      "fly": 60,
+      "swim": 30
+    },
+    "speed_all": {
+      "unit": "feet",
+      "walk": 30,
+      "fly": 60,
+      "swim": 30
+    },
+    "category": "Monsters",
+    "subcategory": null,
+    "alignment": "neutral",
+    "languages": {
+      "as_string": "Draconic, understands the languages you know",
+      "data": []
+    },
+    "armor_class": 14,
+    "armor_detail": "14 + the spell's level",
+    "hit_points": 0,
+    "hit_dice": "50 + 10 for each spell level above 5",
+    "experience_points": 10,
+    "ability_scores": {
+      "strength": 19,
+      "dexterity": 14,
+      "constitution": 17,
+      "intelligence": 10,
+      "wisdom": 14,
+      "charisma": 14
+    },
+    "modifiers": {
+      "strength": 4,
+      "dexterity": 2,
+      "constitution": 3,
+      "intelligence": 0,
+      "wisdom": 2,
+      "charisma": 2
+    },
+    "initiative_bonus": 2,
+    "saving_throws": {},
+    "saving_throws_all": {
+      "strength": 4,
+      "dexterity": 2,
+      "constitution": 3,
+      "intelligence": 0,
+      "wisdom": 2,
+      "charisma": 2
+    },
+    "skill_bonuses": {},
+    "skill_bonuses_all": {},
+    "passive_perception": 12,
+    "darkvision_range": 60,
+    "blindsight_range": 30,
+    "tremorsense_range": 0,
+    "truesight_range": 0,
+    "normal_sight_range": null,
+    "resistances_and_immunities": {
+      "damage_resistances_display": "acid, cold, fire, lightning, poison",
+      "damage_resistances": [],
+      "damage_immunities_display": "",
+      "damage_immunities": [],
+      "damage_vulnerabilities_display": "",
+      "damage_vulnerabilities": [],
+      "condition_immunities_display": "charmed, frightened, poisoned",
+      "condition_immunities": []
+    },
+    "traits": [
+      {
+        "name": "Shared Resistances",
+        "desc": "When you summon the spirit, choose one of its Resistances. You have Resistance to the chosen damage type until the spell ends."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Multiattack",
+        "desc": "The spirit makes a number of Rend attacks equal to half the spell's level (round down), and it uses Breath Weapon.",
+        "action_type": "ACTION",
+        "order_in_statblock": 0,
+        "attacks": []
+      },
+      {
+        "name": "Rend",
+        "desc": "Melee Attack: your spell attack modifier, reach 10 feet. Hit: 1d6 + 4 + summonSpellLevel Piercing damage.",
+        "action_type": "ACTION",
+        "order_in_statblock": 1,
+        "attacks": []
+      },
+      {
+        "name": "Breath Weapon",
+        "desc": "Dexterity Saving Throw: DC equals your spell save DC, each creature in a 30-foot Cone. Failure: 2d6 damage of a type this spirit has Resistance to (your choice when you cast the spell). Success: Half damage.",
+        "action_type": "ACTION",
+        "order_in_statblock": 2,
+        "attacks": []
+      }
+    ],
+    "environments": [],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_elemental-spirit",
+    "name": "Elemental Spirit",
+    "document": "phb-2024",
+    "type": {
+      "name": "Elemental",
+      "key": "elemental"
+    },
+    "size": {
+      "name": "Medium",
+      "key": "medium"
+    },
+    "challenge_rating": 0.0,
+    "proficiency_bonus": null,
+    "speed": {
+      "unit": "feet",
+      "walk": 40,
+      "burrow": 40,
+      "fly": 40,
+      "swim": 40
+    },
+    "speed_all": {
+      "unit": "feet",
+      "walk": 40,
+      "burrow": 40,
+      "fly": 40,
+      "swim": 40
+    },
+    "category": "Monsters",
+    "subcategory": null,
+    "alignment": "neutral",
+    "languages": {
+      "as_string": "Primordial, understands the languages you know",
+      "data": []
+    },
+    "armor_class": 11,
+    "armor_detail": "11 + the spell's level",
+    "hit_points": 0,
+    "hit_dice": "50 + 10 for each spell level above 4",
+    "experience_points": 10,
+    "ability_scores": {
+      "strength": 18,
+      "dexterity": 15,
+      "constitution": 17,
+      "intelligence": 4,
+      "wisdom": 10,
+      "charisma": 16
+    },
+    "modifiers": {
+      "strength": 4,
+      "dexterity": 2,
+      "constitution": 3,
+      "intelligence": -3,
+      "wisdom": 0,
+      "charisma": 3
+    },
+    "initiative_bonus": 2,
+    "saving_throws": {},
+    "saving_throws_all": {
+      "strength": 4,
+      "dexterity": 2,
+      "constitution": 3,
+      "intelligence": -3,
+      "wisdom": 0,
+      "charisma": 3
+    },
+    "skill_bonuses": {},
+    "skill_bonuses_all": {},
+    "passive_perception": 10,
+    "darkvision_range": 60,
+    "blindsight_range": 0,
+    "tremorsense_range": 0,
+    "truesight_range": 0,
+    "normal_sight_range": null,
+    "resistances_and_immunities": {
+      "damage_resistances_display": "lightning, thunder (Air only), piercing, slashing (Earth only), acid (Water only)",
+      "damage_resistances": [],
+      "damage_immunities_display": "poison, fire (Fire only)",
+      "damage_immunities": [],
+      "damage_vulnerabilities_display": "",
+      "damage_vulnerabilities": [],
+      "condition_immunities_display": "exhaustion, paralyzed, petrified, poisoned",
+      "condition_immunities": []
+    },
+    "traits": [
+      {
+        "name": "Amorphous Form (Air, Fire, and Water Only)",
+        "desc": "The spirit can move through a space as narrow as 1 inch wide without it counting as Difficult Terrain."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Multiattack",
+        "desc": "The spirit makes a number of Slam attacks equal to half this spell's level (round down).",
+        "action_type": "ACTION",
+        "order_in_statblock": 0,
+        "attacks": []
+      },
+      {
+        "name": "Slam",
+        "desc": "Melee Attack Roll: your spell attack modifier, reach 5 ft. Hit: 1d10 + 4 + summonSpellLevel Bludgeoning (Earth only), Cold (Water only), Lightning (Air only), or Fire (Fire only) damage.",
+        "action_type": "ACTION",
+        "order_in_statblock": 1,
+        "attacks": []
+      }
+    ],
+    "environments": [],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_fey-spirit",
+    "name": "Fey Spirit",
+    "document": "phb-2024",
+    "type": {
+      "name": "Fey",
+      "key": "fey"
+    },
+    "size": {
+      "name": "Small",
+      "key": "small"
+    },
+    "challenge_rating": 0.0,
+    "proficiency_bonus": null,
+    "speed": {
+      "unit": "feet",
+      "walk": 30,
+      "fly": 30
+    },
+    "speed_all": {
+      "unit": "feet",
+      "walk": 30,
+      "fly": 30
+    },
+    "category": "Monsters",
+    "subcategory": null,
+    "alignment": "neutral",
+    "languages": {
+      "as_string": "Sylvan, understands the languages you know",
+      "data": []
+    },
+    "armor_class": 12,
+    "armor_detail": "12 + the spell's level",
+    "hit_points": 0,
+    "hit_dice": "30 + 10 for each spell level above 3",
+    "experience_points": 10,
+    "ability_scores": {
+      "strength": 13,
+      "dexterity": 16,
+      "constitution": 14,
+      "intelligence": 14,
+      "wisdom": 11,
+      "charisma": 16
+    },
+    "modifiers": {
+      "strength": 1,
+      "dexterity": 3,
+      "constitution": 2,
+      "intelligence": 2,
+      "wisdom": 0,
+      "charisma": 3
+    },
+    "initiative_bonus": 3,
+    "saving_throws": {},
+    "saving_throws_all": {
+      "strength": 1,
+      "dexterity": 3,
+      "constitution": 2,
+      "intelligence": 2,
+      "wisdom": 0,
+      "charisma": 3
+    },
+    "skill_bonuses": {},
+    "skill_bonuses_all": {},
+    "passive_perception": 10,
+    "darkvision_range": 60,
+    "blindsight_range": 0,
+    "tremorsense_range": 0,
+    "truesight_range": 0,
+    "normal_sight_range": null,
+    "resistances_and_immunities": {
+      "damage_resistances_display": "",
+      "damage_resistances": [],
+      "damage_immunities_display": "",
+      "damage_immunities": [],
+      "damage_vulnerabilities_display": "",
+      "damage_vulnerabilities": [],
+      "condition_immunities_display": "charmed",
+      "condition_immunities": []
+    },
+    "traits": [],
+    "actions": [
+      {
+        "name": "Multiattack",
+        "desc": "The spirit makes a number of Fey Blade attacks equal to half this spell's level (round down).",
+        "action_type": "ACTION",
+        "order_in_statblock": 0,
+        "attacks": []
+      },
+      {
+        "name": "Fey Blade",
+        "desc": "Melee Attack Roll: your spell attack modifier, reach 5 ft. Hit: 2d6 + 3 + summonSpellLevel Force damage.",
+        "action_type": "ACTION",
+        "order_in_statblock": 1,
+        "attacks": []
+      },
+      {
+        "name": "Fey Step",
+        "desc": "The spirit magically teleports up to 30 feet to an unoccupied space it can see. Then one of the following effects occurs, based on the spirit's chosen mood:\n\n- Fuming. The spirit has Advantage on the next attack roll it makes before the end of this turn.\n\n- Mirthful. Wisdom Saving Throw: DC equals your spell save DC, one creature the spirit can see within 10 feet of itself. Failure: The target is Charmed by you and the spirit for 1 minute or until the target takes any damage.\n\n- Tricksy. The spirit fills a 10-foot Cube within 5 feet of it with magical Darkness, which lasts until the end of its next turn.",
+        "action_type": "BONUS_ACTION",
+        "order_in_statblock": 0,
+        "attacks": []
+      }
+    ],
+    "environments": [],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_fiendish-spirit",
+    "name": "Fiendish Spirit",
+    "document": "phb-2024",
+    "type": {
+      "name": "Fiend",
+      "key": "fiend"
+    },
+    "size": {
+      "name": "Large",
+      "key": "large"
+    },
+    "challenge_rating": 0.0,
+    "proficiency_bonus": null,
+    "speed": {
+      "unit": "feet",
+      "walk": 40,
+      "climb": 40,
+      "fly": 60
+    },
+    "speed_all": {
+      "unit": "feet",
+      "walk": 40,
+      "climb": 40,
+      "fly": 60
+    },
+    "category": "Monsters",
+    "subcategory": null,
+    "alignment": "neutral",
+    "languages": {
+      "as_string": "Abyssal, Infernal, Telepathy 60 ft.",
+      "data": []
+    },
+    "armor_class": 12,
+    "armor_detail": "12 + the spell's level",
+    "hit_points": 0,
+    "hit_dice": "50 (Demon only) or 40 (Devil only) or 60 (Yugoloth only) + 15 for each spell level above 6",
+    "experience_points": 10,
+    "ability_scores": {
+      "strength": 13,
+      "dexterity": 16,
+      "constitution": 15,
+      "intelligence": 10,
+      "wisdom": 10,
+      "charisma": 16
+    },
+    "modifiers": {
+      "strength": 1,
+      "dexterity": 3,
+      "constitution": 2,
+      "intelligence": 0,
+      "wisdom": 0,
+      "charisma": 3
+    },
+    "initiative_bonus": 3,
+    "saving_throws": {},
+    "saving_throws_all": {
+      "strength": 1,
+      "dexterity": 3,
+      "constitution": 2,
+      "intelligence": 0,
+      "wisdom": 0,
+      "charisma": 3
+    },
+    "skill_bonuses": {},
+    "skill_bonuses_all": {},
+    "passive_perception": 10,
+    "darkvision_range": 60,
+    "blindsight_range": 0,
+    "tremorsense_range": 0,
+    "truesight_range": 0,
+    "normal_sight_range": null,
+    "resistances_and_immunities": {
+      "damage_resistances_display": "fire",
+      "damage_resistances": [],
+      "damage_immunities_display": "poison",
+      "damage_immunities": [],
+      "damage_vulnerabilities_display": "",
+      "damage_vulnerabilities": [],
+      "condition_immunities_display": "poisoned",
+      "condition_immunities": []
+    },
+    "traits": [
+      {
+        "name": "Death Throes (Demon Only)",
+        "desc": "When the spirit drops to 0 Hit Points or the spell ends, the spirit explodes. Dexterity Saving Throw: DC equals your spell save DC, each creature in a 10-foot Emanation originating from the spirit. Failure: 2d10 plus this spell's level Fire damage. Success: Half damage."
+      },
+      {
+        "name": "Devil's Sight (Devil Only)",
+        "desc": "Magical Darkness doesn't impede the spirit's Darkvision."
+      },
+      {
+        "name": "Magic Resistance",
+        "desc": "The spirit has Advantage on saving throws against spells and other magical effects."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Multiattack",
+        "desc": "The spirit makes a number of attacks equal to half this spell's level (round down).",
+        "action_type": "ACTION",
+        "order_in_statblock": 0,
+        "attacks": []
+      },
+      {
+        "name": "Bite (Demon Only)",
+        "desc": "Melee Attack Roll: your spell attack modifier, reach 5 ft. Hit: 1d12 + 3 + summonSpellLevel Necrotic damage.",
+        "action_type": "ACTION",
+        "order_in_statblock": 1,
+        "attacks": []
+      },
+      {
+        "name": "Claws (Yugoloth Only)",
+        "desc": "Melee Attack Roll: your spell attack modifier, reach 5 ft. Hit: 1d8 + 3 + summonSpellLevel Slashing damage. Immediately after the attack hits or misses, the spirit can teleport up to 30 feet to an unoccupied space it can see.",
+        "action_type": "ACTION",
+        "order_in_statblock": 2,
+        "attacks": []
+      },
+      {
+        "name": "Fiery Strike (Devil Only)",
+        "desc": "Melee or Ranged Attack Roll: your spell attack modifier, reach 5 ft. or range 150 ft. Hit: 2d6 + 3 + summonSpellLevel Fire damage.",
+        "action_type": "ACTION",
+        "order_in_statblock": 3,
+        "attacks": []
+      }
+    ],
+    "environments": [],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_giant-insect",
+    "name": "Giant Insect",
+    "document": "phb-2024",
+    "type": {
+      "name": "Beast",
+      "key": "beast"
+    },
+    "size": {
+      "name": "Large",
+      "key": "large"
+    },
+    "challenge_rating": 0.0,
+    "proficiency_bonus": null,
+    "speed": {
+      "unit": "feet",
+      "walk": 40,
+      "climb": 40,
+      "fly": 40
+    },
+    "speed_all": {
+      "unit": "feet",
+      "walk": 40,
+      "climb": 40,
+      "fly": 40
+    },
+    "category": "Monsters",
+    "subcategory": null,
+    "alignment": "unaligned",
+    "languages": {
+      "as_string": "understands the languages you know",
+      "data": []
+    },
+    "armor_class": 11,
+    "armor_detail": "11 + the spell's level",
+    "hit_points": 0,
+    "hit_dice": "30 + 10 for each spell level above 4",
+    "experience_points": 10,
+    "ability_scores": {
+      "strength": 17,
+      "dexterity": 13,
+      "constitution": 15,
+      "intelligence": 4,
+      "wisdom": 14,
+      "charisma": 3
+    },
+    "modifiers": {
+      "strength": 3,
+      "dexterity": 1,
+      "constitution": 2,
+      "intelligence": -3,
+      "wisdom": 2,
+      "charisma": -4
+    },
+    "initiative_bonus": 1,
+    "saving_throws": {},
+    "saving_throws_all": {
+      "strength": 3,
+      "dexterity": 1,
+      "constitution": 2,
+      "intelligence": -3,
+      "wisdom": 2,
+      "charisma": -4
+    },
+    "skill_bonuses": {},
+    "skill_bonuses_all": {},
+    "passive_perception": 12,
+    "darkvision_range": 60,
+    "blindsight_range": 0,
+    "tremorsense_range": 0,
+    "truesight_range": 0,
+    "normal_sight_range": null,
+    "resistances_and_immunities": {
+      "damage_resistances_display": "",
+      "damage_resistances": [],
+      "damage_immunities_display": "",
+      "damage_immunities": [],
+      "damage_vulnerabilities_display": "",
+      "damage_vulnerabilities": [],
+      "condition_immunities_display": "",
+      "condition_immunities": []
+    },
+    "traits": [
+      {
+        "name": "Spider Climb",
+        "desc": "The insect can climb difficult surfaces, including along ceilings, without needing to make an ability check."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Multiattack",
+        "desc": "The insect makes a number of attacks equal to half this spell's level (round down).",
+        "action_type": "ACTION",
+        "order_in_statblock": 0,
+        "attacks": []
+      },
+      {
+        "name": "Poison Jab",
+        "desc": "Melee Attack Roll: your spell attack modifier, reach 10 ft. Hit: 1d6 + 3 + summonSpellLevel Piercing damage plus 1d4 Poison damage.",
+        "action_type": "ACTION",
+        "order_in_statblock": 1,
+        "attacks": []
+      },
+      {
+        "name": "Web Bolt (Spider Only)",
+        "desc": "Ranged Attack Roll: your spell attack modifier, range 60 ft. Hit: 1d10 + 3 + summonSpellLevel Bludgeoning damage, and the target's Speed is reduced to 0 until the start of the insect's next turn.",
+        "action_type": "ACTION",
+        "order_in_statblock": 2,
+        "attacks": []
+      },
+      {
+        "name": "Venomous Spew (Centipede Only)",
+        "desc": "Constitution Saving Throw: Your spell save DC, one creature the insect can see within 10 feet. Failure: The target has the Poisoned condition until the start of the insect's next turn.",
+        "action_type": "BONUS_ACTION",
+        "order_in_statblock": 0,
+        "attacks": []
+      }
+    ],
+    "environments": [],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_otherworldly-steed",
+    "name": "Otherworldly Steed",
+    "document": "phb-2024",
+    "type": {
+      "name": "Celestial",
+      "key": "celestial"
+    },
+    "size": {
+      "name": "Large",
+      "key": "large"
+    },
+    "challenge_rating": 0.0,
+    "proficiency_bonus": null,
+    "speed": {
+      "unit": "feet",
+      "walk": 60,
+      "fly": 60
+    },
+    "speed_all": {
+      "unit": "feet",
+      "walk": 60,
+      "fly": 60
+    },
+    "category": "Monsters",
+    "subcategory": null,
+    "alignment": "neutral",
+    "languages": {
+      "as_string": "telepathy 1 mile (works only with you)",
+      "data": []
+    },
+    "armor_class": 10,
+    "armor_detail": "10 + 1 per spell level",
+    "hit_points": 0,
+    "hit_dice": "5 + 10 per spell level (the steed has a number of Hit Dice [d10s] equal to the spell's level)",
+    "experience_points": 10,
+    "ability_scores": {
+      "strength": 18,
+      "dexterity": 12,
+      "constitution": 14,
+      "intelligence": 6,
+      "wisdom": 12,
+      "charisma": 8
+    },
+    "modifiers": {
+      "strength": 4,
+      "dexterity": 1,
+      "constitution": 2,
+      "intelligence": -2,
+      "wisdom": 1,
+      "charisma": -1
+    },
+    "initiative_bonus": 1,
+    "saving_throws": {},
+    "saving_throws_all": {
+      "strength": 4,
+      "dexterity": 1,
+      "constitution": 2,
+      "intelligence": -2,
+      "wisdom": 1,
+      "charisma": -1
+    },
+    "skill_bonuses": {},
+    "skill_bonuses_all": {},
+    "passive_perception": 11,
+    "darkvision_range": 0,
+    "blindsight_range": 0,
+    "tremorsense_range": 0,
+    "truesight_range": 0,
+    "normal_sight_range": null,
+    "resistances_and_immunities": {
+      "damage_resistances_display": "",
+      "damage_resistances": [],
+      "damage_immunities_display": "",
+      "damage_immunities": [],
+      "damage_vulnerabilities_display": "",
+      "damage_vulnerabilities": [],
+      "condition_immunities_display": "",
+      "condition_immunities": []
+    },
+    "traits": [
+      {
+        "name": "Life Bond",
+        "desc": "When you regain Hit Points from a level 1+ spell, the steed regains the same number of Hit Points if you're within 5 feet of it."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Otherworldly Slam",
+        "desc": "Melee Attack Roll: your spell attack modifier, reach 5 ft. Hit: 1d8 + summonSpellLevel of Radiant (Celestial), Psychic (Fey), or Necrotic (Fiend) damage.",
+        "action_type": "ACTION",
+        "order_in_statblock": 0,
+        "attacks": []
+      },
+      {
+        "name": "Fell Glare (Fiend Only; Recharges after a Long Rest)",
+        "desc": "Wisdom Saving Throw: DC equals your spell save DC, one creature within 60 feet the steed can see. Failure: The target has the Frightened condition until the end of your next turn.",
+        "action_type": "BONUS_ACTION",
+        "order_in_statblock": 0,
+        "attacks": []
+      },
+      {
+        "name": "Fey Step (Fey Only; Recharges after a Long Rest)",
+        "desc": "The steed teleports, along with its rider, to an unoccupied space of your choice up to 60 feet away from itself.",
+        "action_type": "BONUS_ACTION",
+        "order_in_statblock": 1,
+        "attacks": []
+      },
+      {
+        "name": "Healing Touch (Celestial Only; Recharges after a Long Rest)",
+        "desc": "One creature within 5 feet of the steed regains a number of Hit Points equal to 2d8 + summonSpellLevel.",
+        "action_type": "BONUS_ACTION",
+        "order_in_statblock": 2,
+        "attacks": []
+      }
+    ],
+    "environments": [],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_undead-spirit",
+    "name": "Undead Spirit",
+    "document": "phb-2024",
+    "type": {
+      "name": "Undead",
+      "key": "undead"
+    },
+    "size": {
+      "name": "Medium",
+      "key": "medium"
+    },
+    "challenge_rating": 0.0,
+    "proficiency_bonus": null,
+    "speed": {
+      "unit": "feet",
+      "walk": 30,
+      "fly": 40
+    },
+    "speed_all": {
+      "unit": "feet",
+      "walk": 30,
+      "fly": 40
+    },
+    "category": "Monsters",
+    "subcategory": null,
+    "alignment": "neutral",
+    "languages": {
+      "as_string": "understands the languages you know",
+      "data": []
+    },
+    "armor_class": 11,
+    "armor_detail": "11 + the spell's level",
+    "hit_points": 0,
+    "hit_dice": "30 (Ghostly and Putrid only) or 20 (Skeletal only) + 10 for each spell level above 3",
+    "experience_points": 10,
+    "ability_scores": {
+      "strength": 12,
+      "dexterity": 16,
+      "constitution": 15,
+      "intelligence": 4,
+      "wisdom": 10,
+      "charisma": 9
+    },
+    "modifiers": {
+      "strength": 1,
+      "dexterity": 3,
+      "constitution": 2,
+      "intelligence": -3,
+      "wisdom": 0,
+      "charisma": -1
+    },
+    "initiative_bonus": 3,
+    "saving_throws": {},
+    "saving_throws_all": {
+      "strength": 1,
+      "dexterity": 3,
+      "constitution": 2,
+      "intelligence": -3,
+      "wisdom": 0,
+      "charisma": -1
+    },
+    "skill_bonuses": {},
+    "skill_bonuses_all": {},
+    "passive_perception": 10,
+    "darkvision_range": 60,
+    "blindsight_range": 0,
+    "tremorsense_range": 0,
+    "truesight_range": 0,
+    "normal_sight_range": null,
+    "resistances_and_immunities": {
+      "damage_resistances_display": "",
+      "damage_resistances": [],
+      "damage_immunities_display": "necrotic, poison",
+      "damage_immunities": [],
+      "damage_vulnerabilities_display": "",
+      "damage_vulnerabilities": [],
+      "condition_immunities_display": "exhaustion, frightened, paralyzed, poisoned",
+      "condition_immunities": []
+    },
+    "traits": [
+      {
+        "name": "Festering Aura (Putrid Only)",
+        "desc": "Constitution Saving Throw: DC equals your spell save DC, any creature (other than you) that starts its turn within a 5-foot Emanation originating from the spirit. Failure: The creature has the Poisoned condition until the start of its next turn."
+      },
+      {
+        "name": "Incorporeal Passage (Ghostly Only)",
+        "desc": "The spirit can move through other creatures and objects as if they were Difficult Terrain. If it ends its turn inside an object, it is shunted to the nearest unoccupied space and takes 1d10 Force damage for every 5 feet traveled."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Multiattack",
+        "desc": "The spirit makes a number of attacks equal to half this spell's level (round down).",
+        "action_type": "ACTION",
+        "order_in_statblock": 0,
+        "attacks": []
+      },
+      {
+        "name": "Deathly Touch (Ghostly Only)",
+        "desc": "Melee Attack Roll: your spell attack modifier, reach 5 ft. Hit: 1d8 + 3 + summonSpellLevel Necrotic damage, and the target has the Frightened condition until the end of its next turn.",
+        "action_type": "ACTION",
+        "order_in_statblock": 1,
+        "attacks": []
+      },
+      {
+        "name": "Grave Bolt (Skeletal Only)",
+        "desc": "Ranged Attack Roll: your spell attack modifier, range 150 ft. Hit: 2d4 + 3 + summonSpellLevel Necrotic damage.",
+        "action_type": "ACTION",
+        "order_in_statblock": 2,
+        "attacks": []
+      },
+      {
+        "name": "Rotting Claw (Putrid Only)",
+        "desc": "Melee Attack Roll: your spell attack modifier, reach 5 ft. Hit: 1d6 + 3 + summonSpellLevel Slashing damage. If the target has the Poisoned condition, it has the Paralyzed condition until the end of its next turn.",
+        "action_type": "ACTION",
+        "order_in_statblock": 3,
+        "attacks": []
+      }
+    ],
+    "environments": [],
+    "crossreferences": {
+      "to": []
+    }
+  }
+]

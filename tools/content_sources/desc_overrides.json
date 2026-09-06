@@ -1,0 +1,1004 @@
+{
+  "_comment": "Hand-written English descriptions patched onto the merged bundles by tools/fetch_open5e.dart (_applyDescOverrides). The upstream data ships these entries with an empty `desc`, or -- for the magic items below -- with an unresolved 5etools 'copy the parent entry' directive that sanitising leaves empty. Text here is original wording that summarises the mechanics; it is not copied from any publisher's book. Turkish translations of the same strings live in assets/data/tr/.",
+  "magicitems": {
+    "xphbxdmg-black-dragon-scale-mail": {
+      "desc": "This armor is forged from the shed scales of a black dragon. While you wear it, you gain a +1 bonus to Armor Class, you have Resistance to Acid damage, and you have Advantage on saving throws against the Frightful Presence of Dragons.\n\nIn addition, you can take a Magic action to sense the distance and direction to the nearest black dragon within 30 miles of you. Once you use this property, you can't use it again until the next dawn."
+    },
+    "xphbxdmg-blue-dragon-scale-mail": {
+      "desc": "This armor is forged from the shed scales of a blue dragon. While you wear it, you gain a +1 bonus to Armor Class, you have Resistance to Lightning damage, and you have Advantage on saving throws against the Frightful Presence of Dragons.\n\nIn addition, you can take a Magic action to sense the distance and direction to the nearest blue dragon within 30 miles of you. Once you use this property, you can't use it again until the next dawn."
+    },
+    "xphbxdmg-brass-dragon-scale-mail": {
+      "desc": "This armor is forged from the shed scales of a brass dragon. While you wear it, you gain a +1 bonus to Armor Class, you have Resistance to Fire damage, and you have Advantage on saving throws against the Frightful Presence of Dragons.\n\nIn addition, you can take a Magic action to sense the distance and direction to the nearest brass dragon within 30 miles of you. Once you use this property, you can't use it again until the next dawn."
+    },
+    "xphbxdmg-bronze-dragon-scale-mail": {
+      "desc": "This armor is forged from the shed scales of a bronze dragon. While you wear it, you gain a +1 bonus to Armor Class, you have Resistance to Lightning damage, and you have Advantage on saving throws against the Frightful Presence of Dragons.\n\nIn addition, you can take a Magic action to sense the distance and direction to the nearest bronze dragon within 30 miles of you. Once you use this property, you can't use it again until the next dawn."
+    },
+    "xphbxdmg-copper-dragon-scale-mail": {
+      "desc": "This armor is forged from the shed scales of a copper dragon. While you wear it, you gain a +1 bonus to Armor Class, you have Resistance to Acid damage, and you have Advantage on saving throws against the Frightful Presence of Dragons.\n\nIn addition, you can take a Magic action to sense the distance and direction to the nearest copper dragon within 30 miles of you. Once you use this property, you can't use it again until the next dawn."
+    },
+    "xphbxdmg-gold-dragon-scale-mail": {
+      "desc": "This armor is forged from the shed scales of a gold dragon. While you wear it, you gain a +1 bonus to Armor Class, you have Resistance to Fire damage, and you have Advantage on saving throws against the Frightful Presence of Dragons.\n\nIn addition, you can take a Magic action to sense the distance and direction to the nearest gold dragon within 30 miles of you. Once you use this property, you can't use it again until the next dawn."
+    },
+    "xphbxdmg-green-dragon-scale-mail": {
+      "desc": "This armor is forged from the shed scales of a green dragon. While you wear it, you gain a +1 bonus to Armor Class, you have Resistance to Poison damage, and you have Advantage on saving throws against the Frightful Presence of Dragons.\n\nIn addition, you can take a Magic action to sense the distance and direction to the nearest green dragon within 30 miles of you. Once you use this property, you can't use it again until the next dawn."
+    },
+    "xphbxdmg-red-dragon-scale-mail": {
+      "desc": "This armor is forged from the shed scales of a red dragon. While you wear it, you gain a +1 bonus to Armor Class, you have Resistance to Fire damage, and you have Advantage on saving throws against the Frightful Presence of Dragons.\n\nIn addition, you can take a Magic action to sense the distance and direction to the nearest red dragon within 30 miles of you. Once you use this property, you can't use it again until the next dawn."
+    },
+    "xphbxdmg-silver-dragon-scale-mail": {
+      "desc": "This armor is forged from the shed scales of a silver dragon. While you wear it, you gain a +1 bonus to Armor Class, you have Resistance to Cold damage, and you have Advantage on saving throws against the Frightful Presence of Dragons.\n\nIn addition, you can take a Magic action to sense the distance and direction to the nearest silver dragon within 30 miles of you. Once you use this property, you can't use it again until the next dawn."
+    },
+    "xphbxdmg-white-dragon-scale-mail": {
+      "desc": "This armor is forged from the shed scales of a white dragon. While you wear it, you gain a +1 bonus to Armor Class, you have Resistance to Cold damage, and you have Advantage on saving throws against the Frightful Presence of Dragons.\n\nIn addition, you can take a Magic action to sense the distance and direction to the nearest white dragon within 30 miles of you. Once you use this property, you can't use it again until the next dawn."
+    },
+    "xphbxdmg-potion-of-acid-resistance": {
+      "desc": "Drinking this potion takes a Bonus Action. For 1 hour afterward, you have Resistance to Acid damage."
+    },
+    "xphbxdmg-ring-of-acid-resistance": {
+      "desc": "While you wear this ring, you have Resistance to Acid damage. The gem set in the band marks which kind of harm the ring turns aside."
+    },
+    "xphbxdmg-potion-of-cold-resistance": {
+      "desc": "Drinking this potion takes a Bonus Action. For 1 hour afterward, you have Resistance to Cold damage."
+    },
+    "xphbxdmg-ring-of-cold-resistance": {
+      "desc": "While you wear this ring, you have Resistance to Cold damage. The gem set in the band marks which kind of harm the ring turns aside."
+    },
+    "xphbxdmg-potion-of-fire-resistance": {
+      "desc": "Drinking this potion takes a Bonus Action. For 1 hour afterward, you have Resistance to Fire damage."
+    },
+    "xphbxdmg-ring-of-fire-resistance": {
+      "desc": "While you wear this ring, you have Resistance to Fire damage. The gem set in the band marks which kind of harm the ring turns aside."
+    },
+    "xphbxdmg-potion-of-force-resistance": {
+      "desc": "Drinking this potion takes a Bonus Action. For 1 hour afterward, you have Resistance to Force damage."
+    },
+    "xphbxdmg-ring-of-force-resistance": {
+      "desc": "While you wear this ring, you have Resistance to Force damage. The gem set in the band marks which kind of harm the ring turns aside."
+    },
+    "xphbxdmg-potion-of-lightning-resistance": {
+      "desc": "Drinking this potion takes a Bonus Action. For 1 hour afterward, you have Resistance to Lightning damage."
+    },
+    "xphbxdmg-ring-of-lightning-resistance": {
+      "desc": "While you wear this ring, you have Resistance to Lightning damage. The gem set in the band marks which kind of harm the ring turns aside."
+    },
+    "xphbxdmg-potion-of-necrotic-resistance": {
+      "desc": "Drinking this potion takes a Bonus Action. For 1 hour afterward, you have Resistance to Necrotic damage."
+    },
+    "xphbxdmg-ring-of-necrotic-resistance": {
+      "desc": "While you wear this ring, you have Resistance to Necrotic damage. The gem set in the band marks which kind of harm the ring turns aside."
+    },
+    "xphbxdmg-potion-of-poison-resistance": {
+      "desc": "Drinking this potion takes a Bonus Action. For 1 hour afterward, you have Resistance to Poison damage."
+    },
+    "xphbxdmg-ring-of-poison-resistance": {
+      "desc": "While you wear this ring, you have Resistance to Poison damage. The gem set in the band marks which kind of harm the ring turns aside."
+    },
+    "xphbxdmg-potion-of-psychic-resistance": {
+      "desc": "Drinking this potion takes a Bonus Action. For 1 hour afterward, you have Resistance to Psychic damage."
+    },
+    "xphbxdmg-ring-of-psychic-resistance": {
+      "desc": "While you wear this ring, you have Resistance to Psychic damage. The gem set in the band marks which kind of harm the ring turns aside."
+    },
+    "xphbxdmg-potion-of-radiant-resistance": {
+      "desc": "Drinking this potion takes a Bonus Action. For 1 hour afterward, you have Resistance to Radiant damage."
+    },
+    "xphbxdmg-ring-of-radiant-resistance": {
+      "desc": "While you wear this ring, you have Resistance to Radiant damage. The gem set in the band marks which kind of harm the ring turns aside."
+    },
+    "xphbxdmg-potion-of-thunder-resistance": {
+      "desc": "Drinking this potion takes a Bonus Action. For 1 hour afterward, you have Resistance to Thunder damage."
+    },
+    "xphbxdmg-ring-of-thunder-resistance": {
+      "desc": "While you wear this ring, you have Resistance to Thunder damage. The gem set in the band marks which kind of harm the ring turns aside."
+    },
+    "xphbxdmg-scroll-of-protection-aberrations": {
+      "desc": "Reading this scroll aloud takes a Magic action and wards you against Aberrations for 5 minutes.\n\nWhile the ward lasts, Aberrations can't willingly come within 5 feet of you. A creature that tries must succeed on a DC 15 Charisma saving throw to do so, and on a success it is immune to this scroll's effect for 24 hours. A warded creature can still attack you at range and target you with spells and other effects.\n\nThe scroll crumbles to dust once it has been read."
+    },
+    "xphbxdmg-scroll-of-protection-beasts": {
+      "desc": "Reading this scroll aloud takes a Magic action and wards you against Beasts for 5 minutes.\n\nWhile the ward lasts, Beasts can't willingly come within 5 feet of you. A creature that tries must succeed on a DC 15 Charisma saving throw to do so, and on a success it is immune to this scroll's effect for 24 hours. A warded creature can still attack you at range and target you with spells and other effects.\n\nThe scroll crumbles to dust once it has been read."
+    },
+    "xphbxdmg-scroll-of-protection-celestials": {
+      "desc": "Reading this scroll aloud takes a Magic action and wards you against Celestials for 5 minutes.\n\nWhile the ward lasts, Celestials can't willingly come within 5 feet of you. A creature that tries must succeed on a DC 15 Charisma saving throw to do so, and on a success it is immune to this scroll's effect for 24 hours. A warded creature can still attack you at range and target you with spells and other effects.\n\nThe scroll crumbles to dust once it has been read."
+    },
+    "xphbxdmg-scroll-of-protection-constructs": {
+      "desc": "Reading this scroll aloud takes a Magic action and wards you against Constructs for 5 minutes.\n\nWhile the ward lasts, Constructs can't willingly come within 5 feet of you. A creature that tries must succeed on a DC 15 Charisma saving throw to do so, and on a success it is immune to this scroll's effect for 24 hours. A warded creature can still attack you at range and target you with spells and other effects.\n\nThe scroll crumbles to dust once it has been read."
+    },
+    "xphbxdmg-scroll-of-protection-dragons": {
+      "desc": "Reading this scroll aloud takes a Magic action and wards you against Dragons for 5 minutes.\n\nWhile the ward lasts, Dragons can't willingly come within 5 feet of you. A creature that tries must succeed on a DC 15 Charisma saving throw to do so, and on a success it is immune to this scroll's effect for 24 hours. A warded creature can still attack you at range and target you with spells and other effects.\n\nThe scroll crumbles to dust once it has been read."
+    },
+    "xphbxdmg-scroll-of-protection-elementals": {
+      "desc": "Reading this scroll aloud takes a Magic action and wards you against Elementals for 5 minutes.\n\nWhile the ward lasts, Elementals can't willingly come within 5 feet of you. A creature that tries must succeed on a DC 15 Charisma saving throw to do so, and on a success it is immune to this scroll's effect for 24 hours. A warded creature can still attack you at range and target you with spells and other effects.\n\nThe scroll crumbles to dust once it has been read."
+    },
+    "xphbxdmg-scroll-of-protection-fey": {
+      "desc": "Reading this scroll aloud takes a Magic action and wards you against Fey for 5 minutes.\n\nWhile the ward lasts, Fey can't willingly come within 5 feet of you. A creature that tries must succeed on a DC 15 Charisma saving throw to do so, and on a success it is immune to this scroll's effect for 24 hours. A warded creature can still attack you at range and target you with spells and other effects.\n\nThe scroll crumbles to dust once it has been read."
+    },
+    "xphbxdmg-scroll-of-protection-fiends": {
+      "desc": "Reading this scroll aloud takes a Magic action and wards you against Fiends for 5 minutes.\n\nWhile the ward lasts, Fiends can't willingly come within 5 feet of you. A creature that tries must succeed on a DC 15 Charisma saving throw to do so, and on a success it is immune to this scroll's effect for 24 hours. A warded creature can still attack you at range and target you with spells and other effects.\n\nThe scroll crumbles to dust once it has been read."
+    },
+    "xphbxdmg-scroll-of-protection-giants": {
+      "desc": "Reading this scroll aloud takes a Magic action and wards you against Giants for 5 minutes.\n\nWhile the ward lasts, Giants can't willingly come within 5 feet of you. A creature that tries must succeed on a DC 15 Charisma saving throw to do so, and on a success it is immune to this scroll's effect for 24 hours. A warded creature can still attack you at range and target you with spells and other effects.\n\nThe scroll crumbles to dust once it has been read."
+    },
+    "xphbxdmg-scroll-of-protection-humanoids": {
+      "desc": "Reading this scroll aloud takes a Magic action and wards you against Humanoids for 5 minutes.\n\nWhile the ward lasts, Humanoids can't willingly come within 5 feet of you. A creature that tries must succeed on a DC 15 Charisma saving throw to do so, and on a success it is immune to this scroll's effect for 24 hours. A warded creature can still attack you at range and target you with spells and other effects.\n\nThe scroll crumbles to dust once it has been read."
+    },
+    "xphbxdmg-scroll-of-protection-monstrosities": {
+      "desc": "Reading this scroll aloud takes a Magic action and wards you against Monstrosities for 5 minutes.\n\nWhile the ward lasts, Monstrosities can't willingly come within 5 feet of you. A creature that tries must succeed on a DC 15 Charisma saving throw to do so, and on a success it is immune to this scroll's effect for 24 hours. A warded creature can still attack you at range and target you with spells and other effects.\n\nThe scroll crumbles to dust once it has been read."
+    },
+    "xphbxdmg-scroll-of-protection-oozes": {
+      "desc": "Reading this scroll aloud takes a Magic action and wards you against Oozes for 5 minutes.\n\nWhile the ward lasts, Oozes can't willingly come within 5 feet of you. A creature that tries must succeed on a DC 15 Charisma saving throw to do so, and on a success it is immune to this scroll's effect for 24 hours. A warded creature can still attack you at range and target you with spells and other effects.\n\nThe scroll crumbles to dust once it has been read."
+    },
+    "xphbxdmg-scroll-of-protection-plants": {
+      "desc": "Reading this scroll aloud takes a Magic action and wards you against Plants for 5 minutes.\n\nWhile the ward lasts, Plants can't willingly come within 5 feet of you. A creature that tries must succeed on a DC 15 Charisma saving throw to do so, and on a success it is immune to this scroll's effect for 24 hours. A warded creature can still attack you at range and target you with spells and other effects.\n\nThe scroll crumbles to dust once it has been read."
+    },
+    "xphbxdmg-scroll-of-protection-undead": {
+      "desc": "Reading this scroll aloud takes a Magic action and wards you against Undead for 5 minutes.\n\nWhile the ward lasts, Undead can't willingly come within 5 feet of you. A creature that tries must succeed on a DC 15 Charisma saving throw to do so, and on a success it is immune to this scroll's effect for 24 hours. A warded creature can still attack you at range and target you with spells and other effects.\n\nThe scroll crumbles to dust once it has been read."
+    }
+  },
+  "species": {
+    "srd-2024_dragonborn": "Dragonborn carry a dragon's blood in their veins and a dragon's breath in their lungs. Scaled, broad-shouldered and upright, they are living reminders that the great wyrms once walked among mortals -- and most of them mean to be worthy of it.",
+    "srd-2024_dwarf": "Dwarves are the stubborn heart of the mountains: short, solid and slow to yield. They measure a life in the work it leaves behind, keep their oaths as carefully as their grudges, and see in the dark as easily as others see at noon.",
+    "srd-2024_elf": "Elves are touched by the twilight magic of the Feywild. They watch centuries pass the way shorter-lived folk watch seasons, sleep only in a waking trance, and rarely forget anything -- kindness or insult alike.",
+    "srd-2024_gnome": "Gnomes meet the world as a puzzle that wants taking apart. Small, quick and relentlessly curious, they carry an inborn spark of magic and a resistance to spells that try to bend their minds.",
+    "srd-2024_goliath": "Goliaths descend from giants and have never quite forgotten it. They stand head and shoulders above most folk, carry a giant's strength in their frame, and judge themselves by the size of what they have overcome.",
+    "srd-2024_halfling": "Halflings are cheerful, hard to rattle and famously lucky -- they slip out from under disasters that flatten larger folk. Home and hearth matter deeply to them, which is exactly why so many of them go looking for a story worth bringing back.",
+    "srd-2024_human": "Humans are restless, adaptable and gone in a heartbeat by the reckoning of longer-lived folk. They crowd into every corner of the world and reshape it as they go, making up in drive what they lack in centuries.",
+    "srd-2024_orc": "Orcs are built to endure: relentless on the march, terrible in the charge, and clear-eyed in the dark. Strength, to an orc, is not something you hoard -- it is something you spend on the people at your back.",
+    "srd-2024_tiefling": "A fiendish bloodline shows in a tiefling's horns, tail and ember-lit eyes. They inherit no one's sins but everyone's suspicion, and most learn young to turn that to their advantage.",
+    "xphb-elf-drow": {
+      "desc": "Drow are elves shaped by the lightless depths of the Underdark. Their eyes reach far into the dark and their magic runs to shadow and dancing light.",
+      "traits": [
+        {
+          "name": "Size",
+          "desc": "Medium (about 5-6 feet tall)",
+          "type": "SIZE",
+          "order": 1
+        },
+        {
+          "name": "Speed",
+          "desc": "30 feet",
+          "type": "SPEED",
+          "order": 2
+        },
+        {
+          "name": "Darkvision",
+          "desc": "You have Darkvision with a range of 60 feet.",
+          "type": null,
+          "order": 3
+        },
+        {
+          "name": "Fey Ancestry",
+          "desc": "You have Advantage on saving throws you make to avoid or end the Charmed condition.",
+          "type": null,
+          "order": 4
+        },
+        {
+          "name": "Keen Senses",
+          "desc": "You have proficiency in the Insight, Perception, or Survival skill.",
+          "type": null,
+          "order": 5
+        },
+        {
+          "name": "Trance",
+          "desc": "You don't need to sleep, and magic can't put you to sleep. You can finish a Long Rest in 4 hours if you spend those hours in a trancelike meditation, during which you retain consciousness.",
+          "type": null,
+          "order": 6
+        },
+        {
+          "name": "Drow Lineage",
+          "desc": "The range of your Darkvision increases to 120 feet.\n\nYou know the Dancing Lights cantrip.\n\nStarting at character level 3 you always have the Faerie Fire spell prepared, and at level 5 you also always have the Darkness spell prepared. You can cast each of them once without a spell slot, and you regain that use when you finish a Long Rest. You can also cast them normally using spell slots of the appropriate level.\n\nIntelligence, Wisdom, or Charisma is your spellcasting ability for these spells; choose the ability when you select this lineage.",
+          "type": null,
+          "order": 7
+        }
+      ]
+    },
+    "xphb-elf-high": {
+      "desc": "High elves keep the arcane traditions of the old elven courts. A cantrip comes as readily to them as a greeting, and they change it as their studies change.",
+      "traits": [
+        {
+          "name": "Size",
+          "desc": "Medium (about 5-6 feet tall)",
+          "type": "SIZE",
+          "order": 1
+        },
+        {
+          "name": "Speed",
+          "desc": "30 feet",
+          "type": "SPEED",
+          "order": 2
+        },
+        {
+          "name": "Darkvision",
+          "desc": "You have Darkvision with a range of 60 feet.",
+          "type": null,
+          "order": 3
+        },
+        {
+          "name": "Fey Ancestry",
+          "desc": "You have Advantage on saving throws you make to avoid or end the Charmed condition.",
+          "type": null,
+          "order": 4
+        },
+        {
+          "name": "Keen Senses",
+          "desc": "You have proficiency in the Insight, Perception, or Survival skill.",
+          "type": null,
+          "order": 5
+        },
+        {
+          "name": "Trance",
+          "desc": "You don't need to sleep, and magic can't put you to sleep. You can finish a Long Rest in 4 hours if you spend those hours in a trancelike meditation, during which you retain consciousness.",
+          "type": null,
+          "order": 6
+        },
+        {
+          "name": "High Elf Lineage",
+          "desc": "Whenever you finish a Long Rest, you can replace that cantrip with a different cantrip from the Wizard spell list.\n\nYou know the Prestidigitation cantrip.\n\nStarting at character level 3 you always have the Detect Magic spell prepared, and at level 5 you also always have the Misty Step spell prepared. You can cast each of them once without a spell slot, and you regain that use when you finish a Long Rest. You can also cast them normally using spell slots of the appropriate level.\n\nIntelligence, Wisdom, or Charisma is your spellcasting ability for these spells; choose the ability when you select this lineage.",
+          "type": null,
+          "order": 7
+        }
+      ]
+    },
+    "xphb-elf-wood": {
+      "desc": "Wood elves belong to the deep forest. They move faster and quieter than other elves, see further by starlight, and know how to disappear into a thicket that offers no cover at all.",
+      "traits": [
+        {
+          "name": "Size",
+          "desc": "Medium (about 5-6 feet tall)",
+          "type": "SIZE",
+          "order": 1
+        },
+        {
+          "name": "Speed",
+          "desc": "35 feet",
+          "type": "SPEED",
+          "order": 2
+        },
+        {
+          "name": "Darkvision",
+          "desc": "You have Darkvision with a range of 60 feet.",
+          "type": null,
+          "order": 3
+        },
+        {
+          "name": "Fey Ancestry",
+          "desc": "You have Advantage on saving throws you make to avoid or end the Charmed condition.",
+          "type": null,
+          "order": 4
+        },
+        {
+          "name": "Keen Senses",
+          "desc": "You have proficiency in the Insight, Perception, or Survival skill.",
+          "type": null,
+          "order": 5
+        },
+        {
+          "name": "Trance",
+          "desc": "You don't need to sleep, and magic can't put you to sleep. You can finish a Long Rest in 4 hours if you spend those hours in a trancelike meditation, during which you retain consciousness.",
+          "type": null,
+          "order": 6
+        },
+        {
+          "name": "Wood Elf Lineage",
+          "desc": "You know the Druidcraft cantrip.\n\nStarting at character level 3 you always have the Longstrider spell prepared, and at level 5 you also always have the Pass without Trace spell prepared. You can cast each of them once without a spell slot, and you regain that use when you finish a Long Rest. You can also cast them normally using spell slots of the appropriate level.\n\nIntelligence, Wisdom, or Charisma is your spellcasting ability for these spells; choose the ability when you select this lineage.",
+          "type": null,
+          "order": 7
+        }
+      ]
+    },
+    "xphb-gnome-forest": {
+      "desc": "Forest gnomes live alongside the small creatures of the wood. They speak with beasts, conjure little illusions to keep the curious away, and are almost never found by anyone who is looking.",
+      "traits": [
+        {
+          "name": "Size",
+          "desc": "Small (about 3-4 feet tall)",
+          "type": "SIZE",
+          "order": 1
+        },
+        {
+          "name": "Speed",
+          "desc": "30 feet",
+          "type": "SPEED",
+          "order": 2
+        },
+        {
+          "name": "Darkvision",
+          "desc": "You have Darkvision with a range of 60 feet.",
+          "type": null,
+          "order": 3
+        },
+        {
+          "name": "Gnomish Cunning",
+          "desc": "You have Advantage on Intelligence, Wisdom, and Charisma saving throws.",
+          "type": null,
+          "order": 4
+        },
+        {
+          "name": "Forest Gnome Lineage",
+          "desc": "You know the Minor Illusion cantrip. You also always have the Speak with Animals spell prepared and can cast it without a spell slot a number of times equal to your Proficiency Bonus, regaining all uses when you finish a Long Rest. You can also cast it normally using any spell slots you have.\n\nIntelligence, Wisdom, or Charisma is your spellcasting ability for these spells; choose the ability when you select this lineage.",
+          "type": null,
+          "order": 5
+        }
+      ]
+    },
+    "xphb-gnome-rock": {
+      "desc": "Rock gnomes are tinkers to the bone. They know their metals and stones on sight and are forever assembling small clockwork devices that whistle, spark or scurry about.",
+      "traits": [
+        {
+          "name": "Size",
+          "desc": "Small (about 3-4 feet tall)",
+          "type": "SIZE",
+          "order": 1
+        },
+        {
+          "name": "Speed",
+          "desc": "30 feet",
+          "type": "SPEED",
+          "order": 2
+        },
+        {
+          "name": "Darkvision",
+          "desc": "You have Darkvision with a range of 60 feet.",
+          "type": null,
+          "order": 3
+        },
+        {
+          "name": "Gnomish Cunning",
+          "desc": "You have Advantage on Intelligence, Wisdom, and Charisma saving throws.",
+          "type": null,
+          "order": 4
+        },
+        {
+          "name": "Rock Gnome Lineage",
+          "desc": "You know the Mending and Prestidigitation cantrips.\n\nIn addition, you can spend 10 minutes casting Mending to create a Tiny clockwork device (AC 5, 1 HP), such as a toy, a fire starter, or a music box. When you create the device, choose one of those effects; the device produces it, and a creature can take a Utility action to activate it. You can have up to three such devices at a time, and one crumbles to dust if you create a fourth. Intelligence, Wisdom, or Charisma is your spellcasting ability for these spells; choose the ability when you select this lineage.",
+          "type": null,
+          "order": 5
+        }
+      ]
+    },
+    "xphb-tiefling-abyssal": {
+      "desc": "Abyssal tieflings carry the raw, hungry chaos of the Abyss. Their heritage runs to poison and brute resilience rather than subtlety.",
+      "traits": [
+        {
+          "name": "Size",
+          "desc": "Medium (about 4-7 feet tall)",
+          "type": "SIZE",
+          "order": 1
+        },
+        {
+          "name": "Speed",
+          "desc": "30 feet",
+          "type": "SPEED",
+          "order": 2
+        },
+        {
+          "name": "Darkvision",
+          "desc": "You have Darkvision with a range of 60 feet.",
+          "type": null,
+          "order": 3
+        },
+        {
+          "name": "Otherworldly Presence",
+          "desc": "You know the Thaumaturgy cantrip. When you cast it with this trait, the spell uses the same spellcasting ability you chose for your Fiendish Legacy trait.",
+          "type": null,
+          "order": 4
+        },
+        {
+          "name": "Fiendish Legacy",
+          "desc": "Abyssal. You have Resistance to Poison damage and know the Poison Spray cantrip.\n\nStarting at character level 3 you always have the Ray of Sickness spell prepared, and at level 5 you also always have the Hold Person spell prepared. You can cast each of them once without a spell slot, and you regain that use when you finish a Long Rest. You can also cast them normally using spell slots of the appropriate level.\n\nIntelligence, Wisdom, or Charisma is your spellcasting ability for these spells; choose the ability when you select this lineage.",
+          "type": null,
+          "order": 5
+        }
+      ]
+    },
+    "xphb-tiefling-chthonic": {
+      "desc": "Chthonic tieflings are marked by the powers of death and the grave. Necrotic energy answers them, and they are unusually hard to finish off.",
+      "traits": [
+        {
+          "name": "Size",
+          "desc": "Medium (about 4-7 feet tall)",
+          "type": "SIZE",
+          "order": 1
+        },
+        {
+          "name": "Speed",
+          "desc": "30 feet",
+          "type": "SPEED",
+          "order": 2
+        },
+        {
+          "name": "Darkvision",
+          "desc": "You have Darkvision with a range of 60 feet.",
+          "type": null,
+          "order": 3
+        },
+        {
+          "name": "Otherworldly Presence",
+          "desc": "You know the Thaumaturgy cantrip. When you cast it with this trait, the spell uses the same spellcasting ability you chose for your Fiendish Legacy trait.",
+          "type": null,
+          "order": 4
+        },
+        {
+          "name": "Fiendish Legacy",
+          "desc": "Chthonic. You have Resistance to Necrotic damage and know the Chill Touch cantrip.\n\nStarting at character level 3 you always have the False Life spell prepared, and at level 5 you also always have the Ray of Enfeeblement spell prepared. You can cast each of them once without a spell slot, and you regain that use when you finish a Long Rest. You can also cast them normally using spell slots of the appropriate level.\n\nIntelligence, Wisdom, or Charisma is your spellcasting ability for these spells; choose the ability when you select this lineage.",
+          "type": null,
+          "order": 5
+        }
+      ]
+    },
+    "xphb-tiefling-infernal": {
+      "desc": "Infernal tieflings descend from the ordered hells. Fire is their inheritance, along with a lawyer's instinct for a bargain.",
+      "traits": [
+        {
+          "name": "Size",
+          "desc": "Medium (about 4-7 feet tall)",
+          "type": "SIZE",
+          "order": 1
+        },
+        {
+          "name": "Speed",
+          "desc": "30 feet",
+          "type": "SPEED",
+          "order": 2
+        },
+        {
+          "name": "Darkvision",
+          "desc": "You have Darkvision with a range of 60 feet.",
+          "type": null,
+          "order": 3
+        },
+        {
+          "name": "Otherworldly Presence",
+          "desc": "You know the Thaumaturgy cantrip. When you cast it with this trait, the spell uses the same spellcasting ability you chose for your Fiendish Legacy trait.",
+          "type": null,
+          "order": 4
+        },
+        {
+          "name": "Fiendish Legacy",
+          "desc": "Infernal. You have Resistance to Fire damage and know the Fire Bolt cantrip.\n\nStarting at character level 3 you always have the Hellish Rebuke spell prepared, and at level 5 you also always have the Darkness spell prepared. You can cast each of them once without a spell slot, and you regain that use when you finish a Long Rest. You can also cast them normally using spell slots of the appropriate level.\n\nIntelligence, Wisdom, or Charisma is your spellcasting ability for these spells; choose the ability when you select this lineage.",
+          "type": null,
+          "order": 5
+        }
+      ]
+    },
+    "eberron-forge_changeling": "Changelings can reshape their own face and frame at will. Some use it to survive, some to spy, and some simply because they have never believed that a person is only one person.",
+    "eberron-forge_kalashtar": "Kalashtar share their bodies with a spirit from the plane of dreams. That bond gives them a quiet telepathy, a guarded mind and dreams that are not entirely their own.",
+    "eberron-forge_khoravar": "Khoravar -- half-elves of Khorvaire -- belong to both the human and elven worlds and fully to neither. They have made that in-between place into a people of their own.",
+    "eberron-forge_shifter": "Shifters carry lycanthropic blood that never fully settled. For a few fierce moments they can let the beast rise: faster, tougher, harder to put down.",
+    "eberron-forge_warforged": "Warforged were built for a war that is now over. Living constructs of wood, stone and steel, they need no sleep and no breath, and each of them is now free to decide what they were actually for.",
+    "ravenloft-horrors_dhampir": "A dhampir stands between the living and the vampire that made them. They keep their heartbeat and their will, but the hunger is real, and so is the speed and the sharp night-sight that comes with it.",
+    "ravenloft-horrors_hexblood": "A hexblood is someone a hag has claimed and remade. The bargain leaves fey magic in their blood, an uncanny cast to their features, and a debt that tends to come looking.",
+    "ravenloft-horrors_lupin": "Lupins are a people with a hound's build and a hound's senses: keen of nose, loyal by inclination, and very difficult to throw off a trail.",
+    "ravenloft-horrors_reborn": "The reborn have died and come back wrong -- or perhaps exactly right. Their bodies no longer need food, drink or air, and their memories arrive in pieces belonging to more than one life."
+  },
+  "classes": {
+    "srd-2024_barbarian": {
+      "desc": "Barbarians fight on fury. Where other warriors rely on drill and discipline, a barbarian leans into a Rage that makes them harder to hurt and harder to stop, and they keep their feet long after the battle should have ended them.",
+      "_note": "Rage glued the 'Damage Resistance' sub-heading onto the previous sentence and marked it with single asterisks while its siblings use bold; Hamstring Blow lost the dash in 'at a time - the most recent one'.",
+      "features": {
+        "srd-2024_barbarian_rage": {
+          "desc": "You can imbue yourself with a primal power called Rage, a force that grants you extraordinary might and resilience. You can enter it as a Bonus Action if you aren't wearing Heavy armor.\n\nYou can enter your Rage the number of times shown for your Barbarian level in the Rages column of the Barbarian Features table. You regain one expended use when you finish a Short Rest, and you regain all expended uses when you finish a Long Rest.\n\nWhile active, your Rage follows the rules below.\n\n**Damage Resistance.** You have Resistance to Bludgeoning, Piercing, and Slashing damage.\n\n**Rage Damage.** When you make an attack using Strength—with either a weapon or an Unarmed Strike—and deal damage to the target, you gain a bonus to the damage that increases as you gain levels as a Barbarian, as shown in the Rage Damage column of the Barbarian Features table.\n\n**Strength Advantage.** You have Advantage on Strength checks and Strength saving throws.\n\n**No Concentration or Spells.** You can't maintain Concentration, and you can't cast spells.\n\n**Duration.** The Rage lasts until the end of your next turn, and it ends early if you don Heavy armor or have the Incapacitated condition. If your Rage is still active on your next turn, you can extend the Rage for another round by doing one of the following:\n- Make an attack roll against an enemy.\n- Force an enemy to make a saving throw.\n- Take a Bonus Action to extend your Rage.\n\nEach time the Rage is extended, it lasts until the end of your next turn. You can maintain a Rage for up to 10 minutes."
+        },
+        "srd-2024_barbarian_brutal-strike": {
+          "desc": "If you use Reckless Attack, you can forgo any Advantage on one Strength-based attack roll of your choice on your turn. The chosen attack roll mustn't have Disadvantage. If the chosen attack roll hits, the target takes an extra 1d10 damage of the same type dealt by the weapon or Unarmed Strike, and you can cause one Brutal Strike effect of your choice. You have the following effect options.\n\n**Forceful Blow.** The target is pushed 15 feet straight away from you. You can then move up to half your Speed straight toward the target without provoking Opportunity Attacks.\n\n**Hamstring Blow.** The target's Speed is reduced by 15 feet until the start of your next turn. A target can be affected by only one Hamstring Blow at a time -- the most recent one."
+        }
+      }
+    },
+    "srd-2024_bard": "Bards weave magic out of performance -- a song, a story, a well-timed word. They are the party's generalists: a little of every skill, a spell for most problems, and the ability to make everyone around them better at what they already do.",
+    "srd-2024_cleric": {
+      "desc": "Clerics channel the power of a god. That grant comes with a mandate: heal, protect, and burn away whatever the deity has no patience for. Their chosen domain decides which of those they are best at.",
+      "features": {
+        "srd-2024_cleric_cleric-spell-list": {
+          "_note": "Half the spell tables were captioned with 'Table:' and half with a '####' markdown heading in the same feature; unified so they render alike.",
+          "desc": "This section presents the Cleric spell list. The spells are organized by spell level and then alphabetized, and each spell's school of magic is listed. In the Special column, *C* means the spell requires Concentration, *R* means it's a Ritual, and *M* means it requires a specific Material component.\n\nTable: Cantrips (Level 0 Cleric Spells)\n\n|Spell|School|Special|\n|---|---|---|\n|Guidance|Divination|C|\n|Light|Evocation|—|\n|Mending|Transmutation|—|\n|Resistance|Abjuration|C|\n|Sacred Flame|Evocation|—|\n|Spare the Dying|Necromancy|—|\n|Thaumaturgy|Transmutation|—|\n\nTable: Level 1 Cleric Spells\n\n|Spell|School|Special|\n|---|---|---|\n|Bane|Enchantment|C|\n|Bless|Enchantment|C, M|\n|Command|Enchantment|—|\n|Create or Destroy Water|Transmutation|—|\n|Cure Wounds|Abjuration|—|\n|Detect Evil and Good|Divination|C|\n|Detect Magic|Divination|C, R|\n|Detect Poison and Disease|Divination|C, R|\n|Guiding Bolt|Evocation|—|\n|Healing Word|Abjuration|—|\n|Inflict Wounds|Necromancy|—|\n|Protection from Evil and Good|Abjuration|C, M|\n|Purify Food and Drink|Transmutation|R|\n|Sanctuary|Abjuration|—|\n|Shield of Faith|Abjuration|C|\n\nTable: Level 2 Cleric Spells\n\n|Spell|School|Special|\n|---|---|---|\n|Aid|Abjuration|—|\n|Augury|Divination|R, M|\n|Blindness/Deafness|Transmutation|—|\n|Calm Emotions|Enchantment|C|\n|Continual Flame|Evocation|M|\n|Enhance Ability|Transmutation|C|\n|Find Traps|Divination|—|\n|Gentle Repose|Necromancy|R, M|\n|Hold Person|Enchantment|C|\n|Lesser Restoration|Abjuration|—|\n|Locate Object|Divination|C|\n|Prayer of Healing|Abjuration|—|\n|Protection from Poison|Abjuration|—|\n|Silence|Illusion|C, R|\n|Spiritual Weapon|Evocation|C|\n|Warding Bond|Abjuration|M|\n|Zone of Truth|Enchantment|—|\n\nTable: Level 3 Cleric Spells\n\n|Spell|School|Special|\n|---|---|---|\n|Animate Dead|Necromancy|—|\n|Beacon of Hope|Abjuration|C|\n|Bestow Curse|Necromancy|C|\n|Clairvoyance|Divination|C, M|\n|Create Food and Water|Conjuration|—|\n|Daylight|Evocation|—|\n|Dispel Magic|Abjuration|—|\n|Glyph of Warding|Abjuration|M|\n|Magic Circle|Abjuration|M|\n|Mass Healing Word|Abjuration|—|\n|Meld into Stone|Transmutation|R|\n|Protection from Energy|Abjuration|C|\n|Remove Curse|Abjuration|—|\n|Revivify|Necromancy|M|\n|Sending|Divination|—|\n|Speak with Dead|Necromancy|—|\n|Spirit Guardians|Conjuration|C|\n|Tongues|Divination|—|\n|Water Walk|Transmutation|R|\n\nTable: Level 4 Cleric Spells\n\n|Spell|School|Special|\n|---|---|---|\n|Aura of Life|Abjuration|C|\n|Banishment|Abjuration|C|\n|Control Water|Transmutation|C|\n|Death Ward|Abjuration|—|\n|Divination|Divination|R, M|\n|Freedom of Movement|Abjuration|—|\n|Guardian of Faith|Conjuration|—|\n|Locate Creature|Divination|C|\n|Stone Shape|Transmutation|—|\n\nTable: Level 5 Cleric Spells\n\n|Spell|School|Special|\n|---|---|---|\n|Commune|Divination|R|\n|Contagion|Necromancy|—|\n|Dispel Evil and Good|Abjuration|C|\n|Flame Strike|Evocation|—|\n|Geas|Enchantment|—|\n|Greater Restoration|Abjuration|M|\n|Hallow|Abjuration|M|\n|Insect Plague|Conjuration|C|\n|Legend Lore|Divination|M|\n|Mass Cure Wounds|Abjuration|—|\n|Planar Binding|Abjuration|M|\n|Raise Dead|Necromancy|M|\n|Scrying|Divination|C, M|\n\nTable: Level 6 Cleric Spells\n\n|Spell|School|Special|\n|---|---|---|\n|Blade Barrier|Evocation|C|\n|Create Undead|Necromancy|M|\n|Find the Path|Divination|C, M|\n|Forbiddance|Abjuration|R, M|\n|Harm|Necromancy|—|\n|Heal|Abjuration|—|\n|Heroes' Feast|Conjuration|M|\n|Planar Ally|Conjuration|—|\n|Sunbeam|Evocation|C|\n|True Seeing|Divination|M|\n|Word of Recall|Conjuration|—|\n\nTable: Level 7 Cleric Spells\n\n|Spell|School|Special|\n|---|---|---|\n|Conjure Celestial|Conjuration|C|\n|Divine Word|Evocation|—|\n|Etherealness|Conjuration|—|\n|Fire Storm|Evocation|—|\n|Plane Shift|Conjuration|M|\n|Regenerate|Transmutation|—|\n|Resurrection|Necromancy|M|\n|Symbol|Abjuration|M|\n\nTable: Level 8 Cleric Spells\n\n|Spell|School|Special|\n|---|---|---|\n|Antimagic Field|Abjuration|C|\n|Control Weather|Transmutation|C|\n|Earthquake|Transmutation|C|\n|Holy Aura|Abjuration|C, M|\n|Sunburst|Evocation|—|\n\nTable: Level 9 Cleric Spells\n\n|Spell|School|Special|\n|---|---|---|\n|Astral Projection|Necromancy|M|\n|Gate|Conjuration|C, M|\n|Mass Heal|Abjuration|—|\n|Power Word Heal|Enchantment|—|\n|True Resurrection|Necromancy|M|"
+        },
+        "srd-2024_cleric_core-traits": {
+          "_note": "Shipped named 'Cleric Subclasses', the same name as the actual subclass feature -- two displayed features with one name. Every other class calls this 'Core <Class> Traits'.",
+          "name": "Core Cleric Traits"
+        }
+      }
+    },
+    "srd-2024_druid": {
+      "desc": "Druids draw on the primal magic of the natural world. They shape it into storms, thorns and healing, and they can set aside their own shape entirely to run, swim or fly as a beast.",
+      "_note": "The Wild Shape uses column arrived mislabelled as a level feature named 'Cantrips Known' with '[Column data]' as its body, so the class sheet showed an empty feature. It is table data, not a feature.",
+      "features": {
+        "srd-2024_druid_wild-shape-uses": {
+          "feature_type": "CLASS_TABLE_DATA"
+        },
+        "srd-2024_druid_druid-spell-list": {
+          "_note": "The cantrip table lost its whole Spell column: eleven rows shipped with only a school and a Special flag, plus a trailing empty row. The names are restored from the alphabetical order the remaining columns still match.",
+          "desc": "This section presents the Druid spell list. The spells are organized by spell level and then alphabetized, and each spell's school of magic is listed. In the Special column, *C* means the spell requires Concentration, *R* means it's a Ritual, and *M* means it requires a specific Material component.\n\nTable: Cantrips (Level 0 Druid Spells)\n\n|Spell|School|Special|\n|---|---|---|\n|Druidcraft|Transmutation|—|\n|Elementalism|Transmutation|—|\n|Guidance|Divination|C|\n|Mending|Transmutation|—|\n|Message|Transmutation|—|\n|Poison Spray|Necromancy|—|\n|Produce Flame|Conjuration|—|\n|Resistance|Abjuration|C|\n|Shillelagh|Transmutation|—|\n|Spare the Dying|Necromancy|—|\n|Thunderclap|Evocation|—|\n\nTable: Level 1 Druid Spells\n\n|Spell|School|Special|\n|---|---|---|\n|Animal Friendship|Enchantment|—|\n|Charm Person|Enchantment|—|\n|Create or Destroy Water|Transmutation|—|\n|Cure Wounds|Abjuration|—|\n|Detect Magic|Divination|C, R|\n|Detect Poison and Disease|Divination|C, R|\n|Entangle|Conjuration|C|\n|Faerie Fire|Evocation|C|\n|Fog Cloud|Conjuration|C|\n|Goodberry|Conjuration|—|\n|Healing Word|Abjuration|—|\n|Ice Knife|Conjuration|—|\n|Jump|Transmutation|—|\n|Longstrider|Transmutation|—|\n|Protection from Evil and Good|Abjuration|C, M|\n|Purify Food and Drink|Transmutation|R|\n|Speak with Animals|Divination|R|\n|Thunderwave|Evocation|—|\n\nTable: Level 2 Druid Spells\n\n|Spell|School|Special|\n|---|---|---|\n|Aid|Abjuration|—|\n|Animal Messenger|Enchantment|R|\n|Augury|Divination|R, M|\n|Barkskin|Transmutation|—|\n|Continual Flame|Evocation|M|\n|Darkvision|Transmutation|—|\n|Enhance Ability|Transmutation|C|\n|Enlarge/Reduce|Transmutation|C|\n|Find Traps|Divination|—|\n|Flame Blade|Evocation|C|"
+        },
+        "srd-2024_druid_core-traits": {
+          "_note": "Core traits shipped with two words broken across a line wrap: 'Na ture' and 'Leather Ar mor'.",
+          "desc": "|||\n|---|---|\n|Primary Ability|Wisdom|\n|Hit Point Die|D8 per Druid level|\n|Saving Throw Proficiencies|Intelligence and Wisdom|\n|Skill Proficiencies|Choose 2: Animal Handling, Arcana, Insight, Medicine, Nature, Perception, Religion, or Survival|\n|Weapon Proficiencies|Simple weapons|\n|Tool Proficiencies|Herbalism Kit|\n|Armor Training|Light armor and Shields|\n|Starting Equipment|Choose A or B: (A) Leather Armor, Shield, Sickle, Druidic Focus (Quarterstaff), Explorer's Pack, Herbalism Kit, and 9 GP; or (B) 50 GP|"
+        }
+      }
+    },
+    "srd-2024_fighter": {
+      "desc": "Fighters are the masters of weapons and armor. They can attack more often than anyone else, pull a Second Wind out of nothing, and adapt to any role a fight demands -- archer, shieldbearer, duelist, commander.",
+      "_note": "Feature name shipped misspelled as 'Studdied Attacks'; its own key already says 'studied-attacks'.",
+      "features": {
+        "srd-2024_fighter_studied-attacks": {
+          "name": "Studied Attacks"
+        }
+      }
+    },
+    "srd-2024_monk": {
+      "desc": "Monks turn their own body into the weapon. Ki -- Focus -- lets them strike faster than the eye follows, run up walls, deflect arrows and cross a battlefield before anyone has decided what to do about them.",
+      "_note": "Feature name shipped misspelled as 'Unarmoed Movement'; its own key already says 'unarmored-movement'.",
+      "features": {
+        "srd-2024_monk_unarmored-movement": {
+          "name": "Unarmored Movement"
+        }
+      }
+    },
+    "srd-2024_paladin": "Paladins bind themselves to an oath and are given power to keep it. They stand at the front, shield the people behind them, burn evil out of what they strike, and heal what they can with Lay On Hands.",
+    "srd-2024_ranger": {
+      "desc": "Rangers are the hunters of the borderlands. They track what others lose, survive where others starve, and mix woodcraft with a strand of primal magic that marks prey and turns terrain into an ally.",
+      "_note": "Starting equipment shipped with a broken word: '20 Ar rows'.",
+      "features": {
+        "srd-2024_ranger_core-traits": {
+          "desc": "|||\n|---|---|\n|Primary Ability|Dexterity and Wisdom|\n|Hit Point Die|D10 per Ranger level|\n|Saving Throw Proficiencies|Strength and Dexterity|\n|Skill Proficiencies|Choose 3: Animal Handling, Athletics, Insight, Investigation, Nature, Perception, Stealth, or Survival|\n|Weapon Proficiencies|Simple and Martial weapons|\n|Armor Training|Light and Medium armor and Shields|\n|Starting Equipment|Choose A or B: (A) Studded Leather Armor, Scimitar, Shortsword, Longbow, 20 Arrows, Quiver, Druidic Focus (sprig of mistletoe), Explorer's Pack, and 7 GP; or (B) 150 GP|"
+        }
+      }
+    },
+    "srd-2024_rogue": "Rogues win fights by choosing them. A Sneak Attack at the right instant does more damage than an honest exchange ever will, and between fights their skills open the locks, traps and conversations no one else can.",
+    "srd-2024_sorcerer": {
+      "desc": "Sorcerers do not study magic -- they are magic, by bloodline or by accident of birth. They know fewer spells than a wizard, but Metamagic lets them bend the ones they have into shapes no spellbook describes.",
+      "features": {
+        "srd-2024_sorcerer_metamagic-options": {
+          "_note": "Subtle Spell lost its '###' marker, so it rendered as body text while every other Metamagic option is a heading.",
+          "desc": "The following options are available to your Metamagic feature. The options are presented in alphabetical order.\n\n### Careful Spell\n\n*Cost: 1 Sorcery Point*\n\nWhen you cast a spell that forces other creatures to make a saving throw, you can protect some of those creatures from the spell's full force. To do so, spend 1 Sorcery Point and choose a number of those creatures up to your Charisma modifier (minimum of one creature). A chosen creature automatically succeeds on its saving throw against the spell, and it takes no damage if it would normally take half damage on a successful save.\n\n### Distant Spell\n\n*Cost: 1 Sorcery Point*\n\nWhen you cast a spell that has a range of at least 5 feet, you can spend 1 Sorcery Point to double the spell's range. Or when you cast a spell that has a range of Touch, you can spend 1 Sorcery Point to make the spell's range 30 feet.\n\n### Empowered Spell\n\n*Cost: 1 Sorcery Point*\n\nWhen you roll damage for a spell, you can spend 1 Sorcery Point to reroll a number of the damage dice up to your Charisma modifier (minimum of one), and you must use the new rolls. You can use Empowered Spell even if you've already used a different Metamagic option during the casting of the spell.\n\n### Extended Spell\n\n*Cost: 1 Sorcery Point*\n\nWhen you cast a spell that has a duration of 1 minute or longer, you can spend 1 Sorcery Point to double its duration to a maximum duration of 24 hours. If the affected spell requires Concentration, you have Advantage on any saving throw you make to maintain that Concentration.\n\n### Heightened Spell\n\n*Cost: 2 Sorcery Points*\n\nWhen you cast a spell that forces a creature to make a saving throw, you can spend 2 Sorcery Points to give one target of the spell Disadvantage on saves against the spell.\n\n### Quickened Spell\n\n*Cost: 2 Sorcery Points*\n\nWhen you cast a spell that has a casting time of an action, you can spend 2 Sorcery Points to change the casting time to a Bonus Action for this casting. You can't modify a spell in this way if you've already cast a level 1+ spell on the current turn, nor can you cast a level 1+ spell on this turn after modifying a spell in this way.\n\n### Seeking Spell\n\n*Cost: 1 Sorcery Point*\n\nIf you make an attack roll for a spell and miss, you can spend 1 Sorcery Point to reroll the d20, and you must use the new roll. You can use Seeking Spell even if you've already used a different Metamagic option during the casting of the spell.\n\n### Subtle Spell\n\n*Cost: 1 Sorcery Point*\n\nWhen you cast a spell, you can spend 1 Sorcery Point to cast it without any Verbal, Somatic, or Material components, except Material components that are consumed by the spell or that have a cost specified in the spell.\n\n### Transmuted Spell\n\n*Cost: 1 Sorcery Point*\n\nWhen you cast a spell that deals a type of damage from the following list, you can spend 1 Sorcery Point to change that damage type to one of the other listed types: Acid, Cold, Fire, Lightning, Poison, Thunder.\n\n### Twinned Spell\n\n*Cost: 1 Sorcery Point*\n\nWhen you cast a spell, such as *Charm Person*, that can be cast with a higher-level spell slot to target an additional creature, you can spend 1 Sorcery Point to increase the spell's effective level by 1."
+        }
+      }
+    },
+    "srd-2024_warlock": {
+      "desc": "Warlocks make a pact with something powerful and not entirely safe. In return they get magic that recharges on a Short Rest, an Eldritch Blast that never runs out, and Invocations that shape their patron's gift to their own purpose.",
+      "features": {
+        "srd-2024_warlock_core-traits": {
+          "_note": "Core traits shipped with 'Ar cane Focus' broken across a line wrap.",
+          "desc": "|||\n|---|---|\n|Primary Ability|Charisma|\n|Hit Point Die|D8 per Warlock level|\n|Saving Throw Proficiencies|Wisdom and Charisma|\n|Skill Proficiencies|Choose 2: Arcana, Deception, History, Intimidation, Investigation, Nature, or Religion|\n|Weapon Proficiencies|Simple weapons|\n|Armor Training|Light armor|\n|Starting Equipment|Choose A or B: (A) Leather Armor, Sickle, 2 Daggers, Arcane Focus (orb), Book (occult lore), Scholar's Pack, and 15 GP; or (B) 100 GP|"
+        },
+        "srd-2024_warlock_eldritch-invocation-options": {
+          "_note": "Devil's Sight lost the opening dash of an em-dash aside, so the sentence read 'Dim Light and Darkness both magical and nonmagical-within...'.",
+          "desc": "Eldritch Invocation options appear in alphabetical order.\n\n### Agonizing Blast\n\n*Prerequisite: Level 2+ Warlock, a Warlock Cantrip That Deals Damage*\n\nChoose one of your known Warlock cantrips that deals damage. You can add your Charisma modifier to that spell's damage rolls.\n\n**Repeatable.** You can gain this invocation more than once. Each time you do so, choose a different eligible cantrip.\n\n### Armor of Shadows\n\nYou can cast *Mage Armor* on yourself without expending a spell slot.\n\n### Ascendant Step\n\n*Prerequisite: Level 5+ Warlock*\n\nYou can cast *Levitate* on yourself without expending a spell slot.\n\n### Devil's Sight\n\n*Prerequisite: Level 2+ Warlock*\n\nYou can see normally in Dim Light and Darkness—both magical and nonmagical—within 120 feet of yourself.\n\n### Devouring Blade\n\n*Prerequisite: Level 12+ Warlock, Thirsting Blade Invocation*\n\nThe Extra Attack of your Thirsting Blade invocation confers two extra attacks rather than one.\n\n### Eldritch Mind\n\nYou have Advantage on Constitution saving throws that you make to maintain Concentration.\n\n### Eldritch Smite\n\n*Prerequisite: Level 5+ Warlock, Pact of the Blade Invocation*\n\nOnce per turn when you hit a creature with your pact weapon, you can expend a Pact Magic spell slot to deal an extra 1d8 Force damage to the target, plus another 1d8 per level of the spell slot, and you can give the target the Prone condition if it is Huge or smaller.\n\n### Eldritch Spear\n\n*Prerequisite: Level 2+ Warlock, a Warlock Cantrip That Deals Damage*\n\nChoose one of your known Warlock cantrips that deals damage and has a range of 10+ feet. When you cast that spell, its range increases by a number of feet equal to 30 times your Warlock level.\n\n**Repeatable.** You can gain this invocation more than once. Each time you do so, choose a different eligible cantrip.\n\n### Fiendish Vigor\n\n*Prerequisite: Level 2+ Warlock*\n\nYou can cast *False Life* on yourself without expending a spell slot. When you cast the spell with this feature, you don't roll the die for the Temporary Hit Points; you automatically get the highest number on the die.\n\n### Gaze of Two Minds\n\n*Prerequisite: Level 5+ Warlock*\n\nYou can use a Bonus Action to touch a willing creature and perceive through its senses until the end of your next turn. As long as the creature is on the same plane of existence as you, you can take a Bonus Action on subsequent turns to maintain this connection, extending the duration until the end of your next turn. The connection ends if you don't maintain it in this way.\n\nWhile perceiving through the other creature's senses, you benefit from any special senses possessed by that creature, and you can cast spells as if you were in your space or the other creature's space if the two of you are within 60 feet of each other.\n\n### Gift of the Depths\n\n*Prerequisite: Level 5+ Warlock*\n\nYou can breathe underwater, and you gain a Swim Speed equal to your Speed.\n\nYou can also cast *Water Breathing* once without expending a spell slot. You regain the ability to cast it in this way again when you finish a Long Rest.\n\n### Gift of the Protectors\n\n*Prerequisite: Level 9+ Warlock, Pact of the Tome Invocation*\n\nA new page appears in your *Book of Shadows* when you conjure it. With your permission, a creature can take an action to write its name on that page, which can contain a number of names equal to your Charisma modifier (minimum of one name).\n\nWhen any creature whose name is on the page is reduced to 0 Hit Points but not killed outright, the creature magically drops to 1 Hit Point instead. Once this magic is triggered, no creature can benefit from it until you finish a Long Rest.\n\nAs a Magic action, you can erase a name on the page by touching it.\n\n### Investment of the Chain Master\n\n*Prerequisite: Level 5+ Warlock, Pact of the Chain Invocation*\n\nWhen you cast *Find Familiar*, you infuse the summoned familiar with a measure of your eldritch power, granting the creature the following benefits.\n\n**Aerial or Aquatic.** The familiar gains either a Fly Speed or a Swim Speed (your choice) of 40 feet.\n\n**Quick Attack.** As a Bonus Action, you can command the familiar to take the Attack action.\n\n**Necrotic or Radiant Damage.** Whenever the familiar deals Bludgeoning, Piercing, or Slashing damage, you can make it deal Necrotic or Radiant damage instead.\n\n**Your Save DC.** If the familiar forces a creature to make a saving throw, it uses your spell save DC.\n\n**Resistance.** When the familiar takes damage, you can take a Reaction to grant it Resistance against that damage.\n\n### **Lessons of the First Ones**\n\n*Prerequisite: Level 2+ Warlock*\n\nYou have received knowledge from an elder entity of the multiverse, allowing you to gain one Origin feat of your choice (see \"Feats\").\n\n**Repeatable.** You can gain this invocation more than once. Each time you do so, choose a different Origin feat.\n\n### Lifedrinker\n\n*Prerequisite: Level 9+ Warlock, Pact of the Blade Invocation*\n\nOnce per turn when you hit a creature with your pact weapon, you can deal an extra 1d6 Necrotic, Psychic, or Radiant damage (your choice) to the creature, and you can expend one of your Hit Point Dice to roll it and regain a number of Hit Points equal to the roll plus your Constitution modifier (minimum of 1 Hit Point).\n\n### Mask of Many Faces\n\n*Prerequisite: Level 2+ Warlock*\n\nYou can cast *Disguise Self* without expending a spell slot.\n\n### Master of Myriad Forms\n\n*Prerequisite: Level 5+ Warlock*\n\nYou can cast *Alter Self* without expending a spell slot.\n\n### Misty Visions\n\n*Prerequisite: Level 2+ Warlock*\n\nYou can cast *Silent Image* without expending a spell slot.\n\n### One with Shadows\n\n*Prerequisite: Level 5+ Warlock*\n\nWhile you're in an area of Dim Light or Darkness, you can cast *Invisibility* on yourself without expending a spell slot.\n\n### Otherworldly Leap\n\n*Prerequisite: Level 2+ Warlock*\n\nYou can cast *Jump* on yourself without expending a spell slot.\n\n### Pact of the Blade\n\nAs a Bonus Action, you can conjure a pact weapon in your hand—a Simple or Martial Melee weapon of your choice with which you bond—or create a bond with a magic weapon you touch; you can't bond with a magic weapon if someone else is attuned to it or another Warlock is bonded with it. Until the bond ends, you have proficiency with the weapon, and you can use it as a Spellcasting Focus.\n\nWhenever you attack with the bonded weapon, you can use your Charisma modifier for the attack and damage rolls instead of using Strength or Dexterity; and you can cause the weapon to deal Necrotic, Psychic, or Radiant damage or its normal damage type.\n\nYour bond with the weapon ends if you use this feature's Bonus Action again, if the weapon is more than 5 feet away from you for 1 minute or more, or if you die. A conjured weapon disappears when the bond ends.\n\n### Pact of the Chain\n\nYou learn the *Find Familiar* spell and can cast it as a Magic action without expending a spell slot.\n\nWhen you cast the spell, you choose one of the normal forms for your familiar or one of the following special forms: **Imp, Pseudodragon, Quasit, Skeleton, Sphinx of Wonder, Sprite,** or **Venomous Snake** (see \"Monsters\" for the familiar's stat block).\n\nAdditionally, when you take the Attack action, you can forgo one of your own attacks to allow your familiar to make one attack of its own with its Reaction.\n\n### Pact of the Tome\n\nStitching together strands of shadow, you conjure forth a book in your hand at the end of a Short or Long Rest. This *Book of Shadows* (you determine its appearance) contains eldritch magic that only you can access, granting you the benefits below. The book disappears if you conjure another book with this feature or if you die.\n\n**Cantrips and Rituals.** When the book appears, choose three cantrips, and choose two level 1 spells that have the Ritual tag. The spells can be from any class's spell list, and they must be spells you don't already have prepared. While the book is on your person, you have the chosen spells prepared, and they function as Warlock spells for you.\n\n**Spellcasting Focus.** You can use the book as a Spellcasting Focus.\n\n### Repelling Blast\n\n*Prerequisite: Level 2+ Warlock, a Warlock Cantrip That Deals Damage via an Attack Roll*\n\nChoose one of your known Warlock cantrips that requires an attack roll. When you hit a Large or smaller creature with that cantrip, you can push the creature up to 10 feet straight away from you.\n\n**Repeatable.** You can gain this invocation more than once. Each time you do so, choose a different eligible cantrip.\n\n### Thirsting Blade\n\n*Prerequisite: Level 5+ Warlock, Pact of the Blade Invocation*\n\nYou gain the Extra Attack feature for your pact weapon only. With that feature, you can attack twice with the weapon instead of once when you take the Attack action on your turn.\n\n### Visions of Distant Realms\n\n*Prerequisite: Level 9+ Warlock*\n\nYou can cast *Arcane Eye* without expending a spell slot.\n\n### Whispers of the Grave\n\n*Prerequisite: Level 7+ Warlock*\n\nYou can cast *Speak with Dead* without expending a spell slot.\n\n### Witch Sight\n\n*Prerequisite: Level 15+ Warlock*\n\nYou have Truesight with a range of 30 feet."
+        },
+        "srd-2024_warlock_magical-cunning": {
+          "_note": "Named 'Magic Cunning' but the Eldritch Master feature refers to it as 'Magical Cunning'.",
+          "name": "Magical Cunning"
+        }
+      }
+    },
+    "srd-2024_wizard": {
+      "desc": "Wizards earn their magic by study. Their spellbook is the widest arsenal in the game, and a wizard who knew what was coming has usually already prepared the answer to it.",
+      "features": {
+        "srd-2024_wizard_core-traits": {
+          "_note": "Core traits shipped with 'In sight' broken across a line wrap.",
+          "desc": "|||\n|---|---|\n|Primary Ability|Intelligence|\n|Hit Point Die|D6 per Wizard level|\n|Saving Throw Proficiencies|Intelligence and Wisdom|\n|Skill Proficiencies|Choose 2: Arcana, History, Insight, Investigation, Medicine, Nature, or Religion|\n|Weapon Proficiencies|Simple weapons|\n|Armor Training|None|\n|Starting Equipment|Choose A or B: (A) 2 Daggers, Arcane Focus (Quarterstaff), Robe, Spellbook, Scholar's Pack, and 5 GP; or (B) 55 GP|"
+        }
+      }
+    },
+    "eberron-forge_artificer": {
+      "desc": "Artificers treat magic as engineering. They infuse ordinary gear with power, build and repair magic items in the field, and turn a bag of tools into whatever the party is currently missing.",
+      "features": {
+        "eberron-forge_artificer_artificer-subclass": {
+          "_note": "The subclass names were replaced by the source code: 'The EFA, EFA, EFA, EFA, and EFA subclasses are detailed after this class's description.'",
+          "desc": "You gain an Artificer subclass of your choice. The Alchemist, Armorer, Artillerist, Battle Smith, Cartographer, and Reanimator subclasses are detailed after this class's description. A subclass is a specialization that grants you features at certain Artificer levels. For the rest of your career, you gain each of your subclass's features that are of your Artificer level or lower."
+        }
+      }
+    },
+    "faerun-heroes_scion-of-the-three": {
+      "_note": "Every mention of the Dead Three was replaced by the source code 'FRHoF'. The names are restored in the order the prose already uses -- Bane (tyranny), Bhaal (violence and murder), Myrkul (death) -- and the table rows follow that same order.",
+      "features": {
+        "faerun-heroes_rogue_scion-of-the-three_scion-of-the-three": {
+          "desc": "Become a Gruesome Agent of Malice\n\nA Scion of the Three draws power from a group of malevolent gods known as the Dead Three: Bane, deity of tyranny; Bhaal, deity of violence and murder; and Myrkul, deity of death. While some Rogues of this subclass pledge themselves ardently to those three macabre gods, others find themselves thrust on this path by a curse. Either way, a scion's power manifests as various occult gifts, as well as an uncanny talent for striking and terrifying foes.\n\nScions of the Three are most common in Baldur's Gate, where the Dead Three have long competed for influence over mortal hearts. Underground cults to Bane, Bhaal, and Myrkul often count Scions of the Three among their most useful agents. Outside Baldur's Gate, secular thieves' guilds such as the Shadow Thieves of Amn or Xanathar's guild in Waterdeep might cautiously call on a Scion of the Three to undertake an especially violent contract."
+        },
+        "faerun-heroes_rogue_scion-of-the-three_dread-allegiance": {
+          "desc": "Choose one of the Dead Three: Bane, Bhaal, or Myrkul. You gain Resistance to one type of damage and the ability to cast a cantrip, as detailed in the table below; Intelligence is your spellcasting ability for this cantrip. When you finish a Long Rest, you can change your choice.\n\nTable: Dread Allegiance\n\n| God | Damage Resistance | Cantrip |\n|---|---|---|\n| Bane | Psychic | Minor Illusion |\n| Bhaal | Poison | Blade Ward |\n| Myrkul | Necrotic | Chill Touch |"
+        }
+      },
+      "desc": "Become a Gruesome Agent of Malice\n\nA Scion of the Three draws power from a group of malevolent gods known as the Dead Three: Bane, deity of tyranny; Bhaal, deity of violence and murder; and Myrkul, deity of death. While some Rogues of this subclass pledge themselves ardently to those three macabre gods, others find themselves thrust on this path by a curse. Either way, a scion's power manifests as various occult gifts, as well as an uncanny talent for striking and terrifying foes.\n\nScions of the Three are most common in Baldur's Gate, where the Dead Three have long competed for influence over mortal hearts. Underground cults to Bane, Bhaal, and Myrkul often count Scions of the Three among their most useful agents. Outside Baldur's Gate, secular thieves' guilds such as the Shadow Thieves of Amn or Xanathar's guild in Waterdeep might cautiously call on a Scion of the Three to undertake an especially violent contract."
+    },
+    "faerun-heroes_knowledge-domain": {
+      "_note": "Two deity names were replaced by the source code 'FRHoF'. Restored as Oghma (learning) and Gond (ingenuity), the pair the surrounding sentence describes.",
+      "desc": "Unearth Secrets and Master the Mind\n\nThe Knowledge Domain values learning and understanding above all. Clerics who tap into this domain study esoteric lore, collect old tomes, delve into secret places, and examine the processes of the mind. To them, knowledge is more valuable than material wealth, and learning is an act of worship. Libraries, universities, and other educational institutions also draw on the power of the Knowledge Domain.\n\nGods of knowledge vary from masters of arcane magic to patrons of craft and invention. In Faerûn, Clerics of the Knowledge Domain worship deities of learning and ingenuity such as Oghma and Gond, among many others.",
+      "features": {
+        "faerun-heroes_cleric_knowledge-domain_knowledge-domain": {
+          "desc": "Unearth Secrets and Master the Mind\n\nThe Knowledge Domain values learning and understanding above all. Clerics who tap into this domain study esoteric lore, collect old tomes, delve into secret places, and examine the processes of the mind. To them, knowledge is more valuable than material wealth, and learning is an act of worship. Libraries, universities, and other educational institutions also draw on the power of the Knowledge Domain.\n\nGods of knowledge vary from masters of arcane magic to patrons of craft and invention. In Faerûn, Clerics of the Knowledge Domain worship deities of learning and ingenuity such as Oghma and Gond, among many others."
+        },
+        "faerun-heroes_cleric_knowledge-domain_knowledge-domain-spells": {
+          "_note": "The spell table marked its Divination entries with a trailing '*', which markdown pairs into italics and mangles the row; it also had no caption and no legend for the marker.",
+          "desc": "When you reach a Cleric level specified in the Knowledge Domain Spells table, you thereafter always have the listed spells prepared.\n\nTable: Knowledge Domain Spells\n\n| Cleric Level | Spells |\n|---|---|\n| 3 | Command, Comprehend Languages†, Detect Magic†, Detect Thoughts†, Identify†, Mind Spike† |\n| 5 | Dispel Magic, Nondetection, Tongues† |\n| 7 | Arcane Eye†, Banishment, Confusion |\n| 9 | Legend Lore†, Scrying†, Synaptic Static |\n\n† Divination spell; these are the ones Mind Magic can cast."
+        }
+      }
+    },
+    "srd-2024_circle-of-the-land": {
+      "_note": "Two features were shuffled: level 14 Nature's Sanctuary shipped a byte-identical copy of level 6 Natural Recovery, and level 10 Nature's Ward carried what is actually the Nature's Sanctuary text (the spectral trees Cube). The Cube text is moved to Nature's Sanctuary and Nature's Ward is rewritten -- its own surviving reference ('your allies gain the current Resistance of your Nature's Ward') confirms it grants a land-based Resistance.",
+      "features": {
+        "srd-2024_druid_circle-of-the-land_natures-sanctuary": {
+          "desc": "As a Magic action, you can expend a use of your Wild Shape and cause spectral trees and vines to appear in a 15-foot Cube on the ground within 120 feet of yourself. They last there for 1 minute or until you have the Incapacitated condition or die. You and your allies have Half Cover while in that area, and your allies gain the current Resistance of your Nature's Ward while there.\n\nAs a Bonus Action, you can move the Cube up to 60 feet to ground within 120 feet of yourself."
+        },
+        "srd-2024_druid_circle-of-the-land_natures-ward": {
+          "desc": "Your land connection wards you against harm. You have Immunity to the Poisoned condition, and you have Resistance to a damage type determined by the land you chose most recently for your Circle of the Land Spells feature, as shown in the Nature's Ward table.\n\nTable: Nature's Ward\n\n|Land|Resistance|\n|---|---|\n|Arid|Fire|\n|Polar|Cold|\n|Temperate|Lightning|\n|Tropical|Poison|"
+        }
+      }
+    },
+    "phb-2024_battle-master": {
+      "features": {
+        "phb-2024_fighter_battle-master_maneuver-options": {
+          "_note": "The stub said the maneuvers are 'presented here', but no maneuver follows it -- they live in the optionalfeatures bundle and are offered in the character sheet's class options picker.",
+          "desc": "The maneuvers are listed among this class's options, which you choose from on your character sheet."
+        }
+      }
+    },
+    "faerun-heroes_oath-of-the-noble-genies": {
+      "features": {
+        "faerun-heroes_paladin_oath-of-the-noble-genies_genie-spells": {
+          "_note": "The spell table lost its 'Table: Genie Spells' caption; every other subclass keeps one.",
+          "desc": "When you reach a Paladin level specified in the Genie Spells table, you thereafter always have the listed spells prepared.\n\nTable: Genie Spells\n\n| Paladin Level | Spells |\n|---|---|\n| 3 | Chromatic Orb, Elementalism, Thunderous Smite |\n| 5 | Mirror Image, Phantasmal Force |\n| 9 | Fly, Gaseous Form |\n| 13 | Conjure Minor Elementals, Summon Elemental |\n| 17 | Banishing Smite, Contact Other Plane |"
+        }
+      }
+    },
+    "srd-2024_fiend-patron": {
+      "_note": "The subclass description shipped abridged while the feature of the same name carried the full paragraph (naming Demogorgon, Orcus, Asmodeus...). Both were drawn, so the reader saw the same passage twice in two lengths; `desc` now holds the full text and the duplicate feature is filtered out at display.",
+      "desc": "*Make a Deal with the Lower Planes*\n\nYour pact draws on the Lower Planes, the realms of perdition. You might forge a bargain with a demon lord such as Demogorgon or Orcus; an archdevil such as Asmodeus; or a pit fiend, balor, yugoloth, or night hag that is especially mighty. That patron's aims are evil—the corruption or destruction of all things, ultimately including you—and your path is defined by the extent to which you strive against those aims."
+    },
+    "faerun-heroes_winter-walker": {
+      "features": {
+        "faerun-heroes_ranger_winter-walker_winter-walker-spells": {
+          "_note": "The spell table lost its 'Table:' caption; every other subclass keeps one.",
+          "desc": "When you reach a Ranger level specified in the Winter Walker Spells table, you thereafter always have the listed spells prepared.\n\nTable: Winter Walker Spells\n\n| Ranger Level | Spells |\n|---|---|\n| 3 | Ice Knife |\n| 5 | Hold Person |\n| 9 | Remove Curse |\n| 13 | Ice Storm |\n| 17 | Cone of Cold |"
+        }
+      }
+    },
+    "faerun-heroes_spellfire-sorcery": {
+      "features": {
+        "faerun-heroes_sorcerer_spellfire-sorcery_spellfire-spells": {
+          "_note": "The spell table lost its 'Table:' caption; every other subclass keeps one.",
+          "desc": "When you reach a Sorcerer level specified in the Spellfire Spells table, you thereafter always have the listed spells prepared.\n\nTable: Spellfire Spells\n\n| Sorcerer Level | Spells |\n|---|---|\n| 3 | Cure Wounds, Guiding Bolt, Lesser Restoration, Scorching Ray |\n| 5 | Aura of Vitality, Dispel Magic |\n| 7 | Fire Shield, Wall of Fire |\n| 9 | Greater Restoration, Flame Strike |"
+        }
+      }
+    },
+    "phb-2024_soulknife": {
+      "_note": "A paragraph belonging to Psychic Whispers ('The first time you use this power after each Long Rest...') was glued onto the end of Psionic Power, where it read as a rule about the dice pool itself.",
+      "features": {
+        "phb-2024_rogue_soulknife_psionic-power": {
+          "desc": "You harbor a wellspring of psionic energy within yourself. It is represented by your Psionic Energy Dice, which fuel certain powers you have from this subclass. The Soulknife Energy Dice table shows the number of these dice you have when you reach certain Rogue levels, and the table shows the die size.\n\nTable: Soulknife Energy Dice\n| Rogue Level | Die Size | Number |\n|---|---|---|\n| 3 | D6 | 4 |\n| 5 | D8 | 6 |\n| 9 | D8 | 8 |\n| 11 | D10 | 8 |\n| 13 | D10 | 10 |\n| 17 | D12 | 12 |\n\nAny features in this subclass that use a Psionic Energy Die use only the dice from this subclass. Some of your powers expend a Psionic Energy Die, as specified in a power's description, and you can't use a power if it requires you to use a die when your Psionic Energy Dice are all expended.\n\nYou regain one of your expended Psionic Energy Dice when you finish a Short Rest, and you regain all of them when you finish a Long Rest."
+        },
+        "phb-2024_rogue_soulknife_psychic-whispers": {
+          "desc": "You can establish telepathic communication between yourself and others. As a Magic action, choose one or more creatures you can see, up to a number of creatures equal to your Proficiency Bonus, and then roll one Psionic Energy Die. For a number of hours equal to the number rolled, the chosen creatures can speak telepathically with you, and you can speak telepathically with them. To send or receive a message (no action required), you and the other creature must be within 1 mile of each other. A creature can end the telepathic connection at any time (no action required).\n\nThe first time you use this power after each Long Rest, you don't expend the Psionic Energy Die. All other times you use the power, you expend the die."
+        }
+      }
+    },
+    "eberron-forge_artillerist": {
+      "features": {
+        "eberron-forge_artificer_artillerist_explosive-cannon": {
+          "desc": "Every Eldritch Cannon you create is now more destructive. You gain the following benefits.\n\nDetonate. When your cannon takes damage, you can take a Reaction to command the cannon to detonate if you are within 60 feet of it. Doing so destroys the cannon and forces each creature within 20 feet of it to make a Dexterity saving throw against your spell save DC, taking 3d10 Force damage on a failed save or half as much damage on a successful one.\n\nFirepower. The cannon's damage rolls and the number of Temporary Hit Points granted by Protector increase by 1d8."
+        },
+        "eberron-forge_artificer_artillerist_fortified-position": {
+          "desc": "You're a master at forming well-defended emplacements using your Eldritch Cannon. You gain the following benefits.\n\nDouble Firepower. You can now have two cannons at the same time, and you can create two with the same Magic action. (If you expend a spell slot to create the first cannon, you must expend another spell slot to create the second.) You can activate both of them with the same Bonus Action, ordering them to use the same activation option or different ones. You can't create a third cannon while you have two.\n\nShimmering Field Projection. You and your allies have Half Cover while within 10 feet of your Eldritch Cannon."
+        }
+      },
+      "_note": "The Eldritch Cannon stat block was repeated verbatim at the end of every feature in this subclass (2 extra copies); it is kept only on Eldritch Cannon itself."
+    },
+    "eberron-forge_battle-smith": {
+      "features": {
+        "eberron-forge_artificer_battle-smith_battle-smith": {
+          "desc": "Command a Construct Guardian\n\nA Battle Smith is a combination of protector and medic, an expert at defending others and repairing both materiel and personnel. To aid in their work, Battle Smiths are accompanied by a Steel Defender, a protective companion of their own creation."
+        },
+        "eberron-forge_artificer_battle-smith_extra-attack": {
+          "desc": "You can attack twice instead of once whenever you take the Attack action on your turn. You can forgo one of your attacks when you take the Attack action to command your Steel Defender to take the Force-Empowered Rend action."
+        },
+        "eberron-forge_artificer_battle-smith_arcane-jolt": {
+          "desc": "When either you hit a target with an attack roll using a magic weapon or your Steel Defender hits a target, you can channel magical energy through the strike to create one of the following effects:\n\n- Destructive Energy. The target takes an extra 2d6 Force damage.\n\n- Restorative Energy. Choose one creature or object you can see within 30 feet of the target. Healing energy flows into the chosen recipient, restoring 2d6 Hit Points to it.\n\nYou can use this energy a number of times equal to your Intelligence modifier (minimum of once), but you can do so no more than once per turn. You regain all expended uses when you finish a Long Rest."
+        },
+        "eberron-forge_artificer_battle-smith_improved-defender": {
+          "desc": "Your Arcane Jolt and Steel Defender have become more powerful, granting these benefits.\n\nImproved Jolt. The extra damage and healing of your Arcane Jolt both increase to 4d6.\n\nImproved Deflection. Whenever your Steel Defender uses its Deflect Attack, the attacker takes Force damage equal to 1d4 plus your Intelligence modifier."
+        }
+      },
+      "desc": "Command a Construct Guardian\n\nA Battle Smith is a combination of protector and medic, an expert at defending others and repairing both materiel and personnel. To aid in their work, Battle Smiths are accompanied by a Steel Defender, a protective companion of their own creation.",
+      "_note": "The Steel Defender stat block was repeated verbatim at the end of every feature in this subclass (5 extra copies); it is kept only on Steel Defender itself."
+    },
+    "ravenloft-horrors_reanimator": {
+      "features": {
+        "ravenloft-horrors_artificer_reanimator_strange-modifications": {
+          "desc": "Whenever you create a Reanimated Companion, it gains one of the following options of your choice; choose when you create the companion.\n\nArcane Conduit. You can cast spells as though you were in the companion's space, but you must use your own senses. Once per turn, when you cast an Artificer spell from the Evocation or Necromancy school and deal damage while your companion is within 120 feet of you, you can add your Intelligence modifier to one damage roll of that spell.\n\nFerocity. The damage die of the companion's Dreadful Swipe increases to 1d6."
+        },
+        "ravenloft-horrors_artificer_reanimator_improved-reanimation": {
+          "desc": "The damage of your Reanimated Companion's Death Burst increases to 4d4. Necrotic damage dealt by your companion ignores Resistance."
+        },
+        "ravenloft-horrors_artificer_reanimator_macabre-modifications": {
+          "desc": "You experiment and alter your companion further. Whenever you create a Reanimated Companion, the companion now gains two options for Strange Modifications, instead of one. Additionally, when picking options for Strange Modifications, you can also choose from the following options.\n\nBloated. The companion becomes Large. Whenever it hits a Large or smaller creature with its Dreadful Swipe action, that creature is pushed up to 10 feet away from the companion. Additionally, you can add your Intelligence modifier to the damage dealt by the companion's Death Burst.\n\nGaunt. The companion's Speed increases to 45 feet, and it gains a Climb Speed equal to its Speed. It can climb difficult surfaces, including along ceilings, without needing to make an ability check. In addition, whenever a creature of your choice starts its turn within a 10-foot Emanation originating from your companion, the creature must succeed on a Wisdom saving throw against your spell save DC or have the Frightened condition until the start of its next turn.\n\nMoist. The companion gains a Swim Speed equal to its Speed, and it can move through a space as narrow as 1 inch without expending extra movement to do so. In addition, whenever the companion is hit by an attack roll from a creature within 10 feet of itself, the attacker takes Acid damage equal to your Intelligence modifier."
+        },
+        "ravenloft-horrors_artificer_reanimator_refined-reanimation": {
+          "desc": "You have mastered the science of revivification, granting you the following benefits.\n\nFacilitated Revival. You can cast Raise Dead once without expending a spell slot and without Material components, provided you use Tinker's Tools or another type of Artisan's Tools with which you have proficiency as the Spellcasting Focus. Once you use this feature, you can't use it again until you finish a Long Rest.\n\nLife Transfer. You can siphon the animating magic of your Reanimated Companion to bolster yourself. When you or your companion takes damage, you can take a Reaction to gain a number of Hit Points equal to your companion's current Hit Points. The companion then immediately drops to 0 Hit Points and dies (triggering its Death Burst trait).\n\nSuperior Modifications. Whenever you create a Reanimated Companion, the companion now gains three options for Strange Modifications."
+        }
+      },
+      "_note": "The Reanimated Companion stat block was repeated verbatim at the end of every feature in this subclass (4 extra copies); it is kept only on Reanimated Companion itself."
+    }
+  },
+  "backgrounds": {
+    "srd-2024_acolyte": "You served a temple, and the god you served answered. Whether you swept the floors or read the auguries, you learned the rites, the doctrine and the politics of faith -- and you left with a little of the divine still on you.",
+    "srd-2024_criminal": "You made your living outside the law and were good enough at it to still be walking around. You know how a lock gives, how a lie holds, and which people in any city are worth knowing quietly.",
+    "srd-2024_sage": "You spent your formative years among books and the people who argue about them. You may not know the answer, but you almost always know where the answer is written down.",
+    "srd-2024_soldier": "You served in an army and learned war as a trade: the drill, the weapons, the waiting, and the particular calm of people who have already been shot at.",
+    "eberron-forge_aberrant-heir": "An aberrant dragonmark surfaced on your skin -- unsanctioned, unpredictable and feared by the great houses. You have spent your life deciding whether to hide it or use it.",
+    "eberron-forge_archaeologist": "You dig where empires fell. Xen'drik ruins, Dhakaani vaults, goblin tombs -- you have learned how to read a broken wall and how to leave a collapsing one.",
+    "eberron-forge_house-agent": "You worked for a dragonmarked house without carrying its mark: a clerk, a courier, an operative. The house paid well, and it still knows exactly where to find you.",
+    "eberron-forge_house-cannith-heir": "You carry House Cannith's Mark of Making. Forges, warforged and half the manufactured goods on the continent trace back to your family, and you were raised to build.",
+    "eberron-forge_house-deneith-heir": "You carry House Deneith's Mark of Sentinel. Your house sells protection -- bodyguards, mercenaries, escorts -- and you were trained to put yourself between a client and a blade.",
+    "eberron-forge_house-ghallanda-heir": "You carry House Ghallanda's Mark of Hospitality. Your family's inns feed and shelter travellers across Khorvaire, and you learned that a good table is where every real negotiation happens.",
+    "eberron-forge_house-jorasco-heir": "You carry House Jorasco's Mark of Healing. Your house treats wounds and disease for a fee, and you grew up in the difficult space between mercy and a price list.",
+    "eberron-forge_house-kundarak-heir": "You carry House Kundarak's Mark of Warding. Your family locks things: vaults, banks, prisons. You know how a ward is set, and therefore how one is beaten.",
+    "eberron-forge_house-lyrandar-heir": "You carry House Lyrandar's Mark of Storm. Airships and galleons answer your family, and you learned to read weather the way other people read a road sign.",
+    "eberron-forge_house-medani-heir": "You carry House Medani's Mark of Detection. Your house sells warning -- inspectors, bodyguards, investigators -- and you have a trained instinct for the thing that is about to go wrong.",
+    "eberron-forge_house-orien-heir": "You carry House Orien's Mark of Passage. Your family moves people and cargo across Khorvaire by lightning rail and courier, and distance has always been a smaller problem for you than others.",
+    "eberron-forge_house-phiarlan-heir": "You carry House Phiarlan's Mark of Shadow. Your family are celebrated entertainers, which is a very convenient cover for the other half of the business.",
+    "eberron-forge_house-sivis-heir": "You carry House Sivis's Mark of Scribing. Your family runs the message stations and the notaries of Khorvaire; you grew up knowing that words, correctly recorded, are a form of power.",
+    "eberron-forge_house-tharashk-heir": "You carry House Tharashk's Mark of Finding. Prospectors, bounty hunters and inquisitives -- your family's trade is locating what somebody would rather stayed lost.",
+    "eberron-forge_house-thuranni-heir": "You carry House Thuranni's Mark of Shadow. Your line split from Phiarlan in blood, and it has never much pretended that the performances were the point.",
+    "eberron-forge_house-vadalis-heir": "You carry House Vadalis's Mark of Handling. Your family breeds and magebreeds animals, and you have been trusted with creatures that trust almost no one.",
+    "eberron-forge_inquisitive": "You solve things for a living. Missing people, forged papers, a body in a locked room -- you learned to notice what everyone else walked past.",
+    "ravenloft-horrors_haunted-one": "Something followed you out of the worst night of your life and never left. You have learned to function with it there, which is not at all the same as being free of it.",
+    "ravenloft-horrors_investigator": "You chase the things other people file as accidents. You keep notes, you keep asking, and you have survived long enough to know which questions get people killed.",
+    "ravenloft-horrors_mist-wanderer": "The Mists take people. They gave you back -- more than once -- and somewhere along the way you started to understand how they move and where they open.",
+    "ravenloft-horrors_spirit-medium": "The dead talk to you, invited or not. You have made a discipline out of listening, and a livelihood out of passing on what you hear.",
+    "faerun-heroes_chondathan-freebooter": "You worked the Sword Coast trade lanes on somebody's ship, under a flag that changed when it was convenient. You know cargo, harbours, and when to be over the side.",
+    "faerun-heroes_dead-magic-dweller": "You grew up where magic does not work. In a dead-magic zone a spell is not a solution, so you learned every way of solving a problem that doesn't need one.",
+    "faerun-heroes_dragon-cultist": "You were inside a cult that worships dragons -- their power, their hoards, their promised return. Whether or not you still believe it, you know how they recruit and how they think.",
+    "faerun-heroes_emerald-enclave-caretaker": "You serve the Emerald Enclave, which holds the line where the wild and the civilised grind against each other. Your job is balance, and balance is rarely popular with either side.",
+    "faerun-heroes_flaming-fist-mercenary": "You wore the colours of Baldur's Gate's Flaming Fist: part city watch, part standing army, part mercenary company, depending on who was paying that season.",
+    "faerun-heroes_genie-touched": "A genie's bargain, blessing or grudge is written into your life. Elemental power answers you, and so, eventually, will the one who granted it.",
+    "faerun-heroes_harper": "You joined the Harpers: a scattered, deliberately small network that opposes tyranny by knowing things first. No banners, no fortresses -- just a pin and people you can trust.",
+    "faerun-heroes_ice-fisher": "You made a living on frozen water in the North. Patience, cold, and a very precise sense of how much weight ice will take before it stops being ice.",
+    "faerun-heroes_knight-of-the-gauntlet": "You swore to the Order of the Gauntlet: root out evil, do it openly, and answer for it afterward. The order is small, righteous and not always careful.",
+    "faerun-heroes_lords-alliance-vassal": "You served the Lords' Alliance, the pact of city-states that keeps the North from being eaten piecemeal. Diplomacy, coin and troops, in whichever order works.",
+    "faerun-heroes_moonwell-pilgrim": {
+      "desc": "You walked the moonwells of the North, sacred pools where the goddess's light touches the water. The pilgrimage changed what you believe and what you can do.",
+      "_note": "Shipped as 'Magic Initiate; Druid'; every other entry uses the parenthesised form.",
+      "benefits": {
+        "Feat": {
+          "desc": "Magic Initiate (Druid)"
+        }
+      }
+    },
+    "faerun-heroes_mulhorandi-tomb-raider": "You opened tombs in Mulhorand, where the god-kings were buried with their guardians still loyal. You are alive because you learned the difference between a seal and a warning.",
+    "faerun-heroes_mythalkeeper": "You were trained to tend a mythal -- one of the vast elven wards that hold entire cities in their weave. The work is delicate, ancient, and mostly a matter of not breaking anything.",
+    "faerun-heroes_purple-dragon-squire": "You served Cormyr as a squire to its Purple Dragon knights. Drill, duty and the crown's law, hammered in early.",
+    "faerun-heroes_rashemi-wanderer": "You left Rashemen, a land of spirits, witches and berserker lodges, and carried its customs out into a world that does not share them.",
+    "faerun-heroes_shadowmasters-exile": "You belonged to the Shadow Thieves of Amn and no longer do. The guild does not usually allow that, which tells you something about how you left.",
+    "faerun-heroes_spellfire-initiate": "Raw spellfire runs in you -- magic in its unshaped state, capable of healing or of burning everything nearby. Every faction that knows about it wants to own it.",
+    "faerun-heroes_zhentarim-mercenary": "You took the Black Network's coin. The Zhentarim will arm you, train you and give you work; what they want in return is leverage, and they are patient about collecting it.",
+    "xphb-artisan": {
+      "desc": "You were apprenticed to a trade and stayed long enough to be good at it. A workshop taught you patience, precision, and how to talk a customer around to what they actually need.",
+      "benefits": {
+        "Tool Proficiency": {
+          "desc": "Choose one kind of Artisan's Tools"
+        }
+      }
+    },
+    "xphb-charlatan": "You have always made your living by being whoever the mark needed you to be. Forged papers, a borrowed title, a miracle cure -- the trick is to leave before anyone checks.",
+    "xphb-entertainer": {
+      "desc": "You made your living in front of people: a stage, a tavern floor, a crossroads with a hat on the ground. You know how to hold a crowd and how to read one.",
+      "benefits": {
+        "Tool Proficiency": {
+          "desc": "Choose one kind of Musical Instrument"
+        }
+      }
+    },
+    "xphb-farmer": "You worked the land, and the land does not care how you feel about it. You came out of it strong, patient, and unbothered by weather, animals or long hours.",
+    "xphb-guard": {
+      "desc": "You stood a post -- a gate, a wall, a warehouse. Most of the job is watching nothing happen, which is exactly why you notice the night it does.",
+      "_note": "Shipped as the raw enum value 'AnyGamingSet'.",
+      "benefits": {
+        "Tool Proficiency": {
+          "desc": "Choose one kind of Gaming Set"
+        }
+      }
+    },
+    "xphb-guide": {
+      "desc": "You know the country beyond the last road: which valley floods, which path is a lie, which silence means something is watching. People pay you to bring them back out.",
+      "_note": "Shipped as 'Magic Initiate; Druid'; every other entry uses the parenthesised form.",
+      "benefits": {
+        "Feat": {
+          "desc": "Magic Initiate (Druid)"
+        }
+      }
+    },
+    "xphb-hermit": "You lived apart from everyone for a long stretch of your life -- by choice, by exile, or by vow. Solitude gave you something, and now you have carried it back down.",
+    "xphb-merchant": "You grew up around ledgers, caravans and the constant question of what a thing is really worth. You can price anything and you can usually get it moved.",
+    "xphb-noble": {
+      "desc": "You were born to a name that opens doors and to obligations that come with it. You know how power is actually held, and how quickly a title is worth nothing outside its own borders.",
+      "_note": "Shipped as the raw enum value 'AnyGamingSet'.",
+      "benefits": {
+        "Tool Proficiency": {
+          "desc": "Choose one kind of Gaming Set"
+        }
+      }
+    },
+    "xphb-sailor": "You worked a deck. You know knots, weather, cramped quarters and the particular loyalty of people who have all nearly drowned together.",
+    "xphb-scribe": "You copied, corrected and filed other people's words for a living. Slow work, sharp eyes -- and a very good sense of when a document is lying.",
+    "xphb-wayfarer": "You grew up on the road or in the streets, with no fixed roof and no safety net. You learned to read people fast, because getting it wrong cost something."
+  },
+  "items": {
+    "_comment": "Small textual defects in the shipped item catalogue.",
+    "srd-2024_antitoxin": {
+      "_note": "Shipped with a truncated word ('... for 1 hour. abo') glued to the end.",
+      "desc": "As a Bonus Action, you can drink a vial of Antitoxin to gain Advantage on saving throws to avoid or end the Poisoned condition for 1 hour."
+    },
+    "srd-2024_bottle-glass": {
+      "_note": "Shipped as 'holds up to 1 0.5 pints' -- two numbers collided during conversion.",
+      "desc": "A Glass Bottle holds up to 1.5 pints."
+    },
+    "srd-2024_ball-bearings": {
+      "_note": "Shipped with '10-footsquare' (missing word break).",
+      "desc": "As a Utilize action, you can spill Ball Bearings from their pouch. They spread to cover a level, 10-foot-square area within 10 feet of yourself. A creature that enters this area for the first time on a turn must succeed on a DC 10 Dexterity saving throw or have the Prone condition. It takes 10 minutes to recover the Ball Bearings."
+    },
+    "srd-2024_holy-symbol-amulet": {
+      "_note": "Name shipped with a stray closing parenthesis.",
+      "name": "Holy Symbol, Amulet"
+    },
+    "srd-2024_holy-symbol-emblem": {
+      "_note": "Name shipped with a stray closing parenthesis.",
+      "name": "Holy Symbol, Emblem"
+    },
+    "_gear_note": "Weapons and armor shipped with placeholder descriptions ('A battleaxe.'). Replaced with real text; the numbers stay in the structured fields.",
+    "srd-2024_battleaxe": {
+      "desc": "A single-bladed war axe, heavy at the head and balanced to be swung in one hand or two."
+    },
+    "srd-2024_blowgun": {
+      "desc": "A long hollow tube that fires a needle on a breath. Quiet, and easy to miss until it lands."
+    },
+    "srd-2024_club": {
+      "desc": "A length of hardwood, thick at one end. The cheapest weapon there is and still effective."
+    },
+    "srd-2024_dagger": {
+      "desc": "A short blade made for close work: quick to draw, easy to hide, and just as good thrown."
+    },
+    "srd-2024_dart": {
+      "desc": "A weighted throwing spike, small enough to carry a fistful and thrown with the fingers."
+    },
+    "srd-2024_flail": {
+      "desc": "A spiked head on a chain. Awkward to master, but it swings around a raised shield."
+    },
+    "srd-2024_glaive": {
+      "desc": "A broad blade mounted on a long haft, meant to cut at a distance the enemy can't answer."
+    },
+    "srd-2024_greataxe": {
+      "desc": "A two-handed axe with a huge crescent head. Nothing subtle, and nothing that survives it."
+    },
+    "srd-2024_greatclub": {
+      "desc": "A tree limb or shaped log swung with both hands. Crude, cheap, and very hard to ignore."
+    },
+    "srd-2024_greatsword": {
+      "desc": "A long two-handed blade built for wide, committed swings rather than fencing."
+    },
+    "srd-2024_halberd": {
+      "desc": "An axe head and a spike on a long pole -- it hooks, it cuts, and it keeps riders at bay."
+    },
+    "srd-2024_hand-crossbow": {
+      "desc": "A crossbow small enough to aim and fire with one hand, favoured where a bow would be noticed."
+    },
+    "srd-2024_handaxe": {
+      "desc": "A short axe light enough to throw and useful for far more than fighting."
+    },
+    "srd-2024_heavy-crossbow": {
+      "desc": "A braced crossbow that hits like a siege weapon and takes just as long to reload."
+    },
+    "srd-2024_javelin": {
+      "desc": "A light spear balanced for throwing, though it will serve in the hand at need."
+    },
+    "srd-2024_lance": {
+      "desc": "A long couched spear meant to be used from the saddle, where the horse supplies the force."
+    },
+    "srd-2024_light-crossbow": {
+      "desc": "A shoulder-fired crossbow that anyone can learn in an afternoon and still hit with."
+    },
+    "srd-2024_light-hammer": {
+      "desc": "A small hammer meant for throwing as much as striking."
+    },
+    "srd-2024_longbow": {
+      "desc": "A tall bow of yew or elm that carries an arrow far past what a short bow can reach."
+    },
+    "srd-2024_longsword": {
+      "desc": "The soldier's sword: a straight double-edged blade for one hand, or two when it matters."
+    },
+    "srd-2024_mace": {
+      "desc": "A weighted metal head on a short haft, made to crush what a blade would only scratch."
+    },
+    "srd-2024_maul": {
+      "desc": "A two-handed sledge. It doesn't cut armor -- it caves in whatever is inside it."
+    },
+    "srd-2024_morningstar": {
+      "desc": "A spiked head on a solid shaft, meant to punch through mail rather than slide off it."
+    },
+    "srd-2024_musket": {
+      "desc": "A long-barrelled firearm. Slow to load and loud enough to end any conversation."
+    },
+    "srd-2024_pike": {
+      "desc": "An enormously long spear. In a line, pikes stop a charge before it arrives."
+    },
+    "srd-2024_pistol": {
+      "desc": "A short firearm that can be carried under a coat and drawn in a heartbeat."
+    },
+    "srd-2024_quarterstaff": {
+      "desc": "A stout wooden pole, as much a walking stick as a weapon -- which is rather the point."
+    },
+    "srd-2024_rapier": {
+      "desc": "A slender thrusting sword for someone who would rather place one hit than land four."
+    },
+    "srd-2024_scimitar": {
+      "desc": "A curved single-edged blade, light in the hand and quick to come back around."
+    },
+    "srd-2024_shortbow": {
+      "desc": "A compact bow that can be drawn on the move or from horseback."
+    },
+    "srd-2024_shortsword": {
+      "desc": "A stabbing blade short enough to fight with in a crowd, a corridor or a second hand."
+    },
+    "srd-2024_sickle": {
+      "desc": "A curved farm blade. It reaps, and at need it hooks a limb as readily as a stalk."
+    },
+    "srd-2024_sling": {
+      "desc": "A leather cradle on two cords. Ammunition is free almost anywhere there is ground."
+    },
+    "srd-2024_spear": {
+      "desc": "The oldest weapon there is: a point on a shaft, good in the hand or thrown."
+    },
+    "srd-2024_trident": {
+      "desc": "A three-pronged spear out of the fishing trade, awkward to parry and hard to shake loose."
+    },
+    "srd-2024_war-pick": {
+      "desc": "A narrow spike on a haft, made for the one job a sword is bad at: getting through plate."
+    },
+    "srd-2024_warhammer": {
+      "desc": "A hammer built for armor rather than nails, with weight enough to matter."
+    },
+    "srd-2024_whip": {
+      "desc": "A braided leather lash that reaches past arm's length and stings more than it wounds."
+    },
+    "srd-2024_breastplate": {
+      "desc": "A fitted chest and back plate worn over leather, leaving the arms and legs free."
+    },
+    "srd-2024_chain-mail": {
+      "desc": "A full coat of interlocking rings with padding beneath. Heavy, loud, and very hard to cut."
+    },
+    "srd-2024_chain-shirt": {
+      "desc": "A shirt of mail worn under clothing, quiet enough to pass for an ordinary traveller."
+    },
+    "srd-2024_half-plate-armor": {
+      "desc": "Plate for the vital parts, mail and leather for the rest -- most of the protection, less of the weight."
+    },
+    "srd-2024_hide-armor": {
+      "desc": "Thick furs and rough-cured pelts. Crude work, but it turns a blade and costs almost nothing."
+    },
+    "srd-2024_leather-armor": {
+      "desc": "A cuirass of boiled leather, stiffened into shape and light enough to forget you have on."
+    },
+    "srd-2024_padded-armor": {
+      "desc": "Quilted layers of cloth. It is the cheapest armor sold, and it rustles with every step."
+    },
+    "srd-2024_plate-armor": {
+      "desc": "Shaped steel from head to foot over mail and padding. The best protection money can buy, and it takes a servant to put on."
+    },
+    "srd-2024_ring-mail": {
+      "desc": "Leather sewn with heavy rings. Outdated and clumsy, but it is what a poor guard can afford."
+    },
+    "srd-2024_scale-mail": {
+      "desc": "Overlapping metal scales on a leather backing, like the hide of something that bites back."
+    },
+    "srd-2024_shield": {
+      "desc": "A board of wood or metal carried in one hand. The single cheapest way to stay alive."
+    },
+    "srd-2024_splint-armor": {
+      "desc": "Vertical metal strips riveted to leather, worn over mail. Protective, and rigid to match."
+    },
+    "srd-2024_studded-leather-armor": {
+      "desc": "Leather reinforced with close-set rivets, giving mail's bite without mail's weight."
+    },
+    "xphbxdmg-dynamite-stick": {
+      "_note": "Shipped as 'An an action, you can light...'.",
+      "desc": "As an action, you can light a Dynamite Stick and throw it at a point up to 60 feet away, where it explodes. Each creature in a 5-foot-radius Sphere centered on that point makes a DC 12 Dexterity saving throw, taking 3d6 Force damage on a failed save or half as much damage on a successful one. It takes 1 minute to bind two or more Dynamite Sticks together so they explode at the same time. Each stick after the first increases the damage by 1d6 (to a maximum of 10d6) and the effect's radius by 5 feet (to a maximum of 20 feet). It takes 1 minute to rig dynamite with a longer fuse so it explodes after a longer period of time, such as 1 minute or 10 minutes."
+    }
+  }
+}

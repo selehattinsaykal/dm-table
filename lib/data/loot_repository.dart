@@ -71,8 +71,8 @@ class LootRepository {
 
   /// Bir ganimet setini hazine pini icin ilk "kalan ganimet" verisine cevirir.
   ///
-  /// Her esyaya kalici bir id atanir: oyuncular bu id ile esyayi alir, esya
-  /// alininca digerlerinde de kaybolur (dupelenmez).
+  /// Her esyaya kalici bir id atanir: alma islemi bu id ile yapiliyor,
+  /// boylece ayni satir iki kez cikarilamiyor.
   static String initialPinLoot(LootSet set) => jsonEncode({
     'coinsCp': set.coinsCp,
     'items': [

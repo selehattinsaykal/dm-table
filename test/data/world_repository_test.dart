@@ -111,8 +111,6 @@ void main() {
       expect(pin.x, 0.25);
       expect(pin.y, 0.75);
       expect(pin.noteText, 'Dibinde bir şey var.');
-      // Pinler varsayilan olarak oyunculara kapali.
-      expect(pin.revealed, isFalse);
     });
 
     test('tasinabilir ve acilabilir', () async {
@@ -124,11 +122,10 @@ void main() {
         y: 0.1,
       );
 
-      await world.updatePin(id, x: 0.6, y: 0.4, revealed: true);
+      await world.updatePin(id, x: 0.6, y: 0.4);
       final pin = (await world.pins(locationId)).single;
       expect(pin.x, 0.6);
       expect(pin.y, 0.4);
-      expect(pin.revealed, isTrue);
     });
 
     test('alt lokasyon pini hedefini cozer', () async {
@@ -370,7 +367,7 @@ void main() {
       return file;
     }
 
-    test('kaydedilir, olculeri ve onizlemesi uretilir', () async {
+    test('kaydedilir ve olculeri yazilir', () async {
       final locationId = await world.createLocation(name: 'Şehir');
       await world.setMapImage(locationId, await makeImage(2400, 1200));
 
@@ -378,27 +375,16 @@ void main() {
       expect(location.mapWidth, 2400);
       expect(location.mapHeight, 1200);
       expect(location.mapImagePath, isNotNull);
-      expect(location.mapPreviewPath, isNotNull);
 
       // Yollar goreli olmali; mutlak yol Android'de kurulumdan sonra bozulur.
       expect(p.isAbsolute(location.mapImagePath!), isFalse);
 
-      final preview = await world.images.resolve(location.mapPreviewPath!);
-      expect(preview.existsSync(), isTrue);
+      final stored = await world.images.resolve(location.mapImagePath!);
+      expect(stored.existsSync(), isTrue);
 
-      final decoded = img.decodeImage(await preview.readAsBytes())!;
-      expect(decoded.width, MapImageStore.previewMaxSide);
-      expect(decoded.height, 800, reason: 'en-boy oranı korunmalı');
-    });
-
-    test('kucuk gorsel buyutulmez', () async {
-      final locationId = await world.createLocation(name: 'Oda');
-      await world.setMapImage(locationId, await makeImage(400, 300));
-
-      final location = (await world.find(locationId))!;
-      final preview = await world.images.resolve(location.mapPreviewPath!);
-      final decoded = img.decodeImage(await preview.readAsBytes())!;
-      expect(decoded.width, 400);
+      final decoded = img.decodeImage(await stored.readAsBytes())!;
+      expect(decoded.width, 2400);
+      expect(decoded.height, 1200);
     });
 
     test('harita degistirilince eski dosyalar silinir', () async {
@@ -815,5 +801,59 @@ void main() {
         );
       },
     );
+  });
+
+  group('düğüm ağı filtresi', () {
+    // Haritasiz yer pinleri arkalarinda gercek bir `Locations` kaydi aciyor
+    // (gorev/planlayici listelerinde gozuksunler diye). Dunya dugum agi
+    // bunlari cizmemeli; aksi halde her tabela bir dugum oluyor.
+    test('haritasız yer pinlerinin hedefleri işaret sayılır', () async {
+      final city = await world.createLocation(name: 'Baldur');
+      final marker = await world.createLocation(
+        name: 'Eski çeşme',
+        parentId: city,
+      );
+      final realChild = await world.createLocation(
+        name: 'Liman',
+        parentId: city,
+      );
+      await world.addPin(
+        locationId: city,
+        kind: PinKind.place,
+        label: 'Eski çeşme',
+        x: 0.5,
+        y: 0.5,
+        targetId: marker,
+      );
+      await world.addPin(
+        locationId: city,
+        kind: PinKind.location,
+        label: 'Liman',
+        x: 0.2,
+        y: 0.2,
+        targetId: realChild,
+      );
+
+      final markers = await world.watchMarkerLocationIds().first;
+      expect(markers, contains(marker));
+      expect(markers, isNot(contains(realChild)));
+      expect(markers, isNot(contains(city)));
+    });
+  });
+
+  group('düğüm katlama', () {
+    test('katlama bayrağı yazılır ve okunur', () async {
+      final city = await world.createLocation(name: 'Baldur');
+      expect((await world.find(city))!.graphCollapsed, isFalse);
+
+      await world.updateLocation(city, graphCollapsed: true);
+      expect((await world.find(city))!.graphCollapsed, isTrue);
+
+      // Baska bir alani yazmak bayragi bozmamali.
+      await world.updateLocation(city, name: 'Baldurs Gate');
+      final row = (await world.find(city))!;
+      expect(row.name, 'Baldurs Gate');
+      expect(row.graphCollapsed, isTrue);
+    });
   });
 }

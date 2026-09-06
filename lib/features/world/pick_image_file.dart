@@ -8,15 +8,21 @@ import 'package:image_picker/image_picker.dart';
 /// Platforma gore farkli arayuz: telefonda galeri (kullanicinin haritalari
 /// zaten fotograflarinda), masaustunde dosya secme penceresi (galeri kavrami
 /// yok, haritalar klasorlerde durur).
-Future<File?> pickImageFile() async {
+///
+/// [typeLabel] masaustu dosya penceresindeki tur filtresinin adidir; cagiran
+/// ekran `L10n.of(context).fileTypeImage` gecer (burada context yok).
+Future<File?> pickImageFile({String? typeLabel}) async {
   if (Platform.isAndroid || Platform.isIOS) {
     final picked = await ImagePicker().pickImage(source: ImageSource.gallery);
     return picked == null ? null : File(picked.path);
   }
 
   final picked = await openFile(
-    acceptedTypeGroups: const [
-      XTypeGroup(label: 'Görsel', extensions: ['png', 'jpg', 'jpeg', 'webp']),
+    acceptedTypeGroups: [
+      XTypeGroup(
+        label: typeLabel,
+        extensions: const ['png', 'jpg', 'jpeg', 'webp'],
+      ),
     ],
   );
   return picked == null ? null : File(picked.path);
@@ -27,18 +33,18 @@ Future<File?> pickImageFile() async {
 Future<String?> pickDirectoryPath() => getDirectoryPath();
 
 /// Video dosyasi secer (Kayitlar video blogu icin). Telefonda galeri,
-/// masaustunde dosya-secme penceresi.
-Future<File?> pickVideoFile() async {
+/// masaustunde dosya-secme penceresi. [typeLabel] icin bkz. [pickImageFile].
+Future<File?> pickVideoFile({String? typeLabel}) async {
   if (Platform.isAndroid || Platform.isIOS) {
     final picked = await ImagePicker().pickVideo(source: ImageSource.gallery);
     return picked == null ? null : File(picked.path);
   }
 
   final picked = await openFile(
-    acceptedTypeGroups: const [
+    acceptedTypeGroups: [
       XTypeGroup(
-        label: 'Video',
-        extensions: ['mp4', 'mov', 'mkv', 'webm', 'avi', 'm4v'],
+        label: typeLabel,
+        extensions: const ['mp4', 'mov', 'mkv', 'webm', 'avi', 'm4v'],
       ),
     ],
   );

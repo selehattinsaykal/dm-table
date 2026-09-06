@@ -81,6 +81,30 @@ void main() {
       expect((await repo.blocks(page)).single.dataJson, contains('yeni'));
     });
 
+    test('duplicateBlock kopyayi hemen ardina koyar', () async {
+      final page = await repo.createPage();
+      await repo.addBlock(page, CodexBlockType.text, data: {'text': 'A'});
+      final b = await repo.addBlock(
+        page,
+        CodexBlockType.text,
+        data: {'text': 'B', 'width': 0.5},
+      );
+      await repo.addBlock(page, CodexBlockType.text, data: {'text': 'C'});
+
+      final copyId = await repo.duplicateBlock(b);
+
+      final rows = await repo.blocks(page);
+      expect(rows.map((r) => r.id).toList()[2], copyId);
+      // Kopya kaynagin verisini (yerlesim dahil) aynen tasir.
+      expect(rows[2].dataJson, rows[1].dataJson);
+      expect(rows.map((r) => r.sortOrder), [0, 1, 2, 3]);
+      expect(rows.last.dataJson, contains('C'));
+    });
+
+    test('duplicateBlock olmayan blok icin null doner', () async {
+      expect(await repo.duplicateBlock('bl-yok'), isNull);
+    });
+
     test('moveBlock komsuyla yer degistirir', () async {
       final page = await repo.createPage();
       final a = await repo.addBlock(

@@ -105,7 +105,7 @@ void main() {
     await tester.tap(find.widgetWithText(ChoiceChip, 'Soldier'));
     await tester.pumpAndSettle();
     // Soldier: Athletics ve Intimidation
-    expect(find.textContaining('Athletics'), findsWidgets);
+    expect(find.textContaining('Atletizm'), findsWidgets);
     // Puan dagitilmadan ilerlenemez.
     expect(tester.widget<FilledButton>(nextButton()).onPressed, isNull);
 
@@ -115,7 +115,7 @@ void main() {
       plusTwoRow.at(find.byType(ChoiceChip).evaluate().length - 6),
     );
     await tester.pumpAndSettle();
-    await tester.tap(find.widgetWithText(ChoiceChip, 'CON').last);
+    await tester.tap(find.widgetWithText(ChoiceChip, 'DAY').last);
     await tester.pumpAndSettle();
     expect(tester.widget<FilledButton>(nextButton()).onPressed, isNotNull);
     await tapNext(tester);
@@ -133,9 +133,9 @@ void main() {
 
     // --- 5. Beceriler: Barbarian 2 secer
     expect(tester.widget<FilledButton>(nextButton()).onPressed, isNull);
-    await tester.tap(find.widgetWithText(CheckboxListTile, 'Perception'));
+    await tester.tap(find.widgetWithText(CheckboxListTile, 'Algı'));
     await tester.pumpAndSettle();
-    await tester.tap(find.widgetWithText(CheckboxListTile, 'Survival'));
+    await tester.tap(find.widgetWithText(CheckboxListTile, 'Hayatta Kalma'));
     await tester.pumpAndSettle();
     expect(tester.widget<FilledButton>(nextButton()).onPressed, isNotNull);
     await tapNext(tester);

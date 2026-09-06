@@ -1,8 +1,8 @@
 /// Yetenek puani uretme yontemleri ve puan dagitimi (point buy) matematigi.
 ///
-/// Saf Dart: `dart:io`/Flutter bilmez. **Oyuncu paneli de kullaniyor** —
-/// tarayicida derlendigi icin `dart:io` iceren bir dosyadan import edemez,
-/// bu yuzden sihirbaz taslagindan (`character_draft.dart`) buraya tasindi.
+/// Saf Dart: `dart:io`/Flutter bilmez. Sihirbaz taslagindan
+/// (`character_draft.dart`) ayri duruyor ki kural matematigi arayuzsuz test
+/// edilebilsin.
 library;
 
 import '../models/ability.dart';

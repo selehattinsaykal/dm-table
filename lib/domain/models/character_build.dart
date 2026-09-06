@@ -31,6 +31,7 @@ enum CasterType {
 class ArmorPiece {
   const ArmorPiece({
     required this.baseAc,
+    this.category,
     this.addDexModifier = false,
     this.maxDexModifier,
     this.stealthDisadvantage = false,
@@ -38,6 +39,11 @@ class ArmorPiece {
   });
 
   final int baseAc;
+
+  /// `light`, `medium` ya da `heavy`. Zirh egitimi kontrolu buna bakiyor
+  /// (bkz. [CharacterBuild.untrainedArmor]).
+  final String? category;
+
   final bool addDexModifier;
 
   /// Orta zirhta +2 gibi bir tavan var; agir zirhta Dex hic eklenmez.
@@ -88,6 +94,8 @@ class CharacterBuild {
     this.exhaustion = 0,
     this.baseSpeed = 30,
     this.miscArmorClassBonus = 0,
+    this.armorProficiencies = const {},
+    this.toolProficiencies = const {},
     this.hitPointRolls = const {},
   });
 
@@ -111,9 +119,41 @@ class CharacterBuild {
   /// Yuzuk/kalkan disi kaynaklardan gelen sabit AC bonusu.
   final int miscArmorClassBonus;
 
+  /// Zirh egitimi (`light`/`medium`/`heavy`/`shield`) ve alet yeterlilikleri.
+  ///
+  /// Sinif, gecmis ve feat'lerden turetilip kagida yaziliyor; kural
+  /// kontrolleri buradan okuyor.
+  final Set<String> armorProficiencies;
+  final Set<String> toolProficiencies;
+
   /// Sinif anahtari -> 2. seviyeden itibaren alinan HP artislari.
   /// Bos birakilirsa ortalama kullanilir.
   final Map<String, List<int>> hitPointRolls;
+
+  /// Giyilen zirhin egitimi yoksa true.
+  ///
+  /// 2024 kurali: yeterliligin olmayan zirhi giyersen Guc ve Ceviklik
+  /// kontrolleriyle kurtarma atislarinda dezavantaj alirsin ve buyu
+  /// yapamazsin. Dezavantaj sayisal bir deger olmadigi icin burada yalnizca
+  /// bayrak duruyor; kagit uyariyi gosteriyor, zar atarken DM uyguluyor.
+  bool get untrainedArmor {
+    final worn = armor;
+    if (worn?.category == null) return false;
+    return !armorProficiencies.contains(worn!.category!.toLowerCase());
+  }
+
+  /// Kalkan tasiniyor ama kalkan egitimi yoksa true.
+  bool get untrainedShield =>
+      hasShield && !armorProficiencies.contains('shield');
+
+  /// Zirh ya da kalkan cezasi gecerli mi?
+  bool get hasArmorPenalty => untrainedArmor || untrainedShield;
+
+  /// Verilen alette yeterli mi?
+  bool proficientWithTool(String tool) {
+    final needle = tool.trim().toLowerCase();
+    return toolProficiencies.any((t) => t.trim().toLowerCase() == needle);
+  }
 
   int get totalLevel => classes.fold(0, (sum, c) => sum + c.level);
 

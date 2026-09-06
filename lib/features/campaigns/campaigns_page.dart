@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../data/campaign/campaign.dart';
 import '../../data/campaign/campaign_manager.dart';
 import '../../l10n/app_localizations.dart';
-import '../session/session_page.dart';
 
 /// Kampanya adını gösterir; varsayılan kampanyanın adı boş bırakıldığı için
 /// (kayıt katmanı dile bağımlı değil) etiketi buradan gelir.
@@ -29,7 +28,7 @@ class CampaignsPage extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(title: Text(l10n.navCampaigns)),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => _create(context, ref, manager, l10n),
+        onPressed: () => _create(context, manager, l10n),
         icon: const Icon(Icons.add),
         label: Text(l10n.campaignNew),
       ),
@@ -65,13 +64,11 @@ class CampaignsPage extends ConsumerWidget {
 
   Future<void> _create(
     BuildContext context,
-    WidgetRef ref,
     CampaignManager manager,
     L10n l10n,
   ) async {
     final name = await _nameDialog(context, l10n, title: l10n.campaignNew);
     if (name == null || !context.mounted) return;
-    if (!await _confirmSwitch(context, ref, l10n)) return;
     await manager.create(name);
   }
 }
@@ -119,7 +116,7 @@ class _CampaignTile extends ConsumerWidget {
           onSelected: (value) async {
             switch (value) {
               case 'open':
-                await _open(context, ref, l10n);
+                await manager.open(campaign.id);
               case 'rename':
                 await _rename(context, l10n);
               case 'delete':
@@ -161,14 +158,9 @@ class _CampaignTile extends ConsumerWidget {
               ),
           ],
         ),
-        onTap: active ? null : () => _open(context, ref, l10n),
+        onTap: active ? null : () => manager.open(campaign.id),
       ),
     );
-  }
-
-  Future<void> _open(BuildContext context, WidgetRef ref, L10n l10n) async {
-    if (!await _confirmSwitch(context, ref, l10n)) return;
-    await manager.open(campaign.id);
   }
 
   Future<void> _rename(BuildContext context, L10n l10n) async {
@@ -247,43 +239,4 @@ Future<String?> _nameDialog(
     ),
   );
   return (name == null || name.isEmpty) ? null : name;
-}
-
-/// Oturum açıkken kampanya değiştirmek bağlı oyuncuların bağlantısını keser ve
-/// yeni bir katılım adresi üretir; DM'e bunu açıkça sorarız.
-Future<bool> _confirmSwitch(
-  BuildContext context,
-  WidgetRef ref,
-  L10n l10n,
-) async {
-  if (!ref.read(sessionControllerProvider).isRunning) return true;
-  final players = ref.read(connectedPlayersProvider).value ?? const [];
-
-  final ok = await showDialog<bool>(
-    context: context,
-    builder: (context) => AlertDialog(
-      icon: Icon(
-        Icons.warning_amber,
-        color: Theme.of(context).colorScheme.error,
-      ),
-      title: Text(l10n.campaignSwitchTitle),
-      content: Text(
-        players.isEmpty
-            ? l10n.campaignSwitchBody
-            : '${l10n.campaignSwitchBody}\n\n'
-                  '${l10n.campaignSwitchPlayers([for (final p in players) p.name].join(', '))}',
-      ),
-      actions: [
-        TextButton(
-          onPressed: () => Navigator.pop(context, false),
-          child: Text(l10n.cancel),
-        ),
-        FilledButton(
-          onPressed: () => Navigator.pop(context, true),
-          child: Text(l10n.campaignSwitchConfirm),
-        ),
-      ],
-    ),
-  );
-  return ok ?? false;
 }

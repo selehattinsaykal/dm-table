@@ -1,0 +1,589 @@
+[
+  {
+    "key": "eberron-forge_aberrant-heir",
+    "name": "Aberrant Heir",
+    "document": "eberron-forge",
+    "desc": "",
+    "benefits": [
+      {
+        "name": "Ability Scores",
+        "desc": "Strength, Constitution, Charisma",
+        "type": "ability_score"
+      },
+      {
+        "name": "Skill Proficiencies",
+        "desc": "History and Intimidation",
+        "type": "skill_proficiency"
+      },
+      {
+        "name": "Tool Proficiency",
+        "desc": "Disguise Kit",
+        "type": "tool_proficiency"
+      },
+      {
+        "name": "Feat",
+        "desc": "Aberrant Dragonmark",
+        "type": "feat"
+      },
+      {
+        "name": "Equipment",
+        "desc": "*Choose A or B:* (a) Dagger, Disguise Kit, Costume, Traveler's Clothes, 16 GP; or (b) 50 GP",
+        "type": "equipment"
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "eberron-forge_archaeologist",
+    "name": "Archaeologist",
+    "document": "eberron-forge",
+    "desc": "",
+    "benefits": [
+      {
+        "name": "Ability Scores",
+        "desc": "Dexterity, Intelligence, Wisdom",
+        "type": "ability_score"
+      },
+      {
+        "name": "Skill Proficiencies",
+        "desc": "History and Survival",
+        "type": "skill_proficiency"
+      },
+      {
+        "name": "Tool Proficiency",
+        "desc": "Cartographer's Tools",
+        "type": "tool_proficiency"
+      },
+      {
+        "name": "Feat",
+        "desc": "Skilled",
+        "type": "feat"
+      },
+      {
+        "name": "Equipment",
+        "desc": "*Choose A or B:* (a) Cartographer's Tools, Bullseye Lantern, Map, Map or Scroll Case, Shovel, Tent, Traveler's Clothes, 17 GP; or (b) 50 GP",
+        "type": "equipment"
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "eberron-forge_house-agent",
+    "name": "House Agent",
+    "document": "eberron-forge",
+    "desc": "",
+    "benefits": [
+      {
+        "name": "Ability Scores",
+        "desc": "Strength, Intelligence, Charisma",
+        "type": "ability_score"
+      },
+      {
+        "name": "Skill Proficiencies",
+        "desc": "Investigation and Persuasion",
+        "type": "skill_proficiency"
+      },
+      {
+        "name": "Feat",
+        "desc": "Lucky",
+        "type": "feat"
+      },
+      {
+        "name": "Equipment",
+        "desc": "*Choose A or B:* (a) Fine Clothes, 20 GP; or (b) 50 GP",
+        "type": "equipment"
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "eberron-forge_house-cannith-heir",
+    "name": "House Cannith Heir",
+    "document": "eberron-forge",
+    "desc": "",
+    "benefits": [
+      {
+        "name": "Ability Scores",
+        "desc": "Strength, Dexterity, Intelligence",
+        "type": "ability_score"
+      },
+      {
+        "name": "Skill Proficiencies",
+        "desc": "Investigation and Sleight of Hand",
+        "type": "skill_proficiency"
+      },
+      {
+        "name": "Feat",
+        "desc": "Mark of Making",
+        "type": "feat"
+      },
+      {
+        "name": "Equipment",
+        "desc": "*Choose A or B:* (a) Crowbar, Fine Clothes, Pouches, 17 GP; or (b) 50 GP",
+        "type": "equipment"
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "eberron-forge_house-deneith-heir",
+    "name": "House Deneith Heir",
+    "document": "eberron-forge",
+    "desc": "",
+    "benefits": [
+      {
+        "name": "Ability Scores",
+        "desc": "Strength, Constitution, Wisdom",
+        "type": "ability_score"
+      },
+      {
+        "name": "Skill Proficiencies",
+        "desc": "Insight and Perception",
+        "type": "skill_proficiency"
+      },
+      {
+        "name": "Feat",
+        "desc": "Mark of Sentinel",
+        "type": "feat"
+      },
+      {
+        "name": "Equipment",
+        "desc": "*Choose A or B:* (a) Spear, Shortbow, Arrows (20), Gaming Set, Fine Clothes, Healer's Kit, Quiver, 1 GP; or (b) 50 GP",
+        "type": "equipment"
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "eberron-forge_house-ghallanda-heir",
+    "name": "House Ghallanda Heir",
+    "document": "eberron-forge",
+    "desc": "",
+    "benefits": [
+      {
+        "name": "Ability Scores",
+        "desc": "Dexterity, Wisdom, Charisma",
+        "type": "ability_score"
+      },
+      {
+        "name": "Skill Proficiencies",
+        "desc": "Insight and Persuasion",
+        "type": "skill_proficiency"
+      },
+      {
+        "name": "Tool Proficiency",
+        "desc": "Cook's Utensils",
+        "type": "tool_proficiency"
+      },
+      {
+        "name": "Feat",
+        "desc": "Mark of Hospitality",
+        "type": "feat"
+      },
+      {
+        "name": "Equipment",
+        "desc": "*Choose A or B:* (a) Cook's Utensils, Fine Clothes, Iron Pot, Lamp, Oil (5), Perfume, 26 GP; or (b) 50 GP",
+        "type": "equipment"
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "eberron-forge_house-jorasco-heir",
+    "name": "House Jorasco Heir",
+    "document": "eberron-forge",
+    "desc": "",
+    "benefits": [
+      {
+        "name": "Ability Scores",
+        "desc": "Dexterity, Constitution, Wisdom",
+        "type": "ability_score"
+      },
+      {
+        "name": "Skill Proficiencies",
+        "desc": "Medicine and Stealth",
+        "type": "skill_proficiency"
+      },
+      {
+        "name": "Tool Proficiency",
+        "desc": "Herbalism Kit",
+        "type": "tool_proficiency"
+      },
+      {
+        "name": "Feat",
+        "desc": "Mark of Healing",
+        "type": "feat"
+      },
+      {
+        "name": "Equipment",
+        "desc": "*Choose A or B:* (a) Herbalism Kit, Fine Clothes, Healer's Kit, 25 GP; or (b) 50 GP",
+        "type": "equipment"
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "eberron-forge_house-kundarak-heir",
+    "name": "House Kundarak Heir",
+    "document": "eberron-forge",
+    "desc": "",
+    "benefits": [
+      {
+        "name": "Ability Scores",
+        "desc": "Strength, Constitution, Intelligence",
+        "type": "ability_score"
+      },
+      {
+        "name": "Skill Proficiencies",
+        "desc": "Arcana and Investigation",
+        "type": "skill_proficiency"
+      },
+      {
+        "name": "Tool Proficiency",
+        "desc": "Thieves' Tools",
+        "type": "tool_proficiency"
+      },
+      {
+        "name": "Feat",
+        "desc": "Mark of Warding",
+        "type": "feat"
+      },
+      {
+        "name": "Equipment",
+        "desc": "*Choose A or B:* (a) Thieves' Tools, Fine Clothes, 10 GP; or (b) 50 GP",
+        "type": "equipment"
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "eberron-forge_house-lyrandar-heir",
+    "name": "House Lyrandar Heir",
+    "document": "eberron-forge",
+    "desc": "",
+    "benefits": [
+      {
+        "name": "Ability Scores",
+        "desc": "Strength, Dexterity, Charisma",
+        "type": "ability_score"
+      },
+      {
+        "name": "Skill Proficiencies",
+        "desc": "Acrobatics and Nature",
+        "type": "skill_proficiency"
+      },
+      {
+        "name": "Tool Proficiency",
+        "desc": "Navigator's Tools",
+        "type": "tool_proficiency"
+      },
+      {
+        "name": "Feat",
+        "desc": "Mark of Storm",
+        "type": "feat"
+      },
+      {
+        "name": "Equipment",
+        "desc": "*Choose A or B:* (a) Navigator's Tools, Fine Clothes, 10 GP; or (b) 50 GP",
+        "type": "equipment"
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "eberron-forge_house-medani-heir",
+    "name": "House Medani Heir",
+    "document": "eberron-forge",
+    "desc": "",
+    "benefits": [
+      {
+        "name": "Ability Scores",
+        "desc": "Dexterity, Intelligence, Wisdom",
+        "type": "ability_score"
+      },
+      {
+        "name": "Skill Proficiencies",
+        "desc": "Insight and Investigation",
+        "type": "skill_proficiency"
+      },
+      {
+        "name": "Tool Proficiency",
+        "desc": "Disguise Kit",
+        "type": "tool_proficiency"
+      },
+      {
+        "name": "Feat",
+        "desc": "Mark of Detection",
+        "type": "feat"
+      },
+      {
+        "name": "Equipment",
+        "desc": "*Choose A or B:* (a) Disguise Kit, Fine Clothes, 10 GP; or (b) 50 GP",
+        "type": "equipment"
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "eberron-forge_house-orien-heir",
+    "name": "House Orien Heir",
+    "document": "eberron-forge",
+    "desc": "",
+    "benefits": [
+      {
+        "name": "Ability Scores",
+        "desc": "Dexterity, Constitution, Intelligence",
+        "type": "ability_score"
+      },
+      {
+        "name": "Skill Proficiencies",
+        "desc": "Acrobatics and Athletics",
+        "type": "skill_proficiency"
+      },
+      {
+        "name": "Tool Proficiency",
+        "desc": "Cartographer's Tools",
+        "type": "tool_proficiency"
+      },
+      {
+        "name": "Feat",
+        "desc": "Mark of Passage",
+        "type": "feat"
+      },
+      {
+        "name": "Equipment",
+        "desc": "*Choose A or B:* (a) Cartographer's Tools, Fine Clothes, Map, Map or Scroll Case, 18 GP; or (b) 50 GP",
+        "type": "equipment"
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "eberron-forge_house-phiarlan-heir",
+    "name": "House Phiarlan Heir",
+    "document": "eberron-forge",
+    "desc": "",
+    "benefits": [
+      {
+        "name": "Ability Scores",
+        "desc": "Dexterity, Wisdom, Charisma",
+        "type": "ability_score"
+      },
+      {
+        "name": "Skill Proficiencies",
+        "desc": "Deception and Stealth",
+        "type": "skill_proficiency"
+      },
+      {
+        "name": "Tool Proficiency",
+        "desc": "Disguise Kit",
+        "type": "tool_proficiency"
+      },
+      {
+        "name": "Feat",
+        "desc": "Mark of Shadow",
+        "type": "feat"
+      },
+      {
+        "name": "Equipment",
+        "desc": "*Choose A or B:* (a) Disguise Kit, Fine Clothes, 10 GP; or (b) 50 GP",
+        "type": "equipment"
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "eberron-forge_house-sivis-heir",
+    "name": "House Sivis Heir",
+    "document": "eberron-forge",
+    "desc": "",
+    "benefits": [
+      {
+        "name": "Ability Scores",
+        "desc": "Intelligence, Wisdom, Charisma",
+        "type": "ability_score"
+      },
+      {
+        "name": "Skill Proficiencies",
+        "desc": "History and Perception",
+        "type": "skill_proficiency"
+      },
+      {
+        "name": "Tool Proficiency",
+        "desc": "Calligrapher's Supplies",
+        "type": "tool_proficiency"
+      },
+      {
+        "name": "Feat",
+        "desc": "Mark of Scribing",
+        "type": "feat"
+      },
+      {
+        "name": "Equipment",
+        "desc": "*Choose A or B:* (a) Calligrapher's Supplies, Fine Clothes, Ink, Ink Pen (5), Paper (30), Parchment (9), 8 GP; or (b) 50 GP",
+        "type": "equipment"
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "eberron-forge_house-tharashk-heir",
+    "name": "House Tharashk Heir",
+    "document": "eberron-forge",
+    "desc": "",
+    "benefits": [
+      {
+        "name": "Ability Scores",
+        "desc": "Constitution, Intelligence, Wisdom",
+        "type": "ability_score"
+      },
+      {
+        "name": "Skill Proficiencies",
+        "desc": "Perception and Survival",
+        "type": "skill_proficiency"
+      },
+      {
+        "name": "Feat",
+        "desc": "Mark of Finding",
+        "type": "feat"
+      },
+      {
+        "name": "Equipment",
+        "desc": "*Choose A or B:* (a) Gaming Set, Climber's Kit, Fine Clothes, Hunting Trap, Manacles, 2 GP; or (b) 50 GP",
+        "type": "equipment"
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "eberron-forge_house-thuranni-heir",
+    "name": "House Thuranni Heir",
+    "document": "eberron-forge",
+    "desc": "",
+    "benefits": [
+      {
+        "name": "Ability Scores",
+        "desc": "Dexterity, Intelligence, Charisma",
+        "type": "ability_score"
+      },
+      {
+        "name": "Skill Proficiencies",
+        "desc": "Performance and Stealth",
+        "type": "skill_proficiency"
+      },
+      {
+        "name": "Feat",
+        "desc": "Mark of Shadow",
+        "type": "feat"
+      },
+      {
+        "name": "Equipment",
+        "desc": "*Choose A or B:* (a) Musical Instrument, Costume, Fine Clothes, 13 GP; or (b) 50 GP",
+        "type": "equipment"
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "eberron-forge_house-vadalis-heir",
+    "name": "House Vadalis Heir",
+    "document": "eberron-forge",
+    "desc": "",
+    "benefits": [
+      {
+        "name": "Ability Scores",
+        "desc": "Constitution, Wisdom, Charisma",
+        "type": "ability_score"
+      },
+      {
+        "name": "Skill Proficiencies",
+        "desc": "Animal Handling and Nature",
+        "type": "skill_proficiency"
+      },
+      {
+        "name": "Tool Proficiency",
+        "desc": "Herbalism Kit",
+        "type": "tool_proficiency"
+      },
+      {
+        "name": "Feat",
+        "desc": "Mark of Handling",
+        "type": "feat"
+      },
+      {
+        "name": "Equipment",
+        "desc": "*Choose A or B:* (a) Herbalism Kit, Fine Clothes, Net, 29 GP; or (b) 50 GP",
+        "type": "equipment"
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "eberron-forge_inquisitive",
+    "name": "Inquisitive",
+    "document": "eberron-forge",
+    "desc": "",
+    "benefits": [
+      {
+        "name": "Ability Scores",
+        "desc": "Constitution, Intelligence, Charisma",
+        "type": "ability_score"
+      },
+      {
+        "name": "Skill Proficiencies",
+        "desc": "Insight and Investigation",
+        "type": "skill_proficiency"
+      },
+      {
+        "name": "Tool Proficiency",
+        "desc": "Thieves' Tools",
+        "type": "tool_proficiency"
+      },
+      {
+        "name": "Feat",
+        "desc": "Alert",
+        "type": "feat"
+      },
+      {
+        "name": "Equipment",
+        "desc": "*Choose A or B:* (a) Thieves' Tools, Bullseye Lantern, Crowbar, Oil (10), Traveler's Clothes, 10 GP; or (b) 50 GP",
+        "type": "equipment"
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  }
+]

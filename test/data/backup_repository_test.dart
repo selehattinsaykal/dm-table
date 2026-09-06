@@ -14,12 +14,10 @@ import 'package:dm_table/data/db/tables.dart';
 import 'package:dm_table/data/db/world_tables.dart';
 import 'package:dm_table/data/import/asset_importer.dart';
 import 'package:dm_table/data/map_image_store.dart';
-import 'package:dm_table/data/notes_repository.dart';
 import 'package:dm_table/data/session_log_repository.dart';
 import 'package:dm_table/data/shop_repository.dart';
 import 'package:dm_table/data/world_repository.dart';
 import 'package:dm_table/domain/codex/codex_block.dart';
-import 'package:dm_table/net/protocol.dart';
 import 'package:dm_table/domain/models/ability.dart';
 import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -229,24 +227,15 @@ void main() {
     expect(await count('shop_stock'), 1);
   });
 
-  test('envanter ve oyuncu notlari arsive girer', () async {
-    // Karakter envanterine esya ekle, karaktere bagli oyuncu notu yaz.
+  test('envanter arsive girer', () async {
     await CharacterRepository(db).addItem(
       characterId: 'vex',
       customName: 'Kırık pusula',
       customDesc: 'İbreleri donmuş.',
     );
-    await NotesRepository(db).setFor('vex', [
-      const NoteSection(
-        id: 'sec1',
-        title: 'Görev',
-        entries: [NoteEntry(id: 'e1', title: 'Gundren', body: 'Pusulayı bul.')],
-      ),
-    ]);
 
     final summary = backup.inspect(await backup.export());
     expect(summary.counts['character_items'], 1);
-    expect(summary.counts['character_notes'], 1);
   });
 
   test('oturum gunlugu arsive girer ve geri yuklenir', () async {
@@ -282,10 +271,10 @@ void main() {
 
     final stored = (await world.find(location.id))!;
     final bytes = await backup.export();
-    expect(backup.inspect(bytes).mapCount, 2, reason: 'asıl + önizleme');
+    expect(backup.inspect(bytes).mapCount, 1);
 
-    // Dosyalari sil, sonra yedekten geri getir.
-    await imageStore.delete(stored.mapImagePath, stored.mapPreviewPath);
+    // Dosyayi sil, sonra yedekten geri getir.
+    await imageStore.delete(stored.mapImagePath);
     expect(
       (await imageStore.resolve(stored.mapImagePath!)).existsSync(),
       isFalse,
@@ -295,10 +284,6 @@ void main() {
 
     expect(
       (await imageStore.resolve(stored.mapImagePath!)).existsSync(),
-      isTrue,
-    );
-    expect(
-      (await imageStore.resolve(stored.mapPreviewPath!)).existsSync(),
       isTrue,
     );
   });

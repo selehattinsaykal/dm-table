@@ -12,35 +12,42 @@ import '../../data/db/database.dart';
 import '../../l10n/app_localizations.dart';
 import 'bond_type.dart';
 import 'bond_types_settings.dart';
+import 'faction_detail_page.dart';
 import 'graph_simulation.dart';
 import 'location_page.dart';
 import 'npc_detail_page.dart';
 import 'world_providers.dart';
 
-/// Bir grafik dugumunun goruntu verisi (yer ya da NPC).
+/// Bir grafik dugumunun goruntu verisi (yer, NPC ya da fraksiyon).
 class _NodeInfo {
   const _NodeInfo(
     this.kind,
     this.name,
     this.thumbPath, {
     this.nodeRadius,
-    this.revealed = false,
+    this.collapsed = false,
+    this.hiddenChildren = 0,
   });
-  final String kind; // 'location' | 'npc'
+  final String kind; // 'location' | 'npc' | 'faction'
   final String name;
   final String? thumbPath;
   final double? nodeRadius;
 
-  /// Yer su an oyunculara acik mi (`Locations.revealed`)? NPC'lerde anlamsiz.
-  final bool revealed;
+  /// Alt yerleri katlanmis mi ve kac tanesi gizli?
+  ///
+  /// Yuz lokasyonlu bir dunyada ag okunmuyordu; katlanan dugumun uzerinde
+  /// "+7" rozeti duruyor, cocuklarinin baglantilari da bu dugume tasiniyor
+  /// ki ag kopmasin.
+  final bool collapsed;
+  final int hiddenChildren;
 }
 
 /// Dunya sekmesinin ana gorunumu: force-directed BIRLESIK dugum-agi (DM-only).
 ///
-/// Dugumler yerler + NPC'ler; kenarlar tipli [WorldLink]'ler (dostluk/dusmanlik
-/// /ticaret... renkli). Sol surukle dugumu yumusak fizik takiple tasir; sag tik
-/// (masaustu) / uzun bas (dokunmatik) yeri (klasik harita) ya da NPC'yi (detay)
-/// acar. Bos alanda surukle = kaydir, tekerlek = zoom. "Bagla" modunda secili
+/// Dugumler yerler + NPC'ler + fraksiyonlar; kenarlar tipli [WorldLink]'ler
+/// (dostluk/dusmanlik/ticaret/uyelik... renkli). Sol surukle dugumu yumusak
+/// fizik takiple tasir; sag tik (masaustu) / uzun bas (dokunmatik) yeri
+/// (klasik harita), NPC'yi ya da orgutu (detay) acar. Bos alanda surukle = kaydir, tekerlek = zoom. "Bagla" modunda secili
 /// bag turuyle iki dugumu baglarsin; bir kenara dokunmak menu acar.
 class WorldGraph extends ConsumerStatefulWidget {
   const WorldGraph({super.key});
@@ -94,9 +101,17 @@ class _WorldGraphState extends ConsumerState<WorldGraph>
   int _seedCounter = 0;
   int _knownSig = 0;
 
+  /// Varsayilan dugum yaricapi: yer en buyuk (dunyanin iskeleti), fraksiyon
+  /// ortada (bir kisiden buyuk, bir yerden kucuk), NPC en kucuk.
+  static double _defaultRadius(String? kind) => switch (kind) {
+    'npc' => 21.0,
+    'faction' => 25.0,
+    _ => 30.0,
+  };
+
   double _radius(String id) {
     final info = _info[id];
-    return info?.nodeRadius ?? (info?.kind == 'npc' ? 21.0 : 30.0);
+    return info?.nodeRadius ?? _defaultRadius(info?.kind);
   }
 
   Color _bondColorOf(String code) =>
@@ -115,7 +130,45 @@ class _WorldGraphState extends ConsumerState<WorldGraph>
 
   // --- Reconcile ----------------------------------------------------------
 
-  void _reconcile(List<Location> locs, List<Npc> npcs, List<WorldLink> links) {
+  /// Katlama sonucu: gizlenen yerler, her gizli yerin gorunur atasi ve
+  /// katlanmis dugumlerin kac cocugu gizledigi.
+  ({
+    Set<String> hidden,
+    Map<String, String> representative,
+    Map<String, int> counts,
+  })
+  _collapse(List<Location> all) {
+    final byParent = <String, List<Location>>{};
+    for (final location in all) {
+      final parent = location.parentId;
+      if (parent != null) (byParent[parent] ??= []).add(location);
+    }
+    final hidden = <String>{};
+    final representative = <String, String>{};
+    final counts = <String, int>{};
+
+    void hide(String rootId, String id) {
+      for (final child in byParent[id] ?? const <Location>[]) {
+        if (!hidden.add(child.id)) continue;
+        representative[child.id] = rootId;
+        counts[rootId] = (counts[rootId] ?? 0) + 1;
+        hide(rootId, child.id);
+      }
+    }
+
+    for (final location in all) {
+      if (location.graphCollapsed) hide(location.id, location.id);
+    }
+    return (hidden: hidden, representative: representative, counts: counts);
+  }
+
+  void _reconcile(
+    List<Location> locs,
+    List<Npc> npcs,
+    List<Faction> factions,
+    List<WorldLink> links,
+    Map<String, int> collapsedCounts,
+  ) {
     final infos = <String, _NodeInfo>{};
     final stored = <String, Offset?>{};
     for (final l in locs) {
@@ -124,9 +177,10 @@ class _WorldGraphState extends ConsumerState<WorldGraph>
       infos[l.id] = _NodeInfo(
         'location',
         l.name,
-        l.mapPreviewPath ?? l.mapImagePath,
+        l.mapImagePath,
         nodeRadius: radius,
-        revealed: l.revealed,
+        collapsed: l.graphCollapsed,
+        hiddenChildren: collapsedCounts[l.id] ?? 0,
       );
       stored[l.id] = (l.graphX != null && l.graphY != null)
           ? Offset(l.graphX!, l.graphY!)
@@ -142,6 +196,18 @@ class _WorldGraphState extends ConsumerState<WorldGraph>
       );
       stored[n.id] = (n.graphX != null && n.graphY != null)
           ? Offset(n.graphX!, n.graphY!)
+          : null;
+    }
+    for (final f in factions) {
+      final radius = _localNodeRadius[f.id] ?? f.nodeRadius;
+      infos[f.id] = _NodeInfo(
+        'faction',
+        f.name,
+        f.portraitPath,
+        nodeRadius: radius,
+      );
+      stored[f.id] = (f.graphX != null && f.graphY != null)
+          ? Offset(f.graphX!, f.graphY!)
           : null;
     }
 
@@ -254,15 +320,23 @@ class _WorldGraphState extends ConsumerState<WorldGraph>
   }
 
   Future<void> _persistPositions() async {
-    final locs = <({String id, double x, double y})>[];
-    final npcs = <({String id, double x, double y})>[];
+    final byKind = <String, List<({String id, double x, double y})>>{
+      'location': [],
+      'npc': [],
+      'faction': [],
+    };
     for (final e in _nodes.entries) {
-      final rec = (id: e.key, x: e.value.x, y: e.value.y);
-      (_info[e.key]?.kind == 'npc' ? npcs : locs).add(rec);
+      final kind = _info[e.key]?.kind ?? 'location';
+      byKind[byKind.containsKey(kind) ? kind : 'location']!.add((
+        id: e.key,
+        x: e.value.x,
+        y: e.value.y,
+      ));
     }
     final repo = ref.read(worldRepositoryProvider);
-    await repo.saveGraphPositions(locs);
-    await repo.saveNpcGraphPositions(npcs);
+    await repo.saveGraphPositions(byKind['location']!);
+    await repo.saveNpcGraphPositions(byKind['npc']!);
+    await repo.saveFactionGraphPositions(byKind['faction']!);
   }
 
   // --- Koordinat ----------------------------------------------------------
@@ -390,10 +464,13 @@ class _WorldGraphState extends ConsumerState<WorldGraph>
     n.pinned = false;
     if (persist) {
       final repo = ref.read(worldRepositoryProvider);
-      if (_info[id]?.kind == 'npc') {
-        repo.setNpcGraphPosition(id, n.x, n.y);
-      } else {
-        repo.setGraphPosition(id, n.x, n.y);
+      switch (_info[id]?.kind) {
+        case 'npc':
+          repo.setNpcGraphPosition(id, n.x, n.y);
+        case 'faction':
+          repo.setFactionGraphPosition(id, n.x, n.y);
+        case _:
+          repo.setGraphPosition(id, n.x, n.y);
       }
     }
   }
@@ -487,46 +564,41 @@ class _WorldGraphState extends ConsumerState<WorldGraph>
         localPos.dy,
       ),
       items: [
-        // 1. Yeri aç (LocationPage / NpcDetailPage)
+        // 1. Kaydi ac (yer haritasi / NPC / fraksiyon sayfasi)
         PopupMenuItem(
           value: 'open',
           child: Row(
             children: [
-              Icon(
-                kind == 'npc' ? Icons.person_outline : Icons.map_outlined,
-                size: 18,
-              ),
+              Icon(switch (kind) {
+                'npc' => Icons.person_outline,
+                'faction' => Icons.groups_2_outlined,
+                _ => Icons.map_outlined,
+              }, size: 18),
               const SizedBox(width: 8),
               Text(l10n.worldGraphOpenLocation),
             ],
           ),
         ),
-        // 2. Oyunculara goster/gizle (sadece location icin)
-        //
-        // ASIL gorunurluk anahtari bu: `Locations.revealed`. Menude eskiden
-        // yalnizca pinleri ceviren bir secenek vardi, yer oyuncularda acik
-        // kalmaya devam ediyordu.
+        // 2. Alt yerleri katla/ac (yalnizca yer)
         if (kind == 'location')
           PopupMenuItem(
-            value: 'toggle_location_revealed',
+            value: 'toggle_collapse',
             child: Row(
               children: [
                 Icon(
-                  info.revealed
-                      ? Icons.visibility_off_outlined
-                      : Icons.visibility_outlined,
+                  info.collapsed ? Icons.unfold_more : Icons.unfold_less,
                   size: 18,
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  info.revealed
-                      ? l10n.worldGraphHideFromPlayers
-                      : l10n.worldGraphShowToPlayers,
+                  info.collapsed
+                      ? l10n.worldExpandChildren
+                      : l10n.worldCollapseChildren,
                 ),
               ],
             ),
           ),
-        // 3. Düğüm boyutu (her iki tip için)
+        // 3. Düğüm boyutu (her tip için)
         PopupMenuItem(
           value: 'set_radius',
           child: Row(
@@ -544,10 +616,11 @@ class _WorldGraphState extends ConsumerState<WorldGraph>
             children: [
               const Icon(Icons.delete_outline, size: 18, color: Colors.red),
               const SizedBox(width: 8),
-              Text(
-                kind == 'npc' ? l10n.worldDeleteNpc : l10n.worldDeleteLocation,
-                style: const TextStyle(color: Colors.red),
-              ),
+              Text(switch (kind) {
+                'npc' => l10n.worldDeleteNpc,
+                'faction' => l10n.factionDelete,
+                _ => l10n.worldDeleteLocation,
+              }, style: const TextStyle(color: Colors.red)),
             ],
           ),
         ),
@@ -560,8 +633,10 @@ class _WorldGraphState extends ConsumerState<WorldGraph>
       case 'open':
         _openNode(id);
         break;
-      case 'toggle_location_revealed':
-        await _toggleLocationRevealed(id);
+      case 'toggle_collapse':
+        await ref
+            .read(worldRepositoryProvider)
+            .updateLocation(id, graphCollapsed: !(info.collapsed));
         break;
       case 'set_radius':
         await _setNodeRadius(id);
@@ -572,27 +647,6 @@ class _WorldGraphState extends ConsumerState<WorldGraph>
     }
   }
 
-  /// Yeri oyunculara acar/kapatir.
-  ///
-  /// `setRevealed` yer acilirken pinlerini de acar (alt haritaya girildiginde
-  /// bos bir harita gorunmesin); kapatirken pinlere dokunmaz, boylece DM'in
-  /// tek tek ayarladigi pin gorunurlugu yer yeniden acildiginda kaybolmaz.
-  Future<void> _toggleLocationRevealed(String id) async {
-    final info = _info[id];
-    if (info == null) return;
-    await ref.read(worldRepositoryProvider).setRevealed(id, !info.revealed);
-    if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          info.revealed
-              ? L10n.of(context).worldGraphHiddenNotice(info.name)
-              : L10n.of(context).worldGraphShownNotice(info.name),
-        ),
-      ),
-    );
-  }
-
   /// Düğüm (küre) boyutunu ayarlama dialogu.
   Future<void> _setNodeRadius(String id) async {
     final repo = ref.read(worldRepositoryProvider);
@@ -600,7 +654,7 @@ class _WorldGraphState extends ConsumerState<WorldGraph>
     if (info == null || !mounted) return;
 
     final kind = info.kind;
-    final currentRadius = info.nodeRadius ?? (kind == 'npc' ? 21.0 : 30.0);
+    final currentRadius = info.nodeRadius ?? _defaultRadius(kind);
     final ctrl = TextEditingController(text: currentRadius.toStringAsFixed(1));
     final l10n = L10n.of(context);
 
@@ -642,10 +696,13 @@ class _WorldGraphState extends ConsumerState<WorldGraph>
     );
 
     if (result != null) {
-      if (kind == 'npc') {
-        await repo.updateNpc(id, nodeRadius: result);
-      } else {
-        await repo.updateLocation(id, nodeRadius: result);
+      switch (kind) {
+        case 'npc':
+          await repo.updateNpc(id, nodeRadius: result);
+        case 'faction':
+          await repo.updateFaction(id, nodeRadius: result);
+        case _:
+          await repo.updateLocation(id, nodeRadius: result);
       }
       // Local override kaydet (reconcile bunu DB'den gelene tercih edecek)
       _localNodeRadius[id] = result;
@@ -655,7 +712,6 @@ class _WorldGraphState extends ConsumerState<WorldGraph>
         info.name,
         info.thumbPath,
         nodeRadius: result,
-        revealed: info.revealed,
       );
       _repaint.value++;
     }
@@ -685,21 +741,25 @@ class _WorldGraphState extends ConsumerState<WorldGraph>
 
     if (confirmed ?? false) {
       final repo = ref.read(worldRepositoryProvider);
-      if (kind == 'npc') {
-        await repo.deleteNpc(id);
-      } else {
-        await repo.deleteLocation(id);
+      switch (kind) {
+        case 'npc':
+          await repo.deleteNpc(id);
+        case 'faction':
+          await repo.deleteFaction(id);
+        case _:
+          await repo.deleteLocation(id);
       }
     }
   }
 
   void _openNode(String id) {
-    final kind = _info[id]?.kind;
     Navigator.of(context, rootNavigator: true).push(
       MaterialPageRoute(
-        builder: (_) => kind == 'npc'
-            ? NpcDetailPage(npcId: id)
-            : LocationPage(locationId: id),
+        builder: (_) => switch (_info[id]?.kind) {
+          'npc' => NpcDetailPage(npcId: id),
+          'faction' => FactionDetailPage(factionId: id),
+          _ => LocationPage(locationId: id),
+        },
       ),
     );
   }
@@ -708,10 +768,42 @@ class _WorldGraphState extends ConsumerState<WorldGraph>
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final l10n = L10n.of(context);
-    final locs = ref.watch(allLocationsProvider).value ?? const [];
+    // Haritasiz yer pinlerinin arkasindaki kayitlar dugum OLMAZ: onlar gorev
+    // ve planlayici listelerinde gozuksun diye acilmis isaretler, gercek yer
+    // degil. Agda gozukunce her sehrin her tabelasi bir dugum oluyor ve asil
+    // yerler kayboluyordu.
+    final markers = ref.watch(markerLocationIdsProvider).value ?? const {};
+    final visibleLocations = <Location>[
+      for (final l
+          in ref.watch(allLocationsProvider).value ?? const <Location>[])
+        if (!markers.contains(l.id)) l,
+    ];
+    // Katlanmis bir yerin BUTUN soyu gizlenir; baglantilari ise gorunur en
+    // yakin atasina tasinir (bkz. [_collapse]).
+    final collapse = _collapse(visibleLocations);
+    final locs = <Location>[
+      for (final l in visibleLocations)
+        if (!collapse.hidden.contains(l.id)) l,
+    ];
     final npcs = ref.watch(npcsProvider).value ?? const [];
-    final links = ref.watch(worldLinksProvider).value ?? const [];
-    _reconcile(locs, npcs, links);
+    final factions = ref.watch(factionsProvider).value ?? const [];
+    final rawLinks = ref.watch(worldLinksProvider).value ?? const <WorldLink>[];
+    // Gizli uclar atalarina baglaniyor; ayni ata cifti birden fazla kez
+    // cikarsa kenar bir kez cizilir.
+    final seen = <String>{};
+    final links = <WorldLink>[
+      for (final link in rawLinks)
+        if (() {
+          final a = collapse.representative[link.aId] ?? link.aId;
+          final b = collapse.representative[link.bId] ?? link.bId;
+          return a != b && seen.add('\$a|\$b|\${link.type}');
+        }())
+          link.copyWith(
+            aId: collapse.representative[link.aId] ?? link.aId,
+            bId: collapse.representative[link.bId] ?? link.bId,
+          ),
+    ];
+    _reconcile(locs, npcs, factions, links, collapse.counts);
 
     // Bag turleri (duzenlenebilir); ilk acilista varsayilanlari tohumla.
     if (!_seeded) {
@@ -975,7 +1067,7 @@ class _GraphPainter extends CustomPainter {
       final c = Offset(n.x, n.y);
       final img = state._thumbs[id];
       final selected = id == state._linkFirst;
-      final isNpc = info?.kind == 'npc';
+      final kind = info?.kind;
       final tint = _nodeColor(id);
 
       canvas.drawCircle(
@@ -1024,18 +1116,21 @@ class _GraphPainter extends CustomPainter {
               colors: [light, dark],
             ).createShader(Rect.fromCircle(center: c, radius: r)),
         );
-        if (isNpc) {
-          _paintPersonGlyph(canvas, c, r);
-        } else {
-          _paintText(
-            canvas,
-            (info?.name.isNotEmpty ?? false)
-                ? info!.name[0].toUpperCase()
-                : '?',
-            c,
-            20,
-            _light,
-          );
+        switch (kind) {
+          case 'npc':
+            _paintPersonGlyph(canvas, c, r);
+          case 'faction':
+            _paintShieldGlyph(canvas, c, r);
+          case _:
+            _paintText(
+              canvas,
+              (info?.name.isNotEmpty ?? false)
+                  ? info!.name[0].toUpperCase()
+                  : '?',
+              c,
+              20,
+              _light,
+            );
         }
       }
 
@@ -1047,6 +1142,25 @@ class _GraphPainter extends CustomPainter {
           ..strokeWidth = (selected ? 3.5 : 2.5) / scale
           ..color = selected ? _accent : _light.withValues(alpha: 0.85),
       );
+
+      // Katlanmis dugumun uzerinde kac cocuk gizledigi yaziyor: ag
+      // sadelesirken bilgi kaybolmuyor.
+      if ((info?.hiddenChildren ?? 0) > 0) {
+        final badge = c.translate(r * 0.72, -r * 0.72);
+        final label = '+\${info!.hiddenChildren}';
+        final radius = 10.0 + label.length * 1.6;
+        canvas
+          ..drawCircle(badge, radius, Paint()..color = _accent)
+          ..drawCircle(
+            badge,
+            radius,
+            Paint()
+              ..style = PaintingStyle.stroke
+              ..strokeWidth = 1.6 / scale
+              ..color = _light.withValues(alpha: 0.9),
+          );
+        _paintText(canvas, label, badge, 12, _light);
+      }
 
       if (info != null) _paintLabel(canvas, info.name, c.dy + r + 7, c.dx);
     }
@@ -1063,6 +1177,30 @@ class _GraphPainter extends CustomPainter {
         pi,
       );
     canvas.drawPath(body, p);
+  }
+
+  /// Fraksiyon dugumunun armasi: basit bir kalkan silueti.
+  ///
+  /// Yer dugumu adin bas harfini, NPC dugumu bir insan siluetini gosteriyor;
+  /// orgutun de bir bakista ayrisan kendi isareti olmali. Kalkan secildi
+  /// cunku hem heraldik hem de daire icinde 20 pikselde bile okunuyor.
+  void _paintShieldGlyph(Canvas canvas, Offset c, double r) {
+    final w = r * 0.62, h = r * 0.78;
+    final top = c.translate(0, -h * 0.55);
+    final path = Path()
+      ..moveTo(top.dx - w / 2, top.dy)
+      ..lineTo(top.dx + w / 2, top.dy)
+      ..lineTo(top.dx + w / 2, top.dy + h * 0.52)
+      // Alt uc: iki yandan ortada bir noktaya inen egri.
+      ..quadraticBezierTo(top.dx + w / 2, top.dy + h, top.dx, top.dy + h * 1.05)
+      ..quadraticBezierTo(
+        top.dx - w / 2,
+        top.dy + h,
+        top.dx - w / 2,
+        top.dy + h * 0.52,
+      )
+      ..close();
+    canvas.drawPath(path, Paint()..color = _light.withValues(alpha: 0.92));
   }
 
   void _paintLabel(Canvas canvas, String text, double topY, double centerX) {

@@ -175,8 +175,8 @@ class _TextSettingState extends State<_TextSetting> {
   @override
   void initState() {
     super.initState();
-    // Odak kaybinda kaydet: her tusa basista DB'ye yazmak yayin firtinasi
-    // yaratirdi (her yazma tum oyunculara snapshot gonderiyor).
+    // Odak kaybinda kaydet: her tusa basista DB'ye yazmak takvimi izleyen
+    // tum akislari gereksizce tetiklerdi.
     _focus.addListener(() {
       if (!_focus.hasFocus) widget.onSaved(_controller.text.trim());
     });

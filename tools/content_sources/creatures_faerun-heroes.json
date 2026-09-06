@@ -1,0 +1,120 @@
+[
+  {
+    "key": "faerun-heroes_crag-cat",
+    "name": "Crag Cat",
+    "document": "faerun-heroes",
+    "type": {
+      "name": "Monstrosity",
+      "key": "monstrosity"
+    },
+    "size": {
+      "name": "Large",
+      "key": "large"
+    },
+    "challenge_rating": 1.0,
+    "proficiency_bonus": null,
+    "speed": {
+      "unit": "feet",
+      "walk": 40,
+      "climb": 30
+    },
+    "speed_all": {
+      "unit": "feet",
+      "walk": 40,
+      "climb": 30
+    },
+    "category": "Monsters",
+    "subcategory": null,
+    "alignment": "unaligned",
+    "languages": {
+      "as_string": "",
+      "data": []
+    },
+    "armor_class": 13,
+    "armor_detail": null,
+    "hit_points": 34,
+    "hit_dice": "4d10 + 12",
+    "experience_points": 200,
+    "ability_scores": {
+      "strength": 16,
+      "dexterity": 17,
+      "constitution": 16,
+      "intelligence": 4,
+      "wisdom": 14,
+      "charisma": 8
+    },
+    "modifiers": {
+      "strength": 3,
+      "dexterity": 3,
+      "constitution": 3,
+      "intelligence": -3,
+      "wisdom": 2,
+      "charisma": -1
+    },
+    "initiative_bonus": 3,
+    "saving_throws": {},
+    "saving_throws_all": {
+      "strength": 3,
+      "dexterity": 3,
+      "constitution": 3,
+      "intelligence": -3,
+      "wisdom": 2,
+      "charisma": -1
+    },
+    "skill_bonuses": {
+      "stealth": 7,
+      "perception": 4
+    },
+    "skill_bonuses_all": {},
+    "passive_perception": 14,
+    "darkvision_range": 60,
+    "blindsight_range": 0,
+    "tremorsense_range": 0,
+    "truesight_range": 0,
+    "normal_sight_range": null,
+    "resistances_and_immunities": {
+      "damage_resistances_display": "",
+      "damage_resistances": [],
+      "damage_immunities_display": "",
+      "damage_immunities": [],
+      "damage_vulnerabilities_display": "",
+      "damage_vulnerabilities": [],
+      "condition_immunities_display": "",
+      "condition_immunities": []
+    },
+    "traits": [
+      {
+        "name": "Nondetection",
+        "desc": "The cat cannot be targeted or detected by any divination magic or perceived through magical scrying sensors."
+      },
+      {
+        "name": "Pounce",
+        "desc": "If the cat moves at least 20 feet straight toward a creature then hits it with a claw attack on the same turn, that target must succeed on a DC13 Strength saving throw or be knocked prone. If the target is prone, the cat can make one bite attack against it as a bonus action."
+      },
+      {
+        "name": "Spell Turning",
+        "desc": "The cat has advantage on saving throws against any spell that targets only the cat (not an area). If the cat's saving throw succeeds and the spell is of 7th level or lower, the spell has no effect on the cat and instead targets the caster."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Bite",
+        "desc": "Melee Weapon Attack: +5 to hit, reach 5 ft., one target. Hit: 8 (1d10 + 3) piercing damage.",
+        "action_type": "ACTION",
+        "order_in_statblock": 0,
+        "attacks": []
+      },
+      {
+        "name": "Claw",
+        "desc": "Melee Weapon Attack: +5 to hit, reach 5 ft., one target. Hit: 7 (1d8 + 3) slashing damage.",
+        "action_type": "ACTION",
+        "order_in_statblock": 1,
+        "attacks": []
+      }
+    ],
+    "environments": [],
+    "crossreferences": {
+      "to": []
+    }
+  }
+]

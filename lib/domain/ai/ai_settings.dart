@@ -1,8 +1,7 @@
 /// Taverna AI üreteci ayarları (opt-in, "kendi anahtarını getir").
 ///
 /// Anahtar YALNIZCA cihazda `shared_preferences` ile saklanır; kaynağa gömülü
-/// hiçbir anahtar yoktur, LAN'a/oyunculara gitmez, yalnızca DM cihazı kendi
-/// anahtarıyla çağrı yapar.
+/// hiçbir anahtar yoktur; yalnızca DM cihazı kendi anahtarıyla çağrı yapar.
 library;
 
 /// Desteklenen sağlayıcılar. Her biri kendi API biçimi + varsayılan modeli.

@@ -1,0 +1,622 @@
+[
+  {
+    "key": "eldritch-invocation_agonizing-blast",
+    "name": "Agonizing Blast",
+    "type": "EI",
+    "type_name": "Eldritch Invocation",
+    "class_key": "srd-2024_warlock",
+    "prerequisite": "Level 2+",
+    "desc": "Choose one of your known Warlock cantrips that deals damage. You can add your Charisma modifier to that spell's damage rolls.\n\nRepeatable. You can gain this invocation more than once. Each time you do so, choose a different eligible cantrip.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "eldritch-invocation_armor-of-shadows",
+    "name": "Armor of Shadows",
+    "type": "EI",
+    "type_name": "Eldritch Invocation",
+    "class_key": "srd-2024_warlock",
+    "prerequisite": "",
+    "desc": "You can cast Mage Armor on yourself without expending a spell slot.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "eldritch-invocation_ascendant-step",
+    "name": "Ascendant Step",
+    "type": "EI",
+    "type_name": "Eldritch Invocation",
+    "class_key": "srd-2024_warlock",
+    "prerequisite": "Level 5+",
+    "desc": "You can cast Levitate on yourself without expending a spell slot.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "eldritch-invocation_devils-sight",
+    "name": "Devil's Sight",
+    "type": "EI",
+    "type_name": "Eldritch Invocation",
+    "class_key": "srd-2024_warlock",
+    "prerequisite": "Level 2+",
+    "desc": "You can see normally in Dim Light and Darkness—both magical and nonmagical—within 120 feet of yourself.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "eldritch-invocation_devouring-blade",
+    "name": "Devouring Blade",
+    "type": "EI",
+    "type_name": "Eldritch Invocation",
+    "class_key": "srd-2024_warlock",
+    "prerequisite": "Level 12+",
+    "desc": "The Extra Attack of your Thirsting Blade invocation confers two extra attacks rather than one.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "eldritch-invocation_eldritch-mind",
+    "name": "Eldritch Mind",
+    "type": "EI",
+    "type_name": "Eldritch Invocation",
+    "class_key": "srd-2024_warlock",
+    "prerequisite": "",
+    "desc": "You have Advantage on Constitution saving throws that you make to maintain Concentration.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "eldritch-invocation_eldritch-smite",
+    "name": "Eldritch Smite",
+    "type": "EI",
+    "type_name": "Eldritch Invocation",
+    "class_key": "srd-2024_warlock",
+    "prerequisite": "Level 5+",
+    "desc": "Once per turn when you hit a creature with your pact weapon, you can expend a Pact Magic spell slot to deal an extra 1d8 Force damage to the target, plus another 1d8 per level of the spell slot, and you can give the target the Prone condition if it is Huge or smaller.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "eldritch-invocation_eldritch-spear",
+    "name": "Eldritch Spear",
+    "type": "EI",
+    "type_name": "Eldritch Invocation",
+    "class_key": "srd-2024_warlock",
+    "prerequisite": "Level 2+",
+    "desc": "Choose one of your known Warlock cantrips that deals damage and has a range of 10+ feet. When you cast that spell, its range increases by a number of feet equal to 30 times your Warlock level.\n\nRepeatable. You can gain this invocation more than once. Each time you do so, choose a different eligible cantrip.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "eldritch-invocation_fiendish-vigor",
+    "name": "Fiendish Vigor",
+    "type": "EI",
+    "type_name": "Eldritch Invocation",
+    "class_key": "srd-2024_warlock",
+    "prerequisite": "Level 2+",
+    "desc": "You can cast False Life on yourself without expending a spell slot. When you cast the spell with this feature, you don't roll the die for the Temporary Hit Points; you automatically get the highest number on the die.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "eldritch-invocation_gaze-of-two-minds",
+    "name": "Gaze of Two Minds",
+    "type": "EI",
+    "type_name": "Eldritch Invocation",
+    "class_key": "srd-2024_warlock",
+    "prerequisite": "Level 5+",
+    "desc": "You can use a Bonus Action to touch a willing creature and perceive through its senses until the end of your next turn. As long as the creature is on the same plane of existence as you, you can take a Bonus Action on subsequent turns to maintain this connection, extending the duration until the end of your next turn. The connection ends if you don't maintain it in this way.\n\nWhile perceiving through the other creature's senses, you benefit from any special senses possessed by that creature, and you can cast spells as if you were in your space or the other creature's space if the two of you are within 60 feet of each other.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "eldritch-invocation_gift-of-the-depths",
+    "name": "Gift of the Depths",
+    "type": "EI",
+    "type_name": "Eldritch Invocation",
+    "class_key": "srd-2024_warlock",
+    "prerequisite": "Level 5+",
+    "desc": "You can breathe underwater, and you gain a Swim Speed equal to your Speed.\n\nYou can also cast Water Breathing once without expending a spell slot. You regain the ability to cast it in this way again when you finish a Long Rest.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "eldritch-invocation_gift-of-the-protectors",
+    "name": "Gift of the Protectors",
+    "type": "EI",
+    "type_name": "Eldritch Invocation",
+    "class_key": "srd-2024_warlock",
+    "prerequisite": "Level 9+",
+    "desc": "A new page appears in your Book of Shadows when you conjure it. With your permission, a creature can take an action to write its name on that page, which can contain a number of names equal to your Charisma modifier (minimum of one name).\n\nWhen any creature whose name is on the page is reduced to 0 Hit Points but not killed outright, the creature magically drops to 1 Hit Point instead. Once this magic is triggered, no creature can benefit from it until you finish a Long Rest.\n\nAs a Magic action, you can erase a name on the page by touching it.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "eldritch-invocation_investment-of-the-chain-master",
+    "name": "Investment of the Chain Master",
+    "type": "EI",
+    "type_name": "Eldritch Invocation",
+    "class_key": "srd-2024_warlock",
+    "prerequisite": "Level 5+",
+    "desc": "When you cast Find Familiar, you infuse the summoned familiar with a measure of your eldritch power, granting the creature the following benefits.\n\nAerial or Aquatic. The familiar gains either a Fly Speed or a Swim Speed (your choice) of 40 feet.\n\nQuick Attack. As a Bonus Action, you can command the familiar to take the Attack action.\n\nNecrotic or Radiant Damage. Whenever the familiar deals Bludgeoning, Piercing, or Slashing damage, you can make it deal Necrotic or Radiant damage instead.\n\nYour Save DC. If the familiar forces a creature to make a saving throw, it uses your spell save DC.\n\nResistance. When the familiar takes damage, you can take a Reaction to grant it Resistance against that damage.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "eldritch-invocation_lessons-of-the-first-ones",
+    "name": "Lessons of the First Ones",
+    "type": "EI",
+    "type_name": "Eldritch Invocation",
+    "class_key": "srd-2024_warlock",
+    "prerequisite": "Level 2+",
+    "desc": "You have received knowledge from an elder entity of the multiverse, allowing you to gain one Origin feat of your choice.\n\nRepeatable. You can gain this invocation more than once. Each time you do so, choose a different Origin feat.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "eldritch-invocation_lifedrinker",
+    "name": "Lifedrinker",
+    "type": "EI",
+    "type_name": "Eldritch Invocation",
+    "class_key": "srd-2024_warlock",
+    "prerequisite": "Level 9+",
+    "desc": "Once per turn when you hit a creature with your pact weapon, you can deal an extra 1d6 Necrotic, Psychic, or Radiant damage (your choice) to the creature, and you can expend one of your Hit Point Dice to roll it and regain a number of Hit Points equal to the roll plus your Constitution modifier (minimum of 1 Hit Point).",
+    "document": "phb-2024"
+  },
+  {
+    "key": "eldritch-invocation_mask-of-many-faces",
+    "name": "Mask of Many Faces",
+    "type": "EI",
+    "type_name": "Eldritch Invocation",
+    "class_key": "srd-2024_warlock",
+    "prerequisite": "Level 2+",
+    "desc": "You can cast Disguise Self without expending a spell slot.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "eldritch-invocation_master-of-myriad-forms",
+    "name": "Master of Myriad Forms",
+    "type": "EI",
+    "type_name": "Eldritch Invocation",
+    "class_key": "srd-2024_warlock",
+    "prerequisite": "Level 5+",
+    "desc": "You can cast Alter Self without expending a spell slot.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "eldritch-invocation_misty-visions",
+    "name": "Misty Visions",
+    "type": "EI",
+    "type_name": "Eldritch Invocation",
+    "class_key": "srd-2024_warlock",
+    "prerequisite": "Level 2+",
+    "desc": "You can cast Silent Image without expending a spell slot.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "eldritch-invocation_one-with-shadows",
+    "name": "One with Shadows",
+    "type": "EI",
+    "type_name": "Eldritch Invocation",
+    "class_key": "srd-2024_warlock",
+    "prerequisite": "Level 5+",
+    "desc": "While you're in an area of Dim Light or Darkness, you can cast Invisibility on yourself without expending a spell slot.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "eldritch-invocation_otherworldly-leap",
+    "name": "Otherworldly Leap",
+    "type": "EI",
+    "type_name": "Eldritch Invocation",
+    "class_key": "srd-2024_warlock",
+    "prerequisite": "Level 2+",
+    "desc": "You can cast Jump on yourself without expending a spell slot.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "eldritch-invocation_pact-of-the-blade",
+    "name": "Pact of the Blade",
+    "type": "EI",
+    "type_name": "Eldritch Invocation",
+    "class_key": "srd-2024_warlock",
+    "prerequisite": "",
+    "desc": "As a Bonus Action, you can conjure a pact weapon in your hand—a Simple or Martial Melee weapon of your choice with which you bond—or create a bond with a magic weapon you touch; you can't bond with a magic weapon if someone else is attuned to it or another Warlock is bonded with it. Until the bond ends, you have proficiency with the weapon, and you can use it as a Spellcasting Focus.\n\nWhenever you attack with the bonded weapon, you can use your Charisma modifier for the attack and damage rolls instead of using Strength or Dexterity; and you can cause the weapon to deal Necrotic, Psychic, or Radiant damage or its normal damage type.\n\nYour bond with the weapon ends if you use this feature's Bonus Action again, if the weapon is more than 5 feet away from you for 1 minute or more, or if you die. A conjured weapon disappears when the bond ends.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "eldritch-invocation_pact-of-the-chain",
+    "name": "Pact of the Chain",
+    "type": "EI",
+    "type_name": "Eldritch Invocation",
+    "class_key": "srd-2024_warlock",
+    "prerequisite": "",
+    "desc": "You learn the Find Familiar spell and can cast it as a Magic action without expending a spell slot.\n\nWhen you cast the spell, you choose one of the normal forms for your familiar or one of the following special forms: Imp, Pseudodragon, Quasit, Skeleton, Slaad Tadpole, Sphinx of Wonder, Sprite, or Venomous Snake (see appendix B for the familiar's stat block).\n\nAdditionally, when you take the Attack action, you can forgo one of your own attacks to allow your familiar to make one attack of its own with its Reaction.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "eldritch-invocation_pact-of-the-tome",
+    "name": "Pact of the Tome",
+    "type": "EI",
+    "type_name": "Eldritch Invocation",
+    "class_key": "srd-2024_warlock",
+    "prerequisite": "",
+    "desc": "Stitching together strands of shadow, you conjure forth a book in your hand at the end of a Short or Long Rest. This Book of Shadows (you determine its appearance) contains eldritch magic that only you can access, granting you the benefits below. The book disappears if you conjure another book with this feature or if you die.\n\nCantrips and Rituals. When the book appears, choose three cantrips, and choose two level 1 spells that have the Ritual tag. The spells can be from any class's spell list, and they must be spells you don't already have prepared. While the book is on your person, you have the chosen spells prepared, and they function as Warlock spells for you.\n\nSpellcasting Focus. You can use the book as a Spellcasting Focus.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "eldritch-invocation_repelling-blast",
+    "name": "Repelling Blast",
+    "type": "EI",
+    "type_name": "Eldritch Invocation",
+    "class_key": "srd-2024_warlock",
+    "prerequisite": "Level 2+",
+    "desc": "Choose one of your known Warlock cantrips that requires an attack roll. When you hit a Large or smaller creature with that cantrip, you can push the creature up to 10 feet straight away from you.\n\nRepeatable. You can gain this invocation more than once. Each time you do so, choose a different eligible cantrip.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "eldritch-invocation_thirsting-blade",
+    "name": "Thirsting Blade",
+    "type": "EI",
+    "type_name": "Eldritch Invocation",
+    "class_key": "srd-2024_warlock",
+    "prerequisite": "Level 5+",
+    "desc": "You gain the Extra Attack feature for your pact weapon only. With that feature, you can attack twice with the weapon instead of once when you take the Attack action on your turn.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "eldritch-invocation_visions-of-distant-realms",
+    "name": "Visions of Distant Realms",
+    "type": "EI",
+    "type_name": "Eldritch Invocation",
+    "class_key": "srd-2024_warlock",
+    "prerequisite": "Level 9+",
+    "desc": "You can cast Arcane Eye without expending a spell slot.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "eldritch-invocation_whispers-of-the-grave",
+    "name": "Whispers of the Grave",
+    "type": "EI",
+    "type_name": "Eldritch Invocation",
+    "class_key": "srd-2024_warlock",
+    "prerequisite": "Level 7+",
+    "desc": "You can cast Speak with Dead without expending a spell slot.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "eldritch-invocation_witch-sight",
+    "name": "Witch Sight",
+    "type": "EI",
+    "type_name": "Eldritch Invocation",
+    "class_key": "srd-2024_warlock",
+    "prerequisite": "Level 15+",
+    "desc": "You have Truesight with a range of 30 feet.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "maneuver_ambush",
+    "name": "Ambush",
+    "type": "MV:B",
+    "type_name": "Maneuver",
+    "class_key": "srd-2024_fighter",
+    "prerequisite": "",
+    "desc": "When you make a Dexterity (Stealth) check or an Initiative roll, you can expend one Superiority Die and add the die to the roll, unless you have the Incapacitated condition.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "maneuver_bait-and-switch",
+    "name": "Bait and Switch",
+    "type": "MV:B",
+    "type_name": "Maneuver",
+    "class_key": "srd-2024_fighter",
+    "prerequisite": "",
+    "desc": "When you're within 5 feet of a creature on your turn, you can expend one Superiority Die and switch places with that creature, provided you spend at least 5 feet of movement and the creature is willing and doesn't have the Incapacitated condition. This movement doesn't provoke Opportunity Attacks.\n\nRoll the Superiority Die. Until the start of your next turn, you or the other creature (your choice) gains a bonus to AC equal to the number rolled.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "maneuver_commanders-strike",
+    "name": "Commander's Strike",
+    "type": "MV:B",
+    "type_name": "Maneuver",
+    "class_key": "srd-2024_fighter",
+    "prerequisite": "",
+    "desc": "When you take the Attack action on your turn, you can replace one of your attacks to direct one of your companions to strike. When you do so, choose a willing creature who can see or hear you and expend one Superiority Die. That creature can immediately use its Reaction to make one attack with a weapon or an Unarmed Strike, adding the Superiority Die to the attack's damage roll on a hit.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "maneuver_commanding-presence",
+    "name": "Commanding Presence",
+    "type": "MV:B",
+    "type_name": "Maneuver",
+    "class_key": "srd-2024_fighter",
+    "prerequisite": "",
+    "desc": "When you make a Charisma (Intimidation, Performance, or Persuasion) check, you can expend one Superiority Die and add that die to the roll.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "maneuver_disarming-attack",
+    "name": "Disarming Attack",
+    "type": "MV:B",
+    "type_name": "Maneuver",
+    "class_key": "srd-2024_fighter",
+    "prerequisite": "",
+    "desc": "When you hit a creature with an attack roll, you can expend one Superiority Die to attempt to disarm the target. Add the Superiority Die roll to the attack's damage roll. The target must succeed on a Strength saving throw or drop one object of your choice that it's holding, with the object landing in its space.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "maneuver_distracting-strike",
+    "name": "Distracting Strike",
+    "type": "MV:B",
+    "type_name": "Maneuver",
+    "class_key": "srd-2024_fighter",
+    "prerequisite": "",
+    "desc": "When you hit a creature with an attack roll, you can expend one Superiority Die to distract the target. Add the Superiority Die roll to the attack's damage roll. The next attack roll against the target by an attacker other than you has Advantage if the attack is made before the start of your next turn.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "maneuver_evasive-footwork",
+    "name": "Evasive Footwork",
+    "type": "MV:B",
+    "type_name": "Maneuver",
+    "class_key": "srd-2024_fighter",
+    "prerequisite": "",
+    "desc": "As a Bonus Action, you can expend one Superiority Die and take the Disengage action. You also roll the die and add the number rolled to your AC until the start of your next turn.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "maneuver_feinting-attack",
+    "name": "Feinting Attack",
+    "type": "MV:B",
+    "type_name": "Maneuver",
+    "class_key": "srd-2024_fighter",
+    "prerequisite": "",
+    "desc": "As a Bonus Action, you can expend one Superiority Die to feint, choosing one creature within 5 feet of yourself as your target. You have Advantage on your next attack roll against that target this turn. If that attack hits, add the Superiority Die to the attack's damage roll.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "maneuver_goading-attack",
+    "name": "Goading Attack",
+    "type": "MV:B",
+    "type_name": "Maneuver",
+    "class_key": "srd-2024_fighter",
+    "prerequisite": "",
+    "desc": "When you hit a creature with an attack roll, you can expend one Superiority Die to attempt to goad the target into attacking you. Add the Superiority Die to the attack's damage roll. The target must succeed on a Wisdom saving throw or have Disadvantage on attack rolls against targets other than you until the end of your next turn.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "maneuver_lunging-attack",
+    "name": "Lunging Attack",
+    "type": "MV:B",
+    "type_name": "Maneuver",
+    "class_key": "srd-2024_fighter",
+    "prerequisite": "",
+    "desc": "As a Bonus Action, you can expend one Superiority Die and take the Dash action. If you move at least 5 feet in a straight line immediately before hitting with a melee attack as part of the Attack action on this turn, you can add the Superiority Die to the attack's damage roll.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "maneuver_maneuvering-attack",
+    "name": "Maneuvering Attack",
+    "type": "MV:B",
+    "type_name": "Maneuver",
+    "class_key": "srd-2024_fighter",
+    "prerequisite": "",
+    "desc": "When you hit a creature with an attack roll, you can expend one Superiority Die to maneuver one of your comrades into another position. Add the Superiority Die roll to the attack's damage roll, and choose a willing creature who can see or hear you. That creature can use its Reaction to move up to half its Speed without provoking an Opportunity Attack from the target of your attack.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "maneuver_menacing-attack",
+    "name": "Menacing Attack",
+    "type": "MV:B",
+    "type_name": "Maneuver",
+    "class_key": "srd-2024_fighter",
+    "prerequisite": "",
+    "desc": "When you hit a creature with an attack roll, you can expend one Superiority Die to attempt to frighten the target. Add the Superiority Die to the attack's damage roll. The target must succeed on a Wisdom saving throw or have the Frightened condition until the end of your next turn.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "maneuver_parry",
+    "name": "Parry",
+    "type": "MV:B",
+    "type_name": "Maneuver",
+    "class_key": "srd-2024_fighter",
+    "prerequisite": "",
+    "desc": "When another creature damages you with a melee attack roll, you can take a Reaction and expend one Superiority Die to reduce the damage by the number you roll on your Superiority Die plus your Strength or Dexterity modifier (your choice).",
+    "document": "phb-2024"
+  },
+  {
+    "key": "maneuver_precision-attack",
+    "name": "Precision Attack",
+    "type": "MV:B",
+    "type_name": "Maneuver",
+    "class_key": "srd-2024_fighter",
+    "prerequisite": "",
+    "desc": "When you miss with an attack roll, you can expend one Superiority Die, roll that die, and add it to the attack roll, potentially causing the attack to hit.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "maneuver_pushing-attack",
+    "name": "Pushing Attack",
+    "type": "MV:B",
+    "type_name": "Maneuver",
+    "class_key": "srd-2024_fighter",
+    "prerequisite": "",
+    "desc": "When you hit a creature with an attack roll using a weapon or an Unarmed Strike, you can expend one Superiority Die to attempt to drive the target back. Add the Superiority Die to the attack's damage roll. If the target is Large or smaller, it must succeed on a Strength saving throw or be pushed up to 15 feet directly away from you.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "maneuver_rally",
+    "name": "Rally",
+    "type": "MV:B",
+    "type_name": "Maneuver",
+    "class_key": "srd-2024_fighter",
+    "prerequisite": "",
+    "desc": "As a Bonus Action, you can expend one Superiority Die to bolster the resolve of a companion. Choose an ally of yours within 30 feet of yourself who can see or hear you. That creature gains Temporary Hit Points equal to the Superiority Die roll plus half your Fighter level (round down).",
+    "document": "phb-2024"
+  },
+  {
+    "key": "maneuver_riposte",
+    "name": "Riposte",
+    "type": "MV:B",
+    "type_name": "Maneuver",
+    "class_key": "srd-2024_fighter",
+    "prerequisite": "",
+    "desc": "When a creature misses you with a melee attack roll, you can take a Reaction and expend one Superiority Die to make a melee attack roll with a weapon or an Unarmed Strike against the creature. If you hit, add the Superiority Die to the attack's damage.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "maneuver_sweeping-attack",
+    "name": "Sweeping Attack",
+    "type": "MV:B",
+    "type_name": "Maneuver",
+    "class_key": "srd-2024_fighter",
+    "prerequisite": "",
+    "desc": "When you hit a creature with a melee attack roll using a weapon or an Unarmed Strike, you can expend one Superiority Die to attempt to damage another creature. Choose another creature within 5 feet of the original target and within your reach. If the original attack roll would hit the second creature, it takes damage equal to the number you roll on your Superiority Die. The damage is of the same type dealt by the original attack.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "maneuver_tactical-assessment",
+    "name": "Tactical Assessment",
+    "type": "MV:B",
+    "type_name": "Maneuver",
+    "class_key": "srd-2024_fighter",
+    "prerequisite": "",
+    "desc": "When you make an Intelligence (History or Investigation) check or a Wisdom (Insight) check, you can expend one Superiority Die and add that die to the ability check.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "maneuver_trip-attack",
+    "name": "Trip Attack",
+    "type": "MV:B",
+    "type_name": "Maneuver",
+    "class_key": "srd-2024_fighter",
+    "prerequisite": "",
+    "desc": "When you hit a creature with an attack roll using a weapon or an Unarmed Strike, you can expend one Superiority Die and add the die to the attack's damage roll. If the target is Large or smaller, it must succeed on a Strength saving throw or have the Prone condition.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "metamagic_careful-spell",
+    "name": "Careful Spell",
+    "type": "MM",
+    "type_name": "Metamagic",
+    "class_key": "srd-2024_sorcerer",
+    "prerequisite": "",
+    "desc": "When you cast a spell that forces other creatures to make a saving throw, you can protect some of those creatures from the spell's full force. To do so, spend 1 Sorcery Point and choose a number of those creatures up to your Charisma modifier (minimum of one creature). A chosen creature automatically succeeds on its saving throw against the spell, and it takes no damage if it would normally take half damage on a successful save.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "metamagic_distant-spell",
+    "name": "Distant Spell",
+    "type": "MM",
+    "type_name": "Metamagic",
+    "class_key": "srd-2024_sorcerer",
+    "prerequisite": "",
+    "desc": "When you cast a spell that has a range of at least 5 feet, you can spend 1 Sorcery Point to double the spell's range. Or when you cast a spell that has a range of Touch, you can spend 1 Sorcery Point to make the spell's range 30 feet.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "metamagic_empowered-spell",
+    "name": "Empowered Spell",
+    "type": "MM",
+    "type_name": "Metamagic",
+    "class_key": "srd-2024_sorcerer",
+    "prerequisite": "",
+    "desc": "When you roll damage for a spell, you can spend 1 Sorcery Point to reroll a number of the damage dice up to your Charisma modifier (minimum of one), and you must use the new rolls.\n\nYou can use Empowered Spell even if you've already used a different Metamagic option during the casting of the spell.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "metamagic_extended-spell",
+    "name": "Extended Spell",
+    "type": "MM",
+    "type_name": "Metamagic",
+    "class_key": "srd-2024_sorcerer",
+    "prerequisite": "",
+    "desc": "When you cast a spell that has a duration of 1 minute or longer, you can spend 1 Sorcery Point to double its duration to a maximum duration of 24 hours.\n\nIf the affected spell requires Concentration, you have Advantage on any saving throw you make to maintain that Concentration.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "metamagic_heightened-spell",
+    "name": "Heightened Spell",
+    "type": "MM",
+    "type_name": "Metamagic",
+    "class_key": "srd-2024_sorcerer",
+    "prerequisite": "",
+    "desc": "When you cast a spell that forces a creature to make a saving throw, you can spend 2 Sorcery Points to give one target of the spell Disadvantage on saves against the spell.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "metamagic_quickened-spell",
+    "name": "Quickened Spell",
+    "type": "MM",
+    "type_name": "Metamagic",
+    "class_key": "srd-2024_sorcerer",
+    "prerequisite": "",
+    "desc": "When you cast a spell that has a casting time of an action, you can spend 2 Sorcery Points to change the casting time to a Bonus Action for this casting. You can't modify a spell in this way if you've already cast a level 1+ spell on the current turn, nor can you cast a level 1+ spell on this turn after modifying a spell in this way.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "metamagic_seeking-spell",
+    "name": "Seeking Spell",
+    "type": "MM",
+    "type_name": "Metamagic",
+    "class_key": "srd-2024_sorcerer",
+    "prerequisite": "",
+    "desc": "If you make an attack roll for a spell and miss, you can spend 1 Sorcery Point to reroll the d20, and you must use the new roll.\n\nYou can use Seeking Spell even if you've already used a different Metamagic option during the casting of the spell.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "metamagic_subtle-spell",
+    "name": "Subtle Spell",
+    "type": "MM",
+    "type_name": "Metamagic",
+    "class_key": "srd-2024_sorcerer",
+    "prerequisite": "",
+    "desc": "When you cast a spell, you can spend 1 Sorcery Point to cast it without any Verbal, Somatic, or Material components, except Material components that are consumed by the spell or that have a cost specified in the spell.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "metamagic_transmuted-spell",
+    "name": "Transmuted Spell",
+    "type": "MM",
+    "type_name": "Metamagic",
+    "class_key": "srd-2024_sorcerer",
+    "prerequisite": "",
+    "desc": "When you cast a spell that deals a type of damage from the following list, you can spend 1 Sorcery Point to change that damage type to one of the other listed types: Acid, Cold, Fire, Lightning, Poison, Thunder.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "metamagic_twinned-spell",
+    "name": "Twinned Spell",
+    "type": "MM",
+    "type_name": "Metamagic",
+    "class_key": "srd-2024_sorcerer",
+    "prerequisite": "",
+    "desc": "When you cast a spell, such as Charm Person, that can be cast with a higher-level spell slot to target an additional creature, you can spend 1 Sorcery Point to increase the spell's effective level by 1.",
+    "document": "phb-2024"
+  },
+  {
+    "key": "rune_celebrated-in-house",
+    "name": "Celebrated in House",
+    "type": "RP",
+    "type_name": "Rune",
+    "class_key": "srd-2024_fighter",
+    "prerequisite": "Renown 25+ with a Dragonmarked House",
+    "desc": "When you request a favor from your house (as described under \"Favored in House\"), it can take one of the following additional forms:\n\n- A dragonmarked member of the house casts for you a level 3 or 4 spell associated with the house's mark at no cost.\n\n- A member of the house casts for you a different spell of level 6 or lower at half the usual cost.\n\n- You gain a bodyguard for the duration of your next mission for the house (maximum of 1 week). The bodyguard—a creature with a Challenge Rating no higher than half your level (round up)—is appropriate to your house.\n\nIn addition, your house stipend increases to support your Wealthy lifestyle (4 GP per day).",
+    "document": "srd-2024"
+  },
+  {
+    "key": "rune_favored-in-house",
+    "name": "Favored in House",
+    "type": "RP",
+    "type_name": "Rune",
+    "class_key": "srd-2024_fighter",
+    "prerequisite": "Renown 3+ with a Dragonmarked House",
+    "desc": "You can request a favor from your house, which can take one of the following forms:\n\n- A member of the house casts for you a different spell of level 3 or lower at half the usual cost.\n\nYou can request such a favor a number of times equal to your Renown Score. If your Renown Score falls below the total number of favors you have requested, a higher-ranking member of the house might call in a favor from you, sending you on a mission for house or personal business.\n\nIn addition, your house pays you a stipend that supports your Modest lifestyle (1 GP per day).",
+    "document": "srd-2024"
+  },
+  {
+    "key": "rune_preeminent-in-house",
+    "name": "Preeminent in House",
+    "type": "RP",
+    "type_name": "Rune",
+    "class_key": "srd-2024_fighter",
+    "prerequisite": "Renown 50+ with a Dragonmarked House",
+    "desc": "When you request a favor from your house (as described under \"Favored in House\"), it can take one of the following additional forms:\n\n- A dragonmarked member of the house casts for you a level 5 spell associated with the house's mark at no cost.\n\n- A member of the house casts for you a different spell of level 8 or lower at half the usual cost.\n\nIn addition, your house stipend increases to support your Aristocratic lifestyle (10 GP per day).",
+    "document": "srd-2024"
+  },
+  {
+    "key": "rune_recognized-in-house",
+    "name": "Recognized in House",
+    "type": "RP",
+    "type_name": "Rune",
+    "class_key": "srd-2024_fighter",
+    "prerequisite": "Renown 10+ with a Dragonmarked House",
+    "desc": "When you request a favor from your house (as described under \"Favored in House\"), it can take one of the following additional forms:\n\n- A dragonmarked member of the house casts for you a level 2 spell associated with the house's mark at no cost.\n\n- A member of the house casts for you a different spell of level 4 or lower at half the usual cost.\n\n- Whenever you take a Bastion turn, you can issue an order to your house as if it were a special facility in your Bastion. Your house determines the type of special facility available to you, as noted in each house's description later in this chapter.\n\nIn addition, your house stipend increases to support your Comfortable lifestyle (2 GP per day).",
+    "document": "srd-2024"
+  }
+]

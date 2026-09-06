@@ -4,7 +4,8 @@ import 'package:go_router/go_router.dart';
 
 import '../data/campaign/campaign_manager.dart';
 import '../features/campaigns/campaigns_page.dart' show campaignLabel;
-import '../features/session/player_presence_panel.dart';
+import '../features/search/command_palette.dart';
+import 'undo.dart';
 import '../l10n/app_localizations.dart';
 import 'theme.dart';
 import 'ui/ui.dart';
@@ -36,7 +37,7 @@ enum _Group { table, world, tools }
 /// **Sira DM'in is akisina gore**, router dal numarasina gore DEGIL (dallar
 /// tarihsel ekleme sirasinda, anlamli bir duzenleri yok):
 ///  1. `table`  — masa basinda, oyun SIRASINDA acilan bolumler. Oturum en
-///     basta, cunku her seans oradan baslar (sunucuyu ac, QR goster).
+///     basta, cunku her seans oradan baslar (gunluk, zar kaydi, dinlenme).
 ///  2. `world`  — seans ARASINDA hazirlanan kampanya malzemesi.
 ///  3. `tools`  — basvuru ve yapilandirma; en seyrek dokunulanlar (Ayarlar
 ///     en altta, alisilmis yer).
@@ -50,8 +51,8 @@ class AppShell extends StatelessWidget {
 
   /// Telefonda alt barda duran bolumler (router dal numaralari).
   ///
-  /// Masada elde telefonla en sik dokunulan besi: oturumu ac, savas yonet,
-  /// karaktere bak, haritayi ac, kurala bak.
+  /// Masada elde telefonla en sik dokunulan besi: oturumu yonet, savas
+  /// yonet, karaktere bak, haritayi ac, kurala bak.
   static const _primaryBranches = <int>[7, 2, 1, 3, 0];
 
   /// Ray/cekmece sirasi. Grup icindeki sira da bilincli: her grupta once
@@ -60,8 +61,8 @@ class AppShell extends StatelessWidget {
     // --- Masada ---
     (
       branch: 7,
-      icon: Icons.wifi_tethering_outlined,
-      selected: Icons.wifi_tethering,
+      icon: Icons.event_note_outlined,
+      selected: Icons.event_note,
       label: l10n.navSession,
       short: l10n.navSession,
       group: _Group.table,
@@ -83,14 +84,6 @@ class AppShell extends StatelessWidget {
       group: _Group.table,
     ),
     (
-      branch: 12,
-      icon: Icons.chat_bubble_outline,
-      selected: Icons.chat_bubble,
-      label: l10n.navChat,
-      short: l10n.navChat,
-      group: _Group.table,
-    ),
-    (
       branch: 6,
       icon: Icons.card_giftcard_outlined,
       selected: Icons.card_giftcard,
@@ -99,7 +92,7 @@ class AppShell extends StatelessWidget {
       group: _Group.table,
     ),
     (
-      branch: 16,
+      branch: 15,
       icon: Icons.library_music_outlined,
       selected: Icons.library_music,
       label: l10n.navMusic,
@@ -140,7 +133,7 @@ class AppShell extends StatelessWidget {
       group: _Group.world,
     ),
     (
-      branch: 14,
+      branch: 13,
       icon: Icons.calendar_month_outlined,
       selected: Icons.calendar_month,
       label: l10n.navCalendar,
@@ -165,7 +158,7 @@ class AppShell extends StatelessWidget {
       group: _Group.tools,
     ),
     (
-      branch: 15,
+      branch: 14,
       icon: Icons.casino_outlined,
       selected: Icons.casino,
       label: l10n.navTables,
@@ -181,7 +174,7 @@ class AppShell extends StatelessWidget {
       group: _Group.tools,
     ),
     (
-      branch: 13,
+      branch: 12,
       icon: Icons.bookmarks_outlined,
       selected: Icons.bookmarks,
       label: l10n.navCampaigns,
@@ -220,10 +213,7 @@ class AppShell extends StatelessWidget {
                 onSelect: _go,
               );
 
-        // Oyuncu varlik paneli her sayfada durur (acilir/kapanir). Kendi
-        // `Positioned`'ini dondurur — surukleyerek tasinabildigi icin konumu
-        // burada degil panelin kendi state'inde.
-        return Stack(children: [shell, const PlayerPresencePanel()]);
+        return shell;
       },
     );
   }
@@ -345,6 +335,25 @@ class _RailGroup extends StatelessWidget {
         selectedIndex: index >= 0 ? index : null,
         onDestinationSelected: (i) => onSelect(destinations[i].branch),
         labelType: NavigationRailLabelType.all,
+        // Arama rayin BASINDA: on alti dala yayilmis bir uygulamada "hangi
+        // sekmedeydi?" sorusunu sormadan gitmenin yolu.
+        leading: Padding(
+          padding: const EdgeInsets.only(bottom: 8),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              IconButton(
+                tooltip: '${L10n.of(context).searchOpen}  (Ctrl+K)',
+                icon: const Icon(Icons.search),
+                onPressed: () => showCommandPalette(context),
+              ),
+              // Geri alma: klavye kisayolunun GORUNUR karsiligi. Dokunmatik
+              // masaustunde Ctrl+Z yok ve ozelligin var oldugu baska hicbir
+              // yerde yazmiyordu.
+              const UndoRailButton(),
+            ],
+          ),
+        ),
         // Gruplar alt alta duruyor; arka plan sarmalayicida bir kez veriliyor.
         backgroundColor: Colors.transparent,
         destinations: [

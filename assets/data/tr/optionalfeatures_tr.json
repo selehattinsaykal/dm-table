@@ -1,0 +1,189 @@
+{
+  "_comment": "Sinif seceneklerinin (Eldritch Invocation, Maneuver, Metamagic, Rune) Turkcesi. Gosterim aninda uygulanan katman; veritabani Ingilizce kalir cunku kural ayristiricilari ona bakiyor. Buyu, sinif ve ozellik OZEL adlari ile AC/DC/CR/XP/HP kisaltmalari ceviri disidir. Ad cevirileri assets/data/tr/names_tr.json icinde.",
+  "eldritch-invocation_agonizing-blast": {
+    "desc": "Bildiğin, hasar veren Warlock ufak büyülerinden birini seç. O büyünün hasar zarlarına Karizma modifiyeni ekleyebilirsin.\n\nTekrarlanabilir. Bu yakarışı birden çok kez kazanabilirsin. Her seferinde uygun başka bir ufak büyü seç."
+  },
+  "eldritch-invocation_armor-of-shadows": {
+    "desc": "Mage Armor'ı kendine, büyü yuvası harcamadan kullanabilirsin."
+  },
+  "eldritch-invocation_ascendant-step": {
+    "desc": "Levitate'i kendine, büyü yuvası harcamadan kullanabilirsin."
+  },
+  "eldritch-invocation_devils-sight": {
+    "desc": "Senin 120 feet yakınındaki loş ışıkta ve karanlıkta — hem büyülü hem büyüsüz — normal biçimde görürsün."
+  },
+  "eldritch-invocation_devouring-blade": {
+    "desc": "Thirsting Blade yakarışının verdiği Fazladan Saldırı, bir yerine iki fazladan saldırı sağlar."
+  },
+  "eldritch-invocation_eldritch-mind": {
+    "desc": "Konsantrasyonu sürdürmek için attığın Dayanıklılık kurtarma zarlarını avantajla atarsın."
+  },
+  "eldritch-invocation_eldritch-smite": {
+    "desc": "Tur başına bir kez, ahit silahınla bir yaratığa isabet ettiğinde, bir Pact Magic büyü yuvası harcayarak hedefe fazladan 1d8 kuvvet hasarı ve büyü yuvasının her seviyesi için 1d8 daha verebilirsin; hedef Kocaman ya da daha küçükse onu yere serilmiş duruma sokabilirsin."
+  },
+  "eldritch-invocation_eldritch-spear": {
+    "desc": "Bildiğin, hasar veren ve menzili 10+ feet olan Warlock ufak büyülerinden birini seç. O büyüyü kullandığında menzili, Warlock seviyenin 30 katı kadar feet artar.\n\nTekrarlanabilir. Bu yakarışı birden çok kez kazanabilirsin. Her seferinde uygun başka bir ufak büyü seç."
+  },
+  "eldritch-invocation_fiendish-vigor": {
+    "desc": "False Life'ı kendine, büyü yuvası harcamadan kullanabilirsin. Büyüyü bu özellikle kullandığında geçici can için zar atmazsın; zarın en yüksek sayısını kendiliğinden alırsın."
+  },
+  "eldritch-invocation_gaze-of-two-minds": {
+    "desc": "Bonus Eylem kullanarak istekli bir yaratığa dokunabilir ve sıradaki turunun sonuna kadar onun duyularıyla algılayabilirsin. Yaratık seninle aynı varoluş düzleminde olduğu sürece, sonraki turlarda Bonus Eylem kullanarak bu bağlantıyı sürdürebilir ve süreyi sıradaki turunun sonuna kadar uzatabilirsin. Bağlantıyı bu şekilde sürdürmezsen sona erer.\n\nDiğer yaratığın duyularıyla algılarken, o yaratığın sahip olduğu özel duyulardan yararlanırsın; ikiniz birbirinizin 60 feet yakınındaysanız büyüleri kendi alanındaymışsın ya da diğer yaratığın alanındaymışsın gibi kullanabilirsin."
+  },
+  "eldritch-invocation_gift-of-the-depths": {
+    "desc": "Su altında nefes alabilirsin ve hızına eşit bir yüzme hızı kazanırsın.\n\nAyrıca Water Breathing'i büyü yuvası harcamadan bir kez kullanabilirsin. Bu şekilde kullanma yetisini bir Uzun Dinlenme tamamladığında geri kazanırsın."
+  },
+  "eldritch-invocation_gift-of-the-protectors": {
+    "desc": "Book of Shadows'unu çağırdığında içinde yeni bir sayfa belirir. Senin izninle bir yaratık, bir eylem kullanarak adını o sayfaya yazabilir; sayfa, Karizma modifiyen kadar (en az bir) ad taşıyabilir.\n\nSayfada adı yazılı bir yaratık 0 cana düşer ama doğrudan ölmezse, büyüyle bunun yerine 1 cana düşer. Bu büyü bir kez tetiklendiğinde, sen bir Uzun Dinlenme tamamlayana kadar hiçbir yaratık ondan yararlanamaz.\n\nBüyü eylemi olarak, sayfadaki bir ada dokunarak onu silebilirsin."
+  },
+  "eldritch-invocation_investment-of-the-chain-master": {
+    "desc": "Find Familiar'ı kullandığında, çağrılan familyarı bir ölçüde kadim gücünle doldurur ve ona şu yararları kazandırırsın.\n\nHavai ya da Suda. Familyar 40 feet uçuş hızı ya da yüzme hızı kazanır (seçim senin).\n\nHızlı Saldırı. Bonus Eylem olarak familyara Saldırı eylemi almasını buyurabilirsin.\n\nNekrotik ya da Işıma Hasarı. Familyar ne zaman ezici, delici ya da kesici hasar verse, bunun yerine nekrotik veya ışıma hasarı vermesini sağlayabilirsin.\n\nSenin Kurtarma DC'n. Familyar bir yaratığı kurtarma zarı atmaya zorlarsa senin büyü kurtarma DC'ni kullanır.\n\nDirenç. Familyar hasar aldığında, Tepki kullanarak ona o hasara karşı direnç verebilirsin."
+  },
+  "eldritch-invocation_lessons-of-the-first-ones": {
+    "desc": "Çok evrenin kadim bir varlığından bilgi aldın; bu sana seçtiğin bir Köken feat'ini kazandırır.\n\nTekrarlanabilir. Bu yakarışı birden çok kez kazanabilirsin. Her seferinde farklı bir Köken feat'i seç."
+  },
+  "eldritch-invocation_lifedrinker": {
+    "desc": "Tur başına bir kez, ahit silahınla bir yaratığa isabet ettiğinde ona fazladan 1d6 nekrotik, zihinsel ya da ışıma hasarı (seçim senin) verebilirsin; ayrıca Can Zarlarından birini harcayıp atabilir ve atışın sonucu artı Dayanıklılık modifiyen kadar (en az 1 can) can geri kazanabilirsin."
+  },
+  "eldritch-invocation_mask-of-many-faces": {
+    "desc": "Disguise Self'i büyü yuvası harcamadan kullanabilirsin."
+  },
+  "eldritch-invocation_master-of-myriad-forms": {
+    "desc": "Alter Self'i büyü yuvası harcamadan kullanabilirsin."
+  },
+  "eldritch-invocation_misty-visions": {
+    "desc": "Silent Image'ı büyü yuvası harcamadan kullanabilirsin."
+  },
+  "eldritch-invocation_one-with-shadows": {
+    "desc": "Loş ışık ya da karanlık bir alandayken Invisibility'yi kendine, büyü yuvası harcamadan kullanabilirsin."
+  },
+  "eldritch-invocation_otherworldly-leap": {
+    "desc": "Jump'ı kendine, büyü yuvası harcamadan kullanabilirsin."
+  },
+  "eldritch-invocation_pact-of-the-blade": {
+    "desc": "Bonus Eylem olarak elinde bir ahit silahı çağırabilirsin — seçtiğin, bağ kuracağın bir Simple ya da Martial Yakın silah — ya da dokunduğun büyülü bir silahla bağ kurabilirsin; bir başkası o büyülü silaha uyumlanmışsa veya başka bir Warlock onunla bağ kurmuşsa bağ kuramazsın. Bağ sona erene kadar silahta yeterlisindir ve onu Büyü Odağı olarak kullanabilirsin.\n\nBağlı silahla saldırdığında, Güç ya da Çeviklik yerine saldırı ve hasar zarları için Karizma modifiyeni kullanabilirsin; silahın nekrotik, zihinsel ya da ışıma hasarı vermesini veya normal hasar türünde kalmasını sağlayabilirsin.\n\nSilahla bağın; bu özelliğin Bonus Eylemini yeniden kullanırsan, silah 1 dakika veya daha uzun süre senden 5 feet'ten uzakta kalırsa ya da ölürsen sona erer. Çağrılmış bir silah, bağ sona erdiğinde kaybolur."
+  },
+  "eldritch-invocation_pact-of-the-chain": {
+    "desc": "Find Familiar büyüsünü öğrenirsin ve onu Büyü eylemi olarak, büyü yuvası harcamadan kullanabilirsin.\n\nBüyüyü kullandığında familyarın için normal biçimlerden birini ya da şu özel biçimlerden birini seçersin: Imp, Pseudodragon, Quasit, Skeleton, Slaad Tadpole, Sphinx of Wonder, Sprite veya Venomous Snake (familyarın stat bloğu için ek B'ye bakınız).\n\nAyrıca Saldırı eylemi aldığında, kendi saldırılarından birinden vazgeçip familyarının Tepkisiyle kendi saldırısını yapmasına izin verebilirsin."
+  },
+  "eldritch-invocation_pact-of-the-tome": {
+    "desc": "Gölge iplikçiklerini birbirine dikerek, bir Kısa ya da Uzun Dinlenmenin sonunda elinde bir kitap çağırırsın. Bu Book of Shadows (görünümünü sen belirlersin), yalnızca senin erişebildiğin kadim bir büyü taşır ve sana aşağıdaki yararları sağlar. Bu özellikle başka bir kitap çağırırsan ya da ölürsen kitap kaybolur.\n\nUfak Büyüler ve Ritüeller. Kitap belirdiğinde üç ufak büyü ve Ritüel etiketi taşıyan iki adet 1. seviye büyü seç. Büyüler herhangi bir sınıfın büyü listesinden olabilir ve zaten hazır olmayan büyüler olmalıdır. Kitap üzerindeyken seçtiğin büyüler hazır sayılır ve senin için Warlock büyüsü olarak işler.\n\nBüyü Odağı. Kitabı Büyü Odağı olarak kullanabilirsin."
+  },
+  "eldritch-invocation_repelling-blast": {
+    "desc": "Bildiğin, saldırı zarı gerektiren Warlock ufak büyülerinden birini seç. O ufak büyüyle Büyük ya da daha küçük bir yaratığa isabet ettiğinde, yaratığı senden 10 feet'e kadar doğrudan uzağa itebilirsin.\n\nTekrarlanabilir. Bu yakarışı birden çok kez kazanabilirsin. Her seferinde uygun başka bir ufak büyü seç."
+  },
+  "eldritch-invocation_thirsting-blade": {
+    "desc": "Yalnızca ahit silahın için Fazladan Saldırı özelliğini kazanırsın. Bu özellikle, turunda Saldırı eylemi aldığında silahla bir yerine iki kez saldırabilirsin."
+  },
+  "eldritch-invocation_visions-of-distant-realms": {
+    "desc": "Arcane Eye'ı büyü yuvası harcamadan kullanabilirsin."
+  },
+  "eldritch-invocation_whispers-of-the-grave": {
+    "desc": "Speak with Dead'i büyü yuvası harcamadan kullanabilirsin."
+  },
+  "eldritch-invocation_witch-sight": {
+    "desc": "30 feet menzilli gerçek görüşün olur."
+  },
+  "maneuver_ambush": {
+    "desc": "Bir Çeviklik (Gizlilik) kontrolü ya da bir inisiyatif atışı yaptığında, aciz durumunda değilsen bir Üstünlük Zarı harcayıp zarı atışa ekleyebilirsin."
+  },
+  "maneuver_bait-and-switch": {
+    "desc": "Turunda bir yaratığın 5 feet yakınındayken, en az 5 feet hareket harcaman ve yaratığın istekli olup aciz durumunda olmaması koşuluyla, bir Üstünlük Zarı harcayıp o yaratıkla yer değiştirebilirsin. Bu hareket Fırsat Saldırısı doğurmaz.\n\nÜstünlük Zarını at. Sıradaki turunun başına kadar sen ya da diğer yaratık (seçim senin) AC'sine, atılan sayı kadar bonus alır."
+  },
+  "maneuver_commanders-strike": {
+    "desc": "Turunda Saldırı eylemi aldığında, saldırılarından birinin yerine yoldaşlarından birine vurmasını buyurabilirsin. Bunu yaparken seni görebilen ya da duyabilen istekli bir yaratık seç ve bir Üstünlük Zarı harca. O yaratık hemen Tepkisini kullanarak bir silahla veya Silahsız Vuruşla bir saldırı yapabilir; isabet ederse saldırının hasar zarına Üstünlük Zarı eklenir."
+  },
+  "maneuver_commanding-presence": {
+    "desc": "Bir Karizma (Yıldırma, Sahne Sanatları ya da İkna) kontrolü yaptığında, bir Üstünlük Zarı harcayıp o zarı atışa ekleyebilirsin."
+  },
+  "maneuver_disarming-attack": {
+    "desc": "Bir yaratığa saldırı zarıyla isabet ettiğinde, hedefi silahsızlandırmayı denemek için bir Üstünlük Zarı harcayabilirsin. Üstünlük Zarı atışını saldırının hasar zarına ekle. Hedef bir Güç kurtarma zarında başarılı olmalı, yoksa elinde tuttuğu, senin seçtiğin bir nesneyi düşürür; nesne hedefin alanına düşer."
+  },
+  "maneuver_distracting-strike": {
+    "desc": "Bir yaratığa saldırı zarıyla isabet ettiğinde, hedefin dikkatini dağıtmak için bir Üstünlük Zarı harcayabilirsin. Üstünlük Zarı atışını saldırının hasar zarına ekle. Senin dışındaki bir saldırganın hedefe karşı yapacağı bir sonraki saldırı zarı, saldırı senin sıradaki turunun başından önce yapılırsa avantajla atılır."
+  },
+  "maneuver_evasive-footwork": {
+    "desc": "Bonus Eylem olarak bir Üstünlük Zarı harcayıp Çekilme eylemi alabilirsin. Ayrıca zarı atarsın ve sıradaki turunun başına kadar atılan sayıyı AC'ne eklersin."
+  },
+  "maneuver_feinting-attack": {
+    "desc": "Bonus Eylem olarak, kendi 5 feet yakınındaki bir yaratığı hedef seçerek çalım atmak için bir Üstünlük Zarı harcayabilirsin. O tur, o hedefe karşı atacağın bir sonraki saldırı zarını avantajla atarsın. O saldırı isabet ederse Üstünlük Zarını saldırının hasar zarına ekle."
+  },
+  "maneuver_goading-attack": {
+    "desc": "Bir yaratığa saldırı zarıyla isabet ettiğinde, hedefi sana saldırmaya kışkırtmayı denemek için bir Üstünlük Zarı harcayabilirsin. Üstünlük Zarını saldırının hasar zarına ekle. Hedef bir Bilgelik kurtarma zarında başarılı olmalı, yoksa sıradaki turunun sonuna kadar senin dışındaki hedeflere karşı saldırı zarlarını dezavantajla atar."
+  },
+  "maneuver_lunging-attack": {
+    "desc": "Bonus Eylem olarak bir Üstünlük Zarı harcayıp Koşma eylemi alabilirsin. Bu turda Saldırı eyleminin parçası olarak bir yakın saldırıyla isabet ettirmeden hemen önce düz bir hatta en az 5 feet hareket edersen, Üstünlük Zarını saldırının hasar zarına ekleyebilirsin."
+  },
+  "maneuver_maneuvering-attack": {
+    "desc": "Bir yaratığa saldırı zarıyla isabet ettiğinde, yoldaşlarından birini başka bir konuma manevra ettirmek için bir Üstünlük Zarı harcayabilirsin. Üstünlük Zarı atışını saldırının hasar zarına ekle ve seni görebilen ya da duyabilen istekli bir yaratık seç. O yaratık Tepkisini kullanarak, saldırının hedefinden Fırsat Saldırısı doğurmadan hızının yarısına kadar hareket edebilir."
+  },
+  "maneuver_menacing-attack": {
+    "desc": "Bir yaratığa saldırı zarıyla isabet ettiğinde, hedefi korkutmayı denemek için bir Üstünlük Zarı harcayabilirsin. Üstünlük Zarını saldırının hasar zarına ekle. Hedef bir Bilgelik kurtarma zarında başarılı olmalı, yoksa sıradaki turunun sonuna kadar korkmuş durumuna girer."
+  },
+  "maneuver_parry": {
+    "desc": "Başka bir yaratık sana bir yakın saldırı zarıyla hasar verdiğinde, Tepki alıp bir Üstünlük Zarı harcayarak hasarı, Üstünlük Zarında attığın sayı artı Güç veya Çeviklik modifiyen (seçim senin) kadar azaltabilirsin."
+  },
+  "maneuver_precision-attack": {
+    "desc": "Bir saldırı zarında ıskaladığında, bir Üstünlük Zarı harcayıp o zarı atabilir ve saldırı zarına ekleyebilirsin; bu saldırının isabet etmesini sağlayabilir."
+  },
+  "maneuver_pushing-attack": {
+    "desc": "Bir silahla ya da Silahsız Vuruşla bir yaratığa saldırı zarıyla isabet ettiğinde, hedefi geri sürmeyi denemek için bir Üstünlük Zarı harcayabilirsin. Üstünlük Zarını saldırının hasar zarına ekle. Hedef Büyük ya da daha küçükse bir Güç kurtarma zarında başarılı olmalı, yoksa senden doğrudan 15 feet'e kadar uzağa itilir."
+  },
+  "maneuver_rally": {
+    "desc": "Bonus Eylem olarak, bir yoldaşının kararlılığını pekiştirmek için bir Üstünlük Zarı harcayabilirsin. Kendi 30 feet yakınında, seni görebilen ya da duyabilen bir müttefikini seç. O yaratık, Üstünlük Zarı atışı artı Fighter seviyenin yarısı (aşağı yuvarla) kadar geçici can kazanır."
+  },
+  "maneuver_riposte": {
+    "desc": "Bir yaratık sana bir yakın saldırı zarıyla ıskaladığında, Tepki alıp bir Üstünlük Zarı harcayarak o yaratığa bir silahla veya Silahsız Vuruşla yakın saldırı zarı atabilirsin. İsabet edersen Üstünlük Zarını saldırının hasarına ekle."
+  },
+  "maneuver_sweeping-attack": {
+    "desc": "Bir silahla ya da Silahsız Vuruşla bir yaratığa yakın saldırı zarıyla isabet ettiğinde, başka bir yaratığa hasar vermeyi denemek için bir Üstünlük Zarı harcayabilirsin. Özgün hedefin 5 feet yakınında ve senin erişim mesafende başka bir yaratık seç. Özgün saldırı zarı o ikinci yaratığa isabet edecek olsaydı, yaratık Üstünlük Zarında attığın sayı kadar hasar alır. Hasar, özgün saldırının verdiği türdedir."
+  },
+  "maneuver_tactical-assessment": {
+    "desc": "Bir Zekâ (Tarih ya da Araştırma) kontrolü veya bir Bilgelik (Sezgi) kontrolü yaptığında, bir Üstünlük Zarı harcayıp o zarı yetenek kontrolüne ekleyebilirsin."
+  },
+  "maneuver_trip-attack": {
+    "desc": "Bir silahla ya da Silahsız Vuruşla bir yaratığa saldırı zarıyla isabet ettiğinde, bir Üstünlük Zarı harcayıp zarı saldırının hasar zarına ekleyebilirsin. Hedef Büyük ya da daha küçükse bir Güç kurtarma zarında başarılı olmalı, yoksa yere serilmiş durumuna girer."
+  },
+  "metamagic_careful-spell": {
+    "desc": "Diğer yaratıkları kurtarma zarı atmaya zorlayan bir büyü kullandığında, o yaratıklardan bazılarını büyünün tam gücünden koruyabilirsin. Bunun için 1 Sorcery Point harca ve o yaratıklardan Karizma modifiyen kadarını (en az bir yaratık) seç. Seçilen bir yaratık, büyüye karşı kurtarma zarında kendiliğinden başarılı olur ve normalde başarılı kurtarmada yarım hasar alacaksa hiç hasar almaz."
+  },
+  "metamagic_distant-spell": {
+    "desc": "Menzili en az 5 feet olan bir büyü kullandığında, 1 Sorcery Point harcayarak büyünün menzilini ikiye katlayabilirsin. Ya da menzili Dokunuş olan bir büyü kullandığında, 1 Sorcery Point harcayarak büyünün menzilini 30 feet yapabilirsin."
+  },
+  "metamagic_empowered-spell": {
+    "desc": "Bir büyü için hasar attığında, 1 Sorcery Point harcayarak hasar zarlarından Karizma modifiyen kadarını (en az bir) yeniden atabilirsin ve yeni atışları kullanmak zorundasın.\n\nBüyünün kullanımı sırasında zaten farklı bir Metamagic seçeneği kullanmış olsan bile Empowered Spell'i kullanabilirsin."
+  },
+  "metamagic_extended-spell": {
+    "desc": "Süresi 1 dakika ya da daha uzun olan bir büyü kullandığında, 1 Sorcery Point harcayarak süresini en fazla 24 saat olacak şekilde ikiye katlayabilirsin.\n\nEtkilenen büyü konsantrasyon gerektiriyorsa, o konsantrasyonu sürdürmek için attığın kurtarma zarlarını avantajla atarsın."
+  },
+  "metamagic_heightened-spell": {
+    "desc": "Bir yaratığı kurtarma zarı atmaya zorlayan bir büyü kullandığında, 2 Sorcery Point harcayarak büyünün hedeflerinden birine, büyüye karşı kurtarmalarında dezavantaj verebilirsin."
+  },
+  "metamagic_quickened-spell": {
+    "desc": "Kullanım süresi bir eylem olan bir büyü kullandığında, 2 Sorcery Point harcayarak o kullanım için kullanım süresini Bonus Eylem'e çevirebilirsin. O turda zaten 1+ seviye bir büyü kullandıysan bir büyüyü bu şekilde değiştiremezsin; bir büyüyü bu şekilde değiştirdikten sonra da o turda 1+ seviye bir büyü kullanamazsın."
+  },
+  "metamagic_seeking-spell": {
+    "desc": "Bir büyü için saldırı zarı atıp ıskalarsan, 1 Sorcery Point harcayarak d20'yi yeniden atabilirsin ve yeni atışı kullanmak zorundasın.\n\nBüyünün kullanımı sırasında zaten farklı bir Metamagic seçeneği kullanmış olsan bile Seeking Spell'i kullanabilirsin."
+  },
+  "metamagic_subtle-spell": {
+    "desc": "Bir büyü kullandığında, 1 Sorcery Point harcayarak onu hiçbir Sözel, Somatik ya da Materyal bileşen olmadan kullanabilirsin; büyünün tükettiği veya büyüde bir bedeli belirtilmiş Materyal bileşenler bunun dışındadır."
+  },
+  "metamagic_transmuted-spell": {
+    "desc": "Aşağıdaki listedeki bir türde hasar veren bir büyü kullandığında, 1 Sorcery Point harcayarak o hasar türünü listedeki diğerlerinden biriyle değiştirebilirsin: asit, soğuk, ateş, yıldırım, zehir, gürleme."
+  },
+  "metamagic_twinned-spell": {
+    "desc": "Charm Person gibi, daha üst seviye bir büyü yuvasıyla kullanıldığında bir yaratık daha hedefleyebilen bir büyü kullandığında, 1 Sorcery Point harcayarak büyünün etkin seviyesini 1 artırabilirsin."
+  },
+  "rune_celebrated-in-house": {
+    "desc": "Hanenden bir iyilik istediğinde (\"Favored in House\" altında anlatıldığı gibi), iyilik şu ek biçimlerden birini alabilir:\n\n- Hanenin ejderha nişanlı bir üyesi, hanenin nişanıyla ilişkili 3. ya da 4. seviye bir büyüyü senin için bedelsiz kullanır.\n\n- Hanenin bir üyesi, 6. seviye ya da daha düşük başka bir büyüyü senin için olağan bedelin yarısına kullanır.\n\n- Hane için çıkacağın bir sonraki görev boyunca (en fazla 1 hafta) bir koruma kazanırsın. Koruma — Challenge Rating'i seviyenin yarısını (yukarı yuvarla) aşmayan bir yaratık — hanene uygundur.\n\nAyrıca hane maaşın, Varlıklı yaşam tarzını destekleyecek düzeye çıkar (günde 4 GP)."
+  },
+  "rune_favored-in-house": {
+    "desc": "Hanenden bir iyilik isteyebilirsin; iyilik şu biçimlerden birini alabilir:\n\n- Hanenin bir üyesi, 3. seviye ya da daha düşük başka bir büyüyü senin için olağan bedelin yarısına kullanır.\n\nBöyle bir iyiliği İtibar Puanın kadar kez isteyebilirsin. İtibar Puanın istediğin toplam iyilik sayısının altına düşerse, hanenin daha üst rütbeli bir üyesi senden bir iyilik isteyebilir ve seni hane işi ya da kişisel bir iş için göreve gönderebilir.\n\nAyrıca hanen sana, Mütevazı yaşam tarzını destekleyen bir maaş öder (günde 1 GP)."
+  },
+  "rune_preeminent-in-house": {
+    "desc": "Hanenden bir iyilik istediğinde (\"Favored in House\" altında anlatıldığı gibi), iyilik şu ek biçimlerden birini alabilir:\n\n- Hanenin ejderha nişanlı bir üyesi, hanenin nişanıyla ilişkili 5. seviye bir büyüyü senin için bedelsiz kullanır.\n\n- Hanenin bir üyesi, 8. seviye ya da daha düşük başka bir büyüyü senin için olağan bedelin yarısına kullanır.\n\nAyrıca hane maaşın, Aristokrat yaşam tarzını destekleyecek düzeye çıkar (günde 10 GP)."
+  },
+  "rune_recognized-in-house": {
+    "desc": "Hanenden bir iyilik istediğinde (\"Favored in House\" altında anlatıldığı gibi), iyilik şu ek biçimlerden birini alabilir:\n\n- Hanenin ejderha nişanlı bir üyesi, hanenin nişanıyla ilişkili 2. seviye bir büyüyü senin için bedelsiz kullanır.\n\n- Hanenin bir üyesi, 4. seviye ya da daha düşük başka bir büyüyü senin için olağan bedelin yarısına kullanır.\n\n- Bir Bastion turu aldığında, hanene sanki Bastion'undaki özel bir tesismiş gibi emir verebilirsin. Hangi tür özel tesisin kullanımına açık olduğunu hanen belirler; bu, ilerideki bölümde her hanenin açıklamasında belirtilmiştir.\n\nAyrıca hane maaşın, Rahat yaşam tarzını destekleyecek düzeye çıkar (günde 2 GP)."
+  }
+}

@@ -5,11 +5,11 @@ class Shops extends Table {
   TextColumn get id => text()();
   TextColumn get name => text()();
 
-  /// Magazayi isleten NPC'nin adi; oyuncu panelinde gorunur.
+  /// Magazayi isleten NPC'nin adi.
   ///
   /// [ownerNpcId] ile bagli bir NPC varsa bu alan onun adiyla senkron tutulur
-  /// (goruntuleme ve oyuncuya giden veri tek yerden okunsun diye); bagsiz
-  /// magazalarda serbest metindir.
+  /// (goruntuleme tek yerden okunsun diye); bagsiz magazalarda serbest
+  /// metindir.
   TextColumn get ownerName => text().nullable()();
 
   /// Isleten NPC kaydi (`Npcs.id`). Istege baglidir: DM isterse yalnizca ad
@@ -23,25 +23,9 @@ class Shops extends Table {
   /// 0.8 pazarlik sonrasi. Stok satirinda ozel fiyat varsa o gecerli.
   RealColumn get priceMultiplier => real().withDefault(const Constant(1))();
 
-  /// Oyuncular su an bu magazayi gorebiliyor mu? ("Ac" ile tek magaza
-  /// dogrudan panele dusuyor.)
-  BoolColumn get openToPlayers =>
-      boolean().withDefault(const Constant(false))();
-
-  /// Oyuncular bu magazaya HARITADAN (dukkan pinine dokunarak) erisebilsin mi?
-  /// [openToPlayers]'tan bagimsiz: ayni anda birden fazla magaza haritadan
-  /// erisilebilir olabilir, DM her biri icin ayri ac/kapa yapar.
-  BoolColumn get mapAccessible =>
-      boolean().withDefault(const Constant(false))();
-
-  /// Mağaza şu an kapalı mı? Kapaliysa oyuncular mağzaya tiklayinca "mağaza
-  /// kapalı" görür, eşyalar gösterilmez ve satin alinamaz. DM dükkân
-  /// ayarlarından açıp kapatır; diğer ayarlardan bağımsızdır.
+  /// Mağaza şu an kapalı mı? Dünya durumu: kapalı bir dükkânda alışveriş
+  /// yapılamaz, listede soluk görünür. DM dükkân ayarlarından açıp kapatır.
   BoolColumn get closed => boolean().withDefault(const Constant(false))();
-
-  /// Acikken satin almalar DM onayindan mi gecsin, yoksa dogrudan mi olsun?
-  BoolColumn get requiresApproval =>
-      boolean().withDefault(const Constant(true))();
 
   /// Stok kac oyun-ici gunde bir yenilensin? 0 = hic yenilenmez.
   ///

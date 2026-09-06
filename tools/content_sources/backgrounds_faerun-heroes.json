@@ -1,0 +1,640 @@
+[
+  {
+    "key": "faerun-heroes_chondathan-freebooter",
+    "name": "Chondathan Freebooter",
+    "document": "faerun-heroes",
+    "desc": "",
+    "benefits": [
+      {
+        "name": "Ability Scores",
+        "desc": "Strength, Dexterity, Wisdom",
+        "type": "ability_score"
+      },
+      {
+        "name": "Skill Proficiencies",
+        "desc": "Athletics and Sleight of Hand",
+        "type": "skill_proficiency"
+      },
+      {
+        "name": "Tool Proficiency",
+        "desc": "Weaver's Tools",
+        "type": "tool_proficiency"
+      },
+      {
+        "name": "Feat",
+        "desc": "Skilled",
+        "type": "feat"
+      },
+      {
+        "name": "Equipment",
+        "desc": "*Choose A or B:* (A) Dagger, Weaver's Tools, Backpack, Ball Bearings, Basket, Bedroll, Bucket, Rations (3 days' worth), Rope, Signal Whistle, Traveler's Clothes, 38 GP; or (B) 50 GP",
+        "type": "equipment"
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_dead-magic-dweller",
+    "name": "Dead Magic Dweller",
+    "document": "faerun-heroes",
+    "desc": "",
+    "benefits": [
+      {
+        "name": "Ability Scores",
+        "desc": "Strength, Constitution, Wisdom",
+        "type": "ability_score"
+      },
+      {
+        "name": "Skill Proficiencies",
+        "desc": "Medicine and Survival",
+        "type": "skill_proficiency"
+      },
+      {
+        "name": "Tool Proficiency",
+        "desc": "Leatherworker's Tools",
+        "type": "tool_proficiency"
+      },
+      {
+        "name": "Feat",
+        "desc": "Healer",
+        "type": "feat"
+      },
+      {
+        "name": "Equipment",
+        "desc": "*Choose A or B:* (A) Greatclub, Leatherworker's Tools, Bedroll, Blanket, Healer's Kit, Pole, Rations (3 days' worth), Tent, Tinderbox, Torches, Traveler's Clothes, Waterskin, 32 GP; or (B) 50 GP",
+        "type": "equipment"
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_dragon-cultist",
+    "name": "Dragon Cultist",
+    "document": "faerun-heroes",
+    "desc": "",
+    "benefits": [
+      {
+        "name": "Ability Scores",
+        "desc": "Dexterity, Constitution, Intelligence",
+        "type": "ability_score"
+      },
+      {
+        "name": "Skill Proficiencies",
+        "desc": "Deception and Stealth",
+        "type": "skill_proficiency"
+      },
+      {
+        "name": "Tool Proficiency",
+        "desc": "Calligrapher's Supplies",
+        "type": "tool_proficiency"
+      },
+      {
+        "name": "Feat",
+        "desc": "Cult of the Dragon Initiate",
+        "type": "feat"
+      },
+      {
+        "name": "Equipment",
+        "desc": "*Choose A or B:* (A) Calligrapher's Supplies, Dagger, Glass Bottle, Lamp, Manacles, Oil (5 flasks), Pouches, Robe, Rope, 30 GP; or (B) 50 GP",
+        "type": "equipment"
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_emerald-enclave-caretaker",
+    "name": "Emerald Enclave Caretaker",
+    "document": "faerun-heroes",
+    "desc": "",
+    "benefits": [
+      {
+        "name": "Ability Scores",
+        "desc": "Constitution, Intelligence, Wisdom",
+        "type": "ability_score"
+      },
+      {
+        "name": "Skill Proficiencies",
+        "desc": "Nature and Survival",
+        "type": "skill_proficiency"
+      },
+      {
+        "name": "Tool Proficiency",
+        "desc": "Herbalism Kit",
+        "type": "tool_proficiency"
+      },
+      {
+        "name": "Feat",
+        "desc": "Emerald Enclave Fledgling",
+        "type": "feat"
+      },
+      {
+        "name": "Equipment",
+        "desc": "*Choose A or B:* (A) Shortbow, Arrows (20), Herbalism Kit, Bedroll, Blanket, Pouch, Tent, Traveler's Clothes, 13 GP; or (B) 50 GP",
+        "type": "equipment"
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_flaming-fist-mercenary",
+    "name": "Flaming Fist Mercenary",
+    "document": "faerun-heroes",
+    "desc": "",
+    "benefits": [
+      {
+        "name": "Ability Scores",
+        "desc": "Strength, Constitution, Charisma",
+        "type": "ability_score"
+      },
+      {
+        "name": "Skill Proficiencies",
+        "desc": "Intimidation and Perception",
+        "type": "skill_proficiency"
+      },
+      {
+        "name": "Tool Proficiency",
+        "desc": "Smith's Tools",
+        "type": "tool_proficiency"
+      },
+      {
+        "name": "Feat",
+        "desc": "Tough",
+        "type": "feat"
+      },
+      {
+        "name": "Equipment",
+        "desc": "*Choose A or B:* (A) Mace, Smith's Tools, Fine Clothes, Manacles, Portable Ram, 4 GP; or (B) 50 GP",
+        "type": "equipment"
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_genie-touched",
+    "name": "Genie Touched",
+    "document": "faerun-heroes",
+    "desc": "",
+    "benefits": [
+      {
+        "name": "Ability Scores",
+        "desc": "Dexterity, Wisdom, Charisma",
+        "type": "ability_score"
+      },
+      {
+        "name": "Skill Proficiencies",
+        "desc": "Perception and Persuasion",
+        "type": "skill_proficiency"
+      },
+      {
+        "name": "Tool Proficiency",
+        "desc": "Glassblower's Tools",
+        "type": "tool_proficiency"
+      },
+      {
+        "name": "Equipment",
+        "desc": "*Choose A or B:* (A) Light Hammer, Glassblower's Tools, Fine Clothes, Lamp, Oil (3 flasks), Waterskin, 2 GP; or (B) 50 GP",
+        "type": "equipment"
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_harper",
+    "name": "Harper",
+    "document": "faerun-heroes",
+    "desc": "",
+    "benefits": [
+      {
+        "name": "Ability Scores",
+        "desc": "Dexterity, Intelligence, Charisma",
+        "type": "ability_score"
+      },
+      {
+        "name": "Skill Proficiencies",
+        "desc": "Performance and Sleight of Hand",
+        "type": "skill_proficiency"
+      },
+      {
+        "name": "Tool Proficiency",
+        "desc": "Disguise Kit",
+        "type": "tool_proficiency"
+      },
+      {
+        "name": "Feat",
+        "desc": "Harper Agent",
+        "type": "feat"
+      },
+      {
+        "name": "Equipment",
+        "desc": "*Choose A or B:* (A) Disguise Kit, Bedroll, Costume, Grappling Hook, Rope, Traveler's Clothes, 14 GP; or (B) 50 GP",
+        "type": "equipment"
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_ice-fisher",
+    "name": "Ice Fisher",
+    "document": "faerun-heroes",
+    "desc": "",
+    "benefits": [
+      {
+        "name": "Ability Scores",
+        "desc": "Strength, Dexterity, Constitution",
+        "type": "ability_score"
+      },
+      {
+        "name": "Skill Proficiencies",
+        "desc": "Animal Handling and Athletics",
+        "type": "skill_proficiency"
+      },
+      {
+        "name": "Tool Proficiency",
+        "desc": "Woodcarver's Tools",
+        "type": "tool_proficiency"
+      },
+      {
+        "name": "Feat",
+        "desc": "Alert",
+        "type": "feat"
+      },
+      {
+        "name": "Equipment",
+        "desc": "*Choose A or B:* (A) Woodcarver's Tools, Basket, Block and Tackle, Chain, Hunting Trap, Net, Pole, Rations (3 days' worth), Traveler's Clothes, 32 GP; or (B) 50 GP",
+        "type": "equipment"
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_knight-of-the-gauntlet",
+    "name": "Knight of the Gauntlet",
+    "document": "faerun-heroes",
+    "desc": "",
+    "benefits": [
+      {
+        "name": "Ability Scores",
+        "desc": "Strength, Intelligence, Wisdom",
+        "type": "ability_score"
+      },
+      {
+        "name": "Skill Proficiencies",
+        "desc": "Athletics and Medicine",
+        "type": "skill_proficiency"
+      },
+      {
+        "name": "Tool Proficiency",
+        "desc": "Smith's Tools",
+        "type": "tool_proficiency"
+      },
+      {
+        "name": "Feat",
+        "desc": "Tyro of the Gauntlet",
+        "type": "feat"
+      },
+      {
+        "name": "Equipment",
+        "desc": "*Choose A or B:* (A) Spear, Smith's Tools, Bullseye Lantern, Holy Symbol, Manacles, Oil (5 flasks), Tinderbox, Traveler's Clothes, 9 GP; or (B) 50 GP",
+        "type": "equipment"
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_lords-alliance-vassal",
+    "name": "Lords' Alliance Vassal",
+    "document": "faerun-heroes",
+    "desc": "",
+    "benefits": [
+      {
+        "name": "Ability Scores",
+        "desc": "Strength, Intelligence, Charisma",
+        "type": "ability_score"
+      },
+      {
+        "name": "Skill Proficiencies",
+        "desc": "Insight and Persuasion",
+        "type": "skill_proficiency"
+      },
+      {
+        "name": "Tool Proficiency",
+        "desc": "Calligrapher's Supplies",
+        "type": "tool_proficiency"
+      },
+      {
+        "name": "Feat",
+        "desc": "Lords' Alliance Agent",
+        "type": "feat"
+      },
+      {
+        "name": "Equipment",
+        "desc": "*Choose A or B:* (A) Javelins, Calligrapher's Supplies, Fine Clothes, Ink, Ink Pen (5), Parchment (9 sheets), 13 GP; or (B) 50 GP",
+        "type": "equipment"
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_moonwell-pilgrim",
+    "name": "Moonwell Pilgrim",
+    "document": "faerun-heroes",
+    "desc": "",
+    "benefits": [
+      {
+        "name": "Ability Scores",
+        "desc": "Constitution, Wisdom, Charisma",
+        "type": "ability_score"
+      },
+      {
+        "name": "Skill Proficiencies",
+        "desc": "Nature and Performance",
+        "type": "skill_proficiency"
+      },
+      {
+        "name": "Tool Proficiency",
+        "desc": "Painter's Supplies",
+        "type": "tool_proficiency"
+      },
+      {
+        "name": "Feat",
+        "desc": "Magic Initiate; Druid",
+        "type": "feat"
+      },
+      {
+        "name": "Equipment",
+        "desc": "*Choose A or B:* (A) Quarterstaff, Painter's Supplies, Bedroll, Bell, Pouch, Robe, String, Traveler's Clothes, Waterskin, 38 GP; or (B) 50 GP",
+        "type": "equipment"
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_mulhorandi-tomb-raider",
+    "name": "Mulhorandi Tomb Raider",
+    "document": "faerun-heroes",
+    "desc": "",
+    "benefits": [
+      {
+        "name": "Ability Scores",
+        "desc": "Dexterity, Constitution, Intelligence",
+        "type": "ability_score"
+      },
+      {
+        "name": "Skill Proficiencies",
+        "desc": "Investigation and Religion",
+        "type": "skill_proficiency"
+      },
+      {
+        "name": "Tool Proficiency",
+        "desc": "Mason's Tools",
+        "type": "tool_proficiency"
+      },
+      {
+        "name": "Feat",
+        "desc": "Lucky",
+        "type": "feat"
+      },
+      {
+        "name": "Equipment",
+        "desc": "*Choose A or B:* (A) Dagger, Light Hammer, Mason's Tools, Backpack, Bedroll, Crowbar, Ladder, Pole, Pouches, Rope, String, Tinderbox, Torches, Traveler's Clothes, Waterskin 26 GP; or (B) 50 GP",
+        "type": "equipment"
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_mythalkeeper",
+    "name": "Mythalkeeper",
+    "document": "faerun-heroes",
+    "desc": "",
+    "benefits": [
+      {
+        "name": "Ability Scores",
+        "desc": "Intelligence, Wisdom, Charisma",
+        "type": "ability_score"
+      },
+      {
+        "name": "Skill Proficiencies",
+        "desc": "Arcana and History",
+        "type": "skill_proficiency"
+      },
+      {
+        "name": "Tool Proficiency",
+        "desc": "Jeweler's Tools",
+        "type": "tool_proficiency"
+      },
+      {
+        "name": "Feat",
+        "desc": "Crafter",
+        "type": "feat"
+      },
+      {
+        "name": "Equipment",
+        "desc": "*Choose A or B:* (A) Quarterstaff, Jeweler's Tools, Perfume, Pouch, Robe, Shovel, String, Waterskin, 16 GP; or (B) 50 GP",
+        "type": "equipment"
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_purple-dragon-squire",
+    "name": "Purple Dragon Squire",
+    "document": "faerun-heroes",
+    "desc": "",
+    "benefits": [
+      {
+        "name": "Ability Scores",
+        "desc": "Strength, Wisdom, Charisma",
+        "type": "ability_score"
+      },
+      {
+        "name": "Skill Proficiencies",
+        "desc": "Animal Handling and Insight",
+        "type": "skill_proficiency"
+      },
+      {
+        "name": "Tool Proficiency",
+        "desc": "Navigator's Tools",
+        "type": "tool_proficiency"
+      },
+      {
+        "name": "Feat",
+        "desc": "Purple Dragon Rook",
+        "type": "feat"
+      },
+      {
+        "name": "Equipment",
+        "desc": "*Choose A or B:* (A) Spear, Navigator's Tools, Fine Clothes, 9 GP; or (B) 50 GP",
+        "type": "equipment"
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_rashemi-wanderer",
+    "name": "Rashemi Wanderer",
+    "document": "faerun-heroes",
+    "desc": "",
+    "benefits": [
+      {
+        "name": "Ability Scores",
+        "desc": "Strength, Constitution, Charisma",
+        "type": "ability_score"
+      },
+      {
+        "name": "Skill Proficiencies",
+        "desc": "Intimidation and Perception",
+        "type": "skill_proficiency"
+      },
+      {
+        "name": "Tool Proficiency",
+        "desc": "Cartographer's Tools",
+        "type": "tool_proficiency"
+      },
+      {
+        "name": "Feat",
+        "desc": "Tough",
+        "type": "feat"
+      },
+      {
+        "name": "Equipment",
+        "desc": "*Choose A or B:* (A) Cartographer's Tools, Backpack, Bedroll, Hooded Lantern, Oil (3 flasks), Rope, Tinderbox, Traveler's Clothes, Waterskin, 23 GP; or (B) 50 GP",
+        "type": "equipment"
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_shadowmasters-exile",
+    "name": "Shadowmasters Exile",
+    "document": "faerun-heroes",
+    "desc": "",
+    "benefits": [
+      {
+        "name": "Ability Scores",
+        "desc": "Dexterity, Intelligence, Charisma",
+        "type": "ability_score"
+      },
+      {
+        "name": "Skill Proficiencies",
+        "desc": "Acrobatics and Stealth",
+        "type": "skill_proficiency"
+      },
+      {
+        "name": "Tool Proficiency",
+        "desc": "Thieves' Tools",
+        "type": "tool_proficiency"
+      },
+      {
+        "name": "Feat",
+        "desc": "Savage Attacker",
+        "type": "feat"
+      },
+      {
+        "name": "Equipment",
+        "desc": "*Choose A or B:* (A) Daggers, Thieves' Tools, Caltrops, Costume, Grappling Hook, Iron Spikes, Mirror, Pouches, Rope, Traveler's Clothes, 3 GP; or (B) 50 GP",
+        "type": "equipment"
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_spellfire-initiate",
+    "name": "Spellfire Initiate",
+    "document": "faerun-heroes",
+    "desc": "",
+    "benefits": [
+      {
+        "name": "Ability Scores",
+        "desc": "Constitution, Intelligence, Charisma",
+        "type": "ability_score"
+      },
+      {
+        "name": "Skill Proficiencies",
+        "desc": "Arcana and Perception",
+        "type": "skill_proficiency"
+      },
+      {
+        "name": "Feat",
+        "desc": "Spellfire Spark",
+        "type": "feat"
+      },
+      {
+        "name": "Equipment",
+        "desc": "*Choose A or B:* (A) Gaming Set (same as above), Arcane Focus (Crystal or Wand), Pouches, Traveler's Clothes, 36 GP; or (B) 50 GP",
+        "type": "equipment"
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_zhentarim-mercenary",
+    "name": "Zhentarim Mercenary",
+    "document": "faerun-heroes",
+    "desc": "",
+    "benefits": [
+      {
+        "name": "Ability Scores",
+        "desc": "Strength, Dexterity, Charisma",
+        "type": "ability_score"
+      },
+      {
+        "name": "Skill Proficiencies",
+        "desc": "Intimidation and Perception",
+        "type": "skill_proficiency"
+      },
+      {
+        "name": "Tool Proficiency",
+        "desc": "Forgery Kit",
+        "type": "tool_proficiency"
+      },
+      {
+        "name": "Feat",
+        "desc": "Zhentarim Ruffian",
+        "type": "feat"
+      },
+      {
+        "name": "Equipment",
+        "desc": "*Choose A or B:* (A) Club, Dagger, Forgery Kit, Fine Clothes, Hooded Lantern, Oil (3 flasks), Pouches, String, Tinderbox, 11 GP; or (B) 50 GP",
+        "type": "equipment"
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  }
+]

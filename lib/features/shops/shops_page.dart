@@ -10,8 +10,7 @@ import 'shop_providers.dart';
 
 /// Magaza listesi.
 ///
-/// Oyunculara acik olan magaza listede vurgulanir; ayni anda yalnizca biri
-/// acik olabilir, cunku masada oyuncular "hangi dukkandayiz" diye sormasin.
+/// Kapali dukkanlar listede soluk ikonla ayrisir.
 class ShopsPage extends ConsumerWidget {
   const ShopsPage({super.key});
 
@@ -43,12 +42,12 @@ class ShopsPage extends ConsumerWidget {
                   final shop = rows[i];
                   return ListTile(
                     leading: Icon(
-                      shop.openToPlayers
-                          ? Icons.storefront
-                          : Icons.storefront_outlined,
-                      color: shop.openToPlayers
-                          ? Theme.of(context).colorScheme.primary
-                          : null,
+                      shop.closed
+                          ? Icons.storefront_outlined
+                          : Icons.storefront,
+                      color: shop.closed
+                          ? null
+                          : Theme.of(context).colorScheme.primary,
                     ),
                     title: Text(shop.name),
                     subtitle: Text(
@@ -56,10 +55,7 @@ class ShopsPage extends ConsumerWidget {
                         if (shop.ownerName != null &&
                             shop.ownerName!.isNotEmpty)
                           shop.ownerName!,
-                        if (shop.openToPlayers)
-                          l10n.shopsOpen
-                        else
-                          l10n.shopsClosed,
+                        if (shop.closed) l10n.shopsClosed else l10n.shopsOpen,
                         if ((shop.priceMultiplier - 1).abs() > 0.001)
                           'fiyat ×${shop.priceMultiplier.toStringAsFixed(2)}',
                       ].join(' · '),

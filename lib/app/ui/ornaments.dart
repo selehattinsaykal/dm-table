@@ -167,7 +167,9 @@ class WaxSeal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final seal = color ?? context.fantasyColors.wax;
-    const foreground = Color(0xFFF6ECD8);
+    // Koda gomulu hex DEGIL: mühür üzerindeki yazının rengi artık temanın
+    // kendi jetonu. Palet tek yerden yönetilsin diye.
+    final foreground = context.fantasyColors.onWax;
 
     final visual = CustomPaint(
       painter: _WaxSealPainter(seal),

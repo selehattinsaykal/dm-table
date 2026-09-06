@@ -1,0 +1,477 @@
+[
+  {
+    "key": "faerun-heroes_axe-beak",
+    "name": "Axe Beak",
+    "document": "faerun-heroes",
+    "desc": "Use the Axe Beak stat block.",
+    "category": {
+      "name": "Mount",
+      "key": "mount"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "50.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_bright-fungal-cloak",
+    "name": "Bright Fungal Cloak",
+    "document": "faerun-heroes",
+    "desc": "While wearing a Bright Fungal Cloak, you can take a Bonus Action to furl or unfurl it. When the cloak is unfurled, it sheds Bright Light in a 5-foot radius and Dim Light for an additional 5 feet.\n\nOne pound of fungus is sewn into a Bright Fungal Cloak. This fungus can be eaten as food. Once all the fungus is consumed, the cloak becomes a mundane set of Traveler's Clothes.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "4.000",
+    "weight_unit": "lb",
+    "cost": "25.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_covered-wagon",
+    "name": "Covered Wagon",
+    "document": "faerun-heroes",
+    "desc": "This vehicle is a Wagon covered by durable canvas. A creature has Three-Quarters Cover while riding inside this vehicle.",
+    "category": {
+      "name": "Vehicle",
+      "key": "vehicle"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1300.000",
+    "weight_unit": "lb",
+    "cost": "250.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_cult-of-the-dragon-trinket",
+    "name": "Cult of the Dragon Trinket",
+    "document": "faerun-heroes",
+    "desc": "Table: Cult of the Dragon Trinkets\n| 1d6 | Trinket |\n|---|---|\n| 1 | A dragon claw pendant on a leather cord |\n| 2 | Ashes of a dracolich in a small brass canister |\n| 3 | A map of an unknown dragon's lair |\n| 4 | A black pearl etched with a Draconic rune |\n| 5 | A drop of dragon's blood preserved in amber |\n| 6 | A scrap of purple silk |",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": null,
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_desert-clothing",
+    "name": "Desert Clothing",
+    "document": "faerun-heroes",
+    "desc": "When you are wearing Desert Clothing and not wearing Medium or Heavy armor, you automatically succeed on saving throws against the effects of extreme heat.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "4.000",
+    "weight_unit": "lb",
+    "cost": "10.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_devil-mask",
+    "name": "Devil Mask",
+    "document": "faerun-heroes",
+    "desc": "While you are wearing a Devil Mask, other creatures have Disadvantage on Intelligence (Investigation) and Wisdom (Insight) checks made to discern your true identity or intentions.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "25.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_emerald-enclave-trinket",
+    "name": "Emerald Enclave Trinket",
+    "document": "faerun-heroes",
+    "desc": "Table: Emerald Enclave Trinkets\n| 1d6 | Trinket |\n|---|---|\n| 1 | A pair of earrings made from oak leaves that never wilt |\n| 2 | A miniature model cottage made of twigs |\n| 3 | A green-glowing firefly in a bottle |\n| 4 | A gourd that sounds like rustling leaves when held to one's ear |\n| 5 | A preserved rabbit's foot on a leather strap |\n| 6 | An antler shaped like an Elvish rune |",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": null,
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_flying-snake",
+    "name": "Flying Snake",
+    "document": "faerun-heroes",
+    "desc": "Pet flying snakes use the Flying Snake stat block.",
+    "category": {
+      "name": "Mount",
+      "key": "mount"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "25.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_garb-of-light-and-shadow",
+    "name": "Garb of Light and Shadow",
+    "document": "faerun-heroes",
+    "desc": "This garb appeals to Fey from one Domain of Delight, such as the Gloaming Court or the Summer Court. While wearing the garb, you have Advantage on ability checks to influence Fey associated with that Domain of Delight.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "6.000",
+    "weight_unit": "lb",
+    "cost": "50.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_genie-robe",
+    "name": "Genie Robe",
+    "document": "faerun-heroes",
+    "desc": "This robe appeals to Elementals associated with a particular Elemental Plane (Air, Earth, Fire, Water). While wearing a Genie Robe, you have Advantage on ability checks made to influence Elementals associated with that plane.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "6.000",
+    "weight_unit": "lb",
+    "cost": "50.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_harper-trinket",
+    "name": "Harper Trinket",
+    "document": "faerun-heroes",
+    "desc": "Table: Harper Trinkets\n| 1d6 | Trinket |\n|---|---|\n| 1 | A broken harmonica |\n| 2 | A powder compact with a hidden compartment |\n| 3 | A 2-foot-long peacock feather |\n| 4 | A trick coin that's heads on both sides |\n| 5 | A pair of red-tinted spectacles |\n| 6 | A scroll of sheet music for an unknown instrument |",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": null,
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_locking-spellbook",
+    "name": "Locking Spellbook",
+    "document": "faerun-heroes",
+    "desc": "This 100-page leather-bound tome can be used as a Spellbook. It is closed with a lock that comes with a key. As a Utilize action, a creature can try to pick the lock using Thieves' Tools, doing so with a successful DC 15 Dexterity (Sleight of Hand) check.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "3.000",
+    "weight_unit": "lb",
+    "cost": "35.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_lords-alliance-trinket",
+    "name": "Lords' Alliance Trinket",
+    "document": "faerun-heroes",
+    "desc": "Table: Lords' Alliance Trinkets\n| 1d6 | Trinket |\n|---|---|\n| 1 | A scrap from a defeated army's banner |\n| 2 | A bit and bridle engraved with the name of a famous steed |\n| 3 | The broken blade of a sword used in a famous battle |\n| 4 | The left glove of a lord who went mysteriously missing |\n| 5 | An articulated toy horse and knight |\n| 6 | A spaulder emblazoned with the insignia of an unidentified lord |",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": null,
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_monster-camouflage",
+    "name": "Monster Camouflage",
+    "document": "faerun-heroes",
+    "desc": "A suit of Monster Camouflage looks like a Beast or Monstrosity, such as an owlbear. To discern that you're disguised, a creature must take the Study action to inspect your appearance and succeed on a DC 10 Intelligence (Investigation or Nature) check. The creature has Advantage on this check if it is within 30 feet of you and automatically succeeds on this check if you do anything the monster you're disguised as couldn't do.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "6.000",
+    "weight_unit": "lb",
+    "cost": "50.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_order-of-the-gauntlet-trinket",
+    "name": "Order of the Gauntlet Trinket",
+    "document": "faerun-heroes",
+    "desc": "Table: Order of the Gauntlet Trinkets\n| 1d6 | Trinket |\n|---|---|\n| 1 | A white feather as heavy as lead |\n| 2 | An empty vial made from stained glass |\n| 3 | A single cone of gold-flecked incense |\n| 4 | A silken blindfold |\n| 5 | One half of a pair of manacles |\n| 6 | A tarnished aspergillum |",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": null,
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_prosthetic-limb",
+    "name": "Prosthetic Limb",
+    "document": "faerun-heroes",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "0.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_purple-dragon-knight-trinket",
+    "name": "Purple Dragon Knight Trinket",
+    "document": "faerun-heroes",
+    "desc": "Table: Purple Dragon Knight Trinkets\n| 1d6 | Trinket |\n|---|---|\n| 1 | An amethyst dragon wyrmling's claw |\n| 2 | A common purple quartz cut to resemble a dragon's eye |\n| 3 | A signal whistle audible only to amethyst dragons |\n| 4 | A robin's egg encased in amber |\n| 5 | A whetstone that leaves any blade it hones faintly glittery |\n| 6 | A vamplate taken from a slain rival jouster |",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": null,
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_red-wizard-trinket",
+    "name": "Red Wizard Trinket",
+    "document": "faerun-heroes",
+    "desc": "Table: Red Wizard Trinkets\n| 1d6 | Trinket |\n|---|---|\n| 1 | A gnarled wand made from petrified yew |\n| 2 | A glass jar containing the preserved heart of an unknown animal |\n| 3 | A unicorn figurine carved from obsidian |\n| 4 | A tattoo needle made from one of your own bones |\n| 5 | A bronze amulet in the shape of a scorpion |\n| 6 | A razor made of crimson steel |",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": null,
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_sled-dog",
+    "name": "Sled Dog",
+    "document": "faerun-heroes",
+    "desc": "A sled dog uses the Wolf stat block (see the Monster Manual). A sled dog pulling a sled alone must take a Short Rest after pulling a sled for 1 hour; otherwise, it gains 1 Exhaustion level.",
+    "category": {
+      "name": "Mount",
+      "key": "mount"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "50.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_warm-fungal-clothing",
+    "name": "Warm Fungal Clothing",
+    "document": "faerun-heroes",
+    "desc": "When you're wearing Warm Fungal Clothing, you automatically succeed on saving throws against the effects of extreme cold. See chapter 3 of the Dungeon Master's Guide for rules on extreme cold. One pound of fungus is sewn into Fungal Clothing. This fungus can be eaten as food. Once all the fungus is consumed, this becomes a mundane set of Traveler's Clothes.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "4.000",
+    "weight_unit": "lb",
+    "cost": "15.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_winter-camouflage",
+    "name": "Winter Camouflage",
+    "document": "faerun-heroes",
+    "desc": "While you wear Winter Camouflage in an appropriate environment, you have Advantage on Dexterity (Stealth) checks.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "4.000",
+    "weight_unit": "lb",
+    "cost": "50.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_zhentarim-trinket",
+    "name": "Zhentarim Trinket",
+    "document": "faerun-heroes",
+    "desc": "Table: Zhentarim Trinkets\n| 1d6 | Trinket |\n|---|---|\n| 1 | A broken dagger etched with your name |\n| 2 | A glass eye that always turns to face you |\n| 3 | A gold-colored serpent's tooth |\n| 4 | A counterfeit gold coin |\n| 5 | A crystal tattoo needle |\n| 6 | A contract on a slip of parchment that's impervious to creases, tears, and fire |",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": null,
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_bandore",
+    "name": "Bandore",
+    "document": "faerun-heroes",
+    "desc": "",
+    "category": {
+      "name": "Instrument",
+      "key": "instrument"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "3.000",
+    "weight_unit": "lb",
+    "cost": "65.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_cittern",
+    "name": "Cittern",
+    "document": "faerun-heroes",
+    "desc": "",
+    "category": {
+      "name": "Instrument",
+      "key": "instrument"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "2.000",
+    "weight_unit": "lb",
+    "cost": "65.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_yarting",
+    "name": "Yarting",
+    "document": "faerun-heroes",
+    "desc": "",
+    "category": {
+      "name": "Instrument",
+      "key": "instrument"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "2.000",
+    "weight_unit": "lb",
+    "cost": "40.00",
+    "crossreferences": {
+      "to": []
+    }
+  }
+]

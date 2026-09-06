@@ -1,0 +1,283 @@
+{
+  "_comment": "Turkish translation of the shipped backgrounds bundle. Display-time overlay loaded by lib/data/content_tr.dart; the database keeps the English text. Ability, skill, feat, tool and item names deliberately stay in English -- only the surrounding prose is translated. Paths are `desc` and `benefits/<English benefit name>`.",
+  "srd-2024_acolyte": {
+    "desc": "Bir tapınakta hizmet ettin ve hizmet ettiğin tanrı karşılık verdi. İster zemini süpürmüş ol ister kehanetleri okumuş, ayinleri, öğretiyi ve inancın siyasetini öğrendin -- ve oradan üzerinde biraz kutsallık kalmış olarak ayrıldın.",
+    "benefits/Equipment": "*A ya da B'yi seç:* (A) Calligrapher's Supplies, Book (prayers), Holy Symbol, Parchment (10 sheets), Robe, 8 GP; ya da (B) 50 GP",
+    "benefits/Skill Proficiencies": "Sezgi ve Din"
+  },
+  "srd-2024_criminal": {
+    "desc": "Geçimini kanunun dışında sağladın ve hâlâ ayakta olacak kadar da iyiydin. Bir kilidin nasıl verdiğini, bir yalanın nasıl tuttuğunu ve her şehirde sessizce tanınmaya değer kimlerin olduğunu bilirsin.",
+    "benefits/Equipment": "*A ya da B'yi seç:* (A) 2 Daggers, Thieves' Tools, Crowbar, 2 Pouches, Traveler's Clothes, 16 GP; ya da (B) 50 GP",
+    "benefits/Skill Proficiencies": "El Çabukluğu ve Gizlilik"
+  },
+  "srd-2024_sage": {
+    "desc": "Şekillendiğin yılları kitapların ve onlar üzerine tartışan insanların arasında geçirdin. Cevabı bilmiyor olabilirsin, ama cevabın nerede yazılı olduğunu neredeyse her zaman bilirsin.",
+    "benefits/Equipment": "*A ya da B'yi seç:* (A) Quarterstaff, Calligrapher's Supplies, Book (history), Parchment (8 sheets), Robe, 8 GP; ya da (B) 50 GP",
+    "benefits/Skill Proficiencies": "Gizemli Bilgi ve Tarih"
+  },
+  "srd-2024_soldier": {
+    "desc": "Bir orduda hizmet ettin ve savaşı bir zanaat olarak öğrendin: talim, silahlar, bekleyiş ve üzerine bir kez ateş edilmiş insanlara özgü o tuhaf sükûnet.",
+    "benefits/Equipment": "*A ya da B'yi seç:* (A) Mızrak, Kısa Yay, 20 Arrows, Gaming Set (yukarıdakiyle aynı), Healer's Kit, Quiver, Traveler's Clothes, 14 GP; ya da (B) 50 GP",
+    "benefits/Skill Proficiencies": "Atletizm ve Yıldırma",
+    "benefits/Tool Proficiency": "Şunlardan birini seç: Gaming Set"
+  },
+  "xphb-artisan": {
+    "desc": "Bir zanaata çırak verildin ve o işte iyi olacak kadar uzun kaldın. Atölye sana sabrı, hassasiyeti ve bir müşteriyi asıl ihtiyacı olan şeye ikna etmeyi öğretti.",
+    "benefits/Skill Proficiencies": "Araştırma ve İkna",
+    "benefits/Tool Proficiency": "Şunlardan birini seç: Artisan's Tools",
+    "benefits/Equipment": "A ya da B'yi seç: (A) Artisan's Tools (yukarıdakiyle aynı), 2 Pouch, Traveler's Clothes, 32 GP; ya da (B) 50 GP"
+  },
+  "xphb-charlatan": {
+    "desc": "Geçimini hep enayinin ihtiyaç duyduğu kişi olarak sağladın. Sahte evrak, ödünç bir unvan, mucizevi bir ilaç -- işin püf noktası, kimse kontrol etmeden gitmiş olmak.",
+    "benefits/Skill Proficiencies": "Aldatma ve El Çabukluğu",
+    "benefits/Equipment": "A ya da B'yi seç: (A) Forgery Kit, Costume, Fine Clothes, 15 GP; ya da (B) 50 GP"
+  },
+  "xphb-entertainer": {
+    "desc": "Geçimini insanların önünde sağladın: bir sahne, bir meyhane zemini, yere konmuş bir şapkayla bir yol kavşağı. Bir kalabalığı nasıl tutacağını da nasıl okuyacağını da bilirsin.",
+    "benefits/Skill Proficiencies": "Akrobasi ve Sahne Sanatları",
+    "benefits/Tool Proficiency": "Şunlardan birini seç: Musical Instrument",
+    "benefits/Equipment": "A ya da B'yi seç: (A) Musical Instrument (yukarıdakiyle aynı), Costume, Mirror, Perfume, Traveler's Clothes, 11 GP; ya da (B) 50 GP"
+  },
+  "xphb-farmer": {
+    "desc": "Toprağı işledin ve toprak senin ne hissettiğini umursamaz. Oradan güçlü, sabırlı ve havadan, hayvanlardan, uzun saatlerden yılmaz biri olarak çıktın.",
+    "benefits/Skill Proficiencies": "Hayvan Terbiyesi ve Doğa",
+    "benefits/Equipment": "A ya da B'yi seç: (A) Sickle, Carpenter's Tools, Healer's Kit, Iron Pot, Shovel, Traveler's Clothes, 30 GP; ya da (B) 50 GP"
+  },
+  "xphb-guard": {
+    "desc": "Bir nöbet yerin vardı -- bir kapı, bir sur, bir depo. İşin çoğu hiçbir şeyin olmamasını izlemektir; tam da bu yüzden bir şeyin olduğu geceyi fark edersin.",
+    "benefits/Skill Proficiencies": "Atletizm ve Algı",
+    "benefits/Tool Proficiency": "Şunlardan birini seç: Gaming Set",
+    "benefits/Equipment": "A ya da B'yi seç: (A) Mızrak, Hafif Arbalet, 20 Bolt, Gaming Set (yukarıdakiyle aynı), Hooded Lantern, Manacles, Quiver, Traveler's Clothes, 12 GP; ya da (B) 50 GP"
+  },
+  "xphb-guide": {
+    "desc": "Son yolun ötesindeki araziyi bilirsin: hangi vadi basar, hangi patika yalan söyler, hangi sessizlik bir şeyin izlediği anlamına gelir. İnsanlar seni geri çıkarasın diye tutar.",
+    "benefits/Skill Proficiencies": "Gizlilik ve Hayatta Kalma",
+    "benefits/Equipment": "A ya da B'yi seç: (A) Kısa Yay, Arrow, Cartographer's Tools, Bedroll, Quiver, Tent, Traveler's Clothes, 3 GP; ya da (B) 50 GP"
+  },
+  "xphb-hermit": {
+    "desc": "Hayatının uzunca bir bölümünü herkesten uzakta geçirdin -- kendi seçiminle, sürgünle ya da bir yeminle. Yalnızlık sana bir şey verdi ve şimdi onu geri aşağı taşıdın.",
+    "benefits/Skill Proficiencies": "Tıp ve Din",
+    "benefits/Equipment": "A ya da B'yi seç: (A) Quarterstaff, Herbalism Kit, Bedroll, Book (philosophy), Lamp, Oil (3 flasks), Traveler's Clothes, 16 GP; ya da (B) 50 GP"
+  },
+  "xphb-merchant": {
+    "desc": "Defterlerin, kervanların ve bir şeyin gerçekte ne ettiği sorusunun ortasında büyüdün. Her şeye fiyat biçebilir ve genellikle onu yola çıkarabilirsin.",
+    "benefits/Skill Proficiencies": "Hayvan Terbiyesi ve İkna",
+    "benefits/Equipment": "A ya da B'yi seç: (A) Navigator's Tools, Pouch, Traveler's Clothes, 22 GP; ya da (B) 50 GP"
+  },
+  "xphb-noble": {
+    "desc": "Kapı açan bir isme ve onunla gelen yükümlülüklere doğdun. Gücün gerçekte nasıl tutulduğunu ve bir unvanın kendi sınırlarının dışında ne kadar çabuk değersizleştiğini bilirsin.",
+    "benefits/Skill Proficiencies": "Tarih ve İkna",
+    "benefits/Tool Proficiency": "Şunlardan birini seç: Gaming Set",
+    "benefits/Equipment": "A ya da B'yi seç: (A) Gaming Set (yukarıdakiyle aynı), Fine Clothes, Perfume, 29 GP; ya da (B) 50 GP"
+  },
+  "xphb-sailor": {
+    "desc": "Güvertede çalıştın. Düğümleri, havayı, dar yatakhaneleri ve hep birlikte az kalsın boğulmuş insanlara özgü o tuhaf sadakati bilirsin.",
+    "benefits/Skill Proficiencies": "Akrobasi ve Algı",
+    "benefits/Equipment": "A ya da B'yi seç: (A) Hançer, Navigator's Tools, Rope, Traveler's Clothes, 20 GP; ya da (B) 50 GP"
+  },
+  "xphb-scribe": {
+    "desc": "Geçimini başkalarının sözlerini kopyalayarak, düzelterek ve dosyalayarak sağladın. Yavaş iş, keskin göz -- ve bir belgenin ne zaman yalan söylediğine dair çok iyi bir sezgi.",
+    "benefits/Skill Proficiencies": "Araştırma ve Algı",
+    "benefits/Equipment": "A ya da B'yi seç: (A) Calligrapher's Supplies, Fine Clothes, Lamp, Oil (3 flasks), Parchment (12 sheets), 23 GP; ya da (B) 50 GP"
+  },
+  "xphb-wayfarer": {
+    "desc": "Yolda ya da sokaklarda, sabit bir çatın ve güvencen olmadan büyüdün. İnsanları hızlı okumayı öğrendin, çünkü yanılmanın bir bedeli vardı.",
+    "benefits/Skill Proficiencies": "Sezgi ve Gizlilik",
+    "benefits/Equipment": "A ya da B'yi seç: (A) Hançer, Thieves' Tools, Gaming Set (any), Bedroll, Pouch, Traveler's Clothes, 16 GP; ya da (B) 50 GP"
+  },
+  "eberron-forge_aberrant-heir": {
+    "desc": "Teninde aberrant bir dragonmark belirdi -- onaysız, öngörülemez ve büyük hanelerin korktuğu bir şey. Hayatını onu saklamakla kullanmak arasında karar vermeye çalışarak geçirdin.",
+    "benefits/Skill Proficiencies": "Tarih ve Yıldırma",
+    "benefits/Equipment": "*A ya da B'yi seç:* (a) Hançer, Disguise Kit, Costume, Traveler's Clothes, 16 GP; or (b) 50 GP"
+  },
+  "eberron-forge_archaeologist": {
+    "desc": "İmparatorlukların düştüğü yerleri kazıyorsun. Xen'drik harabeleri, Dhakaani mahzenleri, goblin mezarları -- kırık bir duvarı okumayı ve çöken bir duvarı terk etmeyi öğrendin.",
+    "benefits/Skill Proficiencies": "Tarih ve Hayatta Kalma",
+    "benefits/Equipment": "*A ya da B'yi seç:* (a) Cartographer's Tools, Bullseye Lantern, Map, Map or Scroll Case, Shovel, Tent, Traveler's Clothes, 17 GP; or (b) 50 GP"
+  },
+  "eberron-forge_house-agent": {
+    "desc": "Bir dragonmarked haneye, damgasını taşımadan çalıştın: kâtip, kurye, ajan. Hane iyi ödüyordu ve seni nerede bulacağını hâlâ gayet iyi biliyor.",
+    "benefits/Skill Proficiencies": "Araştırma ve İkna",
+    "benefits/Equipment": "*A ya da B'yi seç:* (a) Fine Clothes, 20 GP; or (b) 50 GP"
+  },
+  "eberron-forge_house-cannith-heir": {
+    "desc": "House Cannith'in Mark of Making damgasını taşıyorsun. Ocaklar, warforged'lar ve kıtadaki üretilmiş malların yarısı ailene çıkar; sen inşa etmek üzere yetiştirildin.",
+    "benefits/Skill Proficiencies": "Araştırma ve El Çabukluğu",
+    "benefits/Equipment": "*A ya da B'yi seç:* (a) Crowbar, Fine Clothes, Pouches, 17 GP; or (b) 50 GP"
+  },
+  "eberron-forge_house-deneith-heir": {
+    "desc": "House Deneith'in Mark of Sentinel damgasını taşıyorsun. Hanen koruma satar -- korumalar, paralı askerler, muhafızlar -- ve sen kendini bir müşteriyle bir bıçağın arasına atmak üzere eğitildin.",
+    "benefits/Skill Proficiencies": "Sezgi ve Algı",
+    "benefits/Equipment": "*A ya da B'yi seç:* (a) Mızrak, Kısa Yay, Arrows (20), Gaming Set, Fine Clothes, Healer's Kit, Quiver, 1 GP; or (b) 50 GP"
+  },
+  "eberron-forge_house-ghallanda-heir": {
+    "desc": "House Ghallanda'nın Mark of Hospitality damgasını taşıyorsun. Ailenin hanları Khorvaire boyunca yolcuları doyurup barındırır; sen de her gerçek pazarlığın iyi bir sofrada döndüğünü öğrendin.",
+    "benefits/Skill Proficiencies": "Sezgi ve İkna",
+    "benefits/Equipment": "*A ya da B'yi seç:* (a) Cook's Utensils, Fine Clothes, Iron Pot, Lamp, Oil (5), Perfume, 26 GP; or (b) 50 GP"
+  },
+  "eberron-forge_house-jorasco-heir": {
+    "desc": "House Jorasco'nun Mark of Healing damgasını taşıyorsun. Hanen yaraları ve hastalıkları ücret karşılığı tedavi eder; sen merhametle fiyat listesinin arasındaki o zor alanda büyüdün.",
+    "benefits/Skill Proficiencies": "Tıp ve Gizlilik",
+    "benefits/Equipment": "*A ya da B'yi seç:* (a) Herbalism Kit, Fine Clothes, Healer's Kit, 25 GP; or (b) 50 GP"
+  },
+  "eberron-forge_house-kundarak-heir": {
+    "desc": "House Kundarak'ın Mark of Warding damgasını taşıyorsun. Ailen bir şeyleri kilitler: kasalar, bankalar, zindanlar. Bir wardın nasıl kurulduğunu, dolayısıyla nasıl aşıldığını bilirsin.",
+    "benefits/Skill Proficiencies": "Gizemli Bilgi ve Araştırma",
+    "benefits/Equipment": "*A ya da B'yi seç:* (a) Thieves' Tools, Fine Clothes, 10 GP; or (b) 50 GP"
+  },
+  "eberron-forge_house-lyrandar-heir": {
+    "desc": "House Lyrandar'ın Mark of Storm damgasını taşıyorsun. Hava gemileri ve kalyonlar ailene yanıt verir; sen de havayı başkalarının bir yol tabelasını okuduğu rahatlıkta okumayı öğrendin.",
+    "benefits/Skill Proficiencies": "Akrobasi ve Doğa",
+    "benefits/Equipment": "*A ya da B'yi seç:* (a) Navigator's Tools, Fine Clothes, 10 GP; or (b) 50 GP"
+  },
+  "eberron-forge_house-medani-heir": {
+    "desc": "House Medani'nin Mark of Detection damgasını taşıyorsun. Hanen uyarı satar -- müfettişler, korumalar, araştırmacılar -- ve sende ters gitmek üzere olan şeyi sezmek için eğitilmiş bir içgüdü var.",
+    "benefits/Skill Proficiencies": "Sezgi ve Araştırma",
+    "benefits/Equipment": "*A ya da B'yi seç:* (a) Disguise Kit, Fine Clothes, 10 GP; or (b) 50 GP"
+  },
+  "eberron-forge_house-orien-heir": {
+    "desc": "House Orien'in Mark of Passage damgasını taşıyorsun. Ailen Khorvaire boyunca insan ve yük taşır: yıldırım rayı ve kuryelerle. Mesafe senin için hep başkalarına olduğundan küçük bir sorun oldu.",
+    "benefits/Skill Proficiencies": "Akrobasi ve Atletizm",
+    "benefits/Equipment": "*A ya da B'yi seç:* (a) Cartographer's Tools, Fine Clothes, Map, Map or Scroll Case, 18 GP; or (b) 50 GP"
+  },
+  "eberron-forge_house-phiarlan-heir": {
+    "desc": "House Phiarlan'ın Mark of Shadow damgasını taşıyorsun. Ailen ünlü sanatçılardan oluşur ki bu, işin diğer yarısı için son derece kullanışlı bir paravandır.",
+    "benefits/Skill Proficiencies": "Aldatma ve Gizlilik",
+    "benefits/Equipment": "*A ya da B'yi seç:* (a) Disguise Kit, Fine Clothes, 10 GP; or (b) 50 GP"
+  },
+  "eberron-forge_house-sivis-heir": {
+    "desc": "House Sivis'in Mark of Scribing damgasını taşıyorsun. Ailen Khorvaire'in mesaj istasyonlarını ve noterliklerini işletir; sen doğru kaydedilmiş sözcüklerin bir tür güç olduğunu bilerek büyüdün.",
+    "benefits/Skill Proficiencies": "Tarih ve Algı",
+    "benefits/Equipment": "*A ya da B'yi seç:* (a) Calligrapher's Supplies, Fine Clothes, Ink, Ink Pen (5), Paper (30), Parchment (9), 8 GP; or (b) 50 GP"
+  },
+  "eberron-forge_house-tharashk-heir": {
+    "desc": "House Tharashk'ın Mark of Finding damgasını taşıyorsun. Madenciler, ödül avcıları ve araştırmacılar -- ailenin zanaatı, birilerinin kayıp kalmasını yeğlediği şeyleri bulmaktır.",
+    "benefits/Skill Proficiencies": "Algı ve Hayatta Kalma",
+    "benefits/Equipment": "*A ya da B'yi seç:* (a) Gaming Set, Climber's Kit, Fine Clothes, Hunting Trap, Manacles, 2 GP; or (b) 50 GP"
+  },
+  "eberron-forge_house-thuranni-heir": {
+    "desc": "House Thuranni'nin Mark of Shadow damgasını taşıyorsun. Soyun Phiarlan'dan kanla ayrıldı ve asıl meselenin gösteriler olduğunu pek de iddia etmedi.",
+    "benefits/Skill Proficiencies": "Sahne Sanatları ve Gizlilik",
+    "benefits/Equipment": "*A ya da B'yi seç:* (a) Musical Instrument, Costume, Fine Clothes, 13 GP; or (b) 50 GP"
+  },
+  "eberron-forge_house-vadalis-heir": {
+    "desc": "House Vadalis'in Mark of Handling damgasını taşıyorsun. Ailen hayvan yetiştirir ve onları magebred hale getirir; sana neredeyse kimseye güvenmeyen yaratıklar emanet edildi.",
+    "benefits/Skill Proficiencies": "Hayvan Terbiyesi ve Doğa",
+    "benefits/Equipment": "*A ya da B'yi seç:* (a) Herbalism Kit, Fine Clothes, Net, 29 GP; or (b) 50 GP"
+  },
+  "eberron-forge_inquisitive": {
+    "desc": "Geçimini iş çözerek sağlıyorsun. Kayıp insanlar, sahte evraklar, kilitli bir odadaki ceset -- herkesin yanından geçip gittiği şeyi fark etmeyi öğrendin.",
+    "benefits/Skill Proficiencies": "Sezgi ve Araştırma",
+    "benefits/Equipment": "*A ya da B'yi seç:* (a) Thieves' Tools, Bullseye Lantern, Crowbar, Oil (10), Traveler's Clothes, 10 GP; or (b) 50 GP"
+  },
+  "ravenloft-horrors_haunted-one": {
+    "desc": "Hayatının en kötü gecesinden peşine bir şey takıldı ve bir daha hiç gitmedi. Onunla birlikte işlevini sürdürmeyi öğrendin ki bu, ondan kurtulmakla aynı şey değil.",
+    "benefits/Skill Proficiencies": "Gizemli Bilgi ve Hayatta Kalma",
+    "benefits/Equipment": "*A ya da B'yi seç:* (a) Gaming Set (yukarıdakiyle aynı), Crowbar, Holy Water (1 flask), Mirror, Oil (2 flasks), Signal Whistle, Tinderbox, Traveler's Clothes, Torches, Waterskin, 14 GP; or (b) 50 GP"
+  },
+  "ravenloft-horrors_investigator": {
+    "desc": "Başkalarının kaza diye dosyaladığı şeylerin peşinden gidiyorsun. Not tutarsın, sormayı sürdürürsün ve hangi soruların insanları öldürttüğünü bilecek kadar uzun yaşadın.",
+    "benefits/Skill Proficiencies": "Sezgi ve Araştırma",
+    "benefits/Equipment": "*A ya da B'yi seç:* (a) Disguise Kit, Manacles, Shovel, Traveler's Clothes, Vials, 16 GP; or (b) 50 GP"
+  },
+  "ravenloft-horrors_mist-wanderer": {
+    "desc": "Mist insanları alır. Seni geri verdi -- hem de birden fazla kez -- ve bir noktada onların nasıl hareket ettiğini, nerede açıldığını anlamaya başladın.",
+    "benefits/Skill Proficiencies": "Hayatta Kalma ve Gizlilik",
+    "benefits/Equipment": "*A ya da B'yi seç:* (a) Artisan's Tools (yukarıdakiyle aynı), Lamp, Oil (5 flasks), Pouch, Rope, Tinderbox, Traveler's Clothes, 30 GP; or (b) 50 GP"
+  },
+  "ravenloft-horrors_spirit-medium": {
+    "desc": "Ölüler seninle konuşuyor, davet etsen de etmesen de. Dinlemekten bir disiplin, duyduklarını aktarmaktan bir geçim kaynağı çıkardın.",
+    "benefits/Skill Proficiencies": "Sezgi ve Din",
+    "benefits/Equipment": "*A ya da B'yi seç:* (a) Hançer, Gaming Set (yukarıdakiyle aynı), Basket, Bell, Candles, Ink, Ink Pen, Paper (5 sheets), Tinderbox, Traveler's Clothes, 32 GP; or (b) 50 GP"
+  },
+  "faerun-heroes_chondathan-freebooter": {
+    "desc": "Sword Coast ticaret yollarında birinin gemisinde çalıştın; bayrak işine geldiğinde değişiyordu. Yükü, limanları ve ne zaman güverteden atlanacağını bilirsin.",
+    "benefits/Skill Proficiencies": "Atletizm ve El Çabukluğu",
+    "benefits/Equipment": "*A ya da B'yi seç:* (A) Hançer, Weaver's Tools, Backpack, Ball Bearings, Basket, Bedroll, Bucket, Rations (3 days' worth), Rope, Signal Whistle, Traveler's Clothes, 38 GP; ya da (B) 50 GP"
+  },
+  "faerun-heroes_dead-magic-dweller": {
+    "desc": "Büyünün çalışmadığı bir yerde büyüdün. Dead-magic bölgesinde büyü bir çözüm değildir; sen de bir sorunu büyüsüz çözmenin bütün yollarını öğrendin.",
+    "benefits/Skill Proficiencies": "Tıp ve Hayatta Kalma",
+    "benefits/Equipment": "*A ya da B'yi seç:* (A) Büyük Sopa, Leatherworker's Tools, Bedroll, Blanket, Healer's Kit, Pole, Rations (3 days' worth), Tent, Tinderbox, Torches, Traveler's Clothes, Waterskin, 32 GP; ya da (B) 50 GP"
+  },
+  "faerun-heroes_dragon-cultist": {
+    "desc": "Ejderhalara tapan bir tarikatın içindeydin -- güçlerine, hazinelerine, vaat edilen dönüşlerine. Hâlâ inanıyor olsan da olmasan da, nasıl adam topladıklarını ve nasıl düşündüklerini bilirsin.",
+    "benefits/Skill Proficiencies": "Aldatma ve Gizlilik",
+    "benefits/Equipment": "*A ya da B'yi seç:* (A) Calligrapher's Supplies, Hançer, Glass Bottle, Lamp, Manacles, Oil (5 flasks), Pouches, Robe, Rope, 30 GP; ya da (B) 50 GP"
+  },
+  "faerun-heroes_emerald-enclave-caretaker": {
+    "desc": "Vahşiyle uygarın birbirine sürttüğü yerde hattı tutan Emerald Enclave'e hizmet ediyorsun. İşin dengedir ve denge iki tarafta da pek sevilmez.",
+    "benefits/Skill Proficiencies": "Doğa ve Hayatta Kalma",
+    "benefits/Equipment": "*A ya da B'yi seç:* (A) Kısa Yay, Arrows (20), Herbalism Kit, Bedroll, Blanket, Pouch, Tent, Traveler's Clothes, 13 GP; ya da (B) 50 GP"
+  },
+  "faerun-heroes_flaming-fist-mercenary": {
+    "desc": "Baldur's Gate'in Flaming Yumruk renklerini taşıdın: kısmen şehir muhafızı, kısmen düzenli ordu, kısmen paralı asker bölüğü -- o mevsim kimin ödediğine bağlı olarak.",
+    "benefits/Skill Proficiencies": "Yıldırma ve Algı",
+    "benefits/Equipment": "*A ya da B'yi seç:* (A) Topuz, Smith's Tools, Fine Clothes, Manacles, Portable Ram, 4 GP; ya da (B) 50 GP"
+  },
+  "faerun-heroes_genie-touched": {
+    "desc": "Bir genie'nin pazarlığı, lütfu ya da kini hayatına yazılmış. Elemental güç sana yanıt veriyor; eninde sonunda onu verenin de vereceği gibi.",
+    "benefits/Skill Proficiencies": "Algı ve İkna",
+    "benefits/Equipment": "*A ya da B'yi seç:* (A) Hafif Çekiç, Glassblower's Tools, Fine Clothes, Lamp, Oil (3 flasks), Waterskin, 2 GP; ya da (B) 50 GP"
+  },
+  "faerun-heroes_harper": {
+    "desc": "Harper'lara katıldın: tiranlığa, bir şeyleri önce öğrenerek karşı çıkan dağınık ve bilerek küçük tutulmuş bir ağ. Ne sancak var ne kale -- yalnızca bir iğne ve güvenebileceğin insanlar.",
+    "benefits/Skill Proficiencies": "Sahne Sanatları ve El Çabukluğu",
+    "benefits/Equipment": "*A ya da B'yi seç:* (A) Disguise Kit, Bedroll, Costume, Grappling Hook, Rope, Traveler's Clothes, 14 GP; ya da (B) 50 GP"
+  },
+  "faerun-heroes_ice-fisher": {
+    "desc": "Kuzey'de donmuş suyun üstünde geçindin. Sabır, soğuk ve buzun buz olmaktan çıkmadan önce ne kadar ağırlık taşıyacağına dair çok hassas bir sezgi.",
+    "benefits/Skill Proficiencies": "Hayvan Terbiyesi ve Atletizm",
+    "benefits/Equipment": "*A ya da B'yi seç:* (A) Woodcarver's Tools, Basket, Block and Tackle, Zincir, Hunting Trap, Net, Pole, Rations (3 days' worth), Traveler's Clothes, 32 GP; ya da (B) 50 GP"
+  },
+  "faerun-heroes_knight-of-the-gauntlet": {
+    "desc": "Order of the Gauntlet'e yemin ettin: kötülüğü kökünden söküp at, bunu açıkça yap ve sonra hesabını ver. Tarikat küçük, dürüst ve her zaman temkinli değil.",
+    "benefits/Skill Proficiencies": "Atletizm ve Tıp",
+    "benefits/Equipment": "*A ya da B'yi seç:* (A) Mızrak, Smith's Tools, Bullseye Lantern, Holy Symbol, Manacles, Oil (5 flasks), Tinderbox, Traveler's Clothes, 9 GP; ya da (B) 50 GP"
+  },
+  "faerun-heroes_lords-alliance-vassal": {
+    "desc": "Kuzey'in parça parça yutulmasını engelleyen şehir devletleri paktı Lords' Alliance'a hizmet ettin. Diplomasi, para ve asker -- hangisi işe yararsa o sırayla.",
+    "benefits/Skill Proficiencies": "Sezgi ve İkna",
+    "benefits/Equipment": "*A ya da B'yi seç:* (A) Javelins, Calligrapher's Supplies, Fine Clothes, Ink, Ink Pen (5), Parchment (9 sheets), 13 GP; ya da (B) 50 GP"
+  },
+  "faerun-heroes_moonwell-pilgrim": {
+    "desc": "Kuzey'in moonwell'lerini, tanrıçanın ışığının suya değdiği kutsal havuzları dolaştın. Hac yolculuğu hem inancını hem yapabildiklerini değiştirdi.",
+    "benefits/Skill Proficiencies": "Doğa ve Sahne Sanatları",
+    "benefits/Equipment": "*A ya da B'yi seç:* (A) Quarterstaff, Painter's Supplies, Bedroll, Bell, Pouch, Robe, String, Traveler's Clothes, Waterskin, 38 GP; ya da (B) 50 GP"
+  },
+  "faerun-heroes_mulhorandi-tomb-raider": {
+    "desc": "Mulhorand'da, tanrı-kralların hâlâ sadık muhafızlarıyla gömüldüğü mezarları açtın. Hayatta olmanın sebebi, bir mührü bir uyarıdan ayırmayı öğrenmiş olman.",
+    "benefits/Skill Proficiencies": "Araştırma ve Din",
+    "benefits/Equipment": "*A ya da B'yi seç:* (A) Hançer, Hafif Çekiç, Mason's Tools, Backpack, Bedroll, Crowbar, Ladder, Pole, Pouches, Rope, String, Tinderbox, Torches, Traveler's Clothes, Waterskin 26 GP; ya da (B) 50 GP"
+  },
+  "faerun-heroes_mythalkeeper": {
+    "desc": "Bir mythal'e bakmak üzere eğitildin -- koca şehirleri dokusunda tutan devasa Elf wardlarından biri. İş narin, kadim ve büyük ölçüde hiçbir şeyi kırmamak meselesi.",
+    "benefits/Skill Proficiencies": "Gizemli Bilgi ve Tarih",
+    "benefits/Equipment": "*A ya da B'yi seç:* (A) Quarterstaff, Jeweler's Tools, Perfume, Pouch, Robe, Shovel, String, Waterskin, 16 GP; ya da (B) 50 GP"
+  },
+  "faerun-heroes_purple-dragon-squire": {
+    "desc": "Cormyr'e, Purple ejderha şövalyelerinin silahtarı olarak hizmet ettin. Talim, görev ve tacın kanunu -- hepsi erkenden çakıldı.",
+    "benefits/Skill Proficiencies": "Hayvan Terbiyesi ve Sezgi",
+    "benefits/Equipment": "*A ya da B'yi seç:* (A) Mızrak, Navigator's Tools, Fine Clothes, 9 GP; ya da (B) 50 GP"
+  },
+  "faerun-heroes_rashemi-wanderer": {
+    "desc": "Ruhların, cadıların ve berserker localarının diyarı Rashemen'den ayrıldın ve oranın adetlerini onları paylaşmayan bir dünyaya taşıdın.",
+    "benefits/Skill Proficiencies": "Yıldırma ve Algı",
+    "benefits/Equipment": "*A ya da B'yi seç:* (A) Cartographer's Tools, Backpack, Bedroll, Hooded Lantern, Oil (3 flasks), Rope, Tinderbox, Traveler's Clothes, Waterskin, 23 GP; ya da (B) 50 GP"
+  },
+  "faerun-heroes_shadowmasters-exile": {
+    "desc": "Amn'in Shadow Thieves'ine aittin, artık değilsin. Lonca buna genelde izin vermez ki bu da nasıl ayrıldığın hakkında bir fikir verir.",
+    "benefits/Skill Proficiencies": "Akrobasi ve Gizlilik",
+    "benefits/Equipment": "*A ya da B'yi seç:* (A) Daggers, Thieves' Tools, Caltrops, Costume, Grappling Hook, Iron Spikes, Mirror, Pouches, Rope, Traveler's Clothes, 3 GP; ya da (B) 50 GP"
+  },
+  "faerun-heroes_spellfire-initiate": {
+    "desc": "İçinde ham spellfire akıyor -- büyünün biçimlenmemiş hali; iyileştirebilir de etraftaki her şeyi yakabilir de. Bunu bilen her hizip ona sahip olmak istiyor.",
+    "benefits/Skill Proficiencies": "Gizemli Bilgi ve Algı",
+    "benefits/Equipment": "*A ya da B'yi seç:* (A) Gaming Set (yukarıdakiyle aynı), Arcane Focus (Crystal or Wand), Pouches, Traveler's Clothes, 36 GP; ya da (B) 50 GP"
+  },
+  "faerun-heroes_zhentarim-mercenary": {
+    "desc": "Black Network'ün parasını aldın. Zhentarim seni silahlandırır, eğitir ve sana iş verir; karşılığında istedikleri şey koz ve onu tahsil etmekte sabırlılar.",
+    "benefits/Skill Proficiencies": "Yıldırma ve Algı",
+    "benefits/Equipment": "*A ya da B'yi seç:* (A) Sopa, Hançer, Forgery Kit, Fine Clothes, Hooded Lantern, Oil (3 flasks), Pouches, String, Tinderbox, 11 GP; ya da (B) 50 GP"
+  }
+}

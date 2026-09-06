@@ -1,0 +1,481 @@
+{
+  "_comment": "Turkish translation of the shipped feats bundle. Display-time overlay loaded by lib/data/content_tr.dart; the database keeps the English text because the rules parsers read it. Game terms (AC, DC, Hit Points, spell/class/item names, condition names) stay in English on purpose. Entries that are not listed here are shown in English.",
+  "srd-2024_ability-score-improvement": {
+    "benefits/0": "Seçtiğin bir ability score'u 2 ya da seçtiğin iki ability score'u 1'er artır. Bu feat bir ability score'u 20'nin üzerine çıkaramaz.",
+    "benefits/1": "Bu feat'i birden fazla kez alabilirsin."
+  },
+  "srd-2024_alert": {
+    "desc": "Şu faydaları kazanırsın.",
+    "benefits/0": "İnisiyatif attığında atışa Yeterlilik Bonusunu ekleyebilirsin.",
+    "benefits/1": "İnisiyatif attıktan hemen sonra, İnisiyatifini aynı çatışmadaki istekli bir müttefikinkiyle takas edebilirsin. Sen ya da müttefikin aciz durumdaysa bu takası yapamazsın."
+  },
+  "srd-2024_archery": {
+    "benefits/0": "Ranged silahlarla yaptığın saldırı zarlarına +2 bonus alırsın."
+  },
+  "srd-2024_boon-of-combat-prowess": {
+    "desc": "Şu faydaları kazanırsın.",
+    "benefits/0": "Seçtiğin bir ability score'u 1 artır (en fazla 30'a kadar).",
+    "benefits/1": "Bir saldırı zarında ıskaladığında, bunun yerine isabet ettirebilirsin. Bu faydayı kullandıktan sonra bir sonraki sıranın başına kadar tekrar kullanamazsın."
+  },
+  "srd-2024_boon-of-dimensional-travel": {
+    "desc": "Şu faydaları kazanırsın.",
+    "benefits/0": "Seçtiğin bir ability score'u 1 artır (en fazla 30'a kadar).",
+    "benefits/1": "Attack eylemini ya da Magic eylemini aldıktan hemen sonra, görebildiğin boş bir alana 30 feet'e kadar ışınlanabilirsin."
+  },
+  "srd-2024_boon-of-fate": {
+    "desc": "Şu faydaları kazanırsın.",
+    "benefits/0": "Seçtiğin bir ability score'u 1 artır (en fazla 30'a kadar).",
+    "benefits/1": "Sen ya da 60 feet içindeki başka bir yaratık bir D20 Testinde başarılı veya başarısız olduğunda, 2d4 atıp toplamı o d20 atışına bonus ya da ceza olarak uygulayabilirsin. Bu faydayı kullandıktan sonra İnisiyatif atana ya da Short veya Uzun Dinlenme tamamlayana kadar tekrar kullanamazsın."
+  },
+  "srd-2024_boon-of-irresistible-offense": {
+    "desc": "Şu faydaları kazanırsın.",
+    "benefits/0": "Seçtiğin bir ability score'u 1 artır (en fazla 30'a kadar).",
+    "benefits/1": "Verdiğin ezici, delici ve kesici hasar daima direnci yok sayar.",
+    "benefits/2": "Bir saldırı zarın d20'sinde 20 attığında, hedefe bu feat'in artırdığı ability score kadar ek hasar verebilirsin. Ek hasarın tipi saldırının tipiyle aynıdır."
+  },
+  "srd-2024_boon-of-spell-recall": {
+    "desc": "Şu faydaları kazanırsın.",
+    "benefits/0": "Seçtiğin bir ability score'u 1 artır (en fazla 30'a kadar).",
+    "benefits/1": "1-4. seviye bir spell slot ile büyü kullandığında 1d4 at. Attığın sayı slot'un seviyesiyle aynıysa slot harcanmaz."
+  },
+  "srd-2024_boon-of-the-night-spirit": {
+    "desc": "Şu faydaları kazanırsın.",
+    "benefits/0": "Seçtiğin bir ability score'u 1 artır (en fazla 30'a kadar).",
+    "benefits/1": "Loş ışık ya da Darkness içindeyken Bonus Eylem olarak kendine görünmez durumunu verebilirsin. Bir eylem, Bonus Eylem ya da Tepki aldığın anda durum üzerinden kalkar.",
+    "benefits/2": "Loş ışık ya da Darkness içindeyken zihinsel ve ışıma dışındaki bütün hasarlara karşı direncin var."
+  },
+  "srd-2024_boon-of-truesight": {
+    "desc": "Şu faydaları kazanırsın.",
+    "benefits/0": "Seçtiğin bir ability score'u 1 artır (en fazla 30'a kadar).",
+    "benefits/1": "60 feet menzilinde gerçek görüşün var."
+  },
+  "srd-2024_defense": {
+    "benefits/0": "Light, Orta ya da Heavy zırh giydiğin sürece ACına +1 bonus alırsın."
+  },
+  "srd-2024_grappler": {
+    "desc": "Şu faydaları kazanırsın.",
+    "benefits/0": "Güç ya da Çeviklik değerini 1 artır (en fazla 20'ye kadar).",
+    "benefits/1": "Sıranda Attack eyleminin parçası olarak bir yaratığa Silahsız Vuruş ile isabet ettiğinde, hem Damage hem Grapple seçeneğini kullanabilirsin. Bu faydayı her sırada yalnızca bir kez kullanabilirsin.",
+    "benefits/2": "Senin tarafından kavranmış olan bir yaratığa karşı saldırı zarlarında avantajlısın.",
+    "benefits/3": "Senin tarafından kavranmış olan bir yaratık seninle aynı boyutta ya da daha küçükse, onu hareket ettirmek için fazladan hareket harcaman gerekmez."
+  },
+  "srd-2024_great-weapon-fighting": {
+    "benefits/0": "İki elle tuttuğun bir Melee silahla yaptığın saldırının hasarını atarken, hasar zarındaki her 1 ya da 2'yi 3 sayabilirsin. Bu faydayı almak için silahın Two-Handed ya da Versatile özelliğine sahip olması gerekir."
+  },
+  "srd-2024_magic-initiate": {
+    "desc": "Şu faydaları kazanırsın.",
+    "benefits/0": "Cleric, Druid ya da Wizard büyü listesinden seçtiğin iki cantrip öğrenirsin. Bu feat'in büyüleri için spellcasting yeteneğin Zekâ, Bilgelik ya da Karizmadır (feat'i seçerken belirlersin).",
+    "benefits/1": "Ufak Büyüleri seçtiğin listeden 1. seviye bir büyü seç. O büyü daima hazırdır. Büyü slot harcamadan bir kez kullanabilir, bu hakkını Uzun Dinlenme tamamladığında geri kazanırsın. İstersen spell slot'larınla da kullanabilirsin.",
+    "benefits/2": "Her yeni seviye kazandığında, bu feat için seçtiğin büyülerden birini aynı listeden aynı seviyede başka bir büyüyle değiştirebilirsin.",
+    "benefits/3": "Bu feat'i birden fazla kez alabilirsin, ama her seferinde farklı bir büyü listesi seçmelisin."
+  },
+  "srd-2024_savage-attacker": {
+    "benefits/0": "Özellikle yıkıcı vuruşlar yapmak üzere eğitildin. Bir hedefe silahla isabet ettiğinde, her sırada bir kez silahın hasar zarlarını iki kez atıp istediğin sonucu hedefe uygulayabilirsin."
+  },
+  "srd-2024_skilled": {
+    "benefits/0": "Seçtiğin üç beceri ya da alette (istediğin bileşimde) proficiency kazanırsın.",
+    "benefits/1": "Bu feat'i birden fazla kez alabilirsin."
+  },
+  "srd-2024_two-weapon-fighting": {
+    "benefits/0": "Light özelliğine sahip bir silah kullandığın için ek saldırı yaptığında, ability modifiyerini o saldırının hasarına zaten eklemiyorsan ekleyebilirsin."
+  },
+  "xphb-actor": {
+    "desc": "Şu faydaları kazanırsın. Gerçek ya da kurgusal bir kişi kılığındayken, başkalarını o kişi olduğuna ikna etmek için yaptığın Karizma (Aldatma ya da Sahne Sanatları) kontrollerinde avantajlısın. Konuşma dahil diğer yaratıkların seslerini taklit edebilirsin. Taklidi duyan bir yaratığın etkinin sahte olduğunu anlaması için Bilgelik (Sezgi) kontrolünde başarılı olması gerekir (8 + Karizma modifiyerin + Yeterlilik Bonusun)."
+  },
+  "xphb-athlete": {
+    "desc": "Şu faydaları kazanırsın. Hızına eşit bir tırmanma hızı kazanırsın. Yere serilmiş durumdayken yalnızca 5 feet hareketle doğrulabilirsin. Yalnızca 5 feet hareket ettikten sonra koşarak Long Jump ya da High Jump yapabilirsin."
+  },
+  "xphb-blessed-warrior": {
+    "desc": "Seçtiğin iki Cleric cantrip'ini öğrenirsin. Guidance ve Sacred Flame önerilir. Seçtiğin cantrip'ler senin için Paladin büyüsü sayılır ve onlar için spellcasting yeteneğin Karizmadır. Her Paladin seviyesi kazandığında bu cantrip'lerden birini başka bir Cleric cantrip'iyle değiştirebilirsin."
+  },
+  "xphb-blind-fighting": {
+    "desc": "10 feet menzilinde kör görüşün var."
+  },
+  "xphb-boon-of-energy-resistance": {
+    "desc": "Şu faydaları kazanırsın. Şu hasar tiplerinden seçtiğin ikisine karşı direnç kazanırsın: Asit, soğuk, ateş, yıldırım, nekrotik, zehir, zihinsel, ışıma ya da gürleme. Her Uzun Dinlenme tamamladığında seçimlerini değiştirebilirsin. Energy Resistances faydası için seçtiğin tiplerden birinde hasar aldığında, Tepki harcayıp aynı tipteki hasarı 60 feet içinde görebildiğin, Cover arkasında olmayan başka bir yaratığa yönlendirebilirsin. Bunu yaparsan o yaratık Çeviklik kurtarma zarında başarılı olmalı (8 + Dayanıklılık modifiyerin + Yeterlilik Bonusun), yoksa 2d12 + Dayanıklılık modifiyerin kadar hasar alır."
+  },
+  "xphb-boon-of-fortitude": {
+    "desc": "Şu faydaları kazanırsın. Can maksimumun 40 artar. Ayrıca can geri kazandığın her seferde, Dayanıklılık modifiyerin kadar ek can geri kazanabilirsin. Bu ek canları bir kez geri kazandıktan sonra, bir sonraki sıranın başına kadar tekrar kazanamazsın."
+  },
+  "xphb-boon-of-recovery": {
+    "desc": "Şu faydaları kazanırsın. 0 cana düşürüleceğin zaman, bunun yerine 1 canda kalıp can maksimumunun yarısı kadar can geri kazanabilirsin. Bu faydayı kullandıktan sonra Uzun Dinlenme tamamlayana kadar tekrar kullanamazsın. Ayrıca on d10'luk bir havuzun var. Bonus Eylem olarak havuzdan zar harcayıp atabilir ve toplam sonuç kadar can geri kazanabilirsin. Harcadığın zarların hepsini Uzun Dinlenme tamamladığında geri kazanırsın."
+  },
+  "xphb-boon-of-skill": {
+    "desc": "Şu faydaları kazanırsın. Bütün becerilerde proficiency kazanırsın. Ardından Expertise'in olmayan bir beceri seç; o beceride Expertise kazanırsın."
+  },
+  "xphb-boon-of-speed": {
+    "desc": "Şu faydaları kazanırsın. Bonus Eylem olarak Disengage eylemini alabilirsin; bu aynı zamanda üzerindeki kavranmış durumunu da sona erdirir. Hızın 30 feet artar."
+  },
+  "xphb-charger": {
+    "desc": "Şu faydaları kazanırsın. Dash eylemini aldığında, o eylem için hızın 10 feet artar. Attack eyleminin parçası olarak bir hedefe melee saldırı zarı ile isabet etmeden hemen önce ona doğru düz bir hatta en az 10 feet hareket ettiysen, şu etkilerden birini seç: saldırının hasar atışına 1d8 bonus, ya da hedef senden en fazla bir boyut büyükse onu 10 feet'e kadar itmek. Bu faydayı her sırada yalnızca bir kez kullanabilirsin."
+  },
+  "xphb-chef": {
+    "desc": "Şu faydaları kazanırsın. Zaten yoksa Cook's Utensils proficiency'si kazanırsın. Malzemen ve Cook's Utensils'ın varsa, Kısa Dinlenmen parçası olarak özel bir yemek pişirebilirsin. Bu yemekten 4 + Yeterlilik Bonusun kadar yaratığa yetecek kadar hazırlayabilirsin. Kısa Dinlenmen sonunda, yemekten yiyip can geri kazanmak için bir ya da daha fazla Can Zarı harcayan her yaratık fazladan 1d8 can geri kazanır. 1 saatlik çalışmayla ya da Uzun Dinlenme tamamladığında -- malzemen ve Cook's Utensils'ın varsa -- Yeterlilik Bonusun kadar atıştırmalık yapabilirsin. Bu özel atıştırmalıklar yapıldıktan sonra 8 saat dayanır. Bir yaratık Bonus Eylem harcayıp birini yiyerek Yeterlilik Bonusun kadar geçici can kazanabilir."
+  },
+  "xphb-crafter": {
+    "desc": "Şu faydaları kazanırsın. Fast Crafting tablosundan seçtiğin üç farklı Artisan's Tools ile proficiency kazanırsın. Büyülü olmayan bir eşya satın aldığında yüzde 20 indirim alırsın. Uzun Dinlenme tamamladığında, o eşyaya karşılık gelen Artisan's Tools'a sahipsen ve o aletlerde proficiency'n varsa, Fast Crafting tablosundan bir teçhizat üretebilirsin. Eşya, bir sonraki Uzun Dinlenmesi tamamlayana kadar dayanır; o noktada dağılır."
+  },
+  "xphb-crossbow-expert": {
+    "desc": "Şu faydaları kazanırsın. El Arbaleti, Ağır Arbalet ve Hafif Arbaledin (bu feat'te hepsine crossbow deniyor) Loading özelliğini yok sayarsın. Bunlardan birini tutuyorsan, boş bir elin olmasa bile içine mermi sürebilirsin. Bir düşmanın 5 feet yakınında olmak, crossbow'larla yaptığın saldırı zarlarına dezavantaj getirmez. Light özelliğinin verdiği ek saldırıyı yaptığında, o saldırı Light özelliğine sahip bir crossbow ile yapılıyorsa ve modifiyeri zaten eklemiyorsan, ability modifiyerini ek saldırının hasarına ekleyebilirsin."
+  },
+  "xphb-crusher": {
+    "desc": "Şu faydaları kazanırsın. Her sırada bir kez, bir yaratığa ezici hasar veren bir saldırıyla isabet ettiğinde, hedef senden en fazla bir boyut büyükse onu boş bir alana 5 feet hareket ettirebilirsin. Bir yaratığa ezici hasar veren bir Kritik Vuruş yaptığında, bir sonraki sıranın başına kadar o yaratığa karşı yapılan saldırı zarları avantajlı olur."
+  },
+  "xphb-defensive-duelist": {
+    "desc": "Şu faydaları kazanırsın. Finesse bir silah tutuyorken başka bir yaratık sana melee saldırıyla isabet ederse, Tepki harcayıp Yeterlilik Bonusunu ACına ekleyebilirsin; bu saldırının ıskalamasına yol açabilir. Bu AC bonusunu melee saldırılara karşı bir sonraki sıranın başına kadar korursun."
+  },
+  "xphb-druidic-warrior": {
+    "desc": "Seçtiğin iki Druid cantrip'ini öğrenirsin. Guidance ve Starry Wisp önerilir. Seçtiğin cantrip'ler senin için Ranger büyüsü sayılır ve onlar için spellcasting yeteneğin Bilgeliktir. Her Ranger seviyesi kazandığında bu cantrip'lerden birini başka bir Druid cantrip'iyle değiştirebilirsin."
+  },
+  "xphb-dual-wielder": {
+    "desc": "Şu faydaları kazanırsın. Sıranda Attack eylemini alıp Light özelliğine sahip bir silahla saldırdığında, aynı sıranın ilerleyen kısmında Bonus Eylem olarak farklı bir silahla bir ek saldırı yapabilirsin; o silah Two-Handed özelliği olmayan bir Melee silah olmalıdır. Modifier'ın negatif değilse ability modifiyerini ek saldırının hasarına eklemezsin. Normalde yalnızca bir silah çekebileceğin ya da kaldırabileceğin durumlarda, Two-Handed özelliği olmayan iki silahı çekebilir ya da kaldırabilirsin."
+  },
+  "xphb-dueling": {
+    "desc": "Tek elinde bir Melee silah tutuyor ve başka silah taşımıyorken, o silahla yaptığın hasar atışlarına +2 bonus alırsın."
+  },
+  "xphb-durable": {
+    "desc": "Şu faydaları kazanırsın. Ölüm Kurtarma Zarlarında avantajlısın. Bonus Eylem olarak can Dice'larından birini harcayıp atabilir ve sonuç kadar can geri kazanabilirsin."
+  },
+  "xphb-elemental-adept": {
+    "desc": "Şu faydaları kazanırsın. Şu hasar tiplerinden birini seç: Asit, soğuk, ateş, yıldırım ya da gürleme. Kullandığın büyüler seçtiğin tipe karşı direnci yok sayar. Ayrıca o tipte hasar veren bir büyünün hasarını atarken hasar zarındaki her 1'i 2 sayabilirsin. Bu feat'i birden fazla kez alabilirsin, ama Energy Mastery için her seferinde farklı bir hasar tipi seçmelisin."
+  },
+  "xphb-fey-touched": {
+    "desc": "Feywild büyüsüne maruz kalman sana şu faydaları verir. Kehanet ya da Büyüleme okulundan 1. seviye bir büyü seç. O büyü ve Sisli Adım büyüsü daima hazırdır. Her ikisini de spell slot harcamadan kullanabilirsin. Bir büyüyü bu şekilde kullandıktan sonra Uzun Dinlenme tamamlayana kadar o büyüyü tekrar bu şekilde kullanamazsın. İstersen uygun seviyedeki spell slot'larınla da kullanabilirsin. Büyülerin spellcasting yeteneği, bu feat'in artırdığı yetenektir."
+  },
+  "xphb-great-weapon-master": {
+    "desc": "Şu faydaları kazanırsın. Sıranda Attack eyleminin parçası olarak Heavy özelliğine sahip bir silahla bir yaratığa isabet ettiğinde, silahın hedefe ek hasar vermesini sağlayabilirsin. Ek hasar Yeterlilik Bonusuna eşittir. Bir Melee silahla Kritik Vuruş yaptıktan ya da onunla bir yaratığı 0 cana düşürdükten hemen sonra, Bonus Eylem olarak aynı silahla bir saldırı yapabilirsin."
+  },
+  "xphb-healer": {
+    "desc": "Şu faydaları kazanırsın. Healer's Kit'in varsa, Kullanma eylemi olarak bir kullanımını harcayıp 5 feet içindeki bir yaratığa müdahale edebilirsin. O yaratık can Dice'larından birini harcar, sen de o zarı atarsın. Yaratık, sonuç + Yeterlilik Bonusun kadar can geri kazanır. Bir büyüyle ya da bu feat'in Battle Medic faydasıyla geri verdiğin canı belirlemek için zar attığında, zar 1 gelirse yeniden atabilirsin ve yeni sonucu kullanmak zorundasın."
+  },
+  "xphb-heavily-armored": {
+    "desc": "Şu faydaları kazanırsın. Heavy zırh eğitimi kazanırsın."
+  },
+  "xphb-heavy-armor-master": {
+    "desc": "Şu faydaları kazanırsın. Heavy zırh giyerken bir saldırı sana isabet ettiğinde, o saldırının verdiği ezici, delici ve kesici hasar Yeterlilik Bonusun kadar azalır."
+  },
+  "xphb-inspiring-leader": {
+    "desc": "Şu faydaları kazanırsın. Kısa Dinlenme ya da Uzun Dinlenme tamamladığında ilham veren bir gösteri yapabilirsin: bir konuşma, şarkı ya da dans. Bunu yaptığında, gösteriye tanık olan ve 30 feet içinde bulunan en fazla altı müttefik seç (kendin de dahil olabilirsin). Seçilen yaratıkların her biri, karakter seviyen + bu feat'le artırdığın yeteneğin modifiyeri kadar geçici can kazanır."
+  },
+  "xphb-interception": {
+    "desc": "Görebildiğin bir yaratık, 5 feet yakınındaki başka bir yaratığa saldırı zarı ile isabet ettiğinde, Tepki harcayıp hedefe verilen hasarı 1d10 + Yeterlilik Bonusun kadar azaltabilirsin. Bu Tepkisi kullanmak için elinde bir Shield ya da bir Simple veya Martial silah tutuyor olmalısın."
+  },
+  "xphb-keen-mind": {
+    "desc": "Şu faydaları kazanırsın. Şu becerilerden birini seç: Gizemli Bilgi, Tarih, Araştırma, Doğa ya da Din. Seçtiğin beceride proficiency'n yoksa proficiency kazanırsın; zaten varsa Expertise kazanırsın. Ayrıca Study eylemini Bonus Eylem olarak alabilirsin."
+  },
+  "xphb-lightly-armored": {
+    "desc": "Şu faydaları kazanırsın. Light zırh ve Shield eğitimi kazanırsın."
+  },
+  "xphb-lucky": {
+    "desc": "Şu faydaları kazanırsın. Yeterlilik Bonusun kadar Luck Point'in olur ve bunları aşağıdaki faydalara harcayabilirsin. Harcadığın Luck Point'leri Uzun Dinlenme tamamladığında geri kazanırsın. Bir D20 Testi için d20 attığında, 1 Luck Point harcayıp kendine o atışta avantaj verebilirsin. Bir yaratık sana karşı saldırı zarı için d20 attığında, 1 Luck Point harcayıp o atışa dezavantaj getirebilirsin."
+  },
+  "xphb-mage-slayer": {
+    "desc": "Şu faydaları kazanırsın. Bir büyüye Konsantrasyon eden bir yaratığa hasar verdiğinde, o yaratık Konsantrasyonu sürdürmek için yaptığı kurtarma zarında dezavantajlı olur. Bir Zekâ, Bilgelik ya da Karizma kurtarma zarında başarısız olursan, bunun yerine başarılı sayabilirsin. Bu faydayı kullandıktan sonra Kısa Dinlenme ya da Uzun Dinlenme tamamlayana kadar tekrar kullanamazsın."
+  },
+  "xphb-martial-weapon-training": {
+    "desc": "Şu faydaları kazanırsın. Martial silahlarda proficiency kazanırsın."
+  },
+  "xphb-medium-armor-master": {
+    "desc": "Şu faydaları kazanırsın. Orta zırh giyerken, Çeviklik değerin 16 ya da daha yüksekse AC'ne 2 yerine 3 ekleyebilirsin."
+  },
+  "xphb-moderately-armored": {
+    "desc": "Şu faydaları kazanırsın. Orta zırh eğitimi kazanırsın."
+  },
+  "xphb-mounted-combatant": {
+    "desc": "Şu faydaları kazanırsın. Ata binmişken, bineğinin 5 feet yakınındaki ve bineğinden en az bir boyut küçük olan, ata binmemiş her yaratığa karşı saldırı zarlarında avantajlısın. Bineğin, yalnızca yarım hasar almak için Çeviklik kurtarma zarı yapmasına izin veren bir etkiye maruz kalırsa, bunun yerine kurtarma zarında başarılı olursa hiç hasar almaz, başarısız olursa yarım hasar alır. Bineğinin bu faydayı alması için ona biniyor olman ve ikinizin de aciz durumda olmaması gerekir. Ata binmişken, aciz durumda değilsen, bineğine isabet eden bir saldırının onun yerine sana isabet etmesini sağlayabilirsin."
+  },
+  "xphb-musician": {
+    "desc": "Şu faydaları kazanırsın. Seçtiğin üç Musical Instrument ile proficiency kazanırsın. Kısa Dinlenme ya da Uzun Dinlenme tamamlarken, proficiency'n olan bir Musical Instrument ile bir parça çalıp şarkıyı duyan müttefiklere Heroic Inspiration verebilirsin. Bu şekilde etkileyebileceğin müttefik sayısı Yeterlilik Bonusuna eşittir."
+  },
+  "xphb-observant": {
+    "desc": "Şu faydaları kazanırsın. Şu becerilerden birini seç: Sezgi, Araştırma ya da Algı. Seçtiğin beceride proficiency'n yoksa proficiency kazanırsın; zaten varsa Expertise kazanırsın. Ayrıca Search eylemini Bonus Eylem olarak alabilirsin."
+  },
+  "xphb-piercer": {
+    "desc": "Şu faydaları kazanırsın. Her sırada bir kez, bir yaratığa delici hasar veren bir saldırıyla isabet ettiğinde, saldırının hasar zarlarından birini yeniden atabilirsin ve yeni sonucu kullanmak zorundasın. Bir yaratığa delici hasar veren bir Kritik Vuruş yaptığında, hedefin aldığı ek delici hasar belirlerken bir hasar zarı daha atabilirsin."
+  },
+  "xphb-poisoner": {
+    "desc": "Şu faydaları kazanırsın. Zehir hasarı veren bir hasar atışı yaptığında, bu atış zehir hasarına karşı direnci yok sayar. Poisoner's Kit ile proficiency kazanırsın. Böyle bir kitle 1 saat çalışıp 50 GP değerinde malzeme harcayarak Yeterlilik Bonusun kadar zehir dozu üretebilirsin. Bonus Eylem olarak bir zehir dozunu bir silaha ya da mermiye sürebilirsin. Sürüldükten sonra zehir 1 dakika boyunca ya da zehirli eşyayla hasar verene kadar -- hangisi kısaysa -- etkisini korur. Zehirli eşyadan hasar alan bir yaratık Dayanıklılık kurtarma zarında başarılı olmalı (8 + bu feat'in artırdığı yeteneğin modifiyeri + Yeterlilik Bonusun), yoksa 2d8 zehir hasar alır ve bir sonraki sıranın sonuna kadar zehirlenmiş duruma düşer."
+  },
+  "xphb-polearm-master": {
+    "desc": "Şu faydaları kazanırsın. Attack eylemini alıp bir Quarterstaff, Mızrak ya da Heavy ve Reach özelliklerine sahip bir silahla saldırdıktan hemen sonra, Bonus Eylem harcayıp silahın diğer ucuyla bir melee saldırı yapabilirsin. Bu saldırı ezici hasar verir ve silahın hasar zarı bu saldırı için d4'tür. Elinde bir Quarterstaff, Mızrak ya da Heavy ve Reach özelliklerine sahip bir silah tutarken, o silahla eriştiğin menzile giren bir yaratığa Tepki harcayıp bir melee saldırı yapabilirsin."
+  },
+  "xphb-protection": {
+    "desc": "Görebildiğin bir yaratık, 5 feet yakınındaki senden başka bir hedefe saldırdığında, elinde bir Shield tutuyorsan Tepki harcayıp kalkanını araya sokabilirsin. Tetikleyen saldırı zarına ve -- hedefin 5 feet yakınında kaldığın sürece -- bir sonraki sıranın başına kadar o hedefe karşı yapılan diğer bütün saldırı zarlarına dezavantaj getirirsin."
+  },
+  "xphb-resilient": {
+    "desc": "Şu faydaları kazanırsın. Seçtiğin yetenekte kurtarma zarı proficiency'si kazanırsın."
+  },
+  "xphb-ritual-caster": {
+    "desc": "Şu faydaları kazanırsın. Ritual etiketi olan, Yeterlilik Bonusun kadar 1. seviye büyü seç. O büyüler daima hazırdır ve onları sahip olduğun herhangi bir spell slot ile kullanabilirsin. Büyülerin spellcasting yeteneği, bu feat'in artırdığı yetenektir. Sonrasında Yeterlilik Bonusun her arttığında, bu özellikle daima hazır tuttuğun büyülere Ritual etiketli 1. seviye bir büyü daha ekleyebilirsin. Bu faydayla, hazır tuttuğun bir Ritual büyüsünü Ritual'ın uzatılmış süresi yerine normal casting time'ıyla kullanabilirsin. Böyle yapmak spell slot gerektirmez. Büyüyü bu şekilde kullandıktan sonra Uzun Dinlenme tamamlayana kadar bu faydayı tekrar kullanamazsın."
+  },
+  "xphb-sentinel": {
+    "desc": "Şu faydaları kazanırsın. 5 feet yakınındaki bir yaratık Disengage eylemini aldıktan ya da senden başka bir hedefe saldırıyla isabet ettikten hemen sonra, o yaratığa bir Fırsat Saldırısı yapabilirsin. Bir yaratığa Fırsat Saldırısı ile isabet ettiğinde, o yaratığın hızı o sıranın geri kalanı boyunca 0 olur."
+  },
+  "xphb-shadow-touched": {
+    "desc": "Shadowfell büyüsüne maruz kalman sana şu faydaları verir. Yanılsama ya da Ölü Büyüsü okulundan 1. seviye bir büyü seç. O büyü ve Görünmezlik büyüsü daima hazırdır. Her ikisini de spell slot harcamadan kullanabilirsin. Bir büyüyü bu şekilde kullandıktan sonra Uzun Dinlenme tamamlayana kadar o büyüyü tekrar bu şekilde kullanamazsın. İstersen uygun seviyedeki spell slot'larınla da kullanabilirsin. Büyülerin spellcasting yeteneği, bu feat'in artırdığı yetenektir."
+  },
+  "xphb-sharpshooter": {
+    "desc": "Şu faydaları kazanırsın. Silahlarla yaptığın menzilli saldırılar yarım siper ve dörtte üç siperi yok sayar. Bir düşmanın 5 feet yakınında olmak, Ranged silahlarla yaptığın saldırı zarlarına dezavantaj getirmez. Uzun menzilden saldırmak da Ranged silahlarla yaptığın saldırı zarlarına dezavantaj getirmez."
+  },
+  "xphb-shield-master": {
+    "desc": "Şu faydaları kazanırsın. Attack eyleminin parçası olarak 5 feet yakınındaki bir yaratığa saldırıp Melee silahla isabet edersen, kuşanmışsan Shield'inle hedefe hemen bir darbe vurabilirsin; hedef Güç kurtarma zarı yapar (8 + Güç modifiyerin + Yeterlilik Bonusun). Başarısız olursa hedefi ya kendinden 5 feet uzağa itersin ya da yere serilmiş durumuna düşürürsün (seçim senin). Bu faydayı her sırada yalnızca bir kez kullanabilirsin. Yalnızca yarım hasar almak için Çeviklik kurtarma zarı yapmana izin veren bir etkiye maruz kalırsan ve elinde bir Shield tutuyorsan, Tepki harcayıp kurtarma zarında başarılı olduğunda hiç hasar almayabilirsin."
+  },
+  "xphb-skill-expert": {
+    "desc": "Şu faydaları kazanırsın. Seçtiğin bir beceride proficiency kazanırsın. Ardından proficiency'n olan ama Expertise'in olmayan bir beceri seç; o beceride Expertise kazanırsın."
+  },
+  "xphb-skulker": {
+    "desc": "Şu faydaları kazanırsın. 10 feet menzilinde kör görüşün var. Savaşın yarattığı dikkat dağınıklığından yararlanırsın: çatışma sırasında Hide eyleminin parçası olarak yaptığın Çeviklik (Gizlilik) kontrollerinde avantajlısın. Gizlenmişken bir saldırı zarı yapar ve ıskalarsan, saldırı yapmış olman yerini ele vermez."
+  },
+  "xphb-slasher": {
+    "desc": "Şu faydaları kazanırsın. Her sırada bir kez, bir yaratığa kesici hasar veren bir saldırıyla isabet ettiğinde, o yaratığın hızını bir sonraki sıranın başına kadar 10 feet düşürebilirsin. Bir yaratığa kesici hasar veren bir Kritik Vuruş yaptığında, o yaratık bir sonraki sıranın başına kadar saldırı zarlarında dezavantajlı olur."
+  },
+  "xphb-speedy": {
+    "desc": "Şu faydaları kazanırsın. Hızın 10 feet artar. Sıranda Dash eylemini aldığında, o sıranın geri kalanında zorlu arazi sana fazladan hareket harcatmaz. Ayrıca sana karşı yapılan Fırsat Saldırıları dezavantajlıdır."
+  },
+  "xphb-spell-sniper": {
+    "desc": "Şu faydaları kazanırsın. Büyüler için yaptığın saldırı zarları yarım siper ve dörtte üç siperi yok sayar. Bir düşmanın 5 feet yakınında olmak, büyülerle yaptığın saldırı zarlarına dezavantaj getirmez. En az 10 feet menzili olan ve saldırı zarı gerektiren bir büyü kullandığında, büyünün menzilini 60 feet artırabilirsin."
+  },
+  "xphb-tavern-brawler": {
+    "desc": "Şu faydaları kazanırsın. Silahsız Vuruşunla isabet edip hasar verdiğinde, Silahsız Vuruşun normal hasarı yerine 1d4 + Güç modifiyerin kadar ezici hasar verebilirsin. Silahsız Vuruşun için hasar zarı attığında, zar 1 gelirse yeniden atabilirsin ve yeni sonucu kullanmak zorundasın. Doğaçlama silahlarda proficiency'n vardır. Sıranda Attack eyleminin parçası olarak bir yaratığa Silahsız Vuruş ile isabet ettiğinde, hedefe hem hasar verip hem de onu kendinden 5 feet uzağa itebilirsin. Bu faydayı her sırada yalnızca bir kez kullanabilirsin."
+  },
+  "xphb-telekinetic": {
+    "desc": "Şu faydaları kazanırsın. Mage Hand büyüsünü öğrenirsin. Onu Sözel ya da Somatik bileşen olmadan kullanabilir, hayalet eli görünmez yapabilirsin; kullandığında hem menzili hem de senden uzaklaşabileceği mesafe 30 feet artar. Büyünün spellcasting yeteneği, bu feat'in artırdığı yetenektir. Bonus Eylem olarak 30 feet içinde görebildiğin bir yaratığı telekinetik biçimde itebilirsin. Bunu yaptığında hedef Güç kurtarma zarında başarılı olmalı (8 + bu feat'in artırdığı değerin ability modifiyeri + Yeterlilik Bonusun), yoksa sana doğru ya da senden uzağa 5 feet hareket ettirilir."
+  },
+  "xphb-telepathic": {
+    "desc": "Şu faydaları kazanırsın. 60 feet içinde görebildiğin herhangi bir yaratıkla telepatik konuşabilirsin. Telepatik sözlerin bildiğin bir dildedir ve yaratık seni ancak o dili biliyorsa anlar. Bu iletişim yaratığa sana telepatik yanıt verme yetisi vermez. Ayrıca Detect Thoughts büyüsü daima hazırdır. Onu spell slot ya da büyü bileşeni olmadan kullanabilirsin; bu şekilde tekrar kullanmadan önce Uzun Dinlenme tamamlaman gerekir. İstersen uygun seviyedeki spell slot'larınla da kullanabilirsin. Büyü için spellcasting yeteneğin, bu feat'in artırdığı yetenektir."
+  },
+  "xphb-thrown-weapon-fighting": {
+    "desc": "Thrown özelliğine sahip bir silahla menzilli saldırı zarı yapıp isabet ettiğinde, hasar atışına +2 bonus alırsın."
+  },
+  "xphb-tough": {
+    "desc": "Bu feat'i aldığında can maksimumun karakter seviyenin iki katı kadar artar. Sonrasında her karakter seviyesi kazandığında can maksimumun 2 can daha artar."
+  },
+  "xphb-unarmed-fighting": {
+    "desc": "Silahsız Vuruşunla isabet edip hasar verdiğinde, Silahsız Vuruşun normal hasarı yerine 1d6 + Güç modifiyerin kadar ezici hasar verebilirsin. Attack roll'u yaparken elinde silah ya da Shield tutmuyorsan d6 yerine d8 atarsın. Her sıranın başında, senin tarafından kavranmış olan bir yaratığa 1d4 ezici hasar verebilirsin."
+  },
+  "xphb-war-caster": {
+    "desc": "Şu faydaları kazanırsın. Konsantrasyonu sürdürmek için yaptığın Dayanıklılık kurtarma zarlarında avantajlısın. Bir yaratık menzilinden çıkarak senden Fırsat Saldırısı tetiklediğinde, Fırsat Saldırısı yapmak yerine Tepki harcayıp o yaratığa bir büyü kullanabilirsin. Büyünün casting time'ı bir eylem olmalı ve yalnızca o yaratığı hedeflemelidir. Bir ya da iki elinde silah veya Shield tutarken bile büyülerin Somatik bileşenlerini yerine getirebilirsin."
+  },
+  "xphb-weapon-master": {
+    "desc": "Şu faydaları kazanırsın. Silah eğitimin, proficiency'n olması koşuluyla seçtiğin bir tür Simple ya da Martial silahın mastery özelliğini kullanmanı sağlar. Her Uzun Dinlenme tamamladığında silah türünü uygun başka bir türle değiştirebilirsin."
+  },
+  "eberron-forge_aberrant-dragonmark": {
+    "desc": "Şu faydaları kazanırsın.\n\nAberrant Fortitude. Bir Dayanıklılık kurtarma zarında başarısız olduğunda, Tepki harcayıp 1d4 atabilir ve sonucu kurtarma zarına ekleyerek başarısızlığı başarıya çevirebilirsin. Bu faydayı kullandıktan sonra Uzun Dinlenme tamamlayana kadar tekrar kullanamazsın.\n\nAberrant Magic. Sorcerer büyü listesinden seçtiğin bir cantrip'i bilirsin. Ayrıca aynı listeden 1. seviye bir büyü seç. O büyü daima hazırdır. Büyü slot harcamadan bir kez kullanabilir, bu hakkını Short ya da Uzun Dinlenme tamamladığında geri kazanırsın. İstersen sahip olduğun spell slot'larla da kullanabilirsin. Bu büyü için spellcasting yeteneğin Dayanıklılıktır.\n\nSapkın Kabarış. Bu feat'in verdiği 1. seviye büyüyü kullandığında, can Dice'larından birini harcayıp atabilirsin. Çift sayı gelirse gelen sayı kadar geçici can kazanırsın. Tek sayı gelirse, 30 feet içindeki bir yaratık (sen hariç) gelen sayı kadar kuvvet hasar alır. Menzilde başka yaratık yoksa hasarı sen alırsın."
+  },
+  "eberron-forge_boon-of-siberys": {
+    "desc": "Şu faydaları kazanırsın.\n\nAberrant Magic. Sorcerer büyü listesinden 8. seviye ya da daha düşük bir büyü seç, ya da Siberys Dragonmark Büyüler tablosundan bir büyü seç (tabloda, büyüyü damgalardan biriyle ilişkilendirmek istersen diye öneriler var). O büyü daima hazırdır. Büyü slot ya da büyü bileşeni harcamadan bir kez kullanabilir, bu hakkını Short ya da Uzun Dinlenme tamamladığında geri kazanırsın. İstersen uygun seviyedeki spell slot'larınla da kullanabilirsin. Bu büyü için spellcasting yeteneğin Zekâ, Bilgelik ya da Karizmadır (bu feat'i alırken belirlersin).\n\nTablo: Siberys Dragonmark Büyüler\n\n| Büyü | Önerilen Dragonmark |\n|---|---|\n| Animal Shapes | Handling |\n| Havayı Denetleme | Storm |\n| Demiplane | Making |\n| Heroes' Feast | Hospitality |\n| Maze | Warding |\n| Mind Blank | Sentinel |\n| Plane Shift | Passage |\n| Project Image | Shadow |\n| Regenerate | Healing |\n| Symbol | Scribing |\n| Işınlanma | Finding |\n| True Seeing | Detection |"
+  },
+  "eberron-forge_greater-aberrant-mark": {
+    "desc": "Şu faydaları kazanırsın.\n\nImproved Fortitude. Aberrant Dragonmark feat'inin Aberrant Fortitude faydasını kullandığında 1d4 yerine 1d6 atabilirsin. Ayrıca artık Aberrant Fortitude hakkını her Short ya da Uzun Dinlenme tamamladığında geri kazanırsın.\n\nMark of Inspiration. Bir cantrip kullandığında, harcanmamış can Dice'larından birini ya da ikisini atabilirsin. Gelen sayı + Dayanıklılık modifiyerin kadar geçici can kazanırsın ve 30 feet içinde seçtiğin bir yaratık (sen hariç) gelen sayı kadar kuvvet hasar alır. Atılan zarlar sonra harcanmış sayılır.\n\nBu faydayı Yeterlilik Bonusun kadar kullanabilir, harcadığın hakları Uzun Dinlenme tamamladığında geri kazanırsın."
+  },
+  "eberron-forge_greater-mark-of-detection": {
+    "desc": "Şu faydaları kazanırsın.\n\nImproved Intuition. Mark of Detection feat'inin Deductive Intuition faydasını kullandığında 1d4 yerine 1d6 atabilirsin.\n\nShared Detection. Mark of Detection feat'inin Magical Detection faydasıyla See Invisibility'yi spell slot harcamadan kullandığında, 30 feet içinde görebildiğin bir yaratık seçebilirsin. O yaratık da büyünün faydalarını süresi boyunca kazanır."
+  },
+  "eberron-forge_greater-mark-of-finding": {
+    "desc": "Şu faydaları kazanırsın.\n\nImproved Intuition. Mark of Finding feat'inin Hunter's Intuition faydasını kullandığında 1d4 yerine 1d6 atabilirsin.\n\nImproved Finding. Mark of Finding'in Finder's Magic faydasıyla Hunter's Mark'ı spell slot harcamadan kullandığında, büyünün menzili iki katına çıkar ve büyüyü, hedefin süre boyunca görünmez durumundan faydalanamayacağı şekilde değiştirebilirsin."
+  },
+  "eberron-forge_greater-mark-of-handling": {
+    "desc": "Şu faydaları kazanırsın.\n\nImproved Intuition. Mark of Handling feat'inin Wild Intuition faydasını kullandığında 1d4 yerine 1d6 atabilirsin.\n\nImproved Handling. Ata binmişken, bineğinin 5 feet yakınındaki bir hedefe melee saldırı zarı ile isabet ettikten hemen sonra bineğin Tepki harcayıp hızı kadar hareket edebilir ya da Attack eylemini alıp yalnızca bir saldırı yapabilir (seçim senin).\n\nSubdue Animal. Büyü eylemi olarak, 30 feet içinde görebildiğin bir hayvan ya da canavarımsı üzerinde hakimiyet kurarsın. Hedef Bilgelik kurtarma zarında başarılı olmalı (DC 8 + Bilgelik modifiyerin + Yeterlilik Bonusun), yoksa bir sonraki sıranın başına kadar korkmuş duruma düşer. Bu faydayı Yeterlilik Bonusun kadar kullanabilir, harcadığın hakları Uzun Dinlenme tamamladığında geri kazanırsın."
+  },
+  "eberron-forge_greater-mark-of-healing": {
+    "desc": "Şu faydaları kazanırsın.\n\nImproved Intuition. Mark of Healing feat'inin Medical Intuition faydasını kullandığında 1d4 yerine 1d6 atabilirsin.\n\nImproved Healing. Mark of Healing feat'inin Healing Dokunuş faydasıyla Cure Wounds'u spell slot harcamadan artık Yeterlilik Bonusun kadar kullanabilirsin; harcadığın hakları Uzun Dinlenme tamamladığında geri kazanırsın. Ayrıca Cure Wounds kullanıp geri verilen canı belirlemek için zar attığında, atıştaki her 1 ya da 2'yi 3 sayabilirsin."
+  },
+  "eberron-forge_greater-mark-of-hospitality": {
+    "desc": "Şu faydaları kazanırsın.\n\nImproved Intuition. Mark of Hospitality feat'inin Ever Hospitable faydasını kullandığında 1d4 yerine 1d6 atabilirsin.\n\nImproved Hospitality. Purify Food and Drink kullandığında, büyüyü normal etkisi yerine 30 feet içinde seçtiğin her yaratığı dinlendirecek şekilde değiştirebilirsin. Etkilenen her yaratığın bitkinlik seviyesi 1 azalır ve yaratık, Yeterlilik Bonusun + Zekâ, Bilgelik ya da Karizma modifiyerin kadar geçici can kazanır (hangisi olduğunu bu feat'i seçerken belirlersin). Büyüyü bu faydayla bir kez değiştirdikten sonra Uzun Dinlenme tamamlayana kadar tekrar değiştiremezsin."
+  },
+  "eberron-forge_greater-mark-of-making": {
+    "desc": "Şu faydaları kazanırsın.\n\nImproved Intuition. Mark of Making feat'inin Artisan's Intuition faydasını kullandığında 1d4 yerine 1d6 atabilirsin.\n\nImproved Making. Mark of Making feat'inin Spellsmith faydasıyla Büyülü Silahı spell slot harcamadan kullandığında, büyüyü 3. seviye sürümüyle kullanırsın."
+  },
+  "eberron-forge_greater-mark-of-passage": {
+    "desc": "Şu faydaları kazanırsın.\n\nImproved Intuition. Mark of Passage feat'inin Intuitive Motion faydasını kullandığında 1d4 yerine 1d6 atabilirsin.\n\nImproved Passage. Mark of Passage feat'inin Magical Passage faydasıyla Sisli Adımı spell slot harcamadan kullandığında, ışınlanmadan önce 30 feet içinde görebildiğin en fazla iki istekli yaratık da seçebilirsin. Her hedef ardından Tepki harcayıp görebildiği boş bir alana 30 feet'e kadar ışınlanabilir."
+  },
+  "eberron-forge_greater-mark-of-scribing": {
+    "desc": "Şu faydaları kazanırsın.\n\nImproved Intuition. Mark of Scribing feat'inin Gifted Scribe faydasını kullandığında 1d4 yerine 1d6 atabilirsin.\n\nInspired Scribing. Comprehend Languages kullandığında, büyüyü 30 feet içinde görebildiğin en fazla üç istekli yaratığı kapsayacak şekilde değiştirebilirsin. Seçilen her yaratık da büyünün faydalarını süre boyunca kazanır. Ayrıca büyünün süresi boyunca sen ve seçtiğin yaratıklar, birbirinizin 1 mil yakınındayken telepatik olarak iletişim kurabilirsiniz. Büyüyü bu faydayla bir kez değiştirdikten sonra Uzun Dinlenme tamamlayana kadar tekrar değiştiremezsin."
+  },
+  "eberron-forge_greater-mark-of-sentinel": {
+    "desc": "Şu faydaları kazanırsın.\n\nImproved Intuition. Mark of Sentinel feat'inin Sentinel's Intuition faydasını kullandığında 1d4 yerine 1d6 atabilirsin.\n\nImproved Sentinel. Mark of Sentinel feat'inin Vigilant Guardian faydasını kullandığında, aynı Tepkin parçası olarak bir silahla ya da Silahsız Vuruş ile bir saldırı da yapabilirsin."
+  },
+  "eberron-forge_greater-mark-of-shadow": {
+    "desc": "Şu faydaları kazanırsın.\n\nImproved Intuition. Mark of Shadow feat'inin Cunning Intuition faydasını kullandığında 1d4 yerine 1d6 atabilirsin.\n\nImproved Shadow. Mark of Shadow feat'inin Shape Shadows faydasıyla Görünmezliği spell slot harcamadan kullandığında, büyüyü 3. seviye sürümüyle kullanırsın."
+  },
+  "eberron-forge_greater-mark-of-storm": {
+    "desc": "Şu faydaları kazanırsın.\n\nImproved Intuition. Mark of Storm feat'inin Windwright's Intuition faydasını kullandığında 1d4 yerine 1d6 atabilirsin.\n\nImproved Storm. Mark of Storm feat'inin Storm Magic faydasıyla Gust of Wind'i spell slot harcamadan kullandığında, büyünün süresi boyunca 60 feet uçuş hızı de kazanırsın."
+  },
+  "eberron-forge_greater-mark-of-warding": {
+    "desc": "Şu faydaları kazanırsın.\n\nImproved Intuition. Mark of Warding feat'inin Warder's Intuition faydasını kullandığında 1d4 yerine 1d6 atabilirsin.\n\nImproved Warding. Bir yaratık sana ya da 30 feet içinde görebildiğin bir yaratığa saldırı zarı yaptığında, Tepki harcayıp o atışa dezavantaj getirebilirsin. Bu faydayı Yeterlilik Bonusun kadar kullanabilir, harcadığın hakları Uzun Dinlenme tamamladığında geri kazanırsın."
+  },
+  "eberron-forge_mark-of-detection": {
+    "desc": "Şu faydaları kazanırsın.\n\nDeductive Intuition. Zekâ (Araştırma) ya da Bilgelik (Sezgi) kontrolü yaptığında 1d4 atıp sonucu yetenek kontrolüne ekleyebilirsin.\n\nMagical Detection. Detect Magic ve Detect Poison and Disease büyüleri daima hazırdır. Her birini spell slot harcamadan bir kez kullanabilir, bu hakkını Uzun Dinlenme tamamladığında geri kazanırsın. İstersen uygun seviyedeki spell slot'larınla da kullanabilirsin. Bu büyüler için spellcasting yeteneğin Zekâ, Bilgelik ya da Karizmadır (bu feat'i seçerken belirlersin).\n\nKarakter seviyesi 3'e ulaştığında See Invisibility büyüsü de daima hazır olur ve onu da aynı şekilde kullanabilirsin.\n\nBüyüler of the Mark. Büyücülük ya da Pact Magic sınıf özelliğin varsa, Mark of Detection Büyüler tablosundaki büyüler o özelliğin büyü listesine eklenir.\n\nTablo: Mark of Detection Büyüler\n\n| Büyü Seviyesi | Büyüler |\n|---|---|\n| 1 | Detect Evil and Good, Identify |\n| 2 | Detect Thoughts, Find Traps |\n| 3 | Clairvoyance, Tespit Edilemezlik |\n| 4 | Arcane Eye, Kehanet |\n| 5 | Legend Lore |"
+  },
+  "eberron-forge_mark-of-finding": {
+    "desc": "Şu faydaları kazanırsın.\n\nHunter's Intuition. Bilgelik (Algı ya da Hayatta Kalma) kontrolü yaptığında 1d4 atıp sonucu yetenek kontrolüne ekleyebilirsin.\n\nFinder's Magic. Hunter's Mark büyüsü daima hazırdır. Büyü slot harcamadan bir kez kullanabilir, bu hakkını Uzun Dinlenme tamamladığında geri kazanırsın. İstersen uygun seviyedeki spell slot'larınla da kullanabilirsin. Bu büyüler için spellcasting yeteneğin Zekâ, Bilgelik ya da Karizmadır (bu feat'i seçerken belirlersin).\n\nKarakter seviyesi 3'e ulaştığında Locate Object büyüsü de daima hazır olur ve onu da aynı şekilde kullanabilirsin.\n\nBüyüler of the Mark. Büyücülük ya da Pact Magic sınıf özelliğin varsa, Mark of Finding Büyüler tablosundaki büyüler o özelliğin büyü listesine eklenir.\n\nTablo: Mark of Finding Büyüler\n\n| Büyü Seviyesi | Büyüler |\n|---|---|\n| 1 | Faerie Fire, Longstrider |\n| 2 | Locate Animals or Plants, Mind Spike |\n| 3 | Clairvoyance, Speak with Plants |\n| 4 | Kehanet, Locate Creature |\n| 5 | Commune with Nature |"
+  },
+  "eberron-forge_mark-of-handling": {
+    "desc": "Şu faydaları kazanırsın.\n\nWild Intuition. Zekâ (Doğa) ya da Bilgelik (Hayvan Terbiyesi) kontrolü yaptığında 1d4 atıp sonucu yetenek kontrolüne ekleyebilirsin.\n\nPrimal Connection. Animal Friendship ve Speak with Animals büyüleri daima hazırdır. Her birini spell slot harcamadan bir kez kullanabilir, bu hakkını Uzun Dinlenme tamamladığında geri kazanırsın. İstersen sahip olduğun spell slot'larla da kullanabilirsin. Bu büyüler için spellcasting yeteneğin Zekâ, Bilgelik ya da Karizmadır (bu feat'i seçerken belirlersin).\n\nMonstrous Connections. Karakter seviyesi 3'e ulaştığında, Zekâ değeri 3 ya da daha düşük olan bir canavarımsıyı Animal Friendship veya Speak with Animals ile hedef alabilirsin.\n\nBüyüler of the Mark. Büyücülük ya da Pact Magic sınıf özelliğin varsa, Mark of Handling Büyüler tablosundaki büyüler o özelliğin büyü listesine eklenir.\n\nTablo: Mark of Handling Büyüler\n\n| Büyü Seviyesi | Büyüler |\n|---|---|\n| 1 | Command, Find Familiar |\n| 2 | Beast Sense, Calm Emotions |\n| 3 | Beacon of Hope, Conjure Animals |\n| 4 | Aura of Life, Dominate Beast |\n| 5 | Awaken |"
+  },
+  "eberron-forge_mark-of-healing": {
+    "desc": "Şu faydaları kazanırsın.\n\nMedical Intuition. Bilgelik (Tıp) kontrolü ya da Herbalism Kit kullanan bir yetenek kontrolü yaptığında 1d4 atıp sonucu yetenek kontrolüne ekleyebilirsin.\n\nHealing Dokunuş. Cure Wounds büyüsü daima hazırdır. Büyü slot harcamadan bir kez kullanabilir, bu hakkını Uzun Dinlenme tamamladığında geri kazanırsın. İstersen uygun seviyedeki spell slot'larınla da kullanabilirsin. Bu büyüler için spellcasting yeteneğin Zekâ, Bilgelik ya da Karizmadır (bu feat'i seçerken belirlersin).\n\nKarakter seviyesi 3'e ulaştığında Lesser Restoration büyüsü de daima hazır olur ve onu da aynı şekilde kullanabilirsin.\n\nBüyüler of the Mark. Büyücülük ya da Pact Magic sınıf özelliğin varsa, Mark of Healing Büyüler tablosundaki büyüler o özelliğin büyü listesine eklenir.\n\nTablo: Mark of Healing Büyüler\n\n| Büyü Seviyesi | Büyüler |\n|---|---|\n| 1 | False Life, Healing Word |\n| 2 | Arcane Vigor, Prayer of Healing |\n| 3 | Aura of Vitality, Mass Healing Word |\n| 4 | Aura of Life, Aura of Purity |\n| 5 | Greater Restoration |"
+  },
+  "eberron-forge_mark-of-hospitality": {
+    "desc": "Şu faydaları kazanırsın.\n\nEver Hospitable. Karizma (İkna) kontrolü ya da Brewer's Supplies veya Cook's Utensils kullanan bir yetenek kontrolü yaptığında 1d4 atıp sonucu yetenek kontrolüne ekleyebilirsin.\n\nInnkeeper's Magic. Purify Food and Drink ve Unseen Servant büyüleri daima hazırdır. Her birini spell slot harcamadan bir kez kullanabilir, bu hakkını Uzun Dinlenme tamamladığında geri kazanırsın. İstersen uygun seviyedeki spell slot'larınla da kullanabilirsin. Bu büyüler için spellcasting yeteneğin Zekâ, Bilgelik ya da Karizmadır (bu feat'i seçerken belirlersin).\n\nKarakter seviyesi 3'e ulaştığında Calm Emotions büyüsü de daima hazır olur ve onu da aynı şekilde kullanabilirsin.\n\nBüyüler of the Mark. Büyücülük ya da Pact Magic sınıf özelliğin varsa, Mark of Hospitality Büyüler tablosundaki büyüler o özelliğin büyü listesine eklenir.\n\nTablo: Mark of Hospitality Büyüler\n\n| Büyü Seviyesi | Büyüler |\n|---|---|\n| 1 | Goodberry, Uyku |\n| 2 | Aid, Enhance Ability |\n| 3 | Create Food and Water, Leomund's Tiny Hut |\n| 4 | Aura of Purity, Mordenkainen's Private Sanctum |\n| 5 | Hallow |"
+  },
+  "eberron-forge_mark-of-making": {
+    "desc": "Şu faydaları kazanırsın.\n\nArtisan's Intuition. Zekâ (Gizemli Bilgi) kontrolü ya da Artisan's Tools kullanan bir yetenek kontrolü yaptığında 1d4 atıp sonucu yetenek kontrolüne ekleyebilirsin.\n\nSpellsmith. Mending cantrip'ini bilirsin. Ayrıca Büyülü Silah büyüsü daima hazırdır. Büyü slot harcamadan bir kez kullanabilir, bu hakkını Uzun Dinlenme tamamladığında geri kazanırsın. İstersen sahip olduğun spell slot'larla da kullanabilirsin. Bu büyüler için spellcasting yeteneğin Zekâ, Bilgelik ya da Karizmadır (bu feat'i seçerken belirlersin).\n\nBüyüler of the Mark. Büyücülük ya da Pact Magic sınıf özelliğin varsa, Mark of Making Büyüler tablosundaki büyüler o özelliğin büyü listesine eklenir.\n\nTablo: Mark of Making Büyüler\n\n| Büyü Seviyesi | Büyüler |\n|---|---|\n| 1 | Identify, Tenser's Floating Disk |\n| 2 | Continual Flame, Ruhani Silah |\n| 3 | Conjure Barrage, Elemental Weapon |\n| 4 | Fabricate, Stone Shape |\n| 5 | Creation |"
+  },
+  "eberron-forge_mark-of-passage": {
+    "desc": "Şu faydaları kazanırsın.\n\nCourier's hız. Hızın 5 feet artar.\n\nIntuitive Motion. Güç (Atletizm) ya da Çeviklik (Akrobasi) kontrolü yaptığında 1d4 atıp sonucu yetenek kontrolüne ekleyebilirsin.\n\nMagical Passage. Sisli Adım büyüsü daima hazırdır. Büyü slot harcamadan bir kez kullanabilir, bu hakkını Uzun Dinlenme tamamladığında geri kazanırsın. İstersen sahip olduğun spell slot'larla da kullanabilirsin. Bu büyüler için spellcasting yeteneğin Zekâ, Bilgelik ya da Karizmadır (bu feat'i seçerken belirlersin).\n\nBüyüler of the Mark. Büyücülük ya da Pact Magic sınıf özelliğin varsa, Mark of Passage Büyüler tablosundaki büyüler o özelliğin büyü listesine eklenir.\n\nTablo: Mark of Passage Büyüler\n\n| Büyü Seviyesi | Büyüler |\n|---|---|\n| 1 | Expeditious Retreat, Jump |\n| 2 | Find Steed, Pass without Trace |\n| 3 | Blink, Phantom Steed |\n| 4 | Dimension Door, Freedom of Movement |\n| 5 | Teleportation Circle |"
+  },
+  "eberron-forge_mark-of-scribing": {
+    "desc": "Şu faydaları kazanırsın.\n\nGifted Scribe. Zekâ (Tarih) kontrolü ya da Calligrapher's Supplies kullanan bir yetenek kontrolü yaptığında 1d4 atıp sonucu yetenek kontrolüne ekleyebilirsin.\n\nScribe's Sezgi. Message cantrip'ini bilirsin. Ayrıca Comprehend Languages büyüsü daima hazırdır. Büyü slot harcamadan bir kez kullanabilir, bu hakkını Uzun Dinlenme tamamladığında geri kazanırsın. İstersen uygun seviyedeki spell slot'larınla da kullanabilirsin. Bu büyüler için spellcasting yeteneğin Zekâ, Bilgelik ya da Karizmadır (bu feat'i seçerken belirlersin).\n\nKarakter seviyesi 3'e ulaştığında Magic Mouth büyüsü de daima hazır olur ve onu da aynı şekilde kullanabilirsin.\n\nBüyüler of the Mark. Büyücülük ya da Pact Magic sınıf özelliğin varsa, Mark of Scribing Büyüler tablosundaki büyüler o özelliğin büyü listesine eklenir.\n\nTablo: Mark of Scribing Büyüler\n\n| Büyü Seviyesi | Büyüler |\n|---|---|\n| 1 | Command, Illusory Script |\n| 2 | Animal Messenger, Silence |\n| 3 | Sending, Tongues |\n| 4 | Arcane Eye, Confusion |\n| 5 | Dream |"
+  },
+  "eberron-forge_mark-of-sentinel": {
+    "desc": "Şu faydaları kazanırsın.\n\nSentinel's Intuition. Bilgelik (Sezgi ya da Algı) kontrolü yaptığında 1d4 atıp sonucu yetenek kontrolüne ekleyebilirsin.\n\nGuardian's Shield. Shield büyüsü daima hazırdır. Büyü slot harcamadan bir kez kullanabilir, bu hakkını Uzun Dinlenme tamamladığında geri kazanırsın. İstersen sahip olduğun spell slot'larla da kullanabilirsin. Bu büyüler için spellcasting yeteneğin Zekâ, Bilgelik ya da Karizmadır (bu feat'i seçerken belirlersin).\n\nVigilant Guardian. 5 feet içinde görebildiğin bir yaratığa bir saldırı zarı isabet ettiğinde, Tepki harcayıp o yaratıkla yer değiştirebilirsin; saldırı onun yerine sana isabet eder. Bu özelliği Yeterlilik Bonusun kadar kullanabilir, harcadığın hakları Uzun Dinlenme tamamladığında geri kazanırsın.\n\nBüyüler of the Mark. Büyücülük ya da Pact Magic sınıf özelliğin varsa, Mark of Sentinel Büyüler tablosundaki büyüler o özelliğin büyü listesine eklenir.\n\nTablo: Mark of Sentinel Büyüler\n\n| Büyü Seviyesi | Büyüler |\n|---|---|\n| 1 | Compelled Duel, Shield of Faith |\n| 2 | Warding Bond, Zone of Truth |\n| 3 | Karşı Büyü, Protection from Energy |\n| 4 | Death Ward, Guardian of Faith |\n| 5 | Bigby's Hand |"
+  },
+  "eberron-forge_mark-of-shadow": {
+    "desc": "Şu faydaları kazanırsın.\n\nCunning Intuition. Çeviklik (Gizlilik) ya da Karizma (Sahne Sanatları) kontrolü yaptığında 1d4 atıp sonucu yetenek kontrolüne ekleyebilirsin.\n\nShape Shadows. Minor Illusion cantrip'ini bilirsin. Ayrıca Görünmezlik büyüsü daima hazırdır. Büyü slot harcamadan bir kez kullanabilir, bu hakkını Uzun Dinlenme tamamladığında geri kazanırsın. İstersen uygun seviyedeki spell slot'larınla da kullanabilirsin. Bu büyüler için spellcasting yeteneğin Zekâ, Bilgelik ya da Karizmadır (bu feat'i seçerken belirlersin).\n\nBüyüler of the Mark. Büyücülük ya da Pact Magic sınıf özelliğin varsa, Mark of Shadow Büyüler tablosundaki büyüler o özelliğin büyü listesine eklenir.\n\nTablo: Mark of Shadow Büyüler\n\n| Büyü Seviyesi | Büyüler |\n|---|---|\n| 1 | Disguise Self, Silent Image |\n| 2 | Darkness, Pass without Trace |\n| 3 | Clairvoyance, Major Image |\n| 4 | Greater Invisibility, Hallucinatory Terrain |\n| 5 | Mislead |"
+  },
+  "eberron-forge_mark-of-storm": {
+    "desc": "Şu faydaları kazanırsın.\n\nWindwright's Intuition. Çeviklik (Akrobasi) kontrolü ya da Navigator's Tools kullanan bir yetenek kontrolü yaptığında 1d4 atıp sonucu yetenek kontrolüne ekleyebilirsin.\n\nStorm's Boon. Yıldırım hasarına karşı direncin var.\n\nStorm Magic. Gök Gürültüsü cantrip'ini bilirsin. Karakter seviyesi 3'e ulaştığında Gust of Wind büyüsü de daima hazır olur. Büyü slot harcamadan bir kez kullanabilir, bu hakkını Uzun Dinlenme tamamladığında geri kazanırsın. İstersen uygun seviyedeki spell slot'larınla da kullanabilirsin. Bu büyüler için spellcasting yeteneğin Zekâ, Bilgelik ya da Karizmadır (bu feat'i seçerken belirlersin).\n\nBüyüler of the Mark. Büyücülük ya da Pact Magic sınıf özelliğin varsa, Mark of Storm Büyüler tablosundaki büyüler o özelliğin büyü listesine eklenir.\n\nTablo: Mark of Storm Büyüler\n\n| Büyü Seviyesi | Büyüler |\n|---|---|\n| 1 | Feather Fall, Sis Bulutu |\n| 2 | Levitate, Shatter |\n| 3 | Sleet Storm, Wind Wall |\n| 4 | Conjure Minor Elementals, Control Water |\n| 5 | Conjure Elemental |"
+  },
+  "eberron-forge_mark-of-warding": {
+    "desc": "Şu faydaları kazanırsın.\n\nWarder's Intuition. Zekâ (Araştırma) kontrolü ya da Thieves' Tools kullanan bir yetenek kontrolü yaptığında 1d4 atıp sonucu yetenek kontrolüne ekleyebilirsin.\n\nWards and Seals. Alarm ve Mage Armor büyüleri daima hazırdır. Her birini spell slot harcamadan bir kez kullanabilir, bu hakkını Uzun Dinlenme tamamladığında geri kazanırsın.\n\nİstersen uygun seviyedeki spell slot'larınla da kullanabilirsin. Bu büyüler için spellcasting yeteneğin Zekâ, Bilgelik ya da Karizmadır (bu feat'i seçerken belirlersin).\n\nKarakter seviyesi 3'e ulaştığında Arcane Lock büyüsü de daima hazır olur ve onu da aynı şekilde kullanabilirsin.\n\nBüyüler of the Mark. Büyücülük ya da Pact Magic sınıf özelliğin varsa, Mark of Warding Büyüler tablosundaki büyüler o özelliğin büyü listesine eklenir.\n\nTablo: Mark of Warding Büyüler\n\n| Büyü Seviyesi | Büyüler |\n|---|---|\n| 1 | Armor of Agathys, Sanctuary |\n| 2 | Knock, Nystul's Magic Aura |\n| 3 | Glyph of Warding, Magic Circle |\n| 4 | Leomund's Secret Chest, Mordenkainen's Faithful Hound |\n| 5 | Antilife Shell |"
+  },
+  "eberron-forge_potent-dragonmark": {
+    "desc": "Şu faydaları kazanırsın.\n\nDragonmark Preparation. Büyüler of the Mark listendeki büyüler (varsa) daima hazırdır.\n\nDragonmark Büyücülük. Dragonmark feat'inin verdiği büyüleri kullanmak için fazladan bir spell slot'un olur. Slot'un seviyesi, seviyenin yarısıdır (yukarı yuvarla), en fazla 5. seviyeye kadar. Harcadığın slot'u Short ya da Uzun Dinlenme tamamladığında geri kazanırsın. Bu spell slot'u yalnızca Dragonmark feat'in ya da bu feat'in Dragonmark Preparation faydası sayesinde hazır tuttuğun bir büyüyü kullanmak için harcayabilirsin."
+  },
+  "ravenloft-horrors_aberrant-anatomy": {
+    "desc": "Far Realm'inkiler gibi yabancı dehşetlere maruz kalmak, bedenini doğaüstü biçimlerde çarpıttı. Şu özellikleri kazanırsın.\n\nBreathless. Nefesini 1 saat tutabilirsin.\n\nExtrasensory Algı. Yoksa Algı becerisinde proficiency kazanırsın. Ayrıca o beceride Expertise kazanırsın.\n\nBunlara ek olarak 15 feet menzilinde kör görüşün olur.\n\nWarping Flesh. Bir D20 Testi yapıp d20'de 1 attığın anda, bedenine bulaşmış aberrant etki alev alır ve etini denetimine almaya çalışır. Dayanıklılık kurtarma zarı yap (DC 13 + Yeterlilik Bonusun). Başarısız olursan bir sonraki sıranın sonuna kadar sersemlemiş duruma düşersin."
+  },
+  "ravenloft-horrors_echoing-soul": {
+    "desc": "Geçmiş ya da alternatif bir hayattan yankılar yaşıyorsun. Şu özellikleri kazanırsın.\n\nChanneled Prowess. Seçtiğin iki beceride proficiency kazanırsın.\n\nAyrıca proficiency'n olan bir beceri seç; o beceride Expertise kazanırsın. Her Uzun Dinlenme tamamladığında bu fayda için seçimini değiştirebilirsin.\n\nInherent Tongues. Player's Handbook'taki dil tablolarından seçtiğin bir dili daha bilirsin.\n\nIntrusive Echoes. Bir D20 Testi yapıp d20'de 1 attığın anda, ruhunun diğer hayatına ait anılar ve duyumlar seni ele geçirmeye çalışır. Dayanıklılık kurtarma zarı yap (DC 13 + Yeterlilik Bonusun). Başarısız olursan bir sonraki sıranın sonuna kadar aciz duruma düşersin. Bu şekilde aciz durumdayken hızın yarıya iner."
+  },
+  "ravenloft-horrors_gathered-whispers": {
+    "desc": "Yalnızca senin duyabildiği bir fısıltı uğultusu peşini bırakmıyor. Şu özellikleri kazanırsın.\n\nSpirit Whispers. Message büyüsünü öğrenirsin ve onu Materyal bileşen olmadan kullanabilirsin. Ayrıca Augury büyüsü daima hazırdır. Onu spell slot ya da büyü bileşeni olmadan kullanabilirsin; bu şekilde tekrar kullanmadan önce Uzun Dinlenme tamamlaman gerekir. İstersen sahip olduğun spell slot'larla da kullanabilirsin.\n\nBu fayda için spellcasting yeteneğin Zekâ, Bilgelik ya da Karizmadır (bu feat'i seçerken belirlersin).\n\nUnearthly Scream. Bir saldırı zarı sana isabet ettiğinde, Tepki harcayıp peşindeki ruhları koruyucu, öteki dünyaya ait bir çığlığa dönüştürebilirsin. O saldırıya karşı AC'ne Yeterlilik Bonusunu ekleyebilirsin; bu saldırının ıskalamasına yol açabilir. Bu özelliği Yeterlilik Bonusun kadar kullanabilir, harcadığın hakları Uzun Dinlenme tamamladığında geri kazanırsın.\n\nVoices from Beyond. Bir D20 Testi yapıp d20'de 1 attığın anda, peşindeki sesler ürkütücü bir şiddete yükselir. Bilgelik kurtarma zarı yap (DC 13 + Yeterlilik Bonusun). Başarısız olursan bir sonraki sıranın sonuna kadar sağır duruma düşersin. Sağır durumdayken yetenek kontrollerinde ve saldırı zarlarında dezavantajlısın."
+  },
+  "ravenloft-horrors_living-shadow": {
+    "desc": "Yere düşürdüğün gölge canlı ve her an yanında -- kimi zaman kendi iradesiyle bile hareket ediyor. Şu özellikleri kazanırsın.\n\nGrasping Shadow. Mage Hand büyüsünü öğrenirsin ve onu büyü bileşeni olmadan kullanabilirsin. Bu büyü için spellcasting yeteneğin Zekâ, Bilgelik ya da Karizmadır (bu feat'i seçerken belirlersin).\n\nLengthened Strike. Sıranda Attack ya da Magic eyleminin parçası olarak melee saldırı zarı yaptığında, gölgen sana yardım etmek için uzarken o saldırı için erişimini 10 feet artırabilirsin. Bu özelliği Yeterlilik Bonusun kadar kullanabilir, harcadığın hakları Uzun Dinlenme tamamladığında geri kazanırsın.\n\nOminous Will. Bir D20 Testi yapıp d20'de 1 attığın anda, gölgen kendi iradesini dayatmaya çalışır. Bilgelik kurtarma zarı yap (DC 13 + Yeterlilik Bonusun). Başarısız olursan bir sonraki sıranın başına kadar aciz duruma düşersin; o noktada, o sırada ne yapacağını belirlemek için Shadow's Will tablosunda zar atmalısın.\n\nTablo: Shadow's Will\n\n| 1d8 | Davranış |\n|---|---|\n| 1 | Eylem ya da Bonus Eylem almazsın ve bütün hareketini hareket etmek için kullanırsın. Yönü belirlemek için 1d4 at: 1, kuzey; 2, doğu; 3, güney; 4, batı. |\n| 2-6 | Hareket etmez ve Bonus Eylem almazsın; Attack eylemini alıp erişimindeki rastgele bir yaratığa tek bir melee saldırı yaparsın. Erişimde kimse yoksa hiçbir eylem almazsın. |\n| 7-8 | yere serilmiş duruma düşersin ve sıran biter. |"
+  },
+  "ravenloft-horrors_mist-walker": {
+    "desc": "Mist'lerin elinden sıyrılmayı biliyorsun, ama bu özgürlüğün bir bedeli var: Bir bölgede fazla uzun kalırsan Mist'ler seni bulur ve yaşam gücünü emer. Şu özellikleri kazanırsın.\n\nDomain Traveler. Belirli bir domain'e ulaşmak niyetiyle Mist'lere girdiğinde, o domain'e ayarlanmış bir Mist tılsımı taşıyormuşsun gibi kabul edilirsin. Bu özelliği kullanmak için hedef seçtiğin domain'in adını bilmen gerekir, ama oraya daha önce gitmiş olman gerekmez. Bu özellik, bir Darklord'un iradesiyle kapatılmış domain sınırlarını aşmanı sağlamaz.\n\nMist Walk. Hasar aldığında ya da kavranmış veya kısıtlanmış durumundan kaçınmak veya onu sona erdirmek için yaptığın bir kurtarma zarında başarısız olduğunda, Tepki harcayıp görebildiğin boş bir alana 15 feet'e kadar ışınlanabilirsin. Bu özelliği Yeterlilik Bonusun kadar kullanabilir, harcadığın hakları Uzun Dinlenme tamamladığında geri kazanırsın.\n\nZehirlenmiş Roots. Uzun Dinlenme tamamladığında, çevrendeki 10 mil yarıçapındaki dünya senin canlılığını emen bir sifona dönüşür. O bölgede her Kısa Dinlenme tamamladığında Dayanıklılık kurtarma zarı yap (DC 13 + Yeterlilik Bonusun). Başarısız olursan o dinlenmeden hiçbir fayda görmezsin."
+  },
+  "ravenloft-horrors_second-skin": {
+    "desc": "Senin çoğu insanın hiç görmediği bir yanın var: bir canavar, dehşet verici bir intikamcı ya da yürüyen bir kâbus. Şu özellikleri kazanırsın.\n\nAlternate Form. Alter Self büyüsü daima hazırdır. Onu spell slot ya da büyü bileşeni olmadan kullanabilirsin; bu şekilde tekrar kullanmadan önce Uzun Dinlenme tamamlaman gerekir. İstersen uygun seviyedeki spell slot'larınla da kullanabilirsin. Bu büyü için spellcasting yeteneğin Zekâ, Bilgelik ya da Karizmadır (bu feat'i seçerken belirlersin).\n\nBu özellikle Alter Self'i spell slot harcamadan kullandığında büyü Konsantrasyon gerektirmez.\n\nInvoluntary Change. Bazı durumlar dönüşümünü istemsizce tetikleyebilir. Bu feat'i seçerken, dönüşümünü neyin tetiklediğini belirlemek için Change Catalyst tablosunda zar at.\n\nTetikleyiciyi yaşadıktan sonra, bir sonraki sıranın başında Karizma kurtarma zarı yap (DC 13 + Yeterlilik Bonusun). Başarısız olursan Alternate Form'u kullanıp Alter Self'i spell slot harcamadan hemen kullanırsın. O özelliğin hakkını zaten harcadıysan, bunun yerine bir sonraki sıranın başına kadar sersemlemiş duruma düşersin.\n\nTablo: Change Catalyst\n\n| 1d6 | Tetikleyici |\n|---|---|\n| 1 | Ayın belirli bir evresini görmek |\n| 2 | Belirli bir çiçeğin kokusunu almak |\n| 3 | Tapınak çanlarının çaldığını duymak |\n| 4 | Belirli bir ezgiyi duymak |\n| 5 | Çıplak tenine saf gümüş değmesi |\n| 6 | Belirli birine benzeyen birini görmek |"
+  },
+  "ravenloft-horrors_sharp-eye": {
+    "desc": "Search ya da Study eylemini aldığında, o eylemin parçası olarak yaptığın herhangi bir yetenek kontrolünde kendine avantaj verebilirsin. Bu özelliği Yeterlilik Bonusun kadar kullanabilir, harcadığın hakları Uzun Dinlenme tamamladığında geri kazanırsın. Kontrol başarısız olursa bu özelliğin hakkı harcanmış sayılmaz."
+  },
+  "ravenloft-horrors_survivor": {
+    "desc": "Şu faydaları kazanırsın.\n\nHypervigilance. İnisiyatif attığında, gelen sayı 9 ya da daha düşükse d20'yi yeniden atabilirsin. Yeni sonucu kullanmak zorundasın.\n\nSteel Yourself. Büyülenmiş ya da korkmuş durumundan kaçınmak veya onu sona erdirmek için yaptığın bir kurtarma zarında başarısız olduğunda, Tepki harcayıp atışa bonus ekleyebilir ve onu başarıya çevirebilirsin. Bonus Yeterlilik Bonusuna eşittir.\n\nBu Tepkisi bir kez kullandıktan sonra Uzun Dinlenme tamamlayana kadar tekrar kullanamazsın."
+  },
+  "ravenloft-horrors_symbiotic-being": {
+    "desc": "Bedeninde ikinci bir varlık yaşıyor; sana bilgi ve yardım sunarken kendi gündemini de ilerletiyor. Şu özellikleri kazanırsın.\n\nEntwined Existence. Symbiote hedef alınamaz. Sen ölürsen symbiote'un da ölür. Hayata döndürülürsen symbiote'un da canlanır.\n\nSecond Mind. Şu becerilerden birinde proficiency kazanırsın: Gizemli Bilgi, Aldatma, Tarih, Yıldırma, Sezgi, Araştırma, Doğa, Din, Algı ya da İkna. Ayrıca Player's Handbook'taki dil tablolarından seçtiğin bir dili daha bilirsin.\n\nSustained Symbiosis. Bir kurtarma zarında başarısız olduğunda, Tepki harcayıp Can Zarlarından birini harcayabilirsin. Zarı at ve sonucu kurtarma zarına ekle; bu başarısızlığı başarıya çevirebilir.\n\nBu özelliği Yeterlilik Bonusun kadar kullanabilir, harcadığın hakları Uzun Dinlenme tamamladığında geri kazanırsın.\n\nSymbiotic Agenda. Bir D20 Testi yapıp d20'de 1 attığın anda, symbiote'un denetimi ele geçirmeye çalışır. Karizma kurtarma zarı yap (DC 13 + Yeterlilik Bonusun). Başarısız olursan 1d12 saat boyunca büyülenmiş duruma düşersin. Büyülenmiş durumdayken symbiote'un buyruklarını yerine getirmeye ve DM'in belirlediği amaçlarını ilerletmeye çalışmalısın. Hasar aldığın her seferde bu kurtarma zarı tekrarlayabilir, başarılı olursan etkiyi sona erdirebilirsin.\n\nDM uygun görürse, symbiote'un gündemine aykırı davrandığın her seferde de bu kurtarma zarı yapabilirsin."
+  },
+  "ravenloft-horrors_touch-of-death": {
+    "desc": "İçinde ölümcül bir güç var ve en ufak kışkırtmada dışarı taşıyor. Şu özellikleri kazanırsın.\n\nDeath Dokunuş. Chill Touch büyüsünü öğrenirsin ve onu büyü bileşeni olmadan kullanabilirsin. Bu büyüyle verdiğin nekrotik hasar direnci yok sayar. Bu büyü için spellcasting yeteneğin Zekâ, Bilgelik ya da Karizmadır (bu feat'i seçerken belirlersin).\n\nPull of the Grave. Ölüm Kurtarma Zarlarında dezavantajlısın."
+  },
+  "ravenloft-horrors_watchers": {
+    "desc": "Doğal olmayan bir şey seni sürekli izliyor; koşuşturan haşerelerin ve başka tekinsiz yaratıkların biçimine bürünüyor. Şu özellikleri kazanırsın.\n\nBorrowed Eyes. Beast Sense ve Speak with Animals büyüleri daima hazırdır. Her birini spell slot harcamadan kullanabilirsin; bu şekilde tekrar kullanmadan önce Uzun Dinlenme tamamlaman gerekir. İstersen uygun seviyedeki spell slot'larınla da kullanabilirsin.\n\nHeightened Suspicion. Search eylemini aldığın her seferde 1d4 atıp sonucu, o eylemin parçası olarak yaptığın herhangi bir yetenek kontrolüne ekleyebilirsin.\n\nIncessant Watchers. Scrying büyüsüne karşı yaptığın kurtarma zarlarında dezavantajlısın.\n\nAyrıca bir D20 Testi yapıp d20'de 1 attığın anda paranoya seni ele geçirmeye çalışır. Bilgelik kurtarma zarı yap (DC 13 + Yeterlilik Bonusun). Başarısız olursan 1 dakika boyunca D20 Testlerinde dezavantajlı olursun. Her sıranın sonunda kurtarma zarı tekrarlayabilir, başarılı olursan etkiyi erken sona erdirebilirsin."
+  },
+  "faerun-heroes_boon-of-bloodshed": {
+    "desc": "Şu faydaları kazanırsın.\n\nKiller's Fortune. Görebildiğin bir düşman 0 cana düşürüldüğünde, bir sonraki sıranın sonuna kadar yapacağın ilk saldırı zarında avantaj kazanırsın.\n\nPower from Pain. Yaralı durumdayken saldırı zarı yaptığında, her sırada bir kez hedefe Yeterlilik Bonusun kadar ek hasar verebilirsin. Ek hasarın tipi saldırının tipiyle aynıdır."
+  },
+  "faerun-heroes_boon-of-bountiful-health": {
+    "desc": "Şu faydaları kazanırsın.\n\nAugmented Health. Geçici can kazandığında, kazandığın geçici can sayısını 5 artır.\n\nSuperior Recuperation. Can geri kazanmak için bir ya da daha fazla can Dice harcadığında, her zar için mümkün olan en yüksek sayıyı kullanabilirsin."
+  },
+  "faerun-heroes_boon-of-communication": {
+    "desc": "Şu faydaları kazanırsın.\n\nCunning Speaker. Düşmanca yaratıkları etkilemek için yaptığın yetenek kontrollerinde dezavantajlı olmazsın.\n\nGifted Interpreter. Duyduğun ya da işaret diliyle görülen her dilin sözlük anlamını anlarsın; gördüğün her yazılı dilin sözlük anlamını da anlayabilirsin.\n\nMental Communication. 120 feet menzilinde telepati kazanırsın."
+  },
+  "faerun-heroes_boon-of-desperate-resilience": {
+    "desc": "Şu faydaları kazanırsın.\n\nDefense of Body and Mind. Yaralı durumdayken kuvvet dışındaki her hasar tipine karşı direncin var."
+  },
+  "faerun-heroes_boon-of-exquisite-radiance": {
+    "desc": "Şu faydaları kazanırsın.\n\nEternal Rest. 0 cana düşürdüğün yaratıklar ölümsüz olamaz.\n\nPowerful Radiance. Işıma hasar veren bir hasar atışı yaptığında, bunun yerine her hasar zarı için mümkün olan en yüksek sayıyı kullanabilirsin. Bu faydayı kullandıktan sonra Uzun Dinlenme tamamlayana kadar tekrar kullanamazsın."
+  },
+  "faerun-heroes_boon-of-fluid-forms": {
+    "desc": "Şu faydaları kazanırsın.\n\nShapechanger. Büyü eylemi harcayarak Challenge Rating'i 10'dan yüksek olmayan bir hayvan, insansı ya da canavarımsıya dönüşebilirsin. Dönüştüğünde, o biçimin canı kadar geçici can kazanırsın. Dönüşüm 1 saat sürer; geçici canın kalmazsa ya da Büyü eylemi harcayıp gerçek biçimine dönersen erken biter.\n\nOyun değerlerin seçtiğin biçimin stat bloğuyla değişir; ancak yaratık tipini, alignment'ını, kişiliğini, Zekâ, Bilgelik ve Karizma değerlerini, canlarını, can Dice'larını, proficiency'lerini ve iletişim kurma yetini korursun. Büyücülük ya da Pact Magic özelliğin varsa onu da korursun. Dönüşürken, teçhizatının yere mi düşeceğini yoksa yeni biçime uyacak şekilde mi boyut ve şekil değiştireceğini sen belirlersin.\n\nBu faydayı kullandıktan sonra Uzun Dinlenme tamamlayana kadar tekrar kullanamazsın.\n\nHardy Transformation. Dönüşürken kazandığın geçici can sayısını 20 artır."
+  },
+  "faerun-heroes_boon-of-fortunes-favor": {
+    "desc": "Şu faydaları kazanırsın.\n\nKurtarma Zarı Reroll. Bir kurtarma zarında başarısız olduğunda onu yeniden atabilirsin ve yeni sonucu kullanmak zorundasın. Bu faydayı kullandıktan sonra bir sonraki sıranın başına kadar tekrar kullanamazsın."
+  },
+  "faerun-heroes_boon-of-poison-mastery": {
+    "desc": "Şu faydaları kazanırsın.\n\nAntitoxic. Zehir hasarına ve zehirlenmiş durumuna karşı bağışıklıkn var.\n\nPerfect Poisoner. Saldırının, büyünün ya da bir özelliğinin bir yaratığa vereceği zehir hasar için zar attığında, her sırada bir kez, bunun yerine her zar için mümkün olan en yüksek sayıyı kullanabilirsin."
+  },
+  "faerun-heroes_boon-of-revelry": {
+    "desc": "Şu faydaları kazanırsın.\n\nInspire Dance. Otto's Irresistible Dance büyüsü daima hazırdır. Büyü slot harcamadan bir kez kullanabilir, bu hakkını Uzun Dinlenme tamamladığında geri kazanırsın. İstersen uygun seviyedeki spell slot'larınla da kullanabilirsin.\n\nBüyüyü kullandığında hiçbir büyü bileşeni gerekmez ve hasar almak büyüye olan Konsantrasyonunu bozmaz.\n\nSing Out. Otto's Irresistible Dance'ine karşı kurtarma zarında başarısız olan bir yaratık o büyüden dolayı büyülenmiş durumdayken, Sözel bileşeni olan büyüleri kullanamaz ve şarkı söyleyebiliyorsa keyifli saçmalıklar mırıldanır."
+  },
+  "faerun-heroes_boon-of-terror": {
+    "desc": "Şu faydaları kazanırsın.\n\nFearless. Korkmuş durumuna karşı bağışıklıkn var.\n\nFlee, Fools!. Korkmuş durumdaki bir yaratık 60 feet içinde sırasına başladığında -- onu görebiliyorsan ve tam siper arkasında değilse -- Tepki harcayıp korkusunu körükleyebilirsin. Bunu yaparsan yaratık Bilgelik kurtarma zarında başarılı olmalı (DC 8 + Karizma modifiyerin + Yeterlilik Bonusun), yoksa sırasını en hızlı yoldan senden uzaklaşarak geçirir. Bu faydayı kullandıktan sonra Short ya da Uzun Dinlenme tamamlayana kadar tekrar kullanamazsın.\n\nIntimidating. Zaten yoksa Yıldırma becerisinde proficiency kazanırsın. Ayrıca Yıldırmada Expertise kazanırsın."
+  },
+  "faerun-heroes_boon-of-the-bright-sun": {
+    "desc": "Şu faydaları kazanırsın.\n\nDaylight Presence. Bonus Eylem olarak, gün ışığı sayılan 30 feetlik bir parlak ışık Yayılımı yayarsın. Yayılımın alanı bir büyüyle yaratılmış bir Darkness alanıyla çakışırsa, o büyü dağıtılır. Yayılım sen onu sonlandırana (eylem gerekmez), ölene ya da aciz duruma düşene kadar sürer.\n\nFortifying Light. Daylight Presence'ın etkinken, her sıranın başında sen ve Daylight Presence'ının içinde görebildiğin müttefiklerin 10 geçici can kazanırsınız."
+  },
+  "faerun-heroes_boon-of-the-furious-storm": {
+    "desc": "Şu faydaları kazanırsın.\n\nEye of the Storm. Yıldırım ve gürleme hasarına karşı direncin var. Yaralı durumdayken yıldırım ve gürleme hasarına karşı bağışıklıkn olur.\n\nStorm's Güç. Yaratıklar, yıldırım ya da gürleme hasar veren büyülerine karşı yaptıkları kurtarma zarlarında dezavantajlıdır."
+  },
+  "faerun-heroes_boon-of-the-soul-drinker": {
+    "desc": "Şu faydaları kazanırsın.\n\nGrave direnç. Soğuk ve nekrotik hasarına karşı direncin var.\n\nSiphon Life. 120 feet içindeki bir düşman 0 cana düşürüldüğünde, Tepki harcayıp 50 can geri kazanabilirsin. Bu faydayı kullandıktan sonra Short ya da Uzun Dinlenme tamamlayana kadar tekrar kullanamazsın."
+  },
+  "faerun-heroes_cold-caster": {
+    "desc": "Şu faydaları kazanırsın.\n\nUfak Büyü. Ray of Frost cantrip'ini öğrenirsin. Zaten biliyorsan, bunun yerine seçtiğin başka bir Wizard cantrip'ini öğrenirsin. Büyünün spellcasting yeteneği, bu feat'in artırdığı yetenektir.\n\nFrostbite. Bir yaratığa saldırı zarı ile isabet edip soğuk hasar verdiğinde, her sırada bir kez yaratığın savunmalarını geçici olarak zayıflatabilirsin. Yaratık, bir sonraki sıranın sonuna kadar yapacağı ilk kurtarma zarından 1d4 çıkarır."
+  },
+  "faerun-heroes_cult-of-the-dragon-initiate": {
+    "desc": "Şu faydaları kazanırsın.\n\nEjderha's Tongue. Draconic bilirsin. Bu feat'i seçtiğinde Draconic'i zaten biliyorsan, bunun yerine Player's Handbook'taki ya da bu kitabın 2. bölümündeki dil tablolarından seçtiğin bir dili öğrenirsin.\n\nEjderha's Terror. Büyü eylemi harcayarak 30 feet içinde görebildiğin bir yaratığa dehşet salabilirsin. Hedef Bilgelik kurtarma zarında başarılı olmalı (DC 8 + Bilgelik modifiyerin + Yeterlilik Bonusun), yoksa bir sonraki sıranın sonuna kadar korkmuş duruma düşer. Hedef kurtarma zarında başarılı olursa ya da etki onun üzerinde sona ererse, 24 saat boyunca bu etkiye bağışık olur.\n\nInspired by Fear. Bir yaratığı korkmuş duruma düşürdüğünde ve korkusunun kaynağı sensen, Heroic Inspiration'ın yoksa kazanabilirsin. Bu faydayı kullandıktan sonra Short ya da Uzun Dinlenme tamamlayana kadar tekrar kullanamazsın."
+  },
+  "faerun-heroes_dragonscarred": {
+    "desc": "Şu faydaları kazanırsın.\n\nDamage direnç. Bu feat'i aldığında asit, soğuk, ateş, yıldırım ya da zehirden birini seç. Seçtiğin hasar tipine karşı direncin olur.\n\nFearsome Power. Sıranda Attack ya da Magic eyleminin parçası olarak bir yaratığa hasar verdiğinde, o sırada Cult of the Dragon Initiate feat'inin ejderha's Terror faydasını Bonus Eylem olarak kullanabilirsin."
+  },
+  "faerun-heroes_emerald-enclave-fledgling": {
+    "desc": "Şu faydaları kazanırsın.\n\nSpeak with Animals. Speak with Animals büyüsü daima hazırdır ve onu sahip olduğun herhangi bir spell slot ile kullanabilirsin. Bu büyü için spellcasting yeteneğin Zekâ, Bilgelik ya da Karizmadır (bu feat'i seçerken belirlersin). Bu büyüyü Ritual olarak kullandığında süresi 8 saat olur.\n\nTag Team. Help eylemini aldığında, aynı eylemin parçası olarak 5 feet içindeki istekli bir müttefikinle yer değiştirebilirsin. Bu hareket Fırsat Saldırısı tetiklemez. Müttefikin aciz durumdaysa bu faydayı kullanamazsın."
+  },
+  "faerun-heroes_enclave-magic": {
+    "desc": "Şu faydaları kazanırsın.\n\nFriend to Animals. Hayvanlara Etkileme eylemi uygularken yaptığın yetenek kontrollerinde avantajlısın.\n\nTwo Hearts, One Mind. Beast Sense büyüsü daima hazırdır. Büyü slot harcamadan bir kez kullanabilir, bu hakkını Uzun Dinlenme tamamladığında geri kazanırsın. Bu özellikle spell slot harcamadan kullandığında büyü Konsantrasyon gerektirmez. İstersen uygun seviyedeki spell slot'larınla da kullanabilirsin. Büyünün spellcasting yeteneği, bu feat'in artırdığı yetenektir."
+  },
+  "faerun-heroes_fairy-trickster": {
+    "desc": "Şu faydaları kazanırsın.\n\nFaerie Trod Trotter. Sıranda Disengage eylemini aldığında, o sıranın geri kalanında zorlu arazi sana fazladan hareket harcatmaz.\n\nFlustering Strike. Bir yaratığa saldırı zarı ile isabet ettiğinde, hedefin aklını karıştırmayı deneyebilirsin. Hedef Bilgelik kurtarma zarında başarılı olmalı (DC 8 + bu feat'in artırdığı değerin ability modifiyeri + Yeterlilik Bonusun), yoksa bir sonraki sıranın sonuna kadar kurtarma zarlarında dezavantajlı olur.\n\nBu faydayı Yeterlilik Bonusun kadar kullanabilir, harcadığın hakları Uzun Dinlenme tamamladığında geri kazanırsın."
+  },
+  "faerun-heroes_genie-magic": {
+    "desc": "Şu faydaları kazanırsın.\n\nWish Magic. Büyü eylemi olarak, Sorcerer büyü listesinden casting time'ı bir eylem olan, seçtiğin 1. seviye bir büyüyü kullanabilirsin. Bu faydayı kullandıktan sonra Uzun Dinlenme tamamlayana kadar tekrar kullanamazsın. Büyünün spellcasting yeteneği, bu feat'in artırdığı yetenektir.\n\nSeviye 11'e ulaştığında, bu feat'le kullandığın büyü 2. seviye bir spell slot kullanılmış gibi işler.\n\nSeviye 17'ye ulaştığında büyü 3. seviye bir spell slot kullanılmış gibi işler."
+  },
+  "faerun-heroes_harper-agent": {
+    "desc": "Şu faydaları kazanırsın.\n\nThieves' Cant. Thieves' Cant bilirsin.\n\nInstrument Eğitim. Seçtiğin bir Musical Instrument ile proficiency kazanırsın.\n\nDistracting Melody. Bir müttefikin saldırı zarına yardım etmek için Help eylemini aldığında, dikkatini dağıttığın düşman -- seni görebiliyor ya da duyabiliyorsa -- 5 feet yerine 30 feet içinde olabilir."
+  },
+  "faerun-heroes_harper-teamwork": {
+    "desc": "Şu faydaları kazanırsın.\n\nWithering Wordplay. Bir müttefikin bir düşmana karşı saldırı zarına yardım etmek için Help eylemini aldığında, o düşman bir sonraki sıranın başına kadar yapacağı ilk kurtarma zarında da dezavantajlı olur.\n\nInspiring Willpower. Üzerindeki korkmuş ya da felçli durumunu sona erdirmek için yaptığın bir kurtarma zarında başarılı olursan, 30 feet içinde görebildiğin ve aynı duruma sahip bir müttefik seçebilirsin. O durum, o müttefikin üzerinden hemen kalkar."
+  },
+  "faerun-heroes_lordly-resolve": {
+    "desc": "Şu faydaları kazanırsın.\n\nStandard Bearer. Bonus Eylem olarak, 60 feet içinde seni görebilen en fazla üç yaratık seç. Hızı 0 olmayan her hedef hemen Tepki harcayıp doğrulabilir ve yere serilmiş durumunu sona erdirebilir. Ayrıca hedeflerin azmini güçlendirirsin; bu 1 dakika sürer ya da sen aciz duruma düşene kadar devam eder. Güçlendirilmiş bir hedef ele geçirilemez, büyülenmiş veya korkmuş duruma düşemez; hedef zaten ele geçirilmiş, büyülenmiş ya da korkmuş durumdaysa ilgili etkiye karşı yapacağı her yeni kurtarma zarında avantajlı olur.\n\nBu faydayı kullandıktan sonra Uzun Dinlenme tamamlayana kadar tekrar kullanamazsın."
+  },
+  "faerun-heroes_lords-alliance-agent": {
+    "desc": "Şu faydaları kazanırsın.\n\nInspiring Strike. Bir yaratığa Kritik Vuruş yaptığında, her sırada bir kez, 30 feet içinde seni görebilen ya da duyabilen ve Heroic Inspiration'ı olmayan bir müttefik seçebilirsin. O müttefik Heroic Inspiration kazanır.\n\nReassert Honor. Görebildiğin bir düşman, 5 feet yakınındaki bir müttefikine hasar verdiğinde, bir sonraki sıranın sonuna kadar o düşmana karşı yapacağın ilk saldırı zarında avantajlısın."
+  },
+  "faerun-heroes_mythal-touched": {
+    "desc": "Şu faydaları kazanırsın.\n\nMythal Ward. Bir büyü saldırısı sana isabet ederse ya da bir büyüye karşı kurtarma zarında başarısız olursan, Tepki harcayıp Mythal-Touched Magic tablosunda zar atarak büyülü bir etki yaratabilirsin. Bir etki kurtarma zarı gerektiriyorsa DC, 8 + bu feat'in artırdığı yeteneğin modifiyeri + Yeterlilik Bonusundur.\n\nBu faydayı Yeterlilik Bonusun kadar kullanabilir, harcadığın hakları Uzun Dinlenme tamamladığında geri kazanırsın.\n\nTablo: Mythal-Touched Magic\n\n| 1d20 | Etki |\n|---|---|\n| 1-2 | Sen ve 15 feet içindeki her yaratık Çeviklik kurtarma zarı yaparsınız; başarısız olanlar, tetikleyen büyünün seviyesinin 1d8 katı kadar kuvvet hasar alır, başarılı olanlar yarısını alır. |\n| 3-7 | Sen ve tetikleyen büyüyü kullanan kişi 1 saat boyunca telepatik bir bağ kurarsınız. |\n| 8-10 | Sende merkezlenen 15 feet yarıçapında, 60 feet yüksekliğindeki bir Silindir içinde 1 dakika boyunca yerçekimi tersine döner (Reverse Gravity büyüsü gibi). |\n| 11-13 | Sen ve tetikleyen büyüyü kullanan kişi Dayanıklılık kurtarma zarı yaparsınız. Başarısız olan yaratık bir sonraki sırasının sonuna kadar sersemlemiş duruma düşer. |\n| 14-17 | 1 dakika boyunca AC'ne +2 bonus alırsın; tetikleyen büyü bir büyü saldırısıysa bu onun ıskalamasına yol açabilir. |\n| 18-19 | Tetikleyen büyüyü kullanan kişinin 10 feet yakınındaki, başka bir yaratık tarafından giyilmeyen ya da taşınmayan her yanıcı ve büyülü olmayan nesne alev alır, 1d4 ateş hasar alır ve yanmaya başlar. |\n| 20 | Tetikleyen büyü etkisiz şekilde dağılır ve onu kullanmak için harcanan eylem, Bonus Eylem ya da Tepki boşa gider. O büyü bir spell slot ile kullanıldıysa slot harcanmaz. |"
+  },
+  "faerun-heroes_orders-resilience": {
+    "desc": "Şu faydaları kazanırsın.\n\nResurge. Yere serilmiş durumdayken yalnızca 5 feet hareketle doğrulabilirsin.\n\nStronger Together. Aciz durumda olmayan bir müttefikin 5 feet yakınındaysan, sen ve o müttefik Güç kurtarma zarlarında avantajlısınız. Aciz durumdayken bu faydayı kullanamazsın."
+  },
+  "faerun-heroes_purple-dragon-commandant": {
+    "desc": "Şu faydaları kazanırsın.\n\nEncourage Ally. Bonus Eylem olarak, 30 feet içinde görebildiğin bir müttefiki güçlendirirsin. Müttefik, 2d6 + bu feat'in artırdığı ability score'un modifiyeri kadar geçici can kazanır. Bu Bonus Eylemi Yeterlilik Bonusun kadar kullanabilir, bütün hakları Uzun Dinlenme tamamladığında geri kazanırsın.\n\nLast Stand. Yaralı durumdayken saldırı zarlarında avantajlısın."
+  },
+  "faerun-heroes_purple-dragon-rook": {
+    "desc": "Şu faydaları kazanırsın.\n\nEntreat. Şu becerilerden birinde proficiency kazanırsın: Sezgi, Sahne Sanatları ya da İkna.\n\nRallying Cry. İnisiyatif attığında ve aciz durumda değilsen, 30 feet içinde görebildiğin, Yeterlilik Bonusun kadar yaratık seçebilirsin. O yaratıklar Heroic Inspiration kazanır.\n\nBu faydayı kullandıktan sonra Uzun Dinlenme tamamlayana kadar tekrar kullanamazsın."
+  },
+  "faerun-heroes_spellfire-adept": {
+    "desc": "Şu faydaları kazanırsın.\n\nFueled Spellfire. Kullandığın bir büyü ışıma hasar verdiğinde, her sırada bir kez en fazla iki can Dice harcayıp atabilir ve toplamı büyünün bir hasar atışına ekleyebilirsin.\n\nSearing Spellfire. Işıma hasar veren bir hasar atışı yaptığında, bu atış ışıma hasarına karşı direnci yok sayar."
+  },
+  "faerun-heroes_spellfire-spark": {
+    "desc": "Şu faydaları kazanırsın.\n\nMagic Absorption. Bir büyüden ya da büyülü bir etkiden hasar aldığında, her sırada bir kez aldığın toplam hasarı 1d4 azaltırsın. Aciz durumdayken bu faydayı kullanamazsın.\n\nSpellfire Flame. Sacred Flame cantrip'ini öğrenirsin. Bu büyü için spellcasting yeteneğin Zekâ, Bilgelik ya da Karizmadır (bu feat'i seçerken belirlersin). Ayrıca bu cantrip'i Yeterlilik Bonusun kadar Bonus Eylem olarak da kullanabilirsin; harcadığın hakları Uzun Dinlenme tamamladığında geri kazanırsın."
+  },
+  "faerun-heroes_street-justice": {
+    "desc": "Şu faydaları kazanırsın.\n\nHeadlock. Senin tarafından kavranmış olan bir yaratığa karşı müttefiklerin saldırı zarlarında avantajlıdır.\n\nSturdy Knot. Bir yaratığı bağlamak için Zincir, Manacles ya da Rope kullandığında, Zincir, Manacles veya Rope'tan kurtulmak ya da onu koparmak için gereken DC'ye Yeterlilik Bonusunu eklersin.\n\nTough Talk. Bir yaratığın Düşmanca tutumu, o yaratığı etkilemek için yaptığın Karizma (Yıldırma) kontrollerine dezavantaj getirmez."
+  },
+  "faerun-heroes_tyro-of-the-gauntlet": {
+    "desc": "Şu faydaları kazanırsın.\n\nStand as One. 5 feet içindeki bir müttefikin itilmesine ya da çekilmesine yol açacak bir etkiye maruz kaldığında, Tepki harcayıp o müttefikin itilmesini veya çekilmesini engelleyebilirsin. Bu faydayı almak için müttefikin aciz durumda olmamalıdır.\n\nVigilant. Ready eylemini aldığında, bir sonraki sıranın başına kadar sana karşı yapılacak ilk saldırı zarı dezavantajlı olur."
+  },
+  "faerun-heroes_zhentarim-ruffian": {
+    "desc": "Şu faydaları kazanırsın.\n\nExploit Opening. Bir Fırsat Saldırısın hasarını atarken, hasar zarlarını iki kez atıp istediğin sonucu hedefe uygulayabilirsin.\n\nFamily First. İnisiyatif attığında Heroic Inspiration'ın varsa, onu harcayıp kendine ve müttefiklerine o İnisiyatif atışında avantaj verebilirsin."
+  },
+  "faerun-heroes_zhentarim-tactics": {
+    "desc": "Şu faydaları kazanırsın.\n\nKarşılık Verme. 5 feet yakınındaki bir yaratık sana melee saldırıyla isabet ettikten hemen sonra, o yaratığa bir Fırsat Saldırısı yapabilirsin.\n\nVersatile Merc. Uzun Dinlenme tamamladığında, proficiency'n olan bir beceri seç. Bir sonraki Uzun Dinlenmesi tamamlayana kadar o beceride Expertise'in olur."
+  }
+}

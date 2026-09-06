@@ -7,7 +7,11 @@ import '../../app/theme.dart';
 import '../../app/ui/ui.dart';
 import '../../domain/ai/ai_settings.dart';
 import '../../l10n/app_localizations.dart';
+import 'package:file_selector/file_selector.dart';
+
 import '../session/backup_page.dart';
+import 'campaign_merge_dialog.dart';
+import 'content_sources_page.dart';
 
 /// DM uygulamasinin ayarlar ekrani: dil ve tema secimi.
 ///
@@ -81,6 +85,78 @@ class SettingsPage extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: 12),
+          // Yogunluk: masada ekran her zaman az. Varsayilan "sikı"; gozu
+          // yorulan ya da dokunmatikle calisan buradan ferahlatabiliyor.
+          section(
+            l10n.settingsDensity,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                SegmentedButton<AppDensity>(
+                  segments: [
+                    ButtonSegment(
+                      value: AppDensity.compact,
+                      label: Text(l10n.settingsDensityCompact),
+                    ),
+                    ButtonSegment(
+                      value: AppDensity.normal,
+                      label: Text(l10n.settingsDensityNormal),
+                    ),
+                    ButtonSegment(
+                      value: AppDensity.comfortable,
+                      label: Text(l10n.settingsDensityComfortable),
+                    ),
+                  ],
+                  selected: {settings.density},
+                  showSelectedIcon: false,
+                  onSelectionChanged: (s) => controller.setDensity(s.first),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  l10n.settingsDensityHint,
+                  style: theme.textTheme.bodySmall,
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 12),
+          // ERISILEBILIRLIK: jeton takimlari, hareket bantlari ve duvar
+          // turleri renkten okunuyordu; ikisi de renge EK isaret ekliyor.
+          section(
+            l10n.settingsAccessibility,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                SwitchListTile(
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(l10n.settingsHighContrast),
+                  value: settings.highContrast,
+                  onChanged: controller.setHighContrast,
+                ),
+                SwitchListTile(
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(l10n.settingsColorBlind),
+                  subtitle: Text(
+                    l10n.settingsColorBlindHint,
+                    style: theme.textTheme.bodySmall,
+                  ),
+                  value: settings.colorBlindSafe,
+                  onChanged: controller.setColorBlindSafe,
+                ),
+                SwitchListTile(
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(l10n.settingsTouchLayout),
+                  subtitle: Text(
+                    l10n.settingsTouchLayoutHint,
+                    style: theme.textTheme.bodySmall,
+                  ),
+                  value: settings.touchLayout,
+                  onChanged: controller.setTouchLayout,
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 12),
           section(l10n.settingsAiTitle, const _AiSection()),
           const SizedBox(height: 12),
           // Yedekleme yalnizca Oturum sayfasinin ust cubugundaki ikondan
@@ -100,6 +176,78 @@ class SettingsPage extends ConsumerWidget {
                   ).push(MaterialPageRoute(builder: (_) => const BackupPage())),
                   icon: const Icon(Icons.backup_outlined),
                   label: Text(l10n.sessionBackup),
+                ),
+                const SizedBox(height: 16),
+                // Cihazlar arasi tasima: uygulama KENDI bulut hesabini
+                // kullanmiyor (hesap istemek, sunucu tutmak ve kampanya
+                // verisini disariya tasimak demekti). Bunun yerine gunluk
+                // yedegin ikinci kopyasi, kullanicinin sectigi bir klasore
+                // yaziliyor -- o klasor bir bulut istemcisiyle esitleniyorsa
+                // yedek de esitlenmis oluyor.
+                Text(l10n.syncFolder, style: theme.textTheme.labelLarge),
+                const SizedBox(height: 4),
+                Text(l10n.syncFolderHint, style: theme.textTheme.bodySmall),
+                const SizedBox(height: 8),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        settings.syncFolder ?? l10n.syncFolderNone,
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: theme.colorScheme.outline,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    TextButton.icon(
+                      onPressed: () async {
+                        final path = await getDirectoryPath();
+                        if (path != null) {
+                          await controller.setSyncFolder(path);
+                        }
+                      },
+                      icon: const Icon(Icons.folder_open_outlined, size: 18),
+                      label: Text(l10n.syncFolderPick),
+                    ),
+                    if (settings.syncFolder != null)
+                      IconButton(
+                        tooltip: l10n.syncFolderCleared,
+                        icon: const Icon(Icons.close),
+                        onPressed: () => controller.setSyncFolder(null),
+                      ),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                OutlinedButton.icon(
+                  onPressed: () => showDialog<void>(
+                    context: context,
+                    builder: (_) => const CampaignMergeDialog(),
+                  ),
+                  icon: const Icon(Icons.move_down_outlined),
+                  label: Text(l10n.campaignMerge),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 12),
+          // Kullanicinin kendi icerik kaynaklari. Uygulama hazir bir adresle
+          // GELMIYOR; burada yalnizca kullanicinin girdigi adresler duruyor.
+          section(
+            l10n.contentSourcesTitle,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(l10n.contentSourcesHint, style: theme.textTheme.bodySmall),
+                const SizedBox(height: 12),
+                OutlinedButton.icon(
+                  onPressed: () =>
+                      Navigator.of(context, rootNavigator: true).push(
+                        MaterialPageRoute(
+                          builder: (_) => const ContentSourcesPage(),
+                        ),
+                      ),
+                  icon: const Icon(Icons.library_add_outlined),
+                  label: Text(l10n.contentSourcesTitle),
                 ),
               ],
             ),

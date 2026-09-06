@@ -6223,6 +6223,40 @@ class $CharactersTable extends Characters
     requiredDuringInsert: false,
     defaultValue: const Constant('{}'),
   );
+  static const VerificationMeta _spellChangesAvailableMeta =
+      const VerificationMeta('spellChangesAvailable');
+  @override
+  late final GeneratedColumn<int> spellChangesAvailable = GeneratedColumn<int>(
+    'spell_changes_available',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _concentrationSpellMeta =
+      const VerificationMeta('concentrationSpell');
+  @override
+  late final GeneratedColumn<String> concentrationSpell =
+      GeneratedColumn<String>(
+        'concentration_spell',
+        aliasedName,
+        true,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+      );
+  static const VerificationMeta _slotCapacitiesJsonMeta =
+      const VerificationMeta('slotCapacitiesJson');
+  @override
+  late final GeneratedColumn<String> slotCapacitiesJson =
+      GeneratedColumn<String>(
+        'slot_capacities_json',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+        defaultValue: const Constant('{}'),
+      );
   static const VerificationMeta _spellSlotsUsedJsonMeta =
       const VerificationMeta('spellSlotsUsedJson');
   @override
@@ -6361,6 +6395,9 @@ class $CharactersTable extends Characters
     speedOverride,
     conditionsJson,
     hitDiceUsedJson,
+    spellChangesAvailable,
+    concentrationSpell,
+    slotCapacitiesJson,
     spellSlotsUsedJson,
     portraitPath,
     notes,
@@ -6577,6 +6614,33 @@ class $CharactersTable extends Characters
         ),
       );
     }
+    if (data.containsKey('spell_changes_available')) {
+      context.handle(
+        _spellChangesAvailableMeta,
+        spellChangesAvailable.isAcceptableOrUnknown(
+          data['spell_changes_available']!,
+          _spellChangesAvailableMeta,
+        ),
+      );
+    }
+    if (data.containsKey('concentration_spell')) {
+      context.handle(
+        _concentrationSpellMeta,
+        concentrationSpell.isAcceptableOrUnknown(
+          data['concentration_spell']!,
+          _concentrationSpellMeta,
+        ),
+      );
+    }
+    if (data.containsKey('slot_capacities_json')) {
+      context.handle(
+        _slotCapacitiesJsonMeta,
+        slotCapacitiesJson.isAcceptableOrUnknown(
+          data['slot_capacities_json']!,
+          _slotCapacitiesJsonMeta,
+        ),
+      );
+    }
     if (data.containsKey('spell_slots_used_json')) {
       context.handle(
         _spellSlotsUsedJsonMeta,
@@ -6755,6 +6819,18 @@ class $CharactersTable extends Characters
         DriftSqlType.string,
         data['${effectivePrefix}hit_dice_used_json'],
       )!,
+      spellChangesAvailable: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}spell_changes_available'],
+      )!,
+      concentrationSpell: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}concentration_spell'],
+      ),
+      slotCapacitiesJson: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}slot_capacities_json'],
+      )!,
       spellSlotsUsedJson: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}spell_slots_used_json'],
@@ -6808,8 +6884,8 @@ class Character extends DataClass implements Insertable<Character> {
   final String id;
   final String name;
 
-  /// Bu karakteri oynayan kisi. Oyuncu paneli baglanirken eslestirmede
-  /// kullanilir (Faz 1b).
+  /// Bu karakteri masada oynayan kisinin adi; DM listede kimin kagidi
+  /// oldugunu gormek icin yaziyor. Serbest metin, bos birakilabilir.
   final String? playerName;
   final String? speciesKey;
   final String? backgroundKey;
@@ -6850,6 +6926,25 @@ class Character extends DataClass implements Insertable<Character> {
 
   /// Harcanmis hit dice: sinif anahtari -> adet.
   final String hitDiceUsedJson;
+
+  /// Oyuncunun hazir buyu listesinde kac degisiklik yapabilecegi.
+  ///
+  /// Uzun dinlenmede (Cleric/Druid/Paladin/Wizard/Artificer) listenin tamami
+  /// kadar, seviye atlayinca (Bard/Ranger/Sorcerer/Warlock) bir tane veriliyor.
+  /// Bos yere yeni buyu eklemek hak harcamaz; yalnizca SECILI bir buyuyu
+  /// listeden cikarmak harcar.
+  final int spellChangesAvailable;
+
+  /// Su an konsantrasyon tutulan buyunun adi; yoksa null.
+  ///
+  /// Hasar alinca CON kurtarmasi gerektigi icin masada takip edilmesi gereken
+  /// tek "acik buyu" bilgisi bu.
+  final String? concentrationSpell;
+
+  /// Ekipman yuvasi sinirlarindan VARSAYILANDAN FARKLI olanlar
+  /// (`EquipSlot.name` -> adet, -1 sinirsiz). Yalnizca elle degistirilenler
+  /// yaziliyor ki varsayilan degisirse dokunulmamis yuvalar onu izlesin.
+  final String slotCapacitiesJson;
 
   /// Harcanmis buyu yuvalari: yuva seviyesi -> adet.
   final String spellSlotsUsedJson;
@@ -6892,6 +6987,9 @@ class Character extends DataClass implements Insertable<Character> {
     this.speedOverride,
     required this.conditionsJson,
     required this.hitDiceUsedJson,
+    required this.spellChangesAvailable,
+    this.concentrationSpell,
+    required this.slotCapacitiesJson,
     required this.spellSlotsUsedJson,
     this.portraitPath,
     required this.notes,
@@ -6943,6 +7041,11 @@ class Character extends DataClass implements Insertable<Character> {
     }
     map['conditions_json'] = Variable<String>(conditionsJson);
     map['hit_dice_used_json'] = Variable<String>(hitDiceUsedJson);
+    map['spell_changes_available'] = Variable<int>(spellChangesAvailable);
+    if (!nullToAbsent || concentrationSpell != null) {
+      map['concentration_spell'] = Variable<String>(concentrationSpell);
+    }
+    map['slot_capacities_json'] = Variable<String>(slotCapacitiesJson);
     map['spell_slots_used_json'] = Variable<String>(spellSlotsUsedJson);
     if (!nullToAbsent || portraitPath != null) {
       map['portrait_path'] = Variable<String>(portraitPath);
@@ -6997,6 +7100,11 @@ class Character extends DataClass implements Insertable<Character> {
           : Value(speedOverride),
       conditionsJson: Value(conditionsJson),
       hitDiceUsedJson: Value(hitDiceUsedJson),
+      spellChangesAvailable: Value(spellChangesAvailable),
+      concentrationSpell: concentrationSpell == null && nullToAbsent
+          ? const Value.absent()
+          : Value(concentrationSpell),
+      slotCapacitiesJson: Value(slotCapacitiesJson),
       spellSlotsUsedJson: Value(spellSlotsUsedJson),
       portraitPath: portraitPath == null && nullToAbsent
           ? const Value.absent()
@@ -7043,6 +7151,15 @@ class Character extends DataClass implements Insertable<Character> {
       speedOverride: serializer.fromJson<int?>(json['speedOverride']),
       conditionsJson: serializer.fromJson<String>(json['conditionsJson']),
       hitDiceUsedJson: serializer.fromJson<String>(json['hitDiceUsedJson']),
+      spellChangesAvailable: serializer.fromJson<int>(
+        json['spellChangesAvailable'],
+      ),
+      concentrationSpell: serializer.fromJson<String?>(
+        json['concentrationSpell'],
+      ),
+      slotCapacitiesJson: serializer.fromJson<String>(
+        json['slotCapacitiesJson'],
+      ),
       spellSlotsUsedJson: serializer.fromJson<String>(
         json['spellSlotsUsedJson'],
       ),
@@ -7086,6 +7203,9 @@ class Character extends DataClass implements Insertable<Character> {
       'speedOverride': serializer.toJson<int?>(speedOverride),
       'conditionsJson': serializer.toJson<String>(conditionsJson),
       'hitDiceUsedJson': serializer.toJson<String>(hitDiceUsedJson),
+      'spellChangesAvailable': serializer.toJson<int>(spellChangesAvailable),
+      'concentrationSpell': serializer.toJson<String?>(concentrationSpell),
+      'slotCapacitiesJson': serializer.toJson<String>(slotCapacitiesJson),
       'spellSlotsUsedJson': serializer.toJson<String>(spellSlotsUsedJson),
       'portraitPath': serializer.toJson<String?>(portraitPath),
       'notes': serializer.toJson<String>(notes),
@@ -7125,6 +7245,9 @@ class Character extends DataClass implements Insertable<Character> {
     Value<int?> speedOverride = const Value.absent(),
     String? conditionsJson,
     String? hitDiceUsedJson,
+    int? spellChangesAvailable,
+    Value<String?> concentrationSpell = const Value.absent(),
+    String? slotCapacitiesJson,
     String? spellSlotsUsedJson,
     Value<String?> portraitPath = const Value.absent(),
     String? notes,
@@ -7167,6 +7290,11 @@ class Character extends DataClass implements Insertable<Character> {
         : this.speedOverride,
     conditionsJson: conditionsJson ?? this.conditionsJson,
     hitDiceUsedJson: hitDiceUsedJson ?? this.hitDiceUsedJson,
+    spellChangesAvailable: spellChangesAvailable ?? this.spellChangesAvailable,
+    concentrationSpell: concentrationSpell.present
+        ? concentrationSpell.value
+        : this.concentrationSpell,
+    slotCapacitiesJson: slotCapacitiesJson ?? this.slotCapacitiesJson,
     spellSlotsUsedJson: spellSlotsUsedJson ?? this.spellSlotsUsedJson,
     portraitPath: portraitPath.present ? portraitPath.value : this.portraitPath,
     notes: notes ?? this.notes,
@@ -7239,6 +7367,15 @@ class Character extends DataClass implements Insertable<Character> {
       hitDiceUsedJson: data.hitDiceUsedJson.present
           ? data.hitDiceUsedJson.value
           : this.hitDiceUsedJson,
+      spellChangesAvailable: data.spellChangesAvailable.present
+          ? data.spellChangesAvailable.value
+          : this.spellChangesAvailable,
+      concentrationSpell: data.concentrationSpell.present
+          ? data.concentrationSpell.value
+          : this.concentrationSpell,
+      slotCapacitiesJson: data.slotCapacitiesJson.present
+          ? data.slotCapacitiesJson.value
+          : this.slotCapacitiesJson,
       spellSlotsUsedJson: data.spellSlotsUsedJson.present
           ? data.spellSlotsUsedJson.value
           : this.spellSlotsUsedJson,
@@ -7288,6 +7425,9 @@ class Character extends DataClass implements Insertable<Character> {
           ..write('speedOverride: $speedOverride, ')
           ..write('conditionsJson: $conditionsJson, ')
           ..write('hitDiceUsedJson: $hitDiceUsedJson, ')
+          ..write('spellChangesAvailable: $spellChangesAvailable, ')
+          ..write('concentrationSpell: $concentrationSpell, ')
+          ..write('slotCapacitiesJson: $slotCapacitiesJson, ')
           ..write('spellSlotsUsedJson: $spellSlotsUsedJson, ')
           ..write('portraitPath: $portraitPath, ')
           ..write('notes: $notes, ')
@@ -7329,6 +7469,9 @@ class Character extends DataClass implements Insertable<Character> {
     speedOverride,
     conditionsJson,
     hitDiceUsedJson,
+    spellChangesAvailable,
+    concentrationSpell,
+    slotCapacitiesJson,
     spellSlotsUsedJson,
     portraitPath,
     notes,
@@ -7369,6 +7512,9 @@ class Character extends DataClass implements Insertable<Character> {
           other.speedOverride == this.speedOverride &&
           other.conditionsJson == this.conditionsJson &&
           other.hitDiceUsedJson == this.hitDiceUsedJson &&
+          other.spellChangesAvailable == this.spellChangesAvailable &&
+          other.concentrationSpell == this.concentrationSpell &&
+          other.slotCapacitiesJson == this.slotCapacitiesJson &&
           other.spellSlotsUsedJson == this.spellSlotsUsedJson &&
           other.portraitPath == this.portraitPath &&
           other.notes == this.notes &&
@@ -7407,6 +7553,9 @@ class CharactersCompanion extends UpdateCompanion<Character> {
   final Value<int?> speedOverride;
   final Value<String> conditionsJson;
   final Value<String> hitDiceUsedJson;
+  final Value<int> spellChangesAvailable;
+  final Value<String?> concentrationSpell;
+  final Value<String> slotCapacitiesJson;
   final Value<String> spellSlotsUsedJson;
   final Value<String?> portraitPath;
   final Value<String> notes;
@@ -7444,6 +7593,9 @@ class CharactersCompanion extends UpdateCompanion<Character> {
     this.speedOverride = const Value.absent(),
     this.conditionsJson = const Value.absent(),
     this.hitDiceUsedJson = const Value.absent(),
+    this.spellChangesAvailable = const Value.absent(),
+    this.concentrationSpell = const Value.absent(),
+    this.slotCapacitiesJson = const Value.absent(),
     this.spellSlotsUsedJson = const Value.absent(),
     this.portraitPath = const Value.absent(),
     this.notes = const Value.absent(),
@@ -7482,6 +7634,9 @@ class CharactersCompanion extends UpdateCompanion<Character> {
     this.speedOverride = const Value.absent(),
     this.conditionsJson = const Value.absent(),
     this.hitDiceUsedJson = const Value.absent(),
+    this.spellChangesAvailable = const Value.absent(),
+    this.concentrationSpell = const Value.absent(),
+    this.slotCapacitiesJson = const Value.absent(),
     this.spellSlotsUsedJson = const Value.absent(),
     this.portraitPath = const Value.absent(),
     this.notes = const Value.absent(),
@@ -7521,6 +7676,9 @@ class CharactersCompanion extends UpdateCompanion<Character> {
     Expression<int>? speedOverride,
     Expression<String>? conditionsJson,
     Expression<String>? hitDiceUsedJson,
+    Expression<int>? spellChangesAvailable,
+    Expression<String>? concentrationSpell,
+    Expression<String>? slotCapacitiesJson,
     Expression<String>? spellSlotsUsedJson,
     Expression<String>? portraitPath,
     Expression<String>? notes,
@@ -7562,6 +7720,11 @@ class CharactersCompanion extends UpdateCompanion<Character> {
       if (speedOverride != null) 'speed_override': speedOverride,
       if (conditionsJson != null) 'conditions_json': conditionsJson,
       if (hitDiceUsedJson != null) 'hit_dice_used_json': hitDiceUsedJson,
+      if (spellChangesAvailable != null)
+        'spell_changes_available': spellChangesAvailable,
+      if (concentrationSpell != null) 'concentration_spell': concentrationSpell,
+      if (slotCapacitiesJson != null)
+        'slot_capacities_json': slotCapacitiesJson,
       if (spellSlotsUsedJson != null)
         'spell_slots_used_json': spellSlotsUsedJson,
       if (portraitPath != null) 'portrait_path': portraitPath,
@@ -7603,6 +7766,9 @@ class CharactersCompanion extends UpdateCompanion<Character> {
     Value<int?>? speedOverride,
     Value<String>? conditionsJson,
     Value<String>? hitDiceUsedJson,
+    Value<int>? spellChangesAvailable,
+    Value<String?>? concentrationSpell,
+    Value<String>? slotCapacitiesJson,
     Value<String>? spellSlotsUsedJson,
     Value<String?>? portraitPath,
     Value<String>? notes,
@@ -7641,6 +7807,10 @@ class CharactersCompanion extends UpdateCompanion<Character> {
       speedOverride: speedOverride ?? this.speedOverride,
       conditionsJson: conditionsJson ?? this.conditionsJson,
       hitDiceUsedJson: hitDiceUsedJson ?? this.hitDiceUsedJson,
+      spellChangesAvailable:
+          spellChangesAvailable ?? this.spellChangesAvailable,
+      concentrationSpell: concentrationSpell ?? this.concentrationSpell,
+      slotCapacitiesJson: slotCapacitiesJson ?? this.slotCapacitiesJson,
       spellSlotsUsedJson: spellSlotsUsedJson ?? this.spellSlotsUsedJson,
       portraitPath: portraitPath ?? this.portraitPath,
       notes: notes ?? this.notes,
@@ -7733,6 +7903,17 @@ class CharactersCompanion extends UpdateCompanion<Character> {
     if (hitDiceUsedJson.present) {
       map['hit_dice_used_json'] = Variable<String>(hitDiceUsedJson.value);
     }
+    if (spellChangesAvailable.present) {
+      map['spell_changes_available'] = Variable<int>(
+        spellChangesAvailable.value,
+      );
+    }
+    if (concentrationSpell.present) {
+      map['concentration_spell'] = Variable<String>(concentrationSpell.value);
+    }
+    if (slotCapacitiesJson.present) {
+      map['slot_capacities_json'] = Variable<String>(slotCapacitiesJson.value);
+    }
     if (spellSlotsUsedJson.present) {
       map['spell_slots_used_json'] = Variable<String>(spellSlotsUsedJson.value);
     }
@@ -7797,6 +7978,9 @@ class CharactersCompanion extends UpdateCompanion<Character> {
           ..write('speedOverride: $speedOverride, ')
           ..write('conditionsJson: $conditionsJson, ')
           ..write('hitDiceUsedJson: $hitDiceUsedJson, ')
+          ..write('spellChangesAvailable: $spellChangesAvailable, ')
+          ..write('concentrationSpell: $concentrationSpell, ')
+          ..write('slotCapacitiesJson: $slotCapacitiesJson, ')
           ..write('spellSlotsUsedJson: $spellSlotsUsedJson, ')
           ..write('portraitPath: $portraitPath, ')
           ..write('notes: $notes, ')
@@ -8745,6 +8929,15 @@ class $CharacterItemsTable extends CharacterItems
     ),
     defaultValue: const Constant(false),
   );
+  static const VerificationMeta _slotMeta = const VerificationMeta('slot');
+  @override
+  late final GeneratedColumn<String> slot = GeneratedColumn<String>(
+    'slot',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
   static const VerificationMeta _attunedMeta = const VerificationMeta(
     'attuned',
   );
@@ -8782,6 +8975,7 @@ class $CharacterItemsTable extends CharacterItems
     customDesc,
     quantity,
     equipped,
+    slot,
     attuned,
     sortOrder,
   ];
@@ -8852,6 +9046,12 @@ class $CharacterItemsTable extends CharacterItems
         equipped.isAcceptableOrUnknown(data['equipped']!, _equippedMeta),
       );
     }
+    if (data.containsKey('slot')) {
+      context.handle(
+        _slotMeta,
+        slot.isAcceptableOrUnknown(data['slot']!, _slotMeta),
+      );
+    }
     if (data.containsKey('attuned')) {
       context.handle(
         _attunedMeta,
@@ -8905,6 +9105,10 @@ class $CharacterItemsTable extends CharacterItems
         DriftSqlType.bool,
         data['${effectivePrefix}equipped'],
       )!,
+      slot: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}slot'],
+      ),
       attuned: attachedDatabase.typeMapping.read(
         DriftSqlType.bool,
         data['${effectivePrefix}attuned'],
@@ -8935,6 +9139,11 @@ class CharacterItem extends DataClass implements Insertable<CharacterItem> {
   final String? customDesc;
   final int quantity;
   final bool equipped;
+
+  /// Kusanildiginda kapladigi yuva (`EquipSlot.name`); bos ise esyanin
+  /// kendisinden tahmin edilir. Elle degistirilebilsin diye saklaniyor:
+  /// "Boots of Speed"i kemer yuvasina koymak isteyen DM'e engel yok.
+  final String? slot;
   final bool attuned;
 
   /// Envanterde el ile siralama.
@@ -8948,6 +9157,7 @@ class CharacterItem extends DataClass implements Insertable<CharacterItem> {
     this.customDesc,
     required this.quantity,
     required this.equipped,
+    this.slot,
     required this.attuned,
     required this.sortOrder,
   });
@@ -8970,6 +9180,9 @@ class CharacterItem extends DataClass implements Insertable<CharacterItem> {
     }
     map['quantity'] = Variable<int>(quantity);
     map['equipped'] = Variable<bool>(equipped);
+    if (!nullToAbsent || slot != null) {
+      map['slot'] = Variable<String>(slot);
+    }
     map['attuned'] = Variable<bool>(attuned);
     map['sort_order'] = Variable<int>(sortOrder);
     return map;
@@ -8993,6 +9206,7 @@ class CharacterItem extends DataClass implements Insertable<CharacterItem> {
           : Value(customDesc),
       quantity: Value(quantity),
       equipped: Value(equipped),
+      slot: slot == null && nullToAbsent ? const Value.absent() : Value(slot),
       attuned: Value(attuned),
       sortOrder: Value(sortOrder),
     );
@@ -9012,6 +9226,7 @@ class CharacterItem extends DataClass implements Insertable<CharacterItem> {
       customDesc: serializer.fromJson<String?>(json['customDesc']),
       quantity: serializer.fromJson<int>(json['quantity']),
       equipped: serializer.fromJson<bool>(json['equipped']),
+      slot: serializer.fromJson<String?>(json['slot']),
       attuned: serializer.fromJson<bool>(json['attuned']),
       sortOrder: serializer.fromJson<int>(json['sortOrder']),
     );
@@ -9028,6 +9243,7 @@ class CharacterItem extends DataClass implements Insertable<CharacterItem> {
       'customDesc': serializer.toJson<String?>(customDesc),
       'quantity': serializer.toJson<int>(quantity),
       'equipped': serializer.toJson<bool>(equipped),
+      'slot': serializer.toJson<String?>(slot),
       'attuned': serializer.toJson<bool>(attuned),
       'sortOrder': serializer.toJson<int>(sortOrder),
     };
@@ -9042,6 +9258,7 @@ class CharacterItem extends DataClass implements Insertable<CharacterItem> {
     Value<String?> customDesc = const Value.absent(),
     int? quantity,
     bool? equipped,
+    Value<String?> slot = const Value.absent(),
     bool? attuned,
     int? sortOrder,
   }) => CharacterItem(
@@ -9053,6 +9270,7 @@ class CharacterItem extends DataClass implements Insertable<CharacterItem> {
     customDesc: customDesc.present ? customDesc.value : this.customDesc,
     quantity: quantity ?? this.quantity,
     equipped: equipped ?? this.equipped,
+    slot: slot.present ? slot.value : this.slot,
     attuned: attuned ?? this.attuned,
     sortOrder: sortOrder ?? this.sortOrder,
   );
@@ -9074,6 +9292,7 @@ class CharacterItem extends DataClass implements Insertable<CharacterItem> {
           : this.customDesc,
       quantity: data.quantity.present ? data.quantity.value : this.quantity,
       equipped: data.equipped.present ? data.equipped.value : this.equipped,
+      slot: data.slot.present ? data.slot.value : this.slot,
       attuned: data.attuned.present ? data.attuned.value : this.attuned,
       sortOrder: data.sortOrder.present ? data.sortOrder.value : this.sortOrder,
     );
@@ -9090,6 +9309,7 @@ class CharacterItem extends DataClass implements Insertable<CharacterItem> {
           ..write('customDesc: $customDesc, ')
           ..write('quantity: $quantity, ')
           ..write('equipped: $equipped, ')
+          ..write('slot: $slot, ')
           ..write('attuned: $attuned, ')
           ..write('sortOrder: $sortOrder')
           ..write(')'))
@@ -9106,6 +9326,7 @@ class CharacterItem extends DataClass implements Insertable<CharacterItem> {
     customDesc,
     quantity,
     equipped,
+    slot,
     attuned,
     sortOrder,
   );
@@ -9121,6 +9342,7 @@ class CharacterItem extends DataClass implements Insertable<CharacterItem> {
           other.customDesc == this.customDesc &&
           other.quantity == this.quantity &&
           other.equipped == this.equipped &&
+          other.slot == this.slot &&
           other.attuned == this.attuned &&
           other.sortOrder == this.sortOrder);
 }
@@ -9134,6 +9356,7 @@ class CharacterItemsCompanion extends UpdateCompanion<CharacterItem> {
   final Value<String?> customDesc;
   final Value<int> quantity;
   final Value<bool> equipped;
+  final Value<String?> slot;
   final Value<bool> attuned;
   final Value<int> sortOrder;
   final Value<int> rowid;
@@ -9146,6 +9369,7 @@ class CharacterItemsCompanion extends UpdateCompanion<CharacterItem> {
     this.customDesc = const Value.absent(),
     this.quantity = const Value.absent(),
     this.equipped = const Value.absent(),
+    this.slot = const Value.absent(),
     this.attuned = const Value.absent(),
     this.sortOrder = const Value.absent(),
     this.rowid = const Value.absent(),
@@ -9159,6 +9383,7 @@ class CharacterItemsCompanion extends UpdateCompanion<CharacterItem> {
     this.customDesc = const Value.absent(),
     this.quantity = const Value.absent(),
     this.equipped = const Value.absent(),
+    this.slot = const Value.absent(),
     this.attuned = const Value.absent(),
     this.sortOrder = const Value.absent(),
     this.rowid = const Value.absent(),
@@ -9173,6 +9398,7 @@ class CharacterItemsCompanion extends UpdateCompanion<CharacterItem> {
     Expression<String>? customDesc,
     Expression<int>? quantity,
     Expression<bool>? equipped,
+    Expression<String>? slot,
     Expression<bool>? attuned,
     Expression<int>? sortOrder,
     Expression<int>? rowid,
@@ -9186,6 +9412,7 @@ class CharacterItemsCompanion extends UpdateCompanion<CharacterItem> {
       if (customDesc != null) 'custom_desc': customDesc,
       if (quantity != null) 'quantity': quantity,
       if (equipped != null) 'equipped': equipped,
+      if (slot != null) 'slot': slot,
       if (attuned != null) 'attuned': attuned,
       if (sortOrder != null) 'sort_order': sortOrder,
       if (rowid != null) 'rowid': rowid,
@@ -9201,6 +9428,7 @@ class CharacterItemsCompanion extends UpdateCompanion<CharacterItem> {
     Value<String?>? customDesc,
     Value<int>? quantity,
     Value<bool>? equipped,
+    Value<String?>? slot,
     Value<bool>? attuned,
     Value<int>? sortOrder,
     Value<int>? rowid,
@@ -9214,6 +9442,7 @@ class CharacterItemsCompanion extends UpdateCompanion<CharacterItem> {
       customDesc: customDesc ?? this.customDesc,
       quantity: quantity ?? this.quantity,
       equipped: equipped ?? this.equipped,
+      slot: slot ?? this.slot,
       attuned: attuned ?? this.attuned,
       sortOrder: sortOrder ?? this.sortOrder,
       rowid: rowid ?? this.rowid,
@@ -9247,6 +9476,9 @@ class CharacterItemsCompanion extends UpdateCompanion<CharacterItem> {
     if (equipped.present) {
       map['equipped'] = Variable<bool>(equipped.value);
     }
+    if (slot.present) {
+      map['slot'] = Variable<String>(slot.value);
+    }
     if (attuned.present) {
       map['attuned'] = Variable<bool>(attuned.value);
     }
@@ -9270,6 +9502,7 @@ class CharacterItemsCompanion extends UpdateCompanion<CharacterItem> {
           ..write('customDesc: $customDesc, ')
           ..write('quantity: $quantity, ')
           ..write('equipped: $equipped, ')
+          ..write('slot: $slot, ')
           ..write('attuned: $attuned, ')
           ..write('sortOrder: $sortOrder, ')
           ..write('rowid: $rowid')
@@ -10333,6 +10566,51 @@ class $EncountersTable extends Encounters
     type: DriftSqlType.string,
     requiredDuringInsert: false,
   );
+  static const VerificationMeta _turnLimitSecondsMeta = const VerificationMeta(
+    'turnLimitSeconds',
+  );
+  @override
+  late final GeneratedColumn<int> turnLimitSeconds = GeneratedColumn<int>(
+    'turn_limit_seconds',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _lairActionTextMeta = const VerificationMeta(
+    'lairActionText',
+  );
+  @override
+  late final GeneratedColumn<String> lairActionText = GeneratedColumn<String>(
+    'lair_action_text',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _lairInitiativeMeta = const VerificationMeta(
+    'lairInitiative',
+  );
+  @override
+  late final GeneratedColumn<int> lairInitiative = GeneratedColumn<int>(
+    'lair_initiative',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(20),
+  );
+  static const VerificationMeta _locationIdMeta = const VerificationMeta(
+    'locationId',
+  );
+  @override
+  late final GeneratedColumn<String> locationId = GeneratedColumn<String>(
+    'location_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
   static const VerificationMeta _createdAtMeta = const VerificationMeta(
     'createdAt',
   );
@@ -10354,6 +10632,10 @@ class $EncountersTable extends Encounters
     started,
     briefingJson,
     lootJson,
+    turnLimitSeconds,
+    lairActionText,
+    lairInitiative,
+    locationId,
     createdAt,
   ];
   @override
@@ -10417,6 +10699,39 @@ class $EncountersTable extends Encounters
         lootJson.isAcceptableOrUnknown(data['loot_json']!, _lootJsonMeta),
       );
     }
+    if (data.containsKey('turn_limit_seconds')) {
+      context.handle(
+        _turnLimitSecondsMeta,
+        turnLimitSeconds.isAcceptableOrUnknown(
+          data['turn_limit_seconds']!,
+          _turnLimitSecondsMeta,
+        ),
+      );
+    }
+    if (data.containsKey('lair_action_text')) {
+      context.handle(
+        _lairActionTextMeta,
+        lairActionText.isAcceptableOrUnknown(
+          data['lair_action_text']!,
+          _lairActionTextMeta,
+        ),
+      );
+    }
+    if (data.containsKey('lair_initiative')) {
+      context.handle(
+        _lairInitiativeMeta,
+        lairInitiative.isAcceptableOrUnknown(
+          data['lair_initiative']!,
+          _lairInitiativeMeta,
+        ),
+      );
+    }
+    if (data.containsKey('location_id')) {
+      context.handle(
+        _locationIdMeta,
+        locationId.isAcceptableOrUnknown(data['location_id']!, _locationIdMeta),
+      );
+    }
     if (data.containsKey('created_at')) {
       context.handle(
         _createdAtMeta,
@@ -10460,6 +10775,22 @@ class $EncountersTable extends Encounters
         DriftSqlType.string,
         data['${effectivePrefix}loot_json'],
       ),
+      turnLimitSeconds: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}turn_limit_seconds'],
+      ),
+      lairActionText: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}lair_action_text'],
+      ),
+      lairInitiative: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}lair_initiative'],
+      )!,
+      locationId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}location_id'],
+      ),
       createdAt: attachedDatabase.typeMapping.read(
         DriftSqlType.dateTime,
         data['${effectivePrefix}created_at'],
@@ -10502,6 +10833,25 @@ class Encounter extends DataClass implements Insertable<Encounter> {
   /// esya kutuphanede bulunamamis demektir ve arayuz bunu isaretler — DM
   /// uydurma bir esyayi gercek sanmasin.
   final String? lootJson;
+
+  /// Tur suresi siniri (saniye); null = sinirsiz.
+  ///
+  /// Karsilasma basina saklaniyor: bir arena dovusunde 60 saniye, bir kusatma
+  /// sahnesinde sinirsiz istenebiliyor.
+  final int? turnLimitSeconds;
+
+  /// In (lair) eylemi metni; null = bu karsilasmada in eylemi yok.
+  final String? lairActionText;
+
+  /// In eyleminin tetiklendigi inisiyatif degeri (kural: 20).
+  final int lairInitiative;
+
+  /// Karsilasmanin GECTIGI yer (`Locations.id`); null = bir yere baglanmadi.
+  ///
+  /// FK TANIMLANMADI, projedeki diger gevsek baglar gibi: yer silinince
+  /// karsilasma kaybolmamali, cozumleme okuma aninda yapiliyor ve yer yoksa
+  /// arayuz bagi "kopuk" gosteriyor.
+  final String? locationId;
   final DateTime createdAt;
   const Encounter({
     required this.id,
@@ -10511,6 +10861,10 @@ class Encounter extends DataClass implements Insertable<Encounter> {
     required this.started,
     this.briefingJson,
     this.lootJson,
+    this.turnLimitSeconds,
+    this.lairActionText,
+    required this.lairInitiative,
+    this.locationId,
     required this.createdAt,
   });
   @override
@@ -10526,6 +10880,16 @@ class Encounter extends DataClass implements Insertable<Encounter> {
     }
     if (!nullToAbsent || lootJson != null) {
       map['loot_json'] = Variable<String>(lootJson);
+    }
+    if (!nullToAbsent || turnLimitSeconds != null) {
+      map['turn_limit_seconds'] = Variable<int>(turnLimitSeconds);
+    }
+    if (!nullToAbsent || lairActionText != null) {
+      map['lair_action_text'] = Variable<String>(lairActionText);
+    }
+    map['lair_initiative'] = Variable<int>(lairInitiative);
+    if (!nullToAbsent || locationId != null) {
+      map['location_id'] = Variable<String>(locationId);
     }
     map['created_at'] = Variable<DateTime>(createdAt);
     return map;
@@ -10544,6 +10908,16 @@ class Encounter extends DataClass implements Insertable<Encounter> {
       lootJson: lootJson == null && nullToAbsent
           ? const Value.absent()
           : Value(lootJson),
+      turnLimitSeconds: turnLimitSeconds == null && nullToAbsent
+          ? const Value.absent()
+          : Value(turnLimitSeconds),
+      lairActionText: lairActionText == null && nullToAbsent
+          ? const Value.absent()
+          : Value(lairActionText),
+      lairInitiative: Value(lairInitiative),
+      locationId: locationId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(locationId),
       createdAt: Value(createdAt),
     );
   }
@@ -10561,6 +10935,10 @@ class Encounter extends DataClass implements Insertable<Encounter> {
       started: serializer.fromJson<bool>(json['started']),
       briefingJson: serializer.fromJson<String?>(json['briefingJson']),
       lootJson: serializer.fromJson<String?>(json['lootJson']),
+      turnLimitSeconds: serializer.fromJson<int?>(json['turnLimitSeconds']),
+      lairActionText: serializer.fromJson<String?>(json['lairActionText']),
+      lairInitiative: serializer.fromJson<int>(json['lairInitiative']),
+      locationId: serializer.fromJson<String?>(json['locationId']),
       createdAt: serializer.fromJson<DateTime>(json['createdAt']),
     );
   }
@@ -10575,6 +10953,10 @@ class Encounter extends DataClass implements Insertable<Encounter> {
       'started': serializer.toJson<bool>(started),
       'briefingJson': serializer.toJson<String?>(briefingJson),
       'lootJson': serializer.toJson<String?>(lootJson),
+      'turnLimitSeconds': serializer.toJson<int?>(turnLimitSeconds),
+      'lairActionText': serializer.toJson<String?>(lairActionText),
+      'lairInitiative': serializer.toJson<int>(lairInitiative),
+      'locationId': serializer.toJson<String?>(locationId),
       'createdAt': serializer.toJson<DateTime>(createdAt),
     };
   }
@@ -10587,6 +10969,10 @@ class Encounter extends DataClass implements Insertable<Encounter> {
     bool? started,
     Value<String?> briefingJson = const Value.absent(),
     Value<String?> lootJson = const Value.absent(),
+    Value<int?> turnLimitSeconds = const Value.absent(),
+    Value<String?> lairActionText = const Value.absent(),
+    int? lairInitiative,
+    Value<String?> locationId = const Value.absent(),
     DateTime? createdAt,
   }) => Encounter(
     id: id ?? this.id,
@@ -10596,6 +10982,14 @@ class Encounter extends DataClass implements Insertable<Encounter> {
     started: started ?? this.started,
     briefingJson: briefingJson.present ? briefingJson.value : this.briefingJson,
     lootJson: lootJson.present ? lootJson.value : this.lootJson,
+    turnLimitSeconds: turnLimitSeconds.present
+        ? turnLimitSeconds.value
+        : this.turnLimitSeconds,
+    lairActionText: lairActionText.present
+        ? lairActionText.value
+        : this.lairActionText,
+    lairInitiative: lairInitiative ?? this.lairInitiative,
+    locationId: locationId.present ? locationId.value : this.locationId,
     createdAt: createdAt ?? this.createdAt,
   );
   Encounter copyWithCompanion(EncountersCompanion data) {
@@ -10611,6 +11005,18 @@ class Encounter extends DataClass implements Insertable<Encounter> {
           ? data.briefingJson.value
           : this.briefingJson,
       lootJson: data.lootJson.present ? data.lootJson.value : this.lootJson,
+      turnLimitSeconds: data.turnLimitSeconds.present
+          ? data.turnLimitSeconds.value
+          : this.turnLimitSeconds,
+      lairActionText: data.lairActionText.present
+          ? data.lairActionText.value
+          : this.lairActionText,
+      lairInitiative: data.lairInitiative.present
+          ? data.lairInitiative.value
+          : this.lairInitiative,
+      locationId: data.locationId.present
+          ? data.locationId.value
+          : this.locationId,
       createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
     );
   }
@@ -10625,6 +11031,10 @@ class Encounter extends DataClass implements Insertable<Encounter> {
           ..write('started: $started, ')
           ..write('briefingJson: $briefingJson, ')
           ..write('lootJson: $lootJson, ')
+          ..write('turnLimitSeconds: $turnLimitSeconds, ')
+          ..write('lairActionText: $lairActionText, ')
+          ..write('lairInitiative: $lairInitiative, ')
+          ..write('locationId: $locationId, ')
           ..write('createdAt: $createdAt')
           ..write(')'))
         .toString();
@@ -10639,6 +11049,10 @@ class Encounter extends DataClass implements Insertable<Encounter> {
     started,
     briefingJson,
     lootJson,
+    turnLimitSeconds,
+    lairActionText,
+    lairInitiative,
+    locationId,
     createdAt,
   );
   @override
@@ -10652,6 +11066,10 @@ class Encounter extends DataClass implements Insertable<Encounter> {
           other.started == this.started &&
           other.briefingJson == this.briefingJson &&
           other.lootJson == this.lootJson &&
+          other.turnLimitSeconds == this.turnLimitSeconds &&
+          other.lairActionText == this.lairActionText &&
+          other.lairInitiative == this.lairInitiative &&
+          other.locationId == this.locationId &&
           other.createdAt == this.createdAt);
 }
 
@@ -10663,6 +11081,10 @@ class EncountersCompanion extends UpdateCompanion<Encounter> {
   final Value<bool> started;
   final Value<String?> briefingJson;
   final Value<String?> lootJson;
+  final Value<int?> turnLimitSeconds;
+  final Value<String?> lairActionText;
+  final Value<int> lairInitiative;
+  final Value<String?> locationId;
   final Value<DateTime> createdAt;
   final Value<int> rowid;
   const EncountersCompanion({
@@ -10673,6 +11095,10 @@ class EncountersCompanion extends UpdateCompanion<Encounter> {
     this.started = const Value.absent(),
     this.briefingJson = const Value.absent(),
     this.lootJson = const Value.absent(),
+    this.turnLimitSeconds = const Value.absent(),
+    this.lairActionText = const Value.absent(),
+    this.lairInitiative = const Value.absent(),
+    this.locationId = const Value.absent(),
     this.createdAt = const Value.absent(),
     this.rowid = const Value.absent(),
   });
@@ -10684,6 +11110,10 @@ class EncountersCompanion extends UpdateCompanion<Encounter> {
     this.started = const Value.absent(),
     this.briefingJson = const Value.absent(),
     this.lootJson = const Value.absent(),
+    this.turnLimitSeconds = const Value.absent(),
+    this.lairActionText = const Value.absent(),
+    this.lairInitiative = const Value.absent(),
+    this.locationId = const Value.absent(),
     this.createdAt = const Value.absent(),
     this.rowid = const Value.absent(),
   }) : id = Value(id),
@@ -10696,6 +11126,10 @@ class EncountersCompanion extends UpdateCompanion<Encounter> {
     Expression<bool>? started,
     Expression<String>? briefingJson,
     Expression<String>? lootJson,
+    Expression<int>? turnLimitSeconds,
+    Expression<String>? lairActionText,
+    Expression<int>? lairInitiative,
+    Expression<String>? locationId,
     Expression<DateTime>? createdAt,
     Expression<int>? rowid,
   }) {
@@ -10707,6 +11141,10 @@ class EncountersCompanion extends UpdateCompanion<Encounter> {
       if (started != null) 'started': started,
       if (briefingJson != null) 'briefing_json': briefingJson,
       if (lootJson != null) 'loot_json': lootJson,
+      if (turnLimitSeconds != null) 'turn_limit_seconds': turnLimitSeconds,
+      if (lairActionText != null) 'lair_action_text': lairActionText,
+      if (lairInitiative != null) 'lair_initiative': lairInitiative,
+      if (locationId != null) 'location_id': locationId,
       if (createdAt != null) 'created_at': createdAt,
       if (rowid != null) 'rowid': rowid,
     });
@@ -10720,6 +11158,10 @@ class EncountersCompanion extends UpdateCompanion<Encounter> {
     Value<bool>? started,
     Value<String?>? briefingJson,
     Value<String?>? lootJson,
+    Value<int?>? turnLimitSeconds,
+    Value<String?>? lairActionText,
+    Value<int>? lairInitiative,
+    Value<String?>? locationId,
     Value<DateTime>? createdAt,
     Value<int>? rowid,
   }) {
@@ -10731,6 +11173,10 @@ class EncountersCompanion extends UpdateCompanion<Encounter> {
       started: started ?? this.started,
       briefingJson: briefingJson ?? this.briefingJson,
       lootJson: lootJson ?? this.lootJson,
+      turnLimitSeconds: turnLimitSeconds ?? this.turnLimitSeconds,
+      lairActionText: lairActionText ?? this.lairActionText,
+      lairInitiative: lairInitiative ?? this.lairInitiative,
+      locationId: locationId ?? this.locationId,
       createdAt: createdAt ?? this.createdAt,
       rowid: rowid ?? this.rowid,
     );
@@ -10760,6 +11206,18 @@ class EncountersCompanion extends UpdateCompanion<Encounter> {
     if (lootJson.present) {
       map['loot_json'] = Variable<String>(lootJson.value);
     }
+    if (turnLimitSeconds.present) {
+      map['turn_limit_seconds'] = Variable<int>(turnLimitSeconds.value);
+    }
+    if (lairActionText.present) {
+      map['lair_action_text'] = Variable<String>(lairActionText.value);
+    }
+    if (lairInitiative.present) {
+      map['lair_initiative'] = Variable<int>(lairInitiative.value);
+    }
+    if (locationId.present) {
+      map['location_id'] = Variable<String>(locationId.value);
+    }
     if (createdAt.present) {
       map['created_at'] = Variable<DateTime>(createdAt.value);
     }
@@ -10779,6 +11237,10 @@ class EncountersCompanion extends UpdateCompanion<Encounter> {
           ..write('started: $started, ')
           ..write('briefingJson: $briefingJson, ')
           ..write('lootJson: $lootJson, ')
+          ..write('turnLimitSeconds: $turnLimitSeconds, ')
+          ..write('lairActionText: $lairActionText, ')
+          ..write('lairInitiative: $lairInitiative, ')
+          ..write('locationId: $locationId, ')
           ..write('createdAt: $createdAt, ')
           ..write('rowid: $rowid')
           ..write(')'))
@@ -10866,21 +11328,6 @@ class $CombatantsTable extends Combatants
     type: DriftSqlType.int,
     requiredDuringInsert: false,
     defaultValue: const Constant(0),
-  );
-  static const VerificationMeta _initiativeRolledMeta = const VerificationMeta(
-    'initiativeRolled',
-  );
-  @override
-  late final GeneratedColumn<bool> initiativeRolled = GeneratedColumn<bool>(
-    'initiative_rolled',
-    aliasedName,
-    false,
-    type: DriftSqlType.bool,
-    requiredDuringInsert: false,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'CHECK ("initiative_rolled" IN (0, 1))',
-    ),
-    defaultValue: const Constant(true),
   );
   static const VerificationMeta _sortOrderMeta = const VerificationMeta(
     'sortOrder',
@@ -11023,20 +11470,55 @@ class $CombatantsTable extends Combatants
         type: DriftSqlType.string,
         requiredDuringInsert: false,
       );
-  static const VerificationMeta _hiddenFromPlayersMeta = const VerificationMeta(
-    'hiddenFromPlayers',
+  static const VerificationMeta _reactionUsedMeta = const VerificationMeta(
+    'reactionUsed',
   );
   @override
-  late final GeneratedColumn<bool> hiddenFromPlayers = GeneratedColumn<bool>(
-    'hidden_from_players',
+  late final GeneratedColumn<bool> reactionUsed = GeneratedColumn<bool>(
+    'reaction_used',
     aliasedName,
     false,
     type: DriftSqlType.bool,
     requiredDuringInsert: false,
     defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'CHECK ("hidden_from_players" IN (0, 1))',
+      'CHECK ("reaction_used" IN (0, 1))',
     ),
     defaultValue: const Constant(false),
+  );
+  static const VerificationMeta _defensesJsonMeta = const VerificationMeta(
+    'defensesJson',
+  );
+  @override
+  late final GeneratedColumn<String> defensesJson = GeneratedColumn<String>(
+    'defenses_json',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('{}'),
+  );
+  static const VerificationMeta _deathSaveSuccessesMeta =
+      const VerificationMeta('deathSaveSuccesses');
+  @override
+  late final GeneratedColumn<int> deathSaveSuccesses = GeneratedColumn<int>(
+    'death_save_successes',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _deathSaveFailuresMeta = const VerificationMeta(
+    'deathSaveFailures',
+  );
+  @override
+  late final GeneratedColumn<int> deathSaveFailures = GeneratedColumn<int>(
+    'death_save_failures',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
   );
   static const VerificationMeta _defeatedMeta = const VerificationMeta(
     'defeated',
@@ -11072,7 +11554,6 @@ class $CombatantsTable extends Combatants
     characterId,
     monsterKey,
     initiative,
-    initiativeRolled,
     sortOrder,
     hitPointsMax,
     hitPointsCurrent,
@@ -11085,7 +11566,10 @@ class $CombatantsTable extends Combatants
     legendaryResistSpent,
     concentrating,
     concentrationNote,
-    hiddenFromPlayers,
+    reactionUsed,
+    defensesJson,
+    deathSaveSuccesses,
+    deathSaveFailures,
     defeated,
     note,
   ];
@@ -11144,15 +11628,6 @@ class $CombatantsTable extends Combatants
       context.handle(
         _initiativeMeta,
         initiative.isAcceptableOrUnknown(data['initiative']!, _initiativeMeta),
-      );
-    }
-    if (data.containsKey('initiative_rolled')) {
-      context.handle(
-        _initiativeRolledMeta,
-        initiativeRolled.isAcceptableOrUnknown(
-          data['initiative_rolled']!,
-          _initiativeRolledMeta,
-        ),
       );
     }
     if (data.containsKey('sort_order')) {
@@ -11257,12 +11732,39 @@ class $CombatantsTable extends Combatants
         ),
       );
     }
-    if (data.containsKey('hidden_from_players')) {
+    if (data.containsKey('reaction_used')) {
       context.handle(
-        _hiddenFromPlayersMeta,
-        hiddenFromPlayers.isAcceptableOrUnknown(
-          data['hidden_from_players']!,
-          _hiddenFromPlayersMeta,
+        _reactionUsedMeta,
+        reactionUsed.isAcceptableOrUnknown(
+          data['reaction_used']!,
+          _reactionUsedMeta,
+        ),
+      );
+    }
+    if (data.containsKey('defenses_json')) {
+      context.handle(
+        _defensesJsonMeta,
+        defensesJson.isAcceptableOrUnknown(
+          data['defenses_json']!,
+          _defensesJsonMeta,
+        ),
+      );
+    }
+    if (data.containsKey('death_save_successes')) {
+      context.handle(
+        _deathSaveSuccessesMeta,
+        deathSaveSuccesses.isAcceptableOrUnknown(
+          data['death_save_successes']!,
+          _deathSaveSuccessesMeta,
+        ),
+      );
+    }
+    if (data.containsKey('death_save_failures')) {
+      context.handle(
+        _deathSaveFailuresMeta,
+        deathSaveFailures.isAcceptableOrUnknown(
+          data['death_save_failures']!,
+          _deathSaveFailuresMeta,
         ),
       );
     }
@@ -11317,10 +11819,6 @@ class $CombatantsTable extends Combatants
         DriftSqlType.int,
         data['${effectivePrefix}initiative'],
       )!,
-      initiativeRolled: attachedDatabase.typeMapping.read(
-        DriftSqlType.bool,
-        data['${effectivePrefix}initiative_rolled'],
-      )!,
       sortOrder: attachedDatabase.typeMapping.read(
         DriftSqlType.int,
         data['${effectivePrefix}sort_order'],
@@ -11369,9 +11867,21 @@ class $CombatantsTable extends Combatants
         DriftSqlType.string,
         data['${effectivePrefix}concentration_note'],
       ),
-      hiddenFromPlayers: attachedDatabase.typeMapping.read(
+      reactionUsed: attachedDatabase.typeMapping.read(
         DriftSqlType.bool,
-        data['${effectivePrefix}hidden_from_players'],
+        data['${effectivePrefix}reaction_used'],
+      )!,
+      defensesJson: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}defenses_json'],
+      )!,
+      deathSaveSuccesses: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}death_save_successes'],
+      )!,
+      deathSaveFailures: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}death_save_failures'],
       )!,
       defeated: attachedDatabase.typeMapping.read(
         DriftSqlType.bool,
@@ -11404,12 +11914,6 @@ class Combatant extends DataClass implements Insertable<Combatant> {
   final String? monsterKey;
   final int initiative;
 
-  /// Inisiyatif atildi mi? Oyuncu katilimcilar savasa 0 (atilmamis) girer ve
-  /// kendi panellerinden atar; canavar/adhoc eklenirken zaten atildigi icin
-  /// varsayilan true. Atilmamis oyuncu, savas listesinde sayi yerine zar
-  /// dugmesi gosterir.
-  final bool initiativeRolled;
-
   /// Esit initiative'de sirayi sabitlemek icin; ayrica surukleyerek
   /// yeniden siralamada kullanilir.
   final int sortOrder;
@@ -11439,8 +11943,27 @@ class Combatant extends DataClass implements Insertable<Combatant> {
   final bool concentrating;
   final String? concentrationNote;
 
-  /// Oyunculardan gizli tutulan katilimcilar (surpriz canavarlar).
-  final bool hiddenFromPlayers;
+  /// Bu turda REAKSIYONUNU kullandi mi?
+  ///
+  /// Masada en cok unutulan kaynak: reaksiyon tur basina bir tanedir ve
+  /// katilimcinin SIRASI GELINCE tazelenir (D&D kurali: "tur basinizin
+  /// baslangicina kadar"). [CombatRepository.advanceTurn] sifirliyor.
+  final bool reactionUsed;
+
+  /// Hasar turu savunmalari: `{"resist":[],"immune":[],"vulnerable":[]}`.
+  ///
+  /// Canavar eklenirken kutuphane verisinden dolduruluyor; DM elle
+  /// duzenleyebiliyor. Tek JSON sutun cunku uc liste de yalnizca hasar
+  /// uygulanirken birlikte okunuyor, hicbiri ayri sorgulanmiyor.
+  final String defensesJson;
+
+  /// Olum kurtarma atislari.
+  ///
+  /// Oyuncu karakterlerinde karakter kaydiyla ESITLENIR (orasi ana kayit);
+  /// canavar/adhoc katilimcilar icin tek yer burasi. Can 0'a dusunce arayuz
+  /// sayaci kendiliginden aciyor.
+  final int deathSaveSuccesses;
+  final int deathSaveFailures;
   final bool defeated;
   final String note;
   const Combatant({
@@ -11451,7 +11974,6 @@ class Combatant extends DataClass implements Insertable<Combatant> {
     this.characterId,
     this.monsterKey,
     required this.initiative,
-    required this.initiativeRolled,
     required this.sortOrder,
     required this.hitPointsMax,
     required this.hitPointsCurrent,
@@ -11464,7 +11986,10 @@ class Combatant extends DataClass implements Insertable<Combatant> {
     required this.legendaryResistSpent,
     required this.concentrating,
     this.concentrationNote,
-    required this.hiddenFromPlayers,
+    required this.reactionUsed,
+    required this.defensesJson,
+    required this.deathSaveSuccesses,
+    required this.deathSaveFailures,
     required this.defeated,
     required this.note,
   });
@@ -11486,7 +12011,6 @@ class Combatant extends DataClass implements Insertable<Combatant> {
       map['monster_key'] = Variable<String>(monsterKey);
     }
     map['initiative'] = Variable<int>(initiative);
-    map['initiative_rolled'] = Variable<bool>(initiativeRolled);
     map['sort_order'] = Variable<int>(sortOrder);
     map['hit_points_max'] = Variable<int>(hitPointsMax);
     map['hit_points_current'] = Variable<int>(hitPointsCurrent);
@@ -11507,7 +12031,10 @@ class Combatant extends DataClass implements Insertable<Combatant> {
     if (!nullToAbsent || concentrationNote != null) {
       map['concentration_note'] = Variable<String>(concentrationNote);
     }
-    map['hidden_from_players'] = Variable<bool>(hiddenFromPlayers);
+    map['reaction_used'] = Variable<bool>(reactionUsed);
+    map['defenses_json'] = Variable<String>(defensesJson);
+    map['death_save_successes'] = Variable<int>(deathSaveSuccesses);
+    map['death_save_failures'] = Variable<int>(deathSaveFailures);
     map['defeated'] = Variable<bool>(defeated);
     map['note'] = Variable<String>(note);
     return map;
@@ -11526,7 +12053,6 @@ class Combatant extends DataClass implements Insertable<Combatant> {
           ? const Value.absent()
           : Value(monsterKey),
       initiative: Value(initiative),
-      initiativeRolled: Value(initiativeRolled),
       sortOrder: Value(sortOrder),
       hitPointsMax: Value(hitPointsMax),
       hitPointsCurrent: Value(hitPointsCurrent),
@@ -11547,7 +12073,10 @@ class Combatant extends DataClass implements Insertable<Combatant> {
       concentrationNote: concentrationNote == null && nullToAbsent
           ? const Value.absent()
           : Value(concentrationNote),
-      hiddenFromPlayers: Value(hiddenFromPlayers),
+      reactionUsed: Value(reactionUsed),
+      defensesJson: Value(defensesJson),
+      deathSaveSuccesses: Value(deathSaveSuccesses),
+      deathSaveFailures: Value(deathSaveFailures),
       defeated: Value(defeated),
       note: Value(note),
     );
@@ -11568,7 +12097,6 @@ class Combatant extends DataClass implements Insertable<Combatant> {
       characterId: serializer.fromJson<String?>(json['characterId']),
       monsterKey: serializer.fromJson<String?>(json['monsterKey']),
       initiative: serializer.fromJson<int>(json['initiative']),
-      initiativeRolled: serializer.fromJson<bool>(json['initiativeRolled']),
       sortOrder: serializer.fromJson<int>(json['sortOrder']),
       hitPointsMax: serializer.fromJson<int>(json['hitPointsMax']),
       hitPointsCurrent: serializer.fromJson<int>(json['hitPointsCurrent']),
@@ -11585,7 +12113,10 @@ class Combatant extends DataClass implements Insertable<Combatant> {
       concentrationNote: serializer.fromJson<String?>(
         json['concentrationNote'],
       ),
-      hiddenFromPlayers: serializer.fromJson<bool>(json['hiddenFromPlayers']),
+      reactionUsed: serializer.fromJson<bool>(json['reactionUsed']),
+      defensesJson: serializer.fromJson<String>(json['defensesJson']),
+      deathSaveSuccesses: serializer.fromJson<int>(json['deathSaveSuccesses']),
+      deathSaveFailures: serializer.fromJson<int>(json['deathSaveFailures']),
       defeated: serializer.fromJson<bool>(json['defeated']),
       note: serializer.fromJson<String>(json['note']),
     );
@@ -11603,7 +12134,6 @@ class Combatant extends DataClass implements Insertable<Combatant> {
       'characterId': serializer.toJson<String?>(characterId),
       'monsterKey': serializer.toJson<String?>(monsterKey),
       'initiative': serializer.toJson<int>(initiative),
-      'initiativeRolled': serializer.toJson<bool>(initiativeRolled),
       'sortOrder': serializer.toJson<int>(sortOrder),
       'hitPointsMax': serializer.toJson<int>(hitPointsMax),
       'hitPointsCurrent': serializer.toJson<int>(hitPointsCurrent),
@@ -11616,7 +12146,10 @@ class Combatant extends DataClass implements Insertable<Combatant> {
       'legendaryResistSpent': serializer.toJson<int>(legendaryResistSpent),
       'concentrating': serializer.toJson<bool>(concentrating),
       'concentrationNote': serializer.toJson<String?>(concentrationNote),
-      'hiddenFromPlayers': serializer.toJson<bool>(hiddenFromPlayers),
+      'reactionUsed': serializer.toJson<bool>(reactionUsed),
+      'defensesJson': serializer.toJson<String>(defensesJson),
+      'deathSaveSuccesses': serializer.toJson<int>(deathSaveSuccesses),
+      'deathSaveFailures': serializer.toJson<int>(deathSaveFailures),
       'defeated': serializer.toJson<bool>(defeated),
       'note': serializer.toJson<String>(note),
     };
@@ -11630,7 +12163,6 @@ class Combatant extends DataClass implements Insertable<Combatant> {
     Value<String?> characterId = const Value.absent(),
     Value<String?> monsterKey = const Value.absent(),
     int? initiative,
-    bool? initiativeRolled,
     int? sortOrder,
     int? hitPointsMax,
     int? hitPointsCurrent,
@@ -11643,7 +12175,10 @@ class Combatant extends DataClass implements Insertable<Combatant> {
     int? legendaryResistSpent,
     bool? concentrating,
     Value<String?> concentrationNote = const Value.absent(),
-    bool? hiddenFromPlayers,
+    bool? reactionUsed,
+    String? defensesJson,
+    int? deathSaveSuccesses,
+    int? deathSaveFailures,
     bool? defeated,
     String? note,
   }) => Combatant(
@@ -11654,7 +12189,6 @@ class Combatant extends DataClass implements Insertable<Combatant> {
     characterId: characterId.present ? characterId.value : this.characterId,
     monsterKey: monsterKey.present ? monsterKey.value : this.monsterKey,
     initiative: initiative ?? this.initiative,
-    initiativeRolled: initiativeRolled ?? this.initiativeRolled,
     sortOrder: sortOrder ?? this.sortOrder,
     hitPointsMax: hitPointsMax ?? this.hitPointsMax,
     hitPointsCurrent: hitPointsCurrent ?? this.hitPointsCurrent,
@@ -11671,7 +12205,10 @@ class Combatant extends DataClass implements Insertable<Combatant> {
     concentrationNote: concentrationNote.present
         ? concentrationNote.value
         : this.concentrationNote,
-    hiddenFromPlayers: hiddenFromPlayers ?? this.hiddenFromPlayers,
+    reactionUsed: reactionUsed ?? this.reactionUsed,
+    defensesJson: defensesJson ?? this.defensesJson,
+    deathSaveSuccesses: deathSaveSuccesses ?? this.deathSaveSuccesses,
+    deathSaveFailures: deathSaveFailures ?? this.deathSaveFailures,
     defeated: defeated ?? this.defeated,
     note: note ?? this.note,
   );
@@ -11692,9 +12229,6 @@ class Combatant extends DataClass implements Insertable<Combatant> {
       initiative: data.initiative.present
           ? data.initiative.value
           : this.initiative,
-      initiativeRolled: data.initiativeRolled.present
-          ? data.initiativeRolled.value
-          : this.initiativeRolled,
       sortOrder: data.sortOrder.present ? data.sortOrder.value : this.sortOrder,
       hitPointsMax: data.hitPointsMax.present
           ? data.hitPointsMax.value
@@ -11729,9 +12263,18 @@ class Combatant extends DataClass implements Insertable<Combatant> {
       concentrationNote: data.concentrationNote.present
           ? data.concentrationNote.value
           : this.concentrationNote,
-      hiddenFromPlayers: data.hiddenFromPlayers.present
-          ? data.hiddenFromPlayers.value
-          : this.hiddenFromPlayers,
+      reactionUsed: data.reactionUsed.present
+          ? data.reactionUsed.value
+          : this.reactionUsed,
+      defensesJson: data.defensesJson.present
+          ? data.defensesJson.value
+          : this.defensesJson,
+      deathSaveSuccesses: data.deathSaveSuccesses.present
+          ? data.deathSaveSuccesses.value
+          : this.deathSaveSuccesses,
+      deathSaveFailures: data.deathSaveFailures.present
+          ? data.deathSaveFailures.value
+          : this.deathSaveFailures,
       defeated: data.defeated.present ? data.defeated.value : this.defeated,
       note: data.note.present ? data.note.value : this.note,
     );
@@ -11747,7 +12290,6 @@ class Combatant extends DataClass implements Insertable<Combatant> {
           ..write('characterId: $characterId, ')
           ..write('monsterKey: $monsterKey, ')
           ..write('initiative: $initiative, ')
-          ..write('initiativeRolled: $initiativeRolled, ')
           ..write('sortOrder: $sortOrder, ')
           ..write('hitPointsMax: $hitPointsMax, ')
           ..write('hitPointsCurrent: $hitPointsCurrent, ')
@@ -11760,7 +12302,10 @@ class Combatant extends DataClass implements Insertable<Combatant> {
           ..write('legendaryResistSpent: $legendaryResistSpent, ')
           ..write('concentrating: $concentrating, ')
           ..write('concentrationNote: $concentrationNote, ')
-          ..write('hiddenFromPlayers: $hiddenFromPlayers, ')
+          ..write('reactionUsed: $reactionUsed, ')
+          ..write('defensesJson: $defensesJson, ')
+          ..write('deathSaveSuccesses: $deathSaveSuccesses, ')
+          ..write('deathSaveFailures: $deathSaveFailures, ')
           ..write('defeated: $defeated, ')
           ..write('note: $note')
           ..write(')'))
@@ -11776,7 +12321,6 @@ class Combatant extends DataClass implements Insertable<Combatant> {
     characterId,
     monsterKey,
     initiative,
-    initiativeRolled,
     sortOrder,
     hitPointsMax,
     hitPointsCurrent,
@@ -11789,7 +12333,10 @@ class Combatant extends DataClass implements Insertable<Combatant> {
     legendaryResistSpent,
     concentrating,
     concentrationNote,
-    hiddenFromPlayers,
+    reactionUsed,
+    defensesJson,
+    deathSaveSuccesses,
+    deathSaveFailures,
     defeated,
     note,
   ]);
@@ -11804,7 +12351,6 @@ class Combatant extends DataClass implements Insertable<Combatant> {
           other.characterId == this.characterId &&
           other.monsterKey == this.monsterKey &&
           other.initiative == this.initiative &&
-          other.initiativeRolled == this.initiativeRolled &&
           other.sortOrder == this.sortOrder &&
           other.hitPointsMax == this.hitPointsMax &&
           other.hitPointsCurrent == this.hitPointsCurrent &&
@@ -11817,7 +12363,10 @@ class Combatant extends DataClass implements Insertable<Combatant> {
           other.legendaryResistSpent == this.legendaryResistSpent &&
           other.concentrating == this.concentrating &&
           other.concentrationNote == this.concentrationNote &&
-          other.hiddenFromPlayers == this.hiddenFromPlayers &&
+          other.reactionUsed == this.reactionUsed &&
+          other.defensesJson == this.defensesJson &&
+          other.deathSaveSuccesses == this.deathSaveSuccesses &&
+          other.deathSaveFailures == this.deathSaveFailures &&
           other.defeated == this.defeated &&
           other.note == this.note);
 }
@@ -11830,7 +12379,6 @@ class CombatantsCompanion extends UpdateCompanion<Combatant> {
   final Value<String?> characterId;
   final Value<String?> monsterKey;
   final Value<int> initiative;
-  final Value<bool> initiativeRolled;
   final Value<int> sortOrder;
   final Value<int> hitPointsMax;
   final Value<int> hitPointsCurrent;
@@ -11843,7 +12391,10 @@ class CombatantsCompanion extends UpdateCompanion<Combatant> {
   final Value<int> legendaryResistSpent;
   final Value<bool> concentrating;
   final Value<String?> concentrationNote;
-  final Value<bool> hiddenFromPlayers;
+  final Value<bool> reactionUsed;
+  final Value<String> defensesJson;
+  final Value<int> deathSaveSuccesses;
+  final Value<int> deathSaveFailures;
   final Value<bool> defeated;
   final Value<String> note;
   final Value<int> rowid;
@@ -11855,7 +12406,6 @@ class CombatantsCompanion extends UpdateCompanion<Combatant> {
     this.characterId = const Value.absent(),
     this.monsterKey = const Value.absent(),
     this.initiative = const Value.absent(),
-    this.initiativeRolled = const Value.absent(),
     this.sortOrder = const Value.absent(),
     this.hitPointsMax = const Value.absent(),
     this.hitPointsCurrent = const Value.absent(),
@@ -11868,7 +12418,10 @@ class CombatantsCompanion extends UpdateCompanion<Combatant> {
     this.legendaryResistSpent = const Value.absent(),
     this.concentrating = const Value.absent(),
     this.concentrationNote = const Value.absent(),
-    this.hiddenFromPlayers = const Value.absent(),
+    this.reactionUsed = const Value.absent(),
+    this.defensesJson = const Value.absent(),
+    this.deathSaveSuccesses = const Value.absent(),
+    this.deathSaveFailures = const Value.absent(),
     this.defeated = const Value.absent(),
     this.note = const Value.absent(),
     this.rowid = const Value.absent(),
@@ -11881,7 +12434,6 @@ class CombatantsCompanion extends UpdateCompanion<Combatant> {
     this.characterId = const Value.absent(),
     this.monsterKey = const Value.absent(),
     this.initiative = const Value.absent(),
-    this.initiativeRolled = const Value.absent(),
     this.sortOrder = const Value.absent(),
     this.hitPointsMax = const Value.absent(),
     this.hitPointsCurrent = const Value.absent(),
@@ -11894,7 +12446,10 @@ class CombatantsCompanion extends UpdateCompanion<Combatant> {
     this.legendaryResistSpent = const Value.absent(),
     this.concentrating = const Value.absent(),
     this.concentrationNote = const Value.absent(),
-    this.hiddenFromPlayers = const Value.absent(),
+    this.reactionUsed = const Value.absent(),
+    this.defensesJson = const Value.absent(),
+    this.deathSaveSuccesses = const Value.absent(),
+    this.deathSaveFailures = const Value.absent(),
     this.defeated = const Value.absent(),
     this.note = const Value.absent(),
     this.rowid = const Value.absent(),
@@ -11910,7 +12465,6 @@ class CombatantsCompanion extends UpdateCompanion<Combatant> {
     Expression<String>? characterId,
     Expression<String>? monsterKey,
     Expression<int>? initiative,
-    Expression<bool>? initiativeRolled,
     Expression<int>? sortOrder,
     Expression<int>? hitPointsMax,
     Expression<int>? hitPointsCurrent,
@@ -11923,7 +12477,10 @@ class CombatantsCompanion extends UpdateCompanion<Combatant> {
     Expression<int>? legendaryResistSpent,
     Expression<bool>? concentrating,
     Expression<String>? concentrationNote,
-    Expression<bool>? hiddenFromPlayers,
+    Expression<bool>? reactionUsed,
+    Expression<String>? defensesJson,
+    Expression<int>? deathSaveSuccesses,
+    Expression<int>? deathSaveFailures,
     Expression<bool>? defeated,
     Expression<String>? note,
     Expression<int>? rowid,
@@ -11936,7 +12493,6 @@ class CombatantsCompanion extends UpdateCompanion<Combatant> {
       if (characterId != null) 'character_id': characterId,
       if (monsterKey != null) 'monster_key': monsterKey,
       if (initiative != null) 'initiative': initiative,
-      if (initiativeRolled != null) 'initiative_rolled': initiativeRolled,
       if (sortOrder != null) 'sort_order': sortOrder,
       if (hitPointsMax != null) 'hit_points_max': hitPointsMax,
       if (hitPointsCurrent != null) 'hit_points_current': hitPointsCurrent,
@@ -11952,7 +12508,11 @@ class CombatantsCompanion extends UpdateCompanion<Combatant> {
         'legendary_resist_spent': legendaryResistSpent,
       if (concentrating != null) 'concentrating': concentrating,
       if (concentrationNote != null) 'concentration_note': concentrationNote,
-      if (hiddenFromPlayers != null) 'hidden_from_players': hiddenFromPlayers,
+      if (reactionUsed != null) 'reaction_used': reactionUsed,
+      if (defensesJson != null) 'defenses_json': defensesJson,
+      if (deathSaveSuccesses != null)
+        'death_save_successes': deathSaveSuccesses,
+      if (deathSaveFailures != null) 'death_save_failures': deathSaveFailures,
       if (defeated != null) 'defeated': defeated,
       if (note != null) 'note': note,
       if (rowid != null) 'rowid': rowid,
@@ -11967,7 +12527,6 @@ class CombatantsCompanion extends UpdateCompanion<Combatant> {
     Value<String?>? characterId,
     Value<String?>? monsterKey,
     Value<int>? initiative,
-    Value<bool>? initiativeRolled,
     Value<int>? sortOrder,
     Value<int>? hitPointsMax,
     Value<int>? hitPointsCurrent,
@@ -11980,7 +12539,10 @@ class CombatantsCompanion extends UpdateCompanion<Combatant> {
     Value<int>? legendaryResistSpent,
     Value<bool>? concentrating,
     Value<String?>? concentrationNote,
-    Value<bool>? hiddenFromPlayers,
+    Value<bool>? reactionUsed,
+    Value<String>? defensesJson,
+    Value<int>? deathSaveSuccesses,
+    Value<int>? deathSaveFailures,
     Value<bool>? defeated,
     Value<String>? note,
     Value<int>? rowid,
@@ -11993,7 +12555,6 @@ class CombatantsCompanion extends UpdateCompanion<Combatant> {
       characterId: characterId ?? this.characterId,
       monsterKey: monsterKey ?? this.monsterKey,
       initiative: initiative ?? this.initiative,
-      initiativeRolled: initiativeRolled ?? this.initiativeRolled,
       sortOrder: sortOrder ?? this.sortOrder,
       hitPointsMax: hitPointsMax ?? this.hitPointsMax,
       hitPointsCurrent: hitPointsCurrent ?? this.hitPointsCurrent,
@@ -12006,7 +12567,10 @@ class CombatantsCompanion extends UpdateCompanion<Combatant> {
       legendaryResistSpent: legendaryResistSpent ?? this.legendaryResistSpent,
       concentrating: concentrating ?? this.concentrating,
       concentrationNote: concentrationNote ?? this.concentrationNote,
-      hiddenFromPlayers: hiddenFromPlayers ?? this.hiddenFromPlayers,
+      reactionUsed: reactionUsed ?? this.reactionUsed,
+      defensesJson: defensesJson ?? this.defensesJson,
+      deathSaveSuccesses: deathSaveSuccesses ?? this.deathSaveSuccesses,
+      deathSaveFailures: deathSaveFailures ?? this.deathSaveFailures,
       defeated: defeated ?? this.defeated,
       note: note ?? this.note,
       rowid: rowid ?? this.rowid,
@@ -12038,9 +12602,6 @@ class CombatantsCompanion extends UpdateCompanion<Combatant> {
     }
     if (initiative.present) {
       map['initiative'] = Variable<int>(initiative.value);
-    }
-    if (initiativeRolled.present) {
-      map['initiative_rolled'] = Variable<bool>(initiativeRolled.value);
     }
     if (sortOrder.present) {
       map['sort_order'] = Variable<int>(sortOrder.value);
@@ -12078,8 +12639,17 @@ class CombatantsCompanion extends UpdateCompanion<Combatant> {
     if (concentrationNote.present) {
       map['concentration_note'] = Variable<String>(concentrationNote.value);
     }
-    if (hiddenFromPlayers.present) {
-      map['hidden_from_players'] = Variable<bool>(hiddenFromPlayers.value);
+    if (reactionUsed.present) {
+      map['reaction_used'] = Variable<bool>(reactionUsed.value);
+    }
+    if (defensesJson.present) {
+      map['defenses_json'] = Variable<String>(defensesJson.value);
+    }
+    if (deathSaveSuccesses.present) {
+      map['death_save_successes'] = Variable<int>(deathSaveSuccesses.value);
+    }
+    if (deathSaveFailures.present) {
+      map['death_save_failures'] = Variable<int>(deathSaveFailures.value);
     }
     if (defeated.present) {
       map['defeated'] = Variable<bool>(defeated.value);
@@ -12103,7 +12673,6 @@ class CombatantsCompanion extends UpdateCompanion<Combatant> {
           ..write('characterId: $characterId, ')
           ..write('monsterKey: $monsterKey, ')
           ..write('initiative: $initiative, ')
-          ..write('initiativeRolled: $initiativeRolled, ')
           ..write('sortOrder: $sortOrder, ')
           ..write('hitPointsMax: $hitPointsMax, ')
           ..write('hitPointsCurrent: $hitPointsCurrent, ')
@@ -12116,7 +12685,10 @@ class CombatantsCompanion extends UpdateCompanion<Combatant> {
           ..write('legendaryResistSpent: $legendaryResistSpent, ')
           ..write('concentrating: $concentrating, ')
           ..write('concentrationNote: $concentrationNote, ')
-          ..write('hiddenFromPlayers: $hiddenFromPlayers, ')
+          ..write('reactionUsed: $reactionUsed, ')
+          ..write('defensesJson: $defensesJson, ')
+          ..write('deathSaveSuccesses: $deathSaveSuccesses, ')
+          ..write('deathSaveFailures: $deathSaveFailures, ')
           ..write('defeated: $defeated, ')
           ..write('note: $note, ')
           ..write('rowid: $rowid')
@@ -12194,36 +12766,6 @@ class $ShopsTable extends Shops with TableInfo<$ShopsTable, Shop> {
     requiredDuringInsert: false,
     defaultValue: const Constant(1),
   );
-  static const VerificationMeta _openToPlayersMeta = const VerificationMeta(
-    'openToPlayers',
-  );
-  @override
-  late final GeneratedColumn<bool> openToPlayers = GeneratedColumn<bool>(
-    'open_to_players',
-    aliasedName,
-    false,
-    type: DriftSqlType.bool,
-    requiredDuringInsert: false,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'CHECK ("open_to_players" IN (0, 1))',
-    ),
-    defaultValue: const Constant(false),
-  );
-  static const VerificationMeta _mapAccessibleMeta = const VerificationMeta(
-    'mapAccessible',
-  );
-  @override
-  late final GeneratedColumn<bool> mapAccessible = GeneratedColumn<bool>(
-    'map_accessible',
-    aliasedName,
-    false,
-    type: DriftSqlType.bool,
-    requiredDuringInsert: false,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'CHECK ("map_accessible" IN (0, 1))',
-    ),
-    defaultValue: const Constant(false),
-  );
   static const VerificationMeta _closedMeta = const VerificationMeta('closed');
   @override
   late final GeneratedColumn<bool> closed = GeneratedColumn<bool>(
@@ -12236,21 +12778,6 @@ class $ShopsTable extends Shops with TableInfo<$ShopsTable, Shop> {
       'CHECK ("closed" IN (0, 1))',
     ),
     defaultValue: const Constant(false),
-  );
-  static const VerificationMeta _requiresApprovalMeta = const VerificationMeta(
-    'requiresApproval',
-  );
-  @override
-  late final GeneratedColumn<bool> requiresApproval = GeneratedColumn<bool>(
-    'requires_approval',
-    aliasedName,
-    false,
-    type: DriftSqlType.bool,
-    requiredDuringInsert: false,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'CHECK ("requires_approval" IN (0, 1))',
-    ),
-    defaultValue: const Constant(true),
   );
   static const VerificationMeta _restockDaysMeta = const VerificationMeta(
     'restockDays',
@@ -12295,10 +12822,7 @@ class $ShopsTable extends Shops with TableInfo<$ShopsTable, Shop> {
     ownerNpcId,
     description,
     priceMultiplier,
-    openToPlayers,
-    mapAccessible,
     closed,
-    requiresApproval,
     restockDays,
     lastRestockDay,
     createdAt,
@@ -12361,37 +12885,10 @@ class $ShopsTable extends Shops with TableInfo<$ShopsTable, Shop> {
         ),
       );
     }
-    if (data.containsKey('open_to_players')) {
-      context.handle(
-        _openToPlayersMeta,
-        openToPlayers.isAcceptableOrUnknown(
-          data['open_to_players']!,
-          _openToPlayersMeta,
-        ),
-      );
-    }
-    if (data.containsKey('map_accessible')) {
-      context.handle(
-        _mapAccessibleMeta,
-        mapAccessible.isAcceptableOrUnknown(
-          data['map_accessible']!,
-          _mapAccessibleMeta,
-        ),
-      );
-    }
     if (data.containsKey('closed')) {
       context.handle(
         _closedMeta,
         closed.isAcceptableOrUnknown(data['closed']!, _closedMeta),
-      );
-    }
-    if (data.containsKey('requires_approval')) {
-      context.handle(
-        _requiresApprovalMeta,
-        requiresApproval.isAcceptableOrUnknown(
-          data['requires_approval']!,
-          _requiresApprovalMeta,
-        ),
       );
     }
     if (data.containsKey('restock_days')) {
@@ -12451,21 +12948,9 @@ class $ShopsTable extends Shops with TableInfo<$ShopsTable, Shop> {
         DriftSqlType.double,
         data['${effectivePrefix}price_multiplier'],
       )!,
-      openToPlayers: attachedDatabase.typeMapping.read(
-        DriftSqlType.bool,
-        data['${effectivePrefix}open_to_players'],
-      )!,
-      mapAccessible: attachedDatabase.typeMapping.read(
-        DriftSqlType.bool,
-        data['${effectivePrefix}map_accessible'],
-      )!,
       closed: attachedDatabase.typeMapping.read(
         DriftSqlType.bool,
         data['${effectivePrefix}closed'],
-      )!,
-      requiresApproval: attachedDatabase.typeMapping.read(
-        DriftSqlType.bool,
-        data['${effectivePrefix}requires_approval'],
       )!,
       restockDays: attachedDatabase.typeMapping.read(
         DriftSqlType.int,
@@ -12492,11 +12977,11 @@ class Shop extends DataClass implements Insertable<Shop> {
   final String id;
   final String name;
 
-  /// Magazayi isleten NPC'nin adi; oyuncu panelinde gorunur.
+  /// Magazayi isleten NPC'nin adi.
   ///
   /// [ownerNpcId] ile bagli bir NPC varsa bu alan onun adiyla senkron tutulur
-  /// (goruntuleme ve oyuncuya giden veri tek yerden okunsun diye); bagsiz
-  /// magazalarda serbest metindir.
+  /// (goruntuleme tek yerden okunsun diye); bagsiz magazalarda serbest
+  /// metindir.
   final String? ownerName;
 
   /// Isleten NPC kaydi (`Npcs.id`). Istege baglidir: DM isterse yalnizca ad
@@ -12510,22 +12995,9 @@ class Shop extends DataClass implements Insertable<Shop> {
   /// 0.8 pazarlik sonrasi. Stok satirinda ozel fiyat varsa o gecerli.
   final double priceMultiplier;
 
-  /// Oyuncular su an bu magazayi gorebiliyor mu? ("Ac" ile tek magaza
-  /// dogrudan panele dusuyor.)
-  final bool openToPlayers;
-
-  /// Oyuncular bu magazaya HARITADAN (dukkan pinine dokunarak) erisebilsin mi?
-  /// [openToPlayers]'tan bagimsiz: ayni anda birden fazla magaza haritadan
-  /// erisilebilir olabilir, DM her biri icin ayri ac/kapa yapar.
-  final bool mapAccessible;
-
-  /// Mağaza şu an kapalı mı? Kapaliysa oyuncular mağzaya tiklayinca "mağaza
-  /// kapalı" görür, eşyalar gösterilmez ve satin alinamaz. DM dükkân
-  /// ayarlarından açıp kapatır; diğer ayarlardan bağımsızdır.
+  /// Mağaza şu an kapalı mı? Dünya durumu: kapalı bir dükkânda alışveriş
+  /// yapılamaz, listede soluk görünür. DM dükkân ayarlarından açıp kapatır.
   final bool closed;
-
-  /// Acikken satin almalar DM onayindan mi gecsin, yoksa dogrudan mi olsun?
-  final bool requiresApproval;
 
   /// Stok kac oyun-ici gunde bir yenilensin? 0 = hic yenilenmez.
   ///
@@ -12544,10 +13016,7 @@ class Shop extends DataClass implements Insertable<Shop> {
     this.ownerNpcId,
     required this.description,
     required this.priceMultiplier,
-    required this.openToPlayers,
-    required this.mapAccessible,
     required this.closed,
-    required this.requiresApproval,
     required this.restockDays,
     this.lastRestockDay,
     required this.createdAt,
@@ -12565,10 +13034,7 @@ class Shop extends DataClass implements Insertable<Shop> {
     }
     map['description'] = Variable<String>(description);
     map['price_multiplier'] = Variable<double>(priceMultiplier);
-    map['open_to_players'] = Variable<bool>(openToPlayers);
-    map['map_accessible'] = Variable<bool>(mapAccessible);
     map['closed'] = Variable<bool>(closed);
-    map['requires_approval'] = Variable<bool>(requiresApproval);
     map['restock_days'] = Variable<int>(restockDays);
     if (!nullToAbsent || lastRestockDay != null) {
       map['last_restock_day'] = Variable<int>(lastRestockDay);
@@ -12589,10 +13055,7 @@ class Shop extends DataClass implements Insertable<Shop> {
           : Value(ownerNpcId),
       description: Value(description),
       priceMultiplier: Value(priceMultiplier),
-      openToPlayers: Value(openToPlayers),
-      mapAccessible: Value(mapAccessible),
       closed: Value(closed),
-      requiresApproval: Value(requiresApproval),
       restockDays: Value(restockDays),
       lastRestockDay: lastRestockDay == null && nullToAbsent
           ? const Value.absent()
@@ -12613,10 +13076,7 @@ class Shop extends DataClass implements Insertable<Shop> {
       ownerNpcId: serializer.fromJson<String?>(json['ownerNpcId']),
       description: serializer.fromJson<String>(json['description']),
       priceMultiplier: serializer.fromJson<double>(json['priceMultiplier']),
-      openToPlayers: serializer.fromJson<bool>(json['openToPlayers']),
-      mapAccessible: serializer.fromJson<bool>(json['mapAccessible']),
       closed: serializer.fromJson<bool>(json['closed']),
-      requiresApproval: serializer.fromJson<bool>(json['requiresApproval']),
       restockDays: serializer.fromJson<int>(json['restockDays']),
       lastRestockDay: serializer.fromJson<int?>(json['lastRestockDay']),
       createdAt: serializer.fromJson<DateTime>(json['createdAt']),
@@ -12632,10 +13092,7 @@ class Shop extends DataClass implements Insertable<Shop> {
       'ownerNpcId': serializer.toJson<String?>(ownerNpcId),
       'description': serializer.toJson<String>(description),
       'priceMultiplier': serializer.toJson<double>(priceMultiplier),
-      'openToPlayers': serializer.toJson<bool>(openToPlayers),
-      'mapAccessible': serializer.toJson<bool>(mapAccessible),
       'closed': serializer.toJson<bool>(closed),
-      'requiresApproval': serializer.toJson<bool>(requiresApproval),
       'restockDays': serializer.toJson<int>(restockDays),
       'lastRestockDay': serializer.toJson<int?>(lastRestockDay),
       'createdAt': serializer.toJson<DateTime>(createdAt),
@@ -12649,10 +13106,7 @@ class Shop extends DataClass implements Insertable<Shop> {
     Value<String?> ownerNpcId = const Value.absent(),
     String? description,
     double? priceMultiplier,
-    bool? openToPlayers,
-    bool? mapAccessible,
     bool? closed,
-    bool? requiresApproval,
     int? restockDays,
     Value<int?> lastRestockDay = const Value.absent(),
     DateTime? createdAt,
@@ -12663,10 +13117,7 @@ class Shop extends DataClass implements Insertable<Shop> {
     ownerNpcId: ownerNpcId.present ? ownerNpcId.value : this.ownerNpcId,
     description: description ?? this.description,
     priceMultiplier: priceMultiplier ?? this.priceMultiplier,
-    openToPlayers: openToPlayers ?? this.openToPlayers,
-    mapAccessible: mapAccessible ?? this.mapAccessible,
     closed: closed ?? this.closed,
-    requiresApproval: requiresApproval ?? this.requiresApproval,
     restockDays: restockDays ?? this.restockDays,
     lastRestockDay: lastRestockDay.present
         ? lastRestockDay.value
@@ -12687,16 +13138,7 @@ class Shop extends DataClass implements Insertable<Shop> {
       priceMultiplier: data.priceMultiplier.present
           ? data.priceMultiplier.value
           : this.priceMultiplier,
-      openToPlayers: data.openToPlayers.present
-          ? data.openToPlayers.value
-          : this.openToPlayers,
-      mapAccessible: data.mapAccessible.present
-          ? data.mapAccessible.value
-          : this.mapAccessible,
       closed: data.closed.present ? data.closed.value : this.closed,
-      requiresApproval: data.requiresApproval.present
-          ? data.requiresApproval.value
-          : this.requiresApproval,
       restockDays: data.restockDays.present
           ? data.restockDays.value
           : this.restockDays,
@@ -12716,10 +13158,7 @@ class Shop extends DataClass implements Insertable<Shop> {
           ..write('ownerNpcId: $ownerNpcId, ')
           ..write('description: $description, ')
           ..write('priceMultiplier: $priceMultiplier, ')
-          ..write('openToPlayers: $openToPlayers, ')
-          ..write('mapAccessible: $mapAccessible, ')
           ..write('closed: $closed, ')
-          ..write('requiresApproval: $requiresApproval, ')
           ..write('restockDays: $restockDays, ')
           ..write('lastRestockDay: $lastRestockDay, ')
           ..write('createdAt: $createdAt')
@@ -12735,10 +13174,7 @@ class Shop extends DataClass implements Insertable<Shop> {
     ownerNpcId,
     description,
     priceMultiplier,
-    openToPlayers,
-    mapAccessible,
     closed,
-    requiresApproval,
     restockDays,
     lastRestockDay,
     createdAt,
@@ -12753,10 +13189,7 @@ class Shop extends DataClass implements Insertable<Shop> {
           other.ownerNpcId == this.ownerNpcId &&
           other.description == this.description &&
           other.priceMultiplier == this.priceMultiplier &&
-          other.openToPlayers == this.openToPlayers &&
-          other.mapAccessible == this.mapAccessible &&
           other.closed == this.closed &&
-          other.requiresApproval == this.requiresApproval &&
           other.restockDays == this.restockDays &&
           other.lastRestockDay == this.lastRestockDay &&
           other.createdAt == this.createdAt);
@@ -12769,10 +13202,7 @@ class ShopsCompanion extends UpdateCompanion<Shop> {
   final Value<String?> ownerNpcId;
   final Value<String> description;
   final Value<double> priceMultiplier;
-  final Value<bool> openToPlayers;
-  final Value<bool> mapAccessible;
   final Value<bool> closed;
-  final Value<bool> requiresApproval;
   final Value<int> restockDays;
   final Value<int?> lastRestockDay;
   final Value<DateTime> createdAt;
@@ -12784,10 +13214,7 @@ class ShopsCompanion extends UpdateCompanion<Shop> {
     this.ownerNpcId = const Value.absent(),
     this.description = const Value.absent(),
     this.priceMultiplier = const Value.absent(),
-    this.openToPlayers = const Value.absent(),
-    this.mapAccessible = const Value.absent(),
     this.closed = const Value.absent(),
-    this.requiresApproval = const Value.absent(),
     this.restockDays = const Value.absent(),
     this.lastRestockDay = const Value.absent(),
     this.createdAt = const Value.absent(),
@@ -12800,10 +13227,7 @@ class ShopsCompanion extends UpdateCompanion<Shop> {
     this.ownerNpcId = const Value.absent(),
     this.description = const Value.absent(),
     this.priceMultiplier = const Value.absent(),
-    this.openToPlayers = const Value.absent(),
-    this.mapAccessible = const Value.absent(),
     this.closed = const Value.absent(),
-    this.requiresApproval = const Value.absent(),
     this.restockDays = const Value.absent(),
     this.lastRestockDay = const Value.absent(),
     this.createdAt = const Value.absent(),
@@ -12817,10 +13241,7 @@ class ShopsCompanion extends UpdateCompanion<Shop> {
     Expression<String>? ownerNpcId,
     Expression<String>? description,
     Expression<double>? priceMultiplier,
-    Expression<bool>? openToPlayers,
-    Expression<bool>? mapAccessible,
     Expression<bool>? closed,
-    Expression<bool>? requiresApproval,
     Expression<int>? restockDays,
     Expression<int>? lastRestockDay,
     Expression<DateTime>? createdAt,
@@ -12833,10 +13254,7 @@ class ShopsCompanion extends UpdateCompanion<Shop> {
       if (ownerNpcId != null) 'owner_npc_id': ownerNpcId,
       if (description != null) 'description': description,
       if (priceMultiplier != null) 'price_multiplier': priceMultiplier,
-      if (openToPlayers != null) 'open_to_players': openToPlayers,
-      if (mapAccessible != null) 'map_accessible': mapAccessible,
       if (closed != null) 'closed': closed,
-      if (requiresApproval != null) 'requires_approval': requiresApproval,
       if (restockDays != null) 'restock_days': restockDays,
       if (lastRestockDay != null) 'last_restock_day': lastRestockDay,
       if (createdAt != null) 'created_at': createdAt,
@@ -12851,10 +13269,7 @@ class ShopsCompanion extends UpdateCompanion<Shop> {
     Value<String?>? ownerNpcId,
     Value<String>? description,
     Value<double>? priceMultiplier,
-    Value<bool>? openToPlayers,
-    Value<bool>? mapAccessible,
     Value<bool>? closed,
-    Value<bool>? requiresApproval,
     Value<int>? restockDays,
     Value<int?>? lastRestockDay,
     Value<DateTime>? createdAt,
@@ -12867,10 +13282,7 @@ class ShopsCompanion extends UpdateCompanion<Shop> {
       ownerNpcId: ownerNpcId ?? this.ownerNpcId,
       description: description ?? this.description,
       priceMultiplier: priceMultiplier ?? this.priceMultiplier,
-      openToPlayers: openToPlayers ?? this.openToPlayers,
-      mapAccessible: mapAccessible ?? this.mapAccessible,
       closed: closed ?? this.closed,
-      requiresApproval: requiresApproval ?? this.requiresApproval,
       restockDays: restockDays ?? this.restockDays,
       lastRestockDay: lastRestockDay ?? this.lastRestockDay,
       createdAt: createdAt ?? this.createdAt,
@@ -12899,17 +13311,8 @@ class ShopsCompanion extends UpdateCompanion<Shop> {
     if (priceMultiplier.present) {
       map['price_multiplier'] = Variable<double>(priceMultiplier.value);
     }
-    if (openToPlayers.present) {
-      map['open_to_players'] = Variable<bool>(openToPlayers.value);
-    }
-    if (mapAccessible.present) {
-      map['map_accessible'] = Variable<bool>(mapAccessible.value);
-    }
     if (closed.present) {
       map['closed'] = Variable<bool>(closed.value);
-    }
-    if (requiresApproval.present) {
-      map['requires_approval'] = Variable<bool>(requiresApproval.value);
     }
     if (restockDays.present) {
       map['restock_days'] = Variable<int>(restockDays.value);
@@ -12935,10 +13338,7 @@ class ShopsCompanion extends UpdateCompanion<Shop> {
           ..write('ownerNpcId: $ownerNpcId, ')
           ..write('description: $description, ')
           ..write('priceMultiplier: $priceMultiplier, ')
-          ..write('openToPlayers: $openToPlayers, ')
-          ..write('mapAccessible: $mapAccessible, ')
           ..write('closed: $closed, ')
-          ..write('requiresApproval: $requiresApproval, ')
           ..write('restockDays: $restockDays, ')
           ..write('lastRestockDay: $lastRestockDay, ')
           ..write('createdAt: $createdAt, ')
@@ -13659,17 +14059,6 @@ class $LocationsTable extends Locations
     type: DriftSqlType.string,
     requiredDuringInsert: false,
   );
-  static const VerificationMeta _mapPreviewPathMeta = const VerificationMeta(
-    'mapPreviewPath',
-  );
-  @override
-  late final GeneratedColumn<String> mapPreviewPath = GeneratedColumn<String>(
-    'map_preview_path',
-    aliasedName,
-    true,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-  );
   static const VerificationMeta _mapWidthMeta = const VerificationMeta(
     'mapWidth',
   );
@@ -13714,21 +14103,6 @@ class $LocationsTable extends Locations
     type: DriftSqlType.double,
     requiredDuringInsert: false,
   );
-  static const VerificationMeta _revealedMeta = const VerificationMeta(
-    'revealed',
-  );
-  @override
-  late final GeneratedColumn<bool> revealed = GeneratedColumn<bool>(
-    'revealed',
-    aliasedName,
-    false,
-    type: DriftSqlType.bool,
-    requiredDuringInsert: false,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'CHECK ("revealed" IN (0, 1))',
-    ),
-    defaultValue: const Constant(false),
-  );
   static const VerificationMeta _graphXMeta = const VerificationMeta('graphX');
   @override
   late final GeneratedColumn<double> graphX = GeneratedColumn<double>(
@@ -13757,6 +14131,21 @@ class $LocationsTable extends Locations
     true,
     type: DriftSqlType.double,
     requiredDuringInsert: false,
+  );
+  static const VerificationMeta _graphCollapsedMeta = const VerificationMeta(
+    'graphCollapsed',
+  );
+  @override
+  late final GeneratedColumn<bool> graphCollapsed = GeneratedColumn<bool>(
+    'graph_collapsed',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("graph_collapsed" IN (0, 1))',
+    ),
+    defaultValue: const Constant(false),
   );
   static const VerificationMeta _sortOrderMeta = const VerificationMeta(
     'sortOrder',
@@ -13790,15 +14179,14 @@ class $LocationsTable extends Locations
     description,
     secretNotes,
     mapImagePath,
-    mapPreviewPath,
     mapWidth,
     mapHeight,
     mapWidthMiles,
     mapHeightMiles,
-    revealed,
     graphX,
     graphY,
     nodeRadius,
+    graphCollapsed,
     sortOrder,
     createdAt,
   ];
@@ -13860,15 +14248,6 @@ class $LocationsTable extends Locations
         ),
       );
     }
-    if (data.containsKey('map_preview_path')) {
-      context.handle(
-        _mapPreviewPathMeta,
-        mapPreviewPath.isAcceptableOrUnknown(
-          data['map_preview_path']!,
-          _mapPreviewPathMeta,
-        ),
-      );
-    }
     if (data.containsKey('map_width')) {
       context.handle(
         _mapWidthMeta,
@@ -13899,12 +14278,6 @@ class $LocationsTable extends Locations
         ),
       );
     }
-    if (data.containsKey('revealed')) {
-      context.handle(
-        _revealedMeta,
-        revealed.isAcceptableOrUnknown(data['revealed']!, _revealedMeta),
-      );
-    }
     if (data.containsKey('graph_x')) {
       context.handle(
         _graphXMeta,
@@ -13921,6 +14294,15 @@ class $LocationsTable extends Locations
       context.handle(
         _nodeRadiusMeta,
         nodeRadius.isAcceptableOrUnknown(data['node_radius']!, _nodeRadiusMeta),
+      );
+    }
+    if (data.containsKey('graph_collapsed')) {
+      context.handle(
+        _graphCollapsedMeta,
+        graphCollapsed.isAcceptableOrUnknown(
+          data['graph_collapsed']!,
+          _graphCollapsedMeta,
+        ),
       );
     }
     if (data.containsKey('sort_order')) {
@@ -13968,10 +14350,6 @@ class $LocationsTable extends Locations
         DriftSqlType.string,
         data['${effectivePrefix}map_image_path'],
       ),
-      mapPreviewPath: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}map_preview_path'],
-      ),
       mapWidth: attachedDatabase.typeMapping.read(
         DriftSqlType.int,
         data['${effectivePrefix}map_width'],
@@ -13988,10 +14366,6 @@ class $LocationsTable extends Locations
         DriftSqlType.double,
         data['${effectivePrefix}map_height_miles'],
       ),
-      revealed: attachedDatabase.typeMapping.read(
-        DriftSqlType.bool,
-        data['${effectivePrefix}revealed'],
-      )!,
       graphX: attachedDatabase.typeMapping.read(
         DriftSqlType.double,
         data['${effectivePrefix}graph_x'],
@@ -14004,6 +14378,10 @@ class $LocationsTable extends Locations
         DriftSqlType.double,
         data['${effectivePrefix}node_radius'],
       ),
+      graphCollapsed: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}graph_collapsed'],
+      )!,
       sortOrder: attachedDatabase.typeMapping.read(
         DriftSqlType.int,
         data['${effectivePrefix}sort_order'],
@@ -14027,15 +14405,12 @@ class Location extends DataClass implements Insertable<Location> {
   final String? parentId;
   final String description;
 
-  /// DM'e ozel notlar; oyunculara asla gonderilmez.
+  /// DM'e ozel notlar.
   final String secretNotes;
 
   /// Harita gorselinin uygulama klasorune gore yolu. Mutlak yol saklanmaz:
   /// Android yeniden kurulumda uygulama klasorunun yolunu degistirebiliyor.
   final String? mapImagePath;
-
-  /// Oyunculara gonderilen kucultulmus surum.
-  final String? mapPreviewPath;
 
   /// Haritanin piksel olculeri; pin koordinatlarini en-boy oranina gore
   /// dogru yerlestirmek icin.
@@ -14049,9 +14424,6 @@ class Location extends DataClass implements Insertable<Location> {
   final double? mapWidthMiles;
   final double? mapHeightMiles;
 
-  /// Oyuncular bu lokasyonu daha once gordu mu? (Kesif kaydi.)
-  final bool revealed;
-
   /// Dunya grafigindeki (DM-only dugum-agi) serbest konum. Null = henuz
   /// yerlestirilmedi; grafik ilk acilista simulasyonla dizer, sonra kalici olur.
   final double? graphX;
@@ -14059,6 +14431,13 @@ class Location extends DataClass implements Insertable<Location> {
 
   /// Dugum (küre) gorsel boyutu (DM-only). Null = varsayilan (yer=30, npc=21).
   final double? nodeRadius;
+
+  /// Dunya grafiginde alt yerleri KATLANMIS mi?
+  ///
+  /// Yuz lokasyonlu bir dunyada ag okunmaz hale geliyordu. Katlanmis bir
+  /// dugum cocuklarini gizler ve uzerinde kac tane oldugunu yazar; alt yerin
+  /// baglantilari da uste tasinir ki ag kopmasin.
+  final bool graphCollapsed;
   final int sortOrder;
   final DateTime createdAt;
   const Location({
@@ -14068,15 +14447,14 @@ class Location extends DataClass implements Insertable<Location> {
     required this.description,
     required this.secretNotes,
     this.mapImagePath,
-    this.mapPreviewPath,
     this.mapWidth,
     this.mapHeight,
     this.mapWidthMiles,
     this.mapHeightMiles,
-    required this.revealed,
     this.graphX,
     this.graphY,
     this.nodeRadius,
+    required this.graphCollapsed,
     required this.sortOrder,
     required this.createdAt,
   });
@@ -14093,9 +14471,6 @@ class Location extends DataClass implements Insertable<Location> {
     if (!nullToAbsent || mapImagePath != null) {
       map['map_image_path'] = Variable<String>(mapImagePath);
     }
-    if (!nullToAbsent || mapPreviewPath != null) {
-      map['map_preview_path'] = Variable<String>(mapPreviewPath);
-    }
     if (!nullToAbsent || mapWidth != null) {
       map['map_width'] = Variable<int>(mapWidth);
     }
@@ -14108,7 +14483,6 @@ class Location extends DataClass implements Insertable<Location> {
     if (!nullToAbsent || mapHeightMiles != null) {
       map['map_height_miles'] = Variable<double>(mapHeightMiles);
     }
-    map['revealed'] = Variable<bool>(revealed);
     if (!nullToAbsent || graphX != null) {
       map['graph_x'] = Variable<double>(graphX);
     }
@@ -14118,6 +14492,7 @@ class Location extends DataClass implements Insertable<Location> {
     if (!nullToAbsent || nodeRadius != null) {
       map['node_radius'] = Variable<double>(nodeRadius);
     }
+    map['graph_collapsed'] = Variable<bool>(graphCollapsed);
     map['sort_order'] = Variable<int>(sortOrder);
     map['created_at'] = Variable<DateTime>(createdAt);
     return map;
@@ -14135,9 +14510,6 @@ class Location extends DataClass implements Insertable<Location> {
       mapImagePath: mapImagePath == null && nullToAbsent
           ? const Value.absent()
           : Value(mapImagePath),
-      mapPreviewPath: mapPreviewPath == null && nullToAbsent
-          ? const Value.absent()
-          : Value(mapPreviewPath),
       mapWidth: mapWidth == null && nullToAbsent
           ? const Value.absent()
           : Value(mapWidth),
@@ -14150,7 +14522,6 @@ class Location extends DataClass implements Insertable<Location> {
       mapHeightMiles: mapHeightMiles == null && nullToAbsent
           ? const Value.absent()
           : Value(mapHeightMiles),
-      revealed: Value(revealed),
       graphX: graphX == null && nullToAbsent
           ? const Value.absent()
           : Value(graphX),
@@ -14160,6 +14531,7 @@ class Location extends DataClass implements Insertable<Location> {
       nodeRadius: nodeRadius == null && nullToAbsent
           ? const Value.absent()
           : Value(nodeRadius),
+      graphCollapsed: Value(graphCollapsed),
       sortOrder: Value(sortOrder),
       createdAt: Value(createdAt),
     );
@@ -14177,15 +14549,14 @@ class Location extends DataClass implements Insertable<Location> {
       description: serializer.fromJson<String>(json['description']),
       secretNotes: serializer.fromJson<String>(json['secretNotes']),
       mapImagePath: serializer.fromJson<String?>(json['mapImagePath']),
-      mapPreviewPath: serializer.fromJson<String?>(json['mapPreviewPath']),
       mapWidth: serializer.fromJson<int?>(json['mapWidth']),
       mapHeight: serializer.fromJson<int?>(json['mapHeight']),
       mapWidthMiles: serializer.fromJson<double?>(json['mapWidthMiles']),
       mapHeightMiles: serializer.fromJson<double?>(json['mapHeightMiles']),
-      revealed: serializer.fromJson<bool>(json['revealed']),
       graphX: serializer.fromJson<double?>(json['graphX']),
       graphY: serializer.fromJson<double?>(json['graphY']),
       nodeRadius: serializer.fromJson<double?>(json['nodeRadius']),
+      graphCollapsed: serializer.fromJson<bool>(json['graphCollapsed']),
       sortOrder: serializer.fromJson<int>(json['sortOrder']),
       createdAt: serializer.fromJson<DateTime>(json['createdAt']),
     );
@@ -14200,15 +14571,14 @@ class Location extends DataClass implements Insertable<Location> {
       'description': serializer.toJson<String>(description),
       'secretNotes': serializer.toJson<String>(secretNotes),
       'mapImagePath': serializer.toJson<String?>(mapImagePath),
-      'mapPreviewPath': serializer.toJson<String?>(mapPreviewPath),
       'mapWidth': serializer.toJson<int?>(mapWidth),
       'mapHeight': serializer.toJson<int?>(mapHeight),
       'mapWidthMiles': serializer.toJson<double?>(mapWidthMiles),
       'mapHeightMiles': serializer.toJson<double?>(mapHeightMiles),
-      'revealed': serializer.toJson<bool>(revealed),
       'graphX': serializer.toJson<double?>(graphX),
       'graphY': serializer.toJson<double?>(graphY),
       'nodeRadius': serializer.toJson<double?>(nodeRadius),
+      'graphCollapsed': serializer.toJson<bool>(graphCollapsed),
       'sortOrder': serializer.toJson<int>(sortOrder),
       'createdAt': serializer.toJson<DateTime>(createdAt),
     };
@@ -14221,15 +14591,14 @@ class Location extends DataClass implements Insertable<Location> {
     String? description,
     String? secretNotes,
     Value<String?> mapImagePath = const Value.absent(),
-    Value<String?> mapPreviewPath = const Value.absent(),
     Value<int?> mapWidth = const Value.absent(),
     Value<int?> mapHeight = const Value.absent(),
     Value<double?> mapWidthMiles = const Value.absent(),
     Value<double?> mapHeightMiles = const Value.absent(),
-    bool? revealed,
     Value<double?> graphX = const Value.absent(),
     Value<double?> graphY = const Value.absent(),
     Value<double?> nodeRadius = const Value.absent(),
+    bool? graphCollapsed,
     int? sortOrder,
     DateTime? createdAt,
   }) => Location(
@@ -14239,9 +14608,6 @@ class Location extends DataClass implements Insertable<Location> {
     description: description ?? this.description,
     secretNotes: secretNotes ?? this.secretNotes,
     mapImagePath: mapImagePath.present ? mapImagePath.value : this.mapImagePath,
-    mapPreviewPath: mapPreviewPath.present
-        ? mapPreviewPath.value
-        : this.mapPreviewPath,
     mapWidth: mapWidth.present ? mapWidth.value : this.mapWidth,
     mapHeight: mapHeight.present ? mapHeight.value : this.mapHeight,
     mapWidthMiles: mapWidthMiles.present
@@ -14250,10 +14616,10 @@ class Location extends DataClass implements Insertable<Location> {
     mapHeightMiles: mapHeightMiles.present
         ? mapHeightMiles.value
         : this.mapHeightMiles,
-    revealed: revealed ?? this.revealed,
     graphX: graphX.present ? graphX.value : this.graphX,
     graphY: graphY.present ? graphY.value : this.graphY,
     nodeRadius: nodeRadius.present ? nodeRadius.value : this.nodeRadius,
+    graphCollapsed: graphCollapsed ?? this.graphCollapsed,
     sortOrder: sortOrder ?? this.sortOrder,
     createdAt: createdAt ?? this.createdAt,
   );
@@ -14271,9 +14637,6 @@ class Location extends DataClass implements Insertable<Location> {
       mapImagePath: data.mapImagePath.present
           ? data.mapImagePath.value
           : this.mapImagePath,
-      mapPreviewPath: data.mapPreviewPath.present
-          ? data.mapPreviewPath.value
-          : this.mapPreviewPath,
       mapWidth: data.mapWidth.present ? data.mapWidth.value : this.mapWidth,
       mapHeight: data.mapHeight.present ? data.mapHeight.value : this.mapHeight,
       mapWidthMiles: data.mapWidthMiles.present
@@ -14282,12 +14645,14 @@ class Location extends DataClass implements Insertable<Location> {
       mapHeightMiles: data.mapHeightMiles.present
           ? data.mapHeightMiles.value
           : this.mapHeightMiles,
-      revealed: data.revealed.present ? data.revealed.value : this.revealed,
       graphX: data.graphX.present ? data.graphX.value : this.graphX,
       graphY: data.graphY.present ? data.graphY.value : this.graphY,
       nodeRadius: data.nodeRadius.present
           ? data.nodeRadius.value
           : this.nodeRadius,
+      graphCollapsed: data.graphCollapsed.present
+          ? data.graphCollapsed.value
+          : this.graphCollapsed,
       sortOrder: data.sortOrder.present ? data.sortOrder.value : this.sortOrder,
       createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
     );
@@ -14302,15 +14667,14 @@ class Location extends DataClass implements Insertable<Location> {
           ..write('description: $description, ')
           ..write('secretNotes: $secretNotes, ')
           ..write('mapImagePath: $mapImagePath, ')
-          ..write('mapPreviewPath: $mapPreviewPath, ')
           ..write('mapWidth: $mapWidth, ')
           ..write('mapHeight: $mapHeight, ')
           ..write('mapWidthMiles: $mapWidthMiles, ')
           ..write('mapHeightMiles: $mapHeightMiles, ')
-          ..write('revealed: $revealed, ')
           ..write('graphX: $graphX, ')
           ..write('graphY: $graphY, ')
           ..write('nodeRadius: $nodeRadius, ')
+          ..write('graphCollapsed: $graphCollapsed, ')
           ..write('sortOrder: $sortOrder, ')
           ..write('createdAt: $createdAt')
           ..write(')'))
@@ -14325,15 +14689,14 @@ class Location extends DataClass implements Insertable<Location> {
     description,
     secretNotes,
     mapImagePath,
-    mapPreviewPath,
     mapWidth,
     mapHeight,
     mapWidthMiles,
     mapHeightMiles,
-    revealed,
     graphX,
     graphY,
     nodeRadius,
+    graphCollapsed,
     sortOrder,
     createdAt,
   );
@@ -14347,15 +14710,14 @@ class Location extends DataClass implements Insertable<Location> {
           other.description == this.description &&
           other.secretNotes == this.secretNotes &&
           other.mapImagePath == this.mapImagePath &&
-          other.mapPreviewPath == this.mapPreviewPath &&
           other.mapWidth == this.mapWidth &&
           other.mapHeight == this.mapHeight &&
           other.mapWidthMiles == this.mapWidthMiles &&
           other.mapHeightMiles == this.mapHeightMiles &&
-          other.revealed == this.revealed &&
           other.graphX == this.graphX &&
           other.graphY == this.graphY &&
           other.nodeRadius == this.nodeRadius &&
+          other.graphCollapsed == this.graphCollapsed &&
           other.sortOrder == this.sortOrder &&
           other.createdAt == this.createdAt);
 }
@@ -14367,15 +14729,14 @@ class LocationsCompanion extends UpdateCompanion<Location> {
   final Value<String> description;
   final Value<String> secretNotes;
   final Value<String?> mapImagePath;
-  final Value<String?> mapPreviewPath;
   final Value<int?> mapWidth;
   final Value<int?> mapHeight;
   final Value<double?> mapWidthMiles;
   final Value<double?> mapHeightMiles;
-  final Value<bool> revealed;
   final Value<double?> graphX;
   final Value<double?> graphY;
   final Value<double?> nodeRadius;
+  final Value<bool> graphCollapsed;
   final Value<int> sortOrder;
   final Value<DateTime> createdAt;
   final Value<int> rowid;
@@ -14386,15 +14747,14 @@ class LocationsCompanion extends UpdateCompanion<Location> {
     this.description = const Value.absent(),
     this.secretNotes = const Value.absent(),
     this.mapImagePath = const Value.absent(),
-    this.mapPreviewPath = const Value.absent(),
     this.mapWidth = const Value.absent(),
     this.mapHeight = const Value.absent(),
     this.mapWidthMiles = const Value.absent(),
     this.mapHeightMiles = const Value.absent(),
-    this.revealed = const Value.absent(),
     this.graphX = const Value.absent(),
     this.graphY = const Value.absent(),
     this.nodeRadius = const Value.absent(),
+    this.graphCollapsed = const Value.absent(),
     this.sortOrder = const Value.absent(),
     this.createdAt = const Value.absent(),
     this.rowid = const Value.absent(),
@@ -14406,15 +14766,14 @@ class LocationsCompanion extends UpdateCompanion<Location> {
     this.description = const Value.absent(),
     this.secretNotes = const Value.absent(),
     this.mapImagePath = const Value.absent(),
-    this.mapPreviewPath = const Value.absent(),
     this.mapWidth = const Value.absent(),
     this.mapHeight = const Value.absent(),
     this.mapWidthMiles = const Value.absent(),
     this.mapHeightMiles = const Value.absent(),
-    this.revealed = const Value.absent(),
     this.graphX = const Value.absent(),
     this.graphY = const Value.absent(),
     this.nodeRadius = const Value.absent(),
+    this.graphCollapsed = const Value.absent(),
     this.sortOrder = const Value.absent(),
     this.createdAt = const Value.absent(),
     this.rowid = const Value.absent(),
@@ -14427,15 +14786,14 @@ class LocationsCompanion extends UpdateCompanion<Location> {
     Expression<String>? description,
     Expression<String>? secretNotes,
     Expression<String>? mapImagePath,
-    Expression<String>? mapPreviewPath,
     Expression<int>? mapWidth,
     Expression<int>? mapHeight,
     Expression<double>? mapWidthMiles,
     Expression<double>? mapHeightMiles,
-    Expression<bool>? revealed,
     Expression<double>? graphX,
     Expression<double>? graphY,
     Expression<double>? nodeRadius,
+    Expression<bool>? graphCollapsed,
     Expression<int>? sortOrder,
     Expression<DateTime>? createdAt,
     Expression<int>? rowid,
@@ -14447,15 +14805,14 @@ class LocationsCompanion extends UpdateCompanion<Location> {
       if (description != null) 'description': description,
       if (secretNotes != null) 'secret_notes': secretNotes,
       if (mapImagePath != null) 'map_image_path': mapImagePath,
-      if (mapPreviewPath != null) 'map_preview_path': mapPreviewPath,
       if (mapWidth != null) 'map_width': mapWidth,
       if (mapHeight != null) 'map_height': mapHeight,
       if (mapWidthMiles != null) 'map_width_miles': mapWidthMiles,
       if (mapHeightMiles != null) 'map_height_miles': mapHeightMiles,
-      if (revealed != null) 'revealed': revealed,
       if (graphX != null) 'graph_x': graphX,
       if (graphY != null) 'graph_y': graphY,
       if (nodeRadius != null) 'node_radius': nodeRadius,
+      if (graphCollapsed != null) 'graph_collapsed': graphCollapsed,
       if (sortOrder != null) 'sort_order': sortOrder,
       if (createdAt != null) 'created_at': createdAt,
       if (rowid != null) 'rowid': rowid,
@@ -14469,15 +14826,14 @@ class LocationsCompanion extends UpdateCompanion<Location> {
     Value<String>? description,
     Value<String>? secretNotes,
     Value<String?>? mapImagePath,
-    Value<String?>? mapPreviewPath,
     Value<int?>? mapWidth,
     Value<int?>? mapHeight,
     Value<double?>? mapWidthMiles,
     Value<double?>? mapHeightMiles,
-    Value<bool>? revealed,
     Value<double?>? graphX,
     Value<double?>? graphY,
     Value<double?>? nodeRadius,
+    Value<bool>? graphCollapsed,
     Value<int>? sortOrder,
     Value<DateTime>? createdAt,
     Value<int>? rowid,
@@ -14489,15 +14845,14 @@ class LocationsCompanion extends UpdateCompanion<Location> {
       description: description ?? this.description,
       secretNotes: secretNotes ?? this.secretNotes,
       mapImagePath: mapImagePath ?? this.mapImagePath,
-      mapPreviewPath: mapPreviewPath ?? this.mapPreviewPath,
       mapWidth: mapWidth ?? this.mapWidth,
       mapHeight: mapHeight ?? this.mapHeight,
       mapWidthMiles: mapWidthMiles ?? this.mapWidthMiles,
       mapHeightMiles: mapHeightMiles ?? this.mapHeightMiles,
-      revealed: revealed ?? this.revealed,
       graphX: graphX ?? this.graphX,
       graphY: graphY ?? this.graphY,
       nodeRadius: nodeRadius ?? this.nodeRadius,
+      graphCollapsed: graphCollapsed ?? this.graphCollapsed,
       sortOrder: sortOrder ?? this.sortOrder,
       createdAt: createdAt ?? this.createdAt,
       rowid: rowid ?? this.rowid,
@@ -14525,9 +14880,6 @@ class LocationsCompanion extends UpdateCompanion<Location> {
     if (mapImagePath.present) {
       map['map_image_path'] = Variable<String>(mapImagePath.value);
     }
-    if (mapPreviewPath.present) {
-      map['map_preview_path'] = Variable<String>(mapPreviewPath.value);
-    }
     if (mapWidth.present) {
       map['map_width'] = Variable<int>(mapWidth.value);
     }
@@ -14540,9 +14892,6 @@ class LocationsCompanion extends UpdateCompanion<Location> {
     if (mapHeightMiles.present) {
       map['map_height_miles'] = Variable<double>(mapHeightMiles.value);
     }
-    if (revealed.present) {
-      map['revealed'] = Variable<bool>(revealed.value);
-    }
     if (graphX.present) {
       map['graph_x'] = Variable<double>(graphX.value);
     }
@@ -14551,6 +14900,9 @@ class LocationsCompanion extends UpdateCompanion<Location> {
     }
     if (nodeRadius.present) {
       map['node_radius'] = Variable<double>(nodeRadius.value);
+    }
+    if (graphCollapsed.present) {
+      map['graph_collapsed'] = Variable<bool>(graphCollapsed.value);
     }
     if (sortOrder.present) {
       map['sort_order'] = Variable<int>(sortOrder.value);
@@ -14573,15 +14925,14 @@ class LocationsCompanion extends UpdateCompanion<Location> {
           ..write('description: $description, ')
           ..write('secretNotes: $secretNotes, ')
           ..write('mapImagePath: $mapImagePath, ')
-          ..write('mapPreviewPath: $mapPreviewPath, ')
           ..write('mapWidth: $mapWidth, ')
           ..write('mapHeight: $mapHeight, ')
           ..write('mapWidthMiles: $mapWidthMiles, ')
           ..write('mapHeightMiles: $mapHeightMiles, ')
-          ..write('revealed: $revealed, ')
           ..write('graphX: $graphX, ')
           ..write('graphY: $graphY, ')
           ..write('nodeRadius: $nodeRadius, ')
+          ..write('graphCollapsed: $graphCollapsed, ')
           ..write('sortOrder: $sortOrder, ')
           ..write('createdAt: $createdAt, ')
           ..write('rowid: $rowid')
@@ -14677,21 +15028,6 @@ class $MapPinsTable extends MapPins with TableInfo<$MapPinsTable, MapPin> {
     requiredDuringInsert: false,
     defaultValue: const Constant(''),
   );
-  static const VerificationMeta _revealedMeta = const VerificationMeta(
-    'revealed',
-  );
-  @override
-  late final GeneratedColumn<bool> revealed = GeneratedColumn<bool>(
-    'revealed',
-    aliasedName,
-    false,
-    type: DriftSqlType.bool,
-    requiredDuringInsert: false,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'CHECK ("revealed" IN (0, 1))',
-    ),
-    defaultValue: const Constant(false),
-  );
   static const VerificationMeta _lootSetIdMeta = const VerificationMeta(
     'lootSetId',
   );
@@ -14736,7 +15072,6 @@ class $MapPinsTable extends MapPins with TableInfo<$MapPinsTable, MapPin> {
     y,
     targetId,
     noteText,
-    revealed,
     lootSetId,
     lootDataJson,
     createdAt,
@@ -14794,12 +15129,6 @@ class $MapPinsTable extends MapPins with TableInfo<$MapPinsTable, MapPin> {
       context.handle(
         _noteTextMeta,
         noteText.isAcceptableOrUnknown(data['note_text']!, _noteTextMeta),
-      );
-    }
-    if (data.containsKey('revealed')) {
-      context.handle(
-        _revealedMeta,
-        revealed.isAcceptableOrUnknown(data['revealed']!, _revealedMeta),
       );
     }
     if (data.containsKey('loot_set_id')) {
@@ -14866,10 +15195,6 @@ class $MapPinsTable extends MapPins with TableInfo<$MapPinsTable, MapPin> {
         DriftSqlType.string,
         data['${effectivePrefix}note_text'],
       )!,
-      revealed: attachedDatabase.typeMapping.read(
-        DriftSqlType.bool,
-        data['${effectivePrefix}revealed'],
-      )!,
       lootSetId: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}loot_set_id'],
@@ -14905,7 +15230,7 @@ class MapPin extends DataClass implements Insertable<MapPin> {
   /// Haritanin sol-ust kosesine gore 0..1 arasi oran.
   ///
   /// Piksel yerine oran saklaniyor: ayni harita telefonda, tablette ve
-  /// oyuncunun tarayicisinda farkli olculerde ciziliyor.
+  /// masaustunde farkli olculerde ciziliyor.
   final double x;
   final double y;
 
@@ -14916,14 +15241,11 @@ class MapPin extends DataClass implements Insertable<MapPin> {
   /// Not pinlerinin icerigi.
   final String noteText;
 
-  /// Oyuncular bu pini goruyor mu?
-  final bool revealed;
-
   /// Baglanan ganimet seti ID'si. Treasure pini olustururken secilir.
   final String? lootSetId;
 
   /// Kalan ganimet: `{"coinsCp": 150, "items": [{"name":"...","magic":false}]}`.
-  /// Oyuncular esya/para aldikca guncellenir; bossa pin otomatik silinir.
+  /// DM dagittikca guncellenir; bossa pin otomatik silinir.
   final String? lootDataJson;
   final DateTime createdAt;
   const MapPin({
@@ -14935,7 +15257,6 @@ class MapPin extends DataClass implements Insertable<MapPin> {
     required this.y,
     this.targetId,
     required this.noteText,
-    required this.revealed,
     this.lootSetId,
     this.lootDataJson,
     required this.createdAt,
@@ -14955,7 +15276,6 @@ class MapPin extends DataClass implements Insertable<MapPin> {
       map['target_id'] = Variable<String>(targetId);
     }
     map['note_text'] = Variable<String>(noteText);
-    map['revealed'] = Variable<bool>(revealed);
     if (!nullToAbsent || lootSetId != null) {
       map['loot_set_id'] = Variable<String>(lootSetId);
     }
@@ -14978,7 +15298,6 @@ class MapPin extends DataClass implements Insertable<MapPin> {
           ? const Value.absent()
           : Value(targetId),
       noteText: Value(noteText),
-      revealed: Value(revealed),
       lootSetId: lootSetId == null && nullToAbsent
           ? const Value.absent()
           : Value(lootSetId),
@@ -15005,7 +15324,6 @@ class MapPin extends DataClass implements Insertable<MapPin> {
       y: serializer.fromJson<double>(json['y']),
       targetId: serializer.fromJson<String?>(json['targetId']),
       noteText: serializer.fromJson<String>(json['noteText']),
-      revealed: serializer.fromJson<bool>(json['revealed']),
       lootSetId: serializer.fromJson<String?>(json['lootSetId']),
       lootDataJson: serializer.fromJson<String?>(json['lootDataJson']),
       createdAt: serializer.fromJson<DateTime>(json['createdAt']),
@@ -15025,7 +15343,6 @@ class MapPin extends DataClass implements Insertable<MapPin> {
       'y': serializer.toJson<double>(y),
       'targetId': serializer.toJson<String?>(targetId),
       'noteText': serializer.toJson<String>(noteText),
-      'revealed': serializer.toJson<bool>(revealed),
       'lootSetId': serializer.toJson<String?>(lootSetId),
       'lootDataJson': serializer.toJson<String?>(lootDataJson),
       'createdAt': serializer.toJson<DateTime>(createdAt),
@@ -15041,7 +15358,6 @@ class MapPin extends DataClass implements Insertable<MapPin> {
     double? y,
     Value<String?> targetId = const Value.absent(),
     String? noteText,
-    bool? revealed,
     Value<String?> lootSetId = const Value.absent(),
     Value<String?> lootDataJson = const Value.absent(),
     DateTime? createdAt,
@@ -15054,7 +15370,6 @@ class MapPin extends DataClass implements Insertable<MapPin> {
     y: y ?? this.y,
     targetId: targetId.present ? targetId.value : this.targetId,
     noteText: noteText ?? this.noteText,
-    revealed: revealed ?? this.revealed,
     lootSetId: lootSetId.present ? lootSetId.value : this.lootSetId,
     lootDataJson: lootDataJson.present ? lootDataJson.value : this.lootDataJson,
     createdAt: createdAt ?? this.createdAt,
@@ -15071,7 +15386,6 @@ class MapPin extends DataClass implements Insertable<MapPin> {
       y: data.y.present ? data.y.value : this.y,
       targetId: data.targetId.present ? data.targetId.value : this.targetId,
       noteText: data.noteText.present ? data.noteText.value : this.noteText,
-      revealed: data.revealed.present ? data.revealed.value : this.revealed,
       lootSetId: data.lootSetId.present ? data.lootSetId.value : this.lootSetId,
       lootDataJson: data.lootDataJson.present
           ? data.lootDataJson.value
@@ -15091,7 +15405,6 @@ class MapPin extends DataClass implements Insertable<MapPin> {
           ..write('y: $y, ')
           ..write('targetId: $targetId, ')
           ..write('noteText: $noteText, ')
-          ..write('revealed: $revealed, ')
           ..write('lootSetId: $lootSetId, ')
           ..write('lootDataJson: $lootDataJson, ')
           ..write('createdAt: $createdAt')
@@ -15109,7 +15422,6 @@ class MapPin extends DataClass implements Insertable<MapPin> {
     y,
     targetId,
     noteText,
-    revealed,
     lootSetId,
     lootDataJson,
     createdAt,
@@ -15126,7 +15438,6 @@ class MapPin extends DataClass implements Insertable<MapPin> {
           other.y == this.y &&
           other.targetId == this.targetId &&
           other.noteText == this.noteText &&
-          other.revealed == this.revealed &&
           other.lootSetId == this.lootSetId &&
           other.lootDataJson == this.lootDataJson &&
           other.createdAt == this.createdAt);
@@ -15141,7 +15452,6 @@ class MapPinsCompanion extends UpdateCompanion<MapPin> {
   final Value<double> y;
   final Value<String?> targetId;
   final Value<String> noteText;
-  final Value<bool> revealed;
   final Value<String?> lootSetId;
   final Value<String?> lootDataJson;
   final Value<DateTime> createdAt;
@@ -15155,7 +15465,6 @@ class MapPinsCompanion extends UpdateCompanion<MapPin> {
     this.y = const Value.absent(),
     this.targetId = const Value.absent(),
     this.noteText = const Value.absent(),
-    this.revealed = const Value.absent(),
     this.lootSetId = const Value.absent(),
     this.lootDataJson = const Value.absent(),
     this.createdAt = const Value.absent(),
@@ -15170,7 +15479,6 @@ class MapPinsCompanion extends UpdateCompanion<MapPin> {
     required double y,
     this.targetId = const Value.absent(),
     this.noteText = const Value.absent(),
-    this.revealed = const Value.absent(),
     this.lootSetId = const Value.absent(),
     this.lootDataJson = const Value.absent(),
     this.createdAt = const Value.absent(),
@@ -15190,7 +15498,6 @@ class MapPinsCompanion extends UpdateCompanion<MapPin> {
     Expression<double>? y,
     Expression<String>? targetId,
     Expression<String>? noteText,
-    Expression<bool>? revealed,
     Expression<String>? lootSetId,
     Expression<String>? lootDataJson,
     Expression<DateTime>? createdAt,
@@ -15205,7 +15512,6 @@ class MapPinsCompanion extends UpdateCompanion<MapPin> {
       if (y != null) 'y': y,
       if (targetId != null) 'target_id': targetId,
       if (noteText != null) 'note_text': noteText,
-      if (revealed != null) 'revealed': revealed,
       if (lootSetId != null) 'loot_set_id': lootSetId,
       if (lootDataJson != null) 'loot_data_json': lootDataJson,
       if (createdAt != null) 'created_at': createdAt,
@@ -15222,7 +15528,6 @@ class MapPinsCompanion extends UpdateCompanion<MapPin> {
     Value<double>? y,
     Value<String?>? targetId,
     Value<String>? noteText,
-    Value<bool>? revealed,
     Value<String?>? lootSetId,
     Value<String?>? lootDataJson,
     Value<DateTime>? createdAt,
@@ -15237,7 +15542,6 @@ class MapPinsCompanion extends UpdateCompanion<MapPin> {
       y: y ?? this.y,
       targetId: targetId ?? this.targetId,
       noteText: noteText ?? this.noteText,
-      revealed: revealed ?? this.revealed,
       lootSetId: lootSetId ?? this.lootSetId,
       lootDataJson: lootDataJson ?? this.lootDataJson,
       createdAt: createdAt ?? this.createdAt,
@@ -15274,9 +15578,6 @@ class MapPinsCompanion extends UpdateCompanion<MapPin> {
     if (noteText.present) {
       map['note_text'] = Variable<String>(noteText.value);
     }
-    if (revealed.present) {
-      map['revealed'] = Variable<bool>(revealed.value);
-    }
     if (lootSetId.present) {
       map['loot_set_id'] = Variable<String>(lootSetId.value);
     }
@@ -15303,7 +15604,6 @@ class MapPinsCompanion extends UpdateCompanion<MapPin> {
           ..write('y: $y, ')
           ..write('targetId: $targetId, ')
           ..write('noteText: $noteText, ')
-          ..write('revealed: $revealed, ')
           ..write('lootSetId: $lootSetId, ')
           ..write('lootDataJson: $lootDataJson, ')
           ..write('createdAt: $createdAt, ')
@@ -16577,7 +16877,7 @@ class Npc extends DataClass implements Insertable<Npc> {
   final String flaw;
   final String hook;
 
-  /// DM'e ozel; oyunculara gonderilmez.
+  /// DM'e ozel notlar.
   final String secretNotes;
 
   /// Bagli oldugu canavar stat blogu (varsa) -- savasa dogrudan eklemek icin.
@@ -17171,6 +17471,674 @@ class NpcsCompanion extends UpdateCompanion<Npc> {
           ..write('hook: $hook, ')
           ..write('secretNotes: $secretNotes, ')
           ..write('monsterKey: $monsterKey, ')
+          ..write('portraitPath: $portraitPath, ')
+          ..write('graphX: $graphX, ')
+          ..write('graphY: $graphY, ')
+          ..write('nodeRadius: $nodeRadius, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $FactionsTable extends Factions with TableInfo<$FactionsTable, Faction> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $FactionsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _nameMeta = const VerificationMeta('name');
+  @override
+  late final GeneratedColumn<String> name = GeneratedColumn<String>(
+    'name',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _kindMeta = const VerificationMeta('kind');
+  @override
+  late final GeneratedColumn<String> kind = GeneratedColumn<String>(
+    'kind',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(''),
+  );
+  static const VerificationMeta _descriptionMeta = const VerificationMeta(
+    'description',
+  );
+  @override
+  late final GeneratedColumn<String> description = GeneratedColumn<String>(
+    'description',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(''),
+  );
+  static const VerificationMeta _goalMeta = const VerificationMeta('goal');
+  @override
+  late final GeneratedColumn<String> goal = GeneratedColumn<String>(
+    'goal',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(''),
+  );
+  static const VerificationMeta _secretNotesMeta = const VerificationMeta(
+    'secretNotes',
+  );
+  @override
+  late final GeneratedColumn<String> secretNotes = GeneratedColumn<String>(
+    'secret_notes',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(''),
+  );
+  static const VerificationMeta _portraitPathMeta = const VerificationMeta(
+    'portraitPath',
+  );
+  @override
+  late final GeneratedColumn<String> portraitPath = GeneratedColumn<String>(
+    'portrait_path',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _graphXMeta = const VerificationMeta('graphX');
+  @override
+  late final GeneratedColumn<double> graphX = GeneratedColumn<double>(
+    'graph_x',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _graphYMeta = const VerificationMeta('graphY');
+  @override
+  late final GeneratedColumn<double> graphY = GeneratedColumn<double>(
+    'graph_y',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _nodeRadiusMeta = const VerificationMeta(
+    'nodeRadius',
+  );
+  @override
+  late final GeneratedColumn<double> nodeRadius = GeneratedColumn<double>(
+    'node_radius',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    defaultValue: currentDateAndTime,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    name,
+    kind,
+    description,
+    goal,
+    secretNotes,
+    portraitPath,
+    graphX,
+    graphY,
+    nodeRadius,
+    createdAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'factions';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<Faction> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('name')) {
+      context.handle(
+        _nameMeta,
+        name.isAcceptableOrUnknown(data['name']!, _nameMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_nameMeta);
+    }
+    if (data.containsKey('kind')) {
+      context.handle(
+        _kindMeta,
+        kind.isAcceptableOrUnknown(data['kind']!, _kindMeta),
+      );
+    }
+    if (data.containsKey('description')) {
+      context.handle(
+        _descriptionMeta,
+        description.isAcceptableOrUnknown(
+          data['description']!,
+          _descriptionMeta,
+        ),
+      );
+    }
+    if (data.containsKey('goal')) {
+      context.handle(
+        _goalMeta,
+        goal.isAcceptableOrUnknown(data['goal']!, _goalMeta),
+      );
+    }
+    if (data.containsKey('secret_notes')) {
+      context.handle(
+        _secretNotesMeta,
+        secretNotes.isAcceptableOrUnknown(
+          data['secret_notes']!,
+          _secretNotesMeta,
+        ),
+      );
+    }
+    if (data.containsKey('portrait_path')) {
+      context.handle(
+        _portraitPathMeta,
+        portraitPath.isAcceptableOrUnknown(
+          data['portrait_path']!,
+          _portraitPathMeta,
+        ),
+      );
+    }
+    if (data.containsKey('graph_x')) {
+      context.handle(
+        _graphXMeta,
+        graphX.isAcceptableOrUnknown(data['graph_x']!, _graphXMeta),
+      );
+    }
+    if (data.containsKey('graph_y')) {
+      context.handle(
+        _graphYMeta,
+        graphY.isAcceptableOrUnknown(data['graph_y']!, _graphYMeta),
+      );
+    }
+    if (data.containsKey('node_radius')) {
+      context.handle(
+        _nodeRadiusMeta,
+        nodeRadius.isAcceptableOrUnknown(data['node_radius']!, _nodeRadiusMeta),
+      );
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  Faction map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return Faction(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      name: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}name'],
+      )!,
+      kind: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}kind'],
+      )!,
+      description: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}description'],
+      )!,
+      goal: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}goal'],
+      )!,
+      secretNotes: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}secret_notes'],
+      )!,
+      portraitPath: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}portrait_path'],
+      ),
+      graphX: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}graph_x'],
+      ),
+      graphY: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}graph_y'],
+      ),
+      nodeRadius: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}node_radius'],
+      ),
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+    );
+  }
+
+  @override
+  $FactionsTable createAlias(String alias) {
+    return $FactionsTable(attachedDatabase, alias);
+  }
+}
+
+class Faction extends DataClass implements Insertable<Faction> {
+  final String id;
+  final String name;
+
+  /// Orgutun turu, serbest metin: "lonca", "tarikat", "hanedan", "cete".
+  /// Sabit bir enum DEGIL cunku her masanin kendi sozlugu var.
+  final String kind;
+  final String description;
+
+  /// Orgutun ACIK amaci: masada en cok sorulan sey bu.
+  final String goal;
+
+  /// DM'e ozel notlar (gercek amac, ihanet, sirlar).
+  final String secretNotes;
+
+  /// Arma/sembol gorseli. NPC portreleriyle ayni depoyu paylasir
+  /// (`CharacterImageStore`), ayri bir klasore gerek yok.
+  final String? portraitPath;
+
+  /// Dunya grafigindeki serbest konum ve dugum boyutu; yer/NPC ile ayni desen.
+  final double? graphX;
+  final double? graphY;
+  final double? nodeRadius;
+  final DateTime createdAt;
+  const Faction({
+    required this.id,
+    required this.name,
+    required this.kind,
+    required this.description,
+    required this.goal,
+    required this.secretNotes,
+    this.portraitPath,
+    this.graphX,
+    this.graphY,
+    this.nodeRadius,
+    required this.createdAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['name'] = Variable<String>(name);
+    map['kind'] = Variable<String>(kind);
+    map['description'] = Variable<String>(description);
+    map['goal'] = Variable<String>(goal);
+    map['secret_notes'] = Variable<String>(secretNotes);
+    if (!nullToAbsent || portraitPath != null) {
+      map['portrait_path'] = Variable<String>(portraitPath);
+    }
+    if (!nullToAbsent || graphX != null) {
+      map['graph_x'] = Variable<double>(graphX);
+    }
+    if (!nullToAbsent || graphY != null) {
+      map['graph_y'] = Variable<double>(graphY);
+    }
+    if (!nullToAbsent || nodeRadius != null) {
+      map['node_radius'] = Variable<double>(nodeRadius);
+    }
+    map['created_at'] = Variable<DateTime>(createdAt);
+    return map;
+  }
+
+  FactionsCompanion toCompanion(bool nullToAbsent) {
+    return FactionsCompanion(
+      id: Value(id),
+      name: Value(name),
+      kind: Value(kind),
+      description: Value(description),
+      goal: Value(goal),
+      secretNotes: Value(secretNotes),
+      portraitPath: portraitPath == null && nullToAbsent
+          ? const Value.absent()
+          : Value(portraitPath),
+      graphX: graphX == null && nullToAbsent
+          ? const Value.absent()
+          : Value(graphX),
+      graphY: graphY == null && nullToAbsent
+          ? const Value.absent()
+          : Value(graphY),
+      nodeRadius: nodeRadius == null && nullToAbsent
+          ? const Value.absent()
+          : Value(nodeRadius),
+      createdAt: Value(createdAt),
+    );
+  }
+
+  factory Faction.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return Faction(
+      id: serializer.fromJson<String>(json['id']),
+      name: serializer.fromJson<String>(json['name']),
+      kind: serializer.fromJson<String>(json['kind']),
+      description: serializer.fromJson<String>(json['description']),
+      goal: serializer.fromJson<String>(json['goal']),
+      secretNotes: serializer.fromJson<String>(json['secretNotes']),
+      portraitPath: serializer.fromJson<String?>(json['portraitPath']),
+      graphX: serializer.fromJson<double?>(json['graphX']),
+      graphY: serializer.fromJson<double?>(json['graphY']),
+      nodeRadius: serializer.fromJson<double?>(json['nodeRadius']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'name': serializer.toJson<String>(name),
+      'kind': serializer.toJson<String>(kind),
+      'description': serializer.toJson<String>(description),
+      'goal': serializer.toJson<String>(goal),
+      'secretNotes': serializer.toJson<String>(secretNotes),
+      'portraitPath': serializer.toJson<String?>(portraitPath),
+      'graphX': serializer.toJson<double?>(graphX),
+      'graphY': serializer.toJson<double?>(graphY),
+      'nodeRadius': serializer.toJson<double?>(nodeRadius),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+    };
+  }
+
+  Faction copyWith({
+    String? id,
+    String? name,
+    String? kind,
+    String? description,
+    String? goal,
+    String? secretNotes,
+    Value<String?> portraitPath = const Value.absent(),
+    Value<double?> graphX = const Value.absent(),
+    Value<double?> graphY = const Value.absent(),
+    Value<double?> nodeRadius = const Value.absent(),
+    DateTime? createdAt,
+  }) => Faction(
+    id: id ?? this.id,
+    name: name ?? this.name,
+    kind: kind ?? this.kind,
+    description: description ?? this.description,
+    goal: goal ?? this.goal,
+    secretNotes: secretNotes ?? this.secretNotes,
+    portraitPath: portraitPath.present ? portraitPath.value : this.portraitPath,
+    graphX: graphX.present ? graphX.value : this.graphX,
+    graphY: graphY.present ? graphY.value : this.graphY,
+    nodeRadius: nodeRadius.present ? nodeRadius.value : this.nodeRadius,
+    createdAt: createdAt ?? this.createdAt,
+  );
+  Faction copyWithCompanion(FactionsCompanion data) {
+    return Faction(
+      id: data.id.present ? data.id.value : this.id,
+      name: data.name.present ? data.name.value : this.name,
+      kind: data.kind.present ? data.kind.value : this.kind,
+      description: data.description.present
+          ? data.description.value
+          : this.description,
+      goal: data.goal.present ? data.goal.value : this.goal,
+      secretNotes: data.secretNotes.present
+          ? data.secretNotes.value
+          : this.secretNotes,
+      portraitPath: data.portraitPath.present
+          ? data.portraitPath.value
+          : this.portraitPath,
+      graphX: data.graphX.present ? data.graphX.value : this.graphX,
+      graphY: data.graphY.present ? data.graphY.value : this.graphY,
+      nodeRadius: data.nodeRadius.present
+          ? data.nodeRadius.value
+          : this.nodeRadius,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('Faction(')
+          ..write('id: $id, ')
+          ..write('name: $name, ')
+          ..write('kind: $kind, ')
+          ..write('description: $description, ')
+          ..write('goal: $goal, ')
+          ..write('secretNotes: $secretNotes, ')
+          ..write('portraitPath: $portraitPath, ')
+          ..write('graphX: $graphX, ')
+          ..write('graphY: $graphY, ')
+          ..write('nodeRadius: $nodeRadius, ')
+          ..write('createdAt: $createdAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    name,
+    kind,
+    description,
+    goal,
+    secretNotes,
+    portraitPath,
+    graphX,
+    graphY,
+    nodeRadius,
+    createdAt,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is Faction &&
+          other.id == this.id &&
+          other.name == this.name &&
+          other.kind == this.kind &&
+          other.description == this.description &&
+          other.goal == this.goal &&
+          other.secretNotes == this.secretNotes &&
+          other.portraitPath == this.portraitPath &&
+          other.graphX == this.graphX &&
+          other.graphY == this.graphY &&
+          other.nodeRadius == this.nodeRadius &&
+          other.createdAt == this.createdAt);
+}
+
+class FactionsCompanion extends UpdateCompanion<Faction> {
+  final Value<String> id;
+  final Value<String> name;
+  final Value<String> kind;
+  final Value<String> description;
+  final Value<String> goal;
+  final Value<String> secretNotes;
+  final Value<String?> portraitPath;
+  final Value<double?> graphX;
+  final Value<double?> graphY;
+  final Value<double?> nodeRadius;
+  final Value<DateTime> createdAt;
+  final Value<int> rowid;
+  const FactionsCompanion({
+    this.id = const Value.absent(),
+    this.name = const Value.absent(),
+    this.kind = const Value.absent(),
+    this.description = const Value.absent(),
+    this.goal = const Value.absent(),
+    this.secretNotes = const Value.absent(),
+    this.portraitPath = const Value.absent(),
+    this.graphX = const Value.absent(),
+    this.graphY = const Value.absent(),
+    this.nodeRadius = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  FactionsCompanion.insert({
+    required String id,
+    required String name,
+    this.kind = const Value.absent(),
+    this.description = const Value.absent(),
+    this.goal = const Value.absent(),
+    this.secretNotes = const Value.absent(),
+    this.portraitPath = const Value.absent(),
+    this.graphX = const Value.absent(),
+    this.graphY = const Value.absent(),
+    this.nodeRadius = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       name = Value(name);
+  static Insertable<Faction> custom({
+    Expression<String>? id,
+    Expression<String>? name,
+    Expression<String>? kind,
+    Expression<String>? description,
+    Expression<String>? goal,
+    Expression<String>? secretNotes,
+    Expression<String>? portraitPath,
+    Expression<double>? graphX,
+    Expression<double>? graphY,
+    Expression<double>? nodeRadius,
+    Expression<DateTime>? createdAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (name != null) 'name': name,
+      if (kind != null) 'kind': kind,
+      if (description != null) 'description': description,
+      if (goal != null) 'goal': goal,
+      if (secretNotes != null) 'secret_notes': secretNotes,
+      if (portraitPath != null) 'portrait_path': portraitPath,
+      if (graphX != null) 'graph_x': graphX,
+      if (graphY != null) 'graph_y': graphY,
+      if (nodeRadius != null) 'node_radius': nodeRadius,
+      if (createdAt != null) 'created_at': createdAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  FactionsCompanion copyWith({
+    Value<String>? id,
+    Value<String>? name,
+    Value<String>? kind,
+    Value<String>? description,
+    Value<String>? goal,
+    Value<String>? secretNotes,
+    Value<String?>? portraitPath,
+    Value<double?>? graphX,
+    Value<double?>? graphY,
+    Value<double?>? nodeRadius,
+    Value<DateTime>? createdAt,
+    Value<int>? rowid,
+  }) {
+    return FactionsCompanion(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      kind: kind ?? this.kind,
+      description: description ?? this.description,
+      goal: goal ?? this.goal,
+      secretNotes: secretNotes ?? this.secretNotes,
+      portraitPath: portraitPath ?? this.portraitPath,
+      graphX: graphX ?? this.graphX,
+      graphY: graphY ?? this.graphY,
+      nodeRadius: nodeRadius ?? this.nodeRadius,
+      createdAt: createdAt ?? this.createdAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (name.present) {
+      map['name'] = Variable<String>(name.value);
+    }
+    if (kind.present) {
+      map['kind'] = Variable<String>(kind.value);
+    }
+    if (description.present) {
+      map['description'] = Variable<String>(description.value);
+    }
+    if (goal.present) {
+      map['goal'] = Variable<String>(goal.value);
+    }
+    if (secretNotes.present) {
+      map['secret_notes'] = Variable<String>(secretNotes.value);
+    }
+    if (portraitPath.present) {
+      map['portrait_path'] = Variable<String>(portraitPath.value);
+    }
+    if (graphX.present) {
+      map['graph_x'] = Variable<double>(graphX.value);
+    }
+    if (graphY.present) {
+      map['graph_y'] = Variable<double>(graphY.value);
+    }
+    if (nodeRadius.present) {
+      map['node_radius'] = Variable<double>(nodeRadius.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('FactionsCompanion(')
+          ..write('id: $id, ')
+          ..write('name: $name, ')
+          ..write('kind: $kind, ')
+          ..write('description: $description, ')
+          ..write('goal: $goal, ')
+          ..write('secretNotes: $secretNotes, ')
           ..write('portraitPath: $portraitPath, ')
           ..write('graphX: $graphX, ')
           ..write('graphY: $graphY, ')
@@ -20508,288 +21476,6 @@ class MusicTracksCompanion extends UpdateCompanion<MusicTrack> {
   }
 }
 
-class $CharacterNotesTable extends CharacterNotes
-    with TableInfo<$CharacterNotesTable, CharacterNote> {
-  @override
-  final GeneratedDatabase attachedDatabase;
-  final String? _alias;
-  $CharacterNotesTable(this.attachedDatabase, [this._alias]);
-  static const VerificationMeta _characterIdMeta = const VerificationMeta(
-    'characterId',
-  );
-  @override
-  late final GeneratedColumn<String> characterId = GeneratedColumn<String>(
-    'character_id',
-    aliasedName,
-    false,
-    type: DriftSqlType.string,
-    requiredDuringInsert: true,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES characters (id)',
-    ),
-  );
-  static const VerificationMeta _documentJsonMeta = const VerificationMeta(
-    'documentJson',
-  );
-  @override
-  late final GeneratedColumn<String> documentJson = GeneratedColumn<String>(
-    'document_json',
-    aliasedName,
-    false,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-    defaultValue: const Constant('[]'),
-  );
-  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
-    'updatedAt',
-  );
-  @override
-  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
-    'updated_at',
-    aliasedName,
-    false,
-    type: DriftSqlType.dateTime,
-    requiredDuringInsert: false,
-    defaultValue: currentDateAndTime,
-  );
-  @override
-  List<GeneratedColumn> get $columns => [characterId, documentJson, updatedAt];
-  @override
-  String get aliasedName => _alias ?? actualTableName;
-  @override
-  String get actualTableName => $name;
-  static const String $name = 'character_notes';
-  @override
-  VerificationContext validateIntegrity(
-    Insertable<CharacterNote> instance, {
-    bool isInserting = false,
-  }) {
-    final context = VerificationContext();
-    final data = instance.toColumns(true);
-    if (data.containsKey('character_id')) {
-      context.handle(
-        _characterIdMeta,
-        characterId.isAcceptableOrUnknown(
-          data['character_id']!,
-          _characterIdMeta,
-        ),
-      );
-    } else if (isInserting) {
-      context.missing(_characterIdMeta);
-    }
-    if (data.containsKey('document_json')) {
-      context.handle(
-        _documentJsonMeta,
-        documentJson.isAcceptableOrUnknown(
-          data['document_json']!,
-          _documentJsonMeta,
-        ),
-      );
-    }
-    if (data.containsKey('updated_at')) {
-      context.handle(
-        _updatedAtMeta,
-        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
-      );
-    }
-    return context;
-  }
-
-  @override
-  Set<GeneratedColumn> get $primaryKey => {characterId};
-  @override
-  CharacterNote map(Map<String, dynamic> data, {String? tablePrefix}) {
-    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return CharacterNote(
-      characterId: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}character_id'],
-      )!,
-      documentJson: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}document_json'],
-      )!,
-      updatedAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}updated_at'],
-      )!,
-    );
-  }
-
-  @override
-  $CharacterNotesTable createAlias(String alias) {
-    return $CharacterNotesTable(attachedDatabase, alias);
-  }
-}
-
-class CharacterNote extends DataClass implements Insertable<CharacterNote> {
-  /// Sahibi karakter; her karakter icin tek satir.
-  final String characterId;
-
-  /// Not belgesi: `[{"id":..,"title":..,"entries":[{"id":..,"title":..,
-  /// "body":..}]}]` JSON dizisi.
-  final String documentJson;
-  final DateTime updatedAt;
-  const CharacterNote({
-    required this.characterId,
-    required this.documentJson,
-    required this.updatedAt,
-  });
-  @override
-  Map<String, Expression> toColumns(bool nullToAbsent) {
-    final map = <String, Expression>{};
-    map['character_id'] = Variable<String>(characterId);
-    map['document_json'] = Variable<String>(documentJson);
-    map['updated_at'] = Variable<DateTime>(updatedAt);
-    return map;
-  }
-
-  CharacterNotesCompanion toCompanion(bool nullToAbsent) {
-    return CharacterNotesCompanion(
-      characterId: Value(characterId),
-      documentJson: Value(documentJson),
-      updatedAt: Value(updatedAt),
-    );
-  }
-
-  factory CharacterNote.fromJson(
-    Map<String, dynamic> json, {
-    ValueSerializer? serializer,
-  }) {
-    serializer ??= driftRuntimeOptions.defaultSerializer;
-    return CharacterNote(
-      characterId: serializer.fromJson<String>(json['characterId']),
-      documentJson: serializer.fromJson<String>(json['documentJson']),
-      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
-    );
-  }
-  @override
-  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
-    serializer ??= driftRuntimeOptions.defaultSerializer;
-    return <String, dynamic>{
-      'characterId': serializer.toJson<String>(characterId),
-      'documentJson': serializer.toJson<String>(documentJson),
-      'updatedAt': serializer.toJson<DateTime>(updatedAt),
-    };
-  }
-
-  CharacterNote copyWith({
-    String? characterId,
-    String? documentJson,
-    DateTime? updatedAt,
-  }) => CharacterNote(
-    characterId: characterId ?? this.characterId,
-    documentJson: documentJson ?? this.documentJson,
-    updatedAt: updatedAt ?? this.updatedAt,
-  );
-  CharacterNote copyWithCompanion(CharacterNotesCompanion data) {
-    return CharacterNote(
-      characterId: data.characterId.present
-          ? data.characterId.value
-          : this.characterId,
-      documentJson: data.documentJson.present
-          ? data.documentJson.value
-          : this.documentJson,
-      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
-    );
-  }
-
-  @override
-  String toString() {
-    return (StringBuffer('CharacterNote(')
-          ..write('characterId: $characterId, ')
-          ..write('documentJson: $documentJson, ')
-          ..write('updatedAt: $updatedAt')
-          ..write(')'))
-        .toString();
-  }
-
-  @override
-  int get hashCode => Object.hash(characterId, documentJson, updatedAt);
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      (other is CharacterNote &&
-          other.characterId == this.characterId &&
-          other.documentJson == this.documentJson &&
-          other.updatedAt == this.updatedAt);
-}
-
-class CharacterNotesCompanion extends UpdateCompanion<CharacterNote> {
-  final Value<String> characterId;
-  final Value<String> documentJson;
-  final Value<DateTime> updatedAt;
-  final Value<int> rowid;
-  const CharacterNotesCompanion({
-    this.characterId = const Value.absent(),
-    this.documentJson = const Value.absent(),
-    this.updatedAt = const Value.absent(),
-    this.rowid = const Value.absent(),
-  });
-  CharacterNotesCompanion.insert({
-    required String characterId,
-    this.documentJson = const Value.absent(),
-    this.updatedAt = const Value.absent(),
-    this.rowid = const Value.absent(),
-  }) : characterId = Value(characterId);
-  static Insertable<CharacterNote> custom({
-    Expression<String>? characterId,
-    Expression<String>? documentJson,
-    Expression<DateTime>? updatedAt,
-    Expression<int>? rowid,
-  }) {
-    return RawValuesInsertable({
-      if (characterId != null) 'character_id': characterId,
-      if (documentJson != null) 'document_json': documentJson,
-      if (updatedAt != null) 'updated_at': updatedAt,
-      if (rowid != null) 'rowid': rowid,
-    });
-  }
-
-  CharacterNotesCompanion copyWith({
-    Value<String>? characterId,
-    Value<String>? documentJson,
-    Value<DateTime>? updatedAt,
-    Value<int>? rowid,
-  }) {
-    return CharacterNotesCompanion(
-      characterId: characterId ?? this.characterId,
-      documentJson: documentJson ?? this.documentJson,
-      updatedAt: updatedAt ?? this.updatedAt,
-      rowid: rowid ?? this.rowid,
-    );
-  }
-
-  @override
-  Map<String, Expression> toColumns(bool nullToAbsent) {
-    final map = <String, Expression>{};
-    if (characterId.present) {
-      map['character_id'] = Variable<String>(characterId.value);
-    }
-    if (documentJson.present) {
-      map['document_json'] = Variable<String>(documentJson.value);
-    }
-    if (updatedAt.present) {
-      map['updated_at'] = Variable<DateTime>(updatedAt.value);
-    }
-    if (rowid.present) {
-      map['rowid'] = Variable<int>(rowid.value);
-    }
-    return map;
-  }
-
-  @override
-  String toString() {
-    return (StringBuffer('CharacterNotesCompanion(')
-          ..write('characterId: $characterId, ')
-          ..write('documentJson: $documentJson, ')
-          ..write('updatedAt: $updatedAt, ')
-          ..write('rowid: $rowid')
-          ..write(')'))
-        .toString();
-  }
-}
-
 class $SessionLogEntriesTable extends SessionLogEntries
     with TableInfo<$SessionLogEntriesTable, SessionLogEntry> {
   @override
@@ -21929,19 +22615,6 @@ class $QuestsTable extends Quests with TableInfo<$QuestsTable, Quest> {
     ),
     defaultValue: const Constant(false),
   );
-  static const VerificationMeta _sharedMeta = const VerificationMeta('shared');
-  @override
-  late final GeneratedColumn<bool> shared = GeneratedColumn<bool>(
-    'shared',
-    aliasedName,
-    false,
-    type: DriftSqlType.bool,
-    requiredDuringInsert: false,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'CHECK ("shared" IN (0, 1))',
-    ),
-    defaultValue: const Constant(false),
-  );
   static const VerificationMeta _targetsJsonMeta = const VerificationMeta(
     'targetsJson',
   );
@@ -21953,42 +22626,6 @@ class $QuestsTable extends Quests with TableInfo<$QuestsTable, Quest> {
     type: DriftSqlType.string,
     requiredDuringInsert: false,
     defaultValue: const Constant('[]'),
-  );
-  static const VerificationMeta _acceptancesJsonMeta = const VerificationMeta(
-    'acceptancesJson',
-  );
-  @override
-  late final GeneratedColumn<String> acceptancesJson = GeneratedColumn<String>(
-    'acceptances_json',
-    aliasedName,
-    false,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-    defaultValue: const Constant('{}'),
-  );
-  static const VerificationMeta _shareModeMeta = const VerificationMeta(
-    'shareMode',
-  );
-  @override
-  late final GeneratedColumn<String> shareMode = GeneratedColumn<String>(
-    'share_mode',
-    aliasedName,
-    false,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-    defaultValue: const Constant('individual'),
-  );
-  static const VerificationMeta _voteStatusMeta = const VerificationMeta(
-    'voteStatus',
-  );
-  @override
-  late final GeneratedColumn<String> voteStatus = GeneratedColumn<String>(
-    'vote_status',
-    aliasedName,
-    false,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-    defaultValue: const Constant(''),
   );
   static const VerificationMeta _rewardCoinsCpMeta = const VerificationMeta(
     'rewardCoinsCp',
@@ -22013,17 +22650,6 @@ class $QuestsTable extends Quests with TableInfo<$QuestsTable, Quest> {
     type: DriftSqlType.string,
     requiredDuringInsert: false,
     defaultValue: const Constant('[]'),
-  );
-  static const VerificationMeta _rewardPoolJsonMeta = const VerificationMeta(
-    'rewardPoolJson',
-  );
-  @override
-  late final GeneratedColumn<String> rewardPoolJson = GeneratedColumn<String>(
-    'reward_pool_json',
-    aliasedName,
-    true,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
   );
   static const VerificationMeta _sortOrderMeta = const VerificationMeta(
     'sortOrder',
@@ -22057,14 +22683,9 @@ class $QuestsTable extends Quests with TableInfo<$QuestsTable, Quest> {
     reward,
     dmNotes,
     done,
-    shared,
     targetsJson,
-    acceptancesJson,
-    shareMode,
-    voteStatus,
     rewardCoinsCp,
     rewardItemsJson,
-    rewardPoolJson,
     sortOrder,
     createdAt,
   ];
@@ -22115,12 +22736,6 @@ class $QuestsTable extends Quests with TableInfo<$QuestsTable, Quest> {
         done.isAcceptableOrUnknown(data['done']!, _doneMeta),
       );
     }
-    if (data.containsKey('shared')) {
-      context.handle(
-        _sharedMeta,
-        shared.isAcceptableOrUnknown(data['shared']!, _sharedMeta),
-      );
-    }
     if (data.containsKey('targets_json')) {
       context.handle(
         _targetsJsonMeta,
@@ -22128,27 +22743,6 @@ class $QuestsTable extends Quests with TableInfo<$QuestsTable, Quest> {
           data['targets_json']!,
           _targetsJsonMeta,
         ),
-      );
-    }
-    if (data.containsKey('acceptances_json')) {
-      context.handle(
-        _acceptancesJsonMeta,
-        acceptancesJson.isAcceptableOrUnknown(
-          data['acceptances_json']!,
-          _acceptancesJsonMeta,
-        ),
-      );
-    }
-    if (data.containsKey('share_mode')) {
-      context.handle(
-        _shareModeMeta,
-        shareMode.isAcceptableOrUnknown(data['share_mode']!, _shareModeMeta),
-      );
-    }
-    if (data.containsKey('vote_status')) {
-      context.handle(
-        _voteStatusMeta,
-        voteStatus.isAcceptableOrUnknown(data['vote_status']!, _voteStatusMeta),
       );
     }
     if (data.containsKey('reward_coins_cp')) {
@@ -22166,15 +22760,6 @@ class $QuestsTable extends Quests with TableInfo<$QuestsTable, Quest> {
         rewardItemsJson.isAcceptableOrUnknown(
           data['reward_items_json']!,
           _rewardItemsJsonMeta,
-        ),
-      );
-    }
-    if (data.containsKey('reward_pool_json')) {
-      context.handle(
-        _rewardPoolJsonMeta,
-        rewardPoolJson.isAcceptableOrUnknown(
-          data['reward_pool_json']!,
-          _rewardPoolJsonMeta,
         ),
       );
     }
@@ -22223,25 +22808,9 @@ class $QuestsTable extends Quests with TableInfo<$QuestsTable, Quest> {
         DriftSqlType.bool,
         data['${effectivePrefix}done'],
       )!,
-      shared: attachedDatabase.typeMapping.read(
-        DriftSqlType.bool,
-        data['${effectivePrefix}shared'],
-      )!,
       targetsJson: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}targets_json'],
-      )!,
-      acceptancesJson: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}acceptances_json'],
-      )!,
-      shareMode: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}share_mode'],
-      )!,
-      voteStatus: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}vote_status'],
       )!,
       rewardCoinsCp: attachedDatabase.typeMapping.read(
         DriftSqlType.int,
@@ -22251,10 +22820,6 @@ class $QuestsTable extends Quests with TableInfo<$QuestsTable, Quest> {
         DriftSqlType.string,
         data['${effectivePrefix}reward_items_json'],
       )!,
-      rewardPoolJson: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}reward_pool_json'],
-      ),
       sortOrder: attachedDatabase.typeMapping.read(
         DriftSqlType.int,
         data['${effectivePrefix}sort_order'],
@@ -22279,32 +22844,17 @@ class Quest extends DataClass implements Insertable<Quest> {
   final String reward;
   final String dmNotes;
   final bool done;
-  final bool shared;
 
-  /// Hedef oyuncular: characterId listesi (JSON dizi).
+  /// Gorevi ustlenen karakterler: characterId listesi (JSON dizi).
+  ///
+  /// Kimin hangi isin pesinde oldugunu DM burada tutar; masada "bu gorev
+  /// kimde?" sorusunun tek cevabi.
   final String targetsJson;
-
-  /// Kabul/ret: `{"<characterId>": true/false}` (JSON nesne).
-  final String acceptancesJson;
-
-  /// Paylasim bicimi: `individual` (herkes kendi kabul/ret verir) ya da
-  /// `vote` (hedefler arasinda oylama; %50+ kabul cikarsa gorev HERKESE
-  /// verilir, altinda kalirsa kimse alamaz).
-  final String shareMode;
-
-  /// Oylama durumu (`vote` modunda): '' | 'pending' | 'passed' | 'failed'.
-  final String voteStatus;
 
   /// Gercek odul: para (bakir cinsinden) + esyalar `[{"name","magic"}]`.
   /// Serbest metin [reward] bunun yaninda aciklama olarak kalir.
   final int rewardCoinsCp;
   final String rewardItemsJson;
-
-  /// Gorev tamamlanınca acilan ORTAK ganimet havuzu (hazine pini ile ayni
-  /// bicim: `{"coinsCp":N,"items":[{"id","name","magic"}]}`). Null ise odul
-  /// henuz dagitima acilmadi. Tek havuz: bir esyayi kim once alirsa digerlerinde
-  /// kaybolur; havuz bosalinca gorev silinir.
-  final String? rewardPoolJson;
   final int sortOrder;
   final DateTime createdAt;
   const Quest({
@@ -22314,14 +22864,9 @@ class Quest extends DataClass implements Insertable<Quest> {
     required this.reward,
     required this.dmNotes,
     required this.done,
-    required this.shared,
     required this.targetsJson,
-    required this.acceptancesJson,
-    required this.shareMode,
-    required this.voteStatus,
     required this.rewardCoinsCp,
     required this.rewardItemsJson,
-    this.rewardPoolJson,
     required this.sortOrder,
     required this.createdAt,
   });
@@ -22334,16 +22879,9 @@ class Quest extends DataClass implements Insertable<Quest> {
     map['reward'] = Variable<String>(reward);
     map['dm_notes'] = Variable<String>(dmNotes);
     map['done'] = Variable<bool>(done);
-    map['shared'] = Variable<bool>(shared);
     map['targets_json'] = Variable<String>(targetsJson);
-    map['acceptances_json'] = Variable<String>(acceptancesJson);
-    map['share_mode'] = Variable<String>(shareMode);
-    map['vote_status'] = Variable<String>(voteStatus);
     map['reward_coins_cp'] = Variable<int>(rewardCoinsCp);
     map['reward_items_json'] = Variable<String>(rewardItemsJson);
-    if (!nullToAbsent || rewardPoolJson != null) {
-      map['reward_pool_json'] = Variable<String>(rewardPoolJson);
-    }
     map['sort_order'] = Variable<int>(sortOrder);
     map['created_at'] = Variable<DateTime>(createdAt);
     return map;
@@ -22357,16 +22895,9 @@ class Quest extends DataClass implements Insertable<Quest> {
       reward: Value(reward),
       dmNotes: Value(dmNotes),
       done: Value(done),
-      shared: Value(shared),
       targetsJson: Value(targetsJson),
-      acceptancesJson: Value(acceptancesJson),
-      shareMode: Value(shareMode),
-      voteStatus: Value(voteStatus),
       rewardCoinsCp: Value(rewardCoinsCp),
       rewardItemsJson: Value(rewardItemsJson),
-      rewardPoolJson: rewardPoolJson == null && nullToAbsent
-          ? const Value.absent()
-          : Value(rewardPoolJson),
       sortOrder: Value(sortOrder),
       createdAt: Value(createdAt),
     );
@@ -22384,14 +22915,9 @@ class Quest extends DataClass implements Insertable<Quest> {
       reward: serializer.fromJson<String>(json['reward']),
       dmNotes: serializer.fromJson<String>(json['dmNotes']),
       done: serializer.fromJson<bool>(json['done']),
-      shared: serializer.fromJson<bool>(json['shared']),
       targetsJson: serializer.fromJson<String>(json['targetsJson']),
-      acceptancesJson: serializer.fromJson<String>(json['acceptancesJson']),
-      shareMode: serializer.fromJson<String>(json['shareMode']),
-      voteStatus: serializer.fromJson<String>(json['voteStatus']),
       rewardCoinsCp: serializer.fromJson<int>(json['rewardCoinsCp']),
       rewardItemsJson: serializer.fromJson<String>(json['rewardItemsJson']),
-      rewardPoolJson: serializer.fromJson<String?>(json['rewardPoolJson']),
       sortOrder: serializer.fromJson<int>(json['sortOrder']),
       createdAt: serializer.fromJson<DateTime>(json['createdAt']),
     );
@@ -22406,14 +22932,9 @@ class Quest extends DataClass implements Insertable<Quest> {
       'reward': serializer.toJson<String>(reward),
       'dmNotes': serializer.toJson<String>(dmNotes),
       'done': serializer.toJson<bool>(done),
-      'shared': serializer.toJson<bool>(shared),
       'targetsJson': serializer.toJson<String>(targetsJson),
-      'acceptancesJson': serializer.toJson<String>(acceptancesJson),
-      'shareMode': serializer.toJson<String>(shareMode),
-      'voteStatus': serializer.toJson<String>(voteStatus),
       'rewardCoinsCp': serializer.toJson<int>(rewardCoinsCp),
       'rewardItemsJson': serializer.toJson<String>(rewardItemsJson),
-      'rewardPoolJson': serializer.toJson<String?>(rewardPoolJson),
       'sortOrder': serializer.toJson<int>(sortOrder),
       'createdAt': serializer.toJson<DateTime>(createdAt),
     };
@@ -22426,14 +22947,9 @@ class Quest extends DataClass implements Insertable<Quest> {
     String? reward,
     String? dmNotes,
     bool? done,
-    bool? shared,
     String? targetsJson,
-    String? acceptancesJson,
-    String? shareMode,
-    String? voteStatus,
     int? rewardCoinsCp,
     String? rewardItemsJson,
-    Value<String?> rewardPoolJson = const Value.absent(),
     int? sortOrder,
     DateTime? createdAt,
   }) => Quest(
@@ -22443,16 +22959,9 @@ class Quest extends DataClass implements Insertable<Quest> {
     reward: reward ?? this.reward,
     dmNotes: dmNotes ?? this.dmNotes,
     done: done ?? this.done,
-    shared: shared ?? this.shared,
     targetsJson: targetsJson ?? this.targetsJson,
-    acceptancesJson: acceptancesJson ?? this.acceptancesJson,
-    shareMode: shareMode ?? this.shareMode,
-    voteStatus: voteStatus ?? this.voteStatus,
     rewardCoinsCp: rewardCoinsCp ?? this.rewardCoinsCp,
     rewardItemsJson: rewardItemsJson ?? this.rewardItemsJson,
-    rewardPoolJson: rewardPoolJson.present
-        ? rewardPoolJson.value
-        : this.rewardPoolJson,
     sortOrder: sortOrder ?? this.sortOrder,
     createdAt: createdAt ?? this.createdAt,
   );
@@ -22464,26 +22973,15 @@ class Quest extends DataClass implements Insertable<Quest> {
       reward: data.reward.present ? data.reward.value : this.reward,
       dmNotes: data.dmNotes.present ? data.dmNotes.value : this.dmNotes,
       done: data.done.present ? data.done.value : this.done,
-      shared: data.shared.present ? data.shared.value : this.shared,
       targetsJson: data.targetsJson.present
           ? data.targetsJson.value
           : this.targetsJson,
-      acceptancesJson: data.acceptancesJson.present
-          ? data.acceptancesJson.value
-          : this.acceptancesJson,
-      shareMode: data.shareMode.present ? data.shareMode.value : this.shareMode,
-      voteStatus: data.voteStatus.present
-          ? data.voteStatus.value
-          : this.voteStatus,
       rewardCoinsCp: data.rewardCoinsCp.present
           ? data.rewardCoinsCp.value
           : this.rewardCoinsCp,
       rewardItemsJson: data.rewardItemsJson.present
           ? data.rewardItemsJson.value
           : this.rewardItemsJson,
-      rewardPoolJson: data.rewardPoolJson.present
-          ? data.rewardPoolJson.value
-          : this.rewardPoolJson,
       sortOrder: data.sortOrder.present ? data.sortOrder.value : this.sortOrder,
       createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
     );
@@ -22498,14 +22996,9 @@ class Quest extends DataClass implements Insertable<Quest> {
           ..write('reward: $reward, ')
           ..write('dmNotes: $dmNotes, ')
           ..write('done: $done, ')
-          ..write('shared: $shared, ')
           ..write('targetsJson: $targetsJson, ')
-          ..write('acceptancesJson: $acceptancesJson, ')
-          ..write('shareMode: $shareMode, ')
-          ..write('voteStatus: $voteStatus, ')
           ..write('rewardCoinsCp: $rewardCoinsCp, ')
           ..write('rewardItemsJson: $rewardItemsJson, ')
-          ..write('rewardPoolJson: $rewardPoolJson, ')
           ..write('sortOrder: $sortOrder, ')
           ..write('createdAt: $createdAt')
           ..write(')'))
@@ -22520,14 +23013,9 @@ class Quest extends DataClass implements Insertable<Quest> {
     reward,
     dmNotes,
     done,
-    shared,
     targetsJson,
-    acceptancesJson,
-    shareMode,
-    voteStatus,
     rewardCoinsCp,
     rewardItemsJson,
-    rewardPoolJson,
     sortOrder,
     createdAt,
   );
@@ -22541,14 +23029,9 @@ class Quest extends DataClass implements Insertable<Quest> {
           other.reward == this.reward &&
           other.dmNotes == this.dmNotes &&
           other.done == this.done &&
-          other.shared == this.shared &&
           other.targetsJson == this.targetsJson &&
-          other.acceptancesJson == this.acceptancesJson &&
-          other.shareMode == this.shareMode &&
-          other.voteStatus == this.voteStatus &&
           other.rewardCoinsCp == this.rewardCoinsCp &&
           other.rewardItemsJson == this.rewardItemsJson &&
-          other.rewardPoolJson == this.rewardPoolJson &&
           other.sortOrder == this.sortOrder &&
           other.createdAt == this.createdAt);
 }
@@ -22560,14 +23043,9 @@ class QuestsCompanion extends UpdateCompanion<Quest> {
   final Value<String> reward;
   final Value<String> dmNotes;
   final Value<bool> done;
-  final Value<bool> shared;
   final Value<String> targetsJson;
-  final Value<String> acceptancesJson;
-  final Value<String> shareMode;
-  final Value<String> voteStatus;
   final Value<int> rewardCoinsCp;
   final Value<String> rewardItemsJson;
-  final Value<String?> rewardPoolJson;
   final Value<int> sortOrder;
   final Value<DateTime> createdAt;
   final Value<int> rowid;
@@ -22578,14 +23056,9 @@ class QuestsCompanion extends UpdateCompanion<Quest> {
     this.reward = const Value.absent(),
     this.dmNotes = const Value.absent(),
     this.done = const Value.absent(),
-    this.shared = const Value.absent(),
     this.targetsJson = const Value.absent(),
-    this.acceptancesJson = const Value.absent(),
-    this.shareMode = const Value.absent(),
-    this.voteStatus = const Value.absent(),
     this.rewardCoinsCp = const Value.absent(),
     this.rewardItemsJson = const Value.absent(),
-    this.rewardPoolJson = const Value.absent(),
     this.sortOrder = const Value.absent(),
     this.createdAt = const Value.absent(),
     this.rowid = const Value.absent(),
@@ -22597,14 +23070,9 @@ class QuestsCompanion extends UpdateCompanion<Quest> {
     this.reward = const Value.absent(),
     this.dmNotes = const Value.absent(),
     this.done = const Value.absent(),
-    this.shared = const Value.absent(),
     this.targetsJson = const Value.absent(),
-    this.acceptancesJson = const Value.absent(),
-    this.shareMode = const Value.absent(),
-    this.voteStatus = const Value.absent(),
     this.rewardCoinsCp = const Value.absent(),
     this.rewardItemsJson = const Value.absent(),
-    this.rewardPoolJson = const Value.absent(),
     this.sortOrder = const Value.absent(),
     this.createdAt = const Value.absent(),
     this.rowid = const Value.absent(),
@@ -22616,14 +23084,9 @@ class QuestsCompanion extends UpdateCompanion<Quest> {
     Expression<String>? reward,
     Expression<String>? dmNotes,
     Expression<bool>? done,
-    Expression<bool>? shared,
     Expression<String>? targetsJson,
-    Expression<String>? acceptancesJson,
-    Expression<String>? shareMode,
-    Expression<String>? voteStatus,
     Expression<int>? rewardCoinsCp,
     Expression<String>? rewardItemsJson,
-    Expression<String>? rewardPoolJson,
     Expression<int>? sortOrder,
     Expression<DateTime>? createdAt,
     Expression<int>? rowid,
@@ -22635,14 +23098,9 @@ class QuestsCompanion extends UpdateCompanion<Quest> {
       if (reward != null) 'reward': reward,
       if (dmNotes != null) 'dm_notes': dmNotes,
       if (done != null) 'done': done,
-      if (shared != null) 'shared': shared,
       if (targetsJson != null) 'targets_json': targetsJson,
-      if (acceptancesJson != null) 'acceptances_json': acceptancesJson,
-      if (shareMode != null) 'share_mode': shareMode,
-      if (voteStatus != null) 'vote_status': voteStatus,
       if (rewardCoinsCp != null) 'reward_coins_cp': rewardCoinsCp,
       if (rewardItemsJson != null) 'reward_items_json': rewardItemsJson,
-      if (rewardPoolJson != null) 'reward_pool_json': rewardPoolJson,
       if (sortOrder != null) 'sort_order': sortOrder,
       if (createdAt != null) 'created_at': createdAt,
       if (rowid != null) 'rowid': rowid,
@@ -22656,14 +23114,9 @@ class QuestsCompanion extends UpdateCompanion<Quest> {
     Value<String>? reward,
     Value<String>? dmNotes,
     Value<bool>? done,
-    Value<bool>? shared,
     Value<String>? targetsJson,
-    Value<String>? acceptancesJson,
-    Value<String>? shareMode,
-    Value<String>? voteStatus,
     Value<int>? rewardCoinsCp,
     Value<String>? rewardItemsJson,
-    Value<String?>? rewardPoolJson,
     Value<int>? sortOrder,
     Value<DateTime>? createdAt,
     Value<int>? rowid,
@@ -22675,14 +23128,9 @@ class QuestsCompanion extends UpdateCompanion<Quest> {
       reward: reward ?? this.reward,
       dmNotes: dmNotes ?? this.dmNotes,
       done: done ?? this.done,
-      shared: shared ?? this.shared,
       targetsJson: targetsJson ?? this.targetsJson,
-      acceptancesJson: acceptancesJson ?? this.acceptancesJson,
-      shareMode: shareMode ?? this.shareMode,
-      voteStatus: voteStatus ?? this.voteStatus,
       rewardCoinsCp: rewardCoinsCp ?? this.rewardCoinsCp,
       rewardItemsJson: rewardItemsJson ?? this.rewardItemsJson,
-      rewardPoolJson: rewardPoolJson ?? this.rewardPoolJson,
       sortOrder: sortOrder ?? this.sortOrder,
       createdAt: createdAt ?? this.createdAt,
       rowid: rowid ?? this.rowid,
@@ -22710,29 +23158,14 @@ class QuestsCompanion extends UpdateCompanion<Quest> {
     if (done.present) {
       map['done'] = Variable<bool>(done.value);
     }
-    if (shared.present) {
-      map['shared'] = Variable<bool>(shared.value);
-    }
     if (targetsJson.present) {
       map['targets_json'] = Variable<String>(targetsJson.value);
-    }
-    if (acceptancesJson.present) {
-      map['acceptances_json'] = Variable<String>(acceptancesJson.value);
-    }
-    if (shareMode.present) {
-      map['share_mode'] = Variable<String>(shareMode.value);
-    }
-    if (voteStatus.present) {
-      map['vote_status'] = Variable<String>(voteStatus.value);
     }
     if (rewardCoinsCp.present) {
       map['reward_coins_cp'] = Variable<int>(rewardCoinsCp.value);
     }
     if (rewardItemsJson.present) {
       map['reward_items_json'] = Variable<String>(rewardItemsJson.value);
-    }
-    if (rewardPoolJson.present) {
-      map['reward_pool_json'] = Variable<String>(rewardPoolJson.value);
     }
     if (sortOrder.present) {
       map['sort_order'] = Variable<int>(sortOrder.value);
@@ -22755,14 +23188,9 @@ class QuestsCompanion extends UpdateCompanion<Quest> {
           ..write('reward: $reward, ')
           ..write('dmNotes: $dmNotes, ')
           ..write('done: $done, ')
-          ..write('shared: $shared, ')
           ..write('targetsJson: $targetsJson, ')
-          ..write('acceptancesJson: $acceptancesJson, ')
-          ..write('shareMode: $shareMode, ')
-          ..write('voteStatus: $voteStatus, ')
           ..write('rewardCoinsCp: $rewardCoinsCp, ')
           ..write('rewardItemsJson: $rewardItemsJson, ')
-          ..write('rewardPoolJson: $rewardPoolJson, ')
           ..write('sortOrder: $sortOrder, ')
           ..write('createdAt: $createdAt, ')
           ..write('rowid: $rowid')
@@ -26492,6 +26920,2411 @@ class CalendarRemindersCompanion extends UpdateCompanion<CalendarReminder> {
   }
 }
 
+class $ContentSourcesTable extends ContentSources
+    with TableInfo<$ContentSourcesTable, ContentSource> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $ContentSourcesTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _nameMeta = const VerificationMeta('name');
+  @override
+  late final GeneratedColumn<String> name = GeneratedColumn<String>(
+    'name',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _baseUrlMeta = const VerificationMeta(
+    'baseUrl',
+  );
+  @override
+  late final GeneratedColumn<String> baseUrl = GeneratedColumn<String>(
+    'base_url',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _lastImportedAtMeta = const VerificationMeta(
+    'lastImportedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> lastImportedAt =
+      GeneratedColumn<DateTime>(
+        'last_imported_at',
+        aliasedName,
+        true,
+        type: DriftSqlType.dateTime,
+        requiredDuringInsert: false,
+      );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    defaultValue: currentDateAndTime,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    name,
+    baseUrl,
+    lastImportedAt,
+    createdAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'content_sources';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<ContentSource> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('name')) {
+      context.handle(
+        _nameMeta,
+        name.isAcceptableOrUnknown(data['name']!, _nameMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_nameMeta);
+    }
+    if (data.containsKey('base_url')) {
+      context.handle(
+        _baseUrlMeta,
+        baseUrl.isAcceptableOrUnknown(data['base_url']!, _baseUrlMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_baseUrlMeta);
+    }
+    if (data.containsKey('last_imported_at')) {
+      context.handle(
+        _lastImportedAtMeta,
+        lastImportedAt.isAcceptableOrUnknown(
+          data['last_imported_at']!,
+          _lastImportedAtMeta,
+        ),
+      );
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  ContentSource map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return ContentSource(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      name: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}name'],
+      )!,
+      baseUrl: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}base_url'],
+      )!,
+      lastImportedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}last_imported_at'],
+      ),
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+    );
+  }
+
+  @override
+  $ContentSourcesTable createAlias(String alias) {
+    return $ContentSourcesTable(attachedDatabase, alias);
+  }
+}
+
+class ContentSource extends DataClass implements Insertable<ContentSource> {
+  final String id;
+  final String name;
+
+  /// Veri klasorunun koku; kesif buradan `index.json` okuyor.
+  final String baseUrl;
+
+  /// Son basarili ice aktarmanin zamani; listede "ne zaman cektim" yazsin.
+  final DateTime? lastImportedAt;
+  final DateTime createdAt;
+  const ContentSource({
+    required this.id,
+    required this.name,
+    required this.baseUrl,
+    this.lastImportedAt,
+    required this.createdAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['name'] = Variable<String>(name);
+    map['base_url'] = Variable<String>(baseUrl);
+    if (!nullToAbsent || lastImportedAt != null) {
+      map['last_imported_at'] = Variable<DateTime>(lastImportedAt);
+    }
+    map['created_at'] = Variable<DateTime>(createdAt);
+    return map;
+  }
+
+  ContentSourcesCompanion toCompanion(bool nullToAbsent) {
+    return ContentSourcesCompanion(
+      id: Value(id),
+      name: Value(name),
+      baseUrl: Value(baseUrl),
+      lastImportedAt: lastImportedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(lastImportedAt),
+      createdAt: Value(createdAt),
+    );
+  }
+
+  factory ContentSource.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return ContentSource(
+      id: serializer.fromJson<String>(json['id']),
+      name: serializer.fromJson<String>(json['name']),
+      baseUrl: serializer.fromJson<String>(json['baseUrl']),
+      lastImportedAt: serializer.fromJson<DateTime?>(json['lastImportedAt']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'name': serializer.toJson<String>(name),
+      'baseUrl': serializer.toJson<String>(baseUrl),
+      'lastImportedAt': serializer.toJson<DateTime?>(lastImportedAt),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+    };
+  }
+
+  ContentSource copyWith({
+    String? id,
+    String? name,
+    String? baseUrl,
+    Value<DateTime?> lastImportedAt = const Value.absent(),
+    DateTime? createdAt,
+  }) => ContentSource(
+    id: id ?? this.id,
+    name: name ?? this.name,
+    baseUrl: baseUrl ?? this.baseUrl,
+    lastImportedAt: lastImportedAt.present
+        ? lastImportedAt.value
+        : this.lastImportedAt,
+    createdAt: createdAt ?? this.createdAt,
+  );
+  ContentSource copyWithCompanion(ContentSourcesCompanion data) {
+    return ContentSource(
+      id: data.id.present ? data.id.value : this.id,
+      name: data.name.present ? data.name.value : this.name,
+      baseUrl: data.baseUrl.present ? data.baseUrl.value : this.baseUrl,
+      lastImportedAt: data.lastImportedAt.present
+          ? data.lastImportedAt.value
+          : this.lastImportedAt,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ContentSource(')
+          ..write('id: $id, ')
+          ..write('name: $name, ')
+          ..write('baseUrl: $baseUrl, ')
+          ..write('lastImportedAt: $lastImportedAt, ')
+          ..write('createdAt: $createdAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(id, name, baseUrl, lastImportedAt, createdAt);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is ContentSource &&
+          other.id == this.id &&
+          other.name == this.name &&
+          other.baseUrl == this.baseUrl &&
+          other.lastImportedAt == this.lastImportedAt &&
+          other.createdAt == this.createdAt);
+}
+
+class ContentSourcesCompanion extends UpdateCompanion<ContentSource> {
+  final Value<String> id;
+  final Value<String> name;
+  final Value<String> baseUrl;
+  final Value<DateTime?> lastImportedAt;
+  final Value<DateTime> createdAt;
+  final Value<int> rowid;
+  const ContentSourcesCompanion({
+    this.id = const Value.absent(),
+    this.name = const Value.absent(),
+    this.baseUrl = const Value.absent(),
+    this.lastImportedAt = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  ContentSourcesCompanion.insert({
+    required String id,
+    required String name,
+    required String baseUrl,
+    this.lastImportedAt = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       name = Value(name),
+       baseUrl = Value(baseUrl);
+  static Insertable<ContentSource> custom({
+    Expression<String>? id,
+    Expression<String>? name,
+    Expression<String>? baseUrl,
+    Expression<DateTime>? lastImportedAt,
+    Expression<DateTime>? createdAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (name != null) 'name': name,
+      if (baseUrl != null) 'base_url': baseUrl,
+      if (lastImportedAt != null) 'last_imported_at': lastImportedAt,
+      if (createdAt != null) 'created_at': createdAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  ContentSourcesCompanion copyWith({
+    Value<String>? id,
+    Value<String>? name,
+    Value<String>? baseUrl,
+    Value<DateTime?>? lastImportedAt,
+    Value<DateTime>? createdAt,
+    Value<int>? rowid,
+  }) {
+    return ContentSourcesCompanion(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      baseUrl: baseUrl ?? this.baseUrl,
+      lastImportedAt: lastImportedAt ?? this.lastImportedAt,
+      createdAt: createdAt ?? this.createdAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (name.present) {
+      map['name'] = Variable<String>(name.value);
+    }
+    if (baseUrl.present) {
+      map['base_url'] = Variable<String>(baseUrl.value);
+    }
+    if (lastImportedAt.present) {
+      map['last_imported_at'] = Variable<DateTime>(lastImportedAt.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ContentSourcesCompanion(')
+          ..write('id: $id, ')
+          ..write('name: $name, ')
+          ..write('baseUrl: $baseUrl, ')
+          ..write('lastImportedAt: $lastImportedAt, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $EncounterTemplatesTable extends EncounterTemplates
+    with TableInfo<$EncounterTemplatesTable, EncounterTemplate> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $EncounterTemplatesTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _nameMeta = const VerificationMeta('name');
+  @override
+  late final GeneratedColumn<String> name = GeneratedColumn<String>(
+    'name',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _entriesJsonMeta = const VerificationMeta(
+    'entriesJson',
+  );
+  @override
+  late final GeneratedColumn<String> entriesJson = GeneratedColumn<String>(
+    'entries_json',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('[]'),
+  );
+  static const VerificationMeta _noteMeta = const VerificationMeta('note');
+  @override
+  late final GeneratedColumn<String> note = GeneratedColumn<String>(
+    'note',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(''),
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    defaultValue: currentDateAndTime,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    name,
+    entriesJson,
+    note,
+    createdAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'encounter_templates';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<EncounterTemplate> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('name')) {
+      context.handle(
+        _nameMeta,
+        name.isAcceptableOrUnknown(data['name']!, _nameMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_nameMeta);
+    }
+    if (data.containsKey('entries_json')) {
+      context.handle(
+        _entriesJsonMeta,
+        entriesJson.isAcceptableOrUnknown(
+          data['entries_json']!,
+          _entriesJsonMeta,
+        ),
+      );
+    }
+    if (data.containsKey('note')) {
+      context.handle(
+        _noteMeta,
+        note.isAcceptableOrUnknown(data['note']!, _noteMeta),
+      );
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  EncounterTemplate map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return EncounterTemplate(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      name: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}name'],
+      )!,
+      entriesJson: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}entries_json'],
+      )!,
+      note: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}note'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+    );
+  }
+
+  @override
+  $EncounterTemplatesTable createAlias(String alias) {
+    return $EncounterTemplatesTable(attachedDatabase, alias);
+  }
+}
+
+class EncounterTemplate extends DataClass
+    implements Insertable<EncounterTemplate> {
+  final String id;
+  final String name;
+
+  /// Kadro: `[{"kind":"monster","key":"...","name":"...","count":6}, ...]`.
+  final String entriesJson;
+  final String note;
+  final DateTime createdAt;
+  const EncounterTemplate({
+    required this.id,
+    required this.name,
+    required this.entriesJson,
+    required this.note,
+    required this.createdAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['name'] = Variable<String>(name);
+    map['entries_json'] = Variable<String>(entriesJson);
+    map['note'] = Variable<String>(note);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    return map;
+  }
+
+  EncounterTemplatesCompanion toCompanion(bool nullToAbsent) {
+    return EncounterTemplatesCompanion(
+      id: Value(id),
+      name: Value(name),
+      entriesJson: Value(entriesJson),
+      note: Value(note),
+      createdAt: Value(createdAt),
+    );
+  }
+
+  factory EncounterTemplate.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return EncounterTemplate(
+      id: serializer.fromJson<String>(json['id']),
+      name: serializer.fromJson<String>(json['name']),
+      entriesJson: serializer.fromJson<String>(json['entriesJson']),
+      note: serializer.fromJson<String>(json['note']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'name': serializer.toJson<String>(name),
+      'entriesJson': serializer.toJson<String>(entriesJson),
+      'note': serializer.toJson<String>(note),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+    };
+  }
+
+  EncounterTemplate copyWith({
+    String? id,
+    String? name,
+    String? entriesJson,
+    String? note,
+    DateTime? createdAt,
+  }) => EncounterTemplate(
+    id: id ?? this.id,
+    name: name ?? this.name,
+    entriesJson: entriesJson ?? this.entriesJson,
+    note: note ?? this.note,
+    createdAt: createdAt ?? this.createdAt,
+  );
+  EncounterTemplate copyWithCompanion(EncounterTemplatesCompanion data) {
+    return EncounterTemplate(
+      id: data.id.present ? data.id.value : this.id,
+      name: data.name.present ? data.name.value : this.name,
+      entriesJson: data.entriesJson.present
+          ? data.entriesJson.value
+          : this.entriesJson,
+      note: data.note.present ? data.note.value : this.note,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('EncounterTemplate(')
+          ..write('id: $id, ')
+          ..write('name: $name, ')
+          ..write('entriesJson: $entriesJson, ')
+          ..write('note: $note, ')
+          ..write('createdAt: $createdAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(id, name, entriesJson, note, createdAt);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is EncounterTemplate &&
+          other.id == this.id &&
+          other.name == this.name &&
+          other.entriesJson == this.entriesJson &&
+          other.note == this.note &&
+          other.createdAt == this.createdAt);
+}
+
+class EncounterTemplatesCompanion extends UpdateCompanion<EncounterTemplate> {
+  final Value<String> id;
+  final Value<String> name;
+  final Value<String> entriesJson;
+  final Value<String> note;
+  final Value<DateTime> createdAt;
+  final Value<int> rowid;
+  const EncounterTemplatesCompanion({
+    this.id = const Value.absent(),
+    this.name = const Value.absent(),
+    this.entriesJson = const Value.absent(),
+    this.note = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  EncounterTemplatesCompanion.insert({
+    required String id,
+    required String name,
+    this.entriesJson = const Value.absent(),
+    this.note = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       name = Value(name);
+  static Insertable<EncounterTemplate> custom({
+    Expression<String>? id,
+    Expression<String>? name,
+    Expression<String>? entriesJson,
+    Expression<String>? note,
+    Expression<DateTime>? createdAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (name != null) 'name': name,
+      if (entriesJson != null) 'entries_json': entriesJson,
+      if (note != null) 'note': note,
+      if (createdAt != null) 'created_at': createdAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  EncounterTemplatesCompanion copyWith({
+    Value<String>? id,
+    Value<String>? name,
+    Value<String>? entriesJson,
+    Value<String>? note,
+    Value<DateTime>? createdAt,
+    Value<int>? rowid,
+  }) {
+    return EncounterTemplatesCompanion(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      entriesJson: entriesJson ?? this.entriesJson,
+      note: note ?? this.note,
+      createdAt: createdAt ?? this.createdAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (name.present) {
+      map['name'] = Variable<String>(name.value);
+    }
+    if (entriesJson.present) {
+      map['entries_json'] = Variable<String>(entriesJson.value);
+    }
+    if (note.present) {
+      map['note'] = Variable<String>(note.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('EncounterTemplatesCompanion(')
+          ..write('id: $id, ')
+          ..write('name: $name, ')
+          ..write('entriesJson: $entriesJson, ')
+          ..write('note: $note, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $MacrosTable extends Macros with TableInfo<$MacrosTable, Macro> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $MacrosTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _nameMeta = const VerificationMeta('name');
+  @override
+  late final GeneratedColumn<String> name = GeneratedColumn<String>(
+    'name',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _expressionMeta = const VerificationMeta(
+    'expression',
+  );
+  @override
+  late final GeneratedColumn<String> expression = GeneratedColumn<String>(
+    'expression',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _characterIdMeta = const VerificationMeta(
+    'characterId',
+  );
+  @override
+  late final GeneratedColumn<String> characterId = GeneratedColumn<String>(
+    'character_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _sortOrderMeta = const VerificationMeta(
+    'sortOrder',
+  );
+  @override
+  late final GeneratedColumn<int> sortOrder = GeneratedColumn<int>(
+    'sort_order',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    defaultValue: currentDateAndTime,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    name,
+    expression,
+    characterId,
+    sortOrder,
+    createdAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'macros';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<Macro> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('name')) {
+      context.handle(
+        _nameMeta,
+        name.isAcceptableOrUnknown(data['name']!, _nameMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_nameMeta);
+    }
+    if (data.containsKey('expression')) {
+      context.handle(
+        _expressionMeta,
+        expression.isAcceptableOrUnknown(data['expression']!, _expressionMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_expressionMeta);
+    }
+    if (data.containsKey('character_id')) {
+      context.handle(
+        _characterIdMeta,
+        characterId.isAcceptableOrUnknown(
+          data['character_id']!,
+          _characterIdMeta,
+        ),
+      );
+    }
+    if (data.containsKey('sort_order')) {
+      context.handle(
+        _sortOrderMeta,
+        sortOrder.isAcceptableOrUnknown(data['sort_order']!, _sortOrderMeta),
+      );
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  Macro map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return Macro(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      name: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}name'],
+      )!,
+      expression: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}expression'],
+      )!,
+      characterId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}character_id'],
+      ),
+      sortOrder: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}sort_order'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+    );
+  }
+
+  @override
+  $MacrosTable createAlias(String alias) {
+    return $MacrosTable(attachedDatabase, alias);
+  }
+}
+
+class Macro extends DataClass implements Insertable<Macro> {
+  final String id;
+  final String name;
+
+  /// Zar ifadesi, or. `2d6+3` ya da `4d6kh3`.
+  final String expression;
+
+  /// Yalnizca bu karaktere ait makro; null = genel.
+  final String? characterId;
+  final int sortOrder;
+  final DateTime createdAt;
+  const Macro({
+    required this.id,
+    required this.name,
+    required this.expression,
+    this.characterId,
+    required this.sortOrder,
+    required this.createdAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['name'] = Variable<String>(name);
+    map['expression'] = Variable<String>(expression);
+    if (!nullToAbsent || characterId != null) {
+      map['character_id'] = Variable<String>(characterId);
+    }
+    map['sort_order'] = Variable<int>(sortOrder);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    return map;
+  }
+
+  MacrosCompanion toCompanion(bool nullToAbsent) {
+    return MacrosCompanion(
+      id: Value(id),
+      name: Value(name),
+      expression: Value(expression),
+      characterId: characterId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(characterId),
+      sortOrder: Value(sortOrder),
+      createdAt: Value(createdAt),
+    );
+  }
+
+  factory Macro.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return Macro(
+      id: serializer.fromJson<String>(json['id']),
+      name: serializer.fromJson<String>(json['name']),
+      expression: serializer.fromJson<String>(json['expression']),
+      characterId: serializer.fromJson<String?>(json['characterId']),
+      sortOrder: serializer.fromJson<int>(json['sortOrder']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'name': serializer.toJson<String>(name),
+      'expression': serializer.toJson<String>(expression),
+      'characterId': serializer.toJson<String?>(characterId),
+      'sortOrder': serializer.toJson<int>(sortOrder),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+    };
+  }
+
+  Macro copyWith({
+    String? id,
+    String? name,
+    String? expression,
+    Value<String?> characterId = const Value.absent(),
+    int? sortOrder,
+    DateTime? createdAt,
+  }) => Macro(
+    id: id ?? this.id,
+    name: name ?? this.name,
+    expression: expression ?? this.expression,
+    characterId: characterId.present ? characterId.value : this.characterId,
+    sortOrder: sortOrder ?? this.sortOrder,
+    createdAt: createdAt ?? this.createdAt,
+  );
+  Macro copyWithCompanion(MacrosCompanion data) {
+    return Macro(
+      id: data.id.present ? data.id.value : this.id,
+      name: data.name.present ? data.name.value : this.name,
+      expression: data.expression.present
+          ? data.expression.value
+          : this.expression,
+      characterId: data.characterId.present
+          ? data.characterId.value
+          : this.characterId,
+      sortOrder: data.sortOrder.present ? data.sortOrder.value : this.sortOrder,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('Macro(')
+          ..write('id: $id, ')
+          ..write('name: $name, ')
+          ..write('expression: $expression, ')
+          ..write('characterId: $characterId, ')
+          ..write('sortOrder: $sortOrder, ')
+          ..write('createdAt: $createdAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(id, name, expression, characterId, sortOrder, createdAt);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is Macro &&
+          other.id == this.id &&
+          other.name == this.name &&
+          other.expression == this.expression &&
+          other.characterId == this.characterId &&
+          other.sortOrder == this.sortOrder &&
+          other.createdAt == this.createdAt);
+}
+
+class MacrosCompanion extends UpdateCompanion<Macro> {
+  final Value<String> id;
+  final Value<String> name;
+  final Value<String> expression;
+  final Value<String?> characterId;
+  final Value<int> sortOrder;
+  final Value<DateTime> createdAt;
+  final Value<int> rowid;
+  const MacrosCompanion({
+    this.id = const Value.absent(),
+    this.name = const Value.absent(),
+    this.expression = const Value.absent(),
+    this.characterId = const Value.absent(),
+    this.sortOrder = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  MacrosCompanion.insert({
+    required String id,
+    required String name,
+    required String expression,
+    this.characterId = const Value.absent(),
+    this.sortOrder = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       name = Value(name),
+       expression = Value(expression);
+  static Insertable<Macro> custom({
+    Expression<String>? id,
+    Expression<String>? name,
+    Expression<String>? expression,
+    Expression<String>? characterId,
+    Expression<int>? sortOrder,
+    Expression<DateTime>? createdAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (name != null) 'name': name,
+      if (expression != null) 'expression': expression,
+      if (characterId != null) 'character_id': characterId,
+      if (sortOrder != null) 'sort_order': sortOrder,
+      if (createdAt != null) 'created_at': createdAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  MacrosCompanion copyWith({
+    Value<String>? id,
+    Value<String>? name,
+    Value<String>? expression,
+    Value<String?>? characterId,
+    Value<int>? sortOrder,
+    Value<DateTime>? createdAt,
+    Value<int>? rowid,
+  }) {
+    return MacrosCompanion(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      expression: expression ?? this.expression,
+      characterId: characterId ?? this.characterId,
+      sortOrder: sortOrder ?? this.sortOrder,
+      createdAt: createdAt ?? this.createdAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (name.present) {
+      map['name'] = Variable<String>(name.value);
+    }
+    if (expression.present) {
+      map['expression'] = Variable<String>(expression.value);
+    }
+    if (characterId.present) {
+      map['character_id'] = Variable<String>(characterId.value);
+    }
+    if (sortOrder.present) {
+      map['sort_order'] = Variable<int>(sortOrder.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('MacrosCompanion(')
+          ..write('id: $id, ')
+          ..write('name: $name, ')
+          ..write('expression: $expression, ')
+          ..write('characterId: $characterId, ')
+          ..write('sortOrder: $sortOrder, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $DowntimeActivitiesTable extends DowntimeActivities
+    with TableInfo<$DowntimeActivitiesTable, DowntimeActivity> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $DowntimeActivitiesTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _characterIdMeta = const VerificationMeta(
+    'characterId',
+  );
+  @override
+  late final GeneratedColumn<String> characterId = GeneratedColumn<String>(
+    'character_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _kindMeta = const VerificationMeta('kind');
+  @override
+  late final GeneratedColumn<String> kind = GeneratedColumn<String>(
+    'kind',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('custom'),
+  );
+  static const VerificationMeta _titleMeta = const VerificationMeta('title');
+  @override
+  late final GeneratedColumn<String> title = GeneratedColumn<String>(
+    'title',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _notesMeta = const VerificationMeta('notes');
+  @override
+  late final GeneratedColumn<String> notes = GeneratedColumn<String>(
+    'notes',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(''),
+  );
+  static const VerificationMeta _daysMeta = const VerificationMeta('days');
+  @override
+  late final GeneratedColumn<int> days = GeneratedColumn<int>(
+    'days',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(1),
+  );
+  static const VerificationMeta _startDayMeta = const VerificationMeta(
+    'startDay',
+  );
+  @override
+  late final GeneratedColumn<int> startDay = GeneratedColumn<int>(
+    'start_day',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _outcomeMeta = const VerificationMeta(
+    'outcome',
+  );
+  @override
+  late final GeneratedColumn<String> outcome = GeneratedColumn<String>(
+    'outcome',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(''),
+  );
+  static const VerificationMeta _doneMeta = const VerificationMeta('done');
+  @override
+  late final GeneratedColumn<bool> done = GeneratedColumn<bool>(
+    'done',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("done" IN (0, 1))',
+    ),
+    defaultValue: const Constant(false),
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    defaultValue: currentDateAndTime,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    characterId,
+    kind,
+    title,
+    notes,
+    days,
+    startDay,
+    outcome,
+    done,
+    createdAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'downtime_activities';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<DowntimeActivity> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('character_id')) {
+      context.handle(
+        _characterIdMeta,
+        characterId.isAcceptableOrUnknown(
+          data['character_id']!,
+          _characterIdMeta,
+        ),
+      );
+    }
+    if (data.containsKey('kind')) {
+      context.handle(
+        _kindMeta,
+        kind.isAcceptableOrUnknown(data['kind']!, _kindMeta),
+      );
+    }
+    if (data.containsKey('title')) {
+      context.handle(
+        _titleMeta,
+        title.isAcceptableOrUnknown(data['title']!, _titleMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_titleMeta);
+    }
+    if (data.containsKey('notes')) {
+      context.handle(
+        _notesMeta,
+        notes.isAcceptableOrUnknown(data['notes']!, _notesMeta),
+      );
+    }
+    if (data.containsKey('days')) {
+      context.handle(
+        _daysMeta,
+        days.isAcceptableOrUnknown(data['days']!, _daysMeta),
+      );
+    }
+    if (data.containsKey('start_day')) {
+      context.handle(
+        _startDayMeta,
+        startDay.isAcceptableOrUnknown(data['start_day']!, _startDayMeta),
+      );
+    }
+    if (data.containsKey('outcome')) {
+      context.handle(
+        _outcomeMeta,
+        outcome.isAcceptableOrUnknown(data['outcome']!, _outcomeMeta),
+      );
+    }
+    if (data.containsKey('done')) {
+      context.handle(
+        _doneMeta,
+        done.isAcceptableOrUnknown(data['done']!, _doneMeta),
+      );
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  DowntimeActivity map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return DowntimeActivity(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      characterId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}character_id'],
+      ),
+      kind: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}kind'],
+      )!,
+      title: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}title'],
+      )!,
+      notes: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}notes'],
+      )!,
+      days: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}days'],
+      )!,
+      startDay: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}start_day'],
+      ),
+      outcome: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}outcome'],
+      )!,
+      done: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}done'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+    );
+  }
+
+  @override
+  $DowntimeActivitiesTable createAlias(String alias) {
+    return $DowntimeActivitiesTable(attachedDatabase, alias);
+  }
+}
+
+class DowntimeActivity extends DataClass
+    implements Insertable<DowntimeActivity> {
+  final String id;
+  final String? characterId;
+
+  /// Faaliyet turu anahtar olarak (`craft`, `research`, `work`, `train`,
+  /// `recuperate`, `carouse`, `custom`); etiketi arayuz cevirisi veriyor.
+  final String kind;
+  final String title;
+  final String notes;
+  final int days;
+
+  /// Oyun-ici baslangic gunu; null = takvime bagli degil.
+  final int? startDay;
+
+  /// Faaliyetin sonucu (zar sonucu, bulunan bilgi, kazanilan para).
+  final String outcome;
+  final bool done;
+  final DateTime createdAt;
+  const DowntimeActivity({
+    required this.id,
+    this.characterId,
+    required this.kind,
+    required this.title,
+    required this.notes,
+    required this.days,
+    this.startDay,
+    required this.outcome,
+    required this.done,
+    required this.createdAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    if (!nullToAbsent || characterId != null) {
+      map['character_id'] = Variable<String>(characterId);
+    }
+    map['kind'] = Variable<String>(kind);
+    map['title'] = Variable<String>(title);
+    map['notes'] = Variable<String>(notes);
+    map['days'] = Variable<int>(days);
+    if (!nullToAbsent || startDay != null) {
+      map['start_day'] = Variable<int>(startDay);
+    }
+    map['outcome'] = Variable<String>(outcome);
+    map['done'] = Variable<bool>(done);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    return map;
+  }
+
+  DowntimeActivitiesCompanion toCompanion(bool nullToAbsent) {
+    return DowntimeActivitiesCompanion(
+      id: Value(id),
+      characterId: characterId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(characterId),
+      kind: Value(kind),
+      title: Value(title),
+      notes: Value(notes),
+      days: Value(days),
+      startDay: startDay == null && nullToAbsent
+          ? const Value.absent()
+          : Value(startDay),
+      outcome: Value(outcome),
+      done: Value(done),
+      createdAt: Value(createdAt),
+    );
+  }
+
+  factory DowntimeActivity.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return DowntimeActivity(
+      id: serializer.fromJson<String>(json['id']),
+      characterId: serializer.fromJson<String?>(json['characterId']),
+      kind: serializer.fromJson<String>(json['kind']),
+      title: serializer.fromJson<String>(json['title']),
+      notes: serializer.fromJson<String>(json['notes']),
+      days: serializer.fromJson<int>(json['days']),
+      startDay: serializer.fromJson<int?>(json['startDay']),
+      outcome: serializer.fromJson<String>(json['outcome']),
+      done: serializer.fromJson<bool>(json['done']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'characterId': serializer.toJson<String?>(characterId),
+      'kind': serializer.toJson<String>(kind),
+      'title': serializer.toJson<String>(title),
+      'notes': serializer.toJson<String>(notes),
+      'days': serializer.toJson<int>(days),
+      'startDay': serializer.toJson<int?>(startDay),
+      'outcome': serializer.toJson<String>(outcome),
+      'done': serializer.toJson<bool>(done),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+    };
+  }
+
+  DowntimeActivity copyWith({
+    String? id,
+    Value<String?> characterId = const Value.absent(),
+    String? kind,
+    String? title,
+    String? notes,
+    int? days,
+    Value<int?> startDay = const Value.absent(),
+    String? outcome,
+    bool? done,
+    DateTime? createdAt,
+  }) => DowntimeActivity(
+    id: id ?? this.id,
+    characterId: characterId.present ? characterId.value : this.characterId,
+    kind: kind ?? this.kind,
+    title: title ?? this.title,
+    notes: notes ?? this.notes,
+    days: days ?? this.days,
+    startDay: startDay.present ? startDay.value : this.startDay,
+    outcome: outcome ?? this.outcome,
+    done: done ?? this.done,
+    createdAt: createdAt ?? this.createdAt,
+  );
+  DowntimeActivity copyWithCompanion(DowntimeActivitiesCompanion data) {
+    return DowntimeActivity(
+      id: data.id.present ? data.id.value : this.id,
+      characterId: data.characterId.present
+          ? data.characterId.value
+          : this.characterId,
+      kind: data.kind.present ? data.kind.value : this.kind,
+      title: data.title.present ? data.title.value : this.title,
+      notes: data.notes.present ? data.notes.value : this.notes,
+      days: data.days.present ? data.days.value : this.days,
+      startDay: data.startDay.present ? data.startDay.value : this.startDay,
+      outcome: data.outcome.present ? data.outcome.value : this.outcome,
+      done: data.done.present ? data.done.value : this.done,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('DowntimeActivity(')
+          ..write('id: $id, ')
+          ..write('characterId: $characterId, ')
+          ..write('kind: $kind, ')
+          ..write('title: $title, ')
+          ..write('notes: $notes, ')
+          ..write('days: $days, ')
+          ..write('startDay: $startDay, ')
+          ..write('outcome: $outcome, ')
+          ..write('done: $done, ')
+          ..write('createdAt: $createdAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    characterId,
+    kind,
+    title,
+    notes,
+    days,
+    startDay,
+    outcome,
+    done,
+    createdAt,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is DowntimeActivity &&
+          other.id == this.id &&
+          other.characterId == this.characterId &&
+          other.kind == this.kind &&
+          other.title == this.title &&
+          other.notes == this.notes &&
+          other.days == this.days &&
+          other.startDay == this.startDay &&
+          other.outcome == this.outcome &&
+          other.done == this.done &&
+          other.createdAt == this.createdAt);
+}
+
+class DowntimeActivitiesCompanion extends UpdateCompanion<DowntimeActivity> {
+  final Value<String> id;
+  final Value<String?> characterId;
+  final Value<String> kind;
+  final Value<String> title;
+  final Value<String> notes;
+  final Value<int> days;
+  final Value<int?> startDay;
+  final Value<String> outcome;
+  final Value<bool> done;
+  final Value<DateTime> createdAt;
+  final Value<int> rowid;
+  const DowntimeActivitiesCompanion({
+    this.id = const Value.absent(),
+    this.characterId = const Value.absent(),
+    this.kind = const Value.absent(),
+    this.title = const Value.absent(),
+    this.notes = const Value.absent(),
+    this.days = const Value.absent(),
+    this.startDay = const Value.absent(),
+    this.outcome = const Value.absent(),
+    this.done = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  DowntimeActivitiesCompanion.insert({
+    required String id,
+    this.characterId = const Value.absent(),
+    this.kind = const Value.absent(),
+    required String title,
+    this.notes = const Value.absent(),
+    this.days = const Value.absent(),
+    this.startDay = const Value.absent(),
+    this.outcome = const Value.absent(),
+    this.done = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       title = Value(title);
+  static Insertable<DowntimeActivity> custom({
+    Expression<String>? id,
+    Expression<String>? characterId,
+    Expression<String>? kind,
+    Expression<String>? title,
+    Expression<String>? notes,
+    Expression<int>? days,
+    Expression<int>? startDay,
+    Expression<String>? outcome,
+    Expression<bool>? done,
+    Expression<DateTime>? createdAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (characterId != null) 'character_id': characterId,
+      if (kind != null) 'kind': kind,
+      if (title != null) 'title': title,
+      if (notes != null) 'notes': notes,
+      if (days != null) 'days': days,
+      if (startDay != null) 'start_day': startDay,
+      if (outcome != null) 'outcome': outcome,
+      if (done != null) 'done': done,
+      if (createdAt != null) 'created_at': createdAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  DowntimeActivitiesCompanion copyWith({
+    Value<String>? id,
+    Value<String?>? characterId,
+    Value<String>? kind,
+    Value<String>? title,
+    Value<String>? notes,
+    Value<int>? days,
+    Value<int?>? startDay,
+    Value<String>? outcome,
+    Value<bool>? done,
+    Value<DateTime>? createdAt,
+    Value<int>? rowid,
+  }) {
+    return DowntimeActivitiesCompanion(
+      id: id ?? this.id,
+      characterId: characterId ?? this.characterId,
+      kind: kind ?? this.kind,
+      title: title ?? this.title,
+      notes: notes ?? this.notes,
+      days: days ?? this.days,
+      startDay: startDay ?? this.startDay,
+      outcome: outcome ?? this.outcome,
+      done: done ?? this.done,
+      createdAt: createdAt ?? this.createdAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (characterId.present) {
+      map['character_id'] = Variable<String>(characterId.value);
+    }
+    if (kind.present) {
+      map['kind'] = Variable<String>(kind.value);
+    }
+    if (title.present) {
+      map['title'] = Variable<String>(title.value);
+    }
+    if (notes.present) {
+      map['notes'] = Variable<String>(notes.value);
+    }
+    if (days.present) {
+      map['days'] = Variable<int>(days.value);
+    }
+    if (startDay.present) {
+      map['start_day'] = Variable<int>(startDay.value);
+    }
+    if (outcome.present) {
+      map['outcome'] = Variable<String>(outcome.value);
+    }
+    if (done.present) {
+      map['done'] = Variable<bool>(done.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('DowntimeActivitiesCompanion(')
+          ..write('id: $id, ')
+          ..write('characterId: $characterId, ')
+          ..write('kind: $kind, ')
+          ..write('title: $title, ')
+          ..write('notes: $notes, ')
+          ..write('days: $days, ')
+          ..write('startDay: $startDay, ')
+          ..write('outcome: $outcome, ')
+          ..write('done: $done, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $ClocksTable extends Clocks with TableInfo<$ClocksTable, Clock> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $ClocksTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _nameMeta = const VerificationMeta('name');
+  @override
+  late final GeneratedColumn<String> name = GeneratedColumn<String>(
+    'name',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _segmentsMeta = const VerificationMeta(
+    'segments',
+  );
+  @override
+  late final GeneratedColumn<int> segments = GeneratedColumn<int>(
+    'segments',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(6),
+  );
+  static const VerificationMeta _filledMeta = const VerificationMeta('filled');
+  @override
+  late final GeneratedColumn<int> filled = GeneratedColumn<int>(
+    'filled',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _outcomeMeta = const VerificationMeta(
+    'outcome',
+  );
+  @override
+  late final GeneratedColumn<String> outcome = GeneratedColumn<String>(
+    'outcome',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(''),
+  );
+  static const VerificationMeta _notesMeta = const VerificationMeta('notes');
+  @override
+  late final GeneratedColumn<String> notes = GeneratedColumn<String>(
+    'notes',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(''),
+  );
+  static const VerificationMeta _doneMeta = const VerificationMeta('done');
+  @override
+  late final GeneratedColumn<bool> done = GeneratedColumn<bool>(
+    'done',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("done" IN (0, 1))',
+    ),
+    defaultValue: const Constant(false),
+  );
+  @override
+  late final GeneratedColumnWithTypeConverter<ClockLinkKind, String> linkKind =
+      GeneratedColumn<String>(
+        'link_kind',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+        defaultValue: const Constant('none'),
+      ).withConverter<ClockLinkKind>($ClocksTable.$converterlinkKind);
+  static const VerificationMeta _linkIdMeta = const VerificationMeta('linkId');
+  @override
+  late final GeneratedColumn<String> linkId = GeneratedColumn<String>(
+    'link_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _sortOrderMeta = const VerificationMeta(
+    'sortOrder',
+  );
+  @override
+  late final GeneratedColumn<int> sortOrder = GeneratedColumn<int>(
+    'sort_order',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    defaultValue: currentDateAndTime,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    name,
+    segments,
+    filled,
+    outcome,
+    notes,
+    done,
+    linkKind,
+    linkId,
+    sortOrder,
+    createdAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'clocks';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<Clock> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('name')) {
+      context.handle(
+        _nameMeta,
+        name.isAcceptableOrUnknown(data['name']!, _nameMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_nameMeta);
+    }
+    if (data.containsKey('segments')) {
+      context.handle(
+        _segmentsMeta,
+        segments.isAcceptableOrUnknown(data['segments']!, _segmentsMeta),
+      );
+    }
+    if (data.containsKey('filled')) {
+      context.handle(
+        _filledMeta,
+        filled.isAcceptableOrUnknown(data['filled']!, _filledMeta),
+      );
+    }
+    if (data.containsKey('outcome')) {
+      context.handle(
+        _outcomeMeta,
+        outcome.isAcceptableOrUnknown(data['outcome']!, _outcomeMeta),
+      );
+    }
+    if (data.containsKey('notes')) {
+      context.handle(
+        _notesMeta,
+        notes.isAcceptableOrUnknown(data['notes']!, _notesMeta),
+      );
+    }
+    if (data.containsKey('done')) {
+      context.handle(
+        _doneMeta,
+        done.isAcceptableOrUnknown(data['done']!, _doneMeta),
+      );
+    }
+    if (data.containsKey('link_id')) {
+      context.handle(
+        _linkIdMeta,
+        linkId.isAcceptableOrUnknown(data['link_id']!, _linkIdMeta),
+      );
+    }
+    if (data.containsKey('sort_order')) {
+      context.handle(
+        _sortOrderMeta,
+        sortOrder.isAcceptableOrUnknown(data['sort_order']!, _sortOrderMeta),
+      );
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  Clock map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return Clock(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      name: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}name'],
+      )!,
+      segments: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}segments'],
+      )!,
+      filled: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}filled'],
+      )!,
+      outcome: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}outcome'],
+      )!,
+      notes: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}notes'],
+      )!,
+      done: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}done'],
+      )!,
+      linkKind: $ClocksTable.$converterlinkKind.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}link_kind'],
+        )!,
+      ),
+      linkId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}link_id'],
+      ),
+      sortOrder: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}sort_order'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+    );
+  }
+
+  @override
+  $ClocksTable createAlias(String alias) {
+    return $ClocksTable(attachedDatabase, alias);
+  }
+
+  static JsonTypeConverter2<ClockLinkKind, String, String> $converterlinkKind =
+      const EnumNameConverter<ClockLinkKind>(ClockLinkKind.values);
+}
+
+class Clock extends DataClass implements Insertable<Clock> {
+  final String id;
+  final String name;
+
+  /// Toplam dilim sayisi. 4/6/8 yaygin, ama serbest.
+  final int segments;
+
+  /// Dolu dilim sayisi; her zaman `0 <= filled <= segments`.
+  final int filled;
+
+  /// Saat dolunca NE OLACAK. Dolan bir saatin sonucu yazili degilse saat
+  /// masada iş görmüyor: "doldu, e ne olacak?" sorusu kaliyordu.
+  final String outcome;
+
+  /// DM'e ozel notlar.
+  final String notes;
+
+  /// Saat kapatildi mi? Dolan saat kendiliginden kapanmaz: DM sonucu
+  /// isledikten sonra elle kapatir, boylece "doldu ama daha oynamadim"
+  /// durumu kayboluyor.
+  final bool done;
+
+  /// Bagli oldugu kaydin turu ve kimligi (bkz. [ClockLinkKind]).
+  final ClockLinkKind linkKind;
+  final String? linkId;
+  final int sortOrder;
+  final DateTime createdAt;
+  const Clock({
+    required this.id,
+    required this.name,
+    required this.segments,
+    required this.filled,
+    required this.outcome,
+    required this.notes,
+    required this.done,
+    required this.linkKind,
+    this.linkId,
+    required this.sortOrder,
+    required this.createdAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['name'] = Variable<String>(name);
+    map['segments'] = Variable<int>(segments);
+    map['filled'] = Variable<int>(filled);
+    map['outcome'] = Variable<String>(outcome);
+    map['notes'] = Variable<String>(notes);
+    map['done'] = Variable<bool>(done);
+    {
+      map['link_kind'] = Variable<String>(
+        $ClocksTable.$converterlinkKind.toSql(linkKind),
+      );
+    }
+    if (!nullToAbsent || linkId != null) {
+      map['link_id'] = Variable<String>(linkId);
+    }
+    map['sort_order'] = Variable<int>(sortOrder);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    return map;
+  }
+
+  ClocksCompanion toCompanion(bool nullToAbsent) {
+    return ClocksCompanion(
+      id: Value(id),
+      name: Value(name),
+      segments: Value(segments),
+      filled: Value(filled),
+      outcome: Value(outcome),
+      notes: Value(notes),
+      done: Value(done),
+      linkKind: Value(linkKind),
+      linkId: linkId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(linkId),
+      sortOrder: Value(sortOrder),
+      createdAt: Value(createdAt),
+    );
+  }
+
+  factory Clock.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return Clock(
+      id: serializer.fromJson<String>(json['id']),
+      name: serializer.fromJson<String>(json['name']),
+      segments: serializer.fromJson<int>(json['segments']),
+      filled: serializer.fromJson<int>(json['filled']),
+      outcome: serializer.fromJson<String>(json['outcome']),
+      notes: serializer.fromJson<String>(json['notes']),
+      done: serializer.fromJson<bool>(json['done']),
+      linkKind: $ClocksTable.$converterlinkKind.fromJson(
+        serializer.fromJson<String>(json['linkKind']),
+      ),
+      linkId: serializer.fromJson<String?>(json['linkId']),
+      sortOrder: serializer.fromJson<int>(json['sortOrder']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'name': serializer.toJson<String>(name),
+      'segments': serializer.toJson<int>(segments),
+      'filled': serializer.toJson<int>(filled),
+      'outcome': serializer.toJson<String>(outcome),
+      'notes': serializer.toJson<String>(notes),
+      'done': serializer.toJson<bool>(done),
+      'linkKind': serializer.toJson<String>(
+        $ClocksTable.$converterlinkKind.toJson(linkKind),
+      ),
+      'linkId': serializer.toJson<String?>(linkId),
+      'sortOrder': serializer.toJson<int>(sortOrder),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+    };
+  }
+
+  Clock copyWith({
+    String? id,
+    String? name,
+    int? segments,
+    int? filled,
+    String? outcome,
+    String? notes,
+    bool? done,
+    ClockLinkKind? linkKind,
+    Value<String?> linkId = const Value.absent(),
+    int? sortOrder,
+    DateTime? createdAt,
+  }) => Clock(
+    id: id ?? this.id,
+    name: name ?? this.name,
+    segments: segments ?? this.segments,
+    filled: filled ?? this.filled,
+    outcome: outcome ?? this.outcome,
+    notes: notes ?? this.notes,
+    done: done ?? this.done,
+    linkKind: linkKind ?? this.linkKind,
+    linkId: linkId.present ? linkId.value : this.linkId,
+    sortOrder: sortOrder ?? this.sortOrder,
+    createdAt: createdAt ?? this.createdAt,
+  );
+  Clock copyWithCompanion(ClocksCompanion data) {
+    return Clock(
+      id: data.id.present ? data.id.value : this.id,
+      name: data.name.present ? data.name.value : this.name,
+      segments: data.segments.present ? data.segments.value : this.segments,
+      filled: data.filled.present ? data.filled.value : this.filled,
+      outcome: data.outcome.present ? data.outcome.value : this.outcome,
+      notes: data.notes.present ? data.notes.value : this.notes,
+      done: data.done.present ? data.done.value : this.done,
+      linkKind: data.linkKind.present ? data.linkKind.value : this.linkKind,
+      linkId: data.linkId.present ? data.linkId.value : this.linkId,
+      sortOrder: data.sortOrder.present ? data.sortOrder.value : this.sortOrder,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('Clock(')
+          ..write('id: $id, ')
+          ..write('name: $name, ')
+          ..write('segments: $segments, ')
+          ..write('filled: $filled, ')
+          ..write('outcome: $outcome, ')
+          ..write('notes: $notes, ')
+          ..write('done: $done, ')
+          ..write('linkKind: $linkKind, ')
+          ..write('linkId: $linkId, ')
+          ..write('sortOrder: $sortOrder, ')
+          ..write('createdAt: $createdAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    name,
+    segments,
+    filled,
+    outcome,
+    notes,
+    done,
+    linkKind,
+    linkId,
+    sortOrder,
+    createdAt,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is Clock &&
+          other.id == this.id &&
+          other.name == this.name &&
+          other.segments == this.segments &&
+          other.filled == this.filled &&
+          other.outcome == this.outcome &&
+          other.notes == this.notes &&
+          other.done == this.done &&
+          other.linkKind == this.linkKind &&
+          other.linkId == this.linkId &&
+          other.sortOrder == this.sortOrder &&
+          other.createdAt == this.createdAt);
+}
+
+class ClocksCompanion extends UpdateCompanion<Clock> {
+  final Value<String> id;
+  final Value<String> name;
+  final Value<int> segments;
+  final Value<int> filled;
+  final Value<String> outcome;
+  final Value<String> notes;
+  final Value<bool> done;
+  final Value<ClockLinkKind> linkKind;
+  final Value<String?> linkId;
+  final Value<int> sortOrder;
+  final Value<DateTime> createdAt;
+  final Value<int> rowid;
+  const ClocksCompanion({
+    this.id = const Value.absent(),
+    this.name = const Value.absent(),
+    this.segments = const Value.absent(),
+    this.filled = const Value.absent(),
+    this.outcome = const Value.absent(),
+    this.notes = const Value.absent(),
+    this.done = const Value.absent(),
+    this.linkKind = const Value.absent(),
+    this.linkId = const Value.absent(),
+    this.sortOrder = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  ClocksCompanion.insert({
+    required String id,
+    required String name,
+    this.segments = const Value.absent(),
+    this.filled = const Value.absent(),
+    this.outcome = const Value.absent(),
+    this.notes = const Value.absent(),
+    this.done = const Value.absent(),
+    this.linkKind = const Value.absent(),
+    this.linkId = const Value.absent(),
+    this.sortOrder = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       name = Value(name);
+  static Insertable<Clock> custom({
+    Expression<String>? id,
+    Expression<String>? name,
+    Expression<int>? segments,
+    Expression<int>? filled,
+    Expression<String>? outcome,
+    Expression<String>? notes,
+    Expression<bool>? done,
+    Expression<String>? linkKind,
+    Expression<String>? linkId,
+    Expression<int>? sortOrder,
+    Expression<DateTime>? createdAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (name != null) 'name': name,
+      if (segments != null) 'segments': segments,
+      if (filled != null) 'filled': filled,
+      if (outcome != null) 'outcome': outcome,
+      if (notes != null) 'notes': notes,
+      if (done != null) 'done': done,
+      if (linkKind != null) 'link_kind': linkKind,
+      if (linkId != null) 'link_id': linkId,
+      if (sortOrder != null) 'sort_order': sortOrder,
+      if (createdAt != null) 'created_at': createdAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  ClocksCompanion copyWith({
+    Value<String>? id,
+    Value<String>? name,
+    Value<int>? segments,
+    Value<int>? filled,
+    Value<String>? outcome,
+    Value<String>? notes,
+    Value<bool>? done,
+    Value<ClockLinkKind>? linkKind,
+    Value<String?>? linkId,
+    Value<int>? sortOrder,
+    Value<DateTime>? createdAt,
+    Value<int>? rowid,
+  }) {
+    return ClocksCompanion(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      segments: segments ?? this.segments,
+      filled: filled ?? this.filled,
+      outcome: outcome ?? this.outcome,
+      notes: notes ?? this.notes,
+      done: done ?? this.done,
+      linkKind: linkKind ?? this.linkKind,
+      linkId: linkId ?? this.linkId,
+      sortOrder: sortOrder ?? this.sortOrder,
+      createdAt: createdAt ?? this.createdAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (name.present) {
+      map['name'] = Variable<String>(name.value);
+    }
+    if (segments.present) {
+      map['segments'] = Variable<int>(segments.value);
+    }
+    if (filled.present) {
+      map['filled'] = Variable<int>(filled.value);
+    }
+    if (outcome.present) {
+      map['outcome'] = Variable<String>(outcome.value);
+    }
+    if (notes.present) {
+      map['notes'] = Variable<String>(notes.value);
+    }
+    if (done.present) {
+      map['done'] = Variable<bool>(done.value);
+    }
+    if (linkKind.present) {
+      map['link_kind'] = Variable<String>(
+        $ClocksTable.$converterlinkKind.toSql(linkKind.value),
+      );
+    }
+    if (linkId.present) {
+      map['link_id'] = Variable<String>(linkId.value);
+    }
+    if (sortOrder.present) {
+      map['sort_order'] = Variable<int>(sortOrder.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ClocksCompanion(')
+          ..write('id: $id, ')
+          ..write('name: $name, ')
+          ..write('segments: $segments, ')
+          ..write('filled: $filled, ')
+          ..write('outcome: $outcome, ')
+          ..write('notes: $notes, ')
+          ..write('done: $done, ')
+          ..write('linkKind: $linkKind, ')
+          ..write('linkId: $linkId, ')
+          ..write('sortOrder: $sortOrder, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
@@ -26533,6 +29366,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final $WorldLinksTable worldLinks = $WorldLinksTable(this);
   late final $BondTypesTable bondTypes = $BondTypesTable(this);
   late final $NpcsTable npcs = $NpcsTable(this);
+  late final $FactionsTable factions = $FactionsTable(this);
   late final $LootSetsTable lootSets = $LootSetsTable(this);
   late final $PartyInventoriesTable partyInventories = $PartyInventoriesTable(
     this,
@@ -26541,7 +29375,6 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final $JourneysTable journeys = $JourneysTable(this);
   late final $MusicPlaylistsTable musicPlaylists = $MusicPlaylistsTable(this);
   late final $MusicTracksTable musicTracks = $MusicTracksTable(this);
-  late final $CharacterNotesTable characterNotes = $CharacterNotesTable(this);
   late final $SessionLogEntriesTable sessionLogEntries =
       $SessionLogEntriesTable(this);
   late final $CodexPagesTable codexPages = $CodexPagesTable(this);
@@ -26561,6 +29394,13 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   );
   late final $CalendarRemindersTable calendarReminders =
       $CalendarRemindersTable(this);
+  late final $ContentSourcesTable contentSources = $ContentSourcesTable(this);
+  late final $EncounterTemplatesTable encounterTemplates =
+      $EncounterTemplatesTable(this);
+  late final $MacrosTable macros = $MacrosTable(this);
+  late final $DowntimeActivitiesTable downtimeActivities =
+      $DowntimeActivitiesTable(this);
+  late final $ClocksTable clocks = $ClocksTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -26592,13 +29432,13 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     worldLinks,
     bondTypes,
     npcs,
+    factions,
     lootSets,
     partyInventories,
     randomTables,
     journeys,
     musicPlaylists,
     musicTracks,
-    characterNotes,
     sessionLogEntries,
     codexPages,
     codexBlocks,
@@ -26610,6 +29450,11 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     calendarEras,
     chronicleEvents,
     calendarReminders,
+    contentSources,
+    encounterTemplates,
+    macros,
+    downtimeActivities,
+    clocks,
   ];
 }
 
@@ -29585,6 +32430,9 @@ typedef $$CharactersTableCreateCompanionBuilder =
       Value<int?> speedOverride,
       Value<String> conditionsJson,
       Value<String> hitDiceUsedJson,
+      Value<int> spellChangesAvailable,
+      Value<String?> concentrationSpell,
+      Value<String> slotCapacitiesJson,
       Value<String> spellSlotsUsedJson,
       Value<String?> portraitPath,
       Value<String> notes,
@@ -29624,6 +32472,9 @@ typedef $$CharactersTableUpdateCompanionBuilder =
       Value<int?> speedOverride,
       Value<String> conditionsJson,
       Value<String> hitDiceUsedJson,
+      Value<int> spellChangesAvailable,
+      Value<String?> concentrationSpell,
+      Value<String> slotCapacitiesJson,
       Value<String> spellSlotsUsedJson,
       Value<String?> portraitPath,
       Value<String> notes,
@@ -29745,24 +32596,6 @@ final class $$CharactersTableReferences
     final cache = $_typedResult.readTableOrNull(
       _characterFeaturesRefsTable($_db),
     );
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-
-  static MultiTypedResultKey<$CharacterNotesTable, List<CharacterNote>>
-  _characterNotesRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
-    db.characterNotes,
-    aliasName: 'characters__id__character_notes__character_id',
-  );
-
-  $$CharacterNotesTableProcessedTableManager get characterNotesRefs {
-    final manager = $$CharacterNotesTableTableManager(
-      $_db,
-      $_db.characterNotes,
-    ).filter((f) => f.characterId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(_characterNotesRefsTable($_db));
     return ProcessedTableManager(
       manager.$state.copyWith(prefetchedData: cache),
     );
@@ -29900,6 +32733,21 @@ class $$CharactersTableFilterComposer
 
   ColumnFilters<String> get hitDiceUsedJson => $composableBuilder(
     column: $table.hitDiceUsedJson,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get spellChangesAvailable => $composableBuilder(
+    column: $table.spellChangesAvailable,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get concentrationSpell => $composableBuilder(
+    column: $table.concentrationSpell,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get slotCapacitiesJson => $composableBuilder(
+    column: $table.slotCapacitiesJson,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -30078,31 +32926,6 @@ class $$CharactersTableFilterComposer
     );
     return f(composer);
   }
-
-  Expression<bool> characterNotesRefs(
-    Expression<bool> Function($$CharacterNotesTableFilterComposer f) f,
-  ) {
-    final $$CharacterNotesTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.characterNotes,
-      getReferencedColumn: (t) => t.characterId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharacterNotesTableFilterComposer(
-            $db: $db,
-            $table: $db.characterNotes,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
 }
 
 class $$CharactersTableOrderingComposer
@@ -30236,6 +33059,21 @@ class $$CharactersTableOrderingComposer
 
   ColumnOrderings<String> get hitDiceUsedJson => $composableBuilder(
     column: $table.hitDiceUsedJson,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get spellChangesAvailable => $composableBuilder(
+    column: $table.spellChangesAvailable,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get concentrationSpell => $composableBuilder(
+    column: $table.concentrationSpell,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get slotCapacitiesJson => $composableBuilder(
+    column: $table.slotCapacitiesJson,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -30408,6 +33246,21 @@ class $$CharactersTableAnnotationComposer
     builder: (column) => column,
   );
 
+  GeneratedColumn<int> get spellChangesAvailable => $composableBuilder(
+    column: $table.spellChangesAvailable,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get concentrationSpell => $composableBuilder(
+    column: $table.concentrationSpell,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get slotCapacitiesJson => $composableBuilder(
+    column: $table.slotCapacitiesJson,
+    builder: (column) => column,
+  );
+
   GeneratedColumn<String> get spellSlotsUsedJson => $composableBuilder(
     column: $table.spellSlotsUsedJson,
     builder: (column) => column,
@@ -30573,31 +33426,6 @@ class $$CharactersTableAnnotationComposer
         );
     return f(composer);
   }
-
-  Expression<T> characterNotesRefs<T extends Object>(
-    Expression<T> Function($$CharacterNotesTableAnnotationComposer a) f,
-  ) {
-    final $$CharacterNotesTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.characterNotes,
-      getReferencedColumn: (t) => t.characterId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharacterNotesTableAnnotationComposer(
-            $db: $db,
-            $table: $db.characterNotes,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
 }
 
 class $$CharactersTableTableManager
@@ -30619,7 +33447,6 @@ class $$CharactersTableTableManager
             bool characterItemsRefs,
             bool characterSpellsRefs,
             bool characterFeaturesRefs,
-            bool characterNotesRefs,
           })
         > {
   $$CharactersTableTableManager(_$AppDatabase db, $CharactersTable table)
@@ -30660,6 +33487,9 @@ class $$CharactersTableTableManager
                 Value<int?> speedOverride = const Value.absent(),
                 Value<String> conditionsJson = const Value.absent(),
                 Value<String> hitDiceUsedJson = const Value.absent(),
+                Value<int> spellChangesAvailable = const Value.absent(),
+                Value<String?> concentrationSpell = const Value.absent(),
+                Value<String> slotCapacitiesJson = const Value.absent(),
                 Value<String> spellSlotsUsedJson = const Value.absent(),
                 Value<String?> portraitPath = const Value.absent(),
                 Value<String> notes = const Value.absent(),
@@ -30697,6 +33527,9 @@ class $$CharactersTableTableManager
                 speedOverride: speedOverride,
                 conditionsJson: conditionsJson,
                 hitDiceUsedJson: hitDiceUsedJson,
+                spellChangesAvailable: spellChangesAvailable,
+                concentrationSpell: concentrationSpell,
+                slotCapacitiesJson: slotCapacitiesJson,
                 spellSlotsUsedJson: spellSlotsUsedJson,
                 portraitPath: portraitPath,
                 notes: notes,
@@ -30736,6 +33569,9 @@ class $$CharactersTableTableManager
                 Value<int?> speedOverride = const Value.absent(),
                 Value<String> conditionsJson = const Value.absent(),
                 Value<String> hitDiceUsedJson = const Value.absent(),
+                Value<int> spellChangesAvailable = const Value.absent(),
+                Value<String?> concentrationSpell = const Value.absent(),
+                Value<String> slotCapacitiesJson = const Value.absent(),
                 Value<String> spellSlotsUsedJson = const Value.absent(),
                 Value<String?> portraitPath = const Value.absent(),
                 Value<String> notes = const Value.absent(),
@@ -30773,6 +33609,9 @@ class $$CharactersTableTableManager
                 speedOverride: speedOverride,
                 conditionsJson: conditionsJson,
                 hitDiceUsedJson: hitDiceUsedJson,
+                spellChangesAvailable: spellChangesAvailable,
+                concentrationSpell: concentrationSpell,
+                slotCapacitiesJson: slotCapacitiesJson,
                 spellSlotsUsedJson: spellSlotsUsedJson,
                 portraitPath: portraitPath,
                 notes: notes,
@@ -30800,7 +33639,6 @@ class $$CharactersTableTableManager
                 characterItemsRefs = false,
                 characterSpellsRefs = false,
                 characterFeaturesRefs = false,
-                characterNotesRefs = false,
               }) {
                 return PrefetchHooks(
                   db: db,
@@ -30810,7 +33648,6 @@ class $$CharactersTableTableManager
                     if (characterItemsRefs) db.characterItems,
                     if (characterSpellsRefs) db.characterSpells,
                     if (characterFeaturesRefs) db.characterFeatures,
-                    if (characterNotesRefs) db.characterNotes,
                   ],
                   addJoins: null,
                   getPrefetchedDataCallback: (items) async {
@@ -30920,27 +33757,6 @@ class $$CharactersTableTableManager
                               ),
                           typedResults: items,
                         ),
-                      if (characterNotesRefs)
-                        await $_getPrefetchedData<
-                          Character,
-                          $CharactersTable,
-                          CharacterNote
-                        >(
-                          currentTable: table,
-                          referencedTable: $$CharactersTableReferences
-                              ._characterNotesRefsTable(db),
-                          managerFromTypedResult: (p0) =>
-                              $$CharactersTableReferences(
-                                db,
-                                table,
-                                p0,
-                              ).characterNotesRefs,
-                          referencedItemsForCurrentItem:
-                              (item, referencedItems) => referencedItems.where(
-                                (e) => e.characterId == item.id,
-                              ),
-                          typedResults: items,
-                        ),
                     ];
                   },
                 );
@@ -30967,7 +33783,6 @@ typedef $$CharactersTableProcessedTableManager =
         bool characterItemsRefs,
         bool characterSpellsRefs,
         bool characterFeaturesRefs,
-        bool characterNotesRefs,
       })
     >;
 typedef $$CharacterClassLevelsTableCreateCompanionBuilder =
@@ -31680,6 +34495,7 @@ typedef $$CharacterItemsTableCreateCompanionBuilder =
       Value<String?> customDesc,
       Value<int> quantity,
       Value<bool> equipped,
+      Value<String?> slot,
       Value<bool> attuned,
       Value<int> sortOrder,
       Value<int> rowid,
@@ -31694,6 +34510,7 @@ typedef $$CharacterItemsTableUpdateCompanionBuilder =
       Value<String?> customDesc,
       Value<int> quantity,
       Value<bool> equipped,
+      Value<String?> slot,
       Value<bool> attuned,
       Value<int> sortOrder,
       Value<int> rowid,
@@ -31766,6 +34583,11 @@ class $$CharacterItemsTableFilterComposer
 
   ColumnFilters<bool> get equipped => $composableBuilder(
     column: $table.equipped,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get slot => $composableBuilder(
+    column: $table.slot,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -31847,6 +34669,11 @@ class $$CharacterItemsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get slot => $composableBuilder(
+    column: $table.slot,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<bool> get attuned => $composableBuilder(
     column: $table.attuned,
     builder: (column) => ColumnOrderings(column),
@@ -31917,6 +34744,9 @@ class $$CharacterItemsTableAnnotationComposer
   GeneratedColumn<bool> get equipped =>
       $composableBuilder(column: $table.equipped, builder: (column) => column);
 
+  GeneratedColumn<String> get slot =>
+      $composableBuilder(column: $table.slot, builder: (column) => column);
+
   GeneratedColumn<bool> get attuned =>
       $composableBuilder(column: $table.attuned, builder: (column) => column);
 
@@ -31985,6 +34815,7 @@ class $$CharacterItemsTableTableManager
                 Value<String?> customDesc = const Value.absent(),
                 Value<int> quantity = const Value.absent(),
                 Value<bool> equipped = const Value.absent(),
+                Value<String?> slot = const Value.absent(),
                 Value<bool> attuned = const Value.absent(),
                 Value<int> sortOrder = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
@@ -31997,6 +34828,7 @@ class $$CharacterItemsTableTableManager
                 customDesc: customDesc,
                 quantity: quantity,
                 equipped: equipped,
+                slot: slot,
                 attuned: attuned,
                 sortOrder: sortOrder,
                 rowid: rowid,
@@ -32011,6 +34843,7 @@ class $$CharacterItemsTableTableManager
                 Value<String?> customDesc = const Value.absent(),
                 Value<int> quantity = const Value.absent(),
                 Value<bool> equipped = const Value.absent(),
+                Value<String?> slot = const Value.absent(),
                 Value<bool> attuned = const Value.absent(),
                 Value<int> sortOrder = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
@@ -32023,6 +34856,7 @@ class $$CharacterItemsTableTableManager
                 customDesc: customDesc,
                 quantity: quantity,
                 equipped: equipped,
+                slot: slot,
                 attuned: attuned,
                 sortOrder: sortOrder,
                 rowid: rowid,
@@ -32847,6 +35681,10 @@ typedef $$EncountersTableCreateCompanionBuilder =
       Value<bool> started,
       Value<String?> briefingJson,
       Value<String?> lootJson,
+      Value<int?> turnLimitSeconds,
+      Value<String?> lairActionText,
+      Value<int> lairInitiative,
+      Value<String?> locationId,
       Value<DateTime> createdAt,
       Value<int> rowid,
     });
@@ -32859,6 +35697,10 @@ typedef $$EncountersTableUpdateCompanionBuilder =
       Value<bool> started,
       Value<String?> briefingJson,
       Value<String?> lootJson,
+      Value<int?> turnLimitSeconds,
+      Value<String?> lairActionText,
+      Value<int> lairInitiative,
+      Value<String?> locationId,
       Value<DateTime> createdAt,
       Value<int> rowid,
     });
@@ -32927,6 +35769,26 @@ class $$EncountersTableFilterComposer
 
   ColumnFilters<String> get lootJson => $composableBuilder(
     column: $table.lootJson,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get turnLimitSeconds => $composableBuilder(
+    column: $table.turnLimitSeconds,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get lairActionText => $composableBuilder(
+    column: $table.lairActionText,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get lairInitiative => $composableBuilder(
+    column: $table.lairInitiative,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get locationId => $composableBuilder(
+    column: $table.locationId,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -33005,6 +35867,26 @@ class $$EncountersTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<int> get turnLimitSeconds => $composableBuilder(
+    column: $table.turnLimitSeconds,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get lairActionText => $composableBuilder(
+    column: $table.lairActionText,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get lairInitiative => $composableBuilder(
+    column: $table.lairInitiative,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get locationId => $composableBuilder(
+    column: $table.locationId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<DateTime> get createdAt => $composableBuilder(
     column: $table.createdAt,
     builder: (column) => ColumnOrderings(column),
@@ -33044,6 +35926,26 @@ class $$EncountersTableAnnotationComposer
 
   GeneratedColumn<String> get lootJson =>
       $composableBuilder(column: $table.lootJson, builder: (column) => column);
+
+  GeneratedColumn<int> get turnLimitSeconds => $composableBuilder(
+    column: $table.turnLimitSeconds,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get lairActionText => $composableBuilder(
+    column: $table.lairActionText,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get lairInitiative => $composableBuilder(
+    column: $table.lairInitiative,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get locationId => $composableBuilder(
+    column: $table.locationId,
+    builder: (column) => column,
+  );
 
   GeneratedColumn<DateTime> get createdAt =>
       $composableBuilder(column: $table.createdAt, builder: (column) => column);
@@ -33109,6 +36011,10 @@ class $$EncountersTableTableManager
                 Value<bool> started = const Value.absent(),
                 Value<String?> briefingJson = const Value.absent(),
                 Value<String?> lootJson = const Value.absent(),
+                Value<int?> turnLimitSeconds = const Value.absent(),
+                Value<String?> lairActionText = const Value.absent(),
+                Value<int> lairInitiative = const Value.absent(),
+                Value<String?> locationId = const Value.absent(),
                 Value<DateTime> createdAt = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => EncountersCompanion(
@@ -33119,6 +36025,10 @@ class $$EncountersTableTableManager
                 started: started,
                 briefingJson: briefingJson,
                 lootJson: lootJson,
+                turnLimitSeconds: turnLimitSeconds,
+                lairActionText: lairActionText,
+                lairInitiative: lairInitiative,
+                locationId: locationId,
                 createdAt: createdAt,
                 rowid: rowid,
               ),
@@ -33131,6 +36041,10 @@ class $$EncountersTableTableManager
                 Value<bool> started = const Value.absent(),
                 Value<String?> briefingJson = const Value.absent(),
                 Value<String?> lootJson = const Value.absent(),
+                Value<int?> turnLimitSeconds = const Value.absent(),
+                Value<String?> lairActionText = const Value.absent(),
+                Value<int> lairInitiative = const Value.absent(),
+                Value<String?> locationId = const Value.absent(),
                 Value<DateTime> createdAt = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => EncountersCompanion.insert(
@@ -33141,6 +36055,10 @@ class $$EncountersTableTableManager
                 started: started,
                 briefingJson: briefingJson,
                 lootJson: lootJson,
+                turnLimitSeconds: turnLimitSeconds,
+                lairActionText: lairActionText,
+                lairInitiative: lairInitiative,
+                locationId: locationId,
                 createdAt: createdAt,
                 rowid: rowid,
               ),
@@ -33211,7 +36129,6 @@ typedef $$CombatantsTableCreateCompanionBuilder =
       Value<String?> characterId,
       Value<String?> monsterKey,
       Value<int> initiative,
-      Value<bool> initiativeRolled,
       Value<int> sortOrder,
       Value<int> hitPointsMax,
       Value<int> hitPointsCurrent,
@@ -33224,7 +36141,10 @@ typedef $$CombatantsTableCreateCompanionBuilder =
       Value<int> legendaryResistSpent,
       Value<bool> concentrating,
       Value<String?> concentrationNote,
-      Value<bool> hiddenFromPlayers,
+      Value<bool> reactionUsed,
+      Value<String> defensesJson,
+      Value<int> deathSaveSuccesses,
+      Value<int> deathSaveFailures,
       Value<bool> defeated,
       Value<String> note,
       Value<int> rowid,
@@ -33238,7 +36158,6 @@ typedef $$CombatantsTableUpdateCompanionBuilder =
       Value<String?> characterId,
       Value<String?> monsterKey,
       Value<int> initiative,
-      Value<bool> initiativeRolled,
       Value<int> sortOrder,
       Value<int> hitPointsMax,
       Value<int> hitPointsCurrent,
@@ -33251,7 +36170,10 @@ typedef $$CombatantsTableUpdateCompanionBuilder =
       Value<int> legendaryResistSpent,
       Value<bool> concentrating,
       Value<String?> concentrationNote,
-      Value<bool> hiddenFromPlayers,
+      Value<bool> reactionUsed,
+      Value<String> defensesJson,
+      Value<int> deathSaveSuccesses,
+      Value<int> deathSaveFailures,
       Value<bool> defeated,
       Value<String> note,
       Value<int> rowid,
@@ -33319,11 +36241,6 @@ class $$CombatantsTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnFilters<bool> get initiativeRolled => $composableBuilder(
-    column: $table.initiativeRolled,
-    builder: (column) => ColumnFilters(column),
-  );
-
   ColumnFilters<int> get sortOrder => $composableBuilder(
     column: $table.sortOrder,
     builder: (column) => ColumnFilters(column),
@@ -33384,8 +36301,23 @@ class $$CombatantsTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnFilters<bool> get hiddenFromPlayers => $composableBuilder(
-    column: $table.hiddenFromPlayers,
+  ColumnFilters<bool> get reactionUsed => $composableBuilder(
+    column: $table.reactionUsed,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get defensesJson => $composableBuilder(
+    column: $table.defensesJson,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get deathSaveSuccesses => $composableBuilder(
+    column: $table.deathSaveSuccesses,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get deathSaveFailures => $composableBuilder(
+    column: $table.deathSaveFailures,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -33462,11 +36394,6 @@ class $$CombatantsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<bool> get initiativeRolled => $composableBuilder(
-    column: $table.initiativeRolled,
-    builder: (column) => ColumnOrderings(column),
-  );
-
   ColumnOrderings<int> get sortOrder => $composableBuilder(
     column: $table.sortOrder,
     builder: (column) => ColumnOrderings(column),
@@ -33527,8 +36454,23 @@ class $$CombatantsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<bool> get hiddenFromPlayers => $composableBuilder(
-    column: $table.hiddenFromPlayers,
+  ColumnOrderings<bool> get reactionUsed => $composableBuilder(
+    column: $table.reactionUsed,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get defensesJson => $composableBuilder(
+    column: $table.defensesJson,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get deathSaveSuccesses => $composableBuilder(
+    column: $table.deathSaveSuccesses,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get deathSaveFailures => $composableBuilder(
+    column: $table.deathSaveFailures,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -33599,11 +36541,6 @@ class $$CombatantsTableAnnotationComposer
     builder: (column) => column,
   );
 
-  GeneratedColumn<bool> get initiativeRolled => $composableBuilder(
-    column: $table.initiativeRolled,
-    builder: (column) => column,
-  );
-
   GeneratedColumn<int> get sortOrder =>
       $composableBuilder(column: $table.sortOrder, builder: (column) => column);
 
@@ -33662,8 +36599,23 @@ class $$CombatantsTableAnnotationComposer
     builder: (column) => column,
   );
 
-  GeneratedColumn<bool> get hiddenFromPlayers => $composableBuilder(
-    column: $table.hiddenFromPlayers,
+  GeneratedColumn<bool> get reactionUsed => $composableBuilder(
+    column: $table.reactionUsed,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get defensesJson => $composableBuilder(
+    column: $table.defensesJson,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get deathSaveSuccesses => $composableBuilder(
+    column: $table.deathSaveSuccesses,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get deathSaveFailures => $composableBuilder(
+    column: $table.deathSaveFailures,
     builder: (column) => column,
   );
 
@@ -33732,7 +36684,6 @@ class $$CombatantsTableTableManager
                 Value<String?> characterId = const Value.absent(),
                 Value<String?> monsterKey = const Value.absent(),
                 Value<int> initiative = const Value.absent(),
-                Value<bool> initiativeRolled = const Value.absent(),
                 Value<int> sortOrder = const Value.absent(),
                 Value<int> hitPointsMax = const Value.absent(),
                 Value<int> hitPointsCurrent = const Value.absent(),
@@ -33745,7 +36696,10 @@ class $$CombatantsTableTableManager
                 Value<int> legendaryResistSpent = const Value.absent(),
                 Value<bool> concentrating = const Value.absent(),
                 Value<String?> concentrationNote = const Value.absent(),
-                Value<bool> hiddenFromPlayers = const Value.absent(),
+                Value<bool> reactionUsed = const Value.absent(),
+                Value<String> defensesJson = const Value.absent(),
+                Value<int> deathSaveSuccesses = const Value.absent(),
+                Value<int> deathSaveFailures = const Value.absent(),
                 Value<bool> defeated = const Value.absent(),
                 Value<String> note = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
@@ -33757,7 +36711,6 @@ class $$CombatantsTableTableManager
                 characterId: characterId,
                 monsterKey: monsterKey,
                 initiative: initiative,
-                initiativeRolled: initiativeRolled,
                 sortOrder: sortOrder,
                 hitPointsMax: hitPointsMax,
                 hitPointsCurrent: hitPointsCurrent,
@@ -33770,7 +36723,10 @@ class $$CombatantsTableTableManager
                 legendaryResistSpent: legendaryResistSpent,
                 concentrating: concentrating,
                 concentrationNote: concentrationNote,
-                hiddenFromPlayers: hiddenFromPlayers,
+                reactionUsed: reactionUsed,
+                defensesJson: defensesJson,
+                deathSaveSuccesses: deathSaveSuccesses,
+                deathSaveFailures: deathSaveFailures,
                 defeated: defeated,
                 note: note,
                 rowid: rowid,
@@ -33784,7 +36740,6 @@ class $$CombatantsTableTableManager
                 Value<String?> characterId = const Value.absent(),
                 Value<String?> monsterKey = const Value.absent(),
                 Value<int> initiative = const Value.absent(),
-                Value<bool> initiativeRolled = const Value.absent(),
                 Value<int> sortOrder = const Value.absent(),
                 Value<int> hitPointsMax = const Value.absent(),
                 Value<int> hitPointsCurrent = const Value.absent(),
@@ -33797,7 +36752,10 @@ class $$CombatantsTableTableManager
                 Value<int> legendaryResistSpent = const Value.absent(),
                 Value<bool> concentrating = const Value.absent(),
                 Value<String?> concentrationNote = const Value.absent(),
-                Value<bool> hiddenFromPlayers = const Value.absent(),
+                Value<bool> reactionUsed = const Value.absent(),
+                Value<String> defensesJson = const Value.absent(),
+                Value<int> deathSaveSuccesses = const Value.absent(),
+                Value<int> deathSaveFailures = const Value.absent(),
                 Value<bool> defeated = const Value.absent(),
                 Value<String> note = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
@@ -33809,7 +36767,6 @@ class $$CombatantsTableTableManager
                 characterId: characterId,
                 monsterKey: monsterKey,
                 initiative: initiative,
-                initiativeRolled: initiativeRolled,
                 sortOrder: sortOrder,
                 hitPointsMax: hitPointsMax,
                 hitPointsCurrent: hitPointsCurrent,
@@ -33822,7 +36779,10 @@ class $$CombatantsTableTableManager
                 legendaryResistSpent: legendaryResistSpent,
                 concentrating: concentrating,
                 concentrationNote: concentrationNote,
-                hiddenFromPlayers: hiddenFromPlayers,
+                reactionUsed: reactionUsed,
+                defensesJson: defensesJson,
+                deathSaveSuccesses: deathSaveSuccesses,
+                deathSaveFailures: deathSaveFailures,
                 defeated: defeated,
                 note: note,
                 rowid: rowid,
@@ -33902,10 +36862,7 @@ typedef $$ShopsTableCreateCompanionBuilder =
       Value<String?> ownerNpcId,
       Value<String> description,
       Value<double> priceMultiplier,
-      Value<bool> openToPlayers,
-      Value<bool> mapAccessible,
       Value<bool> closed,
-      Value<bool> requiresApproval,
       Value<int> restockDays,
       Value<int?> lastRestockDay,
       Value<DateTime> createdAt,
@@ -33919,10 +36876,7 @@ typedef $$ShopsTableUpdateCompanionBuilder =
       Value<String?> ownerNpcId,
       Value<String> description,
       Value<double> priceMultiplier,
-      Value<bool> openToPlayers,
-      Value<bool> mapAccessible,
       Value<bool> closed,
-      Value<bool> requiresApproval,
       Value<int> restockDays,
       Value<int?> lastRestockDay,
       Value<DateTime> createdAt,
@@ -33990,23 +36944,8 @@ class $$ShopsTableFilterComposer extends Composer<_$AppDatabase, $ShopsTable> {
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnFilters<bool> get openToPlayers => $composableBuilder(
-    column: $table.openToPlayers,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<bool> get mapAccessible => $composableBuilder(
-    column: $table.mapAccessible,
-    builder: (column) => ColumnFilters(column),
-  );
-
   ColumnFilters<bool> get closed => $composableBuilder(
     column: $table.closed,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<bool> get requiresApproval => $composableBuilder(
-    column: $table.requiresApproval,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -34090,23 +37029,8 @@ class $$ShopsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<bool> get openToPlayers => $composableBuilder(
-    column: $table.openToPlayers,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<bool> get mapAccessible => $composableBuilder(
-    column: $table.mapAccessible,
-    builder: (column) => ColumnOrderings(column),
-  );
-
   ColumnOrderings<bool> get closed => $composableBuilder(
     column: $table.closed,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<bool> get requiresApproval => $composableBuilder(
-    column: $table.requiresApproval,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -34159,23 +37083,8 @@ class $$ShopsTableAnnotationComposer
     builder: (column) => column,
   );
 
-  GeneratedColumn<bool> get openToPlayers => $composableBuilder(
-    column: $table.openToPlayers,
-    builder: (column) => column,
-  );
-
-  GeneratedColumn<bool> get mapAccessible => $composableBuilder(
-    column: $table.mapAccessible,
-    builder: (column) => column,
-  );
-
   GeneratedColumn<bool> get closed =>
       $composableBuilder(column: $table.closed, builder: (column) => column);
-
-  GeneratedColumn<bool> get requiresApproval => $composableBuilder(
-    column: $table.requiresApproval,
-    builder: (column) => column,
-  );
 
   GeneratedColumn<int> get restockDays => $composableBuilder(
     column: $table.restockDays,
@@ -34250,10 +37159,7 @@ class $$ShopsTableTableManager
                 Value<String?> ownerNpcId = const Value.absent(),
                 Value<String> description = const Value.absent(),
                 Value<double> priceMultiplier = const Value.absent(),
-                Value<bool> openToPlayers = const Value.absent(),
-                Value<bool> mapAccessible = const Value.absent(),
                 Value<bool> closed = const Value.absent(),
-                Value<bool> requiresApproval = const Value.absent(),
                 Value<int> restockDays = const Value.absent(),
                 Value<int?> lastRestockDay = const Value.absent(),
                 Value<DateTime> createdAt = const Value.absent(),
@@ -34265,10 +37171,7 @@ class $$ShopsTableTableManager
                 ownerNpcId: ownerNpcId,
                 description: description,
                 priceMultiplier: priceMultiplier,
-                openToPlayers: openToPlayers,
-                mapAccessible: mapAccessible,
                 closed: closed,
-                requiresApproval: requiresApproval,
                 restockDays: restockDays,
                 lastRestockDay: lastRestockDay,
                 createdAt: createdAt,
@@ -34282,10 +37185,7 @@ class $$ShopsTableTableManager
                 Value<String?> ownerNpcId = const Value.absent(),
                 Value<String> description = const Value.absent(),
                 Value<double> priceMultiplier = const Value.absent(),
-                Value<bool> openToPlayers = const Value.absent(),
-                Value<bool> mapAccessible = const Value.absent(),
                 Value<bool> closed = const Value.absent(),
-                Value<bool> requiresApproval = const Value.absent(),
                 Value<int> restockDays = const Value.absent(),
                 Value<int?> lastRestockDay = const Value.absent(),
                 Value<DateTime> createdAt = const Value.absent(),
@@ -34297,10 +37197,7 @@ class $$ShopsTableTableManager
                 ownerNpcId: ownerNpcId,
                 description: description,
                 priceMultiplier: priceMultiplier,
-                openToPlayers: openToPlayers,
-                mapAccessible: mapAccessible,
                 closed: closed,
-                requiresApproval: requiresApproval,
                 restockDays: restockDays,
                 lastRestockDay: lastRestockDay,
                 createdAt: createdAt,
@@ -34782,15 +37679,14 @@ typedef $$LocationsTableCreateCompanionBuilder =
       Value<String> description,
       Value<String> secretNotes,
       Value<String?> mapImagePath,
-      Value<String?> mapPreviewPath,
       Value<int?> mapWidth,
       Value<int?> mapHeight,
       Value<double?> mapWidthMiles,
       Value<double?> mapHeightMiles,
-      Value<bool> revealed,
       Value<double?> graphX,
       Value<double?> graphY,
       Value<double?> nodeRadius,
+      Value<bool> graphCollapsed,
       Value<int> sortOrder,
       Value<DateTime> createdAt,
       Value<int> rowid,
@@ -34803,15 +37699,14 @@ typedef $$LocationsTableUpdateCompanionBuilder =
       Value<String> description,
       Value<String> secretNotes,
       Value<String?> mapImagePath,
-      Value<String?> mapPreviewPath,
       Value<int?> mapWidth,
       Value<int?> mapHeight,
       Value<double?> mapWidthMiles,
       Value<double?> mapHeightMiles,
-      Value<bool> revealed,
       Value<double?> graphX,
       Value<double?> graphY,
       Value<double?> nodeRadius,
+      Value<bool> graphCollapsed,
       Value<int> sortOrder,
       Value<DateTime> createdAt,
       Value<int> rowid,
@@ -34880,11 +37775,6 @@ class $$LocationsTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnFilters<String> get mapPreviewPath => $composableBuilder(
-    column: $table.mapPreviewPath,
-    builder: (column) => ColumnFilters(column),
-  );
-
   ColumnFilters<int> get mapWidth => $composableBuilder(
     column: $table.mapWidth,
     builder: (column) => ColumnFilters(column),
@@ -34905,11 +37795,6 @@ class $$LocationsTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnFilters<bool> get revealed => $composableBuilder(
-    column: $table.revealed,
-    builder: (column) => ColumnFilters(column),
-  );
-
   ColumnFilters<double> get graphX => $composableBuilder(
     column: $table.graphX,
     builder: (column) => ColumnFilters(column),
@@ -34922,6 +37807,11 @@ class $$LocationsTableFilterComposer
 
   ColumnFilters<double> get nodeRadius => $composableBuilder(
     column: $table.nodeRadius,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get graphCollapsed => $composableBuilder(
+    column: $table.graphCollapsed,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -35000,11 +37890,6 @@ class $$LocationsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<String> get mapPreviewPath => $composableBuilder(
-    column: $table.mapPreviewPath,
-    builder: (column) => ColumnOrderings(column),
-  );
-
   ColumnOrderings<int> get mapWidth => $composableBuilder(
     column: $table.mapWidth,
     builder: (column) => ColumnOrderings(column),
@@ -35025,11 +37910,6 @@ class $$LocationsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<bool> get revealed => $composableBuilder(
-    column: $table.revealed,
-    builder: (column) => ColumnOrderings(column),
-  );
-
   ColumnOrderings<double> get graphX => $composableBuilder(
     column: $table.graphX,
     builder: (column) => ColumnOrderings(column),
@@ -35042,6 +37922,11 @@ class $$LocationsTableOrderingComposer
 
   ColumnOrderings<double> get nodeRadius => $composableBuilder(
     column: $table.nodeRadius,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get graphCollapsed => $composableBuilder(
+    column: $table.graphCollapsed,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -35089,11 +37974,6 @@ class $$LocationsTableAnnotationComposer
     builder: (column) => column,
   );
 
-  GeneratedColumn<String> get mapPreviewPath => $composableBuilder(
-    column: $table.mapPreviewPath,
-    builder: (column) => column,
-  );
-
   GeneratedColumn<int> get mapWidth =>
       $composableBuilder(column: $table.mapWidth, builder: (column) => column);
 
@@ -35110,9 +37990,6 @@ class $$LocationsTableAnnotationComposer
     builder: (column) => column,
   );
 
-  GeneratedColumn<bool> get revealed =>
-      $composableBuilder(column: $table.revealed, builder: (column) => column);
-
   GeneratedColumn<double> get graphX =>
       $composableBuilder(column: $table.graphX, builder: (column) => column);
 
@@ -35121,6 +37998,11 @@ class $$LocationsTableAnnotationComposer
 
   GeneratedColumn<double> get nodeRadius => $composableBuilder(
     column: $table.nodeRadius,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get graphCollapsed => $composableBuilder(
+    column: $table.graphCollapsed,
     builder: (column) => column,
   );
 
@@ -35190,15 +38072,14 @@ class $$LocationsTableTableManager
                 Value<String> description = const Value.absent(),
                 Value<String> secretNotes = const Value.absent(),
                 Value<String?> mapImagePath = const Value.absent(),
-                Value<String?> mapPreviewPath = const Value.absent(),
                 Value<int?> mapWidth = const Value.absent(),
                 Value<int?> mapHeight = const Value.absent(),
                 Value<double?> mapWidthMiles = const Value.absent(),
                 Value<double?> mapHeightMiles = const Value.absent(),
-                Value<bool> revealed = const Value.absent(),
                 Value<double?> graphX = const Value.absent(),
                 Value<double?> graphY = const Value.absent(),
                 Value<double?> nodeRadius = const Value.absent(),
+                Value<bool> graphCollapsed = const Value.absent(),
                 Value<int> sortOrder = const Value.absent(),
                 Value<DateTime> createdAt = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
@@ -35209,15 +38090,14 @@ class $$LocationsTableTableManager
                 description: description,
                 secretNotes: secretNotes,
                 mapImagePath: mapImagePath,
-                mapPreviewPath: mapPreviewPath,
                 mapWidth: mapWidth,
                 mapHeight: mapHeight,
                 mapWidthMiles: mapWidthMiles,
                 mapHeightMiles: mapHeightMiles,
-                revealed: revealed,
                 graphX: graphX,
                 graphY: graphY,
                 nodeRadius: nodeRadius,
+                graphCollapsed: graphCollapsed,
                 sortOrder: sortOrder,
                 createdAt: createdAt,
                 rowid: rowid,
@@ -35230,15 +38110,14 @@ class $$LocationsTableTableManager
                 Value<String> description = const Value.absent(),
                 Value<String> secretNotes = const Value.absent(),
                 Value<String?> mapImagePath = const Value.absent(),
-                Value<String?> mapPreviewPath = const Value.absent(),
                 Value<int?> mapWidth = const Value.absent(),
                 Value<int?> mapHeight = const Value.absent(),
                 Value<double?> mapWidthMiles = const Value.absent(),
                 Value<double?> mapHeightMiles = const Value.absent(),
-                Value<bool> revealed = const Value.absent(),
                 Value<double?> graphX = const Value.absent(),
                 Value<double?> graphY = const Value.absent(),
                 Value<double?> nodeRadius = const Value.absent(),
+                Value<bool> graphCollapsed = const Value.absent(),
                 Value<int> sortOrder = const Value.absent(),
                 Value<DateTime> createdAt = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
@@ -35249,15 +38128,14 @@ class $$LocationsTableTableManager
                 description: description,
                 secretNotes: secretNotes,
                 mapImagePath: mapImagePath,
-                mapPreviewPath: mapPreviewPath,
                 mapWidth: mapWidth,
                 mapHeight: mapHeight,
                 mapWidthMiles: mapWidthMiles,
                 mapHeightMiles: mapHeightMiles,
-                revealed: revealed,
                 graphX: graphX,
                 graphY: graphY,
                 nodeRadius: nodeRadius,
+                graphCollapsed: graphCollapsed,
                 sortOrder: sortOrder,
                 createdAt: createdAt,
                 rowid: rowid,
@@ -35324,7 +38202,6 @@ typedef $$MapPinsTableCreateCompanionBuilder =
       required double y,
       Value<String?> targetId,
       Value<String> noteText,
-      Value<bool> revealed,
       Value<String?> lootSetId,
       Value<String?> lootDataJson,
       Value<DateTime> createdAt,
@@ -35340,7 +38217,6 @@ typedef $$MapPinsTableUpdateCompanionBuilder =
       Value<double> y,
       Value<String?> targetId,
       Value<String> noteText,
-      Value<bool> revealed,
       Value<String?> lootSetId,
       Value<String?> lootDataJson,
       Value<DateTime> createdAt,
@@ -35411,11 +38287,6 @@ class $$MapPinsTableFilterComposer
 
   ColumnFilters<String> get noteText => $composableBuilder(
     column: $table.noteText,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<bool> get revealed => $composableBuilder(
-    column: $table.revealed,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -35502,11 +38373,6 @@ class $$MapPinsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<bool> get revealed => $composableBuilder(
-    column: $table.revealed,
-    builder: (column) => ColumnOrderings(column),
-  );
-
   ColumnOrderings<String> get lootSetId => $composableBuilder(
     column: $table.lootSetId,
     builder: (column) => ColumnOrderings(column),
@@ -35575,9 +38441,6 @@ class $$MapPinsTableAnnotationComposer
 
   GeneratedColumn<String> get noteText =>
       $composableBuilder(column: $table.noteText, builder: (column) => column);
-
-  GeneratedColumn<bool> get revealed =>
-      $composableBuilder(column: $table.revealed, builder: (column) => column);
 
   GeneratedColumn<String> get lootSetId =>
       $composableBuilder(column: $table.lootSetId, builder: (column) => column);
@@ -35650,7 +38513,6 @@ class $$MapPinsTableTableManager
                 Value<double> y = const Value.absent(),
                 Value<String?> targetId = const Value.absent(),
                 Value<String> noteText = const Value.absent(),
-                Value<bool> revealed = const Value.absent(),
                 Value<String?> lootSetId = const Value.absent(),
                 Value<String?> lootDataJson = const Value.absent(),
                 Value<DateTime> createdAt = const Value.absent(),
@@ -35664,7 +38526,6 @@ class $$MapPinsTableTableManager
                 y: y,
                 targetId: targetId,
                 noteText: noteText,
-                revealed: revealed,
                 lootSetId: lootSetId,
                 lootDataJson: lootDataJson,
                 createdAt: createdAt,
@@ -35680,7 +38541,6 @@ class $$MapPinsTableTableManager
                 required double y,
                 Value<String?> targetId = const Value.absent(),
                 Value<String> noteText = const Value.absent(),
-                Value<bool> revealed = const Value.absent(),
                 Value<String?> lootSetId = const Value.absent(),
                 Value<String?> lootDataJson = const Value.absent(),
                 Value<DateTime> createdAt = const Value.absent(),
@@ -35694,7 +38554,6 @@ class $$MapPinsTableTableManager
                 y: y,
                 targetId: targetId,
                 noteText: noteText,
-                revealed: revealed,
                 lootSetId: lootSetId,
                 lootDataJson: lootDataJson,
                 createdAt: createdAt,
@@ -36685,6 +39544,322 @@ typedef $$NpcsTableProcessedTableManager =
       $$NpcsTableUpdateCompanionBuilder,
       (Npc, BaseReferences<_$AppDatabase, $NpcsTable, Npc>),
       Npc,
+      PrefetchHooks Function()
+    >;
+typedef $$FactionsTableCreateCompanionBuilder =
+    FactionsCompanion Function({
+      required String id,
+      required String name,
+      Value<String> kind,
+      Value<String> description,
+      Value<String> goal,
+      Value<String> secretNotes,
+      Value<String?> portraitPath,
+      Value<double?> graphX,
+      Value<double?> graphY,
+      Value<double?> nodeRadius,
+      Value<DateTime> createdAt,
+      Value<int> rowid,
+    });
+typedef $$FactionsTableUpdateCompanionBuilder =
+    FactionsCompanion Function({
+      Value<String> id,
+      Value<String> name,
+      Value<String> kind,
+      Value<String> description,
+      Value<String> goal,
+      Value<String> secretNotes,
+      Value<String?> portraitPath,
+      Value<double?> graphX,
+      Value<double?> graphY,
+      Value<double?> nodeRadius,
+      Value<DateTime> createdAt,
+      Value<int> rowid,
+    });
+
+class $$FactionsTableFilterComposer
+    extends Composer<_$AppDatabase, $FactionsTable> {
+  $$FactionsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get name => $composableBuilder(
+    column: $table.name,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get kind => $composableBuilder(
+    column: $table.kind,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get description => $composableBuilder(
+    column: $table.description,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get goal => $composableBuilder(
+    column: $table.goal,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get secretNotes => $composableBuilder(
+    column: $table.secretNotes,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get portraitPath => $composableBuilder(
+    column: $table.portraitPath,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get graphX => $composableBuilder(
+    column: $table.graphX,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get graphY => $composableBuilder(
+    column: $table.graphY,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get nodeRadius => $composableBuilder(
+    column: $table.nodeRadius,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$FactionsTableOrderingComposer
+    extends Composer<_$AppDatabase, $FactionsTable> {
+  $$FactionsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get name => $composableBuilder(
+    column: $table.name,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get kind => $composableBuilder(
+    column: $table.kind,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get description => $composableBuilder(
+    column: $table.description,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get goal => $composableBuilder(
+    column: $table.goal,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get secretNotes => $composableBuilder(
+    column: $table.secretNotes,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get portraitPath => $composableBuilder(
+    column: $table.portraitPath,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get graphX => $composableBuilder(
+    column: $table.graphX,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get graphY => $composableBuilder(
+    column: $table.graphY,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get nodeRadius => $composableBuilder(
+    column: $table.nodeRadius,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$FactionsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $FactionsTable> {
+  $$FactionsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get name =>
+      $composableBuilder(column: $table.name, builder: (column) => column);
+
+  GeneratedColumn<String> get kind =>
+      $composableBuilder(column: $table.kind, builder: (column) => column);
+
+  GeneratedColumn<String> get description => $composableBuilder(
+    column: $table.description,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get goal =>
+      $composableBuilder(column: $table.goal, builder: (column) => column);
+
+  GeneratedColumn<String> get secretNotes => $composableBuilder(
+    column: $table.secretNotes,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get portraitPath => $composableBuilder(
+    column: $table.portraitPath,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get graphX =>
+      $composableBuilder(column: $table.graphX, builder: (column) => column);
+
+  GeneratedColumn<double> get graphY =>
+      $composableBuilder(column: $table.graphY, builder: (column) => column);
+
+  GeneratedColumn<double> get nodeRadius => $composableBuilder(
+    column: $table.nodeRadius,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+}
+
+class $$FactionsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $FactionsTable,
+          Faction,
+          $$FactionsTableFilterComposer,
+          $$FactionsTableOrderingComposer,
+          $$FactionsTableAnnotationComposer,
+          $$FactionsTableCreateCompanionBuilder,
+          $$FactionsTableUpdateCompanionBuilder,
+          (Faction, BaseReferences<_$AppDatabase, $FactionsTable, Faction>),
+          Faction,
+          PrefetchHooks Function()
+        > {
+  $$FactionsTableTableManager(_$AppDatabase db, $FactionsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$FactionsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$FactionsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$FactionsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> name = const Value.absent(),
+                Value<String> kind = const Value.absent(),
+                Value<String> description = const Value.absent(),
+                Value<String> goal = const Value.absent(),
+                Value<String> secretNotes = const Value.absent(),
+                Value<String?> portraitPath = const Value.absent(),
+                Value<double?> graphX = const Value.absent(),
+                Value<double?> graphY = const Value.absent(),
+                Value<double?> nodeRadius = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => FactionsCompanion(
+                id: id,
+                name: name,
+                kind: kind,
+                description: description,
+                goal: goal,
+                secretNotes: secretNotes,
+                portraitPath: portraitPath,
+                graphX: graphX,
+                graphY: graphY,
+                nodeRadius: nodeRadius,
+                createdAt: createdAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String name,
+                Value<String> kind = const Value.absent(),
+                Value<String> description = const Value.absent(),
+                Value<String> goal = const Value.absent(),
+                Value<String> secretNotes = const Value.absent(),
+                Value<String?> portraitPath = const Value.absent(),
+                Value<double?> graphX = const Value.absent(),
+                Value<double?> graphY = const Value.absent(),
+                Value<double?> nodeRadius = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => FactionsCompanion.insert(
+                id: id,
+                name: name,
+                kind: kind,
+                description: description,
+                goal: goal,
+                secretNotes: secretNotes,
+                portraitPath: portraitPath,
+                graphX: graphX,
+                graphY: graphY,
+                nodeRadius: nodeRadius,
+                createdAt: createdAt,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$FactionsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $FactionsTable,
+      Faction,
+      $$FactionsTableFilterComposer,
+      $$FactionsTableOrderingComposer,
+      $$FactionsTableAnnotationComposer,
+      $$FactionsTableCreateCompanionBuilder,
+      $$FactionsTableUpdateCompanionBuilder,
+      (Faction, BaseReferences<_$AppDatabase, $FactionsTable, Faction>),
+      Faction,
       PrefetchHooks Function()
     >;
 typedef $$LootSetsTableCreateCompanionBuilder =
@@ -38331,294 +41506,6 @@ typedef $$MusicTracksTableProcessedTableManager =
       MusicTrack,
       PrefetchHooks Function()
     >;
-typedef $$CharacterNotesTableCreateCompanionBuilder =
-    CharacterNotesCompanion Function({
-      required String characterId,
-      Value<String> documentJson,
-      Value<DateTime> updatedAt,
-      Value<int> rowid,
-    });
-typedef $$CharacterNotesTableUpdateCompanionBuilder =
-    CharacterNotesCompanion Function({
-      Value<String> characterId,
-      Value<String> documentJson,
-      Value<DateTime> updatedAt,
-      Value<int> rowid,
-    });
-
-final class $$CharacterNotesTableReferences
-    extends BaseReferences<_$AppDatabase, $CharacterNotesTable, CharacterNote> {
-  $$CharacterNotesTableReferences(
-    super.$_db,
-    super.$_table,
-    super.$_typedResult,
-  );
-
-  static $CharactersTable _characterIdTable(_$AppDatabase db) => db.characters
-      .createAlias('character_notes__character_id__characters__id');
-
-  $$CharactersTableProcessedTableManager get characterId {
-    final $_column = $_itemColumn<String>('character_id')!;
-
-    final manager = $$CharactersTableTableManager(
-      $_db,
-      $_db.characters,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_characterIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-}
-
-class $$CharacterNotesTableFilterComposer
-    extends Composer<_$AppDatabase, $CharacterNotesTable> {
-  $$CharacterNotesTableFilterComposer({
-    required super.$db,
-    required super.$table,
-    super.joinBuilder,
-    super.$addJoinBuilderToRootComposer,
-    super.$removeJoinBuilderFromRootComposer,
-  });
-  ColumnFilters<String> get documentJson => $composableBuilder(
-    column: $table.documentJson,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
-    column: $table.updatedAt,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  $$CharactersTableFilterComposer get characterId {
-    final $$CharactersTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.characterId,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableFilterComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
-}
-
-class $$CharacterNotesTableOrderingComposer
-    extends Composer<_$AppDatabase, $CharacterNotesTable> {
-  $$CharacterNotesTableOrderingComposer({
-    required super.$db,
-    required super.$table,
-    super.joinBuilder,
-    super.$addJoinBuilderToRootComposer,
-    super.$removeJoinBuilderFromRootComposer,
-  });
-  ColumnOrderings<String> get documentJson => $composableBuilder(
-    column: $table.documentJson,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
-    column: $table.updatedAt,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  $$CharactersTableOrderingComposer get characterId {
-    final $$CharactersTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.characterId,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableOrderingComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
-}
-
-class $$CharacterNotesTableAnnotationComposer
-    extends Composer<_$AppDatabase, $CharacterNotesTable> {
-  $$CharacterNotesTableAnnotationComposer({
-    required super.$db,
-    required super.$table,
-    super.joinBuilder,
-    super.$addJoinBuilderToRootComposer,
-    super.$removeJoinBuilderFromRootComposer,
-  });
-  GeneratedColumn<String> get documentJson => $composableBuilder(
-    column: $table.documentJson,
-    builder: (column) => column,
-  );
-
-  GeneratedColumn<DateTime> get updatedAt =>
-      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
-
-  $$CharactersTableAnnotationComposer get characterId {
-    final $$CharactersTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.characterId,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableAnnotationComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
-}
-
-class $$CharacterNotesTableTableManager
-    extends
-        RootTableManager<
-          _$AppDatabase,
-          $CharacterNotesTable,
-          CharacterNote,
-          $$CharacterNotesTableFilterComposer,
-          $$CharacterNotesTableOrderingComposer,
-          $$CharacterNotesTableAnnotationComposer,
-          $$CharacterNotesTableCreateCompanionBuilder,
-          $$CharacterNotesTableUpdateCompanionBuilder,
-          (CharacterNote, $$CharacterNotesTableReferences),
-          CharacterNote,
-          PrefetchHooks Function({bool characterId})
-        > {
-  $$CharacterNotesTableTableManager(
-    _$AppDatabase db,
-    $CharacterNotesTable table,
-  ) : super(
-        TableManagerState(
-          db: db,
-          table: table,
-          createFilteringComposer: () =>
-              $$CharacterNotesTableFilterComposer($db: db, $table: table),
-          createOrderingComposer: () =>
-              $$CharacterNotesTableOrderingComposer($db: db, $table: table),
-          createComputedFieldComposer: () =>
-              $$CharacterNotesTableAnnotationComposer($db: db, $table: table),
-          updateCompanionCallback:
-              ({
-                Value<String> characterId = const Value.absent(),
-                Value<String> documentJson = const Value.absent(),
-                Value<DateTime> updatedAt = const Value.absent(),
-                Value<int> rowid = const Value.absent(),
-              }) => CharacterNotesCompanion(
-                characterId: characterId,
-                documentJson: documentJson,
-                updatedAt: updatedAt,
-                rowid: rowid,
-              ),
-          createCompanionCallback:
-              ({
-                required String characterId,
-                Value<String> documentJson = const Value.absent(),
-                Value<DateTime> updatedAt = const Value.absent(),
-                Value<int> rowid = const Value.absent(),
-              }) => CharacterNotesCompanion.insert(
-                characterId: characterId,
-                documentJson: documentJson,
-                updatedAt: updatedAt,
-                rowid: rowid,
-              ),
-          withReferenceMapper: (p0) => p0
-              .map(
-                (e) => (
-                  e.readTable(table),
-                  $$CharacterNotesTableReferences(db, table, e),
-                ),
-              )
-              .toList(),
-          prefetchHooksCallback: ({characterId = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [],
-              addJoins:
-                  <
-                    T extends TableManagerState<
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic
-                    >
-                  >(state) {
-                    if (characterId) {
-                      state =
-                          state.withJoin(
-                                currentTable: table,
-                                currentColumn: table.characterId,
-                                referencedTable: $$CharacterNotesTableReferences
-                                    ._characterIdTable(db),
-                                referencedColumn:
-                                    $$CharacterNotesTableReferences
-                                        ._characterIdTable(db)
-                                        .id,
-                              )
-                              as T;
-                    }
-
-                    return state;
-                  },
-              getPrefetchedDataCallback: (items) async {
-                return [];
-              },
-            );
-          },
-        ),
-      );
-}
-
-typedef $$CharacterNotesTableProcessedTableManager =
-    ProcessedTableManager<
-      _$AppDatabase,
-      $CharacterNotesTable,
-      CharacterNote,
-      $$CharacterNotesTableFilterComposer,
-      $$CharacterNotesTableOrderingComposer,
-      $$CharacterNotesTableAnnotationComposer,
-      $$CharacterNotesTableCreateCompanionBuilder,
-      $$CharacterNotesTableUpdateCompanionBuilder,
-      (CharacterNote, $$CharacterNotesTableReferences),
-      CharacterNote,
-      PrefetchHooks Function({bool characterId})
-    >;
 typedef $$SessionLogEntriesTableCreateCompanionBuilder =
     SessionLogEntriesCompanion Function({
       required String id,
@@ -39233,14 +42120,9 @@ typedef $$QuestsTableCreateCompanionBuilder =
       Value<String> reward,
       Value<String> dmNotes,
       Value<bool> done,
-      Value<bool> shared,
       Value<String> targetsJson,
-      Value<String> acceptancesJson,
-      Value<String> shareMode,
-      Value<String> voteStatus,
       Value<int> rewardCoinsCp,
       Value<String> rewardItemsJson,
-      Value<String?> rewardPoolJson,
       Value<int> sortOrder,
       Value<DateTime> createdAt,
       Value<int> rowid,
@@ -39253,14 +42135,9 @@ typedef $$QuestsTableUpdateCompanionBuilder =
       Value<String> reward,
       Value<String> dmNotes,
       Value<bool> done,
-      Value<bool> shared,
       Value<String> targetsJson,
-      Value<String> acceptancesJson,
-      Value<String> shareMode,
-      Value<String> voteStatus,
       Value<int> rewardCoinsCp,
       Value<String> rewardItemsJson,
-      Value<String?> rewardPoolJson,
       Value<int> sortOrder,
       Value<DateTime> createdAt,
       Value<int> rowid,
@@ -39305,28 +42182,8 @@ class $$QuestsTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnFilters<bool> get shared => $composableBuilder(
-    column: $table.shared,
-    builder: (column) => ColumnFilters(column),
-  );
-
   ColumnFilters<String> get targetsJson => $composableBuilder(
     column: $table.targetsJson,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<String> get acceptancesJson => $composableBuilder(
-    column: $table.acceptancesJson,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<String> get shareMode => $composableBuilder(
-    column: $table.shareMode,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<String> get voteStatus => $composableBuilder(
-    column: $table.voteStatus,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -39337,11 +42194,6 @@ class $$QuestsTableFilterComposer
 
   ColumnFilters<String> get rewardItemsJson => $composableBuilder(
     column: $table.rewardItemsJson,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<String> get rewardPoolJson => $composableBuilder(
-    column: $table.rewardPoolJson,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -39395,28 +42247,8 @@ class $$QuestsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<bool> get shared => $composableBuilder(
-    column: $table.shared,
-    builder: (column) => ColumnOrderings(column),
-  );
-
   ColumnOrderings<String> get targetsJson => $composableBuilder(
     column: $table.targetsJson,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<String> get acceptancesJson => $composableBuilder(
-    column: $table.acceptancesJson,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<String> get shareMode => $composableBuilder(
-    column: $table.shareMode,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<String> get voteStatus => $composableBuilder(
-    column: $table.voteStatus,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -39427,11 +42259,6 @@ class $$QuestsTableOrderingComposer
 
   ColumnOrderings<String> get rewardItemsJson => $composableBuilder(
     column: $table.rewardItemsJson,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<String> get rewardPoolJson => $composableBuilder(
-    column: $table.rewardPoolJson,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -39473,24 +42300,8 @@ class $$QuestsTableAnnotationComposer
   GeneratedColumn<bool> get done =>
       $composableBuilder(column: $table.done, builder: (column) => column);
 
-  GeneratedColumn<bool> get shared =>
-      $composableBuilder(column: $table.shared, builder: (column) => column);
-
   GeneratedColumn<String> get targetsJson => $composableBuilder(
     column: $table.targetsJson,
-    builder: (column) => column,
-  );
-
-  GeneratedColumn<String> get acceptancesJson => $composableBuilder(
-    column: $table.acceptancesJson,
-    builder: (column) => column,
-  );
-
-  GeneratedColumn<String> get shareMode =>
-      $composableBuilder(column: $table.shareMode, builder: (column) => column);
-
-  GeneratedColumn<String> get voteStatus => $composableBuilder(
-    column: $table.voteStatus,
     builder: (column) => column,
   );
 
@@ -39501,11 +42312,6 @@ class $$QuestsTableAnnotationComposer
 
   GeneratedColumn<String> get rewardItemsJson => $composableBuilder(
     column: $table.rewardItemsJson,
-    builder: (column) => column,
-  );
-
-  GeneratedColumn<String> get rewardPoolJson => $composableBuilder(
-    column: $table.rewardPoolJson,
     builder: (column) => column,
   );
 
@@ -39550,14 +42356,9 @@ class $$QuestsTableTableManager
                 Value<String> reward = const Value.absent(),
                 Value<String> dmNotes = const Value.absent(),
                 Value<bool> done = const Value.absent(),
-                Value<bool> shared = const Value.absent(),
                 Value<String> targetsJson = const Value.absent(),
-                Value<String> acceptancesJson = const Value.absent(),
-                Value<String> shareMode = const Value.absent(),
-                Value<String> voteStatus = const Value.absent(),
                 Value<int> rewardCoinsCp = const Value.absent(),
                 Value<String> rewardItemsJson = const Value.absent(),
-                Value<String?> rewardPoolJson = const Value.absent(),
                 Value<int> sortOrder = const Value.absent(),
                 Value<DateTime> createdAt = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
@@ -39568,14 +42369,9 @@ class $$QuestsTableTableManager
                 reward: reward,
                 dmNotes: dmNotes,
                 done: done,
-                shared: shared,
                 targetsJson: targetsJson,
-                acceptancesJson: acceptancesJson,
-                shareMode: shareMode,
-                voteStatus: voteStatus,
                 rewardCoinsCp: rewardCoinsCp,
                 rewardItemsJson: rewardItemsJson,
-                rewardPoolJson: rewardPoolJson,
                 sortOrder: sortOrder,
                 createdAt: createdAt,
                 rowid: rowid,
@@ -39588,14 +42384,9 @@ class $$QuestsTableTableManager
                 Value<String> reward = const Value.absent(),
                 Value<String> dmNotes = const Value.absent(),
                 Value<bool> done = const Value.absent(),
-                Value<bool> shared = const Value.absent(),
                 Value<String> targetsJson = const Value.absent(),
-                Value<String> acceptancesJson = const Value.absent(),
-                Value<String> shareMode = const Value.absent(),
-                Value<String> voteStatus = const Value.absent(),
                 Value<int> rewardCoinsCp = const Value.absent(),
                 Value<String> rewardItemsJson = const Value.absent(),
-                Value<String?> rewardPoolJson = const Value.absent(),
                 Value<int> sortOrder = const Value.absent(),
                 Value<DateTime> createdAt = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
@@ -39606,14 +42397,9 @@ class $$QuestsTableTableManager
                 reward: reward,
                 dmNotes: dmNotes,
                 done: done,
-                shared: shared,
                 targetsJson: targetsJson,
-                acceptancesJson: acceptancesJson,
-                shareMode: shareMode,
-                voteStatus: voteStatus,
                 rewardCoinsCp: rewardCoinsCp,
                 rewardItemsJson: rewardItemsJson,
-                rewardPoolJson: rewardPoolJson,
                 sortOrder: sortOrder,
                 createdAt: createdAt,
                 rowid: rowid,
@@ -41569,6 +44355,1261 @@ typedef $$CalendarRemindersTableProcessedTableManager =
       CalendarReminder,
       PrefetchHooks Function()
     >;
+typedef $$ContentSourcesTableCreateCompanionBuilder =
+    ContentSourcesCompanion Function({
+      required String id,
+      required String name,
+      required String baseUrl,
+      Value<DateTime?> lastImportedAt,
+      Value<DateTime> createdAt,
+      Value<int> rowid,
+    });
+typedef $$ContentSourcesTableUpdateCompanionBuilder =
+    ContentSourcesCompanion Function({
+      Value<String> id,
+      Value<String> name,
+      Value<String> baseUrl,
+      Value<DateTime?> lastImportedAt,
+      Value<DateTime> createdAt,
+      Value<int> rowid,
+    });
+
+class $$ContentSourcesTableFilterComposer
+    extends Composer<_$AppDatabase, $ContentSourcesTable> {
+  $$ContentSourcesTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get name => $composableBuilder(
+    column: $table.name,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get baseUrl => $composableBuilder(
+    column: $table.baseUrl,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get lastImportedAt => $composableBuilder(
+    column: $table.lastImportedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$ContentSourcesTableOrderingComposer
+    extends Composer<_$AppDatabase, $ContentSourcesTable> {
+  $$ContentSourcesTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get name => $composableBuilder(
+    column: $table.name,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get baseUrl => $composableBuilder(
+    column: $table.baseUrl,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get lastImportedAt => $composableBuilder(
+    column: $table.lastImportedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$ContentSourcesTableAnnotationComposer
+    extends Composer<_$AppDatabase, $ContentSourcesTable> {
+  $$ContentSourcesTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get name =>
+      $composableBuilder(column: $table.name, builder: (column) => column);
+
+  GeneratedColumn<String> get baseUrl =>
+      $composableBuilder(column: $table.baseUrl, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get lastImportedAt => $composableBuilder(
+    column: $table.lastImportedAt,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+}
+
+class $$ContentSourcesTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $ContentSourcesTable,
+          ContentSource,
+          $$ContentSourcesTableFilterComposer,
+          $$ContentSourcesTableOrderingComposer,
+          $$ContentSourcesTableAnnotationComposer,
+          $$ContentSourcesTableCreateCompanionBuilder,
+          $$ContentSourcesTableUpdateCompanionBuilder,
+          (
+            ContentSource,
+            BaseReferences<_$AppDatabase, $ContentSourcesTable, ContentSource>,
+          ),
+          ContentSource,
+          PrefetchHooks Function()
+        > {
+  $$ContentSourcesTableTableManager(
+    _$AppDatabase db,
+    $ContentSourcesTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$ContentSourcesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$ContentSourcesTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$ContentSourcesTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> name = const Value.absent(),
+                Value<String> baseUrl = const Value.absent(),
+                Value<DateTime?> lastImportedAt = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => ContentSourcesCompanion(
+                id: id,
+                name: name,
+                baseUrl: baseUrl,
+                lastImportedAt: lastImportedAt,
+                createdAt: createdAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String name,
+                required String baseUrl,
+                Value<DateTime?> lastImportedAt = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => ContentSourcesCompanion.insert(
+                id: id,
+                name: name,
+                baseUrl: baseUrl,
+                lastImportedAt: lastImportedAt,
+                createdAt: createdAt,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$ContentSourcesTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $ContentSourcesTable,
+      ContentSource,
+      $$ContentSourcesTableFilterComposer,
+      $$ContentSourcesTableOrderingComposer,
+      $$ContentSourcesTableAnnotationComposer,
+      $$ContentSourcesTableCreateCompanionBuilder,
+      $$ContentSourcesTableUpdateCompanionBuilder,
+      (
+        ContentSource,
+        BaseReferences<_$AppDatabase, $ContentSourcesTable, ContentSource>,
+      ),
+      ContentSource,
+      PrefetchHooks Function()
+    >;
+typedef $$EncounterTemplatesTableCreateCompanionBuilder =
+    EncounterTemplatesCompanion Function({
+      required String id,
+      required String name,
+      Value<String> entriesJson,
+      Value<String> note,
+      Value<DateTime> createdAt,
+      Value<int> rowid,
+    });
+typedef $$EncounterTemplatesTableUpdateCompanionBuilder =
+    EncounterTemplatesCompanion Function({
+      Value<String> id,
+      Value<String> name,
+      Value<String> entriesJson,
+      Value<String> note,
+      Value<DateTime> createdAt,
+      Value<int> rowid,
+    });
+
+class $$EncounterTemplatesTableFilterComposer
+    extends Composer<_$AppDatabase, $EncounterTemplatesTable> {
+  $$EncounterTemplatesTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get name => $composableBuilder(
+    column: $table.name,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get entriesJson => $composableBuilder(
+    column: $table.entriesJson,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get note => $composableBuilder(
+    column: $table.note,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$EncounterTemplatesTableOrderingComposer
+    extends Composer<_$AppDatabase, $EncounterTemplatesTable> {
+  $$EncounterTemplatesTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get name => $composableBuilder(
+    column: $table.name,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get entriesJson => $composableBuilder(
+    column: $table.entriesJson,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get note => $composableBuilder(
+    column: $table.note,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$EncounterTemplatesTableAnnotationComposer
+    extends Composer<_$AppDatabase, $EncounterTemplatesTable> {
+  $$EncounterTemplatesTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get name =>
+      $composableBuilder(column: $table.name, builder: (column) => column);
+
+  GeneratedColumn<String> get entriesJson => $composableBuilder(
+    column: $table.entriesJson,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get note =>
+      $composableBuilder(column: $table.note, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+}
+
+class $$EncounterTemplatesTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $EncounterTemplatesTable,
+          EncounterTemplate,
+          $$EncounterTemplatesTableFilterComposer,
+          $$EncounterTemplatesTableOrderingComposer,
+          $$EncounterTemplatesTableAnnotationComposer,
+          $$EncounterTemplatesTableCreateCompanionBuilder,
+          $$EncounterTemplatesTableUpdateCompanionBuilder,
+          (
+            EncounterTemplate,
+            BaseReferences<
+              _$AppDatabase,
+              $EncounterTemplatesTable,
+              EncounterTemplate
+            >,
+          ),
+          EncounterTemplate,
+          PrefetchHooks Function()
+        > {
+  $$EncounterTemplatesTableTableManager(
+    _$AppDatabase db,
+    $EncounterTemplatesTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$EncounterTemplatesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$EncounterTemplatesTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$EncounterTemplatesTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> name = const Value.absent(),
+                Value<String> entriesJson = const Value.absent(),
+                Value<String> note = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => EncounterTemplatesCompanion(
+                id: id,
+                name: name,
+                entriesJson: entriesJson,
+                note: note,
+                createdAt: createdAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String name,
+                Value<String> entriesJson = const Value.absent(),
+                Value<String> note = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => EncounterTemplatesCompanion.insert(
+                id: id,
+                name: name,
+                entriesJson: entriesJson,
+                note: note,
+                createdAt: createdAt,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$EncounterTemplatesTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $EncounterTemplatesTable,
+      EncounterTemplate,
+      $$EncounterTemplatesTableFilterComposer,
+      $$EncounterTemplatesTableOrderingComposer,
+      $$EncounterTemplatesTableAnnotationComposer,
+      $$EncounterTemplatesTableCreateCompanionBuilder,
+      $$EncounterTemplatesTableUpdateCompanionBuilder,
+      (
+        EncounterTemplate,
+        BaseReferences<
+          _$AppDatabase,
+          $EncounterTemplatesTable,
+          EncounterTemplate
+        >,
+      ),
+      EncounterTemplate,
+      PrefetchHooks Function()
+    >;
+typedef $$MacrosTableCreateCompanionBuilder =
+    MacrosCompanion Function({
+      required String id,
+      required String name,
+      required String expression,
+      Value<String?> characterId,
+      Value<int> sortOrder,
+      Value<DateTime> createdAt,
+      Value<int> rowid,
+    });
+typedef $$MacrosTableUpdateCompanionBuilder =
+    MacrosCompanion Function({
+      Value<String> id,
+      Value<String> name,
+      Value<String> expression,
+      Value<String?> characterId,
+      Value<int> sortOrder,
+      Value<DateTime> createdAt,
+      Value<int> rowid,
+    });
+
+class $$MacrosTableFilterComposer
+    extends Composer<_$AppDatabase, $MacrosTable> {
+  $$MacrosTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get name => $composableBuilder(
+    column: $table.name,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get expression => $composableBuilder(
+    column: $table.expression,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get sortOrder => $composableBuilder(
+    column: $table.sortOrder,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$MacrosTableOrderingComposer
+    extends Composer<_$AppDatabase, $MacrosTable> {
+  $$MacrosTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get name => $composableBuilder(
+    column: $table.name,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get expression => $composableBuilder(
+    column: $table.expression,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get sortOrder => $composableBuilder(
+    column: $table.sortOrder,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$MacrosTableAnnotationComposer
+    extends Composer<_$AppDatabase, $MacrosTable> {
+  $$MacrosTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get name =>
+      $composableBuilder(column: $table.name, builder: (column) => column);
+
+  GeneratedColumn<String> get expression => $composableBuilder(
+    column: $table.expression,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get sortOrder =>
+      $composableBuilder(column: $table.sortOrder, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+}
+
+class $$MacrosTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $MacrosTable,
+          Macro,
+          $$MacrosTableFilterComposer,
+          $$MacrosTableOrderingComposer,
+          $$MacrosTableAnnotationComposer,
+          $$MacrosTableCreateCompanionBuilder,
+          $$MacrosTableUpdateCompanionBuilder,
+          (Macro, BaseReferences<_$AppDatabase, $MacrosTable, Macro>),
+          Macro,
+          PrefetchHooks Function()
+        > {
+  $$MacrosTableTableManager(_$AppDatabase db, $MacrosTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$MacrosTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$MacrosTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$MacrosTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> name = const Value.absent(),
+                Value<String> expression = const Value.absent(),
+                Value<String?> characterId = const Value.absent(),
+                Value<int> sortOrder = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => MacrosCompanion(
+                id: id,
+                name: name,
+                expression: expression,
+                characterId: characterId,
+                sortOrder: sortOrder,
+                createdAt: createdAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String name,
+                required String expression,
+                Value<String?> characterId = const Value.absent(),
+                Value<int> sortOrder = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => MacrosCompanion.insert(
+                id: id,
+                name: name,
+                expression: expression,
+                characterId: characterId,
+                sortOrder: sortOrder,
+                createdAt: createdAt,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$MacrosTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $MacrosTable,
+      Macro,
+      $$MacrosTableFilterComposer,
+      $$MacrosTableOrderingComposer,
+      $$MacrosTableAnnotationComposer,
+      $$MacrosTableCreateCompanionBuilder,
+      $$MacrosTableUpdateCompanionBuilder,
+      (Macro, BaseReferences<_$AppDatabase, $MacrosTable, Macro>),
+      Macro,
+      PrefetchHooks Function()
+    >;
+typedef $$DowntimeActivitiesTableCreateCompanionBuilder =
+    DowntimeActivitiesCompanion Function({
+      required String id,
+      Value<String?> characterId,
+      Value<String> kind,
+      required String title,
+      Value<String> notes,
+      Value<int> days,
+      Value<int?> startDay,
+      Value<String> outcome,
+      Value<bool> done,
+      Value<DateTime> createdAt,
+      Value<int> rowid,
+    });
+typedef $$DowntimeActivitiesTableUpdateCompanionBuilder =
+    DowntimeActivitiesCompanion Function({
+      Value<String> id,
+      Value<String?> characterId,
+      Value<String> kind,
+      Value<String> title,
+      Value<String> notes,
+      Value<int> days,
+      Value<int?> startDay,
+      Value<String> outcome,
+      Value<bool> done,
+      Value<DateTime> createdAt,
+      Value<int> rowid,
+    });
+
+class $$DowntimeActivitiesTableFilterComposer
+    extends Composer<_$AppDatabase, $DowntimeActivitiesTable> {
+  $$DowntimeActivitiesTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get kind => $composableBuilder(
+    column: $table.kind,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get title => $composableBuilder(
+    column: $table.title,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get days => $composableBuilder(
+    column: $table.days,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get startDay => $composableBuilder(
+    column: $table.startDay,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get outcome => $composableBuilder(
+    column: $table.outcome,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get done => $composableBuilder(
+    column: $table.done,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$DowntimeActivitiesTableOrderingComposer
+    extends Composer<_$AppDatabase, $DowntimeActivitiesTable> {
+  $$DowntimeActivitiesTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get kind => $composableBuilder(
+    column: $table.kind,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get title => $composableBuilder(
+    column: $table.title,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get days => $composableBuilder(
+    column: $table.days,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get startDay => $composableBuilder(
+    column: $table.startDay,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get outcome => $composableBuilder(
+    column: $table.outcome,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get done => $composableBuilder(
+    column: $table.done,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$DowntimeActivitiesTableAnnotationComposer
+    extends Composer<_$AppDatabase, $DowntimeActivitiesTable> {
+  $$DowntimeActivitiesTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get kind =>
+      $composableBuilder(column: $table.kind, builder: (column) => column);
+
+  GeneratedColumn<String> get title =>
+      $composableBuilder(column: $table.title, builder: (column) => column);
+
+  GeneratedColumn<String> get notes =>
+      $composableBuilder(column: $table.notes, builder: (column) => column);
+
+  GeneratedColumn<int> get days =>
+      $composableBuilder(column: $table.days, builder: (column) => column);
+
+  GeneratedColumn<int> get startDay =>
+      $composableBuilder(column: $table.startDay, builder: (column) => column);
+
+  GeneratedColumn<String> get outcome =>
+      $composableBuilder(column: $table.outcome, builder: (column) => column);
+
+  GeneratedColumn<bool> get done =>
+      $composableBuilder(column: $table.done, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+}
+
+class $$DowntimeActivitiesTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $DowntimeActivitiesTable,
+          DowntimeActivity,
+          $$DowntimeActivitiesTableFilterComposer,
+          $$DowntimeActivitiesTableOrderingComposer,
+          $$DowntimeActivitiesTableAnnotationComposer,
+          $$DowntimeActivitiesTableCreateCompanionBuilder,
+          $$DowntimeActivitiesTableUpdateCompanionBuilder,
+          (
+            DowntimeActivity,
+            BaseReferences<
+              _$AppDatabase,
+              $DowntimeActivitiesTable,
+              DowntimeActivity
+            >,
+          ),
+          DowntimeActivity,
+          PrefetchHooks Function()
+        > {
+  $$DowntimeActivitiesTableTableManager(
+    _$AppDatabase db,
+    $DowntimeActivitiesTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$DowntimeActivitiesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$DowntimeActivitiesTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$DowntimeActivitiesTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String?> characterId = const Value.absent(),
+                Value<String> kind = const Value.absent(),
+                Value<String> title = const Value.absent(),
+                Value<String> notes = const Value.absent(),
+                Value<int> days = const Value.absent(),
+                Value<int?> startDay = const Value.absent(),
+                Value<String> outcome = const Value.absent(),
+                Value<bool> done = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => DowntimeActivitiesCompanion(
+                id: id,
+                characterId: characterId,
+                kind: kind,
+                title: title,
+                notes: notes,
+                days: days,
+                startDay: startDay,
+                outcome: outcome,
+                done: done,
+                createdAt: createdAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                Value<String?> characterId = const Value.absent(),
+                Value<String> kind = const Value.absent(),
+                required String title,
+                Value<String> notes = const Value.absent(),
+                Value<int> days = const Value.absent(),
+                Value<int?> startDay = const Value.absent(),
+                Value<String> outcome = const Value.absent(),
+                Value<bool> done = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => DowntimeActivitiesCompanion.insert(
+                id: id,
+                characterId: characterId,
+                kind: kind,
+                title: title,
+                notes: notes,
+                days: days,
+                startDay: startDay,
+                outcome: outcome,
+                done: done,
+                createdAt: createdAt,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$DowntimeActivitiesTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $DowntimeActivitiesTable,
+      DowntimeActivity,
+      $$DowntimeActivitiesTableFilterComposer,
+      $$DowntimeActivitiesTableOrderingComposer,
+      $$DowntimeActivitiesTableAnnotationComposer,
+      $$DowntimeActivitiesTableCreateCompanionBuilder,
+      $$DowntimeActivitiesTableUpdateCompanionBuilder,
+      (
+        DowntimeActivity,
+        BaseReferences<
+          _$AppDatabase,
+          $DowntimeActivitiesTable,
+          DowntimeActivity
+        >,
+      ),
+      DowntimeActivity,
+      PrefetchHooks Function()
+    >;
+typedef $$ClocksTableCreateCompanionBuilder =
+    ClocksCompanion Function({
+      required String id,
+      required String name,
+      Value<int> segments,
+      Value<int> filled,
+      Value<String> outcome,
+      Value<String> notes,
+      Value<bool> done,
+      Value<ClockLinkKind> linkKind,
+      Value<String?> linkId,
+      Value<int> sortOrder,
+      Value<DateTime> createdAt,
+      Value<int> rowid,
+    });
+typedef $$ClocksTableUpdateCompanionBuilder =
+    ClocksCompanion Function({
+      Value<String> id,
+      Value<String> name,
+      Value<int> segments,
+      Value<int> filled,
+      Value<String> outcome,
+      Value<String> notes,
+      Value<bool> done,
+      Value<ClockLinkKind> linkKind,
+      Value<String?> linkId,
+      Value<int> sortOrder,
+      Value<DateTime> createdAt,
+      Value<int> rowid,
+    });
+
+class $$ClocksTableFilterComposer
+    extends Composer<_$AppDatabase, $ClocksTable> {
+  $$ClocksTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get name => $composableBuilder(
+    column: $table.name,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get segments => $composableBuilder(
+    column: $table.segments,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get filled => $composableBuilder(
+    column: $table.filled,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get outcome => $composableBuilder(
+    column: $table.outcome,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get done => $composableBuilder(
+    column: $table.done,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnWithTypeConverterFilters<ClockLinkKind, ClockLinkKind, String>
+  get linkKind => $composableBuilder(
+    column: $table.linkKind,
+    builder: (column) => ColumnWithTypeConverterFilters(column),
+  );
+
+  ColumnFilters<String> get linkId => $composableBuilder(
+    column: $table.linkId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get sortOrder => $composableBuilder(
+    column: $table.sortOrder,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$ClocksTableOrderingComposer
+    extends Composer<_$AppDatabase, $ClocksTable> {
+  $$ClocksTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get name => $composableBuilder(
+    column: $table.name,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get segments => $composableBuilder(
+    column: $table.segments,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get filled => $composableBuilder(
+    column: $table.filled,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get outcome => $composableBuilder(
+    column: $table.outcome,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get done => $composableBuilder(
+    column: $table.done,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get linkKind => $composableBuilder(
+    column: $table.linkKind,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get linkId => $composableBuilder(
+    column: $table.linkId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get sortOrder => $composableBuilder(
+    column: $table.sortOrder,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$ClocksTableAnnotationComposer
+    extends Composer<_$AppDatabase, $ClocksTable> {
+  $$ClocksTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get name =>
+      $composableBuilder(column: $table.name, builder: (column) => column);
+
+  GeneratedColumn<int> get segments =>
+      $composableBuilder(column: $table.segments, builder: (column) => column);
+
+  GeneratedColumn<int> get filled =>
+      $composableBuilder(column: $table.filled, builder: (column) => column);
+
+  GeneratedColumn<String> get outcome =>
+      $composableBuilder(column: $table.outcome, builder: (column) => column);
+
+  GeneratedColumn<String> get notes =>
+      $composableBuilder(column: $table.notes, builder: (column) => column);
+
+  GeneratedColumn<bool> get done =>
+      $composableBuilder(column: $table.done, builder: (column) => column);
+
+  GeneratedColumnWithTypeConverter<ClockLinkKind, String> get linkKind =>
+      $composableBuilder(column: $table.linkKind, builder: (column) => column);
+
+  GeneratedColumn<String> get linkId =>
+      $composableBuilder(column: $table.linkId, builder: (column) => column);
+
+  GeneratedColumn<int> get sortOrder =>
+      $composableBuilder(column: $table.sortOrder, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+}
+
+class $$ClocksTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $ClocksTable,
+          Clock,
+          $$ClocksTableFilterComposer,
+          $$ClocksTableOrderingComposer,
+          $$ClocksTableAnnotationComposer,
+          $$ClocksTableCreateCompanionBuilder,
+          $$ClocksTableUpdateCompanionBuilder,
+          (Clock, BaseReferences<_$AppDatabase, $ClocksTable, Clock>),
+          Clock,
+          PrefetchHooks Function()
+        > {
+  $$ClocksTableTableManager(_$AppDatabase db, $ClocksTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$ClocksTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$ClocksTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$ClocksTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> name = const Value.absent(),
+                Value<int> segments = const Value.absent(),
+                Value<int> filled = const Value.absent(),
+                Value<String> outcome = const Value.absent(),
+                Value<String> notes = const Value.absent(),
+                Value<bool> done = const Value.absent(),
+                Value<ClockLinkKind> linkKind = const Value.absent(),
+                Value<String?> linkId = const Value.absent(),
+                Value<int> sortOrder = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => ClocksCompanion(
+                id: id,
+                name: name,
+                segments: segments,
+                filled: filled,
+                outcome: outcome,
+                notes: notes,
+                done: done,
+                linkKind: linkKind,
+                linkId: linkId,
+                sortOrder: sortOrder,
+                createdAt: createdAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String name,
+                Value<int> segments = const Value.absent(),
+                Value<int> filled = const Value.absent(),
+                Value<String> outcome = const Value.absent(),
+                Value<String> notes = const Value.absent(),
+                Value<bool> done = const Value.absent(),
+                Value<ClockLinkKind> linkKind = const Value.absent(),
+                Value<String?> linkId = const Value.absent(),
+                Value<int> sortOrder = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => ClocksCompanion.insert(
+                id: id,
+                name: name,
+                segments: segments,
+                filled: filled,
+                outcome: outcome,
+                notes: notes,
+                done: done,
+                linkKind: linkKind,
+                linkId: linkId,
+                sortOrder: sortOrder,
+                createdAt: createdAt,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$ClocksTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $ClocksTable,
+      Clock,
+      $$ClocksTableFilterComposer,
+      $$ClocksTableOrderingComposer,
+      $$ClocksTableAnnotationComposer,
+      $$ClocksTableCreateCompanionBuilder,
+      $$ClocksTableUpdateCompanionBuilder,
+      (Clock, BaseReferences<_$AppDatabase, $ClocksTable, Clock>),
+      Clock,
+      PrefetchHooks Function()
+    >;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
@@ -41627,6 +45668,8 @@ class $AppDatabaseManager {
   $$BondTypesTableTableManager get bondTypes =>
       $$BondTypesTableTableManager(_db, _db.bondTypes);
   $$NpcsTableTableManager get npcs => $$NpcsTableTableManager(_db, _db.npcs);
+  $$FactionsTableTableManager get factions =>
+      $$FactionsTableTableManager(_db, _db.factions);
   $$LootSetsTableTableManager get lootSets =>
       $$LootSetsTableTableManager(_db, _db.lootSets);
   $$PartyInventoriesTableTableManager get partyInventories =>
@@ -41639,8 +45682,6 @@ class $AppDatabaseManager {
       $$MusicPlaylistsTableTableManager(_db, _db.musicPlaylists);
   $$MusicTracksTableTableManager get musicTracks =>
       $$MusicTracksTableTableManager(_db, _db.musicTracks);
-  $$CharacterNotesTableTableManager get characterNotes =>
-      $$CharacterNotesTableTableManager(_db, _db.characterNotes);
   $$SessionLogEntriesTableTableManager get sessionLogEntries =>
       $$SessionLogEntriesTableTableManager(_db, _db.sessionLogEntries);
   $$CodexPagesTableTableManager get codexPages =>
@@ -41663,4 +45704,14 @@ class $AppDatabaseManager {
       $$ChronicleEventsTableTableManager(_db, _db.chronicleEvents);
   $$CalendarRemindersTableTableManager get calendarReminders =>
       $$CalendarRemindersTableTableManager(_db, _db.calendarReminders);
+  $$ContentSourcesTableTableManager get contentSources =>
+      $$ContentSourcesTableTableManager(_db, _db.contentSources);
+  $$EncounterTemplatesTableTableManager get encounterTemplates =>
+      $$EncounterTemplatesTableTableManager(_db, _db.encounterTemplates);
+  $$MacrosTableTableManager get macros =>
+      $$MacrosTableTableManager(_db, _db.macros);
+  $$DowntimeActivitiesTableTableManager get downtimeActivities =>
+      $$DowntimeActivitiesTableTableManager(_db, _db.downtimeActivities);
+  $$ClocksTableTableManager get clocks =>
+      $$ClocksTableTableManager(_db, _db.clocks);
 }

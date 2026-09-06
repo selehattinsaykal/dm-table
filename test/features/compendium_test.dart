@@ -91,15 +91,15 @@ void main() {
     await tester.tap(find.text('Aboleth'));
     await tester.pumpAndSettle();
 
-    // Stat blogun ayirt edici satirlari. `Armor Class` satiri RichText ile
+    // Stat blogun ayirt edici satirlari. Etiket satirlari RichText ile
     // ciziliyor (etiket kalin, deger normal), o yuzden findRichText gerekli.
+    // Arayuz Turkce oldugu icin etiketler de Turkce.
     expect(
-      find.textContaining('Armor Class', findRichText: true),
+      find.textContaining('İnisiyatif', findRichText: true),
       findsOneWidget,
     );
-    expect(find.text('STR'), findsOneWidget);
     // Efsanevi aksiyonlar karisik listede kaybolmayip kendi bloguna ayrilmali.
-    expect(find.text('Legendary Actions'), findsOneWidget);
+    expect(find.text('Efsanevi Eylemler'), findsOneWidget);
   });
 
   testWidgets('buyu sekmesinde seviye filtresi calisir', (tester) async {
@@ -108,12 +108,12 @@ void main() {
     await tester.tap(find.text('Büyüler'));
     await tester.pumpAndSettle();
 
-    await tester.tap(find.widgetWithText(FilterChip, 'Cantrip'));
+    await tester.tap(find.widgetWithText(FilterChip, 'Ufak Büyü'));
     await tester.pumpAndSettle();
 
-    // Cantrip filtresi acikken hicbir satirda "Level 3" yazmamali.
-    expect(find.textContaining('Level 3'), findsNothing);
-    expect(find.textContaining('Cantrip'), findsWidgets);
+    // Ufak buyu filtresi acikken hicbir satirda "3. Seviye" yazmamali.
+    expect(find.textContaining('3. Seviye'), findsNothing);
+    expect(find.textContaining('Ufak Büyü'), findsWidgets);
   });
 
   testWidgets('buyulu esyada onerilen fiyat isaretlenir', (tester) async {

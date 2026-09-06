@@ -10,6 +10,7 @@ import '../../app/ui/ui.dart';
 import '../../data/backup_repository.dart';
 import '../../data/backup_restore_service.dart';
 import '../../data/campaign/campaign_manager.dart';
+import '../../data/export_service.dart';
 import '../../data/providers.dart';
 import '../../l10n/app_localizations.dart';
 
@@ -71,6 +72,43 @@ class _BackupPageState extends ConsumerState<BackupPage> {
                       ),
                     ),
                   ],
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(height: 16),
+          // Acik bicimler: yedek DEGIL. Yedek yalnizca bu uygulamaya geri
+          // yuklenebiliyor; bunlar her yerde acilir ama geri yuklenmez.
+          Card(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(l10n.exportTitle, style: theme.textTheme.titleMedium),
+                  const SizedBox(height: 4),
+                  Text(l10n.exportHint, style: theme.textTheme.bodySmall),
+                  const SizedBox(height: 16),
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: [
+                      OutlinedButton.icon(
+                        onPressed: _busy
+                            ? null
+                            : () => _exportOpenFormat(markdown: true),
+                        icon: const Icon(Icons.article_outlined),
+                        label: Text(l10n.exportMarkdown),
+                      ),
+                      OutlinedButton.icon(
+                        onPressed: _busy
+                            ? null
+                            : () => _exportOpenFormat(markdown: false),
+                        icon: const Icon(Icons.data_object),
+                        label: Text(l10n.exportJson),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
@@ -169,16 +207,21 @@ class _BackupPageState extends ConsumerState<BackupPage> {
   }
 
   /// Yedegin yazilacagi dosya.
+  Future<File> _destinationFile() =>
+      _saveTarget('zip', L10n.of(context).backupFileType);
+
+  /// Kullanicinin sectigi hedef dosya.
   ///
   /// Android'de uygulamaya ozel dis depolama kullaniliyor: izin istemeden
   /// yazilabiliyor ve kullanici dosya yoneticisiyle ya da USB ile alabiliyor.
-  Future<File> _destinationFile() async {
+  /// Masaustunde normal kaydetme kutusu acilir.
+  Future<File> _saveTarget(String extension, String typeLabel) async {
     final stamp = DateTime.now()
         .toIso8601String()
         .replaceAll(':', '-')
         .split('.')
         .first;
-    final name = 'dm-masasi-$stamp.zip';
+    final name = 'dm-masasi-$stamp.$extension';
 
     if (Platform.isAndroid) {
       final external = await getExternalStorageDirectory();
@@ -189,14 +232,47 @@ class _BackupPageState extends ConsumerState<BackupPage> {
     final location = await getSaveLocation(
       suggestedName: name,
       acceptedTypeGroups: [
-        XTypeGroup(
-          label: L10n.of(context).backupFileType,
-          extensions: const ['zip'],
-        ),
+        XTypeGroup(label: typeLabel, extensions: [extension]),
       ],
     );
     if (location == null) throw const _Cancelled();
     return File(location.path);
+  }
+
+  /// Kayitlar agacini Markdown'a, kampanyayi JSON'a yazar.
+  ///
+  /// Yedekten AYRI bir akis ve bilincli olarak oyle: bu dosyalar geri
+  /// YUKLENMEZ. Amac notlarin bu uygulamaya kilitli kalmamasi.
+  Future<void> _exportOpenFormat({required bool markdown}) async {
+    final l10n = L10n.of(context);
+    setState(() {
+      _busy = true;
+      _message = null;
+      _lastExportPath = null;
+    });
+    try {
+      final service = ExportService(ref.read(databaseProvider));
+      final content = markdown
+          ? await service.codexToMarkdown()
+          : await service.campaignToJsonString();
+      if (!mounted) return;
+      final file = await _saveTarget(
+        markdown ? 'md' : 'json',
+        markdown ? l10n.exportMarkdownType : l10n.exportJsonType,
+      );
+      await file.writeAsString(content);
+      if (!mounted) return;
+      setState(() {
+        _lastExportPath = file.path;
+        _message = l10n.exportDone;
+      });
+    } on _Cancelled {
+      // Kullanici kaydetme kutusunu kapatti; sessizce gec.
+    } on Object catch (e) {
+      if (mounted) setState(() => _message = '$e');
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
   }
 
   /// Dosyayı seçtirip içeriğini okur. Bozuk arşivde mesajı yazar ve `null`

@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../data/db/database.dart';
 import '../../data/db/world_tables.dart';
-import '../../data/pin_visibility.dart';
+import '../../app/theme.dart';
 import '../../l10n/app_localizations.dart';
 import 'world_providers.dart';
 
@@ -30,10 +30,7 @@ class MapView extends ConsumerStatefulWidget {
     this.onTapPin,
     this.onPinSettings,
     this.onMovePin,
-    this.playerView = false,
     this.editing = false,
-    this.accessibleLocations = const {},
-    this.accessibleShops = const {},
     this.route = const [],
     super.key,
   });
@@ -47,37 +44,19 @@ class MapView extends ConsumerStatefulWidget {
 
   /// Bir pine sag tiklandiginda / uzun basildiginda.
   ///
-  /// Dokunmak alt haritaya GIRER; ayarlari (tur, etiket, gorunurluk...)
-  /// duzenlemek icin ayri bir jest gerekiyor — dunya grafigindeki dugum
-  /// menusuyle ayni kalip.
+  /// Dokunmak alt haritaya GIRER; ayarlari (tur, etiket, hedef...) duzenlemek
+  /// icin ayri bir jest gerekiyor — dunya grafigindeki dugum menusuyle ayni
+  /// kalip.
   final void Function(MapPin pin)? onPinSettings;
 
   /// Bir pin surukleyip birakilinca yeni konumu (0..1). Null ise pinler sabit.
   final void Function(MapPin pin, double x, double y)? onMovePin;
 
-  /// Oyuncu gorunumunde gizli pinler hic cizilmez.
-  final bool playerView;
-
-  /// Oyuncunun girebildigi alt yer id'leri ve harita uzerinden erisilebilir
-  /// dukkan id'leri.
-  ///
-  /// Bir pinin oyunculara gorunup gorunmedigi pinin kendi bayragindan
-  /// OKUNAMAZ: yer ve dukkan pinleri hedeflerinin durumuna bakar
-  /// (`data/pin_visibility.dart`). Bu iki kume o hesabi burada da
-  /// yapabilmek icin geliyor -- boylece haritadaki gosterge, dugum
-  /// grafigindeki "oyunculara goster" ile ayni gercegi anlatir.
-  final Set<String> accessibleLocations;
-  final Set<String> accessibleShops;
-
-  /// DM duzenleme modu acik mi.
-  ///
-  /// Kapaliyken harita OYUNCU GORUNUMUNE YAKIN durur: oyunculara kapali
-  /// pinler soluk (hayalet) cizilir, boylece harita oyuncunun gordugu haliyle
-  /// okunur. "Yakin", "ayni" degil: gizli pinler tamamen SILINMEZ, cunku DM
-  /// masada kendi notunu kaybetmemeli — yalnizca geri plana duser.
+  /// Duzenleme modu acik mi.
   ///
   /// Jestlerin kendisi bu bayrakla degil, geri cagrilarin null olmasiyla
-  /// kapatilir (bkz. [onMovePin], [onPinSettings]); bu yalnizca GORSEL ayrim.
+  /// kapatilir (bkz. [onMovePin], [onPinSettings]); bu yalnizca GORSEL ayrim
+  /// (surukleme seridi gibi).
   final bool editing;
 
   /// Harita uzerine cizilecek rota (0..1 oraninda noktalar).
@@ -124,9 +103,7 @@ class _MapViewState extends ConsumerState<MapView> {
   }
 
   Future<void> _load() async {
-    final path = widget.playerView
-        ? widget.location.mapPreviewPath
-        : widget.location.mapImagePath;
+    final path = widget.location.mapImagePath;
     if (path == null) {
       setState(() => _file = null);
       return;
@@ -141,21 +118,9 @@ class _MapViewState extends ConsumerState<MapView> {
     super.dispose();
   }
 
-  /// Pinin oyunculara gercekten gorunup gorunmedigi (pinin kendi bayragi
-  /// tek basina yeterli degil -- bkz. [MapView.accessibleLocations]).
-  bool _visibleToPlayers(MapPin pin) => pinVisibleToPlayers(
-    pin,
-    accessibleLocations: widget.accessibleLocations,
-    accessibleShops: widget.accessibleShops,
-  );
-
   Widget _buildPin(MapPin pin, BoxConstraints constraints) {
-    final visible = _visibleToPlayers(pin);
     final marker = _PinMarker(
       pin: pin,
-      visibleToPlayers: visible,
-      // Goruntuleme modunda oyunculara kapali pinler geri plana duser.
-      ghost: !widget.editing && !visible,
       onTap: widget.onTapPin == null ? null : () => widget.onTapPin!(pin),
       onSettings: widget.onPinSettings == null
           ? null
@@ -214,10 +179,6 @@ class _MapViewState extends ConsumerState<MapView> {
         ? width / height
         : 1.0;
 
-    final visible = widget.playerView
-        ? widget.pins.where((p) => p.revealed).toList()
-        : widget.pins;
-
     return InteractiveViewer(
       transformationController: _controller,
       minScale: 0.5,
@@ -257,7 +218,7 @@ class _MapViewState extends ConsumerState<MapView> {
                         ),
                       ),
                     ),
-                  for (final pin in visible)
+                  for (final pin in widget.pins)
                     Positioned(
                       left:
                           pin.x * constraints.maxWidth -
@@ -357,13 +318,7 @@ class _RoutePainter extends CustomPainter {
 }
 
 class _PinMarker extends StatelessWidget {
-  const _PinMarker({
-    required this.pin,
-    required this.visibleToPlayers,
-    this.ghost = false,
-    this.onTap,
-    this.onSettings,
-  });
+  const _PinMarker({required this.pin, this.onTap, this.onSettings});
 
   static const size = 32.0;
 
@@ -376,19 +331,14 @@ class _PinMarker extends StatelessWidget {
   /// Sag tik (masaustu) / uzun bas (dokunmatik).
   final VoidCallback? onSettings;
 
-  /// Soluk cizim: oyunculara kapali bir pin, goruntuleme modunda. Dokunma
-  /// hedefi kucultulmez — yalnizca opaklik duser (bkz. [MapView.editing]).
-  final bool ghost;
-
-  /// Pin su an oyunculara gorunuyor mu (pinin kendi bayragi DEGIL, gercek
-  /// durum: yer/dukkan pinlerinde hedefin acik olmasi).
-  final bool visibleToPlayers;
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final l10n = L10n.of(context);
-    final color = pinKindColor(pin.kind, theme.colorScheme);
+    final color = pinKindColor(
+      pin.kind,
+      theme.colorScheme,
+      context.fantasyColors,
+    );
 
     final dot = Container(
       width: size,
@@ -396,12 +346,7 @@ class _PinMarker extends StatelessWidget {
       decoration: BoxDecoration(
         color: color,
         shape: BoxShape.circle,
-        border: Border.all(
-          // Gizli pinler kesikli degil, soluk cerceveli: DM bir
-          // bakista neyin oyunculara acik oldugunu gorsun.
-          color: visibleToPlayers ? Colors.white : Colors.white24,
-          width: 2,
-        ),
+        border: Border.all(color: Colors.white, width: 2),
         boxShadow: const [BoxShadow(blurRadius: 4, color: Colors.black54)],
       ),
       child: Icon(pinKindIcon(pin.kind), size: 18, color: Colors.white),
@@ -448,18 +393,12 @@ class _PinMarker extends StatelessWidget {
     );
 
     return Tooltip(
-      // Gizli pin renkle/soluklukla ayrisiyor; anlam YALNIZCA renge
-      // birakilmasin diye ipucu metne de yazilir.
-      message: visibleToPlayers
-          ? pin.label
-          : '${pin.label} · ${l10n.worldPinHiddenFromPlayers}',
+      message: pin.label,
       child: InkWell(
         onTap: onTap,
         onSecondaryTap: onSettings,
         onLongPress: onSettings,
-        // Soluk ama okunur: gizli pin geri plana dusmeli, kaybolmamali —
-        // DM masada kendi notunu secebilmeli.
-        child: ghost ? Opacity(opacity: 0.65, child: marker) : marker,
+        child: marker,
       ),
     );
   }
@@ -478,12 +417,25 @@ IconData pinKindIcon(PinKind kind) => switch (kind) {
 };
 
 /// Pin turunun rengi.
-Color pinKindColor(PinKind kind, ColorScheme scheme) => switch (kind) {
+///
+/// Hepsi TEMA jetonundan geliyor; ham `Colors.indigo`/`Colors.teal` gibi
+/// sabitler kaldirildi. Iki sebeple: o sabitler acik/koyu temaya gore hic
+/// degismiyordu (koyu haritada bogulup, acik haritada cigirtkan duruyorlardi)
+/// ve sicak parsomen paletinin disina dustukleri icin harita yamali
+/// gorunuyordu.
+///
+/// Anlam ayrimi: KAPI olanlar (girilebilen yer) marka kirmizisi, TEHLIKE
+/// hata rengi, BILGI patina, TICARET altin, ODUL ametist, KISI yosun.
+Color pinKindColor(
+  PinKind kind,
+  ColorScheme scheme,
+  AppFantasyColors fantasy,
+) => switch (kind) {
   PinKind.location => scheme.primary,
-  PinKind.place => Colors.indigo,
-  PinKind.note => Colors.blueGrey,
-  PinKind.npc => Colors.teal,
-  PinKind.shop => Colors.amber.shade800,
+  PinKind.place => fantasy.verdigris,
+  PinKind.note => scheme.onSurfaceVariant,
+  PinKind.npc => fantasy.moss,
+  PinKind.shop => fantasy.gold,
   PinKind.encounter => scheme.error,
-  PinKind.treasure => Colors.purple,
+  PinKind.treasure => fantasy.arcane,
 };

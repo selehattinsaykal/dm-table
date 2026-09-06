@@ -8,6 +8,7 @@ import '../../data/db/database.dart';
 import '../../l10n/app_localizations.dart';
 import '../shops/shop_detail_page.dart';
 import '../shops/shop_providers.dart';
+import 'faction_detail_page.dart';
 import 'location_page.dart';
 import 'pick_image_file.dart';
 import 'world_providers.dart';
@@ -131,7 +132,9 @@ class _NpcDetailPageState extends ConsumerState<NpcDetailPage> {
   }
 
   Future<void> _uploadPortrait() async {
-    final picked = await pickImageFile();
+    final picked = await pickImageFile(
+      typeLabel: L10n.of(context).fileTypeImage,
+    );
     if (picked == null) return;
     setState(() => _busy = true);
     try {
@@ -241,6 +244,9 @@ class _NpcDetailPageState extends ConsumerState<NpcDetailPage> {
           if (!_editing && _isEmptyRecord) const EmptyRecordHint(),
           const SizedBox(height: 8),
           _LinksCard(npcId: widget.npcId),
+          // Grafikte kurulan tipli baglar: hangi orgutun uyesi, kimle
+          // dusman. Yer/dukkan baglari yukaridaki kartta.
+          FactionBondsCard(nodeId: widget.npcId),
         ],
       ),
     );

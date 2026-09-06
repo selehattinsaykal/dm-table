@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../app/ui/async_view.dart';
 import '../../app/ui/ui.dart';
 import '../../data/db/database.dart';
+import '../../data/content_tr.dart';
 import '../../data/party_inventory_repository.dart';
 import '../../data/providers.dart';
 import '../../l10n/app_localizations.dart';
@@ -30,7 +31,8 @@ final partyInventoryProvider = StreamProvider.family<PartyInventory?, String>(
 
 /// Ortak parti keseleri listesi (Ganimet sayfasinin ikinci sekmesi).
 ///
-/// Uye oyuncular kendi panellerinden serbestce alir/koyar; DM onayi yoktur.
+/// Partinin ortak esyasi: kesede ne var, kimin uzerinde. Ganimet setleri
+/// buraya bosaltilir, DM buradan tek tek karakterlere dagitir.
 class PartyInventoriesTab extends ConsumerWidget {
   const PartyInventoriesTab({super.key});
 
@@ -387,7 +389,11 @@ class _PartyInventoryEditPageState
                 item.magic ? Icons.auto_awesome : Icons.backpack_outlined,
                 color: item.magic ? theme.colorScheme.tertiary : null,
               ),
-              title: Text(item.name.isEmpty ? l10n.lootUnknownItem : item.name),
+              title: Text(
+                item.name.isEmpty
+                    ? l10n.lootUnknownItem
+                    : itemNameTr(contentNamesTrOf(context, ref), item.name),
+              ),
               subtitle: item.quantity > 1 ? Text('×${item.quantity}') : null,
               trailing: IconButton(
                 icon: const Icon(Icons.close, size: 18),

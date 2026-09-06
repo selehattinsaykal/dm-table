@@ -1,12 +1,9 @@
 {
   "@@locale": "en",
-
   "appTitle": "DM Table",
-
   "navCampaigns": "Campaigns",
   "navCompendium": "Library",
   "navCharacters": "Characters",
-
   "navCompendiumShort": "Library",
   "navCharactersShort": "Chars",
   "navShopsShort": "Shop",
@@ -17,9 +14,11 @@
   "navSettings": "Settings",
   "navLoot": "Loot",
   "navCodex": "Codex",
-
   "navMusic": "Music",
   "musicImport": "Add files",
+  "fileTypeAudio": "Audio",
+  "fileTypeImage": "Image",
+  "fileTypeVideo": "Video",
   "musicNewPlaylist": "New list",
   "musicNewSubList": "New sub-list",
   "musicRenamePlaylist": "Rename list",
@@ -37,7 +36,6 @@
   "musicLoopAll": "Repeat list",
   "musicLoopOne": "Repeat one track",
   "musicMissingFile": "{title} — file not found",
-
   "musicAddLink": "Add from link",
   "musicLinkTitle": "Add music from a link",
   "musicLinkHint": "Paste a YouTube link (or any link yt-dlp supports)",
@@ -51,24 +49,33 @@
   "musicToolNotInstalled": "Not installed",
   "musicToolChecking": "Checking…",
   "musicToolDownloading": "Downloading: {percent}%",
-  "@musicToolDownloading": { "placeholders": { "percent": { "type": "String" } } },
+  "@musicToolDownloading": {
+    "placeholders": {
+      "percent": {
+        "type": "String"
+      }
+    }
+  },
   "musicToolExtracting": "Extracting…",
   "musicToolInstalling": "Installing…",
   "musicToolError": "Error: {message}",
-  "@musicToolError": { "placeholders": { "message": { "type": "String" } } },
+  "@musicToolError": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
   "musicToolMissingHint": "yt-dlp is not installed yet, so links cannot be downloaded. Install it from music settings.",
   "musicOpenSettings": "Open settings",
   "musicLinkBad": "That is not a valid web link.",
   "musicToolMissing": "Download tools not found",
-  "musicToolMissingBody": "YouTube needs yt-dlp. Use the \"Music Download Tools\" panel on the Music page for auto-install, or paste the path below.",
-  "musicToolPath": "Path to yt-dlp (optional)",
   "musicToolInstall": "Installation instructions",
   "musicDownloads": "Downloads",
   "musicDownloadClear": "Clear finished",
   "musicDownloadFailed": "Download failed",
   "musicForbidden": "Access denied (403). This is usually protected or licensed content; if you are sure it is not, check that the tools are up to date.",
   "musicDownloadDone": "Added to library",
-
   "settingsLanguage": "Language",
   "settingsTheme": "Theme",
   "themeDark": "Dark",
@@ -145,7 +152,13 @@
   "encLootInLibrary": "In the library",
   "encLootNotInLibrary": "Not in the library — name only",
   "encLootUnresolvedHint": "{count} item(s) were not found in the library; they go to the bag as names only.",
-  "@encLootUnresolvedHint": { "placeholders": { "count": { "type": "int" } } },
+  "@encLootUnresolvedHint": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "encLootGrant": "Give loot to the party",
   "encLootGranted": "Loot moved to the bag",
   "encLootNoInventory": "Create a party bag from the Loot tab first.",
@@ -225,16 +238,10 @@
   "questDmOnly": "Only you can see this — not shared with players",
   "questCopyPlayer": "Copy player version",
   "questCopyAll": "Copy all",
-  "questSendPlayers": "Send to players",
-  "questSentPlayers": "Sent to players",
-  "questNeedSession": "Open the table from the Session tab first.",
   "navQuests": "Quests",
   "questsNew": "New quest",
   "questsEmpty": "No quests yet. Add one below or send from AI Tools.",
   "questUntitled": "(untitled quest)",
-  "questAcceptedBy": "Accepted",
-  "questRejectedBy": "Declined",
-  "questPending": "Pending",
   "campaignDefaultName": "Main Campaign",
   "campaignExplainer": "Each campaign is its own database file: characters, world, quests, codex and calendar all belong to that campaign. Only one campaign is open at a time.",
   "campaignNew": "New campaign",
@@ -244,15 +251,16 @@
   "campaignActive": "Open campaign",
   "campaignInactive": "Closed",
   "campaignDeleteTitle": "Delete {name}?",
-  "@campaignDeleteTitle": { "placeholders": { "name": { "type": "String" } } },
+  "@campaignDeleteTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "campaignDeleteBody": "This campaign's characters, world, quests, codex and all its images are permanently deleted. This cannot be undone.",
   "campaignDeleted": "Campaign deleted",
   "campaignDeleteLater": "The file is in use right now; the campaign will be deleted on next launch.",
-  "campaignSwitchTitle": "Session is running",
-  "campaignSwitchBody": "Switching campaigns closes the table, disconnects connected players and generates a new join address.",
-  "campaignSwitchPlayers": "Connected players: {names}",
-  "@campaignSwitchPlayers": { "placeholders": { "names": { "type": "String" } } },
-  "campaignSwitchConfirm": "Continue",
   "navCalendar": "Calendar",
   "calendarTabCalendar": "Calendar",
   "calendarTabChronicle": "Chronicle",
@@ -306,7 +314,16 @@
   "calendarSeasons": "Seasons",
   "calendarAddSeason": "Add season",
   "calendarSeasonRange": "{start} — {end}",
-  "@calendarSeasonRange": { "placeholders": { "start": { "type": "String" }, "end": { "type": "String" } } },
+  "@calendarSeasonRange": {
+    "placeholders": {
+      "start": {
+        "type": "String"
+      },
+      "end": {
+        "type": "String"
+      }
+    }
+  },
   "calendarSeasonStart": "Start",
   "calendarSeasonEnd": "End",
   "calendarSeasonWrapHint": "If the end comes before the start, the season wraps around the year (like winter).",
@@ -333,7 +350,13 @@
   "chronicleSearch": "Search the chronicle",
   "chronicleDeleteConfirm": "Delete this event permanently?",
   "chronicleEventsOnDay": "{date}",
-  "@chronicleEventsOnDay": { "placeholders": { "date": { "type": "String" } } },
+  "@chronicleEventsOnDay": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
   "chronicleNoEventsOnDay": "Nothing recorded for this day.",
   "chronicleAddHere": "Add an event on this day",
   "chronicleOnlySecret": "Secret events only",
@@ -342,22 +365,47 @@
   "restEveryone": "Everyone",
   "restShortOpenHint": "The rest is open to the players. Each of them spends as many hit dice as they like from their own panel; you are just watching.",
   "restShortFinish": "End the rest",
-  "restNeedSession": "Open the table from the Session tab first.",
   "restShort": "Short rest",
   "restLong": "Long rest",
   "restHitDiceLeft": "{left} / {total} Hit Dice",
-  "@restHitDiceLeft": { "placeholders": { "left": { "type": "int" }, "total": { "type": "int" } } },
+  "@restHitDiceLeft": {
+    "placeholders": {
+      "left": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "restLongConfirm": "{count} characters will take a long rest: hit points are restored, spell slots return, half their Hit Dice come back and exhaustion drops by 1.",
-  "@restLongConfirm": { "placeholders": { "count": { "type": "int" } } },
+  "@restLongConfirm": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "restAdvanceDay": "Advance the calendar by 1 day",
   "restLoggedLong": "Long rest ({count} characters)",
-  "@restLoggedLong": { "placeholders": { "count": { "type": "int" } } },
-  "restAnnounceLong": "The party took a long rest.",
+  "@restLoggedLong": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "aiToolEncounter": "Encounter generator",
   "encounterEnvironment": "Environment / theme (optional)",
   "encounterEnvironmentHint": "E.g. swamp ruin, glacier pass, harbour warehouse.",
   "encounterBudgetHint": "Target monster XP: {xp}",
-  "@encounterBudgetHint": { "placeholders": { "xp": { "type": "int" } } },
+  "@encounterBudgetHint": {
+    "placeholders": {
+      "xp": {
+        "type": "int"
+      }
+    }
+  },
   "encounterSummary": "Scene",
   "encounterMonsters": "Monsters",
   "encounterTerrain": "Terrain",
@@ -365,37 +413,27 @@
   "encounterCreate": "Turn into combat",
   "encounterFallbackName": "Encounter",
   "encounterCreated": "{name} created as a combat",
-  "@encounterCreated": { "placeholders": { "name": { "type": "String" } } },
+  "@encounterCreated": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "encounterCreatedPartial": "{name} created — not found in the library: {missing}",
-  "@encounterCreatedPartial": { "placeholders": { "name": { "type": "String" }, "missing": { "type": "String" } } },
+  "@encounterCreatedPartial": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "missing": {
+        "type": "String"
+      }
+    }
+  },
   "encounterNoCandidates": "No suitable monsters in the library for this level.",
-  "navChat": "Chat",
-  "chatGeneral": "General",
-  "chatWhisper": "Whisper",
-  "chatPlaceholder": "Type a message...",
-  "chatTo": "To:",
-  "chatDm": "DM",
-  "chatEmpty": "No messages yet. Say something to the table.",
-  "chatNeedSession": "Open the table from the Session tab first.",
-  "presenceTitle": "Players",
-  "presenceDragHint": "Long-press and drag to move",
-  "presenceNoPlayers": "No players connected yet.",
-  "presenceActive": "Active",
-  "presenceAway": "Away",
-  "presenceOffline": "Offline",
-  "lastSeenSeconds": "last seen {n}s ago",
-  "@lastSeenSeconds": { "placeholders": { "n": { "type": "int" } } },
-  "lastSeenMinutes": "last seen {n}m ago",
-  "@lastSeenMinutes": { "placeholders": { "n": { "type": "int" } } },
-  "lastSeenHours": "last seen {n}h ago",
-  "@lastSeenHours": { "placeholders": { "n": { "type": "int" } } },
-  "questNoTargets": "No players selected",
-  "questHide": "Stop showing",
   "questComplete": "Complete",
   "questReopen": "Reopen",
-  "questSharePick": "Show to which players?",
-  "questShow": "Show",
-  "questShared": "Shown to players",
   "questNoCharacters": "Create a character first.",
   "questDelete": "Delete quest",
   "questDeleteConfirm": "Delete this quest permanently?",
@@ -411,20 +449,6 @@
   "aiQuestRewardAuto": "When you send this to Quests, the money and items below become the quest reward and open as a shared loot pool once the quest is completed.",
   "questRealReward": "Actual reward (items + money)",
   "questRealRewardHint": "When you complete the quest this opens as a shared loot pool for the players who accepted it. Whoever takes an item first gets it; the quest closes once the pool is empty.",
-  "questRewardPending": "Reward being claimed",
-  "questRewardItemCount": "{count} items",
-  "@questRewardItemCount": { "placeholders": { "count": { "type": "int" } } },
-  "questShareSection": "Show to players",
-  "questModeIndividual": "Individual accept",
-  "questModeVote": "Party vote",
-  "questModeIndividualHint": "Each player you pick accepts or declines the quest on their own.",
-  "questModeVoteHint": "The players you pick vote. If 50% or more accept, everyone gets the quest; below that nobody does.",
-  "questStartVote": "Start vote",
-  "questVoteStarted": "Vote started",
-  "questVoteOngoing": "Vote in progress",
-  "questVotePassed": "Vote passed — party took it",
-  "questVoteFailed": "Vote failed — nobody took it",
-
   "compendiumMonsters": "Monsters",
   "compendiumSpells": "Spells",
   "compendiumItems": "Items",
@@ -432,22 +456,26 @@
   "compendiumFeats": "Feats",
   "compendiumSpecies": "Species",
   "compendiumBackgrounds": "Backgrounds",
-
-  "searchHint": "Search...",
+  "searchHint": "Monster, spell, item, character, place, quest, page, track…",
   "filters": "Filters",
   "clearFilters": "Clear filters",
   "noResults": "No results",
-
   "filterSchool": "School",
   "filterRarity": "Rarity",
-
-
+  "filterConcentration": "Concentration",
+  "filterRitual": "Ritual",
+  "filterAttunement": "Attunement",
+  "sourcebookSrd": "SRD 5.2",
+  "sourcebookPhb": "Player's Handbook 2024",
+  "sourcebookMm": "Monster Manual 2024",
+  "sourcebookEberron": "Eberron: Forge of the Artificer",
+  "sourcebookRavenloft": "Ravenloft: The Horrors Within",
+  "sourcebookFaerun": "Forgotten Realms: Heroes of Faerûn",
   "importTitle": "Preparing content",
   "importSubtitle": "The rules library is being set up for the first time; this happens once.",
   "importStepWriting": "Writing to database: {table}",
   "importFailed": "Content setup failed",
   "retry": "Retry",
-
   "cancel": "Cancel",
   "save": "Save",
   "delete": "Delete",
@@ -457,10 +485,8 @@
   "ok": "OK",
   "create": "Create",
   "remove": "Remove",
-
   "licenseTitle": "Content licenses",
   "licenseBody": "The rules content in this app comes from the System Reference Document 5.2 (CC-BY 4.0) and openly licensed sets distributed via Open5e. Content you import from your personal library is stored only on this device.",
-
   "sheetTitleFallback": "Character",
   "sheetRollDice": "Roll dice",
   "sheetLevelUp": "Level up",
@@ -486,6 +512,28 @@
   "sheetPassivePerception": "Passive Perception",
   "sheetCarry": "Carry",
   "sheetSavingThrows": "Saving throws",
+  "sheetProficiencies": "Proficiencies",
+  "sheetArmorTraining": "Armor training",
+  "sheetWeaponProficiencies": "Weapon proficiencies",
+  "sheetToolProficiencies": "Tool proficiencies",
+  "sheetLanguages": "Languages",
+  "sheetWeaponMastery": "Weapon masteries",
+  "sheetNoProficiencies": "None",
+  "sheetAddProficiency": "Add",
+  "sheetProficiencyPending": "{count} choice(s) pending",
+  "sheetProficiencySourceHint": "Class, background and feat entries are derived automatically; anything you add by hand is kept.",
+  "sheetPickTool": "Choose a tool",
+  "sheetPickLanguage": "Choose a language",
+  "sheetPickWeapon": "Choose a weapon",
+  "sheetArmorPenalty": "Armor you lack training with: Disadvantage on Strength and Dexterity checks and saves, and you can't cast spells.",
+  "sheetShieldPenalty": "Shield you lack training with: the same penalty applies.",
+  "@sheetProficiencyPending": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "sheetSkills": "Skills",
   "sheetSpellSlots": "Spell slots",
   "sheetStatus": "Status",
@@ -499,10 +547,36 @@
   "sheetAddItem": "Add item",
   "sheetEquip": "Equip",
   "sheetUnequip": "Unequip",
+  "sheetGear": "Gear",
+  "sheetGearTab": "Equipped",
+  "sheetBagTab": "Bag",
+  "sheetSlotEmpty": "Empty",
+  "sheetBagAllEquipped": "Everything in the bag is equipped.",
+  "sheetSlotFull": "The {slot} slot is full ({limit}). Unequip something or raise the limit.",
+  "sheetSlotLimit": "Limit: {limit}",
+  "sheetSlotUnlimited": "Unlimited",
+  "sheetSlotEditLimit": "Edit slot limit",
+  "sheetSlotLimitTitle": "{slot} limit",
+  "sheetSlotLimitHint": "How many can be worn at once? Pick unlimited for no cap.",
+  "sheetSlotDefault": "Reset to default",
+  "sheetSlotChange": "Change slot",
+  "sheetSlotHead": "Head",
+  "sheetSlotArmor": "Armor",
+  "sheetSlotCloak": "Cloak",
+  "sheetSlotGloves": "Gloves",
+  "sheetSlotBoots": "Boots",
+  "sheetSlotBelt": "Belt",
+  "sheetSlotAmulet": "Amulet",
+  "sheetSlotRing": "Ring",
+  "sheetSlotMainHand": "Main hand",
+  "sheetSlotOffHand": "Off hand",
+  "sheetSlotOther": "Other",
   "sheetItemTab": "Item",
   "sheetMagicTab": "Magic",
   "sheetCustomTab": "Custom",
   "sheetItemName": "Item name",
+  "sheetItemType": "Item type",
+  "sheetItemTypeAuto": "Automatic (guess from name)",
   "sheetPurse": "Purse",
   "sheetRest": "Rest",
   "sheetShortRest": "Short rest (hit die)",
@@ -529,7 +603,6 @@
   "sheetIdeal": "Ideal",
   "sheetBond": "Bond",
   "sheetFlaw": "Flaw",
-
   "combatNewEncounter": "New encounter",
   "combatPreparing": "Preparing",
   "combatEncounterName": "Encounter",
@@ -595,10 +668,8 @@
   "combatAwardXpConfirm": "Give {total} XP to {players} players ({each} each)?",
   "combatAwardXpDone": "XP awarded ({each} each).",
   "logXpAwarded": "Encounter XP: {total} → {players} players ({each} each)",
-
   "worldNpcs": "NPCs",
   "worldNewLocation": "New location",
-  "worldShowToPlayers": "Show to players",
   "worldAddChild": "Add sub-location",
   "worldRename": "Rename",
   "worldDeleteConfirmBody": "This place and all its sub-locations, pins and maps will be permanently deleted.",
@@ -619,13 +690,10 @@
   "editModeOff": "View mode — tap to edit",
   "editModeEmptyRecord": "This record is still empty. Turn on edit mode to fill it in.",
   "editModeDiscard": "Discard",
-  "worldPinHiddenFromPlayers": "Hidden from players",
-  "worldPinVisibleToPlayers": "Visible to players",
   "worldNoMap": "No map",
   "worldNoMapHint": "After uploading a map you can place pins on it and enter sub-locations from them.",
   "worldNoMapViewModeHint": "Turn on edit mode to upload a map.",
   "worldMapNotFound": "Map file not found.",
-
   "travelTitle": "Travel",
   "travelScaleTitle": "Map scale",
   "travelScaleHint": "Enter how many miles across the map is in the real world. Distances between pins are derived from this.",
@@ -655,7 +723,6 @@
   "travelConfirmTitle": "Apply journey",
   "travelConfirmBody": "{route}\n\n{miles} miles — {duration}",
   "travelAdvanceCalendar": "Advance calendar {days} days",
-  "travelAnnounce": "The party travelled for {days} days.",
   "travelPlanAction": "Plan travel",
   "travelDrawRoute": "Draw route on map",
   "travelDrawRouteHint": "Tap the map to add a stop; tapping a pin turns it into a stop. At least two stops are needed.",
@@ -718,8 +785,6 @@
   "worldPinType": "Type",
   "worldPinNote": "Note",
   "worldPinNoteHint": "Only you see it; if you reveal the pin, players do too.",
-  "worldPinRevealLocationHint": "When off, the pin is visible only to you. When on, players can tap it to enter that place's map (if it has one).",
-  "worldPinRevealHint": "When off, the pin is visible only to you.",
   "worldKindLocation": "Sub-location",
   "worldKindPlace": "Location",
   "worldPinPlaceHint": "A place without its own map: you cannot enter it, but it is recorded as a location and shows up in quests, travel and location pickers. Write what the players should learn about it below.",
@@ -738,20 +803,12 @@
   "worldTargetNoEncounters": "No encounters yet. Create one from the Combat tab.",
   "worldTargetLink": "Record to link",
   "worldDeleteConfirmTitle": "Delete {name}?",
-
   "sessionBackup": "Backup",
-  "sessionCloseTable": "Close session",
   "sessionLogTitle": "Session log",
   "sessionLogAdd": "Add note",
   "sessionLogClear": "Clear",
   "sessionLogClearConfirm": "Permanently clear the whole log?",
   "sessionLogEmpty": "No entries yet. XP awards and notes accumulate here.",
-  "sessionHandoutCaption": "Image caption (optional)",
-  "sessionHandoutShow": "Show image",
-  "sessionHandoutClear": "Remove image",
-  "sessionHandoutShared": "Image shown to players.",
-  "sessionHandoutCleared": "Image removed.",
-
   "codexNewPage": "New page",
   "codexUntitled": "Untitled",
   "codexAddSubpage": "Add subpage",
@@ -806,33 +863,123 @@
   "codexTableRemoveColumn": "Remove column",
   "codexImageCaption": "Caption (optional)",
   "codexLinkTargetPage": "Target page",
+  "codexAppearance": "Appearance",
+  "codexWidth": "Width",
+  "codexAlign": "Alignment",
+  "codexAlignLeft": "Left",
+  "codexAlignCenter": "Center",
+  "codexAlignRight": "Right",
+  "codexHeight": "Height",
+  "codexHeightAuto": "Auto",
+  "codexResizeHint": "Tip: in edit mode you can resize blocks by dragging their edges.",
+  "codexResetSize": "Reset size",
+  "codexDuplicate": "Duplicate",
+  "codexMoveUp": "Move up",
+  "codexMoveDown": "Move down",
+  "codexBlockSearch": "Search blocks",
+  "codexGroupText": "Text",
+  "codexGroupData": "Data",
+  "codexGroupMedia": "Media",
+  "codexGroupLinks": "Links",
+  "codexTextSize": "Text size",
+  "codexDropCap": "Drop cap",
+  "codexTone": "Tone",
+  "codexToneNeutral": "Plain",
+  "codexToneInfo": "Info",
+  "codexToneSuccess": "Positive",
+  "codexToneWarning": "Warning",
+  "codexToneDanger": "Danger",
+  "codexToneArcane": "Arcane",
+  "codexToneGold": "Gold",
+  "codexHeadingRule": "Rule below",
+  "codexListOrdered": "Numbered",
+  "codexListMarker": "Bullet",
+  "codexListDense": "Tight spacing",
+  "codexChecklistProgress": "Progress bar",
+  "codexChecklistStrike": "Strike through done items",
+  "codexChecklistDone": "{done}/{total} done",
+  "codexCalloutBorder": "Border",
+  "codexDividerStyle": "Divider style",
+  "codexDividerOrnament": "Ornament",
+  "codexDividerLine": "Line",
+  "codexDividerDashed": "Dashed",
+  "codexDividerThick": "Thick",
+  "codexDividerDots": "Dots",
+  "codexDividerSpace": "Space",
+  "codexMediaFit": "Fit",
+  "codexFitContain": "Contain",
+  "codexFitCover": "Cover",
+  "codexFitFill": "Stretch",
+  "codexCornerRadius": "Corner radius",
+  "codexMediaFrame": "Frame",
+  "codexImageFullscreen": "Full screen",
+  "codexImageMissing": "Image file missing",
+  "codexVideoLoop": "Loop",
+  "codexVideoMuted": "Muted",
+  "codexTableZebra": "Striped rows",
+  "codexTableDense": "Compact",
+  "codexTableBorders": "Borders",
+  "codexChartType": "Chart type",
+  "codexChartBar": "Horizontal bars",
+  "codexChartColumn": "Columns",
+  "codexChartLine": "Line",
+  "codexChartArea": "Area",
+  "codexChartPie": "Pie",
+  "codexChartDonut": "Donut",
+  "codexChartRadar": "Radar",
+  "codexChartStacked": "Stacked",
+  "codexChartPalette": "Palette",
+  "codexPaletteTheme": "Theme",
+  "codexPaletteBrass": "Brass",
+  "codexPaletteJewel": "Jewel",
+  "codexPaletteEmber": "Ember",
+  "codexPaletteForest": "Forest",
+  "codexPaletteMono": "Monochrome",
+  "codexChartShowValues": "Values",
+  "codexChartShowGrid": "Grid",
+  "codexChartShowLegend": "Legend",
+  "codexChartSort": "Sort by value",
+  "codexChartEmpty": "No data yet.",
+  "codexChartRadarHint": "Radar needs at least three items.",
+  "codexBlockCounter": "Counter",
+  "codexCounterEmpty": "No counters.",
+  "codexCounterAdd": "Add counter",
+  "codexCounterValue": "Value",
+  "codexCounterMin": "Min",
+  "codexCounterMax": "Max",
+  "codexCounterStep": "Step",
+  "codexCounterStyle": "Style",
+  "codexCounterStyleRow": "Rows",
+  "codexCounterStyleTile": "Tiles",
+  "codexCounterStyleChip": "Chips",
+  "codexCounterHint": "Tap: type a value - Long press: reset",
+  "codexBlockTimer": "Timer",
+  "codexTimerMode": "Direction",
+  "codexTimerCountdown": "Countdown",
+  "codexTimerStopwatch": "Stopwatch",
+  "codexTimerDuration": "Duration",
+  "codexTimerMinutes": "Minutes",
+  "codexTimerSeconds": "Seconds",
+  "codexTimerStart": "Start",
+  "codexTimerPause": "Pause",
+  "codexTimerReset": "Reset",
+  "codexTimerAddMinute": "Add a minute",
+  "codexTimerDone": "Time is up.",
+  "codexTimerFinished": "“{title}” has finished.",
+  "codexTimerOpen": "Open",
+  "codexTimerAlarm": "Alert when finished",
+  "codexTimerLoop": "Restart when finished",
+  "codexTimerStyleDigits": "Digits",
+  "codexTimerStyleBar": "Bar",
+  "codexTimerStyleRing": "Ring",
+  "codexTimerRunningHint": "The timer keeps running after you leave the page.",
+  "codexChipStyle": "Appearance",
+  "codexChipStyleChip": "Chip",
+  "codexChipStyleButton": "Button",
+  "codexChipStyleCard": "Card",
+  "codexEmbedCompact": "Compact",
+  "codexTitleOptional": "Title (optional)",
   "codexLinkLabel": "Label (optional)",
-  "sessionOpenTable": "Open the table",
-  "sessionStartHint": "While on the same Wi-Fi network, players can paste the link on a computer or phone, or scan the QR code, and connect from the browser. No app install, account, or internet needed.",
-  "sessionStartServer": "Start server",
-  "sessionAddressCopied": "Address copied",
-  "sessionCopyAddress": "Copy address",
-  "sessionReject": "Reject",
-  "sessionApprove": "Approve",
-  "sessionDmTools": "DM tools",
-  "sessionTarget": "Target",
-  "sessionEveryone": "Everyone",
-  "sessionAnnouncement": "Announcement / message",
-  "sessionSend": "Send",
-  "sessionAnnouncementSent": "Announcement sent.",
-  "sessionAbility": "Ability",
-  "sessionRequestSave": "Request save",
-  "sessionSaveRequested": "Saving throw requested.",
-  "sessionGold": "Gold",
-  "sessionItemsCsv": "Items (comma-separated)",
-  "sessionGiveLoot": "Give loot",
-  "sessionLootOffered": "Loot offered.",
-  "sessionNobodyConnected": "Nobody has connected yet.",
-  "sessionNoCharacter": "No character chosen",
-  "sessionHasCharacter": "Claimed a character",
-  "sessionPurchaseRequests": "Purchase request ({count})",
-  "sessionConnectedPlayers": "Connected players ({count})",
-
   "charactersTabParty": "Party",
   "charactersTabSharedInventory": "Shared inventory",
   "charactersNew": "New character",
@@ -840,7 +987,6 @@
   "charactersEmpty": "No characters yet",
   "charactersEmptyHint": "Create your first character with the button at the bottom right.",
   "charactersDeleteConfirm": "“{name}” will be permanently deleted. Are you sure?",
-
   "compendiumCreateMonster": "Create monster",
   "compendiumImportImages": "Import images",
   "compendiumImportHint": "Choose a folder; images whose file name matches a monster name (e.g. Goblin.png) are assigned automatically. Your own images only.",
@@ -858,9 +1004,17 @@
   "compendiumStrengthReq": "Strength req.",
   "compendiumStealth": "Stealth",
   "compendiumDisadvantage": "Disadvantage",
+  "compendiumAcPlusDex": " + Dex",
+  "compendiumAcMaxDex": " (max {max})",
+  "@compendiumAcMaxDex": {
+    "placeholders": {
+      "max": {
+        "type": "int"
+      }
+    }
+  },
   "compendiumSuggested": "suggested",
   "compendiumMagicPriceHint": "The SRD doesn't publish prices for magic items; this value is suggested by rarity and can be changed when setting up a shop.",
-
   "levelUpNoClass": "The character has no class.",
   "levelUpNewClass": "new class",
   "levelUpFeaturesGained": "Features gained",
@@ -875,11 +1029,9 @@
   "levelUpFixed": "Fixed {avg}",
   "levelUpRolled": "Roll: {n}",
   "levelUpAbilityHint": "+2 to one ability or +1 to two. Remaining: {remaining}",
-
   "lootNewSet": "New set",
   "lootEmpty": "No loot sets yet. Prepare a set with items and money, then offer it to players with a single tap at the table.",
   "lootEmptyLabel": "Empty",
-  "lootShow": "Show",
   "lootSetTitle": "Loot set",
   "lootSetName": "Set name",
   "lootMoney": "Money",
@@ -890,7 +1042,6 @@
   "lootAddFromCompendium": "Add from catalog",
   "lootItemCount": "{count} items",
   "lootUnknownItem": "Unknown item",
-
   "navTables": "Tables",
   "navTablesShort": "Tables",
   "tablesTabTables": "Tables",
@@ -972,7 +1123,6 @@
   "nameCultureTome": "Book / tome",
   "nameCultureFestival": "Festival",
   "nameCultureEpithet": "Title / epithet",
-
   "aiToolTable": "Table",
   "aiTableTopic": "Topic / theme",
   "aiTableTopicHint": "e.g. random events in a swamp, rumours in a port city",
@@ -999,8 +1149,6 @@
   "partyInventoryCoins": "Coins",
   "partyInventoryItems": "Items",
   "partyInventoryDeleteConfirm": "Delete the purse “{name}”? Its contents go too.",
-  "lootOffered": "“{name}” offered to players.",
-
   "shopsNew": "New shop",
   "shopsOpen": "Open to players",
   "shopsClosed": "Closed",
@@ -1012,7 +1160,6 @@
   "shopsOwnerNpcNone": "None (free text)",
   "shopsEmpty": "No shops",
   "shopsEmptyHint": "Build a shop by picking items from the library, then open it to players.",
-
   "formName": "Name",
   "formDescription": "Description",
   "formLevel": "Level",
@@ -1022,14 +1169,20 @@
   "formClasses": "Classes",
   "formClassesFailed": "Could not load class list.",
   "formHigherLevel": "At higher level (optional)",
+  "spellHigherLevelSlot": "Using a Higher-Level Spell Slot. ",
+  "formCastingTime": "Casting time",
+  "formCantrip": "Cantrip",
+  "formActionDescHint": "Melee Attack Roll: +5, reach 5 ft. 8 (1d10 + 3) Piercing damage.",
   "formCastingTimeHint": "e.g. 1 action",
   "formRangeHint": "e.g. 60 feet",
   "formDurationHint": "e.g. Instantaneous",
   "formMaterialHint": "e.g. a pinch of sulfur",
-
   "ccAddSpecies": "Add species",
   "ccSpeciesName": "Species name",
   "ccSize": "Size",
+  "ccSizeSmall": "Small",
+  "ccSizeMedium": "Medium",
+  "ccSizeLarge": "Large",
   "ccSpeed": "Speed (feet)",
   "ccTraits": "Traits (free text)",
   "ccSubclassName": "Subclass name",
@@ -1042,13 +1195,11 @@
   "ccAddSubclass": "Add {className} subclass",
   "ccAbilities3": "Abilities — exactly 3 ({count}/3)",
   "ccSkills2": "Skills — exactly 2 ({count}/2)",
-
   "ciMagicPrice": "Price (suggested by rarity if left blank)",
   "ciAttunement": "Requires attunement",
   "ciFreeStock": "Free line",
   "ciFreeStockHint": "Visible only in this shop, not saved to the library.",
   "ciQuantity": "Quantity (-1 unlimited)",
-
   "mcType": "Type",
   "mcArmorClass": "Armor class",
   "mcSpeedFt": "Speed (ft)",
@@ -1065,7 +1216,6 @@
   "mcAddAction": "Add action",
   "mcActionNameHint": "e.g. Bite",
   "mcCrBreakdown": "Defense CR {defensive} · Offense CR {offensive}",
-
   "seShortDesc": "Short description (optional)",
   "seFeaturesHint": "What is gained at which level. These come automatically on level-up and appear on the character sheet.",
   "seNoFeatures": "No features added yet.",
@@ -1086,7 +1236,6 @@
   "seValueHint": "e.g. 4  or  1d8",
   "seSubclassOf": "{className} subclass",
   "seLevelArrow": "lvl {level} → {value}",
-
   "sdAddFromLibrary": "Add from library",
   "sdCreateOwnItem": "Create your own item",
   "sdCreateOwnMagic": "Create your own magic item",
@@ -1094,14 +1243,8 @@
   "sdStockEmpty": "Stock is empty. Add items from the buttons at the top right.",
   "sdPriceMultiplier": "Price multiplier",
   "sdPriceMultiplierHint": "Applied to list prices. Lower it when haggling, raise it in a remote town.",
-  "sdOpenToPlayers": "Open to players",
-  "sdOpenHint": "When on, this shop appears in players' panels. Only one shop can be open at a time.",
-  "sdMapAccessible": "Accessible from map",
-  "sdMapAccessibleHint": "When on, players can open this shop by tapping its pin on a visible map. Multiple shops can be accessible at once.",
   "sdClosed": "Shop closed",
   "sdClosedHint": "When closed, players see “shop closed” on tap; items aren't listed and can't be bought.",
-  "sdRequireApproval": "Require purchase approval",
-  "sdRequireApprovalHint": "When off, players buy directly; their gold and the stock drop immediately.",
   "sdUnlimited": "unlimited",
   "sdEditPrice": "Edit price",
   "sdEditQuantity": "Edit quantity",
@@ -1122,7 +1265,6 @@
   "sdPieces": "{count} pcs",
   "sdPriceTitle": "{name} — price",
   "sdQtyTitle": "{name} — quantity",
-
   "cwStepIdentity": "Identity and species",
   "cwStepBackground": "Background",
   "cwStepClass": "Class",
@@ -1153,23 +1295,12 @@
   "cwPointBuy": "Point buy",
   "cwStandardArray": "Standard array",
   "cwManual": "Manual",
-
   "sheetUnknownItem": "Unknown item",
-  "pfInvalidQuantity": "Invalid quantity.",
-  "pfItemNotFound": "Item not found.",
-  "pfShopNotFound": "Shop not found.",
-  "pfShopClosed": "The shop is currently closed.",
-  "pfSoldOut": "This item is sold out.",
-  "pfCharacterNotFound": "Character not found.",
-  "pfRequestNotFound": "Request not found.",
-  "pfOnlyNLeft": "Only {n} left in stock.",
-  "pfNotEnoughGold": "Not enough gold: {need} needed, you have {have}.",
   "cwPointsRemaining": "Points remaining: {n}",
   "cwChooseMoreSkills": "Choose {n} more skills from your class",
   "cwFromBackground": "Already from your background: {skills}",
   "cwOption": "Option {label}",
   "cwBackgroundPrefix": "Background: {desc}",
-
   "backupExport": "Create a backup",
   "backupExportHint": "Characters, NPCs, worlds, Codex notes, player notes, inventories, quests, session log and content you added are written to a single file. Images are embedded in the file itself, not just referenced. The rules library (SRD) is not included — the app already carries it internally.",
   "backupCreateFile": "Create backup file",
@@ -1233,15 +1364,18 @@
   "backupLabelMusicTracks": "Music tracks",
   "backupLabelSpells": "Spells",
   "backupRestoreFailed": "Restore failed: {error}",
-
   "sheetOrdinalLevel": "Level {n}",
   "sheetAbilityCheck": "{ability} check",
   "sheetAbilitySave": "{ability} save",
+  "sheetHpLabel": "HP",
   "sheetTempHp": "+{n} temp",
   "sheetPactMagic": "Pact Magic (lvl {n})",
   "sheetExhaustionPenalty": "A {n} penalty applies to all d20 tests.",
   "sheetHitDieHealed": "Healed {n} HP (1 hit die).",
   "diceTitle": "Dice",
+  "diceRollTitle": "Roll dice",
+  "diceCount": "Count",
+  "diceModifier": "Bonus",
   "diceCritical": "Critical!",
   "diceFumble": "Failure!",
   "navNpcs": "NPCs",
@@ -1274,10 +1408,6 @@
   "worldGraphChangeType": "Change type",
   "worldGraphDeleteLink": "Remove bond",
   "worldGraphOpenLocation": "Open location",
-  "worldGraphShowToPlayers": "Show to players",
-  "worldGraphHideFromPlayers": "Hide from players",
-  "worldGraphShownNotice": "{name} is now visible to players.",
-  "worldGraphHiddenNotice": "{name} is now hidden from players.",
   "worldGraphSetSize": "Node radius",
   "worldGraphSizeHint": "Enter visual radius of selected node",
   "worldGraphNodeRadiusLabel": "Radius",
@@ -1302,19 +1432,16 @@
   "bondColorLabel": "Color",
   "bondHexLabel": "Hex",
   "bondBrightness": "Brightness",
-
   "navMore": "More",
   "navMoreTitle": "All sections",
   "navGroupTable": "At the table",
   "navGroupWorld": "World & lore",
   "navGroupTools": "Tools",
-
   "stateErrorTitle": "Something went wrong",
   "stateErrorMessage": "This section could not be loaded. Try again; if it keeps failing, the technical detail below helps track it down.",
   "stateErrorDetail": "Technical detail",
   "stateRetry": "Try again",
   "stateLoading": "Loading…",
-
   "npcBoundLocation": "Bound location",
   "npcBoundLocationNone": "No location selected",
   "npcBoundLocationHint": "If set, the NPC is linked to this place on the map and the text is written around it.",
@@ -1337,5 +1464,593 @@
   "aiImageModelHint": "Used for portrait generation. Leave empty to use the default.",
   "aiImageUnsupportedNote": "The selected provider does not generate images; portrait generation is off.",
   "aiErrorDetail": "Provider response",
-  "codexAiErrNoImage": "This provider does not generate images."
+  "codexAiErrNoImage": "This provider does not generate images.",
+  "sheetEdit": "Edit",
+  "sheetProficiencyToggle": "Toggle proficiency",
+  "editCharacterTitle": "Edit character",
+  "editSave": "Save",
+  "editCancel": "Cancel",
+  "editNone": "None",
+  "editNameRequired": "Name cannot be empty",
+  "editSectionIdentity": "Identity",
+  "editName": "Name",
+  "editPlayerName": "Player",
+  "editAlignment": "Alignment",
+  "editSectionOrigin": "Origin",
+  "editSpecies": "Species",
+  "editBackground": "Background",
+  "editBackgroundHint": "Changing the background removes the skills the old one granted and adds the new ones.",
+  "editSectionAbilities": "Ability scores",
+  "editAbilityHint": "Final scores as shown on the sheet. Changing CON shifts max hit points for every level.",
+  "editSectionVitals": "Hit points and stats",
+  "editHitPointsMax": "Max HP",
+  "editArmorClassOverride": "AC",
+  "editSpeedOverride": "Speed",
+  "editOverrideHint": "Leave AC and speed empty to use the calculated values.",
+  "editSectionClasses": "Classes",
+  "editClass": "Class",
+  "editSubclass": "Subclass",
+  "editLevel": "Level",
+  "editClassChangeTitle": "Change class?",
+  "editClassChangeBody": "{to} replaces {from}. The level and rolled hit dice are kept; features from the old class and subclass are removed from the sheet and the new class's features are written in.",
+  "@editClassChangeBody": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      }
+    }
+  },
+  "editClassChangeConfirm": "Change",
+  "editSaved": "Character updated",
+  "sheetPreparedCount": "Prepared {used}/{limit}",
+  "@sheetPreparedCount": {
+    "placeholders": {
+      "used": {
+        "type": "int"
+      },
+      "limit": {
+        "type": "int"
+      }
+    }
+  },
+  "sheetCantripCount": "Cantrips {used}/{limit}",
+  "@sheetCantripCount": {
+    "placeholders": {
+      "used": {
+        "type": "int"
+      },
+      "limit": {
+        "type": "int"
+      }
+    }
+  },
+  "sheetSpellChangesLeft": "{n} change(s) left",
+  "@sheetSpellChangesLeft": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "compendiumClasses": "Classes",
+  "compendiumClassTable": "Class table",
+  "compendiumSubclasses": "Subclasses",
+  "compendiumFeatures": "Features",
+  "compendiumLevel": "Lv",
+  "compendiumFullCaster": "Full caster",
+  "compendiumHalfCaster": "Half caster",
+  "compendiumThirdCaster": "Third caster",
+  "compendiumPactCaster": "Pact Magic",
+  "compendiumSubclassOf": "{className} subclass",
+  "@compendiumSubclassOf": {
+    "placeholders": {
+      "className": {
+        "type": "String"
+      }
+    }
+  },
+  "sheetCastSpell": "Cast spell",
+  "sheetCastAtLevel": "Which slot?",
+  "sheetNoSlotLeft": "No suitable spell slot left.",
+  "sheetSpellAttack": "Attack",
+  "sheetSpellDamage": "Damage",
+  "sheetSaveDc": "save DC",
+  "sheetConcentrationNote": "Requires concentration",
+  "sheetSpellCastNoRoll": "Slot spent",
+  "levelUpAbilityOption": "Ability score",
+  "levelUpFeatOption": "Feat",
+  "levelUpFeatSearch": "Search feats",
+  "sheetAttune": "Attune / unattune",
+  "sheetAttunedCount": "Attuned {used}/{limit}",
+  "@sheetAttunedCount": {
+    "placeholders": {
+      "used": {
+        "type": "int"
+      },
+      "limit": {
+        "type": "int"
+      }
+    }
+  },
+  "sheetAttunementFull": "You can be attuned to at most {limit} items.",
+  "@sheetAttunementFull": {
+    "placeholders": {
+      "limit": {
+        "type": "int"
+      }
+    }
+  },
+  "levelUpMulticlassBlocked": "To take this class you need: {requirements}",
+  "@levelUpMulticlassBlocked": {
+    "placeholders": {
+      "requirements": {
+        "type": "String"
+      }
+    }
+  },
+  "sheetConcentratingOn": "Concentrating on {spell}",
+  "sheetConcentrationHint": "On damage, make a CON save: DC 10 or half the damage, whichever is higher.",
+  "sheetConcentrationEnd": "End",
+  "@sheetConcentratingOn": {
+    "placeholders": {
+      "spell": {
+        "type": "String"
+      }
+    }
+  },
+  "sheetAddClassOption": "Add class option",
+  "sheetAddClassOptionAction": "Add",
+  "sheetNoClassOptions": "This class has no options to choose.",
+  "statAc": "AC",
+  "statHp": "Hit Points",
+  "statSpeed": "Speed",
+  "statInitiative": "Initiative",
+  "statSavingThrows": "Saving Throws",
+  "statSkills": "Skills",
+  "statSenses": "Senses",
+  "statLanguages": "Languages",
+  "statCr": "CR",
+  "statDamageResistances": "Damage Resistances",
+  "statDamageImmunities": "Damage Immunities",
+  "statDamageVulnerabilities": "Damage Vulnerabilities",
+  "statConditionImmunities": "Condition Immunities",
+  "statPassivePerception": "Passive Perception",
+  "statActions": "Actions",
+  "statBonusActions": "Bonus Actions",
+  "statReactions": "Reactions",
+  "statLegendaryActions": "Legendary Actions",
+  "statNoLanguages": "—",
+  "abilityStrength": "Strength",
+  "abilityDexterity": "Dexterity",
+  "abilityConstitution": "Constitution",
+  "abilityIntelligence": "Intelligence",
+  "abilityWisdom": "Wisdom",
+  "abilityCharisma": "Charisma",
+  "abilityShortStrength": "STR",
+  "abilityShortDexterity": "DEX",
+  "abilityShortConstitution": "CON",
+  "abilityShortIntelligence": "INT",
+  "abilityShortWisdom": "WIS",
+  "abilityShortCharisma": "CHA",
+  "skillAcrobatics": "Acrobatics",
+  "skillAnimalHandling": "Animal Handling",
+  "skillArcana": "Arcana",
+  "skillAthletics": "Athletics",
+  "skillDeception": "Deception",
+  "skillHistory": "History",
+  "skillInsight": "Insight",
+  "skillIntimidation": "Intimidation",
+  "skillInvestigation": "Investigation",
+  "skillMedicine": "Medicine",
+  "skillNature": "Nature",
+  "skillPerception": "Perception",
+  "skillPerformance": "Performance",
+  "skillPersuasion": "Persuasion",
+  "skillReligion": "Religion",
+  "skillSleightOfHand": "Sleight of Hand",
+  "skillStealth": "Stealth",
+  "skillSurvival": "Survival",
+  "spellCantrip": "Cantrip",
+  "spellCantripAbbr": "C",
+  "spellLevelN": "Level {level}",
+  "@spellLevelN": {
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "spellSchoolCantrip": "{school} cantrip",
+  "@spellSchoolCantrip": {
+    "placeholders": {
+      "school": {
+        "type": "String"
+      }
+    }
+  },
+  "spellSchoolLevel": "Level {level} {school}",
+  "@spellSchoolLevel": {
+    "placeholders": {
+      "level": {
+        "type": "int"
+      },
+      "school": {
+        "type": "String"
+      }
+    }
+  },
+  "spellRitualSuffix": " (ritual)",
+  "spellConcentrationPrefix": "Concentration, ",
+  "spellConcentrationShort": "Conc.",
+  "spellComponents": "Components",
+  "spellClasses": "Classes",
+  "itemAttunementDetail": "Attunement",
+  "settingsDensity": "Interface density",
+  "settingsDensityCompact": "Compact",
+  "settingsDensityNormal": "Normal",
+  "settingsDensityComfortable": "Comfortable",
+  "settingsDensityHint": "Compact fits more on screen at the table.",
+  "worldCollapseChildren": "Hide child places",
+  "worldExpandChildren": "Show child places",
+  "musicAmbience": "Ambience",
+  "musicAmbienceStop": "Stop ambience",
+  "journeySkipTime": "Advance time",
+  "combatConcentrationCheck": "{name} must make a DC {dc} Constitution save for concentration.",
+  "@combatConcentrationCheck": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "dc": {
+        "type": "int"
+      }
+    }
+  },
+  "combatGroupInitiative": "One roll per monster type",
+  "combatNoArmorClass": "AC unknown",
+  "combatHits": "Hits (AC {ac})",
+  "@combatHits": {
+    "placeholders": {
+      "ac": {
+        "type": "int"
+      }
+    }
+  },
+  "combatMisses": "Misses (AC {ac})",
+  "@combatMisses": {
+    "placeholders": {
+      "ac": {
+        "type": "int"
+      }
+    }
+  },
+  "combatApplyDamage": "Apply {damage}",
+  "@combatApplyDamage": {
+    "placeholders": {
+      "damage": {
+        "type": "int"
+      }
+    }
+  },
+  "combatApplied": "Applied",
+  "searchEmpty": "Start typing to search.",
+  "searchOpen": "Search everything",
+  "sessionRolls": "Roll log",
+  "sessionRollsEmpty": "No rolls yet.",
+  "contentSourcesTitle": "Content sources",
+  "contentSourcesHint": "Add an address that serves 5etools-format JSON; the app discovers which files are there. No address ships with the app — you decide which source to use.",
+  "contentSourceAdd": "Add source",
+  "contentSourceName": "Name",
+  "contentSourceUrl": "Base address",
+  "contentSourceUrlHint": "Root of the data folder, e.g. https://example/data",
+  "contentSourceDiscover": "Discover",
+  "contentSourceEmpty": "No sources yet.",
+  "contentSourceNothingFound": "No recognised files found at this address.",
+  "contentSourceLastImport": "Last import: {date}",
+  "@contentSourceLastImport": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "contentSourceNeverImported": "Never imported",
+  "contentSourceImportSelected": "Import selected",
+  "contentSourceImporting": "Importing: {file}",
+  "@contentSourceImporting": {
+    "placeholders": {
+      "file": {
+        "type": "String"
+      }
+    }
+  },
+  "contentSourceDone": "Imported {monsters} monsters, {spells} spells, {items} items, {others} other.",
+  "@contentSourceDone": {
+    "placeholders": {
+      "monsters": {
+        "type": "int"
+      },
+      "spells": {
+        "type": "int"
+      },
+      "items": {
+        "type": "int"
+      },
+      "others": {
+        "type": "int"
+      }
+    }
+  },
+  "contentSourceLocalFiles": "Import from file",
+  "contentSourceDeleteImported": "Delete imported content",
+  "contentSourceDeleteImportedBody": "All records imported from these addresses will be deleted. Content you created in the app and the bundled SRD are unaffected.",
+  "contentSourceDeleted": "Deleted {count} records.",
+  "@contentSourceDeleted": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "contentSourceKindMonster": "Monsters",
+  "contentSourceKindSpell": "Spells",
+  "contentSourceKindItem": "Items",
+  "contentSourceKindRace": "Species",
+  "contentSourceKindBackground": "Backgrounds",
+  "contentSourceKindFeat": "Feats",
+  "contentSourceSelectAll": "Select all",
+  "contentSourceLegal": "Only import content you have the right to use. Imported records stay on your device and are excluded from backup packages.",
+  "contentSourceProblemNetwork": "Could not connect. Check your connection and the address.",
+  "contentSourceProblemBlocked": "The server refused the request ({status}). This address blocks non-browser clients with bot protection, which the app does not bypass. You can download the files in your browser and add them with “Import from file”.",
+  "@contentSourceProblemBlocked": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "contentSourceProblemNotFound": "No 5etools-format files found at this address ({status}). Make sure the base address points at the data folder.",
+  "@contentSourceProblemNotFound": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "contentSourceProblemNotJson": "The address returned a page, not JSON. The base address may not point at the data folder.",
+  "contentSourceResolved": "Resolved base: {url}",
+  "@contentSourceResolved": {
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "undoDone": "{label} undone",
+  "@undoDone": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "undoNothing": "Nothing to undo",
+  "undoTitle": "Undo",
+  "undoHistory": "Undo history",
+  "turnTimer": "Turn timer",
+  "turnTimerOff": "Off",
+  "turnTimerSeconds": "{seconds}s",
+  "@turnTimerSeconds": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "turnTimerUp": "Time is up",
+  "partyBoard": "Party board",
+  "partyBoardPassive": "Passive perception",
+  "partyBoardSaves": "Saves",
+  "partyBoardDefenses": "Resistances / immunities",
+  "partyBoardLanguages": "Languages",
+  "partyBoardEmpty": "No characters in the party.",
+  "encounterTemplates": "Encounter templates",
+  "encounterTemplateSave": "Save as template",
+  "encounterTemplateUse": "Build from template",
+  "encounterTemplateEmpty": "No saved templates.",
+  "encounterTemplateMissing": "Not found in library: {names}",
+  "@encounterTemplateMissing": {
+    "placeholders": {
+      "names": {
+        "type": "String"
+      }
+    }
+  },
+  "encounterTemplateCreated": "{name} created.",
+  "@encounterTemplateCreated": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "reaction": "Reaction",
+  "reactionUsed": "Reaction used",
+  "reactionAvailable": "Reaction available",
+  "lairAction": "Lair action",
+  "lairActionHint": "Reminded when initiative {value} comes up.",
+  "@lairActionHint": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "lairActionNone": "No lair action in this encounter.",
+  "damageType": "Damage type",
+  "damageTypeAny": "No type",
+  "damageResisted": "Resisted: {amount}",
+  "@damageResisted": {
+    "placeholders": {
+      "amount": {
+        "type": "int"
+      }
+    }
+  },
+  "damageImmune": "Immune — no damage",
+  "damageVulnerable": "Vulnerable: {amount}",
+  "@damageVulnerable": {
+    "placeholders": {
+      "amount": {
+        "type": "int"
+      }
+    }
+  },
+  "defensesTitle": "Defenses",
+  "defenseResist": "Resistance",
+  "defenseImmune": "Immunity",
+  "defenseVulnerable": "Vulnerability",
+  "deathSaves": "Death saves",
+  "deathSaveRoll": "Roll save",
+  "deathSaveStable": "Stable",
+  "deathSaveDead": "Dead",
+  "deathSaveRevived": "Back up (1 HP)",
+  "downtime": "Downtime",
+  "downtimeAdd": "Add activity",
+  "downtimeDays": "Days",
+  "downtimeRemaining": "{days} days left",
+  "@downtimeRemaining": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "downtimeComplete": "Complete",
+  "downtimeOutcome": "Outcome",
+  "downtimeEmpty": "No activities.",
+  "downtimeKindCraft": "Crafting",
+  "downtimeKindResearch": "Research",
+  "downtimeKindWork": "Working",
+  "downtimeKindTrain": "Training",
+  "downtimeKindRecuperate": "Recuperating",
+  "downtimeKindCarouse": "Carousing",
+  "downtimeKindCustom": "Custom",
+  "sessionRecap": "Session recap",
+  "sessionRecapGenerate": "Generate recap",
+  "sessionRecapEmpty": "No log entries to summarise.",
+  "exportPdf": "Save as PDF",
+  "exportPdfDone": "Saved: {path}",
+  "@exportPdfDone": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "macros": "Macros",
+  "macroAdd": "Add macro",
+  "macroExpression": "Dice expression",
+  "macroInvalid": "Could not parse the expression (e.g. 2d6+3).",
+  "macroEmpty": "No macros.",
+  "macroScopeDm": "DM only",
+  "macroScopePlayer": "Players",
+  "macroScopeBoth": "Everyone",
+  "settingsAccessibility": "Accessibility",
+  "settingsHighContrast": "High contrast",
+  "settingsColorBlind": "Colour-blind friendly",
+  "settingsColorBlindHint": "Token teams and wall types are distinguished by pattern and shape as well as colour.",
+  "settingsTouchLayout": "Touch layout",
+  "settingsTouchLayoutHint": "On-screen buttons replace middle-click and right-click; targets get larger.",
+  "syncFolder": "Backup folder",
+  "syncFolderHint": "A backup is written to this folder daily. Pick a cloud-synced folder (OneDrive, Drive, Dropbox) to carry it across devices.",
+  "syncFolderPick": "Choose folder",
+  "syncFolderNone": "Not set",
+  "syncFolderCleared": "Cleared",
+  "campaignMerge": "Import from campaign",
+  "campaignMergeHint": "Copies monsters, NPCs, maps and random tables from the chosen campaign. Existing records are not overwritten.",
+  "campaignMergeDone": "Imported {count} records.",
+  "@campaignMergeDone": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "campaignMergeWhat": "What to import?",
+  "contentSourceImages": "Downloading images: {done}/{total}",
+  "@contentSourceImages": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "questOwners": "On this quest",
+  "questOwnersSection": "Who's on this quest",
+  "questOwnersHint": "Mark the characters who took the job.",
+  "restSpendHitDie": "Spend die",
+  "restHitDieSpent": "{name} spent a Hit Die: +{healed} HP",
+  "@restHitDieSpent": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "healed": {
+        "type": "int"
+      }
+    }
+  },
+  "lootGrant": "Give",
+  "lootGranted": "“{name}” moved to the party bag.",
+  "lootNoPartyBag": "Create a party bag first (Characters tab).",
+  "encLocation": "Takes place at",
+  "encLocationNone": "No location linked",
+  "encLocationMissing": "Linked location was deleted",
+  "encLocationPick": "Pick a location",
+  "encLocationClear": "Unlink location",
+  "encLocationNoLocations": "No locations yet — create one in World first.",
+  "worldEncountersHere": "Encounters here",
+  "factionTitle": "Faction",
+  "factionsTab": "Factions",
+  "factionAdd": "New faction",
+  "factionEmpty": "No factions yet. Guilds, cults, houses and gangs live here.",
+  "factionName": "Name",
+  "factionKind": "Kind",
+  "factionKindHint": "guild, cult, house, gang…",
+  "factionGoal": "Goal",
+  "factionDescription": "Description",
+  "factionSecretNotes": "DM notes",
+  "factionSecretHint": "Only you see this.",
+  "factionEmblemClear": "Remove emblem",
+  "factionBonds": "Bonds",
+  "factionBondsEmpty": "No bonds yet — connect nodes in the world graph.",
+  "factionBondBroken": "(deleted)",
+  "factionDelete": "Delete faction",
+  "factionDeleteConfirm": "The faction and its bonds will be removed.",
+  "worldFactions": "Factions",
+  "bondMembership": "Membership",
+  "clocksTitle": "Clocks",
+  "clocksEmpty": "No clocks. Track a siege, a ritual or a rumour spreading.",
+  "clockAdd": "New clock",
+  "clockName": "What is ticking?",
+  "clockNameHint": "The siege arrives",
+  "clockOutcome": "When it fills",
+  "clockOutcomeHint": "What happens at the table when the last segment lands.",
+  "clockAdvance": "Advance one segment",
+  "clockClose": "Close clock",
+  "clockReopen": "Reopen clock",
+  "exportTitle": "Open formats",
+  "exportHint": "Readable anywhere, but NOT restorable. Media files are not included.",
+  "exportMarkdown": "Codex → Markdown",
+  "exportJson": "Campaign → JSON",
+  "exportMarkdownType": "Markdown",
+  "exportJsonType": "JSON",
+  "exportDone": "Exported."
 }

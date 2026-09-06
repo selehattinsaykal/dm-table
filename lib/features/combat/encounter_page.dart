@@ -5,6 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../app/ui/async_view.dart';
 import '../../app/ui/ui.dart';
+import '../../app/undo.dart';
+import '../../data/content_tr.dart';
 import '../../data/db/combat_tables.dart';
 import '../../data/db/database.dart';
 import '../../domain/rules/challenge_rating.dart';
@@ -18,7 +20,10 @@ import '../compendium/condition_providers.dart';
 import '../compendium/conditions_tab.dart';
 import '../compendium/detail_sheets.dart';
 import '../session/session_log_providers.dart';
+import 'combat_extras.dart';
 import 'combat_providers.dart';
+import 'encounter_templates_sheet.dart';
+import 'turn_timer.dart';
 import 'encounter_panels.dart';
 
 /// Savas ekrani.
@@ -75,6 +80,29 @@ class EncounterPage extends ConsumerWidget {
             tooltip: l10n.combatAddParty,
             icon: const Icon(Icons.group_add),
             onPressed: () => _addParty(context, ref),
+          ),
+          // Kalipla kurmak ve in eylemi: ikisi de HAZIRLIK isi, savas
+          // sirasinda kullanilmiyor. Bu yuzden tasma menusunde.
+          PopupMenuButton<String>(
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                value: 'templates',
+                child: Text(l10n.encounterTemplates),
+              ),
+              PopupMenuItem(value: 'lair', child: Text(l10n.lairAction)),
+              PopupMenuItem(value: 'timer', child: Text(l10n.turnTimer)),
+            ],
+            onSelected: (value) => switch (value) {
+              'templates' => showModalBottomSheet<void>(
+                context: context,
+                showDragHandle: true,
+                isScrollControlled: true,
+                builder: (_) =>
+                    EncounterTemplatesSheet(sourceEncounterId: encounterId),
+              ),
+              'lair' => _editLairAction(context, ref, encounter),
+              _ => _editTurnTimer(context, ref, encounter),
+            },
           ),
         ],
       ),
@@ -145,10 +173,19 @@ class EncounterPage extends ConsumerWidget {
             combatants: rows,
             onStart: () {
               repo.start(encounterId);
+              // Karsilasmanin kendi siniri varsa sayac onunla baslar.
+              final limit = encounter.turnLimitSeconds;
+              if (limit != null) {
+                ref.read(turnTimerProvider.notifier)
+                  ..setLimit(limit)
+                  ..restart();
+              }
             },
             onNext: () async {
               final messenger = ScaffoldMessenger.of(context);
               final result = await repo.advanceTurn(encounterId);
+              // Her turda sayac bastan baslar; sinir yoksa hicbir sey olmaz.
+              ref.read(turnTimerProvider.notifier).restart();
               if (result.expired.isNotEmpty) {
                 messenger.showSnackBar(
                   SnackBar(
@@ -161,9 +198,28 @@ class EncounterPage extends ConsumerWidget {
                   ),
                 );
               }
+              // In eylemi: inisiyatif 20'den GECILDIGINDE bir kez hatirlatilir.
+              // Snackbar degil banner: DM okuyup kapatana kadar durmali,
+              // iki saniyede kaybolan bir hatirlatma ise yaramiyor.
+              final lair = result.lairAction;
+              if (lair != null) {
+                messenger.showMaterialBanner(
+                  MaterialBanner(
+                    leading: const Icon(Icons.castle_outlined),
+                    content: Text(lair),
+                    actions: [
+                      TextButton(
+                        onPressed: messenger.hideCurrentMaterialBanner,
+                        child: Text(l10n.close),
+                      ),
+                    ],
+                  ),
+                );
+              }
             },
             onEnd: () {
               repo.end(encounterId);
+              ref.read(turnTimerProvider.notifier).stop();
             },
           ),
         _BudgetBar(encounterId: encounterId),
@@ -178,25 +234,157 @@ class EncounterPage extends ConsumerWidget {
                     ),
                   ),
                 )
-              : ListView.builder(
+              // Surukleyerek yeniden siralanabilir: esit initiative'de sirayi
+              // elle duzenlemek masada sik gereken bir sey ve zar atmadan
+              // cozulmesi gerekiyor.
+              : ReorderableListView.builder(
                   padding: const EdgeInsets.only(bottom: 24),
                   itemCount: rows.length,
-                  itemBuilder: (context, i) => _CombatantTile(
-                    combatant: rows[i],
-                    isActive:
-                        encounter != null &&
-                        encounter.started &&
-                        encounter.activeIndex == i,
-                  ),
+                  buildDefaultDragHandles: false,
+                  onReorderItem: (from, to) =>
+                      repo.reorderCombatants(encounterId, from, to),
+                  itemBuilder: (context, i) =>
+                      ReorderableDelayedDragStartListener(
+                        key: ValueKey(rows[i].id),
+                        index: i,
+                        child: _CombatantTile(
+                          combatant: rows[i],
+                          isActive:
+                              encounter != null &&
+                              encounter.started &&
+                              encounter.activeIndex == i,
+                        ),
+                      ),
                 ),
         ),
       ],
     );
   }
 
+  /// In (lair) eylemini duzenler.
+  ///
+  /// Metin BOS birakilirsa in eylemi kapanir; ayri bir "acik/kapali" anahtari
+  /// koymak iki yerde tutulan tek bir bilgi olurdu.
+  Future<void> _editLairAction(
+    BuildContext context,
+    WidgetRef ref,
+    Encounter? encounter,
+  ) async {
+    if (encounter == null) return;
+    final l10n = L10n.of(context);
+    final text = TextEditingController(text: encounter.lairActionText ?? '');
+    var initiative = encounter.lairInitiative;
+
+    final saved = await showDialog<bool>(
+      context: context,
+      builder: (context) => StatefulBuilder(
+        builder: (context, setState) => AlertDialog(
+          title: Text(l10n.lairAction),
+          content: SizedBox(
+            width: 460,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TextField(
+                  controller: text,
+                  autofocus: true,
+                  maxLines: 5,
+                  minLines: 3,
+                  decoration: InputDecoration(
+                    labelText: l10n.lairAction,
+                    hintText: l10n.lairActionNone,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Row(
+                  children: [
+                    Expanded(child: Text(l10n.lairActionHint(initiative))),
+                    SizedBox(
+                      width: 64,
+                      child: TextFormField(
+                        initialValue: '$initiative',
+                        textAlign: TextAlign.center,
+                        keyboardType: TextInputType.number,
+                        onChanged: (value) => setState(
+                          () => initiative = int.tryParse(value) ?? 20,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context, false),
+              child: Text(l10n.cancel),
+            ),
+            FilledButton(
+              onPressed: () => Navigator.pop(context, true),
+              child: Text(l10n.save),
+            ),
+          ],
+        ),
+      ),
+    );
+
+    final value = text.text.trim();
+    text.dispose();
+    if (saved != true) return;
+    await ref
+        .read(combatRepositoryProvider)
+        .setLairAction(
+          encounterId,
+          text: value.isEmpty ? null : value,
+          initiative: initiative,
+        );
+  }
+
+  /// Tur suresi sinirini duzenler.
+  Future<void> _editTurnTimer(
+    BuildContext context,
+    WidgetRef ref,
+    Encounter? encounter,
+  ) async {
+    if (encounter == null) return;
+    final l10n = L10n.of(context);
+
+    final picked = await showDialog<int?>(
+      context: context,
+      builder: (context) => SimpleDialog(
+        title: Text(l10n.turnTimer),
+        children: [
+          SimpleDialogOption(
+            onPressed: () => Navigator.pop(context, 0),
+            child: Text(l10n.turnTimerOff),
+          ),
+          // Masada gercekten kullanilan degerler; serbest sayi girisi
+          // eklemek bir dakikalik bir karari uc dokunusa cikariyordu.
+          for (final seconds in const [30, 60, 90, 120])
+            SimpleDialogOption(
+              onPressed: () => Navigator.pop(context, seconds),
+              child: Text(l10n.turnTimerSeconds(seconds)),
+            ),
+        ],
+      ),
+    );
+    if (picked == null) return;
+
+    final limit = picked == 0 ? null : picked;
+    await ref.read(combatRepositoryProvider).setTurnLimit(encounterId, limit);
+    ref.read(turnTimerProvider.notifier).setLimit(limit);
+    if (limit != null && encounter.started) {
+      ref.read(turnTimerProvider.notifier).restart();
+    }
+  }
+
   Future<void> _addMonster(BuildContext context, WidgetRef ref) async {
     final picked =
-        await showModalBottomSheet<({Monster monster, int count, bool roll})>(
+        await showModalBottomSheet<
+          ({Monster monster, int count, bool roll, bool group})
+        >(
           context: context,
           isScrollControlled: true,
           showDragHandle: true,
@@ -210,6 +398,7 @@ class EncounterPage extends ConsumerWidget {
           monster: picked.monster,
           count: picked.count,
           rollHitPoints: picked.roll,
+          groupInitiative: picked.group,
         );
   }
 
@@ -274,6 +463,16 @@ class EncounterPage extends ConsumerWidget {
     for (final id in pcIds) {
       await charRepo.addExperience(id, each);
     }
+    // Yanlis karsilasmaya XP vermek geri alinamiyordu; seviye atlama
+    // esiginin ustune cikan bir karakteri elle geri cekmek tam bir isti.
+    ref.read(undoControllerProvider.notifier).push(
+      l10n.combatAwardXp,
+      () async {
+        for (final id in pcIds) {
+          await charRepo.addExperience(id, -each);
+        }
+      },
+    );
     await ref
         .read(sessionLogRepositoryProvider)
         .add(l10n.logXpAwarded(assessment.monsterXp, pcIds.length, each));
@@ -338,6 +537,8 @@ class _TurnBar extends StatelessWidget {
               const Spacer(),
             ],
             if (encounter.started) ...[
+              TurnTimerIndicator(limitSeconds: encounter.turnLimitSeconds),
+              const SizedBox(width: 8),
               TextButton.icon(
                 onPressed: onEnd,
                 icon: const Icon(Icons.stop_circle_outlined),
@@ -470,203 +671,234 @@ class _CombatantTile extends ConsumerWidget {
         ? 1.0
         : combatant.hitPointsCurrent / combatant.hitPointsMax;
 
-    return Container(
-      decoration: BoxDecoration(
-        color: isActive
-            ? theme.colorScheme.primaryContainer.withValues(alpha: 0.35)
-            : null,
-        border: Border(
-          left: BorderSide(
-            width: 4,
-            color: isActive ? theme.colorScheme.primary : Colors.transparent,
+    // Ekran okuyucu satiri PARCA PARCA okuyordu ("Goblin", "12", "bolu",
+    // "7", "AC", "15"...). Tek bir ozet etiket, listeyi sesle takip
+    // edilebilir kiliyor; ic ogeler `excludeSemantics` ile susturulmuyor
+    // cunku dugmeler (hasar, durum) yine tek tek erisilebilir olmali.
+    return Semantics(
+      container: true,
+      selected: isActive,
+      label: [
+        combatant.name,
+        if (combatant.initiative != 0) 'Init ${combatant.initiative}',
+        '${combatant.hitPointsCurrent} / ${combatant.hitPointsMax} HP',
+        if (combatant.armorClass != null) 'AC ${combatant.armorClass}',
+        if (combatant.defeated) l10n.combatMarkDefeated,
+        for (final c in conditions) _conditionLabel(ref, l10n, c.name),
+      ].join(', '),
+      child: Container(
+        decoration: BoxDecoration(
+          color: isActive
+              ? theme.colorScheme.primaryContainer.withValues(alpha: 0.35)
+              : null,
+          border: Border(
+            left: BorderSide(
+              width: 4,
+              color: isActive ? theme.colorScheme.primary : Colors.transparent,
+            ),
+            bottom: BorderSide(color: theme.dividerColor, width: 0.5),
           ),
-          bottom: BorderSide(color: theme.dividerColor, width: 0.5),
         ),
-      ),
-      child: Opacity(
-        opacity: combatant.defeated ? 0.45 : 1,
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(12, 10, 8, 10),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  _InitiativeBadge(combatant: combatant),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Flexible(
-                              child: Text(
-                                combatant.name,
-                                style: theme.textTheme.titleSmall?.copyWith(
-                                  decoration: combatant.defeated
-                                      ? TextDecoration.lineThrough
-                                      : null,
+        child: Opacity(
+          opacity: combatant.defeated ? 0.45 : 1,
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(12, 10, 8, 10),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    _InitiativeBadge(combatant: combatant),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Flexible(
+                                child: Text(
+                                  combatant.name,
+                                  style: theme.textTheme.titleSmall?.copyWith(
+                                    decoration: combatant.defeated
+                                        ? TextDecoration.lineThrough
+                                        : null,
+                                  ),
                                 ),
                               ),
-                            ),
-                            if (combatant.concentrating) ...[
-                              const SizedBox(width: 6),
-                              Tooltip(
-                                message:
-                                    combatant.concentrationNote ??
-                                    l10n.combatConcentration,
-                                child: Icon(
-                                  Icons.center_focus_strong,
-                                  size: 16,
-                                  color: theme.colorScheme.tertiary,
+                              if (combatant.concentrating) ...[
+                                const SizedBox(width: 6),
+                                Tooltip(
+                                  message:
+                                      combatant.concentrationNote ??
+                                      l10n.combatConcentration,
+                                  child: Icon(
+                                    Icons.center_focus_strong,
+                                    size: 16,
+                                    color: theme.colorScheme.tertiary,
+                                  ),
                                 ),
-                              ),
+                              ],
                             ],
-                          ],
+                          ),
+                          Text(
+                            [
+                              '${combatant.hitPointsCurrent}/${combatant.hitPointsMax} HP',
+                              if (combatant.temporaryHitPoints > 0)
+                                '+${combatant.temporaryHitPoints}',
+                              if (combatant.armorClass != null)
+                                'AC ${combatant.armorClass}',
+                            ].join(' · '),
+                            style: theme.textTheme.bodySmall,
+                          ),
+                        ],
+                      ),
+                    ),
+                    ReactionPip(combatant: combatant),
+                    TypedDamageButtons(combatant: combatant),
+                    PopupMenuButton<String>(
+                      itemBuilder: (context) => [
+                        if (combatant.monsterKey != null)
+                          PopupMenuItem(
+                            value: 'stat',
+                            child: Text(l10n.combatStatBlock),
+                          ),
+                        PopupMenuItem(
+                          value: 'conditions',
+                          child: Text(l10n.combatEditConditions),
                         ),
-                        Text(
-                          [
-                            '${combatant.hitPointsCurrent}/${combatant.hitPointsMax} HP',
-                            if (combatant.temporaryHitPoints > 0)
-                              '+${combatant.temporaryHitPoints}',
-                            if (combatant.armorClass != null)
-                              'AC ${combatant.armorClass}',
-                          ].join(' · '),
-                          style: theme.textTheme.bodySmall,
+                        if (combatant.monsterKey != null)
+                          PopupMenuItem(
+                            value: 'legendary',
+                            child: Text(l10n.combatLegendaryActions),
+                          ),
+                        PopupMenuItem(
+                          value: 'concentration',
+                          child: Text(
+                            combatant.concentrating
+                                ? l10n.combatEndConcentration
+                                : l10n.combatStartConcentration,
+                          ),
                         ),
+                        PopupMenuItem(
+                          value: 'defeat',
+                          child: Text(
+                            combatant.defeated
+                                ? l10n.combatRevive
+                                : l10n.combatMarkDefeated,
+                          ),
+                        ),
+                        PopupMenuItem(
+                          value: 'defenses',
+                          child: Text(l10n.defensesTitle),
+                        ),
+                        PopupMenuItem(
+                          value: 'remove',
+                          child: Text(l10n.combatRemove),
+                        ),
+                      ],
+                      onSelected: (action) => _onAction(context, ref, action),
+                    ),
+                  ],
+                ),
+                if (combatant.hitPointsMax > 0) ...[
+                  const SizedBox(height: 6),
+                  LinearProgressIndicator(
+                    value: ratio.clamp(0.0, 1.0),
+                    minHeight: 4,
+                    color: ratio <= 0.25
+                        ? theme.colorScheme.error
+                        : theme.colorScheme.primary,
+                  ),
+                ],
+                // Efsanevi eylem / direnc sayaclari (yalnizca DM gorur;
+                // protokole hic girmez).
+                if (combatant.legendaryMax != null ||
+                    combatant.legendaryResistMax != null) ...[
+                  const SizedBox(height: 8),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Wrap(
+                      spacing: 12,
+                      runSpacing: 4,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: [
+                        if (combatant.legendaryMax != null)
+                          _LegendaryPips(
+                            label: l10n.combatLegendaryShort,
+                            max: combatant.legendaryMax!,
+                            spent: combatant.legendarySpent,
+                            onChanged: (spent) => ref
+                                .read(combatRepositoryProvider)
+                                .setLegendarySpent(combatant.id, spent),
+                          ),
+                        if (combatant.legendaryResistMax != null)
+                          _LegendaryPips(
+                            label: l10n.combatLegendaryResistShort,
+                            max: combatant.legendaryResistMax!,
+                            spent: combatant.legendaryResistSpent,
+                            resistance: true,
+                            onChanged: (spent) => ref
+                                .read(combatRepositoryProvider)
+                                .setLegendaryResistSpent(combatant.id, spent),
+                          ),
                       ],
                     ),
                   ),
-                  _DamageButtons(combatant: combatant),
-                  PopupMenuButton<String>(
-                    itemBuilder: (context) => [
-                      if (combatant.monsterKey != null)
-                        PopupMenuItem(
-                          value: 'stat',
-                          child: Text(l10n.combatStatBlock),
-                        ),
-                      PopupMenuItem(
-                        value: 'conditions',
-                        child: Text(l10n.combatEditConditions),
-                      ),
-                      if (combatant.monsterKey != null)
-                        PopupMenuItem(
-                          value: 'legendary',
-                          child: Text(l10n.combatLegendaryActions),
-                        ),
-                      PopupMenuItem(
-                        value: 'concentration',
-                        child: Text(
-                          combatant.concentrating
-                              ? l10n.combatEndConcentration
-                              : l10n.combatStartConcentration,
-                        ),
-                      ),
-                      PopupMenuItem(
-                        value: 'defeat',
-                        child: Text(
-                          combatant.defeated
-                              ? l10n.combatRevive
-                              : l10n.combatMarkDefeated,
-                        ),
-                      ),
-                      PopupMenuItem(
-                        value: 'remove',
-                        child: Text(l10n.combatRemove),
-                      ),
-                    ],
-                    onSelected: (action) => _onAction(context, ref, action),
+                ],
+                // Olum kurtarmasi YALNIZCA can 0 iken: ayakta duran her
+                // yaratigin altinda uc bos daire ekrani gurultulendiriyordu.
+                if (combatant.hitPointsCurrent == 0 &&
+                    combatant.hitPointsMax > 0) ...[
+                  const SizedBox(height: 8),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: DeathSaveTrack(combatant: combatant),
                   ),
                 ],
-              ),
-              if (combatant.hitPointsMax > 0) ...[
-                const SizedBox(height: 6),
-                LinearProgressIndicator(
-                  value: ratio.clamp(0.0, 1.0),
-                  minHeight: 4,
-                  color: ratio <= 0.25
-                      ? theme.colorScheme.error
-                      : theme.colorScheme.primary,
-                ),
-              ],
-              // Efsanevi eylem / direnc sayaclari (yalnizca DM gorur;
-              // protokole hic girmez).
-              if (combatant.legendaryMax != null ||
-                  combatant.legendaryResistMax != null) ...[
-                const SizedBox(height: 8),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Wrap(
-                    spacing: 12,
-                    runSpacing: 4,
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    children: [
-                      if (combatant.legendaryMax != null)
-                        _LegendaryPips(
-                          label: l10n.combatLegendaryShort,
-                          max: combatant.legendaryMax!,
-                          spent: combatant.legendarySpent,
-                          onChanged: (spent) => ref
-                              .read(combatRepositoryProvider)
-                              .setLegendarySpent(combatant.id, spent),
-                        ),
-                      if (combatant.legendaryResistMax != null)
-                        _LegendaryPips(
-                          label: l10n.combatLegendaryResistShort,
-                          max: combatant.legendaryResistMax!,
-                          spent: combatant.legendaryResistSpent,
-                          resistance: true,
-                          onChanged: (spent) => ref
-                              .read(combatRepositoryProvider)
-                              .setLegendaryResistSpent(combatant.id, spent),
-                        ),
-                    ],
-                  ),
-                ),
-              ],
-              if (conditions.isNotEmpty) ...[
-                const SizedBox(height: 8),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Wrap(
-                    spacing: 6,
-                    children: [
-                      for (final c in conditions)
-                        // Uzun bas -> kural metni. Dokunma zaten sure
-                        // duzenlemede kullanildigi icin referans buraya bagli.
-                        GestureDetector(
-                          onLongPress: () =>
-                              showConditionByName(context, ref, c.name),
-                          child: InputChip(
-                            // Sureli durumlar "Ad · n" gosterir; dokununca sure
-                            // duzenlenir (tur basinda otomatik azalir).
-                            label: Text(
-                              c.rounds == null
-                                  ? _conditionLabel(ref, l10n, c.name)
-                                  : '${_conditionLabel(ref, l10n, c.name)} · ${c.rounds}',
-                            ),
-                            visualDensity: VisualDensity.compact,
-                            tooltip: l10n.combatConditionLongPressHint,
-                            onPressed: () => _editConditionDuration(
-                              context,
-                              ref,
-                              combatant,
-                              conditions,
-                              c,
-                            ),
-                            onDeleted: () => repo.setConditionsTyped(
-                              combatant.id,
-                              conditions
-                                  .where((x) => x.name != c.name)
-                                  .toList(),
+                if (conditions.isNotEmpty) ...[
+                  const SizedBox(height: 8),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Wrap(
+                      spacing: 6,
+                      children: [
+                        for (final c in conditions)
+                          // Uzun bas -> kural metni. Dokunma zaten sure
+                          // duzenlemede kullanildigi icin referans buraya bagli.
+                          GestureDetector(
+                            onLongPress: () =>
+                                showConditionByName(context, ref, c.name),
+                            child: InputChip(
+                              // Sureli durumlar "Ad · n" gosterir; dokununca sure
+                              // duzenlenir (tur basinda otomatik azalir).
+                              label: Text(
+                                c.rounds == null
+                                    ? _conditionLabel(ref, l10n, c.name)
+                                    : '${_conditionLabel(ref, l10n, c.name)} · ${c.rounds}',
+                              ),
+                              visualDensity: VisualDensity.compact,
+                              tooltip: l10n.combatConditionLongPressHint,
+                              onPressed: () => _editConditionDuration(
+                                context,
+                                ref,
+                                combatant,
+                                conditions,
+                                c,
+                              ),
+                              onDeleted: () => repo.setConditionsTyped(
+                                combatant.id,
+                                conditions
+                                    .where((x) => x.name != c.name)
+                                    .toList(),
+                              ),
                             ),
                           ),
-                        ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
+                ],
               ],
-            ],
+            ),
           ),
         ),
       ),
@@ -768,10 +1000,27 @@ class _CombatantTile extends ConsumerWidget {
           combatant.id,
           value: !combatant.concentrating,
         );
+      case 'defenses':
+        if (!context.mounted) return;
+        await showDialog<void>(
+          context: context,
+          builder: (context) => DefensesDialog(combatant: combatant),
+        );
       case 'defeat':
-        await repo.setDefeated(combatant.id, !combatant.defeated);
+        final before = combatant.defeated;
+        await repo.setDefeated(combatant.id, !before);
+        ref
+            .read(undoControllerProvider.notifier)
+            .push(combatant.name, () => repo.setDefeated(combatant.id, before));
       case 'remove':
+        // Silme geri alinabilir: satirin TAMAMI kapanista tutuluyor, cunku
+        // yanlislikla silinen bir katilimciyi elle kurmak (can, initiative,
+        // durumlar, efsanevi sayaclar) masada dakikalar aliyordu.
+        final snapshot = combatant;
         await repo.removeCombatant(combatant.id);
+        ref
+            .read(undoControllerProvider.notifier)
+            .push(snapshot.name, () => repo.restoreCombatant(snapshot));
     }
   }
 }
@@ -1027,67 +1276,16 @@ class _InitiativeBadge extends ConsumerWidget {
           color: theme.colorScheme.surfaceContainerHighest,
           borderRadius: BorderRadius.circular(8),
         ),
-        // Inisiyatifini atmamis oyuncu: sayi yerine bekleyen zar simgesi
-        // (oyuncu kendi panelinden atar; DM yine dokunup elle girebilir).
-        child: combatant.initiativeRolled
-            ? Text(
+        // Initiative'i henuz girilmemis satir sayi yerine bekleyen zar
+        // simgesi gosterir: oyuncu karakterlerinin zarini masadaki oyuncu
+        // atar, DM sayiyi buraya dokunup girer.
+        child: combatant.initiative == 0
+            ? Icon(Icons.casino_outlined, color: theme.colorScheme.outline)
+            : Text(
                 '${combatant.initiative}',
                 style: theme.textTheme.titleMedium,
-              )
-            : Icon(Icons.casino_outlined, color: theme.colorScheme.outline),
+              ),
       ),
-    );
-  }
-}
-
-/// Hasar/iyilestirme; miktar tek alanda tutulur, iki buton onu uygular.
-class _DamageButtons extends ConsumerStatefulWidget {
-  const _DamageButtons({required this.combatant});
-
-  final Combatant combatant;
-
-  @override
-  ConsumerState<_DamageButtons> createState() => _DamageButtonsState();
-}
-
-class _DamageButtonsState extends ConsumerState<_DamageButtons> {
-  int _amount = 1;
-
-  @override
-  Widget build(BuildContext context) {
-    final repo = ref.read(combatRepositoryProvider);
-    final l10n = L10n.of(context);
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        IconButton(
-          tooltip: l10n.combatDamage,
-          icon: const Icon(Icons.remove_circle_outline),
-          onPressed: () {
-            repo.applyDamage(widget.combatant.id, _amount);
-          },
-        ),
-        SizedBox(
-          width: 46,
-          child: TextFormField(
-            initialValue: '$_amount',
-            textAlign: TextAlign.center,
-            keyboardType: TextInputType.number,
-            decoration: const InputDecoration(
-              isDense: true,
-              contentPadding: EdgeInsets.symmetric(vertical: 8),
-            ),
-            onChanged: (v) => _amount = int.tryParse(v) ?? 0,
-          ),
-        ),
-        IconButton(
-          tooltip: l10n.combatHeal,
-          icon: const Icon(Icons.add_circle_outline),
-          onPressed: () {
-            repo.applyHealing(widget.combatant.id, _amount);
-          },
-        ),
-      ],
     );
   }
 }
@@ -1174,10 +1372,15 @@ class _MonsterPickerState extends ConsumerState<_MonsterPicker> {
   int _count = 1;
   bool _roll = false;
 
+  /// Ayni turden yaratiklara TEK inisiyatif atisi (DMG'nin onerdigi yol).
+  /// Alti goblin icin alti ayri satir sirayi takip etmeyi zorlastiriyor.
+  bool _groupInitiative = false;
+
   @override
   Widget build(BuildContext context) {
     final query = ref.watch(monsterQueryProvider);
     final results = ref.watch(monsterResultsProvider);
+    final glossary = glossaryTrOf(context, ref);
     final notifier = ref.read(monsterQueryProvider.notifier);
     final l10n = L10n.of(context);
 
@@ -1217,6 +1420,12 @@ class _MonsterPickerState extends ConsumerState<_MonsterPicker> {
                   value: _roll,
                   onChanged: (v) => setState(() => _roll = v),
                 ),
+                const SizedBox(width: 12),
+                Text(l10n.combatGroupInitiative),
+                Switch(
+                  value: _groupInitiative,
+                  onChanged: (v) => setState(() => _groupInitiative = v),
+                ),
               ],
             ),
             const SizedBox(width: 8),
@@ -1236,7 +1445,7 @@ class _MonsterPickerState extends ConsumerState<_MonsterPicker> {
                   dense: true,
                   title: Text(m.name),
                   subtitle: Text(
-                    '${[m.size, m.creatureType].whereType<String>().join(' ')}'
+                    '${[if (m.size != null) glossary.term('sizes', m.size!), if (m.creatureType != null) glossary.term('creatureTypes', m.creatureType!)].join(' ')}'
                     ' · ${m.hitPoints ?? '—'} HP',
                   ),
                   trailing: Text('CR ${formatCr(m.challengeRating)}'),
@@ -1244,6 +1453,7 @@ class _MonsterPickerState extends ConsumerState<_MonsterPicker> {
                     monster: m,
                     count: _count,
                     roll: _roll,
+                    group: _groupInitiative,
                   )),
                 );
               },

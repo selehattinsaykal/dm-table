@@ -13,7 +13,6 @@ import '../../domain/rules/magic_item_pricing.dart';
 import '../../l10n/app_localizations.dart';
 import '../codex/codex_providers.dart';
 import '../quests/quest_providers.dart';
-import '../session/session_page.dart';
 import '../world/world_providers.dart';
 import 'ai_tools_shared.dart';
 import 'encounter_tool.dart';
@@ -1388,23 +1387,12 @@ class _QuestToolState extends ConsumerState<_QuestTool> {
             padding: EdgeInsets.symmetric(vertical: 32),
             child: AppLoading(),
           ),
-        if (result != null)
-          ..._resultSections(
-            l10n,
-            theme,
-            result,
-            ref.watch(sessionControllerProvider).isRunning,
-          ),
+        if (result != null) ..._resultSections(l10n, theme, result),
       ],
     );
   }
 
-  List<Widget> _resultSections(
-    L10n l10n,
-    ThemeData theme,
-    QuestResult r,
-    bool sessionRunning,
-  ) {
+  List<Widget> _resultSections(L10n l10n, ThemeData theme, QuestResult r) {
     // Model gecerli JSON dondurmediyse (cogunlukla yanit kesilmis) elimizdeki
     // tek sey ham metin. Bunu sessizce "gorev metni" diye gostermek yaniltici:
     // DM neyin eksik oldugunu bilmeli ve yeniden uretebilmeli.
@@ -1480,11 +1468,6 @@ class _QuestToolState extends ConsumerState<_QuestTool> {
             label: Text(l10n.questSendToQuests),
           ),
           OutlinedButton.icon(
-            onPressed: () => _sendToPlayers(l10n, r, sessionRunning),
-            icon: const Icon(Icons.cast, size: 18),
-            label: Text(l10n.questSendPlayers),
-          ),
-          OutlinedButton.icon(
             onPressed: () => _copyPlayer(l10n, r),
             icon: const Icon(Icons.people_outline, size: 18),
             label: Text(l10n.questCopyPlayer),
@@ -1521,7 +1504,7 @@ class _QuestToolState extends ConsumerState<_QuestTool> {
 
   /// Üretilen görevi kalıcı Görevler listesine kaydeder (başlık/metin/ödül/DM).
   /// Üreticinin verdiği sayısal ödül (para + eşyalar) doğrudan görevin gerçek
-  /// ödülü olur: görev tamamlanınca oyunculara ortak ganimet havuzu olarak açılır.
+  /// ödülü olarak yazılır.
   Future<void> _saveToQuests(L10n l10n, QuestResult r) async {
     final repo = ref.read(questRepositoryProvider);
     final title = r.title.isNotEmpty ? r.title : l10n.aiQuestHeading;
@@ -1541,32 +1524,6 @@ class _QuestToolState extends ConsumerState<_QuestTool> {
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(SnackBar(content: Text(l10n.questSavedToQuests)));
-    }
-  }
-
-  /// Oyuncu metnini (DM notu HARİÇ) canlı olarak oyuncu panellerine gönderir.
-  /// Oturum açık değilse uyarır.
-  Future<void> _sendToPlayers(
-    L10n l10n,
-    QuestResult r,
-    bool sessionRunning,
-  ) async {
-    if (!sessionRunning) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(l10n.questNeedSession)));
-      return;
-    }
-    await ref
-        .read(sessionServiceProvider)
-        .showHandoutText(
-          text: _playerText(l10n, r),
-          caption: l10n.aiQuestHeading,
-        );
-    if (mounted) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(l10n.questSentPlayers)));
     }
   }
 

@@ -193,6 +193,24 @@ abstract class L10n {
   /// **'Dosya ekle'**
   String get musicImport;
 
+  /// No description provided for @fileTypeAudio.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ses'**
+  String get fileTypeAudio;
+
+  /// No description provided for @fileTypeImage.
+  ///
+  /// In tr, this message translates to:
+  /// **'Görsel'**
+  String get fileTypeImage;
+
+  /// No description provided for @fileTypeVideo.
+  ///
+  /// In tr, this message translates to:
+  /// **'Video'**
+  String get fileTypeVideo;
+
   /// No description provided for @musicNewPlaylist.
   ///
   /// In tr, this message translates to:
@@ -414,18 +432,6 @@ abstract class L10n {
   /// In tr, this message translates to:
   /// **'İndirme araçları bulunamadı'**
   String get musicToolMissing;
-
-  /// No description provided for @musicToolMissingBody.
-  ///
-  /// In tr, this message translates to:
-  /// **'YouTube için yt-dlp gerekli. Otomatik kurulum için Müzik sayfasındaki \"Müzik İndirme Araçları\" panelini kullanın veya yolunu aşağıya yapıştırın.'**
-  String get musicToolMissingBody;
-
-  /// No description provided for @musicToolPath.
-  ///
-  /// In tr, this message translates to:
-  /// **'yt-dlp yolu (isteğe bağlı)'**
-  String get musicToolPath;
 
   /// No description provided for @musicToolInstall.
   ///
@@ -1393,24 +1399,6 @@ abstract class L10n {
   /// **'Tümünü kopyala'**
   String get questCopyAll;
 
-  /// No description provided for @questSendPlayers.
-  ///
-  /// In tr, this message translates to:
-  /// **'Oyunculara gönder'**
-  String get questSendPlayers;
-
-  /// No description provided for @questSentPlayers.
-  ///
-  /// In tr, this message translates to:
-  /// **'Oyunculara gönderildi'**
-  String get questSentPlayers;
-
-  /// No description provided for @questNeedSession.
-  ///
-  /// In tr, this message translates to:
-  /// **'Önce Oturum sekmesinden masayı aç.'**
-  String get questNeedSession;
-
   /// No description provided for @navQuests.
   ///
   /// In tr, this message translates to:
@@ -1434,24 +1422,6 @@ abstract class L10n {
   /// In tr, this message translates to:
   /// **'(başlıksız görev)'**
   String get questUntitled;
-
-  /// No description provided for @questAcceptedBy.
-  ///
-  /// In tr, this message translates to:
-  /// **'Kabul'**
-  String get questAcceptedBy;
-
-  /// No description provided for @questRejectedBy.
-  ///
-  /// In tr, this message translates to:
-  /// **'Ret'**
-  String get questRejectedBy;
-
-  /// No description provided for @questPending.
-  ///
-  /// In tr, this message translates to:
-  /// **'Bekleyen'**
-  String get questPending;
 
   /// No description provided for @campaignDefaultName.
   ///
@@ -1524,30 +1494,6 @@ abstract class L10n {
   /// In tr, this message translates to:
   /// **'Dosya şu an kullanımda; kampanya bir sonraki açılışta silinecek.'**
   String get campaignDeleteLater;
-
-  /// No description provided for @campaignSwitchTitle.
-  ///
-  /// In tr, this message translates to:
-  /// **'Oturum açık'**
-  String get campaignSwitchTitle;
-
-  /// No description provided for @campaignSwitchBody.
-  ///
-  /// In tr, this message translates to:
-  /// **'Kampanya değiştirilirse masa kapanır, bağlı oyuncuların bağlantısı kesilir ve yeni bir katılım adresi üretilir.'**
-  String get campaignSwitchBody;
-
-  /// No description provided for @campaignSwitchPlayers.
-  ///
-  /// In tr, this message translates to:
-  /// **'Bağlı oyuncular: {names}'**
-  String campaignSwitchPlayers(String names);
-
-  /// No description provided for @campaignSwitchConfirm.
-  ///
-  /// In tr, this message translates to:
-  /// **'Devam et'**
-  String get campaignSwitchConfirm;
 
   /// No description provided for @navCalendar.
   ///
@@ -2071,12 +2017,6 @@ abstract class L10n {
   /// **'Dinlenmeyi bitir'**
   String get restShortFinish;
 
-  /// No description provided for @restNeedSession.
-  ///
-  /// In tr, this message translates to:
-  /// **'Önce Oturum sekmesinden masayı aç.'**
-  String get restNeedSession;
-
   /// No description provided for @restShort.
   ///
   /// In tr, this message translates to:
@@ -2112,12 +2052,6 @@ abstract class L10n {
   /// In tr, this message translates to:
   /// **'Uzun mola ({count} karakter)'**
   String restLoggedLong(int count);
-
-  /// No description provided for @restAnnounceLong.
-  ///
-  /// In tr, this message translates to:
-  /// **'Ekip uzun molaya çekildi.'**
-  String get restAnnounceLong;
 
   /// No description provided for @aiToolEncounter.
   ///
@@ -2197,120 +2131,6 @@ abstract class L10n {
   /// **'Bu seviye için kütüphanede uygun canavar bulunamadı.'**
   String get encounterNoCandidates;
 
-  /// No description provided for @navChat.
-  ///
-  /// In tr, this message translates to:
-  /// **'Sohbet'**
-  String get navChat;
-
-  /// No description provided for @chatGeneral.
-  ///
-  /// In tr, this message translates to:
-  /// **'Genel'**
-  String get chatGeneral;
-
-  /// No description provided for @chatWhisper.
-  ///
-  /// In tr, this message translates to:
-  /// **'Fısıltı'**
-  String get chatWhisper;
-
-  /// No description provided for @chatPlaceholder.
-  ///
-  /// In tr, this message translates to:
-  /// **'Mesajınızı yazın...'**
-  String get chatPlaceholder;
-
-  /// No description provided for @chatTo.
-  ///
-  /// In tr, this message translates to:
-  /// **'Kime:'**
-  String get chatTo;
-
-  /// No description provided for @chatDm.
-  ///
-  /// In tr, this message translates to:
-  /// **'DM'**
-  String get chatDm;
-
-  /// No description provided for @chatEmpty.
-  ///
-  /// In tr, this message translates to:
-  /// **'Henüz mesaj yok. Masaya bir şey söyle.'**
-  String get chatEmpty;
-
-  /// No description provided for @chatNeedSession.
-  ///
-  /// In tr, this message translates to:
-  /// **'Önce Oturum sekmesinden masayı aç.'**
-  String get chatNeedSession;
-
-  /// No description provided for @presenceTitle.
-  ///
-  /// In tr, this message translates to:
-  /// **'Oyuncular'**
-  String get presenceTitle;
-
-  /// No description provided for @presenceDragHint.
-  ///
-  /// In tr, this message translates to:
-  /// **'Taşımak için basılı tutup sürükle'**
-  String get presenceDragHint;
-
-  /// No description provided for @presenceNoPlayers.
-  ///
-  /// In tr, this message translates to:
-  /// **'Henüz bağlı oyuncu yok.'**
-  String get presenceNoPlayers;
-
-  /// No description provided for @presenceActive.
-  ///
-  /// In tr, this message translates to:
-  /// **'Aktif'**
-  String get presenceActive;
-
-  /// No description provided for @presenceAway.
-  ///
-  /// In tr, this message translates to:
-  /// **'Uzakta'**
-  String get presenceAway;
-
-  /// No description provided for @presenceOffline.
-  ///
-  /// In tr, this message translates to:
-  /// **'Çevrimdışı'**
-  String get presenceOffline;
-
-  /// No description provided for @lastSeenSeconds.
-  ///
-  /// In tr, this message translates to:
-  /// **'son görülme {n}sn önce'**
-  String lastSeenSeconds(int n);
-
-  /// No description provided for @lastSeenMinutes.
-  ///
-  /// In tr, this message translates to:
-  /// **'son görülme {n}dk önce'**
-  String lastSeenMinutes(int n);
-
-  /// No description provided for @lastSeenHours.
-  ///
-  /// In tr, this message translates to:
-  /// **'son görülme {n}sa önce'**
-  String lastSeenHours(int n);
-
-  /// No description provided for @questNoTargets.
-  ///
-  /// In tr, this message translates to:
-  /// **'Hiç oyuncu seçilmedi'**
-  String get questNoTargets;
-
-  /// No description provided for @questHide.
-  ///
-  /// In tr, this message translates to:
-  /// **'Paylaşımı kaldır'**
-  String get questHide;
-
   /// No description provided for @questComplete.
   ///
   /// In tr, this message translates to:
@@ -2322,24 +2142,6 @@ abstract class L10n {
   /// In tr, this message translates to:
   /// **'Geri aç'**
   String get questReopen;
-
-  /// No description provided for @questSharePick.
-  ///
-  /// In tr, this message translates to:
-  /// **'Hangi oyunculara gösterilsin?'**
-  String get questSharePick;
-
-  /// No description provided for @questShow.
-  ///
-  /// In tr, this message translates to:
-  /// **'Göster'**
-  String get questShow;
-
-  /// No description provided for @questShared.
-  ///
-  /// In tr, this message translates to:
-  /// **'Oyunculara gösterildi'**
-  String get questShared;
 
   /// No description provided for @questNoCharacters.
   ///
@@ -2431,78 +2233,6 @@ abstract class L10n {
   /// **'Görevi tamamlayınca kabul eden oyunculara ortak ganimet olarak açılır. Bir eşyayı ilk kim alırsa onun olur; havuz boşalınca görev kapanır.'**
   String get questRealRewardHint;
 
-  /// No description provided for @questRewardPending.
-  ///
-  /// In tr, this message translates to:
-  /// **'Ödül dağıtımda'**
-  String get questRewardPending;
-
-  /// No description provided for @questRewardItemCount.
-  ///
-  /// In tr, this message translates to:
-  /// **'{count} eşya'**
-  String questRewardItemCount(int count);
-
-  /// No description provided for @questShareSection.
-  ///
-  /// In tr, this message translates to:
-  /// **'Oyunculara gösterim'**
-  String get questShareSection;
-
-  /// No description provided for @questModeIndividual.
-  ///
-  /// In tr, this message translates to:
-  /// **'Tek tek kabul'**
-  String get questModeIndividual;
-
-  /// No description provided for @questModeVote.
-  ///
-  /// In tr, this message translates to:
-  /// **'Oylama'**
-  String get questModeVote;
-
-  /// No description provided for @questModeIndividualHint.
-  ///
-  /// In tr, this message translates to:
-  /// **'Seçtiğin oyuncuların her biri görevi ayrı ayrı kabul eder ya da reddeder.'**
-  String get questModeIndividualHint;
-
-  /// No description provided for @questModeVoteHint.
-  ///
-  /// In tr, this message translates to:
-  /// **'Seçtiğin oyuncular oylar. Kabul oyu %50 ve üzerindeyse görev hepsine verilir; altında kalırsa kimse alamaz.'**
-  String get questModeVoteHint;
-
-  /// No description provided for @questStartVote.
-  ///
-  /// In tr, this message translates to:
-  /// **'Oylamayı başlat'**
-  String get questStartVote;
-
-  /// No description provided for @questVoteStarted.
-  ///
-  /// In tr, this message translates to:
-  /// **'Oylama başlatıldı'**
-  String get questVoteStarted;
-
-  /// No description provided for @questVoteOngoing.
-  ///
-  /// In tr, this message translates to:
-  /// **'Oylama sürüyor'**
-  String get questVoteOngoing;
-
-  /// No description provided for @questVotePassed.
-  ///
-  /// In tr, this message translates to:
-  /// **'Oylama geçti — görev ekipte'**
-  String get questVotePassed;
-
-  /// No description provided for @questVoteFailed.
-  ///
-  /// In tr, this message translates to:
-  /// **'Oylama düştü — kimse almadı'**
-  String get questVoteFailed;
-
   /// No description provided for @compendiumMonsters.
   ///
   /// In tr, this message translates to:
@@ -2548,7 +2278,7 @@ abstract class L10n {
   /// No description provided for @searchHint.
   ///
   /// In tr, this message translates to:
-  /// **'Ara...'**
+  /// **'Canavar, büyü, eşya, karakter, yer, görev, kayıt, parça…'**
   String get searchHint;
 
   /// No description provided for @filters.
@@ -2580,6 +2310,60 @@ abstract class L10n {
   /// In tr, this message translates to:
   /// **'Nadirlik'**
   String get filterRarity;
+
+  /// No description provided for @filterConcentration.
+  ///
+  /// In tr, this message translates to:
+  /// **'Konsantrasyon'**
+  String get filterConcentration;
+
+  /// No description provided for @filterRitual.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ritüel'**
+  String get filterRitual;
+
+  /// No description provided for @filterAttunement.
+  ///
+  /// In tr, this message translates to:
+  /// **'Uyum'**
+  String get filterAttunement;
+
+  /// No description provided for @sourcebookSrd.
+  ///
+  /// In tr, this message translates to:
+  /// **'SRD 5.2'**
+  String get sourcebookSrd;
+
+  /// No description provided for @sourcebookPhb.
+  ///
+  /// In tr, this message translates to:
+  /// **'Oyunculuk Elkitabı 2024'**
+  String get sourcebookPhb;
+
+  /// No description provided for @sourcebookMm.
+  ///
+  /// In tr, this message translates to:
+  /// **'Canavarlar Elkitabı 2024'**
+  String get sourcebookMm;
+
+  /// No description provided for @sourcebookEberron.
+  ///
+  /// In tr, this message translates to:
+  /// **'Eberron: Forge of the Artificer'**
+  String get sourcebookEberron;
+
+  /// No description provided for @sourcebookRavenloft.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ravenloft: The Horrors Within'**
+  String get sourcebookRavenloft;
+
+  /// No description provided for @sourcebookFaerun.
+  ///
+  /// In tr, this message translates to:
+  /// **'Forgotten Realms: Heroes of Faerûn'**
+  String get sourcebookFaerun;
 
   /// No description provided for @importTitle.
   ///
@@ -2827,6 +2611,96 @@ abstract class L10n {
   /// **'Kurtarma atışları'**
   String get sheetSavingThrows;
 
+  /// No description provided for @sheetProficiencies.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yeterlilikler'**
+  String get sheetProficiencies;
+
+  /// No description provided for @sheetArmorTraining.
+  ///
+  /// In tr, this message translates to:
+  /// **'Zırh eğitimi'**
+  String get sheetArmorTraining;
+
+  /// No description provided for @sheetWeaponProficiencies.
+  ///
+  /// In tr, this message translates to:
+  /// **'Silah yeterlilikleri'**
+  String get sheetWeaponProficiencies;
+
+  /// No description provided for @sheetToolProficiencies.
+  ///
+  /// In tr, this message translates to:
+  /// **'Uzman olunan aletler'**
+  String get sheetToolProficiencies;
+
+  /// No description provided for @sheetLanguages.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bilinen diller'**
+  String get sheetLanguages;
+
+  /// No description provided for @sheetWeaponMastery.
+  ///
+  /// In tr, this message translates to:
+  /// **'Silah ustalıkları'**
+  String get sheetWeaponMastery;
+
+  /// No description provided for @sheetNoProficiencies.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yok'**
+  String get sheetNoProficiencies;
+
+  /// No description provided for @sheetAddProficiency.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ekle'**
+  String get sheetAddProficiency;
+
+  /// No description provided for @sheetProficiencyPending.
+  ///
+  /// In tr, this message translates to:
+  /// **'{count} seçim bekliyor'**
+  String sheetProficiencyPending(int count);
+
+  /// No description provided for @sheetProficiencySourceHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sınıf, geçmiş ve feat\'lerden gelenler otomatik; elle eklediklerin korunur.'**
+  String get sheetProficiencySourceHint;
+
+  /// No description provided for @sheetPickTool.
+  ///
+  /// In tr, this message translates to:
+  /// **'Alet seç'**
+  String get sheetPickTool;
+
+  /// No description provided for @sheetPickLanguage.
+  ///
+  /// In tr, this message translates to:
+  /// **'Dil seç'**
+  String get sheetPickLanguage;
+
+  /// No description provided for @sheetPickWeapon.
+  ///
+  /// In tr, this message translates to:
+  /// **'Silah seç'**
+  String get sheetPickWeapon;
+
+  /// No description provided for @sheetArmorPenalty.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yeterliliğin olmayan zırh: Güç ve Çeviklik kontrolleriyle kurtarmalarında dezavantaj, büyü yapamazsın.'**
+  String get sheetArmorPenalty;
+
+  /// No description provided for @sheetShieldPenalty.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yeterliliğin olmayan kalkan: aynı ceza geçerli.'**
+  String get sheetShieldPenalty;
+
   /// No description provided for @sheetSkills.
   ///
   /// In tr, this message translates to:
@@ -2905,6 +2779,150 @@ abstract class L10n {
   /// **'Çıkar'**
   String get sheetUnequip;
 
+  /// No description provided for @sheetGear.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ekipman'**
+  String get sheetGear;
+
+  /// No description provided for @sheetGearTab.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kuşanılan'**
+  String get sheetGearTab;
+
+  /// No description provided for @sheetBagTab.
+  ///
+  /// In tr, this message translates to:
+  /// **'Çanta'**
+  String get sheetBagTab;
+
+  /// No description provided for @sheetSlotEmpty.
+  ///
+  /// In tr, this message translates to:
+  /// **'Boş'**
+  String get sheetSlotEmpty;
+
+  /// No description provided for @sheetBagAllEquipped.
+  ///
+  /// In tr, this message translates to:
+  /// **'Çantadaki her şey kuşanılmış.'**
+  String get sheetBagAllEquipped;
+
+  /// No description provided for @sheetSlotFull.
+  ///
+  /// In tr, this message translates to:
+  /// **'{slot} yuvası dolu ({limit}). Önce bir şey çıkar ya da sınırı artır.'**
+  String sheetSlotFull(String slot, int limit);
+
+  /// No description provided for @sheetSlotLimit.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sınır: {limit}'**
+  String sheetSlotLimit(String limit);
+
+  /// No description provided for @sheetSlotUnlimited.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sınırsız'**
+  String get sheetSlotUnlimited;
+
+  /// No description provided for @sheetSlotEditLimit.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yuva sınırını düzenle'**
+  String get sheetSlotEditLimit;
+
+  /// No description provided for @sheetSlotLimitTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'{slot} sınırı'**
+  String sheetSlotLimitTitle(String slot);
+
+  /// No description provided for @sheetSlotLimitHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kaç tane kuşanılabilir? Sınırsız için sınırsızı seç.'**
+  String get sheetSlotLimitHint;
+
+  /// No description provided for @sheetSlotDefault.
+  ///
+  /// In tr, this message translates to:
+  /// **'Varsayılana dön'**
+  String get sheetSlotDefault;
+
+  /// No description provided for @sheetSlotChange.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yuvayı değiştir'**
+  String get sheetSlotChange;
+
+  /// No description provided for @sheetSlotHead.
+  ///
+  /// In tr, this message translates to:
+  /// **'Baş'**
+  String get sheetSlotHead;
+
+  /// No description provided for @sheetSlotArmor.
+  ///
+  /// In tr, this message translates to:
+  /// **'Zırh'**
+  String get sheetSlotArmor;
+
+  /// No description provided for @sheetSlotCloak.
+  ///
+  /// In tr, this message translates to:
+  /// **'Pelerin'**
+  String get sheetSlotCloak;
+
+  /// No description provided for @sheetSlotGloves.
+  ///
+  /// In tr, this message translates to:
+  /// **'Eldiven'**
+  String get sheetSlotGloves;
+
+  /// No description provided for @sheetSlotBoots.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ayakkabı'**
+  String get sheetSlotBoots;
+
+  /// No description provided for @sheetSlotBelt.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kemer'**
+  String get sheetSlotBelt;
+
+  /// No description provided for @sheetSlotAmulet.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kolye'**
+  String get sheetSlotAmulet;
+
+  /// No description provided for @sheetSlotRing.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yüzük'**
+  String get sheetSlotRing;
+
+  /// No description provided for @sheetSlotMainHand.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ana el'**
+  String get sheetSlotMainHand;
+
+  /// No description provided for @sheetSlotOffHand.
+  ///
+  /// In tr, this message translates to:
+  /// **'Diğer el'**
+  String get sheetSlotOffHand;
+
+  /// No description provided for @sheetSlotOther.
+  ///
+  /// In tr, this message translates to:
+  /// **'Diğer'**
+  String get sheetSlotOther;
+
   /// No description provided for @sheetItemTab.
   ///
   /// In tr, this message translates to:
@@ -2928,6 +2946,18 @@ abstract class L10n {
   /// In tr, this message translates to:
   /// **'Eşya adı'**
   String get sheetItemName;
+
+  /// No description provided for @sheetItemType.
+  ///
+  /// In tr, this message translates to:
+  /// **'Eşya türü'**
+  String get sheetItemType;
+
+  /// No description provided for @sheetItemTypeAuto.
+  ///
+  /// In tr, this message translates to:
+  /// **'Otomatik (addan tahmin et)'**
+  String get sheetItemTypeAuto;
 
   /// No description provided for @sheetPurse.
   ///
@@ -3487,12 +3517,6 @@ abstract class L10n {
   /// **'Yeni yer'**
   String get worldNewLocation;
 
-  /// No description provided for @worldShowToPlayers.
-  ///
-  /// In tr, this message translates to:
-  /// **'Oyunculara göster'**
-  String get worldShowToPlayers;
-
   /// No description provided for @worldAddChild.
   ///
   /// In tr, this message translates to:
@@ -3612,18 +3636,6 @@ abstract class L10n {
   /// In tr, this message translates to:
   /// **'Vazgeç'**
   String get editModeDiscard;
-
-  /// No description provided for @worldPinHiddenFromPlayers.
-  ///
-  /// In tr, this message translates to:
-  /// **'Oyunculara kapalı'**
-  String get worldPinHiddenFromPlayers;
-
-  /// No description provided for @worldPinVisibleToPlayers.
-  ///
-  /// In tr, this message translates to:
-  /// **'Oyunculara açık'**
-  String get worldPinVisibleToPlayers;
 
   /// No description provided for @worldNoMap.
   ///
@@ -3822,12 +3834,6 @@ abstract class L10n {
   /// In tr, this message translates to:
   /// **'Takvimi {days} gün ilerlet'**
   String travelAdvanceCalendar(Object days);
-
-  /// No description provided for @travelAnnounce.
-  ///
-  /// In tr, this message translates to:
-  /// **'Parti {days} gün yol aldı.'**
-  String travelAnnounce(Object days);
 
   /// No description provided for @travelPlanAction.
   ///
@@ -4201,18 +4207,6 @@ abstract class L10n {
   /// **'Sadece sen görürsün; pini açarsan oyuncular da.'**
   String get worldPinNoteHint;
 
-  /// No description provided for @worldPinRevealLocationHint.
-  ///
-  /// In tr, this message translates to:
-  /// **'Kapalıyken pin yalnızca sende görünür. Açıkken oyuncular pine dokunup o yerin haritasına girebilir (haritası varsa).'**
-  String get worldPinRevealLocationHint;
-
-  /// No description provided for @worldPinRevealHint.
-  ///
-  /// In tr, this message translates to:
-  /// **'Kapalıyken pin yalnızca sende görünür.'**
-  String get worldPinRevealHint;
-
   /// No description provided for @worldKindLocation.
   ///
   /// In tr, this message translates to:
@@ -4327,12 +4321,6 @@ abstract class L10n {
   /// **'Yedekleme'**
   String get sessionBackup;
 
-  /// No description provided for @sessionCloseTable.
-  ///
-  /// In tr, this message translates to:
-  /// **'Oturumu kapat'**
-  String get sessionCloseTable;
-
   /// No description provided for @sessionLogTitle.
   ///
   /// In tr, this message translates to:
@@ -4362,36 +4350,6 @@ abstract class L10n {
   /// In tr, this message translates to:
   /// **'Henüz kayıt yok. XP verildikçe ve not ekledikçe burada birikir.'**
   String get sessionLogEmpty;
-
-  /// No description provided for @sessionHandoutCaption.
-  ///
-  /// In tr, this message translates to:
-  /// **'Görsel başlığı (isteğe bağlı)'**
-  String get sessionHandoutCaption;
-
-  /// No description provided for @sessionHandoutShow.
-  ///
-  /// In tr, this message translates to:
-  /// **'Görsel göster'**
-  String get sessionHandoutShow;
-
-  /// No description provided for @sessionHandoutClear.
-  ///
-  /// In tr, this message translates to:
-  /// **'Görseli kaldır'**
-  String get sessionHandoutClear;
-
-  /// No description provided for @sessionHandoutShared.
-  ///
-  /// In tr, this message translates to:
-  /// **'Görsel oyunculara gösterildi.'**
-  String get sessionHandoutShared;
-
-  /// No description provided for @sessionHandoutCleared.
-  ///
-  /// In tr, this message translates to:
-  /// **'Görsel kaldırıldı.'**
-  String get sessionHandoutCleared;
 
   /// No description provided for @codexNewPage.
   ///
@@ -4717,161 +4675,707 @@ abstract class L10n {
   /// **'Hedef sayfa'**
   String get codexLinkTargetPage;
 
+  /// No description provided for @codexAppearance.
+  ///
+  /// In tr, this message translates to:
+  /// **'Görünüm'**
+  String get codexAppearance;
+
+  /// No description provided for @codexWidth.
+  ///
+  /// In tr, this message translates to:
+  /// **'Genişlik'**
+  String get codexWidth;
+
+  /// No description provided for @codexAlign.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hizalama'**
+  String get codexAlign;
+
+  /// No description provided for @codexAlignLeft.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sol'**
+  String get codexAlignLeft;
+
+  /// No description provided for @codexAlignCenter.
+  ///
+  /// In tr, this message translates to:
+  /// **'Orta'**
+  String get codexAlignCenter;
+
+  /// No description provided for @codexAlignRight.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sağ'**
+  String get codexAlignRight;
+
+  /// No description provided for @codexHeight.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yükseklik'**
+  String get codexHeight;
+
+  /// No description provided for @codexHeightAuto.
+  ///
+  /// In tr, this message translates to:
+  /// **'Otomatik'**
+  String get codexHeightAuto;
+
+  /// No description provided for @codexResizeHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'İpucu: düzenleme modunda blokların kenarlarından sürükleyerek boyutlandırabilirsin.'**
+  String get codexResizeHint;
+
+  /// No description provided for @codexResetSize.
+  ///
+  /// In tr, this message translates to:
+  /// **'Boyutu sıfırla'**
+  String get codexResetSize;
+
+  /// No description provided for @codexDuplicate.
+  ///
+  /// In tr, this message translates to:
+  /// **'Çoğalt'**
+  String get codexDuplicate;
+
+  /// No description provided for @codexMoveUp.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yukarı taşı'**
+  String get codexMoveUp;
+
+  /// No description provided for @codexMoveDown.
+  ///
+  /// In tr, this message translates to:
+  /// **'Aşağı taşı'**
+  String get codexMoveDown;
+
+  /// No description provided for @codexBlockSearch.
+  ///
+  /// In tr, this message translates to:
+  /// **'Blok ara'**
+  String get codexBlockSearch;
+
+  /// No description provided for @codexGroupText.
+  ///
+  /// In tr, this message translates to:
+  /// **'Metin'**
+  String get codexGroupText;
+
+  /// No description provided for @codexGroupData.
+  ///
+  /// In tr, this message translates to:
+  /// **'Veri'**
+  String get codexGroupData;
+
+  /// No description provided for @codexGroupMedia.
+  ///
+  /// In tr, this message translates to:
+  /// **'Medya'**
+  String get codexGroupMedia;
+
+  /// No description provided for @codexGroupLinks.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bağlantılar'**
+  String get codexGroupLinks;
+
+  /// No description provided for @codexTextSize.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yazı boyutu'**
+  String get codexTextSize;
+
+  /// No description provided for @codexDropCap.
+  ///
+  /// In tr, this message translates to:
+  /// **'Süslü ilk harf'**
+  String get codexDropCap;
+
+  /// No description provided for @codexTone.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ton'**
+  String get codexTone;
+
+  /// No description provided for @codexToneNeutral.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yalın'**
+  String get codexToneNeutral;
+
+  /// No description provided for @codexToneInfo.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bilgi'**
+  String get codexToneInfo;
+
+  /// No description provided for @codexToneSuccess.
+  ///
+  /// In tr, this message translates to:
+  /// **'Olumlu'**
+  String get codexToneSuccess;
+
+  /// No description provided for @codexToneWarning.
+  ///
+  /// In tr, this message translates to:
+  /// **'Uyarı'**
+  String get codexToneWarning;
+
+  /// No description provided for @codexToneDanger.
+  ///
+  /// In tr, this message translates to:
+  /// **'Tehlike'**
+  String get codexToneDanger;
+
+  /// No description provided for @codexToneArcane.
+  ///
+  /// In tr, this message translates to:
+  /// **'Büyülü'**
+  String get codexToneArcane;
+
+  /// No description provided for @codexToneGold.
+  ///
+  /// In tr, this message translates to:
+  /// **'Altın'**
+  String get codexToneGold;
+
+  /// No description provided for @codexHeadingRule.
+  ///
+  /// In tr, this message translates to:
+  /// **'Altına çizgi'**
+  String get codexHeadingRule;
+
+  /// No description provided for @codexListOrdered.
+  ///
+  /// In tr, this message translates to:
+  /// **'Numaralı'**
+  String get codexListOrdered;
+
+  /// No description provided for @codexListMarker.
+  ///
+  /// In tr, this message translates to:
+  /// **'Madde işareti'**
+  String get codexListMarker;
+
+  /// No description provided for @codexListDense.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sık aralık'**
+  String get codexListDense;
+
+  /// No description provided for @codexChecklistProgress.
+  ///
+  /// In tr, this message translates to:
+  /// **'İlerleme çubuğu'**
+  String get codexChecklistProgress;
+
+  /// No description provided for @codexChecklistStrike.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yapılanın üstünü çiz'**
+  String get codexChecklistStrike;
+
+  /// No description provided for @codexChecklistDone.
+  ///
+  /// In tr, this message translates to:
+  /// **'{done}/{total} tamam'**
+  String codexChecklistDone(int done, int total);
+
+  /// No description provided for @codexCalloutBorder.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kenarlık'**
+  String get codexCalloutBorder;
+
+  /// No description provided for @codexDividerStyle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ayraç biçimi'**
+  String get codexDividerStyle;
+
+  /// No description provided for @codexDividerOrnament.
+  ///
+  /// In tr, this message translates to:
+  /// **'Süslü'**
+  String get codexDividerOrnament;
+
+  /// No description provided for @codexDividerLine.
+  ///
+  /// In tr, this message translates to:
+  /// **'Çizgi'**
+  String get codexDividerLine;
+
+  /// No description provided for @codexDividerDashed.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kesik'**
+  String get codexDividerDashed;
+
+  /// No description provided for @codexDividerThick.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kalın'**
+  String get codexDividerThick;
+
+  /// No description provided for @codexDividerDots.
+  ///
+  /// In tr, this message translates to:
+  /// **'Noktalar'**
+  String get codexDividerDots;
+
+  /// No description provided for @codexDividerSpace.
+  ///
+  /// In tr, this message translates to:
+  /// **'Boşluk'**
+  String get codexDividerSpace;
+
+  /// No description provided for @codexMediaFit.
+  ///
+  /// In tr, this message translates to:
+  /// **'Doldurma'**
+  String get codexMediaFit;
+
+  /// No description provided for @codexFitContain.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sığdır'**
+  String get codexFitContain;
+
+  /// No description provided for @codexFitCover.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kapla'**
+  String get codexFitCover;
+
+  /// No description provided for @codexFitFill.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ger'**
+  String get codexFitFill;
+
+  /// No description provided for @codexCornerRadius.
+  ///
+  /// In tr, this message translates to:
+  /// **'Köşe yuvarlaklığı'**
+  String get codexCornerRadius;
+
+  /// No description provided for @codexMediaFrame.
+  ///
+  /// In tr, this message translates to:
+  /// **'Çerçeve'**
+  String get codexMediaFrame;
+
+  /// No description provided for @codexImageFullscreen.
+  ///
+  /// In tr, this message translates to:
+  /// **'Tam ekran'**
+  String get codexImageFullscreen;
+
+  /// No description provided for @codexImageMissing.
+  ///
+  /// In tr, this message translates to:
+  /// **'Görsel dosyası bulunamadı'**
+  String get codexImageMissing;
+
+  /// No description provided for @codexVideoLoop.
+  ///
+  /// In tr, this message translates to:
+  /// **'Döngü'**
+  String get codexVideoLoop;
+
+  /// No description provided for @codexVideoMuted.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sessiz'**
+  String get codexVideoMuted;
+
+  /// No description provided for @codexTableZebra.
+  ///
+  /// In tr, this message translates to:
+  /// **'Şeritli satırlar'**
+  String get codexTableZebra;
+
+  /// No description provided for @codexTableDense.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sık'**
+  String get codexTableDense;
+
+  /// No description provided for @codexTableBorders.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kenarlıklar'**
+  String get codexTableBorders;
+
+  /// No description provided for @codexChartType.
+  ///
+  /// In tr, this message translates to:
+  /// **'Grafik türü'**
+  String get codexChartType;
+
+  /// No description provided for @codexChartBar.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yatay çubuk'**
+  String get codexChartBar;
+
+  /// No description provided for @codexChartColumn.
+  ///
+  /// In tr, this message translates to:
+  /// **'Dikey sütun'**
+  String get codexChartColumn;
+
+  /// No description provided for @codexChartLine.
+  ///
+  /// In tr, this message translates to:
+  /// **'Çizgi'**
+  String get codexChartLine;
+
+  /// No description provided for @codexChartArea.
+  ///
+  /// In tr, this message translates to:
+  /// **'Alan'**
+  String get codexChartArea;
+
+  /// No description provided for @codexChartPie.
+  ///
+  /// In tr, this message translates to:
+  /// **'Pasta'**
+  String get codexChartPie;
+
+  /// No description provided for @codexChartDonut.
+  ///
+  /// In tr, this message translates to:
+  /// **'Halka'**
+  String get codexChartDonut;
+
+  /// No description provided for @codexChartRadar.
+  ///
+  /// In tr, this message translates to:
+  /// **'Radar'**
+  String get codexChartRadar;
+
+  /// No description provided for @codexChartStacked.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yığılmış'**
+  String get codexChartStacked;
+
+  /// No description provided for @codexChartPalette.
+  ///
+  /// In tr, this message translates to:
+  /// **'Renk paleti'**
+  String get codexChartPalette;
+
+  /// No description provided for @codexPaletteTheme.
+  ///
+  /// In tr, this message translates to:
+  /// **'Tema'**
+  String get codexPaletteTheme;
+
+  /// No description provided for @codexPaletteBrass.
+  ///
+  /// In tr, this message translates to:
+  /// **'Pirinç'**
+  String get codexPaletteBrass;
+
+  /// No description provided for @codexPaletteJewel.
+  ///
+  /// In tr, this message translates to:
+  /// **'Mücevher'**
+  String get codexPaletteJewel;
+
+  /// No description provided for @codexPaletteEmber.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kor'**
+  String get codexPaletteEmber;
+
+  /// No description provided for @codexPaletteForest.
+  ///
+  /// In tr, this message translates to:
+  /// **'Orman'**
+  String get codexPaletteForest;
+
+  /// No description provided for @codexPaletteMono.
+  ///
+  /// In tr, this message translates to:
+  /// **'Tek renk'**
+  String get codexPaletteMono;
+
+  /// No description provided for @codexChartShowValues.
+  ///
+  /// In tr, this message translates to:
+  /// **'Değerler'**
+  String get codexChartShowValues;
+
+  /// No description provided for @codexChartShowGrid.
+  ///
+  /// In tr, this message translates to:
+  /// **'Izgara'**
+  String get codexChartShowGrid;
+
+  /// No description provided for @codexChartShowLegend.
+  ///
+  /// In tr, this message translates to:
+  /// **'Açıklama'**
+  String get codexChartShowLegend;
+
+  /// No description provided for @codexChartSort.
+  ///
+  /// In tr, this message translates to:
+  /// **'Büyükten küçüğe sırala'**
+  String get codexChartSort;
+
+  /// No description provided for @codexChartEmpty.
+  ///
+  /// In tr, this message translates to:
+  /// **'Henüz veri yok.'**
+  String get codexChartEmpty;
+
+  /// No description provided for @codexChartRadarHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'Radar en az üç öge ister.'**
+  String get codexChartRadarHint;
+
+  /// No description provided for @codexBlockCounter.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sayaç'**
+  String get codexBlockCounter;
+
+  /// No description provided for @codexCounterEmpty.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sayaç yok.'**
+  String get codexCounterEmpty;
+
+  /// No description provided for @codexCounterAdd.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sayaç ekle'**
+  String get codexCounterAdd;
+
+  /// No description provided for @codexCounterValue.
+  ///
+  /// In tr, this message translates to:
+  /// **'Değer'**
+  String get codexCounterValue;
+
+  /// No description provided for @codexCounterMin.
+  ///
+  /// In tr, this message translates to:
+  /// **'En az'**
+  String get codexCounterMin;
+
+  /// No description provided for @codexCounterMax.
+  ///
+  /// In tr, this message translates to:
+  /// **'En çok'**
+  String get codexCounterMax;
+
+  /// No description provided for @codexCounterStep.
+  ///
+  /// In tr, this message translates to:
+  /// **'Adım'**
+  String get codexCounterStep;
+
+  /// No description provided for @codexCounterStyle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Biçim'**
+  String get codexCounterStyle;
+
+  /// No description provided for @codexCounterStyleRow.
+  ///
+  /// In tr, this message translates to:
+  /// **'Satır'**
+  String get codexCounterStyleRow;
+
+  /// No description provided for @codexCounterStyleTile.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kart'**
+  String get codexCounterStyleTile;
+
+  /// No description provided for @codexCounterStyleChip.
+  ///
+  /// In tr, this message translates to:
+  /// **'Çip'**
+  String get codexCounterStyleChip;
+
+  /// No description provided for @codexCounterHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'Dokun: değer gir · Uzun bas: sıfırla'**
+  String get codexCounterHint;
+
+  /// No description provided for @codexBlockTimer.
+  ///
+  /// In tr, this message translates to:
+  /// **'Süre sayacı'**
+  String get codexBlockTimer;
+
+  /// No description provided for @codexTimerMode.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sayma yönü'**
+  String get codexTimerMode;
+
+  /// No description provided for @codexTimerCountdown.
+  ///
+  /// In tr, this message translates to:
+  /// **'Geri sayım'**
+  String get codexTimerCountdown;
+
+  /// No description provided for @codexTimerStopwatch.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kronometre'**
+  String get codexTimerStopwatch;
+
+  /// No description provided for @codexTimerDuration.
+  ///
+  /// In tr, this message translates to:
+  /// **'Süre'**
+  String get codexTimerDuration;
+
+  /// No description provided for @codexTimerMinutes.
+  ///
+  /// In tr, this message translates to:
+  /// **'Dakika'**
+  String get codexTimerMinutes;
+
+  /// No description provided for @codexTimerSeconds.
+  ///
+  /// In tr, this message translates to:
+  /// **'Saniye'**
+  String get codexTimerSeconds;
+
+  /// No description provided for @codexTimerStart.
+  ///
+  /// In tr, this message translates to:
+  /// **'Başlat'**
+  String get codexTimerStart;
+
+  /// No description provided for @codexTimerPause.
+  ///
+  /// In tr, this message translates to:
+  /// **'Duraklat'**
+  String get codexTimerPause;
+
+  /// No description provided for @codexTimerReset.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sıfırla'**
+  String get codexTimerReset;
+
+  /// No description provided for @codexTimerAddMinute.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bir dakika ekle'**
+  String get codexTimerAddMinute;
+
+  /// No description provided for @codexTimerDone.
+  ///
+  /// In tr, this message translates to:
+  /// **'Süre doldu.'**
+  String get codexTimerDone;
+
+  /// No description provided for @codexTimerFinished.
+  ///
+  /// In tr, this message translates to:
+  /// **'“{title}” süresi doldu.'**
+  String codexTimerFinished(String title);
+
+  /// No description provided for @codexTimerOpen.
+  ///
+  /// In tr, this message translates to:
+  /// **'Aç'**
+  String get codexTimerOpen;
+
+  /// No description provided for @codexTimerAlarm.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bitince uyar'**
+  String get codexTimerAlarm;
+
+  /// No description provided for @codexTimerLoop.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bitince yeniden başlat'**
+  String get codexTimerLoop;
+
+  /// No description provided for @codexTimerStyleDigits.
+  ///
+  /// In tr, this message translates to:
+  /// **'Rakam'**
+  String get codexTimerStyleDigits;
+
+  /// No description provided for @codexTimerStyleBar.
+  ///
+  /// In tr, this message translates to:
+  /// **'Çubuk'**
+  String get codexTimerStyleBar;
+
+  /// No description provided for @codexTimerStyleRing.
+  ///
+  /// In tr, this message translates to:
+  /// **'Halka'**
+  String get codexTimerStyleRing;
+
+  /// No description provided for @codexTimerRunningHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sayaç sayfadan çıkınca da işlemeye devam eder.'**
+  String get codexTimerRunningHint;
+
+  /// No description provided for @codexChipStyle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Görünüm'**
+  String get codexChipStyle;
+
+  /// No description provided for @codexChipStyleChip.
+  ///
+  /// In tr, this message translates to:
+  /// **'Çip'**
+  String get codexChipStyleChip;
+
+  /// No description provided for @codexChipStyleButton.
+  ///
+  /// In tr, this message translates to:
+  /// **'Düğme'**
+  String get codexChipStyleButton;
+
+  /// No description provided for @codexChipStyleCard.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kart'**
+  String get codexChipStyleCard;
+
+  /// No description provided for @codexEmbedCompact.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kompakt'**
+  String get codexEmbedCompact;
+
+  /// No description provided for @codexTitleOptional.
+  ///
+  /// In tr, this message translates to:
+  /// **'Başlık (isteğe bağlı)'**
+  String get codexTitleOptional;
+
   /// No description provided for @codexLinkLabel.
   ///
   /// In tr, this message translates to:
   /// **'Etiket (isteğe bağlı)'**
   String get codexLinkLabel;
-
-  /// No description provided for @sessionOpenTable.
-  ///
-  /// In tr, this message translates to:
-  /// **'Masayı aç'**
-  String get sessionOpenTable;
-
-  /// No description provided for @sessionStartHint.
-  ///
-  /// In tr, this message translates to:
-  /// **'Oyuncular aynı Wi-Fi ağındayken bilgisayardan veya telefondan linki yapıştırabilir ya da QR kodu okutabilir; tarayıcıdan bağlanırlar. Uygulama kurmalarına, hesap açmalarına ya da internete gerek yok.'**
-  String get sessionStartHint;
-
-  /// No description provided for @sessionStartServer.
-  ///
-  /// In tr, this message translates to:
-  /// **'Sunucuyu başlat'**
-  String get sessionStartServer;
-
-  /// No description provided for @sessionAddressCopied.
-  ///
-  /// In tr, this message translates to:
-  /// **'Adres kopyalandı'**
-  String get sessionAddressCopied;
-
-  /// No description provided for @sessionCopyAddress.
-  ///
-  /// In tr, this message translates to:
-  /// **'Adresi kopyala'**
-  String get sessionCopyAddress;
-
-  /// No description provided for @sessionReject.
-  ///
-  /// In tr, this message translates to:
-  /// **'Reddet'**
-  String get sessionReject;
-
-  /// No description provided for @sessionApprove.
-  ///
-  /// In tr, this message translates to:
-  /// **'Onayla'**
-  String get sessionApprove;
-
-  /// No description provided for @sessionDmTools.
-  ///
-  /// In tr, this message translates to:
-  /// **'DM araçları'**
-  String get sessionDmTools;
-
-  /// No description provided for @sessionTarget.
-  ///
-  /// In tr, this message translates to:
-  /// **'Hedef'**
-  String get sessionTarget;
-
-  /// No description provided for @sessionEveryone.
-  ///
-  /// In tr, this message translates to:
-  /// **'Herkes'**
-  String get sessionEveryone;
-
-  /// No description provided for @sessionAnnouncement.
-  ///
-  /// In tr, this message translates to:
-  /// **'Duyuru / mesaj'**
-  String get sessionAnnouncement;
-
-  /// No description provided for @sessionSend.
-  ///
-  /// In tr, this message translates to:
-  /// **'Gönder'**
-  String get sessionSend;
-
-  /// No description provided for @sessionAnnouncementSent.
-  ///
-  /// In tr, this message translates to:
-  /// **'Duyuru gönderildi.'**
-  String get sessionAnnouncementSent;
-
-  /// No description provided for @sessionAbility.
-  ///
-  /// In tr, this message translates to:
-  /// **'Yetenek'**
-  String get sessionAbility;
-
-  /// No description provided for @sessionRequestSave.
-  ///
-  /// In tr, this message translates to:
-  /// **'Kurtarma iste'**
-  String get sessionRequestSave;
-
-  /// No description provided for @sessionSaveRequested.
-  ///
-  /// In tr, this message translates to:
-  /// **'Kurtarma atışı istendi.'**
-  String get sessionSaveRequested;
-
-  /// No description provided for @sessionGold.
-  ///
-  /// In tr, this message translates to:
-  /// **'Altın'**
-  String get sessionGold;
-
-  /// No description provided for @sessionItemsCsv.
-  ///
-  /// In tr, this message translates to:
-  /// **'Eşyalar (virgülle)'**
-  String get sessionItemsCsv;
-
-  /// No description provided for @sessionGiveLoot.
-  ///
-  /// In tr, this message translates to:
-  /// **'Ganimet ver'**
-  String get sessionGiveLoot;
-
-  /// No description provided for @sessionLootOffered.
-  ///
-  /// In tr, this message translates to:
-  /// **'Ganimet sunuldu.'**
-  String get sessionLootOffered;
-
-  /// No description provided for @sessionNobodyConnected.
-  ///
-  /// In tr, this message translates to:
-  /// **'Henüz kimse bağlanmadı.'**
-  String get sessionNobodyConnected;
-
-  /// No description provided for @sessionNoCharacter.
-  ///
-  /// In tr, this message translates to:
-  /// **'Karakter seçmedi'**
-  String get sessionNoCharacter;
-
-  /// No description provided for @sessionHasCharacter.
-  ///
-  /// In tr, this message translates to:
-  /// **'Karakteri sahiplendi'**
-  String get sessionHasCharacter;
-
-  /// No description provided for @sessionPurchaseRequests.
-  ///
-  /// In tr, this message translates to:
-  /// **'Satın alma isteği ({count})'**
-  String sessionPurchaseRequests(int count);
-
-  /// No description provided for @sessionConnectedPlayers.
-  ///
-  /// In tr, this message translates to:
-  /// **'Bağlı oyuncular ({count})'**
-  String sessionConnectedPlayers(int count);
 
   /// No description provided for @charactersTabParty.
   ///
@@ -5017,6 +5521,18 @@ abstract class L10n {
   /// **'Dezavantaj'**
   String get compendiumDisadvantage;
 
+  /// No description provided for @compendiumAcPlusDex.
+  ///
+  /// In tr, this message translates to:
+  /// **' + Çeviklik'**
+  String get compendiumAcPlusDex;
+
+  /// No description provided for @compendiumAcMaxDex.
+  ///
+  /// In tr, this message translates to:
+  /// **' (en fazla {max})'**
+  String compendiumAcMaxDex(int max);
+
   /// No description provided for @compendiumSuggested.
   ///
   /// In tr, this message translates to:
@@ -5130,12 +5646,6 @@ abstract class L10n {
   /// In tr, this message translates to:
   /// **'Boş'**
   String get lootEmptyLabel;
-
-  /// No description provided for @lootShow.
-  ///
-  /// In tr, this message translates to:
-  /// **'Göster'**
-  String get lootShow;
 
   /// No description provided for @lootSetTitle.
   ///
@@ -5839,12 +6349,6 @@ abstract class L10n {
   /// **'“{name}” kesesi silinsin mi? İçindekiler de gider.'**
   String partyInventoryDeleteConfirm(Object name);
 
-  /// No description provided for @lootOffered.
-  ///
-  /// In tr, this message translates to:
-  /// **'“{name}” oyunculara sunuldu.'**
-  String lootOffered(String name);
-
   /// No description provided for @shopsNew.
   ///
   /// In tr, this message translates to:
@@ -5965,6 +6469,30 @@ abstract class L10n {
   /// **'Üst seviyede (opsiyonel)'**
   String get formHigherLevel;
 
+  /// No description provided for @spellHigherLevelSlot.
+  ///
+  /// In tr, this message translates to:
+  /// **'Üst Seviye Büyü Yuvasıyla Kullanım. '**
+  String get spellHigherLevelSlot;
+
+  /// No description provided for @formCastingTime.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kullanım süresi'**
+  String get formCastingTime;
+
+  /// No description provided for @formCantrip.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ufak Büyü'**
+  String get formCantrip;
+
+  /// No description provided for @formActionDescHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yakın Saldırı Zarı: +5, erişim 5 ft. 8 (1d10 + 3) delici hasar.'**
+  String get formActionDescHint;
+
   /// No description provided for @formCastingTimeHint.
   ///
   /// In tr, this message translates to:
@@ -6006,6 +6534,24 @@ abstract class L10n {
   /// In tr, this message translates to:
   /// **'Boyut'**
   String get ccSize;
+
+  /// No description provided for @ccSizeSmall.
+  ///
+  /// In tr, this message translates to:
+  /// **'Küçük'**
+  String get ccSizeSmall;
+
+  /// No description provided for @ccSizeMedium.
+  ///
+  /// In tr, this message translates to:
+  /// **'Orta'**
+  String get ccSizeMedium;
+
+  /// No description provided for @ccSizeLarge.
+  ///
+  /// In tr, this message translates to:
+  /// **'Büyük'**
+  String get ccSizeLarge;
 
   /// No description provided for @ccSpeed.
   ///
@@ -6367,30 +6913,6 @@ abstract class L10n {
   /// **'Liste fiyatlarına uygulanır. Pazarlıkta düşür, ıssız kasabada yükselt.'**
   String get sdPriceMultiplierHint;
 
-  /// No description provided for @sdOpenToPlayers.
-  ///
-  /// In tr, this message translates to:
-  /// **'Oyunculara aç'**
-  String get sdOpenToPlayers;
-
-  /// No description provided for @sdOpenHint.
-  ///
-  /// In tr, this message translates to:
-  /// **'Açıkken oyuncuların panelinde bu mağaza görünür. Aynı anda tek mağaza açık olabilir.'**
-  String get sdOpenHint;
-
-  /// No description provided for @sdMapAccessible.
-  ///
-  /// In tr, this message translates to:
-  /// **'Haritadan erişilebilir'**
-  String get sdMapAccessible;
-
-  /// No description provided for @sdMapAccessibleHint.
-  ///
-  /// In tr, this message translates to:
-  /// **'Açıkken oyuncular, görünür bir haritadaki bu mağazanın pinine dokunarak dükkânı açabilir. Birden fazla mağaza aynı anda erişilebilir olabilir.'**
-  String get sdMapAccessibleHint;
-
   /// No description provided for @sdClosed.
   ///
   /// In tr, this message translates to:
@@ -6402,18 +6924,6 @@ abstract class L10n {
   /// In tr, this message translates to:
   /// **'Kapalıyken oyuncular mağazaya tıklayınca “mağaza kapalı” görür; eşyalar listelenmez ve satın alınamaz.'**
   String get sdClosedHint;
-
-  /// No description provided for @sdRequireApproval.
-  ///
-  /// In tr, this message translates to:
-  /// **'Satın alma onayı iste'**
-  String get sdRequireApproval;
-
-  /// No description provided for @sdRequireApprovalHint.
-  ///
-  /// In tr, this message translates to:
-  /// **'Kapalıysa oyuncular doğrudan satın alır; altınları ve stok anında düşer.'**
-  String get sdRequireApprovalHint;
 
   /// No description provided for @sdUnlimited.
   ///
@@ -6720,60 +7230,6 @@ abstract class L10n {
   /// In tr, this message translates to:
   /// **'Bilinmeyen eşya'**
   String get sheetUnknownItem;
-
-  /// No description provided for @pfInvalidQuantity.
-  ///
-  /// In tr, this message translates to:
-  /// **'Geçersiz adet.'**
-  String get pfInvalidQuantity;
-
-  /// No description provided for @pfItemNotFound.
-  ///
-  /// In tr, this message translates to:
-  /// **'Eşya bulunamadı.'**
-  String get pfItemNotFound;
-
-  /// No description provided for @pfShopNotFound.
-  ///
-  /// In tr, this message translates to:
-  /// **'Mağaza bulunamadı.'**
-  String get pfShopNotFound;
-
-  /// No description provided for @pfShopClosed.
-  ///
-  /// In tr, this message translates to:
-  /// **'Mağaza şu anda kapalı.'**
-  String get pfShopClosed;
-
-  /// No description provided for @pfSoldOut.
-  ///
-  /// In tr, this message translates to:
-  /// **'Bu eşya tükendi.'**
-  String get pfSoldOut;
-
-  /// No description provided for @pfCharacterNotFound.
-  ///
-  /// In tr, this message translates to:
-  /// **'Karakter bulunamadı.'**
-  String get pfCharacterNotFound;
-
-  /// No description provided for @pfRequestNotFound.
-  ///
-  /// In tr, this message translates to:
-  /// **'İstek bulunamadı.'**
-  String get pfRequestNotFound;
-
-  /// No description provided for @pfOnlyNLeft.
-  ///
-  /// In tr, this message translates to:
-  /// **'Stokta yalnızca {n} adet var.'**
-  String pfOnlyNLeft(String n);
-
-  /// No description provided for @pfNotEnoughGold.
-  ///
-  /// In tr, this message translates to:
-  /// **'Paran yetmiyor: {need} gerekiyor, {have} var.'**
-  String pfNotEnoughGold(String need, String have);
 
   /// No description provided for @cwPointsRemaining.
   ///
@@ -7201,6 +7657,12 @@ abstract class L10n {
   /// **'{ability} kurtarma'**
   String sheetAbilitySave(String ability);
 
+  /// No description provided for @sheetHpLabel.
+  ///
+  /// In tr, this message translates to:
+  /// **'HP'**
+  String get sheetHpLabel;
+
   /// No description provided for @sheetTempHp.
   ///
   /// In tr, this message translates to:
@@ -7230,6 +7692,24 @@ abstract class L10n {
   /// In tr, this message translates to:
   /// **'Zar'**
   String get diceTitle;
+
+  /// No description provided for @diceRollTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Zar at'**
+  String get diceRollTitle;
+
+  /// No description provided for @diceCount.
+  ///
+  /// In tr, this message translates to:
+  /// **'Adet'**
+  String get diceCount;
+
+  /// No description provided for @diceModifier.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ek'**
+  String get diceModifier;
 
   /// No description provided for @diceCritical.
   ///
@@ -7422,30 +7902,6 @@ abstract class L10n {
   /// In tr, this message translates to:
   /// **'Yeri aç'**
   String get worldGraphOpenLocation;
-
-  /// No description provided for @worldGraphShowToPlayers.
-  ///
-  /// In tr, this message translates to:
-  /// **'Oyunculara göster'**
-  String get worldGraphShowToPlayers;
-
-  /// No description provided for @worldGraphHideFromPlayers.
-  ///
-  /// In tr, this message translates to:
-  /// **'Oyunculardan gizle'**
-  String get worldGraphHideFromPlayers;
-
-  /// No description provided for @worldGraphShownNotice.
-  ///
-  /// In tr, this message translates to:
-  /// **'{name} artık oyunculara açık.'**
-  String worldGraphShownNotice(String name);
-
-  /// No description provided for @worldGraphHiddenNotice.
-  ///
-  /// In tr, this message translates to:
-  /// **'{name} oyunculardan gizlendi.'**
-  String worldGraphHiddenNotice(String name);
 
   /// No description provided for @worldGraphSetSize.
   ///
@@ -7788,6 +8244,1866 @@ abstract class L10n {
   /// In tr, this message translates to:
   /// **'Bu sağlayıcı görsel üretmiyor.'**
   String get codexAiErrNoImage;
+
+  /// No description provided for @sheetEdit.
+  ///
+  /// In tr, this message translates to:
+  /// **'Düzenle'**
+  String get sheetEdit;
+
+  /// No description provided for @sheetProficiencyToggle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yeterliliği değiştir'**
+  String get sheetProficiencyToggle;
+
+  /// No description provided for @editCharacterTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Karakteri düzenle'**
+  String get editCharacterTitle;
+
+  /// No description provided for @editSave.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kaydet'**
+  String get editSave;
+
+  /// No description provided for @editCancel.
+  ///
+  /// In tr, this message translates to:
+  /// **'Vazgeç'**
+  String get editCancel;
+
+  /// No description provided for @editNone.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yok'**
+  String get editNone;
+
+  /// No description provided for @editNameRequired.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ad boş olamaz'**
+  String get editNameRequired;
+
+  /// No description provided for @editSectionIdentity.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kimlik'**
+  String get editSectionIdentity;
+
+  /// No description provided for @editName.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ad'**
+  String get editName;
+
+  /// No description provided for @editPlayerName.
+  ///
+  /// In tr, this message translates to:
+  /// **'Oyuncu'**
+  String get editPlayerName;
+
+  /// No description provided for @editAlignment.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hizalama'**
+  String get editAlignment;
+
+  /// No description provided for @editSectionOrigin.
+  ///
+  /// In tr, this message translates to:
+  /// **'Köken'**
+  String get editSectionOrigin;
+
+  /// No description provided for @editSpecies.
+  ///
+  /// In tr, this message translates to:
+  /// **'Tür'**
+  String get editSpecies;
+
+  /// No description provided for @editBackground.
+  ///
+  /// In tr, this message translates to:
+  /// **'Geçmiş'**
+  String get editBackground;
+
+  /// No description provided for @editBackgroundHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'Geçmiş değişirse eski geçmişin verdiği beceriler kalkar, yenisininkiler eklenir.'**
+  String get editBackgroundHint;
+
+  /// No description provided for @editSectionAbilities.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yetenek puanları'**
+  String get editSectionAbilities;
+
+  /// No description provided for @editAbilityHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kağıttaki nihai puanlar. CON değişirse azami can her seviye için birlikte kayar.'**
+  String get editAbilityHint;
+
+  /// No description provided for @editSectionVitals.
+  ///
+  /// In tr, this message translates to:
+  /// **'Can ve değerler'**
+  String get editSectionVitals;
+
+  /// No description provided for @editHitPointsMax.
+  ///
+  /// In tr, this message translates to:
+  /// **'Azami can'**
+  String get editHitPointsMax;
+
+  /// No description provided for @editArmorClassOverride.
+  ///
+  /// In tr, this message translates to:
+  /// **'AC'**
+  String get editArmorClassOverride;
+
+  /// No description provided for @editSpeedOverride.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hız'**
+  String get editSpeedOverride;
+
+  /// No description provided for @editOverrideHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'AC ve hız boş bırakılırsa hesaplanan değer kullanılır.'**
+  String get editOverrideHint;
+
+  /// No description provided for @editSectionClasses.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sınıflar'**
+  String get editSectionClasses;
+
+  /// No description provided for @editClass.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sınıf'**
+  String get editClass;
+
+  /// No description provided for @editSubclass.
+  ///
+  /// In tr, this message translates to:
+  /// **'Alt sınıf'**
+  String get editSubclass;
+
+  /// No description provided for @editLevel.
+  ///
+  /// In tr, this message translates to:
+  /// **'Seviye'**
+  String get editLevel;
+
+  /// No description provided for @editClassChangeTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sınıf değiştirilsin mi?'**
+  String get editClassChangeTitle;
+
+  /// No description provided for @editClassChangeBody.
+  ///
+  /// In tr, this message translates to:
+  /// **'{from} yerine {to} yazılacak. Seviye ve atılmış can zarları korunur; eski sınıfın ve alt sınıfın yetenekleri kağıttan silinip yeni sınıfınkiler işlenir.'**
+  String editClassChangeBody(String from, String to);
+
+  /// No description provided for @editClassChangeConfirm.
+  ///
+  /// In tr, this message translates to:
+  /// **'Değiştir'**
+  String get editClassChangeConfirm;
+
+  /// No description provided for @editSaved.
+  ///
+  /// In tr, this message translates to:
+  /// **'Karakter güncellendi'**
+  String get editSaved;
+
+  /// No description provided for @sheetPreparedCount.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hazır {used}/{limit}'**
+  String sheetPreparedCount(int used, int limit);
+
+  /// No description provided for @sheetCantripCount.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ufak Büyü {used}/{limit}'**
+  String sheetCantripCount(int used, int limit);
+
+  /// No description provided for @sheetSpellChangesLeft.
+  ///
+  /// In tr, this message translates to:
+  /// **'{n} değiştirme hakkı'**
+  String sheetSpellChangesLeft(int n);
+
+  /// No description provided for @compendiumClasses.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sınıflar'**
+  String get compendiumClasses;
+
+  /// No description provided for @compendiumClassTable.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sınıf tablosu'**
+  String get compendiumClassTable;
+
+  /// No description provided for @compendiumSubclasses.
+  ///
+  /// In tr, this message translates to:
+  /// **'Alt sınıflar'**
+  String get compendiumSubclasses;
+
+  /// No description provided for @compendiumFeatures.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yetenekler'**
+  String get compendiumFeatures;
+
+  /// No description provided for @compendiumLevel.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sv'**
+  String get compendiumLevel;
+
+  /// No description provided for @compendiumFullCaster.
+  ///
+  /// In tr, this message translates to:
+  /// **'Tam büyücü'**
+  String get compendiumFullCaster;
+
+  /// No description provided for @compendiumHalfCaster.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yarı büyücü'**
+  String get compendiumHalfCaster;
+
+  /// No description provided for @compendiumThirdCaster.
+  ///
+  /// In tr, this message translates to:
+  /// **'Üçte bir büyücü'**
+  String get compendiumThirdCaster;
+
+  /// No description provided for @compendiumPactCaster.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ahit Büyüsü'**
+  String get compendiumPactCaster;
+
+  /// No description provided for @compendiumSubclassOf.
+  ///
+  /// In tr, this message translates to:
+  /// **'{className} alt sınıfı'**
+  String compendiumSubclassOf(String className);
+
+  /// No description provided for @sheetCastSpell.
+  ///
+  /// In tr, this message translates to:
+  /// **'Büyüyü kullan'**
+  String get sheetCastSpell;
+
+  /// No description provided for @sheetCastAtLevel.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hangi yuvayla?'**
+  String get sheetCastAtLevel;
+
+  /// No description provided for @sheetNoSlotLeft.
+  ///
+  /// In tr, this message translates to:
+  /// **'Uygun boş büyü yuvası yok.'**
+  String get sheetNoSlotLeft;
+
+  /// No description provided for @sheetSpellAttack.
+  ///
+  /// In tr, this message translates to:
+  /// **'Saldırı'**
+  String get sheetSpellAttack;
+
+  /// No description provided for @sheetSpellDamage.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hasar'**
+  String get sheetSpellDamage;
+
+  /// No description provided for @sheetSaveDc.
+  ///
+  /// In tr, this message translates to:
+  /// **'kurtarma DC'**
+  String get sheetSaveDc;
+
+  /// No description provided for @sheetConcentrationNote.
+  ///
+  /// In tr, this message translates to:
+  /// **'Konsantrasyon gerektirir'**
+  String get sheetConcentrationNote;
+
+  /// No description provided for @sheetSpellCastNoRoll.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yuva harcandı'**
+  String get sheetSpellCastNoRoll;
+
+  /// No description provided for @levelUpAbilityOption.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yetenek puanı'**
+  String get levelUpAbilityOption;
+
+  /// No description provided for @levelUpFeatOption.
+  ///
+  /// In tr, this message translates to:
+  /// **'Feat'**
+  String get levelUpFeatOption;
+
+  /// No description provided for @levelUpFeatSearch.
+  ///
+  /// In tr, this message translates to:
+  /// **'Feat ara'**
+  String get levelUpFeatSearch;
+
+  /// No description provided for @sheetAttune.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bağlan / bağı çöz'**
+  String get sheetAttune;
+
+  /// No description provided for @sheetAttunedCount.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bağlı eşya {used}/{limit}'**
+  String sheetAttunedCount(int used, int limit);
+
+  /// No description provided for @sheetAttunementFull.
+  ///
+  /// In tr, this message translates to:
+  /// **'En fazla {limit} eşyaya bağlanabilirsin.'**
+  String sheetAttunementFull(int limit);
+
+  /// No description provided for @levelUpMulticlassBlocked.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bu sınıfa geçmek için: {requirements}'**
+  String levelUpMulticlassBlocked(String requirements);
+
+  /// No description provided for @sheetConcentratingOn.
+  ///
+  /// In tr, this message translates to:
+  /// **'Konsantrasyon: {spell}'**
+  String sheetConcentratingOn(String spell);
+
+  /// No description provided for @sheetConcentrationHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hasar alınca CON kurtarması: DC 10 ya da hasarın yarısı (hangisi yüksekse).'**
+  String get sheetConcentrationHint;
+
+  /// No description provided for @sheetConcentrationEnd.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bitir'**
+  String get sheetConcentrationEnd;
+
+  /// No description provided for @sheetAddClassOption.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sınıf seçeneği ekle'**
+  String get sheetAddClassOption;
+
+  /// No description provided for @sheetAddClassOptionAction.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ekle'**
+  String get sheetAddClassOptionAction;
+
+  /// No description provided for @sheetNoClassOptions.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bu sınıfın seçilebilir bir özelliği yok.'**
+  String get sheetNoClassOptions;
+
+  /// No description provided for @statAc.
+  ///
+  /// In tr, this message translates to:
+  /// **'AC'**
+  String get statAc;
+
+  /// No description provided for @statHp.
+  ///
+  /// In tr, this message translates to:
+  /// **'Can'**
+  String get statHp;
+
+  /// No description provided for @statSpeed.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hız'**
+  String get statSpeed;
+
+  /// No description provided for @statInitiative.
+  ///
+  /// In tr, this message translates to:
+  /// **'İnisiyatif'**
+  String get statInitiative;
+
+  /// No description provided for @statSavingThrows.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kurtarma Zarları'**
+  String get statSavingThrows;
+
+  /// No description provided for @statSkills.
+  ///
+  /// In tr, this message translates to:
+  /// **'Beceriler'**
+  String get statSkills;
+
+  /// No description provided for @statSenses.
+  ///
+  /// In tr, this message translates to:
+  /// **'Duyular'**
+  String get statSenses;
+
+  /// No description provided for @statLanguages.
+  ///
+  /// In tr, this message translates to:
+  /// **'Diller'**
+  String get statLanguages;
+
+  /// No description provided for @statCr.
+  ///
+  /// In tr, this message translates to:
+  /// **'CR'**
+  String get statCr;
+
+  /// No description provided for @statDamageResistances.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hasar Dirençleri'**
+  String get statDamageResistances;
+
+  /// No description provided for @statDamageImmunities.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hasar Bağışıklıkları'**
+  String get statDamageImmunities;
+
+  /// No description provided for @statDamageVulnerabilities.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hasar Zafiyetleri'**
+  String get statDamageVulnerabilities;
+
+  /// No description provided for @statConditionImmunities.
+  ///
+  /// In tr, this message translates to:
+  /// **'Durum Bağışıklıkları'**
+  String get statConditionImmunities;
+
+  /// No description provided for @statPassivePerception.
+  ///
+  /// In tr, this message translates to:
+  /// **'Pasif Algı'**
+  String get statPassivePerception;
+
+  /// No description provided for @statActions.
+  ///
+  /// In tr, this message translates to:
+  /// **'Eylemler'**
+  String get statActions;
+
+  /// No description provided for @statBonusActions.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bonus Eylemler'**
+  String get statBonusActions;
+
+  /// No description provided for @statReactions.
+  ///
+  /// In tr, this message translates to:
+  /// **'Tepkiler'**
+  String get statReactions;
+
+  /// No description provided for @statLegendaryActions.
+  ///
+  /// In tr, this message translates to:
+  /// **'Efsanevi Eylemler'**
+  String get statLegendaryActions;
+
+  /// No description provided for @statNoLanguages.
+  ///
+  /// In tr, this message translates to:
+  /// **'—'**
+  String get statNoLanguages;
+
+  /// No description provided for @abilityStrength.
+  ///
+  /// In tr, this message translates to:
+  /// **'Güç'**
+  String get abilityStrength;
+
+  /// No description provided for @abilityDexterity.
+  ///
+  /// In tr, this message translates to:
+  /// **'Çeviklik'**
+  String get abilityDexterity;
+
+  /// No description provided for @abilityConstitution.
+  ///
+  /// In tr, this message translates to:
+  /// **'Dayanıklılık'**
+  String get abilityConstitution;
+
+  /// No description provided for @abilityIntelligence.
+  ///
+  /// In tr, this message translates to:
+  /// **'Zekâ'**
+  String get abilityIntelligence;
+
+  /// No description provided for @abilityWisdom.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bilgelik'**
+  String get abilityWisdom;
+
+  /// No description provided for @abilityCharisma.
+  ///
+  /// In tr, this message translates to:
+  /// **'Karizma'**
+  String get abilityCharisma;
+
+  /// No description provided for @abilityShortStrength.
+  ///
+  /// In tr, this message translates to:
+  /// **'GÜÇ'**
+  String get abilityShortStrength;
+
+  /// No description provided for @abilityShortDexterity.
+  ///
+  /// In tr, this message translates to:
+  /// **'ÇEV'**
+  String get abilityShortDexterity;
+
+  /// No description provided for @abilityShortConstitution.
+  ///
+  /// In tr, this message translates to:
+  /// **'DAY'**
+  String get abilityShortConstitution;
+
+  /// No description provided for @abilityShortIntelligence.
+  ///
+  /// In tr, this message translates to:
+  /// **'ZEK'**
+  String get abilityShortIntelligence;
+
+  /// No description provided for @abilityShortWisdom.
+  ///
+  /// In tr, this message translates to:
+  /// **'BİL'**
+  String get abilityShortWisdom;
+
+  /// No description provided for @abilityShortCharisma.
+  ///
+  /// In tr, this message translates to:
+  /// **'KAR'**
+  String get abilityShortCharisma;
+
+  /// No description provided for @skillAcrobatics.
+  ///
+  /// In tr, this message translates to:
+  /// **'Akrobasi'**
+  String get skillAcrobatics;
+
+  /// No description provided for @skillAnimalHandling.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hayvan Terbiyesi'**
+  String get skillAnimalHandling;
+
+  /// No description provided for @skillArcana.
+  ///
+  /// In tr, this message translates to:
+  /// **'Gizemli Bilgi'**
+  String get skillArcana;
+
+  /// No description provided for @skillAthletics.
+  ///
+  /// In tr, this message translates to:
+  /// **'Atletizm'**
+  String get skillAthletics;
+
+  /// No description provided for @skillDeception.
+  ///
+  /// In tr, this message translates to:
+  /// **'Aldatma'**
+  String get skillDeception;
+
+  /// No description provided for @skillHistory.
+  ///
+  /// In tr, this message translates to:
+  /// **'Tarih'**
+  String get skillHistory;
+
+  /// No description provided for @skillInsight.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sezgi'**
+  String get skillInsight;
+
+  /// No description provided for @skillIntimidation.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yıldırma'**
+  String get skillIntimidation;
+
+  /// No description provided for @skillInvestigation.
+  ///
+  /// In tr, this message translates to:
+  /// **'Araştırma'**
+  String get skillInvestigation;
+
+  /// No description provided for @skillMedicine.
+  ///
+  /// In tr, this message translates to:
+  /// **'Tıp'**
+  String get skillMedicine;
+
+  /// No description provided for @skillNature.
+  ///
+  /// In tr, this message translates to:
+  /// **'Doğa'**
+  String get skillNature;
+
+  /// No description provided for @skillPerception.
+  ///
+  /// In tr, this message translates to:
+  /// **'Algı'**
+  String get skillPerception;
+
+  /// No description provided for @skillPerformance.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sahne Sanatları'**
+  String get skillPerformance;
+
+  /// No description provided for @skillPersuasion.
+  ///
+  /// In tr, this message translates to:
+  /// **'İkna'**
+  String get skillPersuasion;
+
+  /// No description provided for @skillReligion.
+  ///
+  /// In tr, this message translates to:
+  /// **'Din'**
+  String get skillReligion;
+
+  /// No description provided for @skillSleightOfHand.
+  ///
+  /// In tr, this message translates to:
+  /// **'El Çabukluğu'**
+  String get skillSleightOfHand;
+
+  /// No description provided for @skillStealth.
+  ///
+  /// In tr, this message translates to:
+  /// **'Gizlilik'**
+  String get skillStealth;
+
+  /// No description provided for @skillSurvival.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hayatta Kalma'**
+  String get skillSurvival;
+
+  /// No description provided for @spellCantrip.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ufak Büyü'**
+  String get spellCantrip;
+
+  /// No description provided for @spellCantripAbbr.
+  ///
+  /// In tr, this message translates to:
+  /// **'U'**
+  String get spellCantripAbbr;
+
+  /// No description provided for @spellLevelN.
+  ///
+  /// In tr, this message translates to:
+  /// **'{level}. Seviye'**
+  String spellLevelN(int level);
+
+  /// No description provided for @spellSchoolCantrip.
+  ///
+  /// In tr, this message translates to:
+  /// **'{school} ufak büyüsü'**
+  String spellSchoolCantrip(String school);
+
+  /// No description provided for @spellSchoolLevel.
+  ///
+  /// In tr, this message translates to:
+  /// **'{level}. seviye {school}'**
+  String spellSchoolLevel(int level, String school);
+
+  /// No description provided for @spellRitualSuffix.
+  ///
+  /// In tr, this message translates to:
+  /// **' (ritüel)'**
+  String get spellRitualSuffix;
+
+  /// No description provided for @spellConcentrationPrefix.
+  ///
+  /// In tr, this message translates to:
+  /// **'Konsantrasyon, '**
+  String get spellConcentrationPrefix;
+
+  /// No description provided for @spellConcentrationShort.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kons.'**
+  String get spellConcentrationShort;
+
+  /// No description provided for @spellComponents.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bileşenler'**
+  String get spellComponents;
+
+  /// No description provided for @spellClasses.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sınıflar'**
+  String get spellClasses;
+
+  /// No description provided for @itemAttunementDetail.
+  ///
+  /// In tr, this message translates to:
+  /// **'Uyum'**
+  String get itemAttunementDetail;
+
+  /// No description provided for @settingsDensity.
+  ///
+  /// In tr, this message translates to:
+  /// **'Arayüz yoğunluğu'**
+  String get settingsDensity;
+
+  /// No description provided for @settingsDensityCompact.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sıkı'**
+  String get settingsDensityCompact;
+
+  /// No description provided for @settingsDensityNormal.
+  ///
+  /// In tr, this message translates to:
+  /// **'Normal'**
+  String get settingsDensityNormal;
+
+  /// No description provided for @settingsDensityComfortable.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ferah'**
+  String get settingsDensityComfortable;
+
+  /// No description provided for @settingsDensityHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sıkı: masada daha çok bilgi ekrana sığar.'**
+  String get settingsDensityHint;
+
+  /// No description provided for @worldCollapseChildren.
+  ///
+  /// In tr, this message translates to:
+  /// **'Alt yerleri gizle'**
+  String get worldCollapseChildren;
+
+  /// No description provided for @worldExpandChildren.
+  ///
+  /// In tr, this message translates to:
+  /// **'Alt yerleri göster'**
+  String get worldExpandChildren;
+
+  /// No description provided for @musicAmbience.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ortam sesi'**
+  String get musicAmbience;
+
+  /// No description provided for @musicAmbienceStop.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ortam sesini durdur'**
+  String get musicAmbienceStop;
+
+  /// No description provided for @journeySkipTime.
+  ///
+  /// In tr, this message translates to:
+  /// **'Zamanı ilerlet'**
+  String get journeySkipTime;
+
+  /// No description provided for @combatConcentrationCheck.
+  ///
+  /// In tr, this message translates to:
+  /// **'{name} konsantrasyonu için DC {dc} Constitution kurtarması atmalı.'**
+  String combatConcentrationCheck(String name, int dc);
+
+  /// No description provided for @combatGroupInitiative.
+  ///
+  /// In tr, this message translates to:
+  /// **'Aynı türe tek atış'**
+  String get combatGroupInitiative;
+
+  /// No description provided for @combatNoArmorClass.
+  ///
+  /// In tr, this message translates to:
+  /// **'AC bilinmiyor'**
+  String get combatNoArmorClass;
+
+  /// No description provided for @combatHits.
+  ///
+  /// In tr, this message translates to:
+  /// **'İsabet (AC {ac})'**
+  String combatHits(int ac);
+
+  /// No description provided for @combatMisses.
+  ///
+  /// In tr, this message translates to:
+  /// **'Iskaladı (AC {ac})'**
+  String combatMisses(int ac);
+
+  /// No description provided for @combatApplyDamage.
+  ///
+  /// In tr, this message translates to:
+  /// **'{damage} hasar uygula'**
+  String combatApplyDamage(int damage);
+
+  /// No description provided for @combatApplied.
+  ///
+  /// In tr, this message translates to:
+  /// **'Uygulandı'**
+  String get combatApplied;
+
+  /// No description provided for @searchEmpty.
+  ///
+  /// In tr, this message translates to:
+  /// **'Aramak için yazmaya başla.'**
+  String get searchEmpty;
+
+  /// No description provided for @searchOpen.
+  ///
+  /// In tr, this message translates to:
+  /// **'Genel arama'**
+  String get searchOpen;
+
+  /// No description provided for @sessionRolls.
+  ///
+  /// In tr, this message translates to:
+  /// **'Zar günlüğü'**
+  String get sessionRolls;
+
+  /// No description provided for @sessionRollsEmpty.
+  ///
+  /// In tr, this message translates to:
+  /// **'Henüz zar atılmadı.'**
+  String get sessionRollsEmpty;
+
+  /// No description provided for @contentSourcesTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'İçerik kaynakları'**
+  String get contentSourcesTitle;
+
+  /// No description provided for @contentSourcesHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'5etools biçiminde JSON sunan bir adres ekle; uygulama orada hangi dosyalar olduğunu keşfeder. Uygulama hazır bir adresle gelmez — hangi kaynağı kullanacağına sen karar verirsin.'**
+  String get contentSourcesHint;
+
+  /// No description provided for @contentSourceAdd.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kaynak ekle'**
+  String get contentSourceAdd;
+
+  /// No description provided for @contentSourceName.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ad'**
+  String get contentSourceName;
+
+  /// No description provided for @contentSourceUrl.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kök adres'**
+  String get contentSourceUrl;
+
+  /// No description provided for @contentSourceUrlHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'Veri klasörünün kökü, ör. https://ornek/data'**
+  String get contentSourceUrlHint;
+
+  /// No description provided for @contentSourceDiscover.
+  ///
+  /// In tr, this message translates to:
+  /// **'Keşfet'**
+  String get contentSourceDiscover;
+
+  /// No description provided for @contentSourceEmpty.
+  ///
+  /// In tr, this message translates to:
+  /// **'Henüz kaynak yok.'**
+  String get contentSourceEmpty;
+
+  /// No description provided for @contentSourceNothingFound.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bu adreste tanınan bir dosya bulunamadı.'**
+  String get contentSourceNothingFound;
+
+  /// No description provided for @contentSourceLastImport.
+  ///
+  /// In tr, this message translates to:
+  /// **'Son aktarma: {date}'**
+  String contentSourceLastImport(String date);
+
+  /// No description provided for @contentSourceNeverImported.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hiç aktarılmadı'**
+  String get contentSourceNeverImported;
+
+  /// No description provided for @contentSourceImportSelected.
+  ///
+  /// In tr, this message translates to:
+  /// **'Seçilenleri aktar'**
+  String get contentSourceImportSelected;
+
+  /// No description provided for @contentSourceImporting.
+  ///
+  /// In tr, this message translates to:
+  /// **'Aktarılıyor: {file}'**
+  String contentSourceImporting(String file);
+
+  /// No description provided for @contentSourceDone.
+  ///
+  /// In tr, this message translates to:
+  /// **'{monsters} canavar, {spells} büyü, {items} eşya, {others} diğer aktarıldı.'**
+  String contentSourceDone(int monsters, int spells, int items, int others);
+
+  /// No description provided for @contentSourceLocalFiles.
+  ///
+  /// In tr, this message translates to:
+  /// **'Dosyadan aktar'**
+  String get contentSourceLocalFiles;
+
+  /// No description provided for @contentSourceDeleteImported.
+  ///
+  /// In tr, this message translates to:
+  /// **'Aktarılan içeriği sil'**
+  String get contentSourceDeleteImported;
+
+  /// No description provided for @contentSourceDeleteImportedBody.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bu adreslerden aktarılmış tüm kayıtlar silinecek. Uygulama içinde oluşturduğun içerik ve paketlenmiş SRD etkilenmez.'**
+  String get contentSourceDeleteImportedBody;
+
+  /// No description provided for @contentSourceDeleted.
+  ///
+  /// In tr, this message translates to:
+  /// **'{count} kayıt silindi.'**
+  String contentSourceDeleted(int count);
+
+  /// No description provided for @contentSourceKindMonster.
+  ///
+  /// In tr, this message translates to:
+  /// **'Canavarlar'**
+  String get contentSourceKindMonster;
+
+  /// No description provided for @contentSourceKindSpell.
+  ///
+  /// In tr, this message translates to:
+  /// **'Büyüler'**
+  String get contentSourceKindSpell;
+
+  /// No description provided for @contentSourceKindItem.
+  ///
+  /// In tr, this message translates to:
+  /// **'Eşyalar'**
+  String get contentSourceKindItem;
+
+  /// No description provided for @contentSourceKindRace.
+  ///
+  /// In tr, this message translates to:
+  /// **'Türler'**
+  String get contentSourceKindRace;
+
+  /// No description provided for @contentSourceKindBackground.
+  ///
+  /// In tr, this message translates to:
+  /// **'Geçmişler'**
+  String get contentSourceKindBackground;
+
+  /// No description provided for @contentSourceKindFeat.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yetenekler'**
+  String get contentSourceKindFeat;
+
+  /// No description provided for @contentSourceSelectAll.
+  ///
+  /// In tr, this message translates to:
+  /// **'Tümünü seç'**
+  String get contentSourceSelectAll;
+
+  /// No description provided for @contentSourceLegal.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yalnızca kullanma hakkına sahip olduğun içeriği aktar. Aktarılan kayıtlar cihazında kalır; yedekleme paketlerine girmez.'**
+  String get contentSourceLegal;
+
+  /// No description provided for @contentSourceProblemNetwork.
+  ///
+  /// In tr, this message translates to:
+  /// **'Adrese bağlanılamadı. Bağlantını ve adresi kontrol et.'**
+  String get contentSourceProblemNetwork;
+
+  /// No description provided for @contentSourceProblemBlocked.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sunucu isteği reddetti ({status}). Bu adres tarayıcı dışı istemcileri bot koruması ile engelliyor; uygulama bu korumayı aşmaz. Verileri tarayıcından indirip “Dosyadan aktar” ile ekleyebilirsin.'**
+  String contentSourceProblemBlocked(String status);
+
+  /// No description provided for @contentSourceProblemNotFound.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bu adreste 5etools biçiminde dosya bulunamadı ({status}). Kök adresin veri klasörünü gösterdiğinden emin ol.'**
+  String contentSourceProblemNotFound(String status);
+
+  /// No description provided for @contentSourceProblemNotJson.
+  ///
+  /// In tr, this message translates to:
+  /// **'Adres JSON değil, sayfa döndürdü. Kök adres veri klasörünü göstermiyor olabilir.'**
+  String get contentSourceProblemNotJson;
+
+  /// No description provided for @contentSourceResolved.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bulunan kök: {url}'**
+  String contentSourceResolved(String url);
+
+  /// No description provided for @undoDone.
+  ///
+  /// In tr, this message translates to:
+  /// **'{label} geri alındı'**
+  String undoDone(String label);
+
+  /// No description provided for @undoNothing.
+  ///
+  /// In tr, this message translates to:
+  /// **'Geri alınacak bir şey yok'**
+  String get undoNothing;
+
+  /// No description provided for @undoTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Geri al'**
+  String get undoTitle;
+
+  /// No description provided for @undoHistory.
+  ///
+  /// In tr, this message translates to:
+  /// **'Geri alma geçmişi'**
+  String get undoHistory;
+
+  /// No description provided for @turnTimer.
+  ///
+  /// In tr, this message translates to:
+  /// **'Tur süresi'**
+  String get turnTimer;
+
+  /// No description provided for @turnTimerOff.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kapalı'**
+  String get turnTimerOff;
+
+  /// No description provided for @turnTimerSeconds.
+  ///
+  /// In tr, this message translates to:
+  /// **'{seconds} sn'**
+  String turnTimerSeconds(int seconds);
+
+  /// No description provided for @turnTimerUp.
+  ///
+  /// In tr, this message translates to:
+  /// **'Süre doldu'**
+  String get turnTimerUp;
+
+  /// No description provided for @partyBoard.
+  ///
+  /// In tr, this message translates to:
+  /// **'Parti panosu'**
+  String get partyBoard;
+
+  /// No description provided for @partyBoardPassive.
+  ///
+  /// In tr, this message translates to:
+  /// **'Pasif algı'**
+  String get partyBoardPassive;
+
+  /// No description provided for @partyBoardSaves.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kurtarmalar'**
+  String get partyBoardSaves;
+
+  /// No description provided for @partyBoardDefenses.
+  ///
+  /// In tr, this message translates to:
+  /// **'Direnç / bağışıklık'**
+  String get partyBoardDefenses;
+
+  /// No description provided for @partyBoardLanguages.
+  ///
+  /// In tr, this message translates to:
+  /// **'Diller'**
+  String get partyBoardLanguages;
+
+  /// No description provided for @partyBoardEmpty.
+  ///
+  /// In tr, this message translates to:
+  /// **'Partide karakter yok.'**
+  String get partyBoardEmpty;
+
+  /// No description provided for @encounterTemplates.
+  ///
+  /// In tr, this message translates to:
+  /// **'Karşılaşma kalıpları'**
+  String get encounterTemplates;
+
+  /// No description provided for @encounterTemplateSave.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kalıp olarak kaydet'**
+  String get encounterTemplateSave;
+
+  /// No description provided for @encounterTemplateUse.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bu kalıptan kur'**
+  String get encounterTemplateUse;
+
+  /// No description provided for @encounterTemplateEmpty.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kayıtlı kalıp yok.'**
+  String get encounterTemplateEmpty;
+
+  /// No description provided for @encounterTemplateMissing.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kütüphanede bulunamayan: {names}'**
+  String encounterTemplateMissing(String names);
+
+  /// No description provided for @encounterTemplateCreated.
+  ///
+  /// In tr, this message translates to:
+  /// **'{name} kuruldu.'**
+  String encounterTemplateCreated(String name);
+
+  /// No description provided for @reaction.
+  ///
+  /// In tr, this message translates to:
+  /// **'Reaksiyon'**
+  String get reaction;
+
+  /// No description provided for @reactionUsed.
+  ///
+  /// In tr, this message translates to:
+  /// **'Reaksiyon kullanıldı'**
+  String get reactionUsed;
+
+  /// No description provided for @reactionAvailable.
+  ///
+  /// In tr, this message translates to:
+  /// **'Reaksiyon hazır'**
+  String get reactionAvailable;
+
+  /// No description provided for @lairAction.
+  ///
+  /// In tr, this message translates to:
+  /// **'İn eylemi'**
+  String get lairAction;
+
+  /// No description provided for @lairActionHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'İnisiyatif {value} geldiğinde hatırlatılır.'**
+  String lairActionHint(int value);
+
+  /// No description provided for @lairActionNone.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bu karşılaşmada in eylemi yok.'**
+  String get lairActionNone;
+
+  /// No description provided for @damageType.
+  ///
+  /// In tr, this message translates to:
+  /// **'Hasar türü'**
+  String get damageType;
+
+  /// No description provided for @damageTypeAny.
+  ///
+  /// In tr, this message translates to:
+  /// **'Tür yok'**
+  String get damageTypeAny;
+
+  /// No description provided for @damageResisted.
+  ///
+  /// In tr, this message translates to:
+  /// **'Direnç: {amount}'**
+  String damageResisted(int amount);
+
+  /// No description provided for @damageImmune.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bağışık — hasar yok'**
+  String get damageImmune;
+
+  /// No description provided for @damageVulnerable.
+  ///
+  /// In tr, this message translates to:
+  /// **'Zayıflık: {amount}'**
+  String damageVulnerable(int amount);
+
+  /// No description provided for @defensesTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Savunmalar'**
+  String get defensesTitle;
+
+  /// No description provided for @defenseResist.
+  ///
+  /// In tr, this message translates to:
+  /// **'Direnç'**
+  String get defenseResist;
+
+  /// No description provided for @defenseImmune.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bağışıklık'**
+  String get defenseImmune;
+
+  /// No description provided for @defenseVulnerable.
+  ///
+  /// In tr, this message translates to:
+  /// **'Zayıflık'**
+  String get defenseVulnerable;
+
+  /// No description provided for @deathSaves.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ölüm kurtarması'**
+  String get deathSaves;
+
+  /// No description provided for @deathSaveRoll.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kurtarma at'**
+  String get deathSaveRoll;
+
+  /// No description provided for @deathSaveStable.
+  ///
+  /// In tr, this message translates to:
+  /// **'Stabil'**
+  String get deathSaveStable;
+
+  /// No description provided for @deathSaveDead.
+  ///
+  /// In tr, this message translates to:
+  /// **'Öldü'**
+  String get deathSaveDead;
+
+  /// No description provided for @deathSaveRevived.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ayağa kalktı (1 can)'**
+  String get deathSaveRevived;
+
+  /// No description provided for @downtime.
+  ///
+  /// In tr, this message translates to:
+  /// **'Boş zaman'**
+  String get downtime;
+
+  /// No description provided for @downtimeAdd.
+  ///
+  /// In tr, this message translates to:
+  /// **'Faaliyet ekle'**
+  String get downtimeAdd;
+
+  /// No description provided for @downtimeDays.
+  ///
+  /// In tr, this message translates to:
+  /// **'Gün'**
+  String get downtimeDays;
+
+  /// No description provided for @downtimeRemaining.
+  ///
+  /// In tr, this message translates to:
+  /// **'{days} gün kaldı'**
+  String downtimeRemaining(int days);
+
+  /// No description provided for @downtimeComplete.
+  ///
+  /// In tr, this message translates to:
+  /// **'Tamamla'**
+  String get downtimeComplete;
+
+  /// No description provided for @downtimeOutcome.
+  ///
+  /// In tr, this message translates to:
+  /// **'Sonuç'**
+  String get downtimeOutcome;
+
+  /// No description provided for @downtimeEmpty.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kayıtlı faaliyet yok.'**
+  String get downtimeEmpty;
+
+  /// No description provided for @downtimeKindCraft.
+  ///
+  /// In tr, this message translates to:
+  /// **'Zanaat'**
+  String get downtimeKindCraft;
+
+  /// No description provided for @downtimeKindResearch.
+  ///
+  /// In tr, this message translates to:
+  /// **'Araştırma'**
+  String get downtimeKindResearch;
+
+  /// No description provided for @downtimeKindWork.
+  ///
+  /// In tr, this message translates to:
+  /// **'İş bulma'**
+  String get downtimeKindWork;
+
+  /// No description provided for @downtimeKindTrain.
+  ///
+  /// In tr, this message translates to:
+  /// **'Eğitim'**
+  String get downtimeKindTrain;
+
+  /// No description provided for @downtimeKindRecuperate.
+  ///
+  /// In tr, this message translates to:
+  /// **'İyileşme'**
+  String get downtimeKindRecuperate;
+
+  /// No description provided for @downtimeKindCarouse.
+  ///
+  /// In tr, this message translates to:
+  /// **'Âlem'**
+  String get downtimeKindCarouse;
+
+  /// No description provided for @downtimeKindCustom.
+  ///
+  /// In tr, this message translates to:
+  /// **'Serbest'**
+  String get downtimeKindCustom;
+
+  /// No description provided for @sessionRecap.
+  ///
+  /// In tr, this message translates to:
+  /// **'Oturum özeti'**
+  String get sessionRecap;
+
+  /// No description provided for @sessionRecapGenerate.
+  ///
+  /// In tr, this message translates to:
+  /// **'Özet üret'**
+  String get sessionRecapGenerate;
+
+  /// No description provided for @sessionRecapEmpty.
+  ///
+  /// In tr, this message translates to:
+  /// **'Özetlenecek günlük kaydı yok.'**
+  String get sessionRecapEmpty;
+
+  /// No description provided for @exportPdf.
+  ///
+  /// In tr, this message translates to:
+  /// **'PDF olarak kaydet'**
+  String get exportPdf;
+
+  /// No description provided for @exportPdfDone.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kaydedildi: {path}'**
+  String exportPdfDone(String path);
+
+  /// No description provided for @macros.
+  ///
+  /// In tr, this message translates to:
+  /// **'Makrolar'**
+  String get macros;
+
+  /// No description provided for @macroAdd.
+  ///
+  /// In tr, this message translates to:
+  /// **'Makro ekle'**
+  String get macroAdd;
+
+  /// No description provided for @macroExpression.
+  ///
+  /// In tr, this message translates to:
+  /// **'Zar ifadesi'**
+  String get macroExpression;
+
+  /// No description provided for @macroInvalid.
+  ///
+  /// In tr, this message translates to:
+  /// **'İfade çözülemedi (örn. 2d6+3).'**
+  String get macroInvalid;
+
+  /// No description provided for @macroEmpty.
+  ///
+  /// In tr, this message translates to:
+  /// **'Makro yok.'**
+  String get macroEmpty;
+
+  /// No description provided for @macroScopeDm.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yalnızca DM'**
+  String get macroScopeDm;
+
+  /// No description provided for @macroScopePlayer.
+  ///
+  /// In tr, this message translates to:
+  /// **'Oyuncular'**
+  String get macroScopePlayer;
+
+  /// No description provided for @macroScopeBoth.
+  ///
+  /// In tr, this message translates to:
+  /// **'Herkes'**
+  String get macroScopeBoth;
+
+  /// No description provided for @settingsAccessibility.
+  ///
+  /// In tr, this message translates to:
+  /// **'Erişilebilirlik'**
+  String get settingsAccessibility;
+
+  /// No description provided for @settingsHighContrast.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yüksek kontrast'**
+  String get settingsHighContrast;
+
+  /// No description provided for @settingsColorBlind.
+  ///
+  /// In tr, this message translates to:
+  /// **'Renk körlüğü uyumu'**
+  String get settingsColorBlind;
+
+  /// No description provided for @settingsColorBlindHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'Jeton takımları ve duvar türleri renge ek olarak desen/şekille de ayrışır.'**
+  String get settingsColorBlindHint;
+
+  /// No description provided for @settingsTouchLayout.
+  ///
+  /// In tr, this message translates to:
+  /// **'Dokunmatik düzen'**
+  String get settingsTouchLayout;
+
+  /// No description provided for @settingsTouchLayoutHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'Orta tuş ve sağ tık yerine ekrandaki düğmeler kullanılır; hedefler büyür.'**
+  String get settingsTouchLayoutHint;
+
+  /// No description provided for @syncFolder.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yedek klasörü'**
+  String get syncFolder;
+
+  /// No description provided for @syncFolderHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'Seçilen klasöre her gün otomatik yedek yazılır. Bulut klasörü (OneDrive, Drive, Dropbox) seçersen yedek cihazlar arasında taşınır.'**
+  String get syncFolderHint;
+
+  /// No description provided for @syncFolderPick.
+  ///
+  /// In tr, this message translates to:
+  /// **'Klasör seç'**
+  String get syncFolderPick;
+
+  /// No description provided for @syncFolderNone.
+  ///
+  /// In tr, this message translates to:
+  /// **'Seçilmedi'**
+  String get syncFolderNone;
+
+  /// No description provided for @syncFolderCleared.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kaldırıldı'**
+  String get syncFolderCleared;
+
+  /// No description provided for @campaignMerge.
+  ///
+  /// In tr, this message translates to:
+  /// **'Başka kampanyadan al'**
+  String get campaignMerge;
+
+  /// No description provided for @campaignMergeHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'Seçtiğin kampanyadan canavar, NPC, harita ve rastgele tabloları kopyalar. Mevcut kayıtlarının üzerine yazılmaz.'**
+  String get campaignMergeHint;
+
+  /// No description provided for @campaignMergeDone.
+  ///
+  /// In tr, this message translates to:
+  /// **'{count} kayıt alındı.'**
+  String campaignMergeDone(int count);
+
+  /// No description provided for @campaignMergeWhat.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ne alınsın?'**
+  String get campaignMergeWhat;
+
+  /// No description provided for @contentSourceImages.
+  ///
+  /// In tr, this message translates to:
+  /// **'Görseller indiriliyor: {done}/{total}'**
+  String contentSourceImages(int done, int total);
+
+  /// No description provided for @questOwners.
+  ///
+  /// In tr, this message translates to:
+  /// **'Üstlenen'**
+  String get questOwners;
+
+  /// No description provided for @questOwnersSection.
+  ///
+  /// In tr, this message translates to:
+  /// **'Görevi kim üstlendi?'**
+  String get questOwnersSection;
+
+  /// No description provided for @questOwnersHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'İşi üstlenen karakterleri işaretle.'**
+  String get questOwnersHint;
+
+  /// No description provided for @restSpendHitDie.
+  ///
+  /// In tr, this message translates to:
+  /// **'Zar harca'**
+  String get restSpendHitDie;
+
+  /// No description provided for @restHitDieSpent.
+  ///
+  /// In tr, this message translates to:
+  /// **'{name} bir hit die harcadı: +{healed} can'**
+  String restHitDieSpent(String name, int healed);
+
+  /// No description provided for @lootGrant.
+  ///
+  /// In tr, this message translates to:
+  /// **'Aktar'**
+  String get lootGrant;
+
+  /// No description provided for @lootGranted.
+  ///
+  /// In tr, this message translates to:
+  /// **'“{name}” ortak keseye aktarıldı.'**
+  String lootGranted(Object name);
+
+  /// No description provided for @lootNoPartyBag.
+  ///
+  /// In tr, this message translates to:
+  /// **'Önce bir ortak kese oluştur (Karakterler sekmesi).'**
+  String get lootNoPartyBag;
+
+  /// No description provided for @encLocation.
+  ///
+  /// In tr, this message translates to:
+  /// **'Geçtiği yer'**
+  String get encLocation;
+
+  /// No description provided for @encLocationNone.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bir yere bağlanmadı'**
+  String get encLocationNone;
+
+  /// No description provided for @encLocationMissing.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bağlı yer silinmiş'**
+  String get encLocationMissing;
+
+  /// No description provided for @encLocationPick.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yer seç'**
+  String get encLocationPick;
+
+  /// No description provided for @encLocationClear.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bağı kaldır'**
+  String get encLocationClear;
+
+  /// No description provided for @encLocationNoLocations.
+  ///
+  /// In tr, this message translates to:
+  /// **'Henüz yer yok — önce Dünya sekmesinden bir yer oluştur.'**
+  String get encLocationNoLocations;
+
+  /// No description provided for @worldEncountersHere.
+  ///
+  /// In tr, this message translates to:
+  /// **'Buradaki karşılaşmalar'**
+  String get worldEncountersHere;
+
+  /// No description provided for @factionTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Fraksiyon'**
+  String get factionTitle;
+
+  /// No description provided for @factionsTab.
+  ///
+  /// In tr, this message translates to:
+  /// **'Fraksiyonlar'**
+  String get factionsTab;
+
+  /// No description provided for @factionAdd.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yeni fraksiyon'**
+  String get factionAdd;
+
+  /// No description provided for @factionEmpty.
+  ///
+  /// In tr, this message translates to:
+  /// **'Henüz fraksiyon yok. Loncalar, tarikatlar, hanedanlar ve çeteler buraya.'**
+  String get factionEmpty;
+
+  /// No description provided for @factionName.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ad'**
+  String get factionName;
+
+  /// No description provided for @factionKind.
+  ///
+  /// In tr, this message translates to:
+  /// **'Tür'**
+  String get factionKind;
+
+  /// No description provided for @factionKindHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'lonca, tarikat, hanedan, çete…'**
+  String get factionKindHint;
+
+  /// No description provided for @factionGoal.
+  ///
+  /// In tr, this message translates to:
+  /// **'Amaç'**
+  String get factionGoal;
+
+  /// No description provided for @factionDescription.
+  ///
+  /// In tr, this message translates to:
+  /// **'Açıklama'**
+  String get factionDescription;
+
+  /// No description provided for @factionSecretNotes.
+  ///
+  /// In tr, this message translates to:
+  /// **'DM notu'**
+  String get factionSecretNotes;
+
+  /// No description provided for @factionSecretHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yalnızca sen görürsün.'**
+  String get factionSecretHint;
+
+  /// No description provided for @factionEmblemClear.
+  ///
+  /// In tr, this message translates to:
+  /// **'Armayı kaldır'**
+  String get factionEmblemClear;
+
+  /// No description provided for @factionBonds.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bağlar'**
+  String get factionBonds;
+
+  /// No description provided for @factionBondsEmpty.
+  ///
+  /// In tr, this message translates to:
+  /// **'Henüz bağ yok — dünya grafiğinden düğümleri bağla.'**
+  String get factionBondsEmpty;
+
+  /// No description provided for @factionBondBroken.
+  ///
+  /// In tr, this message translates to:
+  /// **'(silinmiş)'**
+  String get factionBondBroken;
+
+  /// No description provided for @factionDelete.
+  ///
+  /// In tr, this message translates to:
+  /// **'Fraksiyonu sil'**
+  String get factionDelete;
+
+  /// No description provided for @factionDeleteConfirm.
+  ///
+  /// In tr, this message translates to:
+  /// **'Fraksiyon ve bağları kaldırılacak.'**
+  String get factionDeleteConfirm;
+
+  /// No description provided for @worldFactions.
+  ///
+  /// In tr, this message translates to:
+  /// **'Fraksiyonlar'**
+  String get worldFactions;
+
+  /// No description provided for @bondMembership.
+  ///
+  /// In tr, this message translates to:
+  /// **'Üyelik'**
+  String get bondMembership;
+
+  /// No description provided for @clocksTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Saatler'**
+  String get clocksTitle;
+
+  /// No description provided for @clocksEmpty.
+  ///
+  /// In tr, this message translates to:
+  /// **'Saat yok. Bir kuşatmayı, bir ayini ya da yayılan bir söylentiyi izle.'**
+  String get clocksEmpty;
+
+  /// No description provided for @clockAdd.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yeni saat'**
+  String get clockAdd;
+
+  /// No description provided for @clockName.
+  ///
+  /// In tr, this message translates to:
+  /// **'Ne işliyor?'**
+  String get clockName;
+
+  /// No description provided for @clockNameHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kuşatma geliyor'**
+  String get clockNameHint;
+
+  /// No description provided for @clockOutcome.
+  ///
+  /// In tr, this message translates to:
+  /// **'Dolunca'**
+  String get clockOutcome;
+
+  /// No description provided for @clockOutcomeHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'Son dilim dolduğunda masada ne olacak.'**
+  String get clockOutcomeHint;
+
+  /// No description provided for @clockAdvance.
+  ///
+  /// In tr, this message translates to:
+  /// **'Bir dilim ilerlet'**
+  String get clockAdvance;
+
+  /// No description provided for @clockClose.
+  ///
+  /// In tr, this message translates to:
+  /// **'Saati kapat'**
+  String get clockClose;
+
+  /// No description provided for @clockReopen.
+  ///
+  /// In tr, this message translates to:
+  /// **'Saati yeniden aç'**
+  String get clockReopen;
+
+  /// No description provided for @exportTitle.
+  ///
+  /// In tr, this message translates to:
+  /// **'Açık biçimler'**
+  String get exportTitle;
+
+  /// No description provided for @exportHint.
+  ///
+  /// In tr, this message translates to:
+  /// **'Her yerde okunur ama geri YÜKLENMEZ. Medya dosyaları dahil değildir.'**
+  String get exportHint;
+
+  /// No description provided for @exportMarkdown.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kayıtlar → Markdown'**
+  String get exportMarkdown;
+
+  /// No description provided for @exportJson.
+  ///
+  /// In tr, this message translates to:
+  /// **'Kampanya → JSON'**
+  String get exportJson;
+
+  /// No description provided for @exportMarkdownType.
+  ///
+  /// In tr, this message translates to:
+  /// **'Markdown'**
+  String get exportMarkdownType;
+
+  /// No description provided for @exportJsonType.
+  ///
+  /// In tr, this message translates to:
+  /// **'JSON'**
+  String get exportJsonType;
+
+  /// No description provided for @exportDone.
+  ///
+  /// In tr, this message translates to:
+  /// **'Dışa aktarıldı.'**
+  String get exportDone;
 }
 
 class _L10nDelegate extends LocalizationsDelegate<L10n> {

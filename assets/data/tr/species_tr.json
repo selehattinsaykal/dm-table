@@ -1,0 +1,237 @@
+{
+  "_comment": "Turkish translation of the shipped species bundle. Loaded by lib/data/content_tr.dart and applied at display time only -- the database keeps the English text, because the rules parsers read it. Game terms stay in English on purpose. Keys are entry keys; paths are `desc` and `traits/<English trait name>`.",
+  "srd-2024_dragonborn": {
+    "desc": "Dragonborn'lar damarlarında bir ejderhanın kanını, ciğerlerinde onun nefesini taşır. Pullu, geniş omuzlu ve dimdik dururlar; büyük ejderhaların bir zamanlar ölümlülerin arasında yürüdüğünün canlı hatırlatıcısıdırlar ve çoğu buna layık olmayı kafaya koymuştur.",
+    "traits/Size": "Orta (yaklaşık 5-7 feet boyunda)",
+    "traits/Speed": "30 feet",
+    "traits/Draconic Ancestry": "Soyun bir ejderha atadan gelir. Draconic Ancestors tablosundan ejderha türünü seç. Bu seçim hem Nefes Silahı ve Damage direnç özelliklerini hem de görünüşünü belirler.\n\nTablo: Draconic Ancestors\n\n| Ejderha | Hasar Tipi |\n|---|---|\n| Black | asit |\n| Blue | yıldırım |\n| Brass | ateş |\n| Bronze | yıldırım |\n| Copper | asit |\n| Gold | ateş |\n| Green | zehir |\n| Red | ateş |\n| Silver | soğuk |\n| White | soğuk |",
+    "traits/Breath Weapon": "Sıranda Attack eylemini aldığında, saldırılarından birinin yerine 15 feetlik bir Koni ya da 5 feet genişliğinde 30 feetlik bir Hat biçiminde büyülü enerji püskürtebilirsin (şekli her seferinde sen seçersin). O alandaki her yaratık Çeviklik kurtarma zarı yapar (DC 8 + Dayanıklılık modifiyerin + Yeterlilik Bonusun). Başarısız olan yaratık, Draconic Ancestry özelliğinin belirlediği tipte 1d10 hasar alır; başarılı olan yarısını alır. Bu hasar karakter seviyesi 5 (2d10), 11 (3d10) ve 17'de (4d10) 1d10 artar.\n\nNefes Silahısı Yeterlilik Bonusun kadar kullanabilir, harcadığın hakları Uzun Dinlenme tamamladığında geri kazanırsın.",
+    "traits/Damage Resistance": "Draconic Ancestry özelliğinin belirlediği hasar tipine karşı direncin var.",
+    "traits/Darkvision": "60 feet menzilinde karanlık görüşüne sahipsin.",
+    "traits/Draconic Flight": "Karakter seviyesi 5'e ulaştığında, ejderha büyüsünü kendine geçici uçuş vermek için kullanabilirsin. Bonus Eylem olarak sırtında hayalet kanatlar açarsın; kanatlar 10 dakika boyunca, sen onları geri çekene kadar (eylem gerekmez) ya da aciz duruma düşene kadar kalır. Bu süre boyunca hızına eşit bir uçuş hızın olur. Kanatlar Nefes Silahınla aynı enerjiden görünür. Bu özelliği kullandıktan sonra Uzun Dinlenme tamamlayana kadar tekrar kullanamazsın."
+  },
+  "srd-2024_dwarf": {
+    "desc": "Dwarf'lar dağların inatçı yüreğidir: kısa, sağlam ve pes etmesi zor. Bir hayatı, ardında bıraktığı işle ölçerler; yeminlerini de kinlerini de aynı özenle saklarlar ve karanlıkta başkalarının öğle vakti gördüğü kadar rahat görürler.",
+    "traits/Size": "Orta (yaklaşık 4-5 feet boyunda)",
+    "traits/Speed": "30 feet",
+    "traits/Darkvision": "120 feet menzilinde karanlık görüşüne sahipsin.",
+    "traits/Dwarven Resilience": "Zehir hasarına karşı direncin var. Ayrıca zehirlenmiş durumundan kaçınmak ya da onu sona erdirmek için yaptığın kurtarma zarlarında avantajlısın.",
+    "traits/Dwarven Toughness": "Can maksimumun 1 artar ve her seviye atladığında 1 daha artar.",
+    "traits/Stonecunning": "Bonus Eylem olarak 10 dakika boyunca 60 feet menzilinde titreşim duyusu kazanırsın. Bu titreşim duyusu kullanmak için taş bir yüzeyde durman ya da taşa dokunuyor olman gerekir. Taş doğal ya da işlenmiş olabilir.\n\nBu Bonus Eylemi Yeterlilik Bonusun kadar kullanabilir, harcadığın hakları Uzun Dinlenme tamamladığında geri kazanırsın."
+  },
+  "srd-2024_elf": {
+    "desc": "Elf'ler Feywild'ın alacakaranlık büyüsüyle yoğrulmuştur. Kısa ömürlü halkların mevsimleri izlediği gibi yüzyılların geçişini izler, uyumak yerine uyanık bir transa geçer ve pek bir şey unutmazlar -- ne iyiliği ne hakareti.",
+    "traits/Size": "Orta (yaklaşık 5-6 feet boyunda)",
+    "traits/Speed": "30 feet",
+    "traits/Darkvision": "60 feet menzilinde karanlık görüşüne sahipsin.",
+    "traits/Elven Lineage": "Doğaüstü yetenekler veren bir soyun parçasısın. Elven Lineages tablosundan bir soy seç ve o soyun seviye 1 faydasını kazan.\n\nKarakter seviyesi 3 ve 5'e ulaştığında tabloda gösterilen daha yüksek seviyeli büyüyü öğrenirsin. O büyü daima hazırdır. Büyü slot harcamadan bir kez kullanabilir, bu hakkını Uzun Dinlenme tamamladığında geri kazanırsın. İstersen uygun seviyedeki spell slot'larınla da kullanabilirsin.\n\nTablo: Elven Lineages\n\n| Soy | Seviye 1 | Seviye 3 | Seviye 5 |\n|---|---|---|---|\n| Drow | karanlık görüşü menzilin 120 feet'e çıkar. Ayrıca Dancing Lights cantrip'ini bilirsin. | Faerie Fire | Darkness |\n| High Elf | Prestidigitation cantrip'ini bilirsin. Her Uzun Dinlenme tamamladığında bunu Wizard büyü listesinden başka bir cantrip ile değiştirebilirsin. | Detect Magic | Sisli Adım |\n| Wood Elf | hızın 35 feet'e çıkar. Ayrıca Druidcraft cantrip'ini bilirsin. | Longstrider | Pass without Trace |\n\nBu büyüler için spellcasting yeteneğin Zekâ, Bilgelik ya da Karizmadır; hangisi olduğunu bu soyu seçerken belirlersin.",
+    "traits/Fey Ancestry": "Büyülenmiş durumundan kaçınmak ya da onu sona erdirmek için yaptığın kurtarma zarlarında avantajlısın.",
+    "traits/Keen Senses": "Sezgi, Algı ya da Hayatta Kalma becerisinde proficiency kazanırsın.",
+    "traits/Trance": "Uyumaya ihtiyacın yok ve büyü seni uyutamaz. Bu saatleri bilincin açık şekilde bir tür meditasyonda geçirirsen Uzun Dinlenmesi 4 saatte tamamlayabilirsin."
+  },
+  "srd-2024_gnome": {
+    "desc": "Gnome'lar dünyayı sökülmeyi bekleyen bir bulmaca olarak karşılar. Küçük, çevik ve durmak bilmez meraklıdırlar; içlerinde doğuştan bir büyü kıvılcımı ve zihinlerini bükmeye çalışan büyülere karşı bir direnç taşırlar.",
+    "traits/Size": "Küçük (yaklaşık 3-4 feet boyunda)",
+    "traits/Speed": "30 feet",
+    "traits/Darkvision": "60 feet menzilinde karanlık görüşüne sahipsin.",
+    "traits/Gnomish Cunning": "Zekâ, Bilgelik ve Karizma kurtarma zarlarında avantajlısın.",
+    "traits/Gnomish Lineage": "Doğaüstü yetenekler veren bir soyun parçasısın. Aşağıdaki seçeneklerden birini seç; hangisini seçersen seç, bu özellikle kullandığın büyüler için spellcasting yeteneğin Zekâ, Bilgelik ya da Karizmadır (soyu seçerken belirlersin):\n\n**Forest Gnome.** *Minor Illusion* cantrip'ini bilirsin. Ayrıca *Speak with Animals* büyüsü daima hazırdır; spell slot harcamadan Yeterlilik Bonusun kadar kullanabilir, harcadığın hakları Uzun Dinlenme tamamladığında geri kazanırsın. İstersen spell slot'larınla da kullanabilirsin.\n\n**Kaya Gnome.** *Mending* ve *Prestidigitation* cantrip'lerini bilirsin. Ayrıca 10 dakika boyunca *Prestidigitation* kullanarak Ufak boyutta saat mekanizmalı bir düzenek (AC 5, 1 HP) yapabilirsin: bir oyuncak, çakmak ya da müzik kutusu gibi. Düzeneği yaparken işlevini *Prestidigitation*'ın etkilerinden birini seçerek belirlersin; sen ya da başka bir yaratık Bonus Eylem harcayıp dokunarak çalıştırdığında düzenek o etkiyi üretir. Seçtiğin etkinin kendi içinde seçenekleri varsa, düzeneği yaparken onlardan birini de belirlersin -- örneğin ateş yakma/söndürme etkisini seçtiysen düzenek ya yakar ya söndürür, ikisini birden yapmaz. Aynı anda üç düzeneğin olabilir; her biri yapılışından 8 saat sonra ya da sen Utilize eylemiyle dokunup söktüğünde dağılır."
+  },
+  "srd-2024_goliath": {
+    "desc": "Goliath'lar devlerin soyundan gelir ve bunu hiç unutmamışlardır. Çoğu halktan bir baş boyun uzundurlar, bedenlerinde bir devin gücünü taşırlar ve kendilerini aştıkları şeyin büyüklüğüyle ölçerler.",
+    "traits/Size": "Orta (yaklaşık 7-8 feet boyunda)",
+    "traits/Speed": "35 feet",
+    "traits/Giant Ancestry": "Devlerin soyundan geliyorsun. Aşağıdaki faydalardan birini seç -- atalarından gelen doğaüstü bir armağan. Seçtiğin faydayı Yeterlilik Bonusun kadar kullanabilir, harcadığın hakları Uzun Dinlenme tamamladığında geri kazanırsın:\n\n- **Cloud's Jaunt (Cloud Giant)**. Bonus Eylem olarak, görebildiğin boş bir alana 30 feet'e kadar büyülü şekilde ışınlanırsın.\n- **ateş's Yakma (Fire Giant)**. Bir hedefe saldırı zarı ile isabet edip hasar verdiğinde, o hedefe ayrıca 1d10 ateş hasar verebilirsin.\n- **Frost's Üşütme (Frost Giant)**. Bir hedefe saldırı zarı ile isabet edip hasar verdiğinde, o hedefe ayrıca 1d6 soğuk hasar verip bir sonraki sıranın başına kadar hızını 10 feet düşürebilirsin.\n- **Hill's Tumble (Hill Giant)**. Büyük ya da daha küçük bir yaratığa saldırı zarı ile isabet edip hasar verdiğinde, o hedefe yere serilmiş durumunu verebilirsin.\n- **Stone's Endurance (Stone Giant)**. Hasar aldığında Tepki harcayıp 1d12 atabilirsin. Sonuca Dayanıklılık modifiyerini ekler ve hasarı bu toplam kadar azaltırsın.\n- **Storm's gürleme (Storm Giant)**. 60 feet içindeki bir yaratıktan hasar aldığında, Tepki harcayıp o yaratığa 1d8 gürleme hasar verebilirsin.",
+    "traits/Large Form": "Karakter seviyesi 5'ten itibaren, yeterince geniş bir alandaysan Bonus Eylem olarak boyutunu Büyüğe çıkarabilirsin. Dönüşüm 10 dakika sürer ya da sen sonlandırana kadar devam eder (eylem gerekmez). Bu süre boyunca Güç kontrollerinde avantajlısın ve hızın 10 feet artar. Bu özelliği kullandıktan sonra Uzun Dinlenme tamamlayana kadar tekrar kullanamazsın.",
+    "traits/Powerful Build": "Kavranmış durumunu sona erdirmek için yaptığın her yetenek kontrolünde avantajlısın. Ayrıca taşıma kapasiten belirlenirken bir boyut büyük sayılırsın."
+  },
+  "srd-2024_halfling": {
+    "desc": "Halfling'ler neşeli, kolay kolay paniklemeyen ve şansları dillere destan bir halktır -- daha iri halkları yere seren felaketlerin altından sıyrılıp çıkarlar. Ev ve ocak onlar için çok değerlidir; zaten tam da bu yüzden bir çoğu geri götürmeye değer bir hikâye aramaya çıkar.",
+    "traits/Size": "Küçük (yaklaşık 2-3 feet boyunda)",
+    "traits/Speed": "30 feet",
+    "traits/Brave": "Korkmuş durumundan kaçınmak ya da onu sona erdirmek için yaptığın kurtarma zarlarında avantajlısın.",
+    "traits/Halfling Nimbleness": "Senden bir boyut büyük olan herhangi bir yaratığın bulunduğu alandan geçebilirsin, ama aynı alanda duramazsın.",
+    "traits/Luck": "Bir D20 Testin d20'sinde 1 attığında zarı yeniden atabilirsin; yeni sonucu kullanmak zorundasın.",
+    "traits/Naturally Stealthy": "Yalnızca senden en az bir boyut büyük bir yaratık tarafından gizleniyor olsan bile Hide eylemini alabilirsin."
+  },
+  "srd-2024_human": {
+    "desc": "Human'lar yerinde duramayan, her koşula uyum sağlayan ve uzun ömürlü halkların ölçüsüyle göz açıp kapayana dek gidip giden bir halktır. Dünyanın her köşesine doluşur ve giderken orayı yeniden şekillendirirler; yüzyıl eksikliklerini hırslarıyla kapatırlar.",
+    "traits/Size": "Orta (yaklaşık 4-7 feet boyunda) ya da Küçük (yaklaşık 2-4 feet boyunda); bu türü seçerken belirlersin",
+    "traits/Speed": "30 feet",
+    "traits/Resourceful": "Her Uzun Dinlenme tamamladığında Heroic Inspiration kazanırsın.",
+    "traits/Skillful": "Seçtiğin bir beceride proficiency kazanırsın.",
+    "traits/Versatile": "Seçtiğin bir Origin feat kazanırsın (bkz. \"Feats\"). Skilled önerilir."
+  },
+  "srd-2024_orc": {
+    "desc": "Orc'lar dayanmak üzere yapılmıştır: yürüyüşte yılmaz, hücumda korkunç, karanlıkta net görürler. Bir Orc için güç biriktirilecek bir şey değil, arkandaki halk için harcanacak bir şeydir.",
+    "traits/Size": "Orta (yaklaşık 6-7 feet boyunda)",
+    "traits/Speed": "30 feet",
+    "traits/Adrenaline Rush": "Dash eylemini Bonus Eylem olarak alabilirsin. Bunu yaptığında Yeterlilik Bonusun kadar geçici can kazanırsın.\n\nBu özelliği Yeterlilik Bonusun kadar kullanabilir, harcadığın hakları Short ya da Uzun Dinlenme tamamladığında geri kazanırsın.",
+    "traits/Darkvision": "120 feet menzilinde karanlık görüşüne sahipsin.",
+    "traits/Relentless Endurance": "0 cana düşürüldüğünde ve doğrudan ölmediğinde, bunun yerine 1 canda kalabilirsin. Bu özelliği kullandıktan sonra Uzun Dinlenme tamamlayana kadar tekrar kullanamazsın."
+  },
+  "srd-2024_tiefling": {
+    "desc": "Bir Tiefling'in boynuzlarında, kuyruğunda ve kor gibi gözlerinde şeytani bir kan hattı görünür. Kimsenin günahını devralmazlar ama herkesin şüphesini üstlerinde taşırlar; çoğu daha erken yaşta bunu kendi lehine çevirmeyi öğrenir.",
+    "traits/Size": "Orta (yaklaşık 4-7 feet boyunda) ya da Küçük (yaklaşık 3-4 feet boyunda); bu türü seçerken belirlersin",
+    "traits/Speed": "30 feet",
+    "traits/Darkvision": "60 feet menzilinde karanlık görüşüne sahipsin.",
+    "traits/Fiendish Legacy": "Doğaüstü yetenekler veren bir mirasın sahibisin. Fiendish Legacies tablosundan bir miras seç ve seçtiğin mirasın seviye 1 faydasını kazan.\n\nKarakter seviyesi 3 ve 5'e ulaştığında tabloda gösterilen daha yüksek seviyeli büyüyü öğrenirsin. O büyü daima hazırdır. Büyü slot harcamadan bir kez kullanabilir, bu hakkını Uzun Dinlenme tamamladığında geri kazanırsın. İstersen uygun seviyedeki spell slot'larınla da kullanabilirsin.\n\nBu büyüler için spellcasting yeteneğin Zekâ, Bilgelik ya da Karizmadır; hangisi olduğunu bu soyu seçerken belirlersin.\n\n**Tablo: Fiendish Legacies**\n\n| Miras | Seviye 1 | Seviye 3 | Seviye 5 |\n|---|---|---|---|\n| Abyssal | zehir hasarına karşı direncin var. Ayrıca Poison Spray cantrip'ini bilirsin. | Ray of Sickness | Hold Person |\n| Chthonic | nekrotik hasarına karşı direncin var. Ayrıca Chill Touch cantrip'ini bilirsin. | False Life | Ray of Enfeeblement |\n| Infernal | ateş hasarına karşı direncin var. Ayrıca Fire Bolt cantrip'ini bilirsin. | Cehennemi Azarlama | Darkness |",
+    "traits/Otherworldly Presence": "*Thaumaturgy* cantrip'ini bilirsin. Bu özellikle kullandığında büyü, Fiendish Legacy özelliğin için kullandığın spellcasting yeteneğini kullanır."
+  },
+  "xphb-elf-drow": {
+    "desc": "Drow'lar Underdark'ın ışıksız derinliklerinde biçimlenmiş Elf'lerdir. Gözleri karanlığın içine uzanır, büyüleri gölgeye ve oynaşan ışığa çalar.",
+    "traits/Size": "Orta (yaklaşık 5-6 feet boyunda)",
+    "traits/Speed": "30 feet",
+    "traits/Darkvision": "60 feet menzilinde karanlık görüşüne sahipsin.",
+    "traits/Fey Ancestry": "Büyülenmiş durumundan kaçınmak ya da onu sona erdirmek için yaptığın kurtarma zarlarında avantajlısın.",
+    "traits/Keen Senses": "Sezgi, Algı ya da Hayatta Kalma becerisinde proficiency kazanırsın.",
+    "traits/Trance": "Uyumaya ihtiyacın yok ve büyü seni uyutamaz. Bu saatleri bilincin açık şekilde bir tür meditasyonda geçirirsen Uzun Dinlenmesi 4 saatte tamamlayabilirsin.",
+    "traits/Drow Lineage": "Karanlık görüşü menzilin 120 feet'e çıkar.\n\nDancing Lights cantrip'ini bilirsin.\n\nKarakter seviyesi 3'ten itibaren Faerie Fire büyüsü daima hazırdır; seviye 5'te buna Darkness büyüsü de eklenir. Her birini spell slot harcamadan bir kez kullanabilir, bu hakkını Uzun Dinlenme tamamladığında geri kazanırsın. İstersen uygun seviyedeki spell slot'larınla normal şekilde de kullanabilirsin.\n\nBu büyüler için spellcasting yeteneğin Zekâ, Bilgelik ya da Karizmadır; hangisi olduğunu bu soyu seçerken belirlersin."
+  },
+  "xphb-elf-high": {
+    "desc": "High Elf'ler eski Elf saraylarının arcane geleneğini sürdürür. Bir cantrip onlara selam vermek kadar kolay gelir ve çalışmaları değiştikçe onu da değiştirirler.",
+    "traits/Size": "Orta (yaklaşık 5-6 feet boyunda)",
+    "traits/Speed": "30 feet",
+    "traits/Darkvision": "60 feet menzilinde karanlık görüşüne sahipsin.",
+    "traits/Fey Ancestry": "Büyülenmiş durumundan kaçınmak ya da onu sona erdirmek için yaptığın kurtarma zarlarında avantajlısın.",
+    "traits/Keen Senses": "Sezgi, Algı ya da Hayatta Kalma becerisinde proficiency kazanırsın.",
+    "traits/Trance": "Uyumaya ihtiyacın yok ve büyü seni uyutamaz. Bu saatleri bilincin açık şekilde bir tür meditasyonda geçirirsen Uzun Dinlenmesi 4 saatte tamamlayabilirsin.",
+    "traits/High Elf Lineage": "Her Uzun Dinlenme tamamladığında bu cantrip'i Wizard büyü listesinden başka bir cantrip ile değiştirebilirsin.\n\nPrestidigitation cantrip'ini bilirsin.\n\nKarakter seviyesi 3'ten itibaren Detect Magic büyüsü daima hazırdır; seviye 5'te buna Sisli Adım büyüsü de eklenir. Her birini spell slot harcamadan bir kez kullanabilir, bu hakkını Uzun Dinlenme tamamladığında geri kazanırsın. İstersen uygun seviyedeki spell slot'larınla normal şekilde de kullanabilirsin.\n\nBu büyüler için spellcasting yeteneğin Zekâ, Bilgelik ya da Karizmadır; hangisi olduğunu bu soyu seçerken belirlersin."
+  },
+  "xphb-elf-wood": {
+    "desc": "Wood Elf'ler derin ormana aittir. Diğer Elf'lerden daha hızlı ve daha sessiz hareket eder, yıldız ışığında daha uzağı görür ve hiç siper vermeyen bir çalılıkta gözden kaybolmayı bilirler.",
+    "traits/Size": "Orta (yaklaşık 5-6 feet boyunda)",
+    "traits/Speed": "35 feet",
+    "traits/Darkvision": "60 feet menzilinde karanlık görüşüne sahipsin.",
+    "traits/Fey Ancestry": "Büyülenmiş durumundan kaçınmak ya da onu sona erdirmek için yaptığın kurtarma zarlarında avantajlısın.",
+    "traits/Keen Senses": "Sezgi, Algı ya da Hayatta Kalma becerisinde proficiency kazanırsın.",
+    "traits/Trance": "Uyumaya ihtiyacın yok ve büyü seni uyutamaz. Bu saatleri bilincin açık şekilde bir tür meditasyonda geçirirsen Uzun Dinlenmesi 4 saatte tamamlayabilirsin.",
+    "traits/Wood Elf Lineage": "Druidcraft cantrip'ini bilirsin.\n\nKarakter seviyesi 3'ten itibaren Longstrider büyüsü daima hazırdır; seviye 5'te buna Pass without Trace büyüsü de eklenir. Her birini spell slot harcamadan bir kez kullanabilir, bu hakkını Uzun Dinlenme tamamladığında geri kazanırsın. İstersen uygun seviyedeki spell slot'larınla normal şekilde de kullanabilirsin.\n\nBu büyüler için spellcasting yeteneğin Zekâ, Bilgelik ya da Karizmadır; hangisi olduğunu bu soyu seçerken belirlersin."
+  },
+  "xphb-gnome-forest": {
+    "desc": "Forest Gnome'lar ormanın küçük canlılarıyla iç içe yaşar. Hayvanlarla konuşur, meraklıları uzak tutmak için ufak illüzyonlar kurar ve onları arayan biri tarafından neredeyse hiç bulunmazlar.",
+    "traits/Size": "Küçük (yaklaşık 3-4 feet boyunda)",
+    "traits/Speed": "30 feet",
+    "traits/Darkvision": "60 feet menzilinde karanlık görüşüne sahipsin.",
+    "traits/Gnomish Cunning": "Zekâ, Bilgelik ve Karizma kurtarma zarlarında avantajlısın.",
+    "traits/Forest Gnome Lineage": "Minor Illusion cantrip'ini bilirsin. Ayrıca Speak with Animals büyüsü daima hazırdır; spell slot harcamadan Yeterlilik Bonusun kadar kullanabilir, harcadığın hakları Uzun Dinlenme tamamladığında geri kazanırsın. İstersen spell slot'larınla normal şekilde de kullanabilirsin.\n\nBu büyüler için spellcasting yeteneğin Zekâ, Bilgelik ya da Karizmadır; hangisi olduğunu bu soyu seçerken belirlersin."
+  },
+  "xphb-gnome-rock": {
+    "desc": "Kaya Gnome'lar iliğine kadar tamircidir. Metalleri ve taşları görür görmez tanır, sürekli ıslık çalan, kıvılcım saçan ya da ortalıkta koşturan küçük saat mekanizmaları kurarlar.",
+    "traits/Size": "Küçük (yaklaşık 3-4 feet boyunda)",
+    "traits/Speed": "30 feet",
+    "traits/Darkvision": "60 feet menzilinde karanlık görüşüne sahipsin.",
+    "traits/Gnomish Cunning": "Zekâ, Bilgelik ve Karizma kurtarma zarlarında avantajlısın.",
+    "traits/Rock Gnome Lineage": "Mending ve Prestidigitation cantrip'lerini bilirsin.\n\nAyrıca 10 dakika boyunca Mending kullanarak Ufak boyutta saat mekanizmalı bir düzenek (AC 5, 1 HP) yapabilirsin: bir oyuncak, çakmak ya da müzik kutusu gibi. Düzeneği yaparken bu etkilerden birini seçersin; düzenek onu üretir ve bir yaratık Utility eylemiyle onu çalıştırabilir. Aynı anda en fazla üç düzeneğin olabilir; dördüncüyü yaparsan biri toz olur. Bu büyüler için spellcasting yeteneğin Zekâ, Bilgelik ya da Karizmadır; hangisi olduğunu bu soyu seçerken belirlersin."
+  },
+  "xphb-tiefling-abyssal": {
+    "desc": "Abyssal Tiefling'ler Abyss'in ham ve aç kaosunu taşır. Mirasları incelikten çok zehre ve ham dayanıklılığa çalar.",
+    "traits/Size": "Orta (yaklaşık 4-7 feet boyunda)",
+    "traits/Speed": "30 feet",
+    "traits/Darkvision": "60 feet menzilinde karanlık görüşüne sahipsin.",
+    "traits/Otherworldly Presence": "Thaumaturgy cantrip'ini bilirsin. Bu özellikle kullandığında büyü, Fiendish Legacy özelliğin için seçtiğin spellcasting yeteneğini kullanır.",
+    "traits/Fiendish Legacy": "Abyssal. Zehir hasarına karşı direncin var ve Poison Spray cantrip'ini bilirsin.\n\nKarakter seviyesi 3'ten itibaren Ray of Sickness büyüsü daima hazırdır; seviye 5'te buna Hold Person büyüsü de eklenir. Her birini spell slot harcamadan bir kez kullanabilir, bu hakkını Uzun Dinlenme tamamladığında geri kazanırsın. İstersen uygun seviyedeki spell slot'larınla normal şekilde de kullanabilirsin.\n\nBu büyüler için spellcasting yeteneğin Zekâ, Bilgelik ya da Karizmadır; hangisi olduğunu bu soyu seçerken belirlersin."
+  },
+  "xphb-tiefling-chthonic": {
+    "desc": "Chthonic Tiefling'ler ölümün ve mezarın güçleriyle damgalanmıştır. Nekrotik enerji onlara yanıt verir ve işleri bitirmek alışılmadık ölçüde zordur.",
+    "traits/Size": "Orta (yaklaşık 4-7 feet boyunda)",
+    "traits/Speed": "30 feet",
+    "traits/Darkvision": "60 feet menzilinde karanlık görüşüne sahipsin.",
+    "traits/Otherworldly Presence": "Thaumaturgy cantrip'ini bilirsin. Bu özellikle kullandığında büyü, Fiendish Legacy özelliğin için seçtiğin spellcasting yeteneğini kullanır.",
+    "traits/Fiendish Legacy": "Chthonic. Nekrotik hasarına karşı direncin var ve Chill Touch cantrip'ini bilirsin.\n\nKarakter seviyesi 3'ten itibaren False Life büyüsü daima hazırdır; seviye 5'te buna Ray of Enfeeblement büyüsü de eklenir. Her birini spell slot harcamadan bir kez kullanabilir, bu hakkını Uzun Dinlenme tamamladığında geri kazanırsın. İstersen uygun seviyedeki spell slot'larınla normal şekilde de kullanabilirsin.\n\nBu büyüler için spellcasting yeteneğin Zekâ, Bilgelik ya da Karizmadır; hangisi olduğunu bu soyu seçerken belirlersin."
+  },
+  "xphb-tiefling-infernal": {
+    "desc": "Infernal Tiefling'ler düzenli cehennemlerin soyundan gelir. Mirasları ateştir; yanında da bir avukatın pazarlık sezgisi gelir.",
+    "traits/Size": "Orta (yaklaşık 4-7 feet boyunda)",
+    "traits/Speed": "30 feet",
+    "traits/Darkvision": "60 feet menzilinde karanlık görüşüne sahipsin.",
+    "traits/Otherworldly Presence": "Thaumaturgy cantrip'ini bilirsin. Bu özellikle kullandığında büyü, Fiendish Legacy özelliğin için seçtiğin spellcasting yeteneğini kullanır.",
+    "traits/Fiendish Legacy": "Infernal. Ateş hasarına karşı direncin var ve Fire Bolt cantrip'ini bilirsin.\n\nKarakter seviyesi 3'ten itibaren Cehennemi Azarlama büyüsü daima hazırdır; seviye 5'te buna Darkness büyüsü de eklenir. Her birini spell slot harcamadan bir kez kullanabilir, bu hakkını Uzun Dinlenme tamamladığında geri kazanırsın. İstersen uygun seviyedeki spell slot'larınla normal şekilde de kullanabilirsin.\n\nBu büyüler için spellcasting yeteneğin Zekâ, Bilgelik ya da Karizmadır; hangisi olduğunu bu soyu seçerken belirlersin."
+  },
+  "eberron-forge_changeling": {
+    "desc": "Changeling'ler kendi yüzlerini ve bedenlerini istedikleri gibi yeniden şekillendirebilir. Kimi bunu hayatta kalmak, kimi casusluk için kullanır; kimi de sırf bir insanın tek bir insan olduğuna hiç inanmadığı için.",
+    "traits/Creature Type": "Peri",
+    "traits/Size": "Orta (yaklaşık 4-7 feet boyunda) ya da Küçük (yaklaşık 2-4 feet boyunda); bu türü seçerken belirlersin",
+    "traits/Speed": "30 feet",
+    "traits/Changeling Instincts": "Peri diyarıyla olan bağın sayesinde şu becerilerden seçtiğin ikisinde proficiency kazanırsın: Aldatma, Sezgi, Yıldırma, Sahne Sanatları ya da İkna.",
+    "traits/Shape-Shifter": "Bir eylem olarak görünüşünü ve sesini değiştirebilirsin. Rengin, saç uzunluğun ve cinsiyetin dahil ayrıntıları sen belirlersin. Boyunu ve kilonu da ayarlayabilir, boyutunu Orta ile Küçük arasında değiştirebilirsin. Oynanabilir başka bir türün üyesi gibi görünebilirsin, ama hiçbir oyun değerin değişmez. Hiç görmediğin birinin görünüşünü taklit edemezsin ve seninle aynı temel uzuv düzenine sahip bir biçim almalısın. Bu özellik kıyafetini ve teçhizatını değiştirmez.\n\nBu özellikle şekil değiştirmişken Karizma kontrollerinde avantajlısın.\n\nBir eylem harcayıp gerçek biçimine dönene kadar yeni biçimde kalırsın."
+  },
+  "eberron-forge_kalashtar": {
+    "desc": "Kalashtar'lar bedenlerini rüyalar diyarından gelen bir ruhla paylaşır. Bu bağ onlara sessiz bir telepati, korunaklı bir zihin ve tamamen kendilerine ait olmayan rüyalar verir.",
+    "traits/Creature Type": "Sapkınlık",
+    "traits/Size": "Orta (yaklaşık 6-7 feet boyunda)",
+    "traits/Speed": "30 feet",
+    "traits/Dual Mind": "Bilgelik ve Karizma kurtarma zarlarında avantajlısın.",
+    "traits/Mental Discipline": "Zihinsel hasarına karşı direncin var.",
+    "traits/Mind Link": "Seviyenin 10 katı kadar feet menzilinde telepatin var. Bu özellikle bir yaratıkla telepatik konuşurken, Büyü eylemi harcayarak o yaratığa 1 saat boyunca ya da başka bir Magic eylemiyle bu etkiyi sonlandırana kadar seninle telepatik konuşma yetisi verebilirsin.",
+    "traits/Severed from Dreams": "Dream büyüsünün hedefi olamazsın. Ayrıca her Uzun Dinlenme tamamladığında seçtiğin bir beceride proficiency kazanırsın. Bu proficiency bir sonraki Uzun Dinlenmesi tamamlayana kadar sürer."
+  },
+  "eberron-forge_khoravar": {
+    "desc": "Khoravar -- Khorvaire'in yarı Elf'leri -- hem insan hem Elf dünyasına aittir, tam olarak ise hiçbirine. Bu arada kalmışlığı kendilerine ait bir halka dönüştürmüşlerdir.",
+    "traits/Creature Type": "Insansı",
+    "traits/Size": "Orta (yaklaşık 4-6 feet boyunda) ya da Küçük (yaklaşık 2-4 feet boyunda); bu türü seçerken belirlersin",
+    "traits/Speed": "30 feet",
+    "traits/Darkvision": "60 feet menzilinde karanlık görüşüne sahipsin.",
+    "traits/Fey Ancestry": "Büyülenmiş durumundan kaçınmak ya da onu sona erdirmek için yaptığın kurtarma zarlarında avantajlısın.",
+    "traits/Fey Gift": "Friends cantrip'ini bilirsin. Her Uzun Dinlenme tamamladığında bunu Cleric, Druid ya da Wizard büyü listesinden başka bir cantrip ile değiştirebilirsin. Bunun için spellcasting yeteneğin Zekâ, Bilgelik ya da Karizmadır (bu türü seçerken belirlersin).",
+    "traits/Lethargy Resilience": "Baygın durumundan kaçınmak ya da onu sona erdirmek için yaptığın bir kurtarma zarında başarısız olursan, bunun yerine başarılı sayabilirsin. Bu özelliği kullandıktan sonra 1d4 Uzun Dinlenme tamamlayana kadar tekrar kullanamazsın.",
+    "traits/Skill Versatility": "Seçtiğin bir beceride ya da bir alette proficiency kazanırsın. Her Uzun Dinlenme tamamladığında bunu başka bir beceri ya da alet proficiency'siyle değiştirebilirsin."
+  },
+  "eberron-forge_shifter": {
+    "desc": "Shifter'lar tam oturmamış bir lycanthrope kanı taşır. Birkaç vahşi an boyunca içlerindeki hayvanı yükseltebilirler: daha hızlı, daha sert, yıkılması daha zor.",
+    "traits/Creature Type": "Insansı",
+    "traits/Size": "Orta (yaklaşık 4-7 feet boyunda) ya da Küçük (yaklaşık 2-4 feet boyunda); bu türü seçerken belirlersin",
+    "traits/Speed": "30 feet",
+    "traits/Bestial Instincts": "İçindeki hayvanı yönlendirerek şu becerilerden seçtiğin birinde proficiency kazanırsın: Akrobasi, Atletizm, Yıldırma ya da Hayatta Kalma.",
+    "traits/Darkvision": "60 feet menzilinde karanlık görüşüne sahipsin.",
+    "traits/Shifting": "Bonus Eylem olarak daha hayvani bir görünüme bürünebilirsin. Bu dönüşüm 1 dakika sürer ya da Bonus Eylem ile normal görünüşüne dönene kadar devam eder. Shift ettiğinde Yeterlilik Bonusunun 2 katı kadar geçici can kazanırsın. Yeterlilik Bonusun kadar shift edebilir, harcadığın hakları Uzun Dinlenme tamamladığında geri kazanırsın.\n\nHer shift ettiğinde aşağıdakilerden birinin faydasını alırsın (bu türü seçerken belirlersin):\n\n- Beasthide. Fazladan 1d6 geçici can kazanırsın. Shift halindeyken ACına +1 bonus alırsın.\n\n- Longtooth. Shift ettiğinde ve shift halindeyken diğer sıralarında Bonus Eylem olarak, uzamış dişlerinle bir Silahsız Vuruş yapabilirsin. Bu Silahsız Vuruş isabet edip hasar verirse, normal hasar yerine 1d6 + Güç modifiyerin kadar delici hasar verebilirsin.\n\n- Swiftstride. Shift halindeyken hızın 10 feet artar. Ayrıca 5 feet yakınında bir yaratık sırasını bitirdiğinde Tepki olarak 10 feet'e kadar hareket edebilirsin. Bu hareket Fırsat Saldırısı tetiklemez.\n\n- Wildhunt. Shift halindeyken Bilgelik kontrollerinde avantajlısın. Ayrıca aciz durumda değilsen, 30 feet içindeki hiçbir yaratık sana karşı saldırı zarında avantaj alamaz."
+  },
+  "eberron-forge_warforged": {
+    "desc": "Warforged'lar artık bitmiş bir savaş için yapıldı. Ahşap, taş ve çelikten yaşayan construct'lardır; uykuya da nefese de ihtiyaçları yoktur ve artık her biri aslında ne için var olduğuna kendi karar vermekte özgürdür.",
+    "traits/Creature Type": "Yapıntı",
+    "traits/Size": "Orta (yaklaşık 6-8 feet boyunda) ya da Küçük (yaklaşık 3-4 feet boyunda); bu türü seçerken belirlersin",
+    "traits/Speed": "30 feet",
+    "traits/Construct Resilience": "Zehir hasarına karşı direncin var. Ayrıca zehirlenmiş durumundan kaçınmak ya da onu sona erdirmek için yaptığın kurtarma zarlarında avantajlısın.",
+    "traits/Integrated Protection": "ACına +1 bonus alırsın. Ayrıca kuşandığın zırh, sen hayattayken iradene karşı çıkarılamaz.",
+    "traits/Sentry's Rest": "Uyumaya ihtiyacın yok ve büyü seni uyutamaz. Bu saatleri hareketsiz ve edilgin bir halde geçirirsen Uzun Dinlenmesi 6 saatte tamamlayabilirsin. Bu süre boyunca cansız görünürsün ama bilincin açıktır.",
+    "traits/Specialized Design": "Seçtiğin bir beceri ve bir alet proficiency'si kazanırsın.",
+    "traits/Tireless": "Susuzluk, açlık ya da boğulmadan bitkinlik seviyesi almazsın."
+  },
+  "ravenloft-horrors_dhampir": {
+    "desc": "Bir Dhampir, yaşayanlarla kendisini yaratan vampirin arasında durur. Kalp atışını ve iradesini korur, ama açlık gerçektir -- yanında gelen hız ve keskin gece görüşü de öyle.",
+    "traits/Size": "Orta (yaklaşık 4-7 feet boyunda) ya da Küçük (yaklaşık 2-4 feet boyunda); bu türü seçerken belirlersin",
+    "traits/Speed": "35 feet, yürüme hızına eşit climb",
+    "traits/Darkvision": "60 feet menzilinde karanlık görüşüne sahipsin.",
+    "traits/Spider Climb": "Hızına eşit bir tırmanma hızın var. Karakter seviyesi 3'e ulaştığında dikey yüzeylerde ve tavanlarda ellerin boştayken yukarı, aşağı ve yanlara hareket edebilirsin.",
+    "traits/Trace of Undeath": "Nekrotik hasarına karşı direncin var.",
+    "traits/Vampiric Bite": "Silahsız Vuruş kullanıp hasar verdiğinde, dişlerinle ısırmayı seçebilirsin. Silahsız Vuruşun normal hasarı yerine 1d4 + Dayanıklılık modifiyerin kadar delici hasar verirsin.\n\nAyrıca bu hasarı yapıntı ya da ölümsüz olmayan bir yaratığa verdiğinde, kendini şu yollardan biriyle güçlendirebilirsin:\n\n- Drain. Verdiğin delici hasar kadar can geri kazanırsın.\n\n- Strengthen. Önümüzdeki bir dakika içinde yapacağın ilk yetenek kontrolüne ya da saldırı zarına bonus alırsın; bonus verdiğin delici hasara eşittir.\n\nBu özellikle kendini Yeterlilik Bonusun kadar güçlendirebilir, harcadığın hakları Uzun Dinlenme tamamladığında geri kazanırsın."
+  },
+  "ravenloft-horrors_hexblood": {
+    "desc": "Bir Hexblood, bir hag'in sahiplenip yeniden yaptığı kişidir. Bu pazarlık kanında peri büyüsü, yüz hatlarında tekinsiz bir şey ve peşine düşmeye meyilli bir borç bırakır.",
+    "traits/Creature Type": "Peri",
+    "traits/Size": "Orta (yaklaşık 4-7 feet boyunda) ya da Küçük (yaklaşık 2-4 feet boyunda); bu türü seçerken belirlersin",
+    "traits/Speed": "30 feet",
+    "traits/Darkvision": "60 feet menzilinde karanlık görüşüne sahipsin.",
+    "traits/Eerie Token": "Bonus Eylem olarak bir tutam saç keserek, bir tırnak ayırarak ya da benzer bir yolla -- kendine zarar vermeden -- büyülü bir nişan yaratabilirsin. Nişan var olduğu sürece şu faydaları kazanırsın:\n\n- Distant Message. Büyü eylemi olarak, nişanı taşıyan bir yaratığa 25 kelimeyi geçmeyen telepatik bir mesaj gönderebilirsin; bunun için 10 mil içinde olman gerekir.\n\n- Remote Viewing. Nişanın 10 mil yakınındaysan, Büyü eylemi harcayarak duyularını 1 dakika boyunca, aciz duruma düşene ya da bu hali sonlandırana kadar (eylem gerekmez) nişanın üzerinden uzatabilirsin. Bu sırada nişanın bulunduğu yerdeymişsin gibi görür ve duyarsın. Hal sona erdiğinde nişan zararsızca yok olur. Daha önce yok edilmezse nişan sen Uzun Dinlenme tamamlayana kadar durur. Bu özellikle bir nişan yarattıktan sonra Uzun Dinlenme tamamlayana kadar tekrar yaratamazsın.\n\n- Hex Magic. Disguise Self ve Hex büyüleri daima hazırdır. Her birini spell slot harcamadan bir kez kullanabilir, bu hakkını Uzun Dinlenme tamamladığında geri kazanırsın. İstersen uygun seviyedeki spell slot'larınla da kullanabilirsin. Bu özellikle kullandığın büyüler için spellcasting yeteneğin Zekâ, Bilgelik ya da Karizmadır (bu türü seçerken belirlersin)."
+  },
+  "ravenloft-horrors_lupin": {
+    "desc": "Lupin'ler bir tazının yapısına ve bir tazının duyularına sahip bir halktır: burnu keskin, yaradılışı sadık ve bir izden çıkarılması çok zor.",
+    "traits/Creature Type": "Insansı",
+    "traits/Size": "Orta (yaklaşık 4-7 feet boyunda) ya da Küçük (yaklaşık 2-4 feet boyunda); bu türü seçerken belirlersin",
+    "traits/Speed": "30 feet",
+    "traits/Darkvision": "60 feet menzilinde karanlık görüşüne sahipsin.",
+    "traits/Feral Pounce": "Silahsız Vuruşların ezici yerine kesici hasar verir. Ayrıca sıranda Attack eyleminin parçası olarak bir yaratığa Silahsız Vuruş ile isabet ettiğinde, hem Damage hem Shove seçeneğini kullanabilirsin. Bu faydayı her sırada yalnızca bir kez kullanabilirsin.",
+    "traits/Howl": "Bonus Eylem olarak tekinsiz bir uluma koyverirsin. 15 feet içinde seçtiğin her yaratık Bilgelik kurtarma zarı yapar (DC 8 + Dayanıklılık modifiyerin + Yeterlilik Bonusun); başarısız olan, bir sonraki sıranın başına kadar saldırı zarı ve kurtarma zarlarında dezavantajlı olur.\n\nBu özelliği Yeterlilik Bonusun kadar kullanabilir, harcadığın hakları Uzun Dinlenme tamamladığında geri kazanırsın.",
+    "traits/Werewolf Instincts": "Algı, Gizlilik ya da Hayatta Kalma becerisinde proficiency kazanırsın."
+  },
+  "ravenloft-horrors_reborn": {
+    "desc": "Reborn'lar ölmüş ve yanlış -- ya da belki tam olarak doğru -- şekilde geri dönmüştür. Bedenleri artık yemek, su ya da havaya ihtiyaç duymaz; anıları ise birden fazla hayata ait parçalar halinde gelir.",
+    "traits/Creature Type": "Insansı",
+    "traits/Size": "Orta (yaklaşık 4-7 feet boyunda) ya da Küçük (yaklaşık 2-4 feet boyunda); bu türü seçerken belirlersin",
+    "traits/Speed": "30 feet",
+    "traits/Escaped Death": "Ölüm Kurtarma Zarlarında avantajlısın.",
+    "traits/Everlasting": "Susuzluk, açlık ya da boğulmadan bitkinlik seviyesi almazsın. Uyumaya ihtiyacın yok ve büyü seni uyutamaz. Bu saatleri bilincin açık şekilde hareketsiz ve edilgin geçirirsen Uzun Dinlenmesi 4 saatte tamamlayabilirsin.",
+    "traits/Knowledge from a Past Life": "Seçtiğin bir beceride proficiency kazanırsın.\n\nAyrıca şimdiki anda sana yardımcı olması için geçmişe kısa bir an bakabilirsin. Bir yetenek kontrolünde başarısız olduğunda 1d6 atıp sonucu d20'ye ekleyebilir, başarısızlığı başarıya çevirebilirsin. Bunu Yeterlilik Bonusun kadar yapabilir, harcadığın hakları Uzun Dinlenme tamamladığında geri kazanırsın.",
+    "traits/Strange Endurance": "Şu hasar tiplerinden seçtiğin birine karşı direncin var: Soğuk, nekrotik ya da zehir."
+  }
+}

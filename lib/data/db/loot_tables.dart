@@ -1,7 +1,8 @@
 import 'package:drift/drift.dart';
 
-/// DM'in onceden hazirladigi ganimet seti (esya + para). Istenildiginde
-/// oyunculara sunulur; setin kendisi kalici, sunulan ganimet gecicidir.
+/// DM'in onceden hazirladigi ganimet seti (esya + para). Bir SABLON: hazine
+/// pinine baglanabilir ya da ortak parti kesesine aktarilabilir; setin
+/// kendisi yerinde kalir, kopyasi dagitilir.
 class LootSets extends Table {
   TextColumn get id => text()();
   TextColumn get name => text()();

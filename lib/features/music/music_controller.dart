@@ -277,3 +277,91 @@ class MusicController extends Notifier<MusicState> {
 final musicControllerProvider = NotifierProvider<MusicController, MusicState>(
   MusicController.new,
 );
+
+/// Ortam sesi (ambians) katmani.
+///
+/// AYRI bir calar: yagmur, magara yankisi ya da meydan ugultusu MUZIKLE
+/// AYNI ANDA calmali. Tek calarla bunu yapmak "muzigi durdur, ambiansi ac"
+/// demekti; masada iki katman bir arada duruyor ve ikisinin sesi ayri
+/// ayarlaniyor.
+///
+/// Daima DONGUDE: ortam sesi bitmez, sahne surdugu surece devam eder.
+typedef AmbienceState = ({MusicTrack? track, bool playing, double volume});
+
+const _ambienceIdle = (track: null, playing: false, volume: 0.35);
+
+class AmbienceController extends Notifier<AmbienceState> {
+  Player? _player;
+  final _subs = <StreamSubscription<Object?>>[];
+
+  @override
+  AmbienceState build() {
+    ref.onDispose(_dispose);
+    return _ambienceIdle;
+  }
+
+  MusicStore get _store => ref.read(musicRepositoryProvider).store;
+
+  Player _ensurePlayer() {
+    final existing = _player;
+    if (existing != null) return existing;
+    final player = Player();
+    _player = player;
+    _subs.add(
+      player.stream.playing.listen(
+        (v) => state = (track: state.track, playing: v, volume: state.volume),
+      ),
+    );
+    // Ortam sesi bitince basa sarar; "playlist" kavrami yok.
+    _subs.add(
+      player.stream.completed.listen((done) {
+        if (done && state.track != null) unawaited(player.seek(Duration.zero));
+      }),
+    );
+    unawaited(player.setPlaylistMode(PlaylistMode.single));
+    unawaited(player.setVolume(state.volume * 100));
+    return player;
+  }
+
+  void _dispose() {
+    for (final s in _subs) {
+      unawaited(s.cancel());
+    }
+    _subs.clear();
+    unawaited(_player?.dispose());
+    _player = null;
+  }
+
+  Future<void> play(MusicTrack track) async {
+    final file = await _store.resolve(track.path);
+    if (!file.existsSync()) return;
+    state = (track: track, playing: true, volume: state.volume);
+    final player = _ensurePlayer();
+    await player.setPlaylistMode(PlaylistMode.single);
+    await player.open(Media(file.path));
+  }
+
+  Future<void> toggle() async {
+    final player = _player;
+    if (player == null || state.track == null) return;
+    if (state.playing) {
+      await player.pause();
+    } else {
+      await player.play();
+    }
+  }
+
+  Future<void> stop() async {
+    await _player?.stop();
+    state = (track: null, playing: false, volume: state.volume);
+  }
+
+  Future<void> setVolume(double value) async {
+    final volume = value.clamp(0.0, 1.0);
+    state = (track: state.track, playing: state.playing, volume: volume);
+    await _player?.setVolume(volume * 100);
+  }
+}
+
+final ambienceControllerProvider =
+    NotifierProvider<AmbienceController, AmbienceState>(AmbienceController.new);

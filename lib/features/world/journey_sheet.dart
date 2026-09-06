@@ -6,9 +6,9 @@ import '../../data/journey_repository.dart';
 import '../../domain/rules/travel.dart';
 import '../../domain/rules/travel_encounters.dart';
 import '../../l10n/app_localizations.dart';
+import '../calendar/calendar_providers.dart';
 import '../calendar/restock_notice.dart';
 import '../session/session_log_providers.dart';
-import '../session/session_page.dart';
 import 'journey_providers.dart';
 import 'travel_planner.dart' show formatMiles;
 
@@ -130,6 +130,17 @@ class _JourneySheetState extends ConsumerState<_JourneySheet> {
                 ),
               ),
               const Divider(height: 24),
+              // Takvimi ELLE ilerletme: yolculuk disinda da (dinlenme,
+              // arastirma, bekleyis) gun gecirmek gerekiyor ve bunun icin
+              // takvim sayfasina gidip geri donmek gereksiz bir yolculuktu.
+              Align(
+                alignment: Alignment.centerLeft,
+                child: TextButton.icon(
+                  onPressed: _busy ? null : _skipTime,
+                  icon: const Icon(Icons.fast_forward, size: 18),
+                  label: Text(l10n.journeySkipTime),
+                ),
+              ),
               Row(
                 children: [
                   Expanded(
@@ -162,6 +173,23 @@ class _JourneySheetState extends ConsumerState<_JourneySheet> {
     );
   }
 
+  /// Takvimi elle ilerletir (gun sayisi sorulur).
+  Future<void> _skipTime() async {
+    final l10n = L10n.of(context);
+    final days = await showDialog<int>(
+      context: context,
+      builder: (context) => _SkipTimeDialog(title: l10n.journeySkipTime),
+    );
+    if (days == null || days <= 0) return;
+    setState(() => _busy = true);
+    await ref.read(gameClockProvider).advanceDays(days);
+    if (!mounted) return;
+    setState(() {
+      _busy = false;
+      _lastDays = days;
+    });
+  }
+
   /// "Devam et": bir sonraki karsilasmaya ya da hedefe kadar yol alinir.
   Future<void> _continue(Journey journey) async {
     final l10n = L10n.of(context);
@@ -189,13 +217,6 @@ class _JourneySheetState extends ConsumerState<_JourneySheet> {
           formatMiles(result.journey.totalMiles),
         ),
       );
-      final session = ref.read(sessionControllerProvider);
-      if (session.isRunning) {
-        // Karsilasmalar DM'e ozel; oyunculara yalnizca varis duyurulur.
-        await ref
-            .read(sessionServiceProvider)
-            .announce(l10n.travelAnnounce(result.journey.daysAdvanced));
-      }
     }
 
     if (!mounted) return;
@@ -414,6 +435,55 @@ class _RouteSummary extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+/// Kac gun ilerlenecegini soran kucuk kutu.
+class _SkipTimeDialog extends StatefulWidget {
+  const _SkipTimeDialog({required this.title});
+
+  final String title;
+
+  @override
+  State<_SkipTimeDialog> createState() => _SkipTimeDialogState();
+}
+
+class _SkipTimeDialogState extends State<_SkipTimeDialog> {
+  int _days = 1;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = L10n.of(context);
+    return AlertDialog(
+      title: Text(widget.title),
+      content: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          IconButton(
+            icon: const Icon(Icons.remove),
+            onPressed: _days > 1 ? () => setState(() => _days--) : null,
+          ),
+          Text(
+            l10n.journeyDaysPassed(_days),
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          IconButton(
+            icon: const Icon(Icons.add),
+            onPressed: () => setState(() => _days++),
+          ),
+        ],
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: Text(l10n.cancel),
+        ),
+        FilledButton(
+          onPressed: () => Navigator.pop(context, _days),
+          child: Text(l10n.ok),
+        ),
+      ],
     );
   }
 }

@@ -99,7 +99,6 @@ void main() {
   test('satın alınan eşya envanterde staklanır', () async {
     final shops = ShopRepository(db);
     final shopId = await shops.create(name: 'Demirci');
-    await shops.openOnly(shopId);
     await shops.addItem(
       shopId: shopId,
       itemKey: await itemKey('Dagger'),

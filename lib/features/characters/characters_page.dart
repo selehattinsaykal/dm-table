@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../app/ui/async_view.dart';
 import '../../app/ui/ui.dart';
 import '../../l10n/app_localizations.dart';
+import 'party_board_page.dart';
 import '../loot/party_inventory_page.dart';
 import '../session/party_rest_card.dart';
 import 'character_avatar.dart';
@@ -70,6 +71,18 @@ class _CharactersPageState extends ConsumerState<CharactersPage>
     return Scaffold(
       appBar: AppBar(
         title: Text(l10n.navCharacters),
+        actions: [
+          // Parti panosu: masada en sik sorulan degerler (pasif algi,
+          // kurtarmalar, diller) tek ekranda.
+          IconButton(
+            tooltip: l10n.partyBoard,
+            icon: const Icon(Icons.dashboard_outlined),
+            onPressed: () => Navigator.of(
+              context,
+              rootNavigator: true,
+            ).push(MaterialPageRoute(builder: (_) => const PartyBoardPage())),
+          ),
+        ],
         bottom: TabBar(
           controller: _tabs,
           tabs: [

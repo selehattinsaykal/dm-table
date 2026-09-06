@@ -57,6 +57,15 @@ class L10nTr extends L10n {
   String get musicImport => 'Dosya ekle';
 
   @override
+  String get fileTypeAudio => 'Ses';
+
+  @override
+  String get fileTypeImage => 'Görsel';
+
+  @override
+  String get fileTypeVideo => 'Video';
+
+  @override
   String get musicNewPlaylist => 'Yeni liste';
 
   @override
@@ -178,13 +187,6 @@ class L10nTr extends L10n {
 
   @override
   String get musicToolMissing => 'İndirme araçları bulunamadı';
-
-  @override
-  String get musicToolMissingBody =>
-      'YouTube için yt-dlp gerekli. Otomatik kurulum için Müzik sayfasındaki \"Müzik İndirme Araçları\" panelini kullanın veya yolunu aşağıya yapıştırın.';
-
-  @override
-  String get musicToolPath => 'yt-dlp yolu (isteğe bağlı)';
 
   @override
   String get musicToolInstall => 'Kurulum yönergeleri';
@@ -688,15 +690,6 @@ class L10nTr extends L10n {
   String get questCopyAll => 'Tümünü kopyala';
 
   @override
-  String get questSendPlayers => 'Oyunculara gönder';
-
-  @override
-  String get questSentPlayers => 'Oyunculara gönderildi';
-
-  @override
-  String get questNeedSession => 'Önce Oturum sekmesinden masayı aç.';
-
-  @override
   String get navQuests => 'Görevler';
 
   @override
@@ -708,15 +701,6 @@ class L10nTr extends L10n {
 
   @override
   String get questUntitled => '(başlıksız görev)';
-
-  @override
-  String get questAcceptedBy => 'Kabul';
-
-  @override
-  String get questRejectedBy => 'Ret';
-
-  @override
-  String get questPending => 'Bekleyen';
 
   @override
   String get campaignDefaultName => 'Ana Kampanya';
@@ -758,21 +742,6 @@ class L10nTr extends L10n {
   @override
   String get campaignDeleteLater =>
       'Dosya şu an kullanımda; kampanya bir sonraki açılışta silinecek.';
-
-  @override
-  String get campaignSwitchTitle => 'Oturum açık';
-
-  @override
-  String get campaignSwitchBody =>
-      'Kampanya değiştirilirse masa kapanır, bağlı oyuncuların bağlantısı kesilir ve yeni bir katılım adresi üretilir.';
-
-  @override
-  String campaignSwitchPlayers(String names) {
-    return 'Bağlı oyuncular: $names';
-  }
-
-  @override
-  String get campaignSwitchConfirm => 'Devam et';
 
   @override
   String get navCalendar => 'Takvim';
@@ -1059,9 +1028,6 @@ class L10nTr extends L10n {
   String get restShortFinish => 'Dinlenmeyi bitir';
 
   @override
-  String get restNeedSession => 'Önce Oturum sekmesinden masayı aç.';
-
-  @override
   String get restShort => 'Kısa mola';
 
   @override
@@ -1084,9 +1050,6 @@ class L10nTr extends L10n {
   String restLoggedLong(int count) {
     return 'Uzun mola ($count karakter)';
   }
-
-  @override
-  String get restAnnounceLong => 'Ekip uzun molaya çekildi.';
 
   @override
   String get aiToolEncounter => 'Karşılaşma Üretici';
@@ -1136,82 +1099,10 @@ class L10nTr extends L10n {
       'Bu seviye için kütüphanede uygun canavar bulunamadı.';
 
   @override
-  String get navChat => 'Sohbet';
-
-  @override
-  String get chatGeneral => 'Genel';
-
-  @override
-  String get chatWhisper => 'Fısıltı';
-
-  @override
-  String get chatPlaceholder => 'Mesajınızı yazın...';
-
-  @override
-  String get chatTo => 'Kime:';
-
-  @override
-  String get chatDm => 'DM';
-
-  @override
-  String get chatEmpty => 'Henüz mesaj yok. Masaya bir şey söyle.';
-
-  @override
-  String get chatNeedSession => 'Önce Oturum sekmesinden masayı aç.';
-
-  @override
-  String get presenceTitle => 'Oyuncular';
-
-  @override
-  String get presenceDragHint => 'Taşımak için basılı tutup sürükle';
-
-  @override
-  String get presenceNoPlayers => 'Henüz bağlı oyuncu yok.';
-
-  @override
-  String get presenceActive => 'Aktif';
-
-  @override
-  String get presenceAway => 'Uzakta';
-
-  @override
-  String get presenceOffline => 'Çevrimdışı';
-
-  @override
-  String lastSeenSeconds(int n) {
-    return 'son görülme ${n}sn önce';
-  }
-
-  @override
-  String lastSeenMinutes(int n) {
-    return 'son görülme ${n}dk önce';
-  }
-
-  @override
-  String lastSeenHours(int n) {
-    return 'son görülme ${n}sa önce';
-  }
-
-  @override
-  String get questNoTargets => 'Hiç oyuncu seçilmedi';
-
-  @override
-  String get questHide => 'Paylaşımı kaldır';
-
-  @override
   String get questComplete => 'Tamamla';
 
   @override
   String get questReopen => 'Geri aç';
-
-  @override
-  String get questSharePick => 'Hangi oyunculara gösterilsin?';
-
-  @override
-  String get questShow => 'Göster';
-
-  @override
-  String get questShared => 'Oyunculara gösterildi';
 
   @override
   String get questNoCharacters => 'Önce karakter oluştur.';
@@ -1261,46 +1152,6 @@ class L10nTr extends L10n {
       'Görevi tamamlayınca kabul eden oyunculara ortak ganimet olarak açılır. Bir eşyayı ilk kim alırsa onun olur; havuz boşalınca görev kapanır.';
 
   @override
-  String get questRewardPending => 'Ödül dağıtımda';
-
-  @override
-  String questRewardItemCount(int count) {
-    return '$count eşya';
-  }
-
-  @override
-  String get questShareSection => 'Oyunculara gösterim';
-
-  @override
-  String get questModeIndividual => 'Tek tek kabul';
-
-  @override
-  String get questModeVote => 'Oylama';
-
-  @override
-  String get questModeIndividualHint =>
-      'Seçtiğin oyuncuların her biri görevi ayrı ayrı kabul eder ya da reddeder.';
-
-  @override
-  String get questModeVoteHint =>
-      'Seçtiğin oyuncular oylar. Kabul oyu %50 ve üzerindeyse görev hepsine verilir; altında kalırsa kimse alamaz.';
-
-  @override
-  String get questStartVote => 'Oylamayı başlat';
-
-  @override
-  String get questVoteStarted => 'Oylama başlatıldı';
-
-  @override
-  String get questVoteOngoing => 'Oylama sürüyor';
-
-  @override
-  String get questVotePassed => 'Oylama geçti — görev ekipte';
-
-  @override
-  String get questVoteFailed => 'Oylama düştü — kimse almadı';
-
-  @override
   String get compendiumMonsters => 'Canavarlar';
 
   @override
@@ -1322,7 +1173,8 @@ class L10nTr extends L10n {
   String get compendiumBackgrounds => 'Geçmişler';
 
   @override
-  String get searchHint => 'Ara...';
+  String get searchHint =>
+      'Canavar, büyü, eşya, karakter, yer, görev, kayıt, parça…';
 
   @override
   String get filters => 'Filtreler';
@@ -1338,6 +1190,33 @@ class L10nTr extends L10n {
 
   @override
   String get filterRarity => 'Nadirlik';
+
+  @override
+  String get filterConcentration => 'Konsantrasyon';
+
+  @override
+  String get filterRitual => 'Ritüel';
+
+  @override
+  String get filterAttunement => 'Uyum';
+
+  @override
+  String get sourcebookSrd => 'SRD 5.2';
+
+  @override
+  String get sourcebookPhb => 'Oyunculuk Elkitabı 2024';
+
+  @override
+  String get sourcebookMm => 'Canavarlar Elkitabı 2024';
+
+  @override
+  String get sourcebookEberron => 'Eberron: Forge of the Artificer';
+
+  @override
+  String get sourcebookRavenloft => 'Ravenloft: The Horrors Within';
+
+  @override
+  String get sourcebookFaerun => 'Forgotten Realms: Heroes of Faerûn';
 
   @override
   String get importTitle => 'İçerik hazırlanıyor';
@@ -1468,6 +1347,56 @@ class L10nTr extends L10n {
   String get sheetSavingThrows => 'Kurtarma atışları';
 
   @override
+  String get sheetProficiencies => 'Yeterlilikler';
+
+  @override
+  String get sheetArmorTraining => 'Zırh eğitimi';
+
+  @override
+  String get sheetWeaponProficiencies => 'Silah yeterlilikleri';
+
+  @override
+  String get sheetToolProficiencies => 'Uzman olunan aletler';
+
+  @override
+  String get sheetLanguages => 'Bilinen diller';
+
+  @override
+  String get sheetWeaponMastery => 'Silah ustalıkları';
+
+  @override
+  String get sheetNoProficiencies => 'Yok';
+
+  @override
+  String get sheetAddProficiency => 'Ekle';
+
+  @override
+  String sheetProficiencyPending(int count) {
+    return '$count seçim bekliyor';
+  }
+
+  @override
+  String get sheetProficiencySourceHint =>
+      'Sınıf, geçmiş ve feat\'lerden gelenler otomatik; elle eklediklerin korunur.';
+
+  @override
+  String get sheetPickTool => 'Alet seç';
+
+  @override
+  String get sheetPickLanguage => 'Dil seç';
+
+  @override
+  String get sheetPickWeapon => 'Silah seç';
+
+  @override
+  String get sheetArmorPenalty =>
+      'Yeterliliğin olmayan zırh: Güç ve Çeviklik kontrolleriyle kurtarmalarında dezavantaj, büyü yapamazsın.';
+
+  @override
+  String get sheetShieldPenalty =>
+      'Yeterliliğin olmayan kalkan: aynı ceza geçerli.';
+
+  @override
   String get sheetSkills => 'Beceriler';
 
   @override
@@ -1511,6 +1440,85 @@ class L10nTr extends L10n {
   String get sheetUnequip => 'Çıkar';
 
   @override
+  String get sheetGear => 'Ekipman';
+
+  @override
+  String get sheetGearTab => 'Kuşanılan';
+
+  @override
+  String get sheetBagTab => 'Çanta';
+
+  @override
+  String get sheetSlotEmpty => 'Boş';
+
+  @override
+  String get sheetBagAllEquipped => 'Çantadaki her şey kuşanılmış.';
+
+  @override
+  String sheetSlotFull(String slot, int limit) {
+    return '$slot yuvası dolu ($limit). Önce bir şey çıkar ya da sınırı artır.';
+  }
+
+  @override
+  String sheetSlotLimit(String limit) {
+    return 'Sınır: $limit';
+  }
+
+  @override
+  String get sheetSlotUnlimited => 'Sınırsız';
+
+  @override
+  String get sheetSlotEditLimit => 'Yuva sınırını düzenle';
+
+  @override
+  String sheetSlotLimitTitle(String slot) {
+    return '$slot sınırı';
+  }
+
+  @override
+  String get sheetSlotLimitHint =>
+      'Kaç tane kuşanılabilir? Sınırsız için sınırsızı seç.';
+
+  @override
+  String get sheetSlotDefault => 'Varsayılana dön';
+
+  @override
+  String get sheetSlotChange => 'Yuvayı değiştir';
+
+  @override
+  String get sheetSlotHead => 'Baş';
+
+  @override
+  String get sheetSlotArmor => 'Zırh';
+
+  @override
+  String get sheetSlotCloak => 'Pelerin';
+
+  @override
+  String get sheetSlotGloves => 'Eldiven';
+
+  @override
+  String get sheetSlotBoots => 'Ayakkabı';
+
+  @override
+  String get sheetSlotBelt => 'Kemer';
+
+  @override
+  String get sheetSlotAmulet => 'Kolye';
+
+  @override
+  String get sheetSlotRing => 'Yüzük';
+
+  @override
+  String get sheetSlotMainHand => 'Ana el';
+
+  @override
+  String get sheetSlotOffHand => 'Diğer el';
+
+  @override
+  String get sheetSlotOther => 'Diğer';
+
+  @override
   String get sheetItemTab => 'Eşya';
 
   @override
@@ -1521,6 +1529,12 @@ class L10nTr extends L10n {
 
   @override
   String get sheetItemName => 'Eşya adı';
+
+  @override
+  String get sheetItemType => 'Eşya türü';
+
+  @override
+  String get sheetItemTypeAuto => 'Otomatik (addan tahmin et)';
 
   @override
   String get sheetPurse => 'Kese';
@@ -1828,9 +1842,6 @@ class L10nTr extends L10n {
   String get worldNewLocation => 'Yeni yer';
 
   @override
-  String get worldShowToPlayers => 'Oyunculara göster';
-
-  @override
   String get worldAddChild => 'Alt yer ekle';
 
   @override
@@ -1893,12 +1904,6 @@ class L10nTr extends L10n {
 
   @override
   String get editModeDiscard => 'Vazgeç';
-
-  @override
-  String get worldPinHiddenFromPlayers => 'Oyunculara kapalı';
-
-  @override
-  String get worldPinVisibleToPlayers => 'Oyunculara açık';
 
   @override
   String get worldNoMap => 'Harita yok';
@@ -2016,11 +2021,6 @@ class L10nTr extends L10n {
   @override
   String travelAdvanceCalendar(Object days) {
     return 'Takvimi $days gün ilerlet';
-  }
-
-  @override
-  String travelAnnounce(Object days) {
-    return 'Parti $days gün yol aldı.';
   }
 
   @override
@@ -2239,13 +2239,6 @@ class L10nTr extends L10n {
       'Sadece sen görürsün; pini açarsan oyuncular da.';
 
   @override
-  String get worldPinRevealLocationHint =>
-      'Kapalıyken pin yalnızca sende görünür. Açıkken oyuncular pine dokunup o yerin haritasına girebilir (haritası varsa).';
-
-  @override
-  String get worldPinRevealHint => 'Kapalıyken pin yalnızca sende görünür.';
-
-  @override
   String get worldKindLocation => 'Alt yer';
 
   @override
@@ -2314,9 +2307,6 @@ class L10nTr extends L10n {
   String get sessionBackup => 'Yedekleme';
 
   @override
-  String get sessionCloseTable => 'Oturumu kapat';
-
-  @override
   String get sessionLogTitle => 'Oturum günlüğü';
 
   @override
@@ -2331,21 +2321,6 @@ class L10nTr extends L10n {
   @override
   String get sessionLogEmpty =>
       'Henüz kayıt yok. XP verildikçe ve not ekledikçe burada birikir.';
-
-  @override
-  String get sessionHandoutCaption => 'Görsel başlığı (isteğe bağlı)';
-
-  @override
-  String get sessionHandoutShow => 'Görsel göster';
-
-  @override
-  String get sessionHandoutClear => 'Görseli kaldır';
-
-  @override
-  String get sessionHandoutShared => 'Görsel oyunculara gösterildi.';
-
-  @override
-  String get sessionHandoutCleared => 'Görsel kaldırıldı.';
 
   @override
   String get codexNewPage => 'Yeni sayfa';
@@ -2522,87 +2497,361 @@ class L10nTr extends L10n {
   String get codexLinkTargetPage => 'Hedef sayfa';
 
   @override
+  String get codexAppearance => 'Görünüm';
+
+  @override
+  String get codexWidth => 'Genişlik';
+
+  @override
+  String get codexAlign => 'Hizalama';
+
+  @override
+  String get codexAlignLeft => 'Sol';
+
+  @override
+  String get codexAlignCenter => 'Orta';
+
+  @override
+  String get codexAlignRight => 'Sağ';
+
+  @override
+  String get codexHeight => 'Yükseklik';
+
+  @override
+  String get codexHeightAuto => 'Otomatik';
+
+  @override
+  String get codexResizeHint =>
+      'İpucu: düzenleme modunda blokların kenarlarından sürükleyerek boyutlandırabilirsin.';
+
+  @override
+  String get codexResetSize => 'Boyutu sıfırla';
+
+  @override
+  String get codexDuplicate => 'Çoğalt';
+
+  @override
+  String get codexMoveUp => 'Yukarı taşı';
+
+  @override
+  String get codexMoveDown => 'Aşağı taşı';
+
+  @override
+  String get codexBlockSearch => 'Blok ara';
+
+  @override
+  String get codexGroupText => 'Metin';
+
+  @override
+  String get codexGroupData => 'Veri';
+
+  @override
+  String get codexGroupMedia => 'Medya';
+
+  @override
+  String get codexGroupLinks => 'Bağlantılar';
+
+  @override
+  String get codexTextSize => 'Yazı boyutu';
+
+  @override
+  String get codexDropCap => 'Süslü ilk harf';
+
+  @override
+  String get codexTone => 'Ton';
+
+  @override
+  String get codexToneNeutral => 'Yalın';
+
+  @override
+  String get codexToneInfo => 'Bilgi';
+
+  @override
+  String get codexToneSuccess => 'Olumlu';
+
+  @override
+  String get codexToneWarning => 'Uyarı';
+
+  @override
+  String get codexToneDanger => 'Tehlike';
+
+  @override
+  String get codexToneArcane => 'Büyülü';
+
+  @override
+  String get codexToneGold => 'Altın';
+
+  @override
+  String get codexHeadingRule => 'Altına çizgi';
+
+  @override
+  String get codexListOrdered => 'Numaralı';
+
+  @override
+  String get codexListMarker => 'Madde işareti';
+
+  @override
+  String get codexListDense => 'Sık aralık';
+
+  @override
+  String get codexChecklistProgress => 'İlerleme çubuğu';
+
+  @override
+  String get codexChecklistStrike => 'Yapılanın üstünü çiz';
+
+  @override
+  String codexChecklistDone(int done, int total) {
+    return '$done/$total tamam';
+  }
+
+  @override
+  String get codexCalloutBorder => 'Kenarlık';
+
+  @override
+  String get codexDividerStyle => 'Ayraç biçimi';
+
+  @override
+  String get codexDividerOrnament => 'Süslü';
+
+  @override
+  String get codexDividerLine => 'Çizgi';
+
+  @override
+  String get codexDividerDashed => 'Kesik';
+
+  @override
+  String get codexDividerThick => 'Kalın';
+
+  @override
+  String get codexDividerDots => 'Noktalar';
+
+  @override
+  String get codexDividerSpace => 'Boşluk';
+
+  @override
+  String get codexMediaFit => 'Doldurma';
+
+  @override
+  String get codexFitContain => 'Sığdır';
+
+  @override
+  String get codexFitCover => 'Kapla';
+
+  @override
+  String get codexFitFill => 'Ger';
+
+  @override
+  String get codexCornerRadius => 'Köşe yuvarlaklığı';
+
+  @override
+  String get codexMediaFrame => 'Çerçeve';
+
+  @override
+  String get codexImageFullscreen => 'Tam ekran';
+
+  @override
+  String get codexImageMissing => 'Görsel dosyası bulunamadı';
+
+  @override
+  String get codexVideoLoop => 'Döngü';
+
+  @override
+  String get codexVideoMuted => 'Sessiz';
+
+  @override
+  String get codexTableZebra => 'Şeritli satırlar';
+
+  @override
+  String get codexTableDense => 'Sık';
+
+  @override
+  String get codexTableBorders => 'Kenarlıklar';
+
+  @override
+  String get codexChartType => 'Grafik türü';
+
+  @override
+  String get codexChartBar => 'Yatay çubuk';
+
+  @override
+  String get codexChartColumn => 'Dikey sütun';
+
+  @override
+  String get codexChartLine => 'Çizgi';
+
+  @override
+  String get codexChartArea => 'Alan';
+
+  @override
+  String get codexChartPie => 'Pasta';
+
+  @override
+  String get codexChartDonut => 'Halka';
+
+  @override
+  String get codexChartRadar => 'Radar';
+
+  @override
+  String get codexChartStacked => 'Yığılmış';
+
+  @override
+  String get codexChartPalette => 'Renk paleti';
+
+  @override
+  String get codexPaletteTheme => 'Tema';
+
+  @override
+  String get codexPaletteBrass => 'Pirinç';
+
+  @override
+  String get codexPaletteJewel => 'Mücevher';
+
+  @override
+  String get codexPaletteEmber => 'Kor';
+
+  @override
+  String get codexPaletteForest => 'Orman';
+
+  @override
+  String get codexPaletteMono => 'Tek renk';
+
+  @override
+  String get codexChartShowValues => 'Değerler';
+
+  @override
+  String get codexChartShowGrid => 'Izgara';
+
+  @override
+  String get codexChartShowLegend => 'Açıklama';
+
+  @override
+  String get codexChartSort => 'Büyükten küçüğe sırala';
+
+  @override
+  String get codexChartEmpty => 'Henüz veri yok.';
+
+  @override
+  String get codexChartRadarHint => 'Radar en az üç öge ister.';
+
+  @override
+  String get codexBlockCounter => 'Sayaç';
+
+  @override
+  String get codexCounterEmpty => 'Sayaç yok.';
+
+  @override
+  String get codexCounterAdd => 'Sayaç ekle';
+
+  @override
+  String get codexCounterValue => 'Değer';
+
+  @override
+  String get codexCounterMin => 'En az';
+
+  @override
+  String get codexCounterMax => 'En çok';
+
+  @override
+  String get codexCounterStep => 'Adım';
+
+  @override
+  String get codexCounterStyle => 'Biçim';
+
+  @override
+  String get codexCounterStyleRow => 'Satır';
+
+  @override
+  String get codexCounterStyleTile => 'Kart';
+
+  @override
+  String get codexCounterStyleChip => 'Çip';
+
+  @override
+  String get codexCounterHint => 'Dokun: değer gir · Uzun bas: sıfırla';
+
+  @override
+  String get codexBlockTimer => 'Süre sayacı';
+
+  @override
+  String get codexTimerMode => 'Sayma yönü';
+
+  @override
+  String get codexTimerCountdown => 'Geri sayım';
+
+  @override
+  String get codexTimerStopwatch => 'Kronometre';
+
+  @override
+  String get codexTimerDuration => 'Süre';
+
+  @override
+  String get codexTimerMinutes => 'Dakika';
+
+  @override
+  String get codexTimerSeconds => 'Saniye';
+
+  @override
+  String get codexTimerStart => 'Başlat';
+
+  @override
+  String get codexTimerPause => 'Duraklat';
+
+  @override
+  String get codexTimerReset => 'Sıfırla';
+
+  @override
+  String get codexTimerAddMinute => 'Bir dakika ekle';
+
+  @override
+  String get codexTimerDone => 'Süre doldu.';
+
+  @override
+  String codexTimerFinished(String title) {
+    return '“$title” süresi doldu.';
+  }
+
+  @override
+  String get codexTimerOpen => 'Aç';
+
+  @override
+  String get codexTimerAlarm => 'Bitince uyar';
+
+  @override
+  String get codexTimerLoop => 'Bitince yeniden başlat';
+
+  @override
+  String get codexTimerStyleDigits => 'Rakam';
+
+  @override
+  String get codexTimerStyleBar => 'Çubuk';
+
+  @override
+  String get codexTimerStyleRing => 'Halka';
+
+  @override
+  String get codexTimerRunningHint =>
+      'Sayaç sayfadan çıkınca da işlemeye devam eder.';
+
+  @override
+  String get codexChipStyle => 'Görünüm';
+
+  @override
+  String get codexChipStyleChip => 'Çip';
+
+  @override
+  String get codexChipStyleButton => 'Düğme';
+
+  @override
+  String get codexChipStyleCard => 'Kart';
+
+  @override
+  String get codexEmbedCompact => 'Kompakt';
+
+  @override
+  String get codexTitleOptional => 'Başlık (isteğe bağlı)';
+
+  @override
   String get codexLinkLabel => 'Etiket (isteğe bağlı)';
-
-  @override
-  String get sessionOpenTable => 'Masayı aç';
-
-  @override
-  String get sessionStartHint =>
-      'Oyuncular aynı Wi-Fi ağındayken bilgisayardan veya telefondan linki yapıştırabilir ya da QR kodu okutabilir; tarayıcıdan bağlanırlar. Uygulama kurmalarına, hesap açmalarına ya da internete gerek yok.';
-
-  @override
-  String get sessionStartServer => 'Sunucuyu başlat';
-
-  @override
-  String get sessionAddressCopied => 'Adres kopyalandı';
-
-  @override
-  String get sessionCopyAddress => 'Adresi kopyala';
-
-  @override
-  String get sessionReject => 'Reddet';
-
-  @override
-  String get sessionApprove => 'Onayla';
-
-  @override
-  String get sessionDmTools => 'DM araçları';
-
-  @override
-  String get sessionTarget => 'Hedef';
-
-  @override
-  String get sessionEveryone => 'Herkes';
-
-  @override
-  String get sessionAnnouncement => 'Duyuru / mesaj';
-
-  @override
-  String get sessionSend => 'Gönder';
-
-  @override
-  String get sessionAnnouncementSent => 'Duyuru gönderildi.';
-
-  @override
-  String get sessionAbility => 'Yetenek';
-
-  @override
-  String get sessionRequestSave => 'Kurtarma iste';
-
-  @override
-  String get sessionSaveRequested => 'Kurtarma atışı istendi.';
-
-  @override
-  String get sessionGold => 'Altın';
-
-  @override
-  String get sessionItemsCsv => 'Eşyalar (virgülle)';
-
-  @override
-  String get sessionGiveLoot => 'Ganimet ver';
-
-  @override
-  String get sessionLootOffered => 'Ganimet sunuldu.';
-
-  @override
-  String get sessionNobodyConnected => 'Henüz kimse bağlanmadı.';
-
-  @override
-  String get sessionNoCharacter => 'Karakter seçmedi';
-
-  @override
-  String get sessionHasCharacter => 'Karakteri sahiplendi';
-
-  @override
-  String sessionPurchaseRequests(int count) {
-    return 'Satın alma isteği ($count)';
-  }
-
-  @override
-  String sessionConnectedPlayers(int count) {
-    return 'Bağlı oyuncular ($count)';
-  }
 
   @override
   String get charactersTabParty => 'Parti';
@@ -2683,6 +2932,14 @@ class L10nTr extends L10n {
   String get compendiumDisadvantage => 'Dezavantaj';
 
   @override
+  String get compendiumAcPlusDex => ' + Çeviklik';
+
+  @override
+  String compendiumAcMaxDex(int max) {
+    return ' (en fazla $max)';
+  }
+
+  @override
   String get compendiumSuggested => 'önerilen';
 
   @override
@@ -2750,9 +3007,6 @@ class L10nTr extends L10n {
 
   @override
   String get lootEmptyLabel => 'Boş';
-
-  @override
-  String get lootShow => 'Göster';
 
   @override
   String get lootSetTitle => 'Ganimet seti';
@@ -3135,11 +3389,6 @@ class L10nTr extends L10n {
   }
 
   @override
-  String lootOffered(String name) {
-    return '“$name” oyunculara sunuldu.';
-  }
-
-  @override
   String get shopsNew => 'Yeni mağaza';
 
   @override
@@ -3202,6 +3451,19 @@ class L10nTr extends L10n {
   String get formHigherLevel => 'Üst seviyede (opsiyonel)';
 
   @override
+  String get spellHigherLevelSlot => 'Üst Seviye Büyü Yuvasıyla Kullanım. ';
+
+  @override
+  String get formCastingTime => 'Kullanım süresi';
+
+  @override
+  String get formCantrip => 'Ufak Büyü';
+
+  @override
+  String get formActionDescHint =>
+      'Yakın Saldırı Zarı: +5, erişim 5 ft. 8 (1d10 + 3) delici hasar.';
+
+  @override
   String get formCastingTimeHint => 'ör. 1 action';
 
   @override
@@ -3221,6 +3483,15 @@ class L10nTr extends L10n {
 
   @override
   String get ccSize => 'Boyut';
+
+  @override
+  String get ccSizeSmall => 'Küçük';
+
+  @override
+  String get ccSizeMedium => 'Orta';
+
+  @override
+  String get ccSizeLarge => 'Büyük';
 
   @override
   String get ccSpeed => 'Hız (feet)';
@@ -3424,32 +3695,11 @@ class L10nTr extends L10n {
       'Liste fiyatlarına uygulanır. Pazarlıkta düşür, ıssız kasabada yükselt.';
 
   @override
-  String get sdOpenToPlayers => 'Oyunculara aç';
-
-  @override
-  String get sdOpenHint =>
-      'Açıkken oyuncuların panelinde bu mağaza görünür. Aynı anda tek mağaza açık olabilir.';
-
-  @override
-  String get sdMapAccessible => 'Haritadan erişilebilir';
-
-  @override
-  String get sdMapAccessibleHint =>
-      'Açıkken oyuncular, görünür bir haritadaki bu mağazanın pinine dokunarak dükkânı açabilir. Birden fazla mağaza aynı anda erişilebilir olabilir.';
-
-  @override
   String get sdClosed => 'Mağaza kapalı';
 
   @override
   String get sdClosedHint =>
       'Kapalıyken oyuncular mağazaya tıklayınca “mağaza kapalı” görür; eşyalar listelenmez ve satın alınamaz.';
-
-  @override
-  String get sdRequireApproval => 'Satın alma onayı iste';
-
-  @override
-  String get sdRequireApprovalHint =>
-      'Kapalıysa oyuncular doğrudan satın alır; altınları ve stok anında düşer.';
 
   @override
   String get sdUnlimited => 'sınırsız';
@@ -3625,37 +3875,6 @@ class L10nTr extends L10n {
 
   @override
   String get sheetUnknownItem => 'Bilinmeyen eşya';
-
-  @override
-  String get pfInvalidQuantity => 'Geçersiz adet.';
-
-  @override
-  String get pfItemNotFound => 'Eşya bulunamadı.';
-
-  @override
-  String get pfShopNotFound => 'Mağaza bulunamadı.';
-
-  @override
-  String get pfShopClosed => 'Mağaza şu anda kapalı.';
-
-  @override
-  String get pfSoldOut => 'Bu eşya tükendi.';
-
-  @override
-  String get pfCharacterNotFound => 'Karakter bulunamadı.';
-
-  @override
-  String get pfRequestNotFound => 'İstek bulunamadı.';
-
-  @override
-  String pfOnlyNLeft(String n) {
-    return 'Stokta yalnızca $n adet var.';
-  }
-
-  @override
-  String pfNotEnoughGold(String need, String have) {
-    return 'Paran yetmiyor: $need gerekiyor, $have var.';
-  }
 
   @override
   String cwPointsRemaining(int n) {
@@ -3912,6 +4131,9 @@ class L10nTr extends L10n {
   }
 
   @override
+  String get sheetHpLabel => 'HP';
+
+  @override
   String sheetTempHp(int n) {
     return '+$n geçici';
   }
@@ -3933,6 +4155,15 @@ class L10nTr extends L10n {
 
   @override
   String get diceTitle => 'Zar';
+
+  @override
+  String get diceRollTitle => 'Zar at';
+
+  @override
+  String get diceCount => 'Adet';
+
+  @override
+  String get diceModifier => 'Ek';
 
   @override
   String get diceCritical => 'Kritik!';
@@ -4030,22 +4261,6 @@ class L10nTr extends L10n {
 
   @override
   String get worldGraphOpenLocation => 'Yeri aç';
-
-  @override
-  String get worldGraphShowToPlayers => 'Oyunculara göster';
-
-  @override
-  String get worldGraphHideFromPlayers => 'Oyunculardan gizle';
-
-  @override
-  String worldGraphShownNotice(String name) {
-    return '$name artık oyunculara açık.';
-  }
-
-  @override
-  String worldGraphHiddenNotice(String name) {
-    return '$name oyunculardan gizlendi.';
-  }
 
   @override
   String get worldGraphSetSize => 'Küre boyutu';
@@ -4231,4 +4446,1027 @@ class L10nTr extends L10n {
 
   @override
   String get codexAiErrNoImage => 'Bu sağlayıcı görsel üretmiyor.';
+
+  @override
+  String get sheetEdit => 'Düzenle';
+
+  @override
+  String get sheetProficiencyToggle => 'Yeterliliği değiştir';
+
+  @override
+  String get editCharacterTitle => 'Karakteri düzenle';
+
+  @override
+  String get editSave => 'Kaydet';
+
+  @override
+  String get editCancel => 'Vazgeç';
+
+  @override
+  String get editNone => 'Yok';
+
+  @override
+  String get editNameRequired => 'Ad boş olamaz';
+
+  @override
+  String get editSectionIdentity => 'Kimlik';
+
+  @override
+  String get editName => 'Ad';
+
+  @override
+  String get editPlayerName => 'Oyuncu';
+
+  @override
+  String get editAlignment => 'Hizalama';
+
+  @override
+  String get editSectionOrigin => 'Köken';
+
+  @override
+  String get editSpecies => 'Tür';
+
+  @override
+  String get editBackground => 'Geçmiş';
+
+  @override
+  String get editBackgroundHint =>
+      'Geçmiş değişirse eski geçmişin verdiği beceriler kalkar, yenisininkiler eklenir.';
+
+  @override
+  String get editSectionAbilities => 'Yetenek puanları';
+
+  @override
+  String get editAbilityHint =>
+      'Kağıttaki nihai puanlar. CON değişirse azami can her seviye için birlikte kayar.';
+
+  @override
+  String get editSectionVitals => 'Can ve değerler';
+
+  @override
+  String get editHitPointsMax => 'Azami can';
+
+  @override
+  String get editArmorClassOverride => 'AC';
+
+  @override
+  String get editSpeedOverride => 'Hız';
+
+  @override
+  String get editOverrideHint =>
+      'AC ve hız boş bırakılırsa hesaplanan değer kullanılır.';
+
+  @override
+  String get editSectionClasses => 'Sınıflar';
+
+  @override
+  String get editClass => 'Sınıf';
+
+  @override
+  String get editSubclass => 'Alt sınıf';
+
+  @override
+  String get editLevel => 'Seviye';
+
+  @override
+  String get editClassChangeTitle => 'Sınıf değiştirilsin mi?';
+
+  @override
+  String editClassChangeBody(String from, String to) {
+    return '$from yerine $to yazılacak. Seviye ve atılmış can zarları korunur; eski sınıfın ve alt sınıfın yetenekleri kağıttan silinip yeni sınıfınkiler işlenir.';
+  }
+
+  @override
+  String get editClassChangeConfirm => 'Değiştir';
+
+  @override
+  String get editSaved => 'Karakter güncellendi';
+
+  @override
+  String sheetPreparedCount(int used, int limit) {
+    return 'Hazır $used/$limit';
+  }
+
+  @override
+  String sheetCantripCount(int used, int limit) {
+    return 'Ufak Büyü $used/$limit';
+  }
+
+  @override
+  String sheetSpellChangesLeft(int n) {
+    return '$n değiştirme hakkı';
+  }
+
+  @override
+  String get compendiumClasses => 'Sınıflar';
+
+  @override
+  String get compendiumClassTable => 'Sınıf tablosu';
+
+  @override
+  String get compendiumSubclasses => 'Alt sınıflar';
+
+  @override
+  String get compendiumFeatures => 'Yetenekler';
+
+  @override
+  String get compendiumLevel => 'Sv';
+
+  @override
+  String get compendiumFullCaster => 'Tam büyücü';
+
+  @override
+  String get compendiumHalfCaster => 'Yarı büyücü';
+
+  @override
+  String get compendiumThirdCaster => 'Üçte bir büyücü';
+
+  @override
+  String get compendiumPactCaster => 'Ahit Büyüsü';
+
+  @override
+  String compendiumSubclassOf(String className) {
+    return '$className alt sınıfı';
+  }
+
+  @override
+  String get sheetCastSpell => 'Büyüyü kullan';
+
+  @override
+  String get sheetCastAtLevel => 'Hangi yuvayla?';
+
+  @override
+  String get sheetNoSlotLeft => 'Uygun boş büyü yuvası yok.';
+
+  @override
+  String get sheetSpellAttack => 'Saldırı';
+
+  @override
+  String get sheetSpellDamage => 'Hasar';
+
+  @override
+  String get sheetSaveDc => 'kurtarma DC';
+
+  @override
+  String get sheetConcentrationNote => 'Konsantrasyon gerektirir';
+
+  @override
+  String get sheetSpellCastNoRoll => 'Yuva harcandı';
+
+  @override
+  String get levelUpAbilityOption => 'Yetenek puanı';
+
+  @override
+  String get levelUpFeatOption => 'Feat';
+
+  @override
+  String get levelUpFeatSearch => 'Feat ara';
+
+  @override
+  String get sheetAttune => 'Bağlan / bağı çöz';
+
+  @override
+  String sheetAttunedCount(int used, int limit) {
+    return 'Bağlı eşya $used/$limit';
+  }
+
+  @override
+  String sheetAttunementFull(int limit) {
+    return 'En fazla $limit eşyaya bağlanabilirsin.';
+  }
+
+  @override
+  String levelUpMulticlassBlocked(String requirements) {
+    return 'Bu sınıfa geçmek için: $requirements';
+  }
+
+  @override
+  String sheetConcentratingOn(String spell) {
+    return 'Konsantrasyon: $spell';
+  }
+
+  @override
+  String get sheetConcentrationHint =>
+      'Hasar alınca CON kurtarması: DC 10 ya da hasarın yarısı (hangisi yüksekse).';
+
+  @override
+  String get sheetConcentrationEnd => 'Bitir';
+
+  @override
+  String get sheetAddClassOption => 'Sınıf seçeneği ekle';
+
+  @override
+  String get sheetAddClassOptionAction => 'Ekle';
+
+  @override
+  String get sheetNoClassOptions => 'Bu sınıfın seçilebilir bir özelliği yok.';
+
+  @override
+  String get statAc => 'AC';
+
+  @override
+  String get statHp => 'Can';
+
+  @override
+  String get statSpeed => 'Hız';
+
+  @override
+  String get statInitiative => 'İnisiyatif';
+
+  @override
+  String get statSavingThrows => 'Kurtarma Zarları';
+
+  @override
+  String get statSkills => 'Beceriler';
+
+  @override
+  String get statSenses => 'Duyular';
+
+  @override
+  String get statLanguages => 'Diller';
+
+  @override
+  String get statCr => 'CR';
+
+  @override
+  String get statDamageResistances => 'Hasar Dirençleri';
+
+  @override
+  String get statDamageImmunities => 'Hasar Bağışıklıkları';
+
+  @override
+  String get statDamageVulnerabilities => 'Hasar Zafiyetleri';
+
+  @override
+  String get statConditionImmunities => 'Durum Bağışıklıkları';
+
+  @override
+  String get statPassivePerception => 'Pasif Algı';
+
+  @override
+  String get statActions => 'Eylemler';
+
+  @override
+  String get statBonusActions => 'Bonus Eylemler';
+
+  @override
+  String get statReactions => 'Tepkiler';
+
+  @override
+  String get statLegendaryActions => 'Efsanevi Eylemler';
+
+  @override
+  String get statNoLanguages => '—';
+
+  @override
+  String get abilityStrength => 'Güç';
+
+  @override
+  String get abilityDexterity => 'Çeviklik';
+
+  @override
+  String get abilityConstitution => 'Dayanıklılık';
+
+  @override
+  String get abilityIntelligence => 'Zekâ';
+
+  @override
+  String get abilityWisdom => 'Bilgelik';
+
+  @override
+  String get abilityCharisma => 'Karizma';
+
+  @override
+  String get abilityShortStrength => 'GÜÇ';
+
+  @override
+  String get abilityShortDexterity => 'ÇEV';
+
+  @override
+  String get abilityShortConstitution => 'DAY';
+
+  @override
+  String get abilityShortIntelligence => 'ZEK';
+
+  @override
+  String get abilityShortWisdom => 'BİL';
+
+  @override
+  String get abilityShortCharisma => 'KAR';
+
+  @override
+  String get skillAcrobatics => 'Akrobasi';
+
+  @override
+  String get skillAnimalHandling => 'Hayvan Terbiyesi';
+
+  @override
+  String get skillArcana => 'Gizemli Bilgi';
+
+  @override
+  String get skillAthletics => 'Atletizm';
+
+  @override
+  String get skillDeception => 'Aldatma';
+
+  @override
+  String get skillHistory => 'Tarih';
+
+  @override
+  String get skillInsight => 'Sezgi';
+
+  @override
+  String get skillIntimidation => 'Yıldırma';
+
+  @override
+  String get skillInvestigation => 'Araştırma';
+
+  @override
+  String get skillMedicine => 'Tıp';
+
+  @override
+  String get skillNature => 'Doğa';
+
+  @override
+  String get skillPerception => 'Algı';
+
+  @override
+  String get skillPerformance => 'Sahne Sanatları';
+
+  @override
+  String get skillPersuasion => 'İkna';
+
+  @override
+  String get skillReligion => 'Din';
+
+  @override
+  String get skillSleightOfHand => 'El Çabukluğu';
+
+  @override
+  String get skillStealth => 'Gizlilik';
+
+  @override
+  String get skillSurvival => 'Hayatta Kalma';
+
+  @override
+  String get spellCantrip => 'Ufak Büyü';
+
+  @override
+  String get spellCantripAbbr => 'U';
+
+  @override
+  String spellLevelN(int level) {
+    return '$level. Seviye';
+  }
+
+  @override
+  String spellSchoolCantrip(String school) {
+    return '$school ufak büyüsü';
+  }
+
+  @override
+  String spellSchoolLevel(int level, String school) {
+    return '$level. seviye $school';
+  }
+
+  @override
+  String get spellRitualSuffix => ' (ritüel)';
+
+  @override
+  String get spellConcentrationPrefix => 'Konsantrasyon, ';
+
+  @override
+  String get spellConcentrationShort => 'Kons.';
+
+  @override
+  String get spellComponents => 'Bileşenler';
+
+  @override
+  String get spellClasses => 'Sınıflar';
+
+  @override
+  String get itemAttunementDetail => 'Uyum';
+
+  @override
+  String get settingsDensity => 'Arayüz yoğunluğu';
+
+  @override
+  String get settingsDensityCompact => 'Sıkı';
+
+  @override
+  String get settingsDensityNormal => 'Normal';
+
+  @override
+  String get settingsDensityComfortable => 'Ferah';
+
+  @override
+  String get settingsDensityHint => 'Sıkı: masada daha çok bilgi ekrana sığar.';
+
+  @override
+  String get worldCollapseChildren => 'Alt yerleri gizle';
+
+  @override
+  String get worldExpandChildren => 'Alt yerleri göster';
+
+  @override
+  String get musicAmbience => 'Ortam sesi';
+
+  @override
+  String get musicAmbienceStop => 'Ortam sesini durdur';
+
+  @override
+  String get journeySkipTime => 'Zamanı ilerlet';
+
+  @override
+  String combatConcentrationCheck(String name, int dc) {
+    return '$name konsantrasyonu için DC $dc Constitution kurtarması atmalı.';
+  }
+
+  @override
+  String get combatGroupInitiative => 'Aynı türe tek atış';
+
+  @override
+  String get combatNoArmorClass => 'AC bilinmiyor';
+
+  @override
+  String combatHits(int ac) {
+    return 'İsabet (AC $ac)';
+  }
+
+  @override
+  String combatMisses(int ac) {
+    return 'Iskaladı (AC $ac)';
+  }
+
+  @override
+  String combatApplyDamage(int damage) {
+    return '$damage hasar uygula';
+  }
+
+  @override
+  String get combatApplied => 'Uygulandı';
+
+  @override
+  String get searchEmpty => 'Aramak için yazmaya başla.';
+
+  @override
+  String get searchOpen => 'Genel arama';
+
+  @override
+  String get sessionRolls => 'Zar günlüğü';
+
+  @override
+  String get sessionRollsEmpty => 'Henüz zar atılmadı.';
+
+  @override
+  String get contentSourcesTitle => 'İçerik kaynakları';
+
+  @override
+  String get contentSourcesHint =>
+      '5etools biçiminde JSON sunan bir adres ekle; uygulama orada hangi dosyalar olduğunu keşfeder. Uygulama hazır bir adresle gelmez — hangi kaynağı kullanacağına sen karar verirsin.';
+
+  @override
+  String get contentSourceAdd => 'Kaynak ekle';
+
+  @override
+  String get contentSourceName => 'Ad';
+
+  @override
+  String get contentSourceUrl => 'Kök adres';
+
+  @override
+  String get contentSourceUrlHint =>
+      'Veri klasörünün kökü, ör. https://ornek/data';
+
+  @override
+  String get contentSourceDiscover => 'Keşfet';
+
+  @override
+  String get contentSourceEmpty => 'Henüz kaynak yok.';
+
+  @override
+  String get contentSourceNothingFound =>
+      'Bu adreste tanınan bir dosya bulunamadı.';
+
+  @override
+  String contentSourceLastImport(String date) {
+    return 'Son aktarma: $date';
+  }
+
+  @override
+  String get contentSourceNeverImported => 'Hiç aktarılmadı';
+
+  @override
+  String get contentSourceImportSelected => 'Seçilenleri aktar';
+
+  @override
+  String contentSourceImporting(String file) {
+    return 'Aktarılıyor: $file';
+  }
+
+  @override
+  String contentSourceDone(int monsters, int spells, int items, int others) {
+    return '$monsters canavar, $spells büyü, $items eşya, $others diğer aktarıldı.';
+  }
+
+  @override
+  String get contentSourceLocalFiles => 'Dosyadan aktar';
+
+  @override
+  String get contentSourceDeleteImported => 'Aktarılan içeriği sil';
+
+  @override
+  String get contentSourceDeleteImportedBody =>
+      'Bu adreslerden aktarılmış tüm kayıtlar silinecek. Uygulama içinde oluşturduğun içerik ve paketlenmiş SRD etkilenmez.';
+
+  @override
+  String contentSourceDeleted(int count) {
+    return '$count kayıt silindi.';
+  }
+
+  @override
+  String get contentSourceKindMonster => 'Canavarlar';
+
+  @override
+  String get contentSourceKindSpell => 'Büyüler';
+
+  @override
+  String get contentSourceKindItem => 'Eşyalar';
+
+  @override
+  String get contentSourceKindRace => 'Türler';
+
+  @override
+  String get contentSourceKindBackground => 'Geçmişler';
+
+  @override
+  String get contentSourceKindFeat => 'Yetenekler';
+
+  @override
+  String get contentSourceSelectAll => 'Tümünü seç';
+
+  @override
+  String get contentSourceLegal =>
+      'Yalnızca kullanma hakkına sahip olduğun içeriği aktar. Aktarılan kayıtlar cihazında kalır; yedekleme paketlerine girmez.';
+
+  @override
+  String get contentSourceProblemNetwork =>
+      'Adrese bağlanılamadı. Bağlantını ve adresi kontrol et.';
+
+  @override
+  String contentSourceProblemBlocked(String status) {
+    return 'Sunucu isteği reddetti ($status). Bu adres tarayıcı dışı istemcileri bot koruması ile engelliyor; uygulama bu korumayı aşmaz. Verileri tarayıcından indirip “Dosyadan aktar” ile ekleyebilirsin.';
+  }
+
+  @override
+  String contentSourceProblemNotFound(String status) {
+    return 'Bu adreste 5etools biçiminde dosya bulunamadı ($status). Kök adresin veri klasörünü gösterdiğinden emin ol.';
+  }
+
+  @override
+  String get contentSourceProblemNotJson =>
+      'Adres JSON değil, sayfa döndürdü. Kök adres veri klasörünü göstermiyor olabilir.';
+
+  @override
+  String contentSourceResolved(String url) {
+    return 'Bulunan kök: $url';
+  }
+
+  @override
+  String undoDone(String label) {
+    return '$label geri alındı';
+  }
+
+  @override
+  String get undoNothing => 'Geri alınacak bir şey yok';
+
+  @override
+  String get undoTitle => 'Geri al';
+
+  @override
+  String get undoHistory => 'Geri alma geçmişi';
+
+  @override
+  String get turnTimer => 'Tur süresi';
+
+  @override
+  String get turnTimerOff => 'Kapalı';
+
+  @override
+  String turnTimerSeconds(int seconds) {
+    return '$seconds sn';
+  }
+
+  @override
+  String get turnTimerUp => 'Süre doldu';
+
+  @override
+  String get partyBoard => 'Parti panosu';
+
+  @override
+  String get partyBoardPassive => 'Pasif algı';
+
+  @override
+  String get partyBoardSaves => 'Kurtarmalar';
+
+  @override
+  String get partyBoardDefenses => 'Direnç / bağışıklık';
+
+  @override
+  String get partyBoardLanguages => 'Diller';
+
+  @override
+  String get partyBoardEmpty => 'Partide karakter yok.';
+
+  @override
+  String get encounterTemplates => 'Karşılaşma kalıpları';
+
+  @override
+  String get encounterTemplateSave => 'Kalıp olarak kaydet';
+
+  @override
+  String get encounterTemplateUse => 'Bu kalıptan kur';
+
+  @override
+  String get encounterTemplateEmpty => 'Kayıtlı kalıp yok.';
+
+  @override
+  String encounterTemplateMissing(String names) {
+    return 'Kütüphanede bulunamayan: $names';
+  }
+
+  @override
+  String encounterTemplateCreated(String name) {
+    return '$name kuruldu.';
+  }
+
+  @override
+  String get reaction => 'Reaksiyon';
+
+  @override
+  String get reactionUsed => 'Reaksiyon kullanıldı';
+
+  @override
+  String get reactionAvailable => 'Reaksiyon hazır';
+
+  @override
+  String get lairAction => 'İn eylemi';
+
+  @override
+  String lairActionHint(int value) {
+    return 'İnisiyatif $value geldiğinde hatırlatılır.';
+  }
+
+  @override
+  String get lairActionNone => 'Bu karşılaşmada in eylemi yok.';
+
+  @override
+  String get damageType => 'Hasar türü';
+
+  @override
+  String get damageTypeAny => 'Tür yok';
+
+  @override
+  String damageResisted(int amount) {
+    return 'Direnç: $amount';
+  }
+
+  @override
+  String get damageImmune => 'Bağışık — hasar yok';
+
+  @override
+  String damageVulnerable(int amount) {
+    return 'Zayıflık: $amount';
+  }
+
+  @override
+  String get defensesTitle => 'Savunmalar';
+
+  @override
+  String get defenseResist => 'Direnç';
+
+  @override
+  String get defenseImmune => 'Bağışıklık';
+
+  @override
+  String get defenseVulnerable => 'Zayıflık';
+
+  @override
+  String get deathSaves => 'Ölüm kurtarması';
+
+  @override
+  String get deathSaveRoll => 'Kurtarma at';
+
+  @override
+  String get deathSaveStable => 'Stabil';
+
+  @override
+  String get deathSaveDead => 'Öldü';
+
+  @override
+  String get deathSaveRevived => 'Ayağa kalktı (1 can)';
+
+  @override
+  String get downtime => 'Boş zaman';
+
+  @override
+  String get downtimeAdd => 'Faaliyet ekle';
+
+  @override
+  String get downtimeDays => 'Gün';
+
+  @override
+  String downtimeRemaining(int days) {
+    return '$days gün kaldı';
+  }
+
+  @override
+  String get downtimeComplete => 'Tamamla';
+
+  @override
+  String get downtimeOutcome => 'Sonuç';
+
+  @override
+  String get downtimeEmpty => 'Kayıtlı faaliyet yok.';
+
+  @override
+  String get downtimeKindCraft => 'Zanaat';
+
+  @override
+  String get downtimeKindResearch => 'Araştırma';
+
+  @override
+  String get downtimeKindWork => 'İş bulma';
+
+  @override
+  String get downtimeKindTrain => 'Eğitim';
+
+  @override
+  String get downtimeKindRecuperate => 'İyileşme';
+
+  @override
+  String get downtimeKindCarouse => 'Âlem';
+
+  @override
+  String get downtimeKindCustom => 'Serbest';
+
+  @override
+  String get sessionRecap => 'Oturum özeti';
+
+  @override
+  String get sessionRecapGenerate => 'Özet üret';
+
+  @override
+  String get sessionRecapEmpty => 'Özetlenecek günlük kaydı yok.';
+
+  @override
+  String get exportPdf => 'PDF olarak kaydet';
+
+  @override
+  String exportPdfDone(String path) {
+    return 'Kaydedildi: $path';
+  }
+
+  @override
+  String get macros => 'Makrolar';
+
+  @override
+  String get macroAdd => 'Makro ekle';
+
+  @override
+  String get macroExpression => 'Zar ifadesi';
+
+  @override
+  String get macroInvalid => 'İfade çözülemedi (örn. 2d6+3).';
+
+  @override
+  String get macroEmpty => 'Makro yok.';
+
+  @override
+  String get macroScopeDm => 'Yalnızca DM';
+
+  @override
+  String get macroScopePlayer => 'Oyuncular';
+
+  @override
+  String get macroScopeBoth => 'Herkes';
+
+  @override
+  String get settingsAccessibility => 'Erişilebilirlik';
+
+  @override
+  String get settingsHighContrast => 'Yüksek kontrast';
+
+  @override
+  String get settingsColorBlind => 'Renk körlüğü uyumu';
+
+  @override
+  String get settingsColorBlindHint =>
+      'Jeton takımları ve duvar türleri renge ek olarak desen/şekille de ayrışır.';
+
+  @override
+  String get settingsTouchLayout => 'Dokunmatik düzen';
+
+  @override
+  String get settingsTouchLayoutHint =>
+      'Orta tuş ve sağ tık yerine ekrandaki düğmeler kullanılır; hedefler büyür.';
+
+  @override
+  String get syncFolder => 'Yedek klasörü';
+
+  @override
+  String get syncFolderHint =>
+      'Seçilen klasöre her gün otomatik yedek yazılır. Bulut klasörü (OneDrive, Drive, Dropbox) seçersen yedek cihazlar arasında taşınır.';
+
+  @override
+  String get syncFolderPick => 'Klasör seç';
+
+  @override
+  String get syncFolderNone => 'Seçilmedi';
+
+  @override
+  String get syncFolderCleared => 'Kaldırıldı';
+
+  @override
+  String get campaignMerge => 'Başka kampanyadan al';
+
+  @override
+  String get campaignMergeHint =>
+      'Seçtiğin kampanyadan canavar, NPC, harita ve rastgele tabloları kopyalar. Mevcut kayıtlarının üzerine yazılmaz.';
+
+  @override
+  String campaignMergeDone(int count) {
+    return '$count kayıt alındı.';
+  }
+
+  @override
+  String get campaignMergeWhat => 'Ne alınsın?';
+
+  @override
+  String contentSourceImages(int done, int total) {
+    return 'Görseller indiriliyor: $done/$total';
+  }
+
+  @override
+  String get questOwners => 'Üstlenen';
+
+  @override
+  String get questOwnersSection => 'Görevi kim üstlendi?';
+
+  @override
+  String get questOwnersHint => 'İşi üstlenen karakterleri işaretle.';
+
+  @override
+  String get restSpendHitDie => 'Zar harca';
+
+  @override
+  String restHitDieSpent(String name, int healed) {
+    return '$name bir hit die harcadı: +$healed can';
+  }
+
+  @override
+  String get lootGrant => 'Aktar';
+
+  @override
+  String lootGranted(Object name) {
+    return '“$name” ortak keseye aktarıldı.';
+  }
+
+  @override
+  String get lootNoPartyBag =>
+      'Önce bir ortak kese oluştur (Karakterler sekmesi).';
+
+  @override
+  String get encLocation => 'Geçtiği yer';
+
+  @override
+  String get encLocationNone => 'Bir yere bağlanmadı';
+
+  @override
+  String get encLocationMissing => 'Bağlı yer silinmiş';
+
+  @override
+  String get encLocationPick => 'Yer seç';
+
+  @override
+  String get encLocationClear => 'Bağı kaldır';
+
+  @override
+  String get encLocationNoLocations =>
+      'Henüz yer yok — önce Dünya sekmesinden bir yer oluştur.';
+
+  @override
+  String get worldEncountersHere => 'Buradaki karşılaşmalar';
+
+  @override
+  String get factionTitle => 'Fraksiyon';
+
+  @override
+  String get factionsTab => 'Fraksiyonlar';
+
+  @override
+  String get factionAdd => 'Yeni fraksiyon';
+
+  @override
+  String get factionEmpty =>
+      'Henüz fraksiyon yok. Loncalar, tarikatlar, hanedanlar ve çeteler buraya.';
+
+  @override
+  String get factionName => 'Ad';
+
+  @override
+  String get factionKind => 'Tür';
+
+  @override
+  String get factionKindHint => 'lonca, tarikat, hanedan, çete…';
+
+  @override
+  String get factionGoal => 'Amaç';
+
+  @override
+  String get factionDescription => 'Açıklama';
+
+  @override
+  String get factionSecretNotes => 'DM notu';
+
+  @override
+  String get factionSecretHint => 'Yalnızca sen görürsün.';
+
+  @override
+  String get factionEmblemClear => 'Armayı kaldır';
+
+  @override
+  String get factionBonds => 'Bağlar';
+
+  @override
+  String get factionBondsEmpty =>
+      'Henüz bağ yok — dünya grafiğinden düğümleri bağla.';
+
+  @override
+  String get factionBondBroken => '(silinmiş)';
+
+  @override
+  String get factionDelete => 'Fraksiyonu sil';
+
+  @override
+  String get factionDeleteConfirm => 'Fraksiyon ve bağları kaldırılacak.';
+
+  @override
+  String get worldFactions => 'Fraksiyonlar';
+
+  @override
+  String get bondMembership => 'Üyelik';
+
+  @override
+  String get clocksTitle => 'Saatler';
+
+  @override
+  String get clocksEmpty =>
+      'Saat yok. Bir kuşatmayı, bir ayini ya da yayılan bir söylentiyi izle.';
+
+  @override
+  String get clockAdd => 'Yeni saat';
+
+  @override
+  String get clockName => 'Ne işliyor?';
+
+  @override
+  String get clockNameHint => 'Kuşatma geliyor';
+
+  @override
+  String get clockOutcome => 'Dolunca';
+
+  @override
+  String get clockOutcomeHint => 'Son dilim dolduğunda masada ne olacak.';
+
+  @override
+  String get clockAdvance => 'Bir dilim ilerlet';
+
+  @override
+  String get clockClose => 'Saati kapat';
+
+  @override
+  String get clockReopen => 'Saati yeniden aç';
+
+  @override
+  String get exportTitle => 'Açık biçimler';
+
+  @override
+  String get exportHint =>
+      'Her yerde okunur ama geri YÜKLENMEZ. Medya dosyaları dahil değildir.';
+
+  @override
+  String get exportMarkdown => 'Kayıtlar → Markdown';
+
+  @override
+  String get exportJson => 'Kampanya → JSON';
+
+  @override
+  String get exportMarkdownType => 'Markdown';
+
+  @override
+  String get exportJsonType => 'JSON';
+
+  @override
+  String get exportDone => 'Dışa aktarıldı.';
 }

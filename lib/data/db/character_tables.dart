@@ -1,7 +1,21 @@
 import 'package:drift/drift.dart';
 
 /// Karakterin sahip oldugu bir yeterliligin turu.
-enum ProficiencyKind { skill, save, tool, language, armor, weapon }
+/// `weaponMastery` bir yeterlilik degil, 2024'un silah ustaligi secimi
+/// (secilen silahin Topple/Vex gibi mastery ozelligini kullanma hakki). Ayni
+/// tabloda duruyor cunku o da kaynagi ve seviyesi olan bir secim listesi.
+///
+/// Yeni deger eklemek migration gerektirmiyor: sutun METIN ve `EnumNameConverter`
+/// `.values` uzerinden calisiyor; eski satirlar etkilenmez.
+enum ProficiencyKind {
+  skill,
+  save,
+  tool,
+  language,
+  armor,
+  weapon,
+  weaponMastery,
+}
 
 /// Bir yeterliligin nereden geldigi. Level dususte ya da background
 /// degistiginde neyin geri alinacagini bilmek icin kaynak saklaniyor.
@@ -11,8 +25,8 @@ class Characters extends Table {
   TextColumn get id => text()();
   TextColumn get name => text()();
 
-  /// Bu karakteri oynayan kisi. Oyuncu paneli baglanirken eslestirmede
-  /// kullanilir (Faz 1b).
+  /// Bu karakteri masada oynayan kisinin adi; DM listede kimin kagidi
+  /// oldugunu gormek icin yaziyor. Serbest metin, bos birakilabilir.
   TextColumn get playerName => text().nullable()();
 
   TextColumn get speciesKey => text().nullable()();
@@ -58,6 +72,27 @@ class Characters extends Table {
 
   /// Harcanmis hit dice: sinif anahtari -> adet.
   TextColumn get hitDiceUsedJson => text().withDefault(const Constant('{}'))();
+
+  /// Oyuncunun hazir buyu listesinde kac degisiklik yapabilecegi.
+  ///
+  /// Uzun dinlenmede (Cleric/Druid/Paladin/Wizard/Artificer) listenin tamami
+  /// kadar, seviye atlayinca (Bard/Ranger/Sorcerer/Warlock) bir tane veriliyor.
+  /// Bos yere yeni buyu eklemek hak harcamaz; yalnizca SECILI bir buyuyu
+  /// listeden cikarmak harcar.
+  IntColumn get spellChangesAvailable =>
+      integer().withDefault(const Constant(0))();
+
+  /// Su an konsantrasyon tutulan buyunun adi; yoksa null.
+  ///
+  /// Hasar alinca CON kurtarmasi gerektigi icin masada takip edilmesi gereken
+  /// tek "acik buyu" bilgisi bu.
+  TextColumn get concentrationSpell => text().nullable()();
+
+  /// Ekipman yuvasi sinirlarindan VARSAYILANDAN FARKLI olanlar
+  /// (`EquipSlot.name` -> adet, -1 sinirsiz). Yalnizca elle degistirilenler
+  /// yaziliyor ki varsayilan degisirse dokunulmamis yuvalar onu izlesin.
+  TextColumn get slotCapacitiesJson =>
+      text().withDefault(const Constant('{}'))();
 
   /// Harcanmis buyu yuvalari: yuva seviyesi -> adet.
   TextColumn get spellSlotsUsedJson =>
@@ -131,6 +166,11 @@ class CharacterItems extends Table {
 
   IntColumn get quantity => integer().withDefault(const Constant(1))();
   BoolColumn get equipped => boolean().withDefault(const Constant(false))();
+
+  /// Kusanildiginda kapladigi yuva (`EquipSlot.name`); bos ise esyanin
+  /// kendisinden tahmin edilir. Elle degistirilebilsin diye saklaniyor:
+  /// "Boots of Speed"i kemer yuvasina koymak isteyen DM'e engel yok.
+  TextColumn get slot => text().nullable()();
   BoolColumn get attuned => boolean().withDefault(const Constant(false))();
 
   /// Envanterde el ile siralama.

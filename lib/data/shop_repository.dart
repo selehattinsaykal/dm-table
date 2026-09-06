@@ -4,12 +4,11 @@ import 'package:drift/drift.dart';
 import 'package:uuid/uuid.dart';
 
 import '../domain/rules/magic_item_pricing.dart';
-import '../net/protocol.dart' show encodeServerMsg;
 import 'character_repository.dart';
 import 'db/database.dart';
 
-/// Bir magaza satirinin oyuncuya gosterilecek hali: adi, cozulmus fiyati ve
-/// kalan adedi bir arada.
+/// Bir magaza satirinin gosterime hazir hali: adi, cozulmus fiyati ve kalan
+/// adedi bir arada.
 class ShopEntry {
   const ShopEntry({
     required this.stock,
@@ -51,10 +50,32 @@ class PurchaseOk extends PurchaseResult {
   final int totalCp;
 }
 
-class PurchaseFailed extends PurchaseResult {
-  const PurchaseFailed(this.reason);
+/// Alisverisin neden yurumedigi.
+///
+/// Metin degil KOD: sebep veri katmaninda olusuyor, cevirisi arayuzde
+/// yapiliyor (bkz. `features/shops/shop_providers.dart`).
+enum PurchaseFailure {
+  invalidQuantity,
+  itemNotFound,
+  shopNotFound,
+  shopClosed,
+  soldOut,
 
-  final String reason;
+  /// Stokta yalnizca N adet kaldi; [PurchaseFailed.args] tek eleman: N.
+  onlyNLeft,
+  characterNotFound,
+
+  /// Parasi yetmiyor; [PurchaseFailed.args]: gereken, mevcut.
+  notEnoughGold,
+}
+
+class PurchaseFailed extends PurchaseResult {
+  const PurchaseFailed(this.reason, [this.args = const []]);
+
+  final PurchaseFailure reason;
+
+  /// Sebebe ait bicimlenmis degerler (bkz. [PurchaseFailure]).
+  final List<String> args;
 }
 
 class ShopRepository {
@@ -99,9 +120,6 @@ class ShopRepository {
     String? ownerName,
     String? description,
     double? priceMultiplier,
-    bool? openToPlayers,
-    bool? requiresApproval,
-    bool? mapAccessible,
     bool? closed,
     int? restockDays,
   }) async {
@@ -115,15 +133,6 @@ class ShopRepository {
         priceMultiplier: priceMultiplier == null
             ? const Value.absent()
             : Value(priceMultiplier),
-        openToPlayers: openToPlayers == null
-            ? const Value.absent()
-            : Value(openToPlayers),
-        requiresApproval: requiresApproval == null
-            ? const Value.absent()
-            : Value(requiresApproval),
-        mapAccessible: mapAccessible == null
-            ? const Value.absent()
-            : Value(mapAccessible),
         closed: closed == null ? const Value.absent() : Value(closed),
         restockDays: restockDays == null
             ? const Value.absent()
@@ -137,8 +146,8 @@ class ShopRepository {
   /// [update]'in `null = degistirme` deseni bir kolonu NULL'a CEKEMEDIGI icin
   /// ayri metot (`WorldRepository.setMapScale` ile ayni sebep): DM "bagi
   /// kaldir" dediginde hem id hem ad temizlenebilmeli. Bagli NPC'nin adi
-  /// [ownerName]'e de yazilir, boylece oyuncuya giden veri ve liste ozeti
-  /// tek alandan okunmaya devam eder (NPC sonradan silinse bile ad kalir).
+  /// [ownerName]'e de yazilir, boylece liste ozeti tek alandan okunur (NPC
+  /// sonradan silinse bile ad kalir).
   Future<void> setOwner(String shopId, {String? npcId, String? name}) async {
     await (db.update(db.shops)..where((t) => t.id.equals(shopId))).write(
       ShopsCompanion(
@@ -150,10 +159,6 @@ class ShopRepository {
     );
   }
 
-  /// Haritadan erisilebilir tum magazalar (dukkan pininden acilabilir).
-  Future<List<Shop>> mapAccessibleShops() =>
-      (db.select(db.shops)..where((t) => t.mapAccessible.equals(true))).get();
-
   // NOT: Silme/guncellemeler tipli Drift API'siyle yapiliyor, ham
   // customStatement ile DEGIL. Ham SQL calisirken Drift hangi tablonun
   // degistigini cikaramiyor ve `watch...` akislarini yenilemiyor; "silince
@@ -164,26 +169,6 @@ class ShopRepository {
       await (db.delete(db.shops)..where((t) => t.id.equals(id))).go();
     });
   }
-
-  /// Ayni anda yalnizca bir magaza acik olsun: DM "bu mağazayı göster"
-  /// dediginde oncekiler kapanir, yoksa oyuncular hangi dukkanda olduklarini
-  /// karistiriyor.
-  Future<void> openOnly(String? shopId) async {
-    await db.transaction(() async {
-      await db
-          .update(db.shops)
-          .write(const ShopsCompanion(openToPlayers: Value(false)));
-      if (shopId != null) {
-        await (db.update(db.shops)..where((t) => t.id.equals(shopId))).write(
-          const ShopsCompanion(openToPlayers: Value(true)),
-        );
-      }
-    });
-  }
-
-  Future<Shop?> openShop() async => (db.select(
-    db.shops,
-  )..where((t) => t.openToPlayers.equals(true))).getSingleOrNull();
 
   /// Belirli bir stok satirinin ait oldugu magazayi bulur. Satir bir magazaya
   /// bagli degilse null doner.
@@ -391,49 +376,44 @@ class ShopRepository {
     required String stockId,
     int quantity = 1,
   }) async {
-    if (quantity < 1) return PurchaseFailed(encodeServerMsg('invalidQuantity'));
+    if (quantity < 1) return PurchaseFailed(PurchaseFailure.invalidQuantity);
 
     return db.transaction(() async {
       final stock = await (db.select(
         db.shopStock,
       )..where((t) => t.id.equals(stockId))).getSingleOrNull();
-      if (stock == null) return PurchaseFailed(encodeServerMsg('itemNotFound'));
+      if (stock == null) return PurchaseFailed(PurchaseFailure.itemNotFound);
 
       final shop = await find(stock.shopId);
-      if (shop == null) return PurchaseFailed(encodeServerMsg('shopNotFound'));
-      // Kapali magazadan alisveris olmaz; haritadan erisilebilir ama acik
-      // bir magaza normal sekilde satis yapar.
+      if (shop == null) return PurchaseFailed(PurchaseFailure.shopNotFound);
+      // Kapali magazadan alisveris olmaz.
       if (shop.closed) {
-        return PurchaseFailed(encodeServerMsg('shopClosed'));
+        return PurchaseFailed(PurchaseFailure.shopClosed);
       }
 
       if (stock.quantity >= 0 && stock.quantity < quantity) {
-        return PurchaseFailed(
-          stock.quantity == 0
-              ? encodeServerMsg('soldOut')
-              : encodeServerMsg('onlyNLeft', ['${stock.quantity}']),
-        );
+        return stock.quantity == 0
+            ? const PurchaseFailed(PurchaseFailure.soldOut)
+            : PurchaseFailed(PurchaseFailure.onlyNLeft, ['${stock.quantity}']);
       }
 
       final all = await entries(stock.shopId);
       final entry = all.where((e) => e.stock.id == stockId).firstOrNull;
-      if (entry == null) return PurchaseFailed(encodeServerMsg('itemNotFound'));
+      if (entry == null) return PurchaseFailed(PurchaseFailure.itemNotFound);
 
       final character = await (db.select(
         db.characters,
       )..where((t) => t.id.equals(characterId))).getSingleOrNull();
       if (character == null) {
-        return PurchaseFailed(encodeServerMsg('characterNotFound'));
+        return PurchaseFailed(PurchaseFailure.characterNotFound);
       }
 
       final total = entry.priceCp * quantity;
       if (character.coinsCp < total) {
-        return PurchaseFailed(
-          encodeServerMsg('notEnoughGold', [
-            formatCoins(total),
-            formatCoins(character.coinsCp),
-          ]),
-        );
+        return PurchaseFailed(PurchaseFailure.notEnoughGold, [
+          formatCoins(total),
+          formatCoins(character.coinsCp),
+        ]);
       }
 
       await (db.update(

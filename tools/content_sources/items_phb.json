@@ -1,0 +1,7257 @@
+[
+  {
+    "key": "phb-2024_acid",
+    "name": "Acid",
+    "document": "phb-2024",
+    "desc": "When you take the Attack action, you can replace one of your attacks with throwing a vial of Acid. Target one creature or object you can see within 20 feet of yourself. The target must succeed on a Dexterity saving throw (DC 8 plus your Dexterity modifier and Proficiency Bonus) or take 2d6 Acid damage.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "25.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_airship",
+    "name": "Airship",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Vehicle",
+      "key": "vehicle"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "40000.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_alchemists-fire",
+    "name": "Alchemist's Fire",
+    "document": "phb-2024",
+    "desc": "When you take the Attack action, you can replace one of your attacks with throwing a flask of Alchemist's Fire. Target one creature or object you can see within 20 feet of yourself. The target must succeed on a Dexterity saving throw (DC 8 plus your Dexterity modifier and Proficiency Bonus) or take 1d4 Fire damage and start burning.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "50.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_ale-mug",
+    "name": "Ale (mug)",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Food and Drink",
+      "key": "food-and-drink"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "0.04",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_alexandrite",
+    "name": "Alexandrite",
+    "document": "phb-2024",
+    "desc": "A dark green gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "500.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_amber",
+    "name": "Amber",
+    "document": "phb-2024",
+    "desc": "A watery gold to rich gold gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "100.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_amethyst",
+    "name": "Amethyst",
+    "document": "phb-2024",
+    "desc": "A deep purple gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "100.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_amulet",
+    "name": "Amulet",
+    "document": "phb-2024",
+    "desc": "For an Amulet to be an effective Holy Symbol, it must be worn or held.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "5.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_antitoxin",
+    "name": "Antitoxin",
+    "document": "phb-2024",
+    "desc": "As a Bonus Action, you can drink a vial of Antitoxin to gain Advantage on saving throws to avoid or end the Poisoned condition for 1 hour.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "50.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_aquamarine",
+    "name": "Aquamarine",
+    "document": "phb-2024",
+    "desc": "A pale blue green gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "500.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_assassins-blood",
+    "name": "Assassin's Blood",
+    "document": "phb-2024",
+    "desc": "A creature subjected to Assassin's Blood makes a DC 10 Constitution saving throw. On a failed save, the creature takes 6 (1d12) Poison damage and has the Poisoned condition for 24 hours. On a successful save, the creature takes half as much damage only.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "150.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_azurite",
+    "name": "Azurite",
+    "document": "phb-2024",
+    "desc": "A mottled deep blue gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "10.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_backpack",
+    "name": "Backpack",
+    "document": "phb-2024",
+    "desc": "A Backpack holds up to 30 pounds within 1 cubic foot. It can also serve as a saddlebag.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "5.000",
+    "weight_unit": "lb",
+    "cost": "2.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_ball-bearings",
+    "name": "Ball Bearings",
+    "document": "phb-2024",
+    "desc": "As a Utilize action, you can spill Ball Bearings from their pouch. They spread to cover a level, 10-foot-square area within 10 feet of yourself. A creature that enters this area for the first time on a turn must succeed on a DC 10 Dexterity saving throw or have the Prone condition. It takes 10 minutes to recover the Ball Bearings.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "2.000",
+    "weight_unit": "lb",
+    "cost": "1.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_banded-agate",
+    "name": "Banded Agate",
+    "document": "phb-2024",
+    "desc": "A striped brown, blue, white, or red gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "10.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_barrel",
+    "name": "Barrel",
+    "document": "phb-2024",
+    "desc": "A Barrel holds up to 40 gallons of liquid or up to 4 cubic feet of dry goods.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "70.000",
+    "weight_unit": "lb",
+    "cost": "2.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_basic-poison",
+    "name": "Basic Poison",
+    "document": "phb-2024",
+    "desc": "As a Bonus Action, you can use a vial of Basic Poison to coat one weapon or up to three pieces of ammunition. A creature that takes Piercing or Slashing damage from the poisoned weapon or ammunition takes an extra 1d4 Poison damage. Once applied, the poison retains potency for 1 minute or until its damage is dealt, whichever comes first.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "100.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_basket",
+    "name": "Basket",
+    "document": "phb-2024",
+    "desc": "A Basket holds up to 40 pounds within 2 cubic feet.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "2.000",
+    "weight_unit": "lb",
+    "cost": "0.40",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_bedroll",
+    "name": "Bedroll",
+    "document": "phb-2024",
+    "desc": "A Bedroll sleeps one Small or Medium creature. While in a Bedroll, you automatically succeed on saving throws against extreme cold (see the Dungeon Master's Guide).",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "7.000",
+    "weight_unit": "lb",
+    "cost": "1.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_bejeweled-gold-bracelet",
+    "name": "Bejeweled gold bracelet",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "250.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_bejeweled-ivory-drinking-horn-with-gold-filigree",
+    "name": "Bejeweled ivory drinking horn with gold filigree",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "7500.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_bell",
+    "name": "Bell",
+    "document": "phb-2024",
+    "desc": "When rung as a Utilize action, a Bell produces a sound that can be heard up to 60 feet away.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "1.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_black-opal",
+    "name": "Black Opal",
+    "document": "phb-2024",
+    "desc": "A dark green with black mottling and golden flecks gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "1000.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_black-pearl",
+    "name": "Black Pearl",
+    "document": "phb-2024",
+    "desc": "A pure black gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "500.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_black-sapphire",
+    "name": "Black Sapphire",
+    "document": "phb-2024",
+    "desc": "A lustrous black with glowing highlights gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "5000.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_black-velvet-mask-stitched-with-silver-thread",
+    "name": "Black velvet mask stitched with silver thread",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "25.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_blanket",
+    "name": "Blanket",
+    "document": "phb-2024",
+    "desc": "While wrapped in a blanket, you have Advantage on saving throws against extreme cold (see the Dungeon Master's Guide).",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "3.000",
+    "weight_unit": "lb",
+    "cost": "0.50",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_block-and-tackle",
+    "name": "Block and Tackle",
+    "document": "phb-2024",
+    "desc": "A Block and Tackle allows you to hoist up to four times the weight you can normally lift.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "5.000",
+    "weight_unit": "lb",
+    "cost": "1.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_bloodstone",
+    "name": "Bloodstone",
+    "document": "phb-2024",
+    "desc": "A dark gray with red flecks gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "50.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_blue-quartz",
+    "name": "Blue Quartz",
+    "document": "phb-2024",
+    "desc": "A pale blue gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "10.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_blue-sapphire",
+    "name": "Blue Sapphire",
+    "document": "phb-2024",
+    "desc": "A medium blue gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "1000.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_blue-spinel",
+    "name": "Blue Spinel",
+    "document": "phb-2024",
+    "desc": "A deep blue gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "500.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_bomb",
+    "name": "Bomb",
+    "document": "phb-2024",
+    "desc": "As an action, you can light a Bomb and throw it at a point up to 60 feet away, where it explodes. Each creature in a 5-foot-radius Sphere centered on that point makes a DC 12 Dexterity saving throw, taking 3d6 Fire damage on a failed save or half as much damage on a successful one.",
+    "category": {
+      "name": "Explosive",
+      "key": "explosive"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "100.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_book",
+    "name": "Book",
+    "document": "phb-2024",
+    "desc": "A Book contains fiction or nonfiction. If you consult an accurate nonfiction Book about its topic, you gain a +5 bonus to Intelligence (Arcana, History, Nature, or Religion) checks you make about that topic.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "5.000",
+    "weight_unit": "lb",
+    "cost": "25.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_bottle-stopper-cork-embossed-with-gold-leaf-and-set-with-amethysts",
+    "name": "Bottle stopper cork embossed with gold leaf and set with amethysts",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "750.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_box-of-turquoise-animal-figurines",
+    "name": "Box of turquoise animal figurines",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "250.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_brass-mug-with-jade-inlay",
+    "name": "Brass mug with jade inlay",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "250.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_bread-loaf",
+    "name": "Bread (loaf)",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Food and Drink",
+      "key": "food-and-drink"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "0.02",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_bronze-crown",
+    "name": "Bronze crown",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "250.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_bucket",
+    "name": "Bucket",
+    "document": "phb-2024",
+    "desc": "A Bucket holds up to half a cubic foot of contents.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "2.000",
+    "weight_unit": "lb",
+    "cost": "0.05",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_bullseye-lantern",
+    "name": "Bullseye Lantern",
+    "document": "phb-2024",
+    "desc": "A Bullseye Lantern burns Oil as fuel to cast Bright Light in a 60-foot Cone and Dim Light for an additional 60 feet.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "2.000",
+    "weight_unit": "lb",
+    "cost": "10.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_bundle-of-sheet-music-representing-the-lost-dirges-of-a-famous-composer",
+    "name": "Bundle of sheet music representing the lost dirges of a famous composer",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "750.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_burglars-pack",
+    "name": "Burglar's Pack",
+    "document": "phb-2024",
+    "desc": "A Burglar's Pack contains the following items: Backpack, Ball Bearings, Bell, 10 Candles, Crowbar, Hooded Lantern, 7 flasks of Oil, 5 days of Rations, Rope, Tinderbox, and Waterskin.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "47.500",
+    "weight_unit": "lb",
+    "cost": "16.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_burnt-othur-fumes",
+    "name": "Burnt Othur Fumes",
+    "document": "phb-2024",
+    "desc": "A creature subjected to Burnt Othur Fumes must succeed on a DC 13 Constitution saving throw or take 10 (3d6) Poison damage, and it must repeat the save at the start of each of its turns. On each successive failed save, the creature takes 3 (1d6) Poison damage. After three successful saves, the poison ends.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "500.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_caltrops",
+    "name": "Caltrops",
+    "document": "phb-2024",
+    "desc": "As a Utilize action, you can spread Caltrops from their bag to cover a 5-foot-square area within 5 feet of yourself. A creature that enters this area for the first time on a turn must succeed on a DC 15 Dexterity saving throw or take 1 Piercing damage and have its Speed reduced to 0 until the start of its next turn. It takes 10 minutes to recover the Caltrops.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "2.000",
+    "weight_unit": "lb",
+    "cost": "1.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_camel",
+    "name": "Camel",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Mount",
+      "key": "mount"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "50.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_candle",
+    "name": "Candle",
+    "document": "phb-2024",
+    "desc": "For 1 hour, a lit Candle sheds Bright Light in a 5-foot radius and Dim Light for an additional 5 feet.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "0.01",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_canvas-1-sq-yd",
+    "name": "Canvas (1 sq. yd.)",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Trade Goods",
+      "key": "trade-goods"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "0.10",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_carnelian",
+    "name": "Carnelian",
+    "document": "phb-2024",
+    "desc": "A orange to red brown gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "50.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_carriage",
+    "name": "Carriage",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Vehicle",
+      "key": "vehicle"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "600.000",
+    "weight_unit": "lb",
+    "cost": "100.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_carrion-crawler-mucus",
+    "name": "Carrion Crawler Mucus",
+    "document": "phb-2024",
+    "desc": "A creature subjected to Carrion Crawler Mucus must succeed on a DC 13 Constitution saving throw or have the Poisoned condition for 1 minute. The creature also has the Paralyzed condition while Poisoned in this way. The creature repeats the save at the end of each of its turns, ending the effect on itself on a success.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "200.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_cart",
+    "name": "Cart",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Vehicle",
+      "key": "vehicle"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "200.000",
+    "weight_unit": "lb",
+    "cost": "15.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_carved-bone-statuette",
+    "name": "Carved bone statuette",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "25.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_carved-ivory-statuette",
+    "name": "Carved ivory statuette",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "250.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_carved-wooden-harp-with-ivory-inlay-and-zircon-gems",
+    "name": "Carved wooden harp with ivory inlay and zircon gems",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "750.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_ceremonial-gold-armor-with-black-pearls",
+    "name": "Ceremonial gold armor with black pearls",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "7500.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_chain",
+    "name": "Chain",
+    "document": "phb-2024",
+    "desc": "As a Utilize action, you can wrap a Chain around an unwilling creature within 5 feet of yourself that has the Grappled, Incapacitated, or Restrained condition if you succeed on a DC 13 Strength (Athletics) check. If the creature's legs are bound, the creature has the Restrained condition until it escapes. Escaping the Chain requires the creature to make a successful DC 18 Dexterity (Acrobatics) check as an action. Bursting the Chain requires a successful DC 20 Strength (Athletics) check as an action.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "10.000",
+    "weight_unit": "lb",
+    "cost": "5.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_chalcedony",
+    "name": "Chalcedony",
+    "document": "phb-2024",
+    "desc": "A white gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "50.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_chariot",
+    "name": "Chariot",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Vehicle",
+      "key": "vehicle"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "100.000",
+    "weight_unit": "lb",
+    "cost": "250.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_cheese-wedge",
+    "name": "Cheese (wedge)",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Food and Drink",
+      "key": "food-and-drink"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "0.10",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_chest",
+    "name": "Chest",
+    "document": "phb-2024",
+    "desc": "A Chest holds up to 12 cubic feet of contents.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "25.000",
+    "weight_unit": "lb",
+    "cost": "5.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_chicken",
+    "name": "Chicken",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Trade Goods",
+      "key": "trade-goods"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "0.02",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_chrysoberyl",
+    "name": "Chrysoberyl",
+    "document": "phb-2024",
+    "desc": "A yellow green to pale green gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "100.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_chrysoprase",
+    "name": "Chrysoprase",
+    "document": "phb-2024",
+    "desc": "A green gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "50.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_cinnamon",
+    "name": "Cinnamon",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Trade Goods",
+      "key": "trade-goods"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "2.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_citrine",
+    "name": "Citrine",
+    "document": "phb-2024",
+    "desc": "A pale yellow brown gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "50.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_climbers-kit",
+    "name": "Climber's Kit",
+    "document": "phb-2024",
+    "desc": "A Climber's Kit includes boot tips, gloves, pitons, and a harness. As a Utilize action, you can use the Climber's Kit to anchor yourself; when you do, you can't fall more than 25 feet from the anchor point, and you can't move more than 25 feet from there without undoing the anchor as a Bonus Action.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "12.000",
+    "weight_unit": "lb",
+    "cost": "25.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_cloth-of-gold-vestments",
+    "name": "Cloth-of-gold vestments",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "25.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_cloves",
+    "name": "Cloves",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Trade Goods",
+      "key": "trade-goods"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "3.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_common-wine-bottle",
+    "name": "Common Wine (bottle)",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Food and Drink",
+      "key": "food-and-drink"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "0.20",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_component-pouch",
+    "name": "Component Pouch",
+    "document": "phb-2024",
+    "desc": "A Component Pouch is watertight and filled with compartments that hold all the free Material components of your spells.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "2.000",
+    "weight_unit": "lb",
+    "cost": "25.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_copper",
+    "name": "Copper",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Trade Goods",
+      "key": "trade-goods"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "0.50",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_copper-chalice-with-silver-filigree",
+    "name": "Copper chalice with silver filigree",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "25.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_coral",
+    "name": "Coral",
+    "document": "phb-2024",
+    "desc": "A crimson gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "100.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_costume",
+    "name": "Costume",
+    "document": "phb-2024",
+    "desc": "While wearing a Costume, you have Advantage on any ability check you make to impersonate the person or type of person it represents.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "4.000",
+    "weight_unit": "lb",
+    "cost": "5.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_cotton-cloth-1-sq-yd",
+    "name": "Cotton Cloth (1 sq. yd.)",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Trade Goods",
+      "key": "trade-goods"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "0.50",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_cow",
+    "name": "Cow",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Trade Goods",
+      "key": "trade-goods"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "10.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_crossbow-bolt-case",
+    "name": "Crossbow Bolt Case",
+    "document": "phb-2024",
+    "desc": "A Crossbow Bolt Case holds up to 20 Bolts.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "1.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_crowbar",
+    "name": "Crowbar",
+    "document": "phb-2024",
+    "desc": "Using a Crowbar gives you Advantage on Strength checks where the Crowbar's leverage can be applied.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "5.000",
+    "weight_unit": "lb",
+    "cost": "2.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_detailed-life-sized-dragonborn-skull-cast-in-electrum",
+    "name": "Detailed, life-sized dragonborn skull cast in electrum",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "750.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_diamond",
+    "name": "Diamond",
+    "document": "phb-2024",
+    "desc": "A blue white, canary, pink, brown, or blue gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "5000.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_dice-set",
+    "name": "Dice Set",
+    "document": "phb-2024",
+    "desc": "- Ability: Wisdom\n\n- Utilize: Discern whether someone is cheating (DC 10), or win the game (DC 20)",
+    "category": {
+      "name": "Gaming Set",
+      "key": "gaming-set"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "0.10",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_diplomats-pack",
+    "name": "Diplomat's Pack",
+    "document": "phb-2024",
+    "desc": "A Diplomat's Pack contains the following items: Chest, Fine Clothes, Ink, 5 Ink Pens, Lamp, 2 Map or Scroll Cases, 4 flasks of Oil, 5 sheets of Paper, 5 sheets of Parchment, Perfume, and Tinderbox.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "39.000",
+    "weight_unit": "lb",
+    "cost": "39.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_disguise-kit",
+    "name": "Disguise Kit",
+    "document": "phb-2024",
+    "desc": "- Ability: Charisma\n\n- Utilize: Apply makeup (DC 10)\n\n- Craft: Costume",
+    "category": {
+      "name": "Tools",
+      "key": "tools"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "3.000",
+    "weight_unit": "lb",
+    "cost": "25.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_draft-horse",
+    "name": "Draft Horse",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Mount",
+      "key": "mount"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "50.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_dragonchess-set",
+    "name": "Dragonchess Set",
+    "document": "phb-2024",
+    "desc": "- Ability: Wisdom\n\n- Utilize: Discern whether someone is cheating (DC 10), or win the game (DC 20)",
+    "category": {
+      "name": "Gaming Set",
+      "key": "gaming-set"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "1.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_dungeoneers-pack",
+    "name": "Dungeoneer's Pack",
+    "document": "phb-2024",
+    "desc": "A Dungeoneer's Pack contains the following items: Backpack, Caltrops, Crowbar, 2 flasks of Oil, 10 days of Rations, Rope, Tinderbox, 10 Torches, and Waterskin.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "55.000",
+    "weight_unit": "lb",
+    "cost": "12.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_dynamite-stick",
+    "name": "Dynamite Stick",
+    "document": "phb-2024",
+    "desc": "An an action, you can light a Dynamite Stick and throw it at a point up to 60 feet away, where it explodes. Each creature in a 5-foot-radius Sphere centered on that point makes a DC 12 Dexterity saving throw, taking 3d6 Force damage on a failed save or half as much damage on a successful one.\n\nIt takes 1 minute to bind two or more Dynamite Sticks together so they explode at the same time. Each stick after the first increases the damage by 1d6 (to a maximum of 10d6) and the effect's radius by 5 feet (to a maximum of 20 feet).\n\nIt takes 1 minute to rig dynamite with a longer fuse so it explodes after a longer period of time, such as 1 minute or 10 minutes.",
+    "category": {
+      "name": "Explosive",
+      "key": "explosive"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": null,
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_elephant",
+    "name": "Elephant",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Mount",
+      "key": "mount"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "200.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_emblem",
+    "name": "Emblem",
+    "document": "phb-2024",
+    "desc": "For an Emblem to be an effective Holy Symbol, it must be borne on fabric (such as a tabard or banner) or a Shield.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "5.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_embroidered-glove-set-with-jewel-chips",
+    "name": "Embroidered glove set with jewel chips",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "2500.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_embroidered-silk-and-velvet-mantle-set-with-numerous-moonstones",
+    "name": "Embroidered silk and velvet mantle set with numerous moonstones",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "2500.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_embroidered-silk-handkerchief",
+    "name": "Embroidered silk handkerchief",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "25.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_emerald",
+    "name": "Emerald",
+    "document": "phb-2024",
+    "desc": "A deep bright green gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "1000.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_entertainers-pack",
+    "name": "Entertainer's Pack",
+    "document": "phb-2024",
+    "desc": "An Entertainer's Pack contains the following items: Backpack, Bedroll, Bell, Bullseye Lantern, 3 Costumes, Mirror, 8 flasks of Oil, 9 days of Rations, Tinderbox, and Waterskin.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "58.500",
+    "weight_unit": "lb",
+    "cost": "40.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_essence-of-ether",
+    "name": "Essence of Ether",
+    "document": "phb-2024",
+    "desc": "A creature subjected to Essence of Ether must succeed on a DC 15 Constitution saving throw or have the Poisoned condition for 8 hours. The creature also has the Unconscious condition while Poisoned in this way. The creature wakes up if it takes damage or if another creature takes an action to shake it awake.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "300.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_exotic-saddle",
+    "name": "Exotic Saddle",
+    "document": "phb-2024",
+    "desc": "A saddle comes with a bit, a bridle, reins, and any other equipment needed to use the saddle. An Exotic Saddle is required for riding an aquatic or a flying mount.",
+    "category": {
+      "name": "Tack and Harness",
+      "key": "tack-and-harness"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "40.000",
+    "weight_unit": "lb",
+    "cost": "60.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_explorers-pack",
+    "name": "Explorer's Pack",
+    "document": "phb-2024",
+    "desc": "An Explorer's Pack contains the following items: Backpack, Bedroll, 2 flasks of Oil, 10 days of Rations, Rope, Tinderbox, 10 Torches, and Waterskin.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "55.000",
+    "weight_unit": "lb",
+    "cost": "10.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_eye-agate",
+    "name": "Eye Agate",
+    "document": "phb-2024",
+    "desc": "A circles of gray, white, brown, blue, or green gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "10.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_eye-patch-decorated-with-tiny-blue-sapphires-and-moonstones",
+    "name": "Eye patch decorated with tiny blue sapphires and moonstones",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "2500.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_feed-per-day",
+    "name": "Feed (per day)",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Tack and Harness",
+      "key": "tack-and-harness"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "10.000",
+    "weight_unit": "lb",
+    "cost": "0.05",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_fine-clothes",
+    "name": "Fine Clothes",
+    "document": "phb-2024",
+    "desc": "Fine Clothes are made of expensive fabrics and adorned with expertly crafted details. Some events and locations admit only people wearing these clothes.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "6.000",
+    "weight_unit": "lb",
+    "cost": "15.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_fine-gold-chain-set-with-a-fire-opal",
+    "name": "Fine gold chain set with a fire opal",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "2500.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_fine-wine-bottle",
+    "name": "Fine Wine (bottle)",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Food and Drink",
+      "key": "food-and-drink"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "10.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_fire-opal",
+    "name": "Fire Opal",
+    "document": "phb-2024",
+    "desc": "A fiery red gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "1000.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_flask",
+    "name": "Flask",
+    "document": "phb-2024",
+    "desc": "A Flask holds up to 1 pint.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "0.02",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_flour",
+    "name": "Flour",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Trade Goods",
+      "key": "trade-goods"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "2.000",
+    "weight_unit": "lb",
+    "cost": "0.02",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_forgery-kit",
+    "name": "Forgery Kit",
+    "document": "phb-2024",
+    "desc": "- Ability: Dexterity\n\n- Utilize: Mimic 10 or fewer words of someone else's handwriting (DC 15), or duplicate a wax seal (DC 20)",
+    "category": {
+      "name": "Tools",
+      "key": "tools"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "5.000",
+    "weight_unit": "lb",
+    "cost": "15.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_fragmentation-grenade",
+    "name": "Fragmentation Grenade",
+    "document": "phb-2024",
+    "desc": "{#itemEntry Grenade|XDMG}\n\nEach creature in the Sphere makes a DC 15 Dexterity saving throw, taking 17 (5d6) Piercing damage on a failed save or half as much damage on a successful one.",
+    "category": {
+      "name": "Explosive",
+      "key": "explosive"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": null,
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_galley",
+    "name": "Galley",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Vehicle",
+      "key": "vehicle"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "30000.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_garnet",
+    "name": "Garnet",
+    "document": "phb-2024",
+    "desc": "A red, brown green, or violet gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "100.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_gilded-royal-coach-or-funeral-barge",
+    "name": "Gilded royal coach or funeral barge",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "7500.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_ginger",
+    "name": "Ginger",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Trade Goods",
+      "key": "trade-goods"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "1.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_glass-bottle",
+    "name": "Glass Bottle",
+    "document": "phb-2024",
+    "desc": "A Glass Bottle holds up to 1½ pints.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "2.000",
+    "weight_unit": "lb",
+    "cost": "2.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_goat",
+    "name": "Goat",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Trade Goods",
+      "key": "trade-goods"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "1.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_gold",
+    "name": "Gold",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Trade Goods",
+      "key": "trade-goods"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "50.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_gold-bar-5-pound",
+    "name": "Gold Bar (5-pound)",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "5.000",
+    "weight_unit": "lb",
+    "cost": "250.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_gold-birdcage-with-electrum-filigree",
+    "name": "Gold birdcage with electrum filigree",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "250.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_gold-bracelet",
+    "name": "Gold bracelet",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "25.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_gold-circlet-set-with-four-aquamarines",
+    "name": "Gold circlet set with four aquamarines",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "2500.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_gold-comb-shaped-like-a-dragon-with-red-garnets-as-eyes",
+    "name": "Gold comb shaped like a dragon with red garnets as eyes",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "750.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_gold-cup-set-with-emeralds",
+    "name": "Gold cup set with emeralds",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "7500.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_gold-idol",
+    "name": "Gold idol",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "750.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_gold-jewelry-box-with-platinum-filigree",
+    "name": "Gold jewelry box with platinum filigree",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "7500.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_gold-locket-with-a-painted-portrait-inside",
+    "name": "Gold locket with a painted portrait inside",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "25.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_gold-music-box",
+    "name": "Gold music box",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "2500.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_gold-ring-set-with-bloodstones",
+    "name": "Gold ring set with bloodstones",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "250.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_gold-statuette-set-with-rubies",
+    "name": "Gold statuette set with rubies",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "7500.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_grappling-hook",
+    "name": "Grappling Hook",
+    "document": "phb-2024",
+    "desc": "As a Utilize action, you can throw the Grappling Hook at a railing, a ledge, or another catch within 50 feet of yourself, and the hook catches on if you succeed on a DC 13 Dexterity (Acrobatics) check. If you tied a Rope to the hook, you can then climb it.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "4.000",
+    "weight_unit": "lb",
+    "cost": "2.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_grenade-launcher",
+    "name": "Grenade Launcher",
+    "document": "phb-2024",
+    "desc": "{#itemEntry Grenade|XDMG}",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "7.000",
+    "weight_unit": "lb",
+    "cost": null,
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_gunpowder-keg",
+    "name": "Gunpowder (keg)",
+    "document": "phb-2024",
+    "desc": "Setting fire to a keg full of Gunpowder causes it to explode. When a keg explodes, each creature in a 10-foot-radius Sphere centered on the keg makes a DC 12 Dexterity saving throw, taking 24 (7d6) Fire damage on a failed save or half as much damage on a successful one.",
+    "category": {
+      "name": "Explosive",
+      "key": "explosive"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "20.000",
+    "weight_unit": "lb",
+    "cost": "250.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_gunpowder-powder-horn",
+    "name": "Gunpowder (powder horn)",
+    "document": "phb-2024",
+    "desc": "Setting fire to a powder horn full of Gunpowder causes it to explode. When a powder horn explodes, each creature in a 10-foot-radius Sphere centered on the powder horn makes a DC 12 Dexterity saving throw, taking 10 (3d6) Fire damage on a failed save or half as much damage on a successful one.",
+    "category": {
+      "name": "Explosive",
+      "key": "explosive"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "2.000",
+    "weight_unit": "lb",
+    "cost": "35.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_handheld-mirror-set-in-a-painted-wooden-frame",
+    "name": "Handheld mirror set in a painted wooden frame",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "25.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_healers-kit",
+    "name": "Healer's Kit",
+    "document": "phb-2024",
+    "desc": "A Healer's Kit has ten uses. As a Utilize action, you can expend one of its uses to stabilize an Unconscious creature that has 0 Hit Points without needing to make a Wisdom (Medicine) check.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "3.000",
+    "weight_unit": "lb",
+    "cost": "5.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_hematite",
+    "name": "Hematite",
+    "document": "phb-2024",
+    "desc": "A gray black gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "10.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_herbalism-kit",
+    "name": "Herbalism Kit",
+    "document": "phb-2024",
+    "desc": "- Ability: Intelligence\n\n- Utilize: Identify a plant (DC 10)\n\n- Craft: Antitoxin, Candle, Healer's Kit, Potion of Healing",
+    "category": {
+      "name": "Tools",
+      "key": "tools"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "3.000",
+    "weight_unit": "lb",
+    "cost": "5.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_holy-water",
+    "name": "Holy Water",
+    "document": "phb-2024",
+    "desc": "When you take the Attack action, you can replace one of your attacks with throwing a flask of Holy Water. Target one creature you can see within 20 feet of yourself. The target must succeed on a Dexterity saving throw (DC 8 plus your Dexterity modifier and Proficiency Bonus) or take 2d8 Radiant damage if it is a Fiend or an Undead.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "25.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_hooded-lantern",
+    "name": "Hooded Lantern",
+    "document": "phb-2024",
+    "desc": "A Hooded Lantern burns Oil as fuel to cast Bright Light in a 30-foot radius and Dim Light for an additional 30 feet. As a Bonus Action, you can lower the hood, reducing the light to Dim Light in a 5-foot radius, or raise it again.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "2.000",
+    "weight_unit": "lb",
+    "cost": "5.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_hunting-trap",
+    "name": "Hunting Trap",
+    "document": "phb-2024",
+    "desc": "As a Utilize action, you can set a Hunting Trap, which is a sawtooth steel ring that snaps shut when a creature steps on a pressure plate in the center. The trap is affixed by a heavy chain to an immobile object, such as a tree or a spike driven into the ground. A creature that steps on the plate must succeed on a DC 13 Dexterity saving throw or take 1d4 Piercing damage and have its Speed reduced to 0 until the start of its next turn. Thereafter, until the creature breaks free of the trap, its movement is limited by the length of the chain (typically 3 feet). A creature can use its action to make a DC 13 Strength (Athletics) check, freeing itself or another creature within its reach on a success. Each failed check deals 1 Piercing damage to the trapped creature.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "25.000",
+    "weight_unit": "lb",
+    "cost": "5.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_ink",
+    "name": "Ink",
+    "document": "phb-2024",
+    "desc": "Ink comes in a 1-ounce bottle, which provides enough ink to write about 500 pages.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "10.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_ink-pen",
+    "name": "Ink Pen",
+    "document": "phb-2024",
+    "desc": "Using Ink, an Ink Pen is used to write or draw.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "0.02",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_iron",
+    "name": "Iron",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Trade Goods",
+      "key": "trade-goods"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "0.10",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_iron-pot",
+    "name": "Iron Pot",
+    "document": "phb-2024",
+    "desc": "An Iron Pot holds up to 1 gallon.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "10.000",
+    "weight_unit": "lb",
+    "cost": "2.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_iron-spike",
+    "name": "Iron Spike",
+    "document": "phb-2024",
+    "desc": "Iron Spikes come in bundles of ten. As a Utilize action, you can use a blunt object, such as a Light Hammer, to hammer a spike into wood, earth, or a similar material. You can do so to jam a door shut or to then tie a Rope or Chain to the Spike.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "0.500",
+    "weight_unit": "lb",
+    "cost": "0.10",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_iron-spikes",
+    "name": "Iron Spikes",
+    "document": "phb-2024",
+    "desc": "Iron Spikes come in bundles of ten. As a Utilize action, you can use a blunt object, such as a Light Hammer, to hammer a spike into wood, earth, or a similar material. You can do so to jam a door shut or to then tie a Rope or Chain to the Spike.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "5.000",
+    "weight_unit": "lb",
+    "cost": "1.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_jacinth",
+    "name": "Jacinth",
+    "document": "phb-2024",
+    "desc": "A fiery orange gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "5000.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_jade",
+    "name": "Jade",
+    "document": "phb-2024",
+    "desc": "A light green, deep green, or white gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "100.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_jade-game-board-with-gold-playing-pieces",
+    "name": "Jade game board with gold playing pieces",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "7500.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_jasper",
+    "name": "Jasper",
+    "document": "phb-2024",
+    "desc": "A blue, black, or brown gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "50.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_jet",
+    "name": "Jet",
+    "document": "phb-2024",
+    "desc": "A deep black gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "100.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_jeweled-anklet",
+    "name": "Jeweled anklet",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "2500.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_jeweled-gold-crown",
+    "name": "Jeweled gold crown",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "7500.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_jeweled-platinum-ring",
+    "name": "Jeweled platinum ring",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "7500.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_jug",
+    "name": "Jug",
+    "document": "phb-2024",
+    "desc": "A Jug holds up to 1 gallon.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "4.000",
+    "weight_unit": "lb",
+    "cost": "0.02",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_keelboat",
+    "name": "Keelboat",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Vehicle",
+      "key": "vehicle"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "3000.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_ladder",
+    "name": "Ladder",
+    "document": "phb-2024",
+    "desc": "A Ladder is 10 feet tall. You must climb to move up or down it.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "25.000",
+    "weight_unit": "lb",
+    "cost": "0.10",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_lamp",
+    "name": "Lamp",
+    "document": "phb-2024",
+    "desc": "A Lamp burns Oil as fuel to cast Bright Light in a 15-foot radius and Dim Light for an additional 30 feet.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "0.50",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_lapis-lazuli",
+    "name": "Lapis Lazuli",
+    "document": "phb-2024",
+    "desc": "A light and dark blue with yellow flecks gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "10.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_linen-1-sq-yd",
+    "name": "Linen (1 sq. yd.)",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Trade Goods",
+      "key": "trade-goods"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "5.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_lock",
+    "name": "Lock",
+    "document": "phb-2024",
+    "desc": "A Lock comes with a key. Without the key, a creature can use Thieves' Tools to pick this Lock with a successful DC 15 Dexterity (Sleight of Hand) check.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "10.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_lolths-sting",
+    "name": "Lolth's Sting",
+    "document": "phb-2024",
+    "desc": "A creature subjected to Lolth's Sting must succeed on a DC 13 Constitution saving throw or have the Poisoned condition for 1 hour. If the creature fails the save by 5 or more, the creature also has the Unconscious condition while Poisoned in this way. The creature wakes up if it takes damage or if another creature takes an action to shake it awake.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "200.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_longship",
+    "name": "Longship",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Vehicle",
+      "key": "vehicle"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "10000.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_magnifying-glass",
+    "name": "Magnifying Glass",
+    "document": "phb-2024",
+    "desc": "A Magnifying Glass grants Advantage on any ability check made to appraise or inspect a highly detailed item. Lighting a fire with a Magnifying Glass requires light as bright as sunlight to focus, tinder to ignite, and about 5 minutes for the fire to ignite.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "100.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_malachite",
+    "name": "Malachite",
+    "document": "phb-2024",
+    "desc": "A striated light and dark green gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "10.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_malice",
+    "name": "Malice",
+    "document": "phb-2024",
+    "desc": "A creature subjected to Malice must succeed on a DC 15 Constitution saving throw or have the Poisoned condition for 1 hour. The creature also has the Blinded condition while Poisoned in this way.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "250.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_manacles",
+    "name": "Manacles",
+    "document": "phb-2024",
+    "desc": "As a Utilize action, you can use Manacles to bind an unwilling Small or Medium creature within 5 feet of yourself that has the Grappled, Incapacitated, or Restrained condition if you succeed on a DC 13 Dexterity (Sleight of Hand) check. While bound, a creature has Disadvantage on attack rolls, and the creature is Restrained if the Manacles are attached to a chain or hook that is fixed in place. Escaping the Manacles requires a successful DC 20 Dexterity (Sleight of Hand) check as an action. Bursting them requires a successful DC 25 Strength (Athletics) check as an action.\n\nEach set of Manacles comes with a key. Without the key, a creature can use Thieves' Tools to pick the Manacles' lock with a successful DC 15 Dexterity (Sleight of Hand) check.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "6.000",
+    "weight_unit": "lb",
+    "cost": "2.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_map",
+    "name": "Map",
+    "document": "phb-2024",
+    "desc": "If you consult an accurate Map, you gain a +5 bonus to Wisdom (Survival) checks you make to find your way in the place represented on it.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "1.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_map-or-scroll-case",
+    "name": "Map or Scroll Case",
+    "document": "phb-2024",
+    "desc": "A Map or Scroll Case holds up to 10 sheets of paper or 5 sheets of parchment.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "1.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_mastiff",
+    "name": "Mastiff",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Mount",
+      "key": "mount"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "25.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_midnight-tears",
+    "name": "Midnight Tears",
+    "document": "phb-2024",
+    "desc": "A creature that ingests Midnight Tears suffers no effect until the stroke of midnight. Any effect that ends the Poisoned condition neutralizes this poison. If the poison hasn't been neutralized before midnight, the creature makes a DC 17 Constitution saving throw, taking 31 (9d6) Poison damage on a failed save or half as much damage on a successful one.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "1500.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_military-saddle",
+    "name": "Military Saddle",
+    "document": "phb-2024",
+    "desc": "A saddle comes with a bit, a bridle, reins, and any other equipment needed to use the saddle. A Military Saddle gives Advantage on any ability check you make to remain mounted.",
+    "category": {
+      "name": "Tack and Harness",
+      "key": "tack-and-harness"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "30.000",
+    "weight_unit": "lb",
+    "cost": "20.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_mirror",
+    "name": "Mirror",
+    "document": "phb-2024",
+    "desc": "A handheld steel Mirror is useful for personal cosmetics but also for peeking around corners and reflecting light as a signal.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "0.500",
+    "weight_unit": "lb",
+    "cost": "5.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_moonstone",
+    "name": "Moonstone",
+    "document": "phb-2024",
+    "desc": "A white with pale-blue glow gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "50.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_moss-agate",
+    "name": "Moss Agate",
+    "document": "phb-2024",
+    "desc": "A pink or yellow white with mossy gray or green markings gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "10.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_mule",
+    "name": "Mule",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Mount",
+      "key": "mount"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "8.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_navigators-tools",
+    "name": "Navigator's Tools",
+    "document": "phb-2024",
+    "desc": "- Ability: Wisdom\n\n- Utilize: Plot a course (DC 10), or determine position by stargazing (DC 15)",
+    "category": {
+      "name": "Tools",
+      "key": "tools"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "2.000",
+    "weight_unit": "lb",
+    "cost": "25.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_necklace-string-of-small-pink-pearls",
+    "name": "Necklace string of small pink pearls",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "2500.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_net",
+    "name": "Net",
+    "document": "phb-2024",
+    "desc": "When you take the Attack action, you can replace one of your attacks with throwing a Net. Target a creature you can see within 15 feet of yourself. The target must succeed on a Dexterity saving throw (DC 8 plus your Dexterity modifier and Proficiency Bonus) or have the Restrained condition until it escapes. The target succeeds automatically if it is Huge or larger.\n\nTo escape, the target or a creature within 5 feet of it must take an action to make a DC 10 Strength (Athletics) check, freeing the Restrained creature on a success. Destroying the Net (AC 10; 5 HP; Immunity to Bludgeoning, Poison, and Psychic damage) also frees the target, ending the effect.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "3.000",
+    "weight_unit": "lb",
+    "cost": "1.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_obsidian",
+    "name": "Obsidian",
+    "document": "phb-2024",
+    "desc": "A black gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "10.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_obsidian-statuette-with-gold-fittings-and-inlay",
+    "name": "Obsidian statuette with gold fittings and inlay",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "750.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_oil",
+    "name": "Oil",
+    "document": "phb-2024",
+    "desc": "You can douse a creature, object, or space with Oil or use it as fuel, as detailed below.\n\nDousing a Creature or an Object. When you take the Attack action, you can replace one of your attacks with throwing an Oil flask. Target one creature or object within 20 feet of yourself. The target must succeed on a Dexterity saving throw (DC 8 plus your Dexterity modifier and Proficiency Bonus) or be covered in oil. If the target takes Fire damage before the oil dries (after 1 minute), the target takes an extra 5 Fire damage from burning oil.\n\nDousing a Space. You can take the Utilize action to pour an Oil flask on level ground to cover a 5-foot-square area within 5 feet of yourself. If lit, the oil burns until the end of the turn 2 rounds from when the oil was lit (or 12 seconds) and deals 5 Fire damage to any creature that enters the area or ends its turn there. A creature can take this damage only once per turn.\n\nFuel. Oil serves as fuel for Lamps and Lanterns. Once lit, a flask of Oil burns for 6 hours in a Lamp or Lantern. That duration doesn't need to be consecutive; you can extinguish the burning Oil (as a Utilize action) and rekindle it again until it has burned for a total of 6 hours.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "0.10",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_oil-of-taggit",
+    "name": "Oil of Taggit",
+    "document": "phb-2024",
+    "desc": "A creature subjected to Oil of Taggit must succeed on a DC 13 Constitution saving throw or have the Poisoned condition for 24 hours. The creature also has the Unconscious condition while Poisoned in this way. It wakes up if it takes damage.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "400.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_old-masterpiece-painting",
+    "name": "Old masterpiece painting",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "2500.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_onyx",
+    "name": "Onyx",
+    "document": "phb-2024",
+    "desc": "A bands of black and white, or pure black or white gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "50.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_opal",
+    "name": "Opal",
+    "document": "phb-2024",
+    "desc": "A pale blue with green and golden mottling gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "1000.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_ox",
+    "name": "Ox",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Trade Goods",
+      "key": "trade-goods"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "15.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_painted-gold-war-mask",
+    "name": "Painted gold war mask",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "750.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_pair-of-engraved-bone-dice",
+    "name": "Pair of engraved bone dice",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "25.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_pale-tincture",
+    "name": "Pale Tincture",
+    "document": "phb-2024",
+    "desc": "A creature subjected to Pale Tincture must succeed on a DC 16 Constitution saving throw or take 3 (1d6) Poison damage and have the Poisoned condition. The Poisoned creature repeats the save every 24 hours, taking 3 (1d6) Poison damage on a failed save. The damage the poison deals can't be healed by any means while the creature remains Poisoned. After seven successful saves against the poison, the creature is no longer Poisoned.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "250.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_paper",
+    "name": "Paper",
+    "document": "phb-2024",
+    "desc": "One sheet of Paper can hold about 250 handwritten words.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "0.20",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_parchment",
+    "name": "Parchment",
+    "document": "phb-2024",
+    "desc": "One sheet of Parchment can hold about 250 handwritten words.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "0.10",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_pearl",
+    "name": "Pearl",
+    "document": "phb-2024",
+    "desc": "A lustrous white, yellow, or pink gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "100.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_pepper",
+    "name": "Pepper",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Trade Goods",
+      "key": "trade-goods"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "2.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_perfume",
+    "name": "Perfume",
+    "document": "phb-2024",
+    "desc": "Perfume comes in a 4-ounce vial. For 1 hour after applying Perfume to yourself, you have Advantage on Charisma (Persuasion) checks made to influence an Indifferent Humanoid within 5 feet of yourself.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "5.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_peridot",
+    "name": "Peridot",
+    "document": "phb-2024",
+    "desc": "A rich olive green gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "500.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_pig",
+    "name": "Pig",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Trade Goods",
+      "key": "trade-goods"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "3.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_platinum",
+    "name": "Platinum",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Trade Goods",
+      "key": "trade-goods"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "500.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_platinum-bracelet-set-with-an-emerald",
+    "name": "Platinum bracelet set with an emerald",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "2500.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_playing-cards",
+    "name": "Playing Cards",
+    "document": "phb-2024",
+    "desc": "- Ability: Wisdom\n\n- Utilize: Discern whether someone is cheating (DC 10), or win the game (DC 20)",
+    "category": {
+      "name": "Gaming Set",
+      "key": "gaming-set"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "0.50",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_poisoners-kit",
+    "name": "Poisoner's Kit",
+    "document": "phb-2024",
+    "desc": "- Ability: Intelligence\n\n- Utilize: Detect a poisoned object (DC 10)\n\n- Craft: Basic Poison",
+    "category": {
+      "name": "Tools",
+      "key": "tools"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "2.000",
+    "weight_unit": "lb",
+    "cost": "50.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_pole",
+    "name": "Pole",
+    "document": "phb-2024",
+    "desc": "A Pole is 10 feet long. You can use it to touch something up to 10 feet away. If you must make a Strength (Athletics) check as part of a High or Long Jump, you can use the Pole to vault, giving yourself Advantage on the check.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "7.000",
+    "weight_unit": "lb",
+    "cost": "0.05",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_pony",
+    "name": "Pony",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Mount",
+      "key": "mount"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "30.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_portable-ram",
+    "name": "Portable Ram",
+    "document": "phb-2024",
+    "desc": "You can use a Portable Ram to break down doors. When doing so, you gain a +4 bonus to the Strength check. One other character can help you use the ram, giving you Advantage on this check.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "35.000",
+    "weight_unit": "lb",
+    "cost": "4.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_pouch",
+    "name": "Pouch",
+    "document": "phb-2024",
+    "desc": "A Pouch holds up to 6 pounds within one-fifth of a cubic foot.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "0.50",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_priests-pack",
+    "name": "Priest's Pack",
+    "document": "phb-2024",
+    "desc": "A Priest's Pack contains the following items: Backpack, Blanket, Holy Water, Lamp, 7 days of Rations, Robe, and Tinderbox.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "29.000",
+    "weight_unit": "lb",
+    "cost": "33.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_psychic-blade",
+    "name": "Psychic Blade",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": null,
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_purple-worm-poison",
+    "name": "Purple Worm Poison",
+    "document": "phb-2024",
+    "desc": "A creature subjected to Purple Worm Poison makes a DC 21 Constitution saving throw, taking 35 (10d6) Poison damage on a failed save or half as much damage on a successful one.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "2000.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_quartz",
+    "name": "Quartz",
+    "document": "phb-2024",
+    "desc": "A white, smoky gray, or yellow gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "50.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_quiver",
+    "name": "Quiver",
+    "document": "phb-2024",
+    "desc": "A Quiver holds up to 20 Arrows.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "1.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_rations",
+    "name": "Rations",
+    "document": "phb-2024",
+    "desc": "Rations consist of travel-ready food, including jerky, dried fruit, hardtack, and nuts. See \"Malnutrition\" for the risks of not eating.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "2.000",
+    "weight_unit": "lb",
+    "cost": "0.50",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_reliquary",
+    "name": "Reliquary",
+    "document": "phb-2024",
+    "desc": "For a Reliquary to be an effective Holy Symbol, it must be held.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "2.000",
+    "weight_unit": "lb",
+    "cost": "5.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_rhodochrosite",
+    "name": "Rhodochrosite",
+    "document": "phb-2024",
+    "desc": "A light pink gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "10.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_riding-horse",
+    "name": "Riding Horse",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Mount",
+      "key": "mount"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "75.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_riding-saddle",
+    "name": "Riding Saddle",
+    "document": "phb-2024",
+    "desc": "A saddle comes with a bit, a bridle, reins, and any other equipment needed to use the saddle.",
+    "category": {
+      "name": "Tack and Harness",
+      "key": "tack-and-harness"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "25.000",
+    "weight_unit": "lb",
+    "cost": "10.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_robe",
+    "name": "Robe",
+    "document": "phb-2024",
+    "desc": "A Robe has vocational or ceremonial significance. Some events and locations admit only people wearing a Robe bearing certain colors or symbols.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "4.000",
+    "weight_unit": "lb",
+    "cost": "1.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_rope",
+    "name": "Rope",
+    "document": "phb-2024",
+    "desc": "As a Utilize action, you can tie a knot with Rope if you succeed on a DC 10 Dexterity (Sleight of Hand) check. The Rope can be burst with a successful DC 20 Strength (Athletics) check.\n\nYou can bind an unwilling creature with the Rope only if the creature has the Grappled, Incapacitated, or Restrained condition. If the creature's legs are bound, the creature has the Restrained condition until it escapes. Escaping the Rope requires the creature to make a successful DC 15 Dexterity (Acrobatics) check as an action.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "5.000",
+    "weight_unit": "lb",
+    "cost": "1.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_rowboat",
+    "name": "Rowboat",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Vehicle",
+      "key": "vehicle"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "100.000",
+    "weight_unit": "lb",
+    "cost": "50.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_ruby",
+    "name": "Ruby",
+    "document": "phb-2024",
+    "desc": "A clear red to deep crimson gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "5000.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_sack",
+    "name": "Sack",
+    "document": "phb-2024",
+    "desc": "A Sack holds up to 30 pounds within 1 cubic foot.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "0.500",
+    "weight_unit": "lb",
+    "cost": "0.01",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_saffron",
+    "name": "Saffron",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Trade Goods",
+      "key": "trade-goods"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "15.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_sailing-ship",
+    "name": "Sailing Ship",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Vehicle",
+      "key": "vehicle"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "10000.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_salt",
+    "name": "Salt",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Trade Goods",
+      "key": "trade-goods"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "0.05",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_sardonyx",
+    "name": "Sardonyx",
+    "document": "phb-2024",
+    "desc": "A bands of red and white gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "50.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_scholars-pack",
+    "name": "Scholar's Pack",
+    "document": "phb-2024",
+    "desc": "A Scholar's Pack contains the following items: Backpack, Book, Ink, Ink Pen, Lamp, 10 flasks of Oil, 10 sheets of Parchment, and Tinderbox.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "22.000",
+    "weight_unit": "lb",
+    "cost": "40.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_serpent-venom",
+    "name": "Serpent Venom",
+    "document": "phb-2024",
+    "desc": "A creature subjected to Serpent Venom must succeed on a DC 11 Constitution saving throw, taking 10 (3d6) Poison damage on a failed save or half as much damage on a successful one.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "200.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_set-of-gold-nesting-dolls",
+    "name": "Set of gold nesting dolls",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "7500.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_sheep",
+    "name": "Sheep",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Trade Goods",
+      "key": "trade-goods"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "2.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_shovel",
+    "name": "Shovel",
+    "document": "phb-2024",
+    "desc": "Working for 1 hour, you can use a Shovel to dig a hole that is 5 feet on each side in soil or similar material.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "5.000",
+    "weight_unit": "lb",
+    "cost": "2.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_signal-whistle",
+    "name": "Signal Whistle",
+    "document": "phb-2024",
+    "desc": "When blown as a Utilize action, a Signal Whistle produces a sound that can be heard up to 600 feet away.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "0.05",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_silk",
+    "name": "Silk",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Trade Goods",
+      "key": "trade-goods"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "10.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_silk-vestments-with-gold-embroidery",
+    "name": "Silk vestments with gold embroidery",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "250.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_silver",
+    "name": "Silver",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Trade Goods",
+      "key": "trade-goods"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "5.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_silver-and-gold-brooch",
+    "name": "Silver and gold brooch",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "750.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_silver-bar-2-pound",
+    "name": "Silver Bar (2-pound)",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "2.000",
+    "weight_unit": "lb",
+    "cost": "10.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_silver-bar-5-pound",
+    "name": "Silver Bar (5-pound)",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "5.000",
+    "weight_unit": "lb",
+    "cost": "25.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_silver-chalice-set-with-moonstones",
+    "name": "Silver chalice set with moonstones",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "750.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_silver-ewer",
+    "name": "Silver ewer",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "25.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_silver-necklace-with-a-gemstone-pendant",
+    "name": "Silver necklace with a gemstone pendant",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "250.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_sled",
+    "name": "Sled",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Vehicle",
+      "key": "vehicle"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "300.000",
+    "weight_unit": "lb",
+    "cost": "20.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_smoke-grenade",
+    "name": "Smoke Grenade",
+    "document": "phb-2024",
+    "desc": "{#itemEntry Grenade|XDMG}\n\nThe area of the Sphere is Heavily Obscured by smoke for 1 minute. A strong wind (such as the Gust of Wind spell) disperses the smoke.",
+    "category": {
+      "name": "Explosive",
+      "key": "explosive"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "2.000",
+    "weight_unit": "lb",
+    "cost": "50.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_spinel",
+    "name": "Spinel",
+    "document": "phb-2024",
+    "desc": "A red, red brown, or deep green gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "100.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_sprig-of-mistletoe",
+    "name": "Sprig of Mistletoe",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "1.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_spyglass",
+    "name": "Spyglass",
+    "document": "phb-2024",
+    "desc": "Objects viewed through a Spyglass are magnified to twice their size.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "1000.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_stabling-per-day",
+    "name": "Stabling (per day)",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Tack and Harness",
+      "key": "tack-and-harness"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "0.05",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_star-rose-quartz",
+    "name": "Star rose quartz",
+    "document": "phb-2024",
+    "desc": "A rosy stone with white star-shaped center gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "50.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_star-ruby",
+    "name": "Star Ruby",
+    "document": "phb-2024",
+    "desc": "A ruby with white star-shaped center gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "1000.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_star-sapphire",
+    "name": "Star Sapphire",
+    "document": "phb-2024",
+    "desc": "A blue sapphire with white star-shaped center gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "1000.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_string",
+    "name": "String",
+    "document": "phb-2024",
+    "desc": "String is 10 feet long. You can tie a knot in it as a Utilize action.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "0.10",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_tent",
+    "name": "Tent",
+    "document": "phb-2024",
+    "desc": "A Tent sleeps up to two Small or Medium creatures.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "20.000",
+    "weight_unit": "lb",
+    "cost": "2.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_thieves-tools",
+    "name": "Thieves' Tools",
+    "document": "phb-2024",
+    "desc": "- Ability: Dexterity\n\n- Utilize: Pick a lock (DC 15), or disarm a trap (DC 15)",
+    "category": {
+      "name": "Tools",
+      "key": "tools"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "25.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_three-dragon-ante-set",
+    "name": "Three-Dragon Ante Set",
+    "document": "phb-2024",
+    "desc": "- Ability: Wisdom\n\n- Utilize: Discern whether someone is cheating (DC 10), or win the game (DC 20)",
+    "category": {
+      "name": "Gaming Set",
+      "key": "gaming-set"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "1.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_tiger-eye",
+    "name": "Tiger Eye",
+    "document": "phb-2024",
+    "desc": "A brown with golden center gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "10.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_tinderbox",
+    "name": "Tinderbox",
+    "document": "phb-2024",
+    "desc": "A Tinderbox is a small container holding flint, fire steel, and tinder (usually dry cloth soaked in light oil) used to kindle a fire. Using it to light a Candle, Lamp, Lantern, or Torch—or anything else with exposed fuel—takes a Bonus Action. Lighting any other fire takes 1 minute.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "0.50",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_topaz",
+    "name": "Topaz",
+    "document": "phb-2024",
+    "desc": "A golden yellow gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "500.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_torch",
+    "name": "Torch",
+    "document": "phb-2024",
+    "desc": "A Torch burns for 1 hour, casting Bright Light in a 20-foot radius and Dim Light for an additional 20 feet. When you take the Attack action, you can attack with the Torch, using it as a Simple Melee weapon. On a hit, the target takes 1 Fire damage.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "0.01",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_torpor",
+    "name": "Torpor",
+    "document": "phb-2024",
+    "desc": "A creature subjected to Torpor poison must succeed on a DC 15 Constitution saving throw or have the Poisoned condition for 4d6 hours. The creature's Speed is halved while the creature is Poisoned in this way.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "600.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_tourmaline",
+    "name": "Tourmaline",
+    "document": "phb-2024",
+    "desc": "A pale green, blue, brown, or red gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "100.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_travelers-clothes",
+    "name": "Traveler's Clothes",
+    "document": "phb-2024",
+    "desc": "Traveler's Clothes are resilient garments designed for travel in various environments.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "4.000",
+    "weight_unit": "lb",
+    "cost": "2.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_trinket",
+    "name": "Trinket",
+    "document": "phb-2024",
+    "desc": "When you make your character, you can roll once on the Trinkets table to gain a Tiny trinket, a simple item lightly touched by mystery. The DM might also use this table. It can help stock a room in a dungeon or fill a creature's pockets.\n\nTable: Trinkets\n| 1d100 | Trinket |\n|---|---|\n| 01 | A mummified goblin hand |\n| 02 | A crystal that faintly glows in moonlight |\n| 03 | A gold coin minted in an unknown land |\n| 04 | A diary written in a language you don't know |\n| 05 | A brass ring that never tarnishes |\n| 06 | An old chess piece made from glass |\n| 07 | A pair of knucklebone dice, each with a skull symbol on the side that would normally show six pips |\n| 08 | A small idol depicting a nightmarish creature that gives you unsettling dreams when you sleep near it |\n| 09 | A lock of someone's hair |\n| 10 | The deed for a parcel of land in a realm unknown to you |\n| 11 | A 1-ounce block made from an unknown material |\n| 12 | A small cloth doll skewered with needles |\n| 13 | A tooth from an unknown beast |\n| 14 | An enormous scale, perhaps from a dragon |\n| 15 | A bright-green feather |\n| 16 | An old divination card bearing your likeness |\n| 17 | A glass orb filled with moving smoke |\n| 18 | A 1-pound egg with a bright-red shell |\n| 19 | A pipe that blows bubbles |\n| 20 | A glass jar containing a bit of flesh floating in pickling fluid |\n| 21 | A gnome-crafted music box that plays a song you dimly remember from your childhood |\n| 22 | A wooden statuette of a smug halfling |\n| 23 | A brass orb etched with strange runes |\n| 24 | A multicolored stone disk |\n| 25 | A silver icon of a raven |\n| 26 | A bag containing forty-seven teeth, one of which is rotten |\n| 27 | A shard of obsidian that always feels warm to the touch |\n| 28 | A dragon's talon strung on a leather necklace |\n| 29 | A pair of old socks |\n| 30 | A blank book whose pages refuse to hold ink, chalk, graphite, or any other marking |\n| 31 | A silver badge that is a five-pointed star |\n| 32 | A knife that belonged to a relative |\n| 33 | A glass vial filled with nail clippings |\n| 34 | A rectangular metal device with two tiny metal cups on one end that throws sparks when wet |\n| 35 | A white, sequined glove sized for a human |\n| 36 | A vest with one hundred tiny pockets |\n| 37 | A weightless stone |\n| 38 | A sketch of a goblin |\n| 39 | An empty glass vial that smells of perfume |\n| 40 | A gemstone that looks like a lump of coal when examined by anyone but you |\n| 41 | A scrap of cloth from an old banner |\n| 42 | A rank insignia from a lost legionnaire |\n| 43 | A silver bell without a clapper |\n| 44 | A mechanical canary inside a lamp |\n| 45 | A miniature chest carved to look like it has numerous feet on the bottom |\n| 46 | A dead sprite inside a clear glass bottle |\n| 47 | A metal can that has no opening but sounds as if it is filled with liquid, sand, spiders, or broken glass (your choice) |\n| 48 | A glass orb filled with water, in which swims a clockwork goldfish |\n| 49 | A silver spoon with an M engraved on the handle |\n| 50 | A whistle made from gold-colored wood |\n| 51 | A dead scarab beetle the size of your hand |\n| 52 | Two toy soldiers, one missing a head |\n| 53 | A small box filled with different-sized buttons |\n| 54 | A candle that can't be lit |\n| 55 | A miniature cage with no door |\n| 56 | An old key |\n| 57 | An indecipherable treasure map |\n| 58 | A hilt from a broken sword |\n| 59 | A rabbit's foot |\n| 60 | A glass eye |\n| 61 | A cameo of a hideous person |\n| 62 | A silver skull the size of a coin |\n| 63 | An alabaster mask |\n| 64 | A cone of sticky black incense that stinks |\n| 65 | A nightcap that gives you pleasant dreams when you wear it |\n| 66 | A single caltrop made from bone |\n| 67 | A gold monocle frame without the lens |\n| 68 | A 1-inch cube, each side a different color |\n| 69 | A crystal doorknob |\n| 70 | A packet filled with pink dust |\n| 71 | A fragment of a beautiful song, written as musical notes on two pieces of parchment |\n| 72 | A silver teardrop earring containing a real teardrop |\n| 73 | An eggshell painted with scenes of misery in disturbing detail |\n| 74 | A fan that, when unfolded, shows a sleepy cat |\n| 75 | A set of bone pipes |\n| 76 | A four-leaf clover pressed inside a book discussing manners and etiquette |\n| 77 | A sheet of parchment upon which is drawn a mechanical contraption |\n| 78 | An ornate scabbard that fits no blade you have found |\n| 79 | An invitation to a party where a murder happened |\n| 80 | A bronze pentacle with an etching of a rat's head in its center |\n| 81 | A purple handkerchief embroidered with the name of an archmage |\n| 82 | Half a floor plan for a temple, a castle, or another structure |\n| 83 | A bit of folded cloth that, when unfolded, turns into a stylish cap |\n| 84 | A receipt of deposit at a bank in a far-off city |\n| 85 | A diary with seven missing pages |\n| 86 | An empty silver snuffbox bearing the inscription \"dreams\" on its lid |\n| 87 | An iron holy symbol devoted to an unknown god |\n| 88 | A book about a legendary hero's rise and fall, with the last chapter missing |\n| 89 | A vial of dragon blood |\n| 90 | An ancient arrow of elven design |\n| 91 | A needle that never bends |\n| 92 | An ornate brooch of dwarven design |\n| 93 | An empty wine bottle bearing a pretty label that says, \"The Wizard of Wines Winery, Red Dragon Crush, 331422-W\" |\n| 94 | A mosaic tile with a multicolored, glazed surface |\n| 95 | A petrified mouse |\n| 96 | A black pirate flag adorned with a dragon's skull and crossbones |\n| 97 | A tiny mechanical crab or spider that moves about when it's not being observed |\n| 98 | A glass jar containing lard with a label that reads, \"Griffon Grease\" |\n| 99 | A wooden box with a ceramic bottom that holds a living worm with a head on each end of its body |\n| 00 | A metal urn containing the ashes of a hero |",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": null,
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_truth-serum",
+    "name": "Truth Serum",
+    "document": "phb-2024",
+    "desc": "A creature subjected to Truth Serum must succeed on a DC 11 Constitution saving throw or have the Poisoned condition for 1 hour. The Poisoned creature can't knowingly communicate a lie.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "150.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_turquoise",
+    "name": "Turquoise",
+    "document": "phb-2024",
+    "desc": "A light blue green gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "10.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_vial",
+    "name": "Vial",
+    "document": "phb-2024",
+    "desc": "A Vial holds up to 4 ounces.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "1.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_wagon",
+    "name": "Wagon",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Vehicle",
+      "key": "vehicle"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "400.000",
+    "weight_unit": "lb",
+    "cost": "35.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_warhorse",
+    "name": "Warhorse",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Mount",
+      "key": "mount"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "400.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_warship",
+    "name": "Warship",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Vehicle",
+      "key": "vehicle"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "25000.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_waterskin",
+    "name": "Waterskin",
+    "document": "phb-2024",
+    "desc": "A Waterskin holds up to 4 pints. If you don't drink sufficient water, you risk dehydration.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "5.000",
+    "weight_unit": "lb",
+    "cost": "0.20",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_well-made-tapestry-that-is-10-feet-by-10-feet",
+    "name": "Well-made tapestry that is 10 feet by 10 feet",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "250.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_wheat",
+    "name": "Wheat",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Trade Goods",
+      "key": "trade-goods"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "0.01",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_wyvern-poison",
+    "name": "Wyvern Poison",
+    "document": "phb-2024",
+    "desc": "A creature subjected to Wyvern Poison makes a DC 14 Constitution saving throw, taking 24 (7d6) Poison damage on a failed save or half as much damage on a successful one.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "1200.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_yellow-sapphire",
+    "name": "Yellow Sapphire",
+    "document": "phb-2024",
+    "desc": "A fiery yellow or yellow green gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "1000.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_yew-wand",
+    "name": "Yew Wand",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "10.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_zircon",
+    "name": "Zircon",
+    "document": "phb-2024",
+    "desc": "A pale blue green gemstone.",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "50.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_alchemists-supplies",
+    "name": "Alchemist's Supplies",
+    "document": "phb-2024",
+    "desc": "- Ability: Intelligence\n\n- Utilize: Identify a substance (DC 15), or start a fire (DC 15)\n\n- Craft: Acid, Alchemist's Fire, Component Pouch, Oil, Paper, Perfume",
+    "category": {
+      "name": "Artisan's Tools",
+      "key": "artisans-tools"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "8.000",
+    "weight_unit": "lb",
+    "cost": "50.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_antimatter-rifle",
+    "name": "Antimatter Rifle",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "10.000",
+    "weight_unit": "lb",
+    "cost": null,
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_arrow",
+    "name": "Arrow",
+    "document": "phb-2024",
+    "desc": "Arrows are used with a weapon that has the ammunition property to make a ranged attack. Each time you attack with the weapon, you expend one piece of ammunition. Drawing the ammunition from a quiver, case, or other container is part of the attack (you need a free hand to load a one-handed weapon). At the end of the battle, you can recover half your expended ammunition by taking a minute to search the battlefield.\n\nArrows are typically stored in a Quiver (bought separately).",
+    "category": {
+      "name": "Ammunition",
+      "key": "ammunition"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "0.050",
+    "weight_unit": "lb",
+    "cost": "0.05",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_arrows-20",
+    "name": "Arrows (20)",
+    "document": "phb-2024",
+    "desc": "Arrows are used with a weapon that has the ammunition property to make a ranged attack. Each time you attack with the weapon, you expend one piece of ammunition. Drawing the ammunition from a quiver, case, or other container is part of the attack (you need a free hand to load a one-handed weapon). At the end of the battle, you can recover half your expended ammunition by taking a minute to search the battlefield.\n\nArrows are typically stored in a Quiver (bought separately).",
+    "category": {
+      "name": "Ammunition",
+      "key": "ammunition"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "1.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_automatic-rifle",
+    "name": "Automatic Rifle",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "8.000",
+    "weight_unit": "lb",
+    "cost": null,
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_bagpipes",
+    "name": "Bagpipes",
+    "document": "phb-2024",
+    "desc": "- Ability: Charisma\n\n- Utilize: Play a known tune (DC 10), or improvise a song (DC 15)",
+    "category": {
+      "name": "Instrument",
+      "key": "instrument"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "6.000",
+    "weight_unit": "lb",
+    "cost": "30.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_battleaxe",
+    "name": "Battleaxe",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "4.000",
+    "weight_unit": "lb",
+    "cost": "10.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_blowgun",
+    "name": "Blowgun",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "10.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_bolt",
+    "name": "Bolt",
+    "document": "phb-2024",
+    "desc": "Crossbow bolts are used with a weapon that has the ammunition property to make a ranged attack. Each time you attack with the weapon, you expend one piece of ammunition. Drawing the ammunition from a quiver, case, or other container is part of the attack (you need a free hand to load a one-handed weapon). At the end of the battle, you can recover half your expended ammunition by taking a minute to search the battlefield.\n\nBolts are typically stored in a Crossbow Bolt Case (bought separately).",
+    "category": {
+      "name": "Ammunition",
+      "key": "ammunition"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "0.075",
+    "weight_unit": "lb",
+    "cost": "0.05",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_bolts-20",
+    "name": "Bolts (20)",
+    "document": "phb-2024",
+    "desc": "Crossbow bolts are used with a weapon that has the ammunition property to make a ranged attack. Each time you attack with the weapon, you expend one piece of ammunition. Drawing the ammunition from a quiver, case, or other container is part of the attack (you need a free hand to load a one-handed weapon). At the end of the battle, you can recover half your expended ammunition by taking a minute to search the battlefield.\n\nBolts are typically stored in a Crossbow Bolt Case (bought separately).",
+    "category": {
+      "name": "Ammunition",
+      "key": "ammunition"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.500",
+    "weight_unit": "lb",
+    "cost": "1.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_breastplate",
+    "name": "Breastplate",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Medium Armor",
+      "key": "medium-armor"
+    },
+    "weapon": null,
+    "armor": {
+      "name": "Breastplate",
+      "key": "breastplate",
+      "category": "medium",
+      "ac_base": 14,
+      "ac_display": null,
+      "ac_add_dexmod": true,
+      "ac_cap_dexmod": 2,
+      "grants_stealth_disadvantage": false,
+      "strength_score_required": null
+    },
+    "size": null,
+    "weight": "20.000",
+    "weight_unit": "lb",
+    "cost": "400.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_brewers-supplies",
+    "name": "Brewer's Supplies",
+    "document": "phb-2024",
+    "desc": "- Ability: Intelligence\n\n- Utilize: Detect poisoned drink (DC 15), or identify alcohol (DC 10)\n\n- Craft: Antitoxin",
+    "category": {
+      "name": "Artisan's Tools",
+      "key": "artisans-tools"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "9.000",
+    "weight_unit": "lb",
+    "cost": "20.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_calligraphers-supplies",
+    "name": "Calligrapher's Supplies",
+    "document": "phb-2024",
+    "desc": "- Ability: Dexterity\n\n- Utilize: Write text with impressive flourishes that guard against forgery (DC 15)\n\n- Craft: Ink, Spell Scroll",
+    "category": {
+      "name": "Artisan's Tools",
+      "key": "artisans-tools"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "5.000",
+    "weight_unit": "lb",
+    "cost": "10.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_carpenters-tools",
+    "name": "Carpenter's Tools",
+    "document": "phb-2024",
+    "desc": "- Ability: Strength\n\n- Utilize: Seal or pry open a door or container (DC 20)\n\n- Craft: Club, Greatclub, Quarterstaff, Barrel, Chest, Ladder, Pole, Portable Ram, Torch",
+    "category": {
+      "name": "Artisan's Tools",
+      "key": "artisans-tools"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "6.000",
+    "weight_unit": "lb",
+    "cost": "8.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_cartographers-tools",
+    "name": "Cartographer's Tools",
+    "document": "phb-2024",
+    "desc": "- Ability: Wisdom\n\n- Utilize: Draft a map of a small area (DC 15)\n\n- Craft: Map",
+    "category": {
+      "name": "Artisan's Tools",
+      "key": "artisans-tools"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "6.000",
+    "weight_unit": "lb",
+    "cost": "15.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_chain-mail",
+    "name": "Chain Mail",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Heavy Armor",
+      "key": "heavy-armor"
+    },
+    "weapon": null,
+    "armor": {
+      "name": "Chain Mail",
+      "key": "chain-mail",
+      "category": "heavy",
+      "ac_base": 16,
+      "ac_display": null,
+      "ac_add_dexmod": false,
+      "ac_cap_dexmod": null,
+      "grants_stealth_disadvantage": true,
+      "strength_score_required": 13
+    },
+    "size": null,
+    "weight": "55.000",
+    "weight_unit": "lb",
+    "cost": "75.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_chain-shirt",
+    "name": "Chain Shirt",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Medium Armor",
+      "key": "medium-armor"
+    },
+    "weapon": null,
+    "armor": {
+      "name": "Chain Shirt",
+      "key": "chain-shirt",
+      "category": "medium",
+      "ac_base": 13,
+      "ac_display": null,
+      "ac_add_dexmod": true,
+      "ac_cap_dexmod": 2,
+      "grants_stealth_disadvantage": false,
+      "strength_score_required": null
+    },
+    "size": null,
+    "weight": "20.000",
+    "weight_unit": "lb",
+    "cost": "50.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_club",
+    "name": "Club",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "2.000",
+    "weight_unit": "lb",
+    "cost": "0.10",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_cobblers-tools",
+    "name": "Cobbler's Tools",
+    "document": "phb-2024",
+    "desc": "- Ability: Dexterity\n\n- Utilize: Modify footwear to give Advantage on the wearer's next Dexterity (Acrobatics) check (DC 10)\n\n- Craft: Climber's Kit",
+    "category": {
+      "name": "Artisan's Tools",
+      "key": "artisans-tools"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "5.000",
+    "weight_unit": "lb",
+    "cost": "5.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_cooks-utensils",
+    "name": "Cook's Utensils",
+    "document": "phb-2024",
+    "desc": "- Ability: Wisdom\n\n- Utilize: Improve food's flavor (DC 10), or detect spoiled or poisoned food (DC 15)\n\n- Craft: Rations",
+    "category": {
+      "name": "Artisan's Tools",
+      "key": "artisans-tools"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "8.000",
+    "weight_unit": "lb",
+    "cost": "1.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_crystal",
+    "name": "Crystal",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "10.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_dagger",
+    "name": "Dagger",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "2.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_dart",
+    "name": "Dart",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "0.250",
+    "weight_unit": "lb",
+    "cost": "0.05",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_drum",
+    "name": "Drum",
+    "document": "phb-2024",
+    "desc": "- Ability: Charisma\n\n- Utilize: Play a known tune (DC 10), or improvise a song (DC 15)",
+    "category": {
+      "name": "Instrument",
+      "key": "instrument"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "3.000",
+    "weight_unit": "lb",
+    "cost": "6.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_dulcimer",
+    "name": "Dulcimer",
+    "document": "phb-2024",
+    "desc": "- Ability: Charisma\n\n- Utilize: Play a known tune (DC 10), or improvise a song (DC 15)",
+    "category": {
+      "name": "Instrument",
+      "key": "instrument"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "10.000",
+    "weight_unit": "lb",
+    "cost": "25.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_energy-cell",
+    "name": "Energy Cell",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Ammunition",
+      "key": "ammunition"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "0.500",
+    "weight_unit": "lb",
+    "cost": null,
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_firearm-bullet",
+    "name": "Firearm Bullet",
+    "document": "phb-2024",
+    "desc": "Firearm Bullets are destroyed upon use in a modern firearm.",
+    "category": {
+      "name": "Ammunition",
+      "key": "ammunition"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "0.200",
+    "weight_unit": "lb",
+    "cost": "0.30",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_firearm-bullets-10",
+    "name": "Firearm Bullets (10)",
+    "document": "phb-2024",
+    "desc": "Firearm Bullets are destroyed upon use in a modern firearm.",
+    "category": {
+      "name": "Ammunition",
+      "key": "ammunition"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "2.000",
+    "weight_unit": "lb",
+    "cost": "3.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_flail",
+    "name": "Flail",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "2.000",
+    "weight_unit": "lb",
+    "cost": "10.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_flute",
+    "name": "Flute",
+    "document": "phb-2024",
+    "desc": "- Ability: Charisma\n\n- Utilize: Play a known tune (DC 10), or improvise a song (DC 15)",
+    "category": {
+      "name": "Instrument",
+      "key": "instrument"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "2.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_glaive",
+    "name": "Glaive",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "6.000",
+    "weight_unit": "lb",
+    "cost": "20.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_glassblowers-tools",
+    "name": "Glassblower's Tools",
+    "document": "phb-2024",
+    "desc": "- Ability: Intelligence\n\n- Utilize: Discern what a glass object held in the past 24 hours (DC 15)\n\n- Craft: Glass Bottle, Magnifying Glass, Spyglass, Vial",
+    "category": {
+      "name": "Artisan's Tools",
+      "key": "artisans-tools"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "5.000",
+    "weight_unit": "lb",
+    "cost": "30.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_greataxe",
+    "name": "Greataxe",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "7.000",
+    "weight_unit": "lb",
+    "cost": "30.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_greatclub",
+    "name": "Greatclub",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "10.000",
+    "weight_unit": "lb",
+    "cost": "0.20",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_greatsword",
+    "name": "Greatsword",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "6.000",
+    "weight_unit": "lb",
+    "cost": "50.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_halberd",
+    "name": "Halberd",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "6.000",
+    "weight_unit": "lb",
+    "cost": "20.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_half-plate-armor",
+    "name": "Half Plate Armor",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Medium Armor",
+      "key": "medium-armor"
+    },
+    "weapon": null,
+    "armor": {
+      "name": "Half Plate Armor",
+      "key": "half-plate-armor",
+      "category": "medium",
+      "ac_base": 15,
+      "ac_display": null,
+      "ac_add_dexmod": true,
+      "ac_cap_dexmod": 2,
+      "grants_stealth_disadvantage": true,
+      "strength_score_required": null
+    },
+    "size": null,
+    "weight": "40.000",
+    "weight_unit": "lb",
+    "cost": "750.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_hand-crossbow",
+    "name": "Hand Crossbow",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "3.000",
+    "weight_unit": "lb",
+    "cost": "75.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_handaxe",
+    "name": "Handaxe",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "2.000",
+    "weight_unit": "lb",
+    "cost": "5.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_heavy-crossbow",
+    "name": "Heavy Crossbow",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "18.000",
+    "weight_unit": "lb",
+    "cost": "50.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_hide-armor",
+    "name": "Hide Armor",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Medium Armor",
+      "key": "medium-armor"
+    },
+    "weapon": null,
+    "armor": {
+      "name": "Hide Armor",
+      "key": "hide-armor",
+      "category": "medium",
+      "ac_base": 12,
+      "ac_display": null,
+      "ac_add_dexmod": true,
+      "ac_cap_dexmod": 2,
+      "grants_stealth_disadvantage": false,
+      "strength_score_required": null
+    },
+    "size": null,
+    "weight": "12.000",
+    "weight_unit": "lb",
+    "cost": "10.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_horn",
+    "name": "Horn",
+    "document": "phb-2024",
+    "desc": "- Ability: Charisma\n\n- Utilize: Play a known tune (DC 10), or improvise a song (DC 15)",
+    "category": {
+      "name": "Instrument",
+      "key": "instrument"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "2.000",
+    "weight_unit": "lb",
+    "cost": "3.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_hunting-rifle",
+    "name": "Hunting Rifle",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "8.000",
+    "weight_unit": "lb",
+    "cost": null,
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_javelin",
+    "name": "Javelin",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "2.000",
+    "weight_unit": "lb",
+    "cost": "0.50",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_jewelers-tools",
+    "name": "Jeweler's Tools",
+    "document": "phb-2024",
+    "desc": "- Ability: Intelligence\n\n- Utilize: Discern a gem's value (DC 15)\n\n- Craft: Arcane Focus, Holy Symbol",
+    "category": {
+      "name": "Artisan's Tools",
+      "key": "artisans-tools"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "2.000",
+    "weight_unit": "lb",
+    "cost": "25.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_lance",
+    "name": "Lance",
+    "document": "phb-2024",
+    "desc": "A Lance requires two hands to wield when you aren't mounted.",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "6.000",
+    "weight_unit": "lb",
+    "cost": "10.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_laser-pistol",
+    "name": "Laser Pistol",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "2.000",
+    "weight_unit": "lb",
+    "cost": null,
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_laser-rifle",
+    "name": "Laser Rifle",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "7.000",
+    "weight_unit": "lb",
+    "cost": null,
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_leather-armor",
+    "name": "Leather Armor",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Light Armor",
+      "key": "light-armor"
+    },
+    "weapon": null,
+    "armor": {
+      "name": "Leather Armor",
+      "key": "leather-armor",
+      "category": "light",
+      "ac_base": 11,
+      "ac_display": null,
+      "ac_add_dexmod": true,
+      "ac_cap_dexmod": null,
+      "grants_stealth_disadvantage": false,
+      "strength_score_required": null
+    },
+    "size": null,
+    "weight": "10.000",
+    "weight_unit": "lb",
+    "cost": "10.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_leatherworkers-tools",
+    "name": "Leatherworker's Tools",
+    "document": "phb-2024",
+    "desc": "- Ability: Dexterity\n\n- Utilize: Add a design to a leather item (DC 10)\n\n- Craft: Sling, Whip, Hide Armor, Leather Armor, Studded Leather Armor, Backpack, Crossbow Bolt Case, Map or Scroll Case, Parchment, Pouch, Quiver, Waterskin",
+    "category": {
+      "name": "Artisan's Tools",
+      "key": "artisans-tools"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "5.000",
+    "weight_unit": "lb",
+    "cost": "5.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_light-crossbow",
+    "name": "Light Crossbow",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "5.000",
+    "weight_unit": "lb",
+    "cost": "25.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_light-hammer",
+    "name": "Light Hammer",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "2.000",
+    "weight_unit": "lb",
+    "cost": "2.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_longbow",
+    "name": "Longbow",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "2.000",
+    "weight_unit": "lb",
+    "cost": "50.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_longsword",
+    "name": "Longsword",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "3.000",
+    "weight_unit": "lb",
+    "cost": "15.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_lute",
+    "name": "Lute",
+    "document": "phb-2024",
+    "desc": "- Ability: Charisma\n\n- Utilize: Play a known tune (DC 10), or improvise a song (DC 15)",
+    "category": {
+      "name": "Instrument",
+      "key": "instrument"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "2.000",
+    "weight_unit": "lb",
+    "cost": "35.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_lyre",
+    "name": "Lyre",
+    "document": "phb-2024",
+    "desc": "- Ability: Charisma\n\n- Utilize: Play a known tune (DC 10), or improvise a song (DC 15)",
+    "category": {
+      "name": "Instrument",
+      "key": "instrument"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "2.000",
+    "weight_unit": "lb",
+    "cost": "30.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_mace",
+    "name": "Mace",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "4.000",
+    "weight_unit": "lb",
+    "cost": "5.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_masons-tools",
+    "name": "Mason's Tools",
+    "document": "phb-2024",
+    "desc": "- Ability: Strength\n\n- Utilize: Chisel a symbol or hole in stone (DC 10)\n\n- Craft: Block and Tackle",
+    "category": {
+      "name": "Artisan's Tools",
+      "key": "artisans-tools"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "8.000",
+    "weight_unit": "lb",
+    "cost": "10.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_maul",
+    "name": "Maul",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "10.000",
+    "weight_unit": "lb",
+    "cost": "10.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_morningstar",
+    "name": "Morningstar",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "4.000",
+    "weight_unit": "lb",
+    "cost": "15.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_musket",
+    "name": "Musket",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "10.000",
+    "weight_unit": "lb",
+    "cost": "500.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_needle",
+    "name": "Needle",
+    "document": "phb-2024",
+    "desc": "Blowgun needles are used with a weapon that has the ammunition property to make a ranged attack. Each time you attack with the weapon, you expend one piece of ammunition. Drawing the ammunition from a quiver, case, or other container is part of the attack (you need a free hand to load a one-handed weapon). At the end of the battle, you can recover half your expended ammunition by taking a minute to search the battlefield.\n\nNeedles are typically stored in a Pouch (bought separately).",
+    "category": {
+      "name": "Ammunition",
+      "key": "ammunition"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "0.020",
+    "weight_unit": "lb",
+    "cost": "0.02",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_needles-50",
+    "name": "Needles (50)",
+    "document": "phb-2024",
+    "desc": "Blowgun needles are used with a weapon that has the ammunition property to make a ranged attack. Each time you attack with the weapon, you expend one piece of ammunition. Drawing the ammunition from a quiver, case, or other container is part of the attack (you need a free hand to load a one-handed weapon). At the end of the battle, you can recover half your expended ammunition by taking a minute to search the battlefield.\n\nNeedles are typically stored in a Pouch (bought separately).",
+    "category": {
+      "name": "Ammunition",
+      "key": "ammunition"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "1.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_orb",
+    "name": "Orb",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "3.000",
+    "weight_unit": "lb",
+    "cost": "20.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_padded-armor",
+    "name": "Padded Armor",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Light Armor",
+      "key": "light-armor"
+    },
+    "weapon": null,
+    "armor": {
+      "name": "Padded Armor",
+      "key": "padded-armor",
+      "category": "light",
+      "ac_base": 11,
+      "ac_display": null,
+      "ac_add_dexmod": true,
+      "ac_cap_dexmod": null,
+      "grants_stealth_disadvantage": true,
+      "strength_score_required": null
+    },
+    "size": null,
+    "weight": "8.000",
+    "weight_unit": "lb",
+    "cost": "5.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_painters-supplies",
+    "name": "Painter's Supplies",
+    "document": "phb-2024",
+    "desc": "- Ability: Wisdom\n\n- Utilize: Paint a recognizable image of something you've seen (DC 10)\n\n- Craft: Druidic Focus, Holy Symbol",
+    "category": {
+      "name": "Artisan's Tools",
+      "key": "artisans-tools"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "5.000",
+    "weight_unit": "lb",
+    "cost": "10.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_pan-flute",
+    "name": "Pan Flute",
+    "document": "phb-2024",
+    "desc": "- Ability: Charisma\n\n- Utilize: Play a known tune (DC 10), or improvise a song (DC 15)",
+    "category": {
+      "name": "Instrument",
+      "key": "instrument"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "2.000",
+    "weight_unit": "lb",
+    "cost": "12.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_pike",
+    "name": "Pike",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "18.000",
+    "weight_unit": "lb",
+    "cost": "5.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_pistol",
+    "name": "Pistol",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "3.000",
+    "weight_unit": "lb",
+    "cost": "250.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_plate-armor",
+    "name": "Plate Armor",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Heavy Armor",
+      "key": "heavy-armor"
+    },
+    "weapon": null,
+    "armor": {
+      "name": "Plate Armor",
+      "key": "plate-armor",
+      "category": "heavy",
+      "ac_base": 18,
+      "ac_display": null,
+      "ac_add_dexmod": false,
+      "ac_cap_dexmod": null,
+      "grants_stealth_disadvantage": true,
+      "strength_score_required": 15
+    },
+    "size": null,
+    "weight": "65.000",
+    "weight_unit": "lb",
+    "cost": "1500.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_potters-tools",
+    "name": "Potter's Tools",
+    "document": "phb-2024",
+    "desc": "- Ability: Intelligence\n\n- Utilize: Discern what a ceramic object held in the past 24 hours (DC 15)\n\n- Craft: Jug, Lamp",
+    "category": {
+      "name": "Artisan's Tools",
+      "key": "artisans-tools"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "3.000",
+    "weight_unit": "lb",
+    "cost": "10.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_quarterstaff",
+    "name": "Quarterstaff",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "4.000",
+    "weight_unit": "lb",
+    "cost": "0.20",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_rapier",
+    "name": "Rapier",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "2.000",
+    "weight_unit": "lb",
+    "cost": "25.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_revolver",
+    "name": "Revolver",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "3.000",
+    "weight_unit": "lb",
+    "cost": null,
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_ring-mail",
+    "name": "Ring Mail",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Heavy Armor",
+      "key": "heavy-armor"
+    },
+    "weapon": null,
+    "armor": {
+      "name": "Ring Mail",
+      "key": "ring-mail",
+      "category": "heavy",
+      "ac_base": 14,
+      "ac_display": null,
+      "ac_add_dexmod": false,
+      "ac_cap_dexmod": null,
+      "grants_stealth_disadvantage": true,
+      "strength_score_required": null
+    },
+    "size": null,
+    "weight": "40.000",
+    "weight_unit": "lb",
+    "cost": "30.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_rod",
+    "name": "Rod",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "2.000",
+    "weight_unit": "lb",
+    "cost": "10.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_scale-mail",
+    "name": "Scale Mail",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Medium Armor",
+      "key": "medium-armor"
+    },
+    "weapon": null,
+    "armor": {
+      "name": "Scale Mail",
+      "key": "scale-mail",
+      "category": "medium",
+      "ac_base": 14,
+      "ac_display": null,
+      "ac_add_dexmod": true,
+      "ac_cap_dexmod": 2,
+      "grants_stealth_disadvantage": true,
+      "strength_score_required": null
+    },
+    "size": null,
+    "weight": "45.000",
+    "weight_unit": "lb",
+    "cost": "50.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_scimitar",
+    "name": "Scimitar",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "3.000",
+    "weight_unit": "lb",
+    "cost": "25.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_semiautomatic-pistol",
+    "name": "Semiautomatic Pistol",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "3.000",
+    "weight_unit": "lb",
+    "cost": null,
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_shawm",
+    "name": "Shawm",
+    "document": "phb-2024",
+    "desc": "- Ability: Charisma\n\n- Utilize: Play a known tune (DC 10), or improvise a song (DC 15)",
+    "category": {
+      "name": "Instrument",
+      "key": "instrument"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "2.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_shield",
+    "name": "Shield",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Shield",
+      "key": "shield"
+    },
+    "weapon": null,
+    "armor": {
+      "name": "Shield",
+      "key": "shield",
+      "category": "shield",
+      "ac_base": 2,
+      "ac_display": null,
+      "ac_add_dexmod": false,
+      "ac_cap_dexmod": null,
+      "grants_stealth_disadvantage": false,
+      "strength_score_required": null
+    },
+    "size": null,
+    "weight": "6.000",
+    "weight_unit": "lb",
+    "cost": "10.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_shortbow",
+    "name": "Shortbow",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "2.000",
+    "weight_unit": "lb",
+    "cost": "25.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_shortsword",
+    "name": "Shortsword",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "2.000",
+    "weight_unit": "lb",
+    "cost": "10.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_shotgun",
+    "name": "Shotgun",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "7.000",
+    "weight_unit": "lb",
+    "cost": null,
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_sickle",
+    "name": "Sickle",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "2.000",
+    "weight_unit": "lb",
+    "cost": "1.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_sling",
+    "name": "Sling",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": null,
+    "weight_unit": null,
+    "cost": "0.10",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_sling-bullet",
+    "name": "Sling Bullet",
+    "document": "phb-2024",
+    "desc": "Sling bullets are used with a weapon that has the ammunition property to make a ranged attack. Each time you attack with the weapon, you expend one piece of ammunition. Drawing the ammunition from a quiver, case, or other container is part of the attack (you need a free hand to load a one-handed weapon). At the end of the battle, you can recover half your expended ammunition by taking a minute to search the battlefield.\n\nSling Bullets are typically stored in a Pouch (bought separately).",
+    "category": {
+      "name": "Ammunition",
+      "key": "ammunition"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "0.075",
+    "weight_unit": "lb",
+    "cost": "0.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_sling-bullets-20",
+    "name": "Sling Bullets (20)",
+    "document": "phb-2024",
+    "desc": "Sling bullets are used with a weapon that has the ammunition property to make a ranged attack. Each time you attack with the weapon, you expend one piece of ammunition. Drawing the ammunition from a quiver, case, or other container is part of the attack (you need a free hand to load a one-handed weapon). At the end of the battle, you can recover half your expended ammunition by taking a minute to search the battlefield.\n\nSling Bullets are typically stored in a Pouch (bought separately).",
+    "category": {
+      "name": "Ammunition",
+      "key": "ammunition"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.500",
+    "weight_unit": "lb",
+    "cost": "0.04",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_smiths-tools",
+    "name": "Smith's Tools",
+    "document": "phb-2024",
+    "desc": "- Ability: Strength\n\n- Utilize: Pry open a door or container (DC 20)\n\n- Craft: Any Melee weapon (except Club, Greatclub, Quarterstaff, and Whip), Medium armor (except Hide), Heavy armor, Ball Bearings, Bucket, Caltrops, Chain, Crowbar, Firearm Bullets, Grappling Hook, Iron Pot, Iron Spikes, Sling Bullets",
+    "category": {
+      "name": "Artisan's Tools",
+      "key": "artisans-tools"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "8.000",
+    "weight_unit": "lb",
+    "cost": "20.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_spear",
+    "name": "Spear",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "3.000",
+    "weight_unit": "lb",
+    "cost": "1.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_splint-armor",
+    "name": "Splint Armor",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Heavy Armor",
+      "key": "heavy-armor"
+    },
+    "weapon": null,
+    "armor": {
+      "name": "Splint Armor",
+      "key": "splint-armor",
+      "category": "heavy",
+      "ac_base": 17,
+      "ac_display": null,
+      "ac_add_dexmod": false,
+      "ac_cap_dexmod": null,
+      "grants_stealth_disadvantage": true,
+      "strength_score_required": 15
+    },
+    "size": null,
+    "weight": "60.000",
+    "weight_unit": "lb",
+    "cost": "200.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_staff",
+    "name": "Staff",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "4.000",
+    "weight_unit": "lb",
+    "cost": "5.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_studded-leather-armor",
+    "name": "Studded Leather Armor",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Light Armor",
+      "key": "light-armor"
+    },
+    "weapon": null,
+    "armor": {
+      "name": "Studded Leather Armor",
+      "key": "studded-leather-armor",
+      "category": "light",
+      "ac_base": 12,
+      "ac_display": null,
+      "ac_add_dexmod": true,
+      "ac_cap_dexmod": null,
+      "grants_stealth_disadvantage": false,
+      "strength_score_required": null
+    },
+    "size": null,
+    "weight": "13.000",
+    "weight_unit": "lb",
+    "cost": "45.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_tinkers-tools",
+    "name": "Tinker's Tools",
+    "document": "phb-2024",
+    "desc": "- Ability: Dexterity\n\n- Utilize: Assemble a Tiny item composed of scrap, which falls apart in 1 minute (DC 20)\n\n- Craft: Musket, Pistol, Bell, Bullseye Lantern, Flask, Hooded Lantern, Hunting Trap, Lock, Manacles, Mirror, Shovel, Signal Whistle, Tinderbox",
+    "category": {
+      "name": "Artisan's Tools",
+      "key": "artisans-tools"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "10.000",
+    "weight_unit": "lb",
+    "cost": "50.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_trident",
+    "name": "Trident",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "4.000",
+    "weight_unit": "lb",
+    "cost": "5.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_viol",
+    "name": "Viol",
+    "document": "phb-2024",
+    "desc": "- Ability: Charisma\n\n- Utilize: Play a known tune (DC 10), or improvise a song (DC 15)",
+    "category": {
+      "name": "Instrument",
+      "key": "instrument"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "30.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_wand",
+    "name": "Wand",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "1.000",
+    "weight_unit": "lb",
+    "cost": "10.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_war-pick",
+    "name": "War Pick",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "2.000",
+    "weight_unit": "lb",
+    "cost": "5.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_warhammer",
+    "name": "Warhammer",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "5.000",
+    "weight_unit": "lb",
+    "cost": "15.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_weavers-tools",
+    "name": "Weaver's Tools",
+    "document": "phb-2024",
+    "desc": "- Ability: Dexterity\n\n- Utilize: Mend a tear in clothing (DC 10), or sew a Tiny design (DC 10)\n\n- Craft: Padded Armor, Basket, Bedroll, Blanket, Fine Clothes, Net, Robe, Rope, Sack, String, Tent, Traveler's Clothes",
+    "category": {
+      "name": "Artisan's Tools",
+      "key": "artisans-tools"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "5.000",
+    "weight_unit": "lb",
+    "cost": "1.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_whip",
+    "name": "Whip",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Weapon",
+      "key": "weapon"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "3.000",
+    "weight_unit": "lb",
+    "cost": "2.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_woodcarvers-tools",
+    "name": "Woodcarver's Tools",
+    "document": "phb-2024",
+    "desc": "- Ability: Dexterity\n\n- Utilize: Carve a pattern in wood (DC 10)\n\n- Craft: Club, Greatclub, Quarterstaff, Ranged weapons (except Pistol, Musket, and Sling), Arcane Focus, Arrows, Bolts, Druidic Focus, Ink Pen, Needles",
+    "category": {
+      "name": "Artisan's Tools",
+      "key": "artisans-tools"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "5.000",
+    "weight_unit": "lb",
+    "cost": "1.00",
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "phb-2024_wooden-staff",
+    "name": "Wooden Staff",
+    "document": "phb-2024",
+    "desc": "",
+    "category": {
+      "name": "Adventuring Gear",
+      "key": "adventuring-gear"
+    },
+    "weapon": null,
+    "armor": null,
+    "size": null,
+    "weight": "4.000",
+    "weight_unit": "lb",
+    "cost": "5.00",
+    "crossreferences": {
+      "to": []
+    }
+  }
+]

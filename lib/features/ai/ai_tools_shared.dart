@@ -205,11 +205,8 @@ String aiErrorMessage(L10n l10n, String code) => switch (code) {
   _ => l10n.codexAiErrGeneric,
 };
 
-/// Bir görev bölümü kartı. [dmOnly] ise DM'e özel stil + "sadece sen görüyorsun"
-/// notu (oyunculara paylaşılan kopyaya girmez).
-/// Üreticinin verdiği ödülün MAKİNE OKUNUR hâli: "Görevlere gönder" dendiğinde
-/// bu para + eşyalar görevin gerçek ödülü olarak kaydedilir ve görev bitince
-/// oyunculara ortak ganimet havuzu olarak açılır.
+/// Bir görev bölümü kartı. [dmOnly] ise DM'e özel stil + "masada okuma" notu;
+/// kopyalanan oyuncu metnine bu bölümler girmez.
 class AiSection extends StatelessWidget {
   const AiSection({
     super.key,

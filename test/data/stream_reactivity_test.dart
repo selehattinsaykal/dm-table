@@ -69,14 +69,14 @@ void main() {
     expect(await future, isEmpty);
   });
 
-  test('mağaza oyunculara açılınca akış yenilenir', () async {
+  test('mağaza kapatılınca akış yenilenir', () async {
     final shops = ShopRepository(db);
     final id = await shops.create(name: 'Demirci');
 
     final future = secondEmission(shops.watchShops());
-    await shops.openOnly(id);
+    await shops.update(id, closed: true);
 
-    expect((await future).single.openToPlayers, isTrue);
+    expect((await future).single.closed, isTrue);
   });
 
   test('karşılaşma silinince listeden düşer', () async {

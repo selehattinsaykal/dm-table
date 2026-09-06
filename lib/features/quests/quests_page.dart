@@ -3,18 +3,21 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../app/ui/async_view.dart';
 import '../../app/ui/ui.dart';
+import '../../data/db/clock_tables.dart';
 import '../../data/db/database.dart';
 import '../../data/loot_repository.dart';
 import '../../data/quest_repository.dart';
 import '../../domain/rules/magic_item_pricing.dart';
+import '../../app/undo.dart';
+import '../../data/providers.dart';
 import '../../l10n/app_localizations.dart';
 import '../characters/character_providers.dart';
+import '../clocks/clocks_card.dart';
 import '../loot/loot_page.dart';
 import 'quest_providers.dart';
 
-/// DM Görevler sekmesi: görevleri kart olarak listeler, elle oluştur/düzenle,
-/// belirli oyunculara göster, tamamla, sil. Oyuncuların kabul/ret durumu
-/// kartta görünür (DB canlı akışı).
+/// Görevler sekmesi: görevleri kart olarak listeler, elle oluştur/düzenle,
+/// üstlenen karakterleri işaretle, tamamla, sil.
 class QuestsPage extends ConsumerWidget {
   const QuestsPage({super.key});
 
@@ -76,22 +79,9 @@ class _QuestCard extends ConsumerWidget {
     String nameOf(String id) =>
         characters.where((c) => c.id == id).firstOrNull?.name ?? id;
 
-    final targets = QuestRepository.targetsOf(quest);
-    final acc = QuestRepository.acceptancesOf(quest);
-    final accepted = [
-      for (final id in targets)
-        if (acc[id] == true) nameOf(id),
+    final owners = [
+      for (final id in QuestRepository.targetsOf(quest)) nameOf(id),
     ];
-    final rejected = [
-      for (final id in targets)
-        if (acc[id] == false) nameOf(id),
-    ];
-    final pending = [
-      for (final id in targets)
-        if (!acc.containsKey(id)) nameOf(id),
-    ];
-    final voting = quest.shareMode == QuestRepository.modeVote;
-    final pool = QuestRepository.poolOf(quest);
 
     return Card(
       child: InkWell(
@@ -112,15 +102,6 @@ class _QuestCard extends ConsumerWidget {
                         Icons.check_circle,
                         size: 18,
                         color: theme.colorScheme.primary,
-                      ),
-                    )
-                  else if (quest.shared)
-                    Padding(
-                      padding: const EdgeInsets.only(right: 6),
-                      child: Icon(
-                        Icons.cast_connected,
-                        size: 18,
-                        color: theme.colorScheme.secondary,
                       ),
                     ),
                   Expanded(
@@ -149,62 +130,13 @@ class _QuestCard extends ConsumerWidget {
                     ),
                   ),
                 ),
-              if (pool != null) ...[
+              if (owners.isNotEmpty) ...[
                 const SizedBox(height: 6),
                 _statusChip(
                   theme,
-                  Icons.diamond_outlined,
-                  theme.colorScheme.tertiary,
-                  '${l10n.questRewardPending}: '
-                  '${_poolSummary(pool, l10n)}',
-                ),
-              ],
-              if (quest.shared || quest.voteStatus.isNotEmpty) ...[
-                const SizedBox(height: 6),
-                Wrap(
-                  spacing: 12,
-                  runSpacing: 2,
-                  children: [
-                    if (voting)
-                      _statusChip(
-                        theme,
-                        Icons.how_to_vote,
-                        theme.colorScheme.tertiary,
-                        switch (quest.voteStatus) {
-                          QuestRepository.votePassed => l10n.questVotePassed,
-                          QuestRepository.voteFailed => l10n.questVoteFailed,
-                          _ => l10n.questVoteOngoing,
-                        },
-                      ),
-                    if (accepted.isNotEmpty)
-                      _statusChip(
-                        theme,
-                        Icons.check,
-                        theme.colorScheme.primary,
-                        '${l10n.questAcceptedBy}: ${accepted.join(', ')}',
-                      ),
-                    if (rejected.isNotEmpty)
-                      _statusChip(
-                        theme,
-                        Icons.close,
-                        theme.colorScheme.error,
-                        '${l10n.questRejectedBy}: ${rejected.join(', ')}',
-                      ),
-                    if (pending.isNotEmpty)
-                      _statusChip(
-                        theme,
-                        Icons.hourglass_empty,
-                        theme.colorScheme.outline,
-                        '${l10n.questPending}: ${pending.join(', ')}',
-                      ),
-                    if (targets.isEmpty)
-                      _statusChip(
-                        theme,
-                        Icons.info_outline,
-                        theme.colorScheme.outline,
-                        l10n.questNoTargets,
-                      ),
-                  ],
+                  Icons.person_outline,
+                  theme.colorScheme.secondary,
+                  '${l10n.questOwners}: ${owners.join(', ')}',
                 ),
               ],
             ],
@@ -213,15 +145,6 @@ class _QuestCard extends ConsumerWidget {
       ),
     );
   }
-
-  /// Dagitilmayi bekleyen odul havuzunun kisa ozeti ("120 gp + 2 eşya").
-  static String _poolSummary(
-    ({int coinsCp, List<({String id, String name, bool magic})> items}) pool,
-    L10n l10n,
-  ) => [
-    if (pool.coinsCp > 0) formatCoins(pool.coinsCp),
-    if (pool.items.isNotEmpty) l10n.questRewardItemCount(pool.items.length),
-  ].join(' + ');
 
   Widget _statusChip(
     ThemeData theme,
@@ -243,8 +166,6 @@ class _QuestCard extends ConsumerWidget {
     QuestRepository repo,
     L10n l10n,
   ) {
-    // Not: "oyunculara goster" bilincli olarak burada DEGIL -- paylasim
-    // (tek tek kabul / oylama) gorevin kendi sayfasindan yapilir.
     return PopupMenuButton<String>(
       icon: const Icon(Icons.more_vert, size: 20),
       onSelected: (v) async {
@@ -252,7 +173,7 @@ class _QuestCard extends ConsumerWidget {
           case 'complete':
             await repo.setDone(quest.id, !quest.done);
           case 'delete':
-            await _deleteDialog(context, repo, l10n);
+            await _deleteDialog(context, ref, repo, l10n);
         }
       },
       itemBuilder: (_) => [
@@ -285,6 +206,7 @@ class _QuestCard extends ConsumerWidget {
 
   Future<void> _deleteDialog(
     BuildContext context,
+    WidgetRef ref,
     QuestRepository repo,
     L10n l10n,
   ) async {
@@ -305,7 +227,19 @@ class _QuestCard extends ConsumerWidget {
         ],
       ),
     );
-    if (ok == true) await repo.delete(quest.id);
+    if (ok == true) {
+      // Gorev tek bir satir; kaskadi yok, o yuzden satirin kendisi yeterli.
+      await repo.delete(quest.id);
+      final db = ref.read(databaseProvider);
+      ref
+          .read(undoControllerProvider.notifier)
+          .push(
+            quest.title,
+            () => db
+                .into(db.quests)
+                .insertOnConflictUpdate(quest.toCompanion(false)),
+          );
+    }
   }
 }
 
@@ -333,9 +267,8 @@ class _QuestEditPageState extends ConsumerState<QuestEditPage> {
   final _rewardItems = <LootItemData>[];
   bool _newItemMagic = false;
 
-  /// Paylaşım panelindeki seçim (kaydedilmemiş; "Göster"e basınca yazılır).
+  /// Görevi üstlenen karakterler; işaretlenince doğrudan yazılır.
   final _selectedTargets = <String>{};
-  String _shareMode = QuestRepository.modeIndividual;
 
   bool _loaded = false;
 
@@ -343,8 +276,8 @@ class _QuestEditPageState extends ConsumerState<QuestEditPage> {
   /// bakmak — masada en sik yapilan sey — artik bos bir form duvari degil,
   /// okunur bir ozet.
   ///
-  /// PAYLASIM bolumu bu modun DISINDA: gorevi oyunculara acmak bir hazirlik
-  /// degil, oyun sirasindaki asil hamledir.
+  /// USTLENENLER bolumu bu modun DISINDA: "bu is kimin uzerinde" masada
+  /// degisen bir sey, hazirlik degil.
   bool _editing = false;
 
   static const _units = [1000, 100, 10, 1];
@@ -372,7 +305,6 @@ class _QuestEditPageState extends ConsumerState<QuestEditPage> {
         ..clear()
         ..addAll(QuestRepository.rewardItemsOf(q));
       _selectedTargets.addAll(QuestRepository.targetsOf(q));
-      _shareMode = q.shareMode;
     }
     if (mounted) setState(() => _loaded = true);
   }
@@ -400,8 +332,7 @@ class _QuestEditPageState extends ConsumerState<QuestEditPage> {
     return v(_pp) * 1000 + v(_gp) * 100 + v(_sp) * 10 + v(_cp);
   }
 
-  /// Formu DB'ye yazar (sayfayı KAPATMAZ) — paylaşmadan önce de çağrılır ki
-  /// oyunculara yarım kalmış metin gitmesin.
+  /// Formu DB'ye yazar (sayfayı KAPATMAZ).
   Future<void> _persist() => ref
       .read(questRepositoryProvider)
       .update(
@@ -455,35 +386,14 @@ class _QuestEditPageState extends ConsumerState<QuestEditPage> {
     );
   }
 
-  /// Görevi seçili oyunculara açar. Oylama modunda oylama başlar (%50+ kabul
-  /// görevi HERKESE verir, altında kalırsa kimse alamaz).
-  Future<void> _share(L10n l10n) async {
-    if (_selectedTargets.isEmpty) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(l10n.questNoTargets)));
-      return;
-    }
-    await _persist();
-    await ref
-        .read(questRepositoryProvider)
-        .setShared(
-          widget.questId,
-          shared: true,
-          targets: _selectedTargets.toList(),
-          mode: _shareMode,
-        );
-    if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          _shareMode == QuestRepository.modeVote
-              ? l10n.questVoteStarted
-              : l10n.questShared,
-        ),
-      ),
-    );
-  }
+  /// Görevi üstlenen karakter listesini yazar.
+  ///
+  /// Formun geri kalanindan FARKLI olarak aninda kaydedilir: bu bir metin
+  /// alani degil, tek dokunusluk bir isaret ve "kaydet"e basmayi beklemek
+  /// masada unutuluyordu.
+  Future<void> _persistOwners() => ref
+      .read(questRepositoryProvider)
+      .setTargets(widget.questId, _selectedTargets.toList());
 
   Widget _coinField(TextEditingController c, String label) => Expanded(
     child: TextField(
@@ -502,14 +412,6 @@ class _QuestEditPageState extends ConsumerState<QuestEditPage> {
   Widget build(BuildContext context) {
     final l10n = L10n.of(context);
     final theme = Theme.of(context);
-    // Paylaşım durumu canlı okunur: oyuncular kabul/ret verdikçe ya da oylama
-    // sonuçlandıkça bu sayfa kendini günceller.
-    final quest = ref
-        .watch(questsProvider)
-        .value
-        ?.where((q) => q.id == widget.questId)
-        .firstOrNull;
-
     return Scaffold(
       appBar: AppBar(
         // Okuma modunda gorevin BASLIGI ustte: hangi goreve baktigin belli olsun.
@@ -588,9 +490,15 @@ class _QuestEditPageState extends ConsumerState<QuestEditPage> {
                 ] else
                   ..._readSections(theme, l10n),
                 const SizedBox(height: 20),
-                // Paylasim her iki modda da acik: gorevi oyunculara acmak
-                // oyun sirasindaki hamle, hazirlik degil.
-                _shareSection(theme, l10n, quest),
+                // Ustlenenler her iki modda da acik: masada degisen bir
+                // sey, hazirlik degil.
+                _ownersSection(theme, l10n),
+                const SizedBox(height: 20),
+                // Goreve bagli saatler: "kervan uc gunde varmazsa" gibi
+                // sureli baskilar gorevin yaninda dursun.
+                ClocksCard(
+                  link: (kind: ClockLinkKind.quest, id: widget.questId),
+                ),
               ],
             ),
     );
@@ -682,8 +590,8 @@ class _QuestEditPageState extends ConsumerState<QuestEditPage> {
     ),
   );
 
-  /// Gerçek ödül: para + eşyalar. Görev tamamlanınca kabul eden oyunculara
-  /// ORTAK ganimet havuzu olarak açılır.
+  /// Gerçek ödül: para + eşyalar. Serbest metin ödül açıklamasının yanında,
+  /// DM'in dağıtacağı somut listedir.
   Widget _rewardSection(ThemeData theme, L10n l10n) => Card(
     child: Padding(
       padding: const EdgeInsets.all(14),
@@ -767,12 +675,14 @@ class _QuestEditPageState extends ConsumerState<QuestEditPage> {
     ),
   );
 
-  /// Paylaşım: hangi oyunculara, hangi biçimde (tek tek kabul / oylama).
-  Widget _shareSection(ThemeData theme, L10n l10n, Quest? quest) {
+  /// Görevi hangi karakterlerin üstlendiği.
+  ///
+  /// Eskiden burasi "oyunculara goster" paneliydi (tek tek kabul ya da
+  /// oylama). Oyuncu paneli kalkinca geriye masada gercekten sorulan sey
+  /// kaldi: bu is kimin uzerinde?
+  Widget _ownersSection(ThemeData theme, L10n l10n) {
     final characters =
         ref.watch(charactersProvider).value ?? const <Character>[];
-    final repo = ref.read(questRepositoryProvider);
-    final voting = _shareMode == QuestRepository.modeVote;
 
     return Card(
       child: Padding(
@@ -780,31 +690,9 @@ class _QuestEditPageState extends ConsumerState<QuestEditPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(l10n.questShareSection, style: theme.textTheme.titleMedium),
-            const SizedBox(height: 10),
-            SegmentedButton<String>(
-              segments: [
-                ButtonSegment(
-                  value: QuestRepository.modeIndividual,
-                  icon: const Icon(Icons.how_to_reg, size: 18),
-                  label: Text(l10n.questModeIndividual),
-                ),
-                ButtonSegment(
-                  value: QuestRepository.modeVote,
-                  icon: const Icon(Icons.how_to_vote, size: 18),
-                  label: Text(l10n.questModeVote),
-                ),
-              ],
-              selected: {_shareMode},
-              onSelectionChanged: (s) => setState(() => _shareMode = s.first),
-            ),
-            const SizedBox(height: 6),
-            Text(
-              voting ? l10n.questModeVoteHint : l10n.questModeIndividualHint,
-              style: theme.textTheme.bodySmall,
-            ),
-            const SizedBox(height: 10),
-            Text(l10n.questSharePick, style: theme.textTheme.titleSmall),
+            Text(l10n.questOwnersSection, style: theme.textTheme.titleMedium),
+            const SizedBox(height: 4),
+            Text(l10n.questOwnersHint, style: theme.textTheme.bodySmall),
             if (characters.isEmpty)
               Padding(
                 padding: const EdgeInsets.only(top: 6),
@@ -819,76 +707,20 @@ class _QuestEditPageState extends ConsumerState<QuestEditPage> {
                 contentPadding: EdgeInsets.zero,
                 value: _selectedTargets.contains(c.id),
                 title: Text(c.name),
-                subtitle: quest == null
-                    ? null
-                    : _targetStatus(l10n, quest, c.id),
-                onChanged: (v) => setState(() {
-                  if (v == true) {
-                    _selectedTargets.add(c.id);
-                  } else {
-                    _selectedTargets.remove(c.id);
-                  }
-                }),
+                onChanged: (v) {
+                  setState(() {
+                    if (v == true) {
+                      _selectedTargets.add(c.id);
+                    } else {
+                      _selectedTargets.remove(c.id);
+                    }
+                  });
+                  _persistOwners();
+                },
               ),
-            const SizedBox(height: 10),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: [
-                FilledButton.icon(
-                  onPressed: characters.isEmpty ? null : () => _share(l10n),
-                  icon: Icon(voting ? Icons.how_to_vote : Icons.cast, size: 18),
-                  label: Text(voting ? l10n.questStartVote : l10n.questShow),
-                ),
-                if (quest?.shared ?? false)
-                  OutlinedButton.icon(
-                    onPressed: () =>
-                        repo.setShared(widget.questId, shared: false),
-                    icon: const Icon(Icons.cast_outlined, size: 18),
-                    label: Text(l10n.questHide),
-                  ),
-              ],
-            ),
-            if (quest != null &&
-                quest.shareMode == QuestRepository.modeVote &&
-                quest.voteStatus.isNotEmpty) ...[
-              const SizedBox(height: 10),
-              Row(
-                children: [
-                  Icon(
-                    Icons.how_to_vote,
-                    size: 16,
-                    color: theme.colorScheme.tertiary,
-                  ),
-                  const SizedBox(width: 6),
-                  Text(
-                    switch (quest.voteStatus) {
-                      QuestRepository.votePassed => l10n.questVotePassed,
-                      QuestRepository.voteFailed => l10n.questVoteFailed,
-                      _ => l10n.questVoteOngoing,
-                    },
-                    style: theme.textTheme.bodySmall?.copyWith(
-                      color: theme.colorScheme.tertiary,
-                    ),
-                  ),
-                ],
-              ),
-            ],
           ],
         ),
       ),
     );
-  }
-
-  /// Bir hedefin kabul/ret durumu (paylaşılmamış görevde boş).
-  Widget? _targetStatus(L10n l10n, Quest quest, String characterId) {
-    if (!QuestRepository.targetsOf(quest).contains(characterId)) return null;
-    final answer = QuestRepository.acceptancesOf(quest)[characterId];
-    final label = switch (answer) {
-      true => l10n.questAcceptedBy,
-      false => l10n.questRejectedBy,
-      null => l10n.questPending,
-    };
-    return Text(label);
   }
 }

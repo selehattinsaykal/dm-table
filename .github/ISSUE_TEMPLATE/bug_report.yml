@@ -5,8 +5,8 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for the report. Please never paste an AI provider API key, a campaign backup or
-        player personal data into an issue.
+        Thanks for the report. Please never paste an AI provider API key or a campaign backup
+        into an issue.
 
   - type: textarea
     id: what-happened
@@ -27,17 +27,6 @@ body:
     validations:
       required: true
 
-  - type: dropdown
-    id: surface
-    attributes:
-      label: Where did it happen?
-      options:
-        - DM app (Windows)
-        - Player web panel
-        - Both DM app and player panel
-    validations:
-      required: true
-
   - type: input
     id: version
     attributes:
@@ -50,9 +39,8 @@ body:
   - type: input
     id: environment
     attributes:
-      label: OS / browser
-      description: For player panel issues, the browser and device matter.
-      placeholder: "Windows 11 · player on iOS 18 Safari"
+      label: OS
+      placeholder: "Windows 11 24H2"
     validations:
       required: true
 

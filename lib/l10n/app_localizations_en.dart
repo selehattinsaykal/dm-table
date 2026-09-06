@@ -57,6 +57,15 @@ class L10nEn extends L10n {
   String get musicImport => 'Add files';
 
   @override
+  String get fileTypeAudio => 'Audio';
+
+  @override
+  String get fileTypeImage => 'Image';
+
+  @override
+  String get fileTypeVideo => 'Video';
+
+  @override
   String get musicNewPlaylist => 'New list';
 
   @override
@@ -178,13 +187,6 @@ class L10nEn extends L10n {
 
   @override
   String get musicToolMissing => 'Download tools not found';
-
-  @override
-  String get musicToolMissingBody =>
-      'YouTube needs yt-dlp. Use the \"Music Download Tools\" panel on the Music page for auto-install, or paste the path below.';
-
-  @override
-  String get musicToolPath => 'Path to yt-dlp (optional)';
 
   @override
   String get musicToolInstall => 'Installation instructions';
@@ -686,15 +688,6 @@ class L10nEn extends L10n {
   String get questCopyAll => 'Copy all';
 
   @override
-  String get questSendPlayers => 'Send to players';
-
-  @override
-  String get questSentPlayers => 'Sent to players';
-
-  @override
-  String get questNeedSession => 'Open the table from the Session tab first.';
-
-  @override
   String get navQuests => 'Quests';
 
   @override
@@ -706,15 +699,6 @@ class L10nEn extends L10n {
 
   @override
   String get questUntitled => '(untitled quest)';
-
-  @override
-  String get questAcceptedBy => 'Accepted';
-
-  @override
-  String get questRejectedBy => 'Declined';
-
-  @override
-  String get questPending => 'Pending';
 
   @override
   String get campaignDefaultName => 'Main Campaign';
@@ -756,21 +740,6 @@ class L10nEn extends L10n {
   @override
   String get campaignDeleteLater =>
       'The file is in use right now; the campaign will be deleted on next launch.';
-
-  @override
-  String get campaignSwitchTitle => 'Session is running';
-
-  @override
-  String get campaignSwitchBody =>
-      'Switching campaigns closes the table, disconnects connected players and generates a new join address.';
-
-  @override
-  String campaignSwitchPlayers(String names) {
-    return 'Connected players: $names';
-  }
-
-  @override
-  String get campaignSwitchConfirm => 'Continue';
 
   @override
   String get navCalendar => 'Calendar';
@@ -1057,9 +1026,6 @@ class L10nEn extends L10n {
   String get restShortFinish => 'End the rest';
 
   @override
-  String get restNeedSession => 'Open the table from the Session tab first.';
-
-  @override
   String get restShort => 'Short rest';
 
   @override
@@ -1082,9 +1048,6 @@ class L10nEn extends L10n {
   String restLoggedLong(int count) {
     return 'Long rest ($count characters)';
   }
-
-  @override
-  String get restAnnounceLong => 'The party took a long rest.';
 
   @override
   String get aiToolEncounter => 'Encounter generator';
@@ -1134,82 +1097,10 @@ class L10nEn extends L10n {
       'No suitable monsters in the library for this level.';
 
   @override
-  String get navChat => 'Chat';
-
-  @override
-  String get chatGeneral => 'General';
-
-  @override
-  String get chatWhisper => 'Whisper';
-
-  @override
-  String get chatPlaceholder => 'Type a message...';
-
-  @override
-  String get chatTo => 'To:';
-
-  @override
-  String get chatDm => 'DM';
-
-  @override
-  String get chatEmpty => 'No messages yet. Say something to the table.';
-
-  @override
-  String get chatNeedSession => 'Open the table from the Session tab first.';
-
-  @override
-  String get presenceTitle => 'Players';
-
-  @override
-  String get presenceDragHint => 'Long-press and drag to move';
-
-  @override
-  String get presenceNoPlayers => 'No players connected yet.';
-
-  @override
-  String get presenceActive => 'Active';
-
-  @override
-  String get presenceAway => 'Away';
-
-  @override
-  String get presenceOffline => 'Offline';
-
-  @override
-  String lastSeenSeconds(int n) {
-    return 'last seen ${n}s ago';
-  }
-
-  @override
-  String lastSeenMinutes(int n) {
-    return 'last seen ${n}m ago';
-  }
-
-  @override
-  String lastSeenHours(int n) {
-    return 'last seen ${n}h ago';
-  }
-
-  @override
-  String get questNoTargets => 'No players selected';
-
-  @override
-  String get questHide => 'Stop showing';
-
-  @override
   String get questComplete => 'Complete';
 
   @override
   String get questReopen => 'Reopen';
-
-  @override
-  String get questSharePick => 'Show to which players?';
-
-  @override
-  String get questShow => 'Show';
-
-  @override
-  String get questShared => 'Shown to players';
 
   @override
   String get questNoCharacters => 'Create a character first.';
@@ -1259,46 +1150,6 @@ class L10nEn extends L10n {
       'When you complete the quest this opens as a shared loot pool for the players who accepted it. Whoever takes an item first gets it; the quest closes once the pool is empty.';
 
   @override
-  String get questRewardPending => 'Reward being claimed';
-
-  @override
-  String questRewardItemCount(int count) {
-    return '$count items';
-  }
-
-  @override
-  String get questShareSection => 'Show to players';
-
-  @override
-  String get questModeIndividual => 'Individual accept';
-
-  @override
-  String get questModeVote => 'Party vote';
-
-  @override
-  String get questModeIndividualHint =>
-      'Each player you pick accepts or declines the quest on their own.';
-
-  @override
-  String get questModeVoteHint =>
-      'The players you pick vote. If 50% or more accept, everyone gets the quest; below that nobody does.';
-
-  @override
-  String get questStartVote => 'Start vote';
-
-  @override
-  String get questVoteStarted => 'Vote started';
-
-  @override
-  String get questVoteOngoing => 'Vote in progress';
-
-  @override
-  String get questVotePassed => 'Vote passed — party took it';
-
-  @override
-  String get questVoteFailed => 'Vote failed — nobody took it';
-
-  @override
   String get compendiumMonsters => 'Monsters';
 
   @override
@@ -1320,7 +1171,8 @@ class L10nEn extends L10n {
   String get compendiumBackgrounds => 'Backgrounds';
 
   @override
-  String get searchHint => 'Search...';
+  String get searchHint =>
+      'Monster, spell, item, character, place, quest, page, track…';
 
   @override
   String get filters => 'Filters';
@@ -1336,6 +1188,33 @@ class L10nEn extends L10n {
 
   @override
   String get filterRarity => 'Rarity';
+
+  @override
+  String get filterConcentration => 'Concentration';
+
+  @override
+  String get filterRitual => 'Ritual';
+
+  @override
+  String get filterAttunement => 'Attunement';
+
+  @override
+  String get sourcebookSrd => 'SRD 5.2';
+
+  @override
+  String get sourcebookPhb => 'Player\'s Handbook 2024';
+
+  @override
+  String get sourcebookMm => 'Monster Manual 2024';
+
+  @override
+  String get sourcebookEberron => 'Eberron: Forge of the Artificer';
+
+  @override
+  String get sourcebookRavenloft => 'Ravenloft: The Horrors Within';
+
+  @override
+  String get sourcebookFaerun => 'Forgotten Realms: Heroes of Faerûn';
 
   @override
   String get importTitle => 'Preparing content';
@@ -1466,6 +1345,56 @@ class L10nEn extends L10n {
   String get sheetSavingThrows => 'Saving throws';
 
   @override
+  String get sheetProficiencies => 'Proficiencies';
+
+  @override
+  String get sheetArmorTraining => 'Armor training';
+
+  @override
+  String get sheetWeaponProficiencies => 'Weapon proficiencies';
+
+  @override
+  String get sheetToolProficiencies => 'Tool proficiencies';
+
+  @override
+  String get sheetLanguages => 'Languages';
+
+  @override
+  String get sheetWeaponMastery => 'Weapon masteries';
+
+  @override
+  String get sheetNoProficiencies => 'None';
+
+  @override
+  String get sheetAddProficiency => 'Add';
+
+  @override
+  String sheetProficiencyPending(int count) {
+    return '$count choice(s) pending';
+  }
+
+  @override
+  String get sheetProficiencySourceHint =>
+      'Class, background and feat entries are derived automatically; anything you add by hand is kept.';
+
+  @override
+  String get sheetPickTool => 'Choose a tool';
+
+  @override
+  String get sheetPickLanguage => 'Choose a language';
+
+  @override
+  String get sheetPickWeapon => 'Choose a weapon';
+
+  @override
+  String get sheetArmorPenalty =>
+      'Armor you lack training with: Disadvantage on Strength and Dexterity checks and saves, and you can\'t cast spells.';
+
+  @override
+  String get sheetShieldPenalty =>
+      'Shield you lack training with: the same penalty applies.';
+
+  @override
   String get sheetSkills => 'Skills';
 
   @override
@@ -1509,6 +1438,85 @@ class L10nEn extends L10n {
   String get sheetUnequip => 'Unequip';
 
   @override
+  String get sheetGear => 'Gear';
+
+  @override
+  String get sheetGearTab => 'Equipped';
+
+  @override
+  String get sheetBagTab => 'Bag';
+
+  @override
+  String get sheetSlotEmpty => 'Empty';
+
+  @override
+  String get sheetBagAllEquipped => 'Everything in the bag is equipped.';
+
+  @override
+  String sheetSlotFull(String slot, int limit) {
+    return 'The $slot slot is full ($limit). Unequip something or raise the limit.';
+  }
+
+  @override
+  String sheetSlotLimit(String limit) {
+    return 'Limit: $limit';
+  }
+
+  @override
+  String get sheetSlotUnlimited => 'Unlimited';
+
+  @override
+  String get sheetSlotEditLimit => 'Edit slot limit';
+
+  @override
+  String sheetSlotLimitTitle(String slot) {
+    return '$slot limit';
+  }
+
+  @override
+  String get sheetSlotLimitHint =>
+      'How many can be worn at once? Pick unlimited for no cap.';
+
+  @override
+  String get sheetSlotDefault => 'Reset to default';
+
+  @override
+  String get sheetSlotChange => 'Change slot';
+
+  @override
+  String get sheetSlotHead => 'Head';
+
+  @override
+  String get sheetSlotArmor => 'Armor';
+
+  @override
+  String get sheetSlotCloak => 'Cloak';
+
+  @override
+  String get sheetSlotGloves => 'Gloves';
+
+  @override
+  String get sheetSlotBoots => 'Boots';
+
+  @override
+  String get sheetSlotBelt => 'Belt';
+
+  @override
+  String get sheetSlotAmulet => 'Amulet';
+
+  @override
+  String get sheetSlotRing => 'Ring';
+
+  @override
+  String get sheetSlotMainHand => 'Main hand';
+
+  @override
+  String get sheetSlotOffHand => 'Off hand';
+
+  @override
+  String get sheetSlotOther => 'Other';
+
+  @override
   String get sheetItemTab => 'Item';
 
   @override
@@ -1519,6 +1527,12 @@ class L10nEn extends L10n {
 
   @override
   String get sheetItemName => 'Item name';
+
+  @override
+  String get sheetItemType => 'Item type';
+
+  @override
+  String get sheetItemTypeAuto => 'Automatic (guess from name)';
 
   @override
   String get sheetPurse => 'Purse';
@@ -1827,9 +1841,6 @@ class L10nEn extends L10n {
   String get worldNewLocation => 'New location';
 
   @override
-  String get worldShowToPlayers => 'Show to players';
-
-  @override
   String get worldAddChild => 'Add sub-location';
 
   @override
@@ -1892,12 +1903,6 @@ class L10nEn extends L10n {
 
   @override
   String get editModeDiscard => 'Discard';
-
-  @override
-  String get worldPinHiddenFromPlayers => 'Hidden from players';
-
-  @override
-  String get worldPinVisibleToPlayers => 'Visible to players';
 
   @override
   String get worldNoMap => 'No map';
@@ -2014,11 +2019,6 @@ class L10nEn extends L10n {
   @override
   String travelAdvanceCalendar(Object days) {
     return 'Advance calendar $days days';
-  }
-
-  @override
-  String travelAnnounce(Object days) {
-    return 'The party travelled for $days days.';
   }
 
   @override
@@ -2237,13 +2237,6 @@ class L10nEn extends L10n {
       'Only you see it; if you reveal the pin, players do too.';
 
   @override
-  String get worldPinRevealLocationHint =>
-      'When off, the pin is visible only to you. When on, players can tap it to enter that place\'s map (if it has one).';
-
-  @override
-  String get worldPinRevealHint => 'When off, the pin is visible only to you.';
-
-  @override
   String get worldKindLocation => 'Sub-location';
 
   @override
@@ -2312,9 +2305,6 @@ class L10nEn extends L10n {
   String get sessionBackup => 'Backup';
 
   @override
-  String get sessionCloseTable => 'Close session';
-
-  @override
   String get sessionLogTitle => 'Session log';
 
   @override
@@ -2329,21 +2319,6 @@ class L10nEn extends L10n {
   @override
   String get sessionLogEmpty =>
       'No entries yet. XP awards and notes accumulate here.';
-
-  @override
-  String get sessionHandoutCaption => 'Image caption (optional)';
-
-  @override
-  String get sessionHandoutShow => 'Show image';
-
-  @override
-  String get sessionHandoutClear => 'Remove image';
-
-  @override
-  String get sessionHandoutShared => 'Image shown to players.';
-
-  @override
-  String get sessionHandoutCleared => 'Image removed.';
 
   @override
   String get codexNewPage => 'New page';
@@ -2520,87 +2495,361 @@ class L10nEn extends L10n {
   String get codexLinkTargetPage => 'Target page';
 
   @override
+  String get codexAppearance => 'Appearance';
+
+  @override
+  String get codexWidth => 'Width';
+
+  @override
+  String get codexAlign => 'Alignment';
+
+  @override
+  String get codexAlignLeft => 'Left';
+
+  @override
+  String get codexAlignCenter => 'Center';
+
+  @override
+  String get codexAlignRight => 'Right';
+
+  @override
+  String get codexHeight => 'Height';
+
+  @override
+  String get codexHeightAuto => 'Auto';
+
+  @override
+  String get codexResizeHint =>
+      'Tip: in edit mode you can resize blocks by dragging their edges.';
+
+  @override
+  String get codexResetSize => 'Reset size';
+
+  @override
+  String get codexDuplicate => 'Duplicate';
+
+  @override
+  String get codexMoveUp => 'Move up';
+
+  @override
+  String get codexMoveDown => 'Move down';
+
+  @override
+  String get codexBlockSearch => 'Search blocks';
+
+  @override
+  String get codexGroupText => 'Text';
+
+  @override
+  String get codexGroupData => 'Data';
+
+  @override
+  String get codexGroupMedia => 'Media';
+
+  @override
+  String get codexGroupLinks => 'Links';
+
+  @override
+  String get codexTextSize => 'Text size';
+
+  @override
+  String get codexDropCap => 'Drop cap';
+
+  @override
+  String get codexTone => 'Tone';
+
+  @override
+  String get codexToneNeutral => 'Plain';
+
+  @override
+  String get codexToneInfo => 'Info';
+
+  @override
+  String get codexToneSuccess => 'Positive';
+
+  @override
+  String get codexToneWarning => 'Warning';
+
+  @override
+  String get codexToneDanger => 'Danger';
+
+  @override
+  String get codexToneArcane => 'Arcane';
+
+  @override
+  String get codexToneGold => 'Gold';
+
+  @override
+  String get codexHeadingRule => 'Rule below';
+
+  @override
+  String get codexListOrdered => 'Numbered';
+
+  @override
+  String get codexListMarker => 'Bullet';
+
+  @override
+  String get codexListDense => 'Tight spacing';
+
+  @override
+  String get codexChecklistProgress => 'Progress bar';
+
+  @override
+  String get codexChecklistStrike => 'Strike through done items';
+
+  @override
+  String codexChecklistDone(int done, int total) {
+    return '$done/$total done';
+  }
+
+  @override
+  String get codexCalloutBorder => 'Border';
+
+  @override
+  String get codexDividerStyle => 'Divider style';
+
+  @override
+  String get codexDividerOrnament => 'Ornament';
+
+  @override
+  String get codexDividerLine => 'Line';
+
+  @override
+  String get codexDividerDashed => 'Dashed';
+
+  @override
+  String get codexDividerThick => 'Thick';
+
+  @override
+  String get codexDividerDots => 'Dots';
+
+  @override
+  String get codexDividerSpace => 'Space';
+
+  @override
+  String get codexMediaFit => 'Fit';
+
+  @override
+  String get codexFitContain => 'Contain';
+
+  @override
+  String get codexFitCover => 'Cover';
+
+  @override
+  String get codexFitFill => 'Stretch';
+
+  @override
+  String get codexCornerRadius => 'Corner radius';
+
+  @override
+  String get codexMediaFrame => 'Frame';
+
+  @override
+  String get codexImageFullscreen => 'Full screen';
+
+  @override
+  String get codexImageMissing => 'Image file missing';
+
+  @override
+  String get codexVideoLoop => 'Loop';
+
+  @override
+  String get codexVideoMuted => 'Muted';
+
+  @override
+  String get codexTableZebra => 'Striped rows';
+
+  @override
+  String get codexTableDense => 'Compact';
+
+  @override
+  String get codexTableBorders => 'Borders';
+
+  @override
+  String get codexChartType => 'Chart type';
+
+  @override
+  String get codexChartBar => 'Horizontal bars';
+
+  @override
+  String get codexChartColumn => 'Columns';
+
+  @override
+  String get codexChartLine => 'Line';
+
+  @override
+  String get codexChartArea => 'Area';
+
+  @override
+  String get codexChartPie => 'Pie';
+
+  @override
+  String get codexChartDonut => 'Donut';
+
+  @override
+  String get codexChartRadar => 'Radar';
+
+  @override
+  String get codexChartStacked => 'Stacked';
+
+  @override
+  String get codexChartPalette => 'Palette';
+
+  @override
+  String get codexPaletteTheme => 'Theme';
+
+  @override
+  String get codexPaletteBrass => 'Brass';
+
+  @override
+  String get codexPaletteJewel => 'Jewel';
+
+  @override
+  String get codexPaletteEmber => 'Ember';
+
+  @override
+  String get codexPaletteForest => 'Forest';
+
+  @override
+  String get codexPaletteMono => 'Monochrome';
+
+  @override
+  String get codexChartShowValues => 'Values';
+
+  @override
+  String get codexChartShowGrid => 'Grid';
+
+  @override
+  String get codexChartShowLegend => 'Legend';
+
+  @override
+  String get codexChartSort => 'Sort by value';
+
+  @override
+  String get codexChartEmpty => 'No data yet.';
+
+  @override
+  String get codexChartRadarHint => 'Radar needs at least three items.';
+
+  @override
+  String get codexBlockCounter => 'Counter';
+
+  @override
+  String get codexCounterEmpty => 'No counters.';
+
+  @override
+  String get codexCounterAdd => 'Add counter';
+
+  @override
+  String get codexCounterValue => 'Value';
+
+  @override
+  String get codexCounterMin => 'Min';
+
+  @override
+  String get codexCounterMax => 'Max';
+
+  @override
+  String get codexCounterStep => 'Step';
+
+  @override
+  String get codexCounterStyle => 'Style';
+
+  @override
+  String get codexCounterStyleRow => 'Rows';
+
+  @override
+  String get codexCounterStyleTile => 'Tiles';
+
+  @override
+  String get codexCounterStyleChip => 'Chips';
+
+  @override
+  String get codexCounterHint => 'Tap: type a value - Long press: reset';
+
+  @override
+  String get codexBlockTimer => 'Timer';
+
+  @override
+  String get codexTimerMode => 'Direction';
+
+  @override
+  String get codexTimerCountdown => 'Countdown';
+
+  @override
+  String get codexTimerStopwatch => 'Stopwatch';
+
+  @override
+  String get codexTimerDuration => 'Duration';
+
+  @override
+  String get codexTimerMinutes => 'Minutes';
+
+  @override
+  String get codexTimerSeconds => 'Seconds';
+
+  @override
+  String get codexTimerStart => 'Start';
+
+  @override
+  String get codexTimerPause => 'Pause';
+
+  @override
+  String get codexTimerReset => 'Reset';
+
+  @override
+  String get codexTimerAddMinute => 'Add a minute';
+
+  @override
+  String get codexTimerDone => 'Time is up.';
+
+  @override
+  String codexTimerFinished(String title) {
+    return '“$title” has finished.';
+  }
+
+  @override
+  String get codexTimerOpen => 'Open';
+
+  @override
+  String get codexTimerAlarm => 'Alert when finished';
+
+  @override
+  String get codexTimerLoop => 'Restart when finished';
+
+  @override
+  String get codexTimerStyleDigits => 'Digits';
+
+  @override
+  String get codexTimerStyleBar => 'Bar';
+
+  @override
+  String get codexTimerStyleRing => 'Ring';
+
+  @override
+  String get codexTimerRunningHint =>
+      'The timer keeps running after you leave the page.';
+
+  @override
+  String get codexChipStyle => 'Appearance';
+
+  @override
+  String get codexChipStyleChip => 'Chip';
+
+  @override
+  String get codexChipStyleButton => 'Button';
+
+  @override
+  String get codexChipStyleCard => 'Card';
+
+  @override
+  String get codexEmbedCompact => 'Compact';
+
+  @override
+  String get codexTitleOptional => 'Title (optional)';
+
+  @override
   String get codexLinkLabel => 'Label (optional)';
-
-  @override
-  String get sessionOpenTable => 'Open the table';
-
-  @override
-  String get sessionStartHint =>
-      'While on the same Wi-Fi network, players can paste the link on a computer or phone, or scan the QR code, and connect from the browser. No app install, account, or internet needed.';
-
-  @override
-  String get sessionStartServer => 'Start server';
-
-  @override
-  String get sessionAddressCopied => 'Address copied';
-
-  @override
-  String get sessionCopyAddress => 'Copy address';
-
-  @override
-  String get sessionReject => 'Reject';
-
-  @override
-  String get sessionApprove => 'Approve';
-
-  @override
-  String get sessionDmTools => 'DM tools';
-
-  @override
-  String get sessionTarget => 'Target';
-
-  @override
-  String get sessionEveryone => 'Everyone';
-
-  @override
-  String get sessionAnnouncement => 'Announcement / message';
-
-  @override
-  String get sessionSend => 'Send';
-
-  @override
-  String get sessionAnnouncementSent => 'Announcement sent.';
-
-  @override
-  String get sessionAbility => 'Ability';
-
-  @override
-  String get sessionRequestSave => 'Request save';
-
-  @override
-  String get sessionSaveRequested => 'Saving throw requested.';
-
-  @override
-  String get sessionGold => 'Gold';
-
-  @override
-  String get sessionItemsCsv => 'Items (comma-separated)';
-
-  @override
-  String get sessionGiveLoot => 'Give loot';
-
-  @override
-  String get sessionLootOffered => 'Loot offered.';
-
-  @override
-  String get sessionNobodyConnected => 'Nobody has connected yet.';
-
-  @override
-  String get sessionNoCharacter => 'No character chosen';
-
-  @override
-  String get sessionHasCharacter => 'Claimed a character';
-
-  @override
-  String sessionPurchaseRequests(int count) {
-    return 'Purchase request ($count)';
-  }
-
-  @override
-  String sessionConnectedPlayers(int count) {
-    return 'Connected players ($count)';
-  }
 
   @override
   String get charactersTabParty => 'Party';
@@ -2681,6 +2930,14 @@ class L10nEn extends L10n {
   String get compendiumDisadvantage => 'Disadvantage';
 
   @override
+  String get compendiumAcPlusDex => ' + Dex';
+
+  @override
+  String compendiumAcMaxDex(int max) {
+    return ' (max $max)';
+  }
+
+  @override
   String get compendiumSuggested => 'suggested';
 
   @override
@@ -2748,9 +3005,6 @@ class L10nEn extends L10n {
 
   @override
   String get lootEmptyLabel => 'Empty';
-
-  @override
-  String get lootShow => 'Show';
 
   @override
   String get lootSetTitle => 'Loot set';
@@ -3131,11 +3385,6 @@ class L10nEn extends L10n {
   }
 
   @override
-  String lootOffered(String name) {
-    return '“$name” offered to players.';
-  }
-
-  @override
   String get shopsNew => 'New shop';
 
   @override
@@ -3197,6 +3446,19 @@ class L10nEn extends L10n {
   String get formHigherLevel => 'At higher level (optional)';
 
   @override
+  String get spellHigherLevelSlot => 'Using a Higher-Level Spell Slot. ';
+
+  @override
+  String get formCastingTime => 'Casting time';
+
+  @override
+  String get formCantrip => 'Cantrip';
+
+  @override
+  String get formActionDescHint =>
+      'Melee Attack Roll: +5, reach 5 ft. 8 (1d10 + 3) Piercing damage.';
+
+  @override
   String get formCastingTimeHint => 'e.g. 1 action';
 
   @override
@@ -3216,6 +3478,15 @@ class L10nEn extends L10n {
 
   @override
   String get ccSize => 'Size';
+
+  @override
+  String get ccSizeSmall => 'Small';
+
+  @override
+  String get ccSizeMedium => 'Medium';
+
+  @override
+  String get ccSizeLarge => 'Large';
 
   @override
   String get ccSpeed => 'Speed (feet)';
@@ -3420,32 +3691,11 @@ class L10nEn extends L10n {
       'Applied to list prices. Lower it when haggling, raise it in a remote town.';
 
   @override
-  String get sdOpenToPlayers => 'Open to players';
-
-  @override
-  String get sdOpenHint =>
-      'When on, this shop appears in players\' panels. Only one shop can be open at a time.';
-
-  @override
-  String get sdMapAccessible => 'Accessible from map';
-
-  @override
-  String get sdMapAccessibleHint =>
-      'When on, players can open this shop by tapping its pin on a visible map. Multiple shops can be accessible at once.';
-
-  @override
   String get sdClosed => 'Shop closed';
 
   @override
   String get sdClosedHint =>
       'When closed, players see “shop closed” on tap; items aren\'t listed and can\'t be bought.';
-
-  @override
-  String get sdRequireApproval => 'Require purchase approval';
-
-  @override
-  String get sdRequireApprovalHint =>
-      'When off, players buy directly; their gold and the stock drop immediately.';
 
   @override
   String get sdUnlimited => 'unlimited';
@@ -3621,37 +3871,6 @@ class L10nEn extends L10n {
 
   @override
   String get sheetUnknownItem => 'Unknown item';
-
-  @override
-  String get pfInvalidQuantity => 'Invalid quantity.';
-
-  @override
-  String get pfItemNotFound => 'Item not found.';
-
-  @override
-  String get pfShopNotFound => 'Shop not found.';
-
-  @override
-  String get pfShopClosed => 'The shop is currently closed.';
-
-  @override
-  String get pfSoldOut => 'This item is sold out.';
-
-  @override
-  String get pfCharacterNotFound => 'Character not found.';
-
-  @override
-  String get pfRequestNotFound => 'Request not found.';
-
-  @override
-  String pfOnlyNLeft(String n) {
-    return 'Only $n left in stock.';
-  }
-
-  @override
-  String pfNotEnoughGold(String need, String have) {
-    return 'Not enough gold: $need needed, you have $have.';
-  }
 
   @override
   String cwPointsRemaining(int n) {
@@ -3909,6 +4128,9 @@ class L10nEn extends L10n {
   }
 
   @override
+  String get sheetHpLabel => 'HP';
+
+  @override
   String sheetTempHp(int n) {
     return '+$n temp';
   }
@@ -3930,6 +4152,15 @@ class L10nEn extends L10n {
 
   @override
   String get diceTitle => 'Dice';
+
+  @override
+  String get diceRollTitle => 'Roll dice';
+
+  @override
+  String get diceCount => 'Count';
+
+  @override
+  String get diceModifier => 'Bonus';
 
   @override
   String get diceCritical => 'Critical!';
@@ -4027,22 +4258,6 @@ class L10nEn extends L10n {
 
   @override
   String get worldGraphOpenLocation => 'Open location';
-
-  @override
-  String get worldGraphShowToPlayers => 'Show to players';
-
-  @override
-  String get worldGraphHideFromPlayers => 'Hide from players';
-
-  @override
-  String worldGraphShownNotice(String name) {
-    return '$name is now visible to players.';
-  }
-
-  @override
-  String worldGraphHiddenNotice(String name) {
-    return '$name is now hidden from players.';
-  }
 
   @override
   String get worldGraphSetSize => 'Node radius';
@@ -4227,4 +4442,1028 @@ class L10nEn extends L10n {
 
   @override
   String get codexAiErrNoImage => 'This provider does not generate images.';
+
+  @override
+  String get sheetEdit => 'Edit';
+
+  @override
+  String get sheetProficiencyToggle => 'Toggle proficiency';
+
+  @override
+  String get editCharacterTitle => 'Edit character';
+
+  @override
+  String get editSave => 'Save';
+
+  @override
+  String get editCancel => 'Cancel';
+
+  @override
+  String get editNone => 'None';
+
+  @override
+  String get editNameRequired => 'Name cannot be empty';
+
+  @override
+  String get editSectionIdentity => 'Identity';
+
+  @override
+  String get editName => 'Name';
+
+  @override
+  String get editPlayerName => 'Player';
+
+  @override
+  String get editAlignment => 'Alignment';
+
+  @override
+  String get editSectionOrigin => 'Origin';
+
+  @override
+  String get editSpecies => 'Species';
+
+  @override
+  String get editBackground => 'Background';
+
+  @override
+  String get editBackgroundHint =>
+      'Changing the background removes the skills the old one granted and adds the new ones.';
+
+  @override
+  String get editSectionAbilities => 'Ability scores';
+
+  @override
+  String get editAbilityHint =>
+      'Final scores as shown on the sheet. Changing CON shifts max hit points for every level.';
+
+  @override
+  String get editSectionVitals => 'Hit points and stats';
+
+  @override
+  String get editHitPointsMax => 'Max HP';
+
+  @override
+  String get editArmorClassOverride => 'AC';
+
+  @override
+  String get editSpeedOverride => 'Speed';
+
+  @override
+  String get editOverrideHint =>
+      'Leave AC and speed empty to use the calculated values.';
+
+  @override
+  String get editSectionClasses => 'Classes';
+
+  @override
+  String get editClass => 'Class';
+
+  @override
+  String get editSubclass => 'Subclass';
+
+  @override
+  String get editLevel => 'Level';
+
+  @override
+  String get editClassChangeTitle => 'Change class?';
+
+  @override
+  String editClassChangeBody(String from, String to) {
+    return '$to replaces $from. The level and rolled hit dice are kept; features from the old class and subclass are removed from the sheet and the new class\'s features are written in.';
+  }
+
+  @override
+  String get editClassChangeConfirm => 'Change';
+
+  @override
+  String get editSaved => 'Character updated';
+
+  @override
+  String sheetPreparedCount(int used, int limit) {
+    return 'Prepared $used/$limit';
+  }
+
+  @override
+  String sheetCantripCount(int used, int limit) {
+    return 'Cantrips $used/$limit';
+  }
+
+  @override
+  String sheetSpellChangesLeft(int n) {
+    return '$n change(s) left';
+  }
+
+  @override
+  String get compendiumClasses => 'Classes';
+
+  @override
+  String get compendiumClassTable => 'Class table';
+
+  @override
+  String get compendiumSubclasses => 'Subclasses';
+
+  @override
+  String get compendiumFeatures => 'Features';
+
+  @override
+  String get compendiumLevel => 'Lv';
+
+  @override
+  String get compendiumFullCaster => 'Full caster';
+
+  @override
+  String get compendiumHalfCaster => 'Half caster';
+
+  @override
+  String get compendiumThirdCaster => 'Third caster';
+
+  @override
+  String get compendiumPactCaster => 'Pact Magic';
+
+  @override
+  String compendiumSubclassOf(String className) {
+    return '$className subclass';
+  }
+
+  @override
+  String get sheetCastSpell => 'Cast spell';
+
+  @override
+  String get sheetCastAtLevel => 'Which slot?';
+
+  @override
+  String get sheetNoSlotLeft => 'No suitable spell slot left.';
+
+  @override
+  String get sheetSpellAttack => 'Attack';
+
+  @override
+  String get sheetSpellDamage => 'Damage';
+
+  @override
+  String get sheetSaveDc => 'save DC';
+
+  @override
+  String get sheetConcentrationNote => 'Requires concentration';
+
+  @override
+  String get sheetSpellCastNoRoll => 'Slot spent';
+
+  @override
+  String get levelUpAbilityOption => 'Ability score';
+
+  @override
+  String get levelUpFeatOption => 'Feat';
+
+  @override
+  String get levelUpFeatSearch => 'Search feats';
+
+  @override
+  String get sheetAttune => 'Attune / unattune';
+
+  @override
+  String sheetAttunedCount(int used, int limit) {
+    return 'Attuned $used/$limit';
+  }
+
+  @override
+  String sheetAttunementFull(int limit) {
+    return 'You can be attuned to at most $limit items.';
+  }
+
+  @override
+  String levelUpMulticlassBlocked(String requirements) {
+    return 'To take this class you need: $requirements';
+  }
+
+  @override
+  String sheetConcentratingOn(String spell) {
+    return 'Concentrating on $spell';
+  }
+
+  @override
+  String get sheetConcentrationHint =>
+      'On damage, make a CON save: DC 10 or half the damage, whichever is higher.';
+
+  @override
+  String get sheetConcentrationEnd => 'End';
+
+  @override
+  String get sheetAddClassOption => 'Add class option';
+
+  @override
+  String get sheetAddClassOptionAction => 'Add';
+
+  @override
+  String get sheetNoClassOptions => 'This class has no options to choose.';
+
+  @override
+  String get statAc => 'AC';
+
+  @override
+  String get statHp => 'Hit Points';
+
+  @override
+  String get statSpeed => 'Speed';
+
+  @override
+  String get statInitiative => 'Initiative';
+
+  @override
+  String get statSavingThrows => 'Saving Throws';
+
+  @override
+  String get statSkills => 'Skills';
+
+  @override
+  String get statSenses => 'Senses';
+
+  @override
+  String get statLanguages => 'Languages';
+
+  @override
+  String get statCr => 'CR';
+
+  @override
+  String get statDamageResistances => 'Damage Resistances';
+
+  @override
+  String get statDamageImmunities => 'Damage Immunities';
+
+  @override
+  String get statDamageVulnerabilities => 'Damage Vulnerabilities';
+
+  @override
+  String get statConditionImmunities => 'Condition Immunities';
+
+  @override
+  String get statPassivePerception => 'Passive Perception';
+
+  @override
+  String get statActions => 'Actions';
+
+  @override
+  String get statBonusActions => 'Bonus Actions';
+
+  @override
+  String get statReactions => 'Reactions';
+
+  @override
+  String get statLegendaryActions => 'Legendary Actions';
+
+  @override
+  String get statNoLanguages => '—';
+
+  @override
+  String get abilityStrength => 'Strength';
+
+  @override
+  String get abilityDexterity => 'Dexterity';
+
+  @override
+  String get abilityConstitution => 'Constitution';
+
+  @override
+  String get abilityIntelligence => 'Intelligence';
+
+  @override
+  String get abilityWisdom => 'Wisdom';
+
+  @override
+  String get abilityCharisma => 'Charisma';
+
+  @override
+  String get abilityShortStrength => 'STR';
+
+  @override
+  String get abilityShortDexterity => 'DEX';
+
+  @override
+  String get abilityShortConstitution => 'CON';
+
+  @override
+  String get abilityShortIntelligence => 'INT';
+
+  @override
+  String get abilityShortWisdom => 'WIS';
+
+  @override
+  String get abilityShortCharisma => 'CHA';
+
+  @override
+  String get skillAcrobatics => 'Acrobatics';
+
+  @override
+  String get skillAnimalHandling => 'Animal Handling';
+
+  @override
+  String get skillArcana => 'Arcana';
+
+  @override
+  String get skillAthletics => 'Athletics';
+
+  @override
+  String get skillDeception => 'Deception';
+
+  @override
+  String get skillHistory => 'History';
+
+  @override
+  String get skillInsight => 'Insight';
+
+  @override
+  String get skillIntimidation => 'Intimidation';
+
+  @override
+  String get skillInvestigation => 'Investigation';
+
+  @override
+  String get skillMedicine => 'Medicine';
+
+  @override
+  String get skillNature => 'Nature';
+
+  @override
+  String get skillPerception => 'Perception';
+
+  @override
+  String get skillPerformance => 'Performance';
+
+  @override
+  String get skillPersuasion => 'Persuasion';
+
+  @override
+  String get skillReligion => 'Religion';
+
+  @override
+  String get skillSleightOfHand => 'Sleight of Hand';
+
+  @override
+  String get skillStealth => 'Stealth';
+
+  @override
+  String get skillSurvival => 'Survival';
+
+  @override
+  String get spellCantrip => 'Cantrip';
+
+  @override
+  String get spellCantripAbbr => 'C';
+
+  @override
+  String spellLevelN(int level) {
+    return 'Level $level';
+  }
+
+  @override
+  String spellSchoolCantrip(String school) {
+    return '$school cantrip';
+  }
+
+  @override
+  String spellSchoolLevel(int level, String school) {
+    return 'Level $level $school';
+  }
+
+  @override
+  String get spellRitualSuffix => ' (ritual)';
+
+  @override
+  String get spellConcentrationPrefix => 'Concentration, ';
+
+  @override
+  String get spellConcentrationShort => 'Conc.';
+
+  @override
+  String get spellComponents => 'Components';
+
+  @override
+  String get spellClasses => 'Classes';
+
+  @override
+  String get itemAttunementDetail => 'Attunement';
+
+  @override
+  String get settingsDensity => 'Interface density';
+
+  @override
+  String get settingsDensityCompact => 'Compact';
+
+  @override
+  String get settingsDensityNormal => 'Normal';
+
+  @override
+  String get settingsDensityComfortable => 'Comfortable';
+
+  @override
+  String get settingsDensityHint => 'Compact fits more on screen at the table.';
+
+  @override
+  String get worldCollapseChildren => 'Hide child places';
+
+  @override
+  String get worldExpandChildren => 'Show child places';
+
+  @override
+  String get musicAmbience => 'Ambience';
+
+  @override
+  String get musicAmbienceStop => 'Stop ambience';
+
+  @override
+  String get journeySkipTime => 'Advance time';
+
+  @override
+  String combatConcentrationCheck(String name, int dc) {
+    return '$name must make a DC $dc Constitution save for concentration.';
+  }
+
+  @override
+  String get combatGroupInitiative => 'One roll per monster type';
+
+  @override
+  String get combatNoArmorClass => 'AC unknown';
+
+  @override
+  String combatHits(int ac) {
+    return 'Hits (AC $ac)';
+  }
+
+  @override
+  String combatMisses(int ac) {
+    return 'Misses (AC $ac)';
+  }
+
+  @override
+  String combatApplyDamage(int damage) {
+    return 'Apply $damage';
+  }
+
+  @override
+  String get combatApplied => 'Applied';
+
+  @override
+  String get searchEmpty => 'Start typing to search.';
+
+  @override
+  String get searchOpen => 'Search everything';
+
+  @override
+  String get sessionRolls => 'Roll log';
+
+  @override
+  String get sessionRollsEmpty => 'No rolls yet.';
+
+  @override
+  String get contentSourcesTitle => 'Content sources';
+
+  @override
+  String get contentSourcesHint =>
+      'Add an address that serves 5etools-format JSON; the app discovers which files are there. No address ships with the app — you decide which source to use.';
+
+  @override
+  String get contentSourceAdd => 'Add source';
+
+  @override
+  String get contentSourceName => 'Name';
+
+  @override
+  String get contentSourceUrl => 'Base address';
+
+  @override
+  String get contentSourceUrlHint =>
+      'Root of the data folder, e.g. https://example/data';
+
+  @override
+  String get contentSourceDiscover => 'Discover';
+
+  @override
+  String get contentSourceEmpty => 'No sources yet.';
+
+  @override
+  String get contentSourceNothingFound =>
+      'No recognised files found at this address.';
+
+  @override
+  String contentSourceLastImport(String date) {
+    return 'Last import: $date';
+  }
+
+  @override
+  String get contentSourceNeverImported => 'Never imported';
+
+  @override
+  String get contentSourceImportSelected => 'Import selected';
+
+  @override
+  String contentSourceImporting(String file) {
+    return 'Importing: $file';
+  }
+
+  @override
+  String contentSourceDone(int monsters, int spells, int items, int others) {
+    return 'Imported $monsters monsters, $spells spells, $items items, $others other.';
+  }
+
+  @override
+  String get contentSourceLocalFiles => 'Import from file';
+
+  @override
+  String get contentSourceDeleteImported => 'Delete imported content';
+
+  @override
+  String get contentSourceDeleteImportedBody =>
+      'All records imported from these addresses will be deleted. Content you created in the app and the bundled SRD are unaffected.';
+
+  @override
+  String contentSourceDeleted(int count) {
+    return 'Deleted $count records.';
+  }
+
+  @override
+  String get contentSourceKindMonster => 'Monsters';
+
+  @override
+  String get contentSourceKindSpell => 'Spells';
+
+  @override
+  String get contentSourceKindItem => 'Items';
+
+  @override
+  String get contentSourceKindRace => 'Species';
+
+  @override
+  String get contentSourceKindBackground => 'Backgrounds';
+
+  @override
+  String get contentSourceKindFeat => 'Feats';
+
+  @override
+  String get contentSourceSelectAll => 'Select all';
+
+  @override
+  String get contentSourceLegal =>
+      'Only import content you have the right to use. Imported records stay on your device and are excluded from backup packages.';
+
+  @override
+  String get contentSourceProblemNetwork =>
+      'Could not connect. Check your connection and the address.';
+
+  @override
+  String contentSourceProblemBlocked(String status) {
+    return 'The server refused the request ($status). This address blocks non-browser clients with bot protection, which the app does not bypass. You can download the files in your browser and add them with “Import from file”.';
+  }
+
+  @override
+  String contentSourceProblemNotFound(String status) {
+    return 'No 5etools-format files found at this address ($status). Make sure the base address points at the data folder.';
+  }
+
+  @override
+  String get contentSourceProblemNotJson =>
+      'The address returned a page, not JSON. The base address may not point at the data folder.';
+
+  @override
+  String contentSourceResolved(String url) {
+    return 'Resolved base: $url';
+  }
+
+  @override
+  String undoDone(String label) {
+    return '$label undone';
+  }
+
+  @override
+  String get undoNothing => 'Nothing to undo';
+
+  @override
+  String get undoTitle => 'Undo';
+
+  @override
+  String get undoHistory => 'Undo history';
+
+  @override
+  String get turnTimer => 'Turn timer';
+
+  @override
+  String get turnTimerOff => 'Off';
+
+  @override
+  String turnTimerSeconds(int seconds) {
+    return '${seconds}s';
+  }
+
+  @override
+  String get turnTimerUp => 'Time is up';
+
+  @override
+  String get partyBoard => 'Party board';
+
+  @override
+  String get partyBoardPassive => 'Passive perception';
+
+  @override
+  String get partyBoardSaves => 'Saves';
+
+  @override
+  String get partyBoardDefenses => 'Resistances / immunities';
+
+  @override
+  String get partyBoardLanguages => 'Languages';
+
+  @override
+  String get partyBoardEmpty => 'No characters in the party.';
+
+  @override
+  String get encounterTemplates => 'Encounter templates';
+
+  @override
+  String get encounterTemplateSave => 'Save as template';
+
+  @override
+  String get encounterTemplateUse => 'Build from template';
+
+  @override
+  String get encounterTemplateEmpty => 'No saved templates.';
+
+  @override
+  String encounterTemplateMissing(String names) {
+    return 'Not found in library: $names';
+  }
+
+  @override
+  String encounterTemplateCreated(String name) {
+    return '$name created.';
+  }
+
+  @override
+  String get reaction => 'Reaction';
+
+  @override
+  String get reactionUsed => 'Reaction used';
+
+  @override
+  String get reactionAvailable => 'Reaction available';
+
+  @override
+  String get lairAction => 'Lair action';
+
+  @override
+  String lairActionHint(int value) {
+    return 'Reminded when initiative $value comes up.';
+  }
+
+  @override
+  String get lairActionNone => 'No lair action in this encounter.';
+
+  @override
+  String get damageType => 'Damage type';
+
+  @override
+  String get damageTypeAny => 'No type';
+
+  @override
+  String damageResisted(int amount) {
+    return 'Resisted: $amount';
+  }
+
+  @override
+  String get damageImmune => 'Immune — no damage';
+
+  @override
+  String damageVulnerable(int amount) {
+    return 'Vulnerable: $amount';
+  }
+
+  @override
+  String get defensesTitle => 'Defenses';
+
+  @override
+  String get defenseResist => 'Resistance';
+
+  @override
+  String get defenseImmune => 'Immunity';
+
+  @override
+  String get defenseVulnerable => 'Vulnerability';
+
+  @override
+  String get deathSaves => 'Death saves';
+
+  @override
+  String get deathSaveRoll => 'Roll save';
+
+  @override
+  String get deathSaveStable => 'Stable';
+
+  @override
+  String get deathSaveDead => 'Dead';
+
+  @override
+  String get deathSaveRevived => 'Back up (1 HP)';
+
+  @override
+  String get downtime => 'Downtime';
+
+  @override
+  String get downtimeAdd => 'Add activity';
+
+  @override
+  String get downtimeDays => 'Days';
+
+  @override
+  String downtimeRemaining(int days) {
+    return '$days days left';
+  }
+
+  @override
+  String get downtimeComplete => 'Complete';
+
+  @override
+  String get downtimeOutcome => 'Outcome';
+
+  @override
+  String get downtimeEmpty => 'No activities.';
+
+  @override
+  String get downtimeKindCraft => 'Crafting';
+
+  @override
+  String get downtimeKindResearch => 'Research';
+
+  @override
+  String get downtimeKindWork => 'Working';
+
+  @override
+  String get downtimeKindTrain => 'Training';
+
+  @override
+  String get downtimeKindRecuperate => 'Recuperating';
+
+  @override
+  String get downtimeKindCarouse => 'Carousing';
+
+  @override
+  String get downtimeKindCustom => 'Custom';
+
+  @override
+  String get sessionRecap => 'Session recap';
+
+  @override
+  String get sessionRecapGenerate => 'Generate recap';
+
+  @override
+  String get sessionRecapEmpty => 'No log entries to summarise.';
+
+  @override
+  String get exportPdf => 'Save as PDF';
+
+  @override
+  String exportPdfDone(String path) {
+    return 'Saved: $path';
+  }
+
+  @override
+  String get macros => 'Macros';
+
+  @override
+  String get macroAdd => 'Add macro';
+
+  @override
+  String get macroExpression => 'Dice expression';
+
+  @override
+  String get macroInvalid => 'Could not parse the expression (e.g. 2d6+3).';
+
+  @override
+  String get macroEmpty => 'No macros.';
+
+  @override
+  String get macroScopeDm => 'DM only';
+
+  @override
+  String get macroScopePlayer => 'Players';
+
+  @override
+  String get macroScopeBoth => 'Everyone';
+
+  @override
+  String get settingsAccessibility => 'Accessibility';
+
+  @override
+  String get settingsHighContrast => 'High contrast';
+
+  @override
+  String get settingsColorBlind => 'Colour-blind friendly';
+
+  @override
+  String get settingsColorBlindHint =>
+      'Token teams and wall types are distinguished by pattern and shape as well as colour.';
+
+  @override
+  String get settingsTouchLayout => 'Touch layout';
+
+  @override
+  String get settingsTouchLayoutHint =>
+      'On-screen buttons replace middle-click and right-click; targets get larger.';
+
+  @override
+  String get syncFolder => 'Backup folder';
+
+  @override
+  String get syncFolderHint =>
+      'A backup is written to this folder daily. Pick a cloud-synced folder (OneDrive, Drive, Dropbox) to carry it across devices.';
+
+  @override
+  String get syncFolderPick => 'Choose folder';
+
+  @override
+  String get syncFolderNone => 'Not set';
+
+  @override
+  String get syncFolderCleared => 'Cleared';
+
+  @override
+  String get campaignMerge => 'Import from campaign';
+
+  @override
+  String get campaignMergeHint =>
+      'Copies monsters, NPCs, maps and random tables from the chosen campaign. Existing records are not overwritten.';
+
+  @override
+  String campaignMergeDone(int count) {
+    return 'Imported $count records.';
+  }
+
+  @override
+  String get campaignMergeWhat => 'What to import?';
+
+  @override
+  String contentSourceImages(int done, int total) {
+    return 'Downloading images: $done/$total';
+  }
+
+  @override
+  String get questOwners => 'On this quest';
+
+  @override
+  String get questOwnersSection => 'Who\'s on this quest';
+
+  @override
+  String get questOwnersHint => 'Mark the characters who took the job.';
+
+  @override
+  String get restSpendHitDie => 'Spend die';
+
+  @override
+  String restHitDieSpent(String name, int healed) {
+    return '$name spent a Hit Die: +$healed HP';
+  }
+
+  @override
+  String get lootGrant => 'Give';
+
+  @override
+  String lootGranted(Object name) {
+    return '“$name” moved to the party bag.';
+  }
+
+  @override
+  String get lootNoPartyBag => 'Create a party bag first (Characters tab).';
+
+  @override
+  String get encLocation => 'Takes place at';
+
+  @override
+  String get encLocationNone => 'No location linked';
+
+  @override
+  String get encLocationMissing => 'Linked location was deleted';
+
+  @override
+  String get encLocationPick => 'Pick a location';
+
+  @override
+  String get encLocationClear => 'Unlink location';
+
+  @override
+  String get encLocationNoLocations =>
+      'No locations yet — create one in World first.';
+
+  @override
+  String get worldEncountersHere => 'Encounters here';
+
+  @override
+  String get factionTitle => 'Faction';
+
+  @override
+  String get factionsTab => 'Factions';
+
+  @override
+  String get factionAdd => 'New faction';
+
+  @override
+  String get factionEmpty =>
+      'No factions yet. Guilds, cults, houses and gangs live here.';
+
+  @override
+  String get factionName => 'Name';
+
+  @override
+  String get factionKind => 'Kind';
+
+  @override
+  String get factionKindHint => 'guild, cult, house, gang…';
+
+  @override
+  String get factionGoal => 'Goal';
+
+  @override
+  String get factionDescription => 'Description';
+
+  @override
+  String get factionSecretNotes => 'DM notes';
+
+  @override
+  String get factionSecretHint => 'Only you see this.';
+
+  @override
+  String get factionEmblemClear => 'Remove emblem';
+
+  @override
+  String get factionBonds => 'Bonds';
+
+  @override
+  String get factionBondsEmpty =>
+      'No bonds yet — connect nodes in the world graph.';
+
+  @override
+  String get factionBondBroken => '(deleted)';
+
+  @override
+  String get factionDelete => 'Delete faction';
+
+  @override
+  String get factionDeleteConfirm =>
+      'The faction and its bonds will be removed.';
+
+  @override
+  String get worldFactions => 'Factions';
+
+  @override
+  String get bondMembership => 'Membership';
+
+  @override
+  String get clocksTitle => 'Clocks';
+
+  @override
+  String get clocksEmpty =>
+      'No clocks. Track a siege, a ritual or a rumour spreading.';
+
+  @override
+  String get clockAdd => 'New clock';
+
+  @override
+  String get clockName => 'What is ticking?';
+
+  @override
+  String get clockNameHint => 'The siege arrives';
+
+  @override
+  String get clockOutcome => 'When it fills';
+
+  @override
+  String get clockOutcomeHint =>
+      'What happens at the table when the last segment lands.';
+
+  @override
+  String get clockAdvance => 'Advance one segment';
+
+  @override
+  String get clockClose => 'Close clock';
+
+  @override
+  String get clockReopen => 'Reopen clock';
+
+  @override
+  String get exportTitle => 'Open formats';
+
+  @override
+  String get exportHint =>
+      'Readable anywhere, but NOT restorable. Media files are not included.';
+
+  @override
+  String get exportMarkdown => 'Codex → Markdown';
+
+  @override
+  String get exportJson => 'Campaign → JSON';
+
+  @override
+  String get exportMarkdownType => 'Markdown';
+
+  @override
+  String get exportJsonType => 'JSON';
+
+  @override
+  String get exportDone => 'Exported.';
 }

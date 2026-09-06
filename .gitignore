@@ -44,6 +44,9 @@ app.*.map.json
 .claude/settings.local.json
 .vscode/settings.json
 
+# Downloaded 5etools input for tools/convert_5etools.dart; not ours to redistribute.
+tools/content_sources/raw/
+
 # OS cruft
 Thumbs.db
 desktop.ini

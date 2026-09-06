@@ -1,0 +1,733 @@
+[
+  {
+    "key": "ravenloft-horrors_reanimator",
+    "name": "Reanimator",
+    "document": "ravenloft-horrors",
+    "desc": "Reassemble Corpses and Raise the Dead\n\nReanimators defy the laws of nature in pursuit of gruesome experiments. These grim Artificers stitch together servants from disparate corpses, use foul magic to strengthen the living, and transform the art of necromancy into a terrifying science.",
+    "subclass_of": {
+      "key": "eberron-forge_artificer",
+      "name": "Artificer"
+    },
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "saving_throws": [],
+    "primary_abilities": [],
+    "features": [
+      {
+        "key": "ravenloft-horrors_artificer_reanimator_reanimator",
+        "name": "Reanimator",
+        "desc": "Reassemble Corpses and Raise the Dead\n\nReanimators defy the laws of nature in pursuit of gruesome experiments. These grim Artificers stitch together servants from disparate corpses, use foul magic to strengthen the living, and transform the art of necromancy into a terrifying science.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "ravenloft-horrors_artificer_reanimator_strange-modifications",
+        "name": "Strange Modifications",
+        "desc": "Whenever you create a Reanimated Companion, it gains one of the following options of your choice; choose when you create the companion.\n\nArcane Conduit. You can cast spells as though you were in the companion's space, but you must use your own senses. Once per turn, when you cast an Artificer spell from the Evocation or Necromancy school and deal damage while your companion is within 120 feet of you, you can add your Intelligence modifier to one damage roll of that spell.\n\nFerocity. The damage die of the companion's Dreadful Swipe increases to 1d6.\n\nTable: Reanimated Companion\n| | |\n|---|---|\n|Type|Medium Undead|\n|Armor Class|10 plus your Intelligence modifier|\n|Hit Points|5 plus five times your Artificer level (the companion has a number of Hit Dice [d8s] equal to your Artificer level)|\n|Speed|30 feet|\n|Senses|Blindsight 60 ft., Passive Perception 10|\n|Immunities|lightning|\n|Resistances|necrotic, poison|\n|Languages|understands the languages you know|\n\n| STR | DEX | CON | INT | WIS | CHA |\n|---|---|---|---|---|---|\n| 11 (+0) | 10 (+0) | 16 (+3) | 4 (-3) | 10 (+0) | 6 (-2) |\n\nDeath Burst. The companion explodes when it dies. Dexterity Saving Throw: DC equals your spell save DC, each creature in a 10-foot Emanation originating from the companion. Failure: 2d4 Necrotic damage. Success: Half damage.\nLightning Absorption. Whenever the companion is subjected to Lightning damage, it regains a number of Hit Points equal to the Lightning damage dealt.\nDreadful Swipe. Melee Attack Roll: your spell attack modifier, reach 5 ft. Hit: 1d4 plus your Intelligence modifier Necrotic damage, and the target can't take Opportunity Attacks until the start of its next turn.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 5,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "ravenloft-horrors_artificer_reanimator_improved-reanimation",
+        "name": "Improved Reanimation",
+        "desc": "The damage of your Reanimated Companion's Death Burst increases to 4d4. Necrotic damage dealt by your companion ignores Resistance.\n\nTable: Reanimated Companion\n| | |\n|---|---|\n|Type|Medium Undead|\n|Armor Class|10 plus your Intelligence modifier|\n|Hit Points|5 plus five times your Artificer level (the companion has a number of Hit Dice [d8s] equal to your Artificer level)|\n|Speed|30 feet|\n|Senses|Blindsight 60 ft., Passive Perception 10|\n|Immunities|lightning|\n|Resistances|necrotic, poison|\n|Languages|understands the languages you know|\n\n| STR | DEX | CON | INT | WIS | CHA |\n|---|---|---|---|---|---|\n| 11 (+0) | 10 (+0) | 16 (+3) | 4 (-3) | 10 (+0) | 6 (-2) |\n\nDeath Burst. The companion explodes when it dies. Dexterity Saving Throw: DC equals your spell save DC, each creature in a 10-foot Emanation originating from the companion. Failure: 2d4 Necrotic damage. Success: Half damage.\nLightning Absorption. Whenever the companion is subjected to Lightning damage, it regains a number of Hit Points equal to the Lightning damage dealt.\nDreadful Swipe. Melee Attack Roll: your spell attack modifier, reach 5 ft. Hit: 1d4 plus your Intelligence modifier Necrotic damage, and the target can't take Opportunity Attacks until the start of its next turn.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 9,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "ravenloft-horrors_artificer_reanimator_macabre-modifications",
+        "name": "Macabre Modifications",
+        "desc": "You experiment and alter your companion further. Whenever you create a Reanimated Companion, the companion now gains two options for Strange Modifications, instead of one. Additionally, when picking options for Strange Modifications, you can also choose from the following options.\n\nBloated. The companion becomes Large. Whenever it hits a Large or smaller creature with its Dreadful Swipe action, that creature is pushed up to 10 feet away from the companion. Additionally, you can add your Intelligence modifier to the damage dealt by the companion's Death Burst.\n\nGaunt. The companion's Speed increases to 45 feet, and it gains a Climb Speed equal to its Speed. It can climb difficult surfaces, including along ceilings, without needing to make an ability check. In addition, whenever a creature of your choice starts its turn within a 10-foot Emanation originating from your companion, the creature must succeed on a Wisdom saving throw against your spell save DC or have the Frightened condition until the start of its next turn.\n\nMoist. The companion gains a Swim Speed equal to its Speed, and it can move through a space as narrow as 1 inch without expending extra movement to do so. In addition, whenever the companion is hit by an attack roll from a creature within 10 feet of itself, the attacker takes Acid damage equal to your Intelligence modifier.\n\nTable: Reanimated Companion\n| | |\n|---|---|\n|Type|Medium Undead|\n|Armor Class|10 plus your Intelligence modifier|\n|Hit Points|5 plus five times your Artificer level (the companion has a number of Hit Dice [d8s] equal to your Artificer level)|\n|Speed|30 feet|\n|Senses|Blindsight 60 ft., Passive Perception 10|\n|Immunities|lightning|\n|Resistances|necrotic, poison|\n|Languages|understands the languages you know|\n\n| STR | DEX | CON | INT | WIS | CHA |\n|---|---|---|---|---|---|\n| 11 (+0) | 10 (+0) | 16 (+3) | 4 (-3) | 10 (+0) | 6 (-2) |\n\nDeath Burst. The companion explodes when it dies. Dexterity Saving Throw: DC equals your spell save DC, each creature in a 10-foot Emanation originating from the companion. Failure: 2d4 Necrotic damage. Success: Half damage.\nLightning Absorption. Whenever the companion is subjected to Lightning damage, it regains a number of Hit Points equal to the Lightning damage dealt.\nDreadful Swipe. Melee Attack Roll: your spell attack modifier, reach 5 ft. Hit: 1d4 plus your Intelligence modifier Necrotic damage, and the target can't take Opportunity Attacks until the start of its next turn.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 9,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "ravenloft-horrors_artificer_reanimator_refined-reanimation",
+        "name": "Refined Reanimation",
+        "desc": "You have mastered the science of revivification, granting you the following benefits.\n\nFacilitated Revival. You can cast Raise Dead once without expending a spell slot and without Material components, provided you use Tinker's Tools or another type of Artisan's Tools with which you have proficiency as the Spellcasting Focus. Once you use this feature, you can't use it again until you finish a Long Rest.\n\nLife Transfer. You can siphon the animating magic of your Reanimated Companion to bolster yourself. When you or your companion takes damage, you can take a Reaction to gain a number of Hit Points equal to your companion's current Hit Points. The companion then immediately drops to 0 Hit Points and dies (triggering its Death Burst trait).\n\nSuperior Modifications. Whenever you create a Reanimated Companion, the companion now gains three options for Strange Modifications.\n\nTable: Reanimated Companion\n| | |\n|---|---|\n|Type|Medium Undead|\n|Armor Class|10 plus your Intelligence modifier|\n|Hit Points|5 plus five times your Artificer level (the companion has a number of Hit Dice [d8s] equal to your Artificer level)|\n|Speed|30 feet|\n|Senses|Blindsight 60 ft., Passive Perception 10|\n|Immunities|lightning|\n|Resistances|necrotic, poison|\n|Languages|understands the languages you know|\n\n| STR | DEX | CON | INT | WIS | CHA |\n|---|---|---|---|---|---|\n| 11 (+0) | 10 (+0) | 16 (+3) | 4 (-3) | 10 (+0) | 6 (-2) |\n\nDeath Burst. The companion explodes when it dies. Dexterity Saving Throw: DC equals your spell save DC, each creature in a 10-foot Emanation originating from the companion. Failure: 2d4 Necrotic damage. Success: Half damage.\nLightning Absorption. Whenever the companion is subjected to Lightning damage, it regains a number of Hit Points equal to the Lightning damage dealt.\nDreadful Swipe. Melee Attack Roll: your spell attack modifier, reach 5 ft. Hit: 1d4 plus your Intelligence modifier Necrotic damage, and the target can't take Opportunity Attacks until the start of its next turn.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 15,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "ravenloft-horrors_artificer_reanimator_reanimator-spells",
+        "name": "Reanimator Spells",
+        "desc": "When you reach an Artificer level specified in the Reanimator Spells table, you thereafter always have the listed spells prepared.\n\nTable: Reanimator Spells\n| Artificer Level | Spells |\n|---|---|\n| 3 | False Life, Spare the Dying, Witch Bolt |\n| 5 | Blindness/Deafness, Enhance Ability |\n| 9 | Animate Dead, Lightning Bolt |\n| 13 | Blight, Death Ward |\n| 17 | Antilife Shell, Raise Dead |",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "ravenloft-horrors_artificer_reanimator_reanimators-skill-set",
+        "name": "Reanimator's Skill Set",
+        "desc": "You gain the following benefits.\n\nJolt to Life. When you cast Spare the Dying, you can modify the spell so that it sends a jolt of electricity through the target, reviving it. The target regains a number of Hit Points equal to your Artificer level, and each creature of your choice in a 10-foot Emanation originating from the target makes a Dexterity saving throw against your spell save DC, taking 2d4 Lightning damage on a failed save or half as much damage on a successful one.\n\nYou can modify the spell this way a number of times equal to your Intelligence modifier, and you regain all expended uses when you finish a Long Rest. The Lightning damage of this feature increases by 1d4 when you reach Artificer levels 11 (3d4) and 17 (4d4).\n\nReanimator's Tools. You gain proficiency with Alchemist's Supplies. If you already have this proficiency, you gain proficiency with one other type of Artisan's Tools of your choice.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "ravenloft-horrors_artificer_reanimator_reanimated-companion",
+        "name": "Reanimated Companion",
+        "desc": "Using Tinker's Tools or another type of Artisan's Tools with which you have proficiency, you can take a Magic action to create a Reanimated Companion through the power of necromancy and science. The companion manifests in an unoccupied space within 5 feet of you. You determine the companion's appearance; your choices don't affect the companion's game statistics.\n\nThe companion is Friendly to you and your allies and obeys you. It lasts until you finish a Long Rest or until you take a Magic action to dismiss it early, at which point it harmlessly collapses into a pile of viscera. It immediately drops to 0 Hit Points and dies (triggering its Death Burst trait) if you die.\n\nOnce you create a companion, you can't do so again until you finish a Long Rest or expend a spell slot to create one. You can have only one companion at a time and can't create one while your companion is present.\n\nThe Companion in Combat. In combat, the companion acts during your turn. It can move and take its Reaction on its own, but the only action it takes is the Dodge action unless you take a Bonus Action to command it to take an action. If you have the Incapacitated condition, the companion acts on its own and isn't limited to the Dodge action.\n\nTable: Reanimated Companion\n| | |\n|---|---|\n|Type|Medium Undead|\n|Armor Class|10 plus your Intelligence modifier|\n|Hit Points|5 plus five times your Artificer level (the companion has a number of Hit Dice [d8s] equal to your Artificer level)|\n|Speed|30 feet|\n|Senses|Blindsight 60 ft., Passive Perception 10|\n|Immunities|lightning|\n|Resistances|necrotic, poison|\n|Languages|understands the languages you know|\n\n| STR | DEX | CON | INT | WIS | CHA |\n|---|---|---|---|---|---|\n| 11 (+0) | 10 (+0) | 16 (+3) | 4 (-3) | 10 (+0) | 6 (-2) |\n\nDeath Burst. The companion explodes when it dies. Dexterity Saving Throw: DC equals your spell save DC, each creature in a 10-foot Emanation originating from the companion. Failure: 2d4 Necrotic damage. Success: Half damage.\nLightning Absorption. Whenever the companion is subjected to Lightning damage, it regains a number of Hit Points equal to the Lightning damage dealt.\nDreadful Swipe. Melee Attack Roll: your spell attack modifier, reach 5 ft. Hit: 1d4 plus your Intelligence modifier Necrotic damage, and the target can't take Opportunity Attacks until the start of its next turn.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "ravenloft-horrors_college-of-spirits",
+    "name": "College of Spirits",
+    "document": "ravenloft-horrors",
+    "desc": "Call Forth Spirits from Beyond the Grave\n\nBards of the College of Spirits conjure legendary spirits to change the world. But such entities are capricious, and what a Bard summons isn't always entirely under their control.",
+    "subclass_of": {
+      "key": "srd-2024_bard",
+      "name": "Bard"
+    },
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "saving_throws": [],
+    "primary_abilities": [],
+    "features": [
+      {
+        "key": "ravenloft-horrors_bard_college-of-spirits_college-of-spirits",
+        "name": "College of Spirits",
+        "desc": "Call Forth Spirits from Beyond the Grave\n\nBards of the College of Spirits conjure legendary spirits to change the world. But such entities are capricious, and what a Bard summons isn't always entirely under their control.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "ravenloft-horrors_bard_college-of-spirits_empowered-channeling",
+        "name": "Empowered Channeling",
+        "desc": "Your ability to channel spirits improves. You gain the following benefits.\n\nPower from Beyond. Once per turn, when you cast a Bard spell with a spell slot that deals damage or restores Hit Points, roll 1d6. You gain a bonus equal to the number rolled to one of the spell's damage rolls or to the total Hit Points the spell restores.\n\nSpiritual Manifestation. You always have the Spirit Guardians spell prepared. You can cast the spell once without a spell slot, and you regain the ability to cast it in this way when you finish a Long Rest.\n\nWhenever you cast the spell, you can modify it so the spirits also guard against worldly threats. When you cast the spell in this way, you and allies within the spell's Emanation have Half Cover. Once you modify the spell in this way, you can't do so again until you finish a Short or Long Rest.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 6,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "ravenloft-horrors_bard_college-of-spirits_mystical-connection",
+        "name": "Mystical Connection",
+        "desc": "You gain mastery over the spirits you call forth. Whenever you roll on the Spirits from Beyond table, you can roll the die twice and choose which of the two effects to bestow. If you roll the same number on both dice, you can instead choose any effect on the table.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 14,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "ravenloft-horrors_bard_college-of-spirits_channeler",
+        "name": "Channeler",
+        "desc": "You learn how to contact spirits beyond the grave, letting their power and knowledge flow through you. You gain the following benefits.\n\nGuiding Whispers. You know the Guidance cantrip. It has a range of 60 feet when you cast it.\n\nSpiritual Focus. You employ tools that aid you in channeling spirits. You gain a Gaming Set (playing cards). You have proficiency with this Gaming Set, and you can use it or one of the following items as a Spellcasting Focus for your Bard spells: Arcane Focus (crystal or orb), Candle, or Ink Pen.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "ravenloft-horrors_bard_college-of-spirits_spirits-from-beyond",
+        "name": "Spirits from Beyond",
+        "desc": "You can call forth spirits of the dead to empower you and your allies. When you take a Bonus Action to give a creature a Bardic Inspiration die, you can call forth the powers of a random spirit. To determine the spirit you channel, roll the Bardic Inspiration die and refer to the Spirits from Beyond table. The spirit remains channeled until you unleash it or until you finish a Short or Long Rest.\n\nControlled Channeling. As a Bonus Action, you can expend a use of your Bardic Inspiration and channel a specific spirit. When you do so, choose the spirit from the Spirits from Beyond table rather than rolling. The chosen spirit's corresponding number must be less than or equal to the highest number on your Bardic Inspiration die; for example, if your Bardic Inspiration die is a d8, you can choose to channel any spirit up to (and including) the Shade.\n\nUnleashing a Spirit. As a Magic action, you can unleash one of your channeled spirits. Choose one creature you can see within 30 feet of yourself as the spirit's target. The spirit then takes effect; if a spirit's effect requires a saving throw, the DC equals your Bard spell save DC.\n\nTable: Spirits from Beyond\n| Bardic Insp. Die | Spirit and Unleash Effect |\n|---|---|\n| 1 | Beloved. The target regains Hit Points equal to a roll of your Bardic Inspiration die plus your Charisma modifier. |\n| 2 | Sharpshooter. The target takes Force damage equal to a roll of your Bardic Inspiration die plus your Charisma modifier. |\n| 3 | Avenger. Until the end of your next turn, any creature that hits the target with a melee attack roll takes Force damage equal to a roll of your Bardic Inspiration die. |\n| 4 | Renegade. The target can immediately take a Reaction to teleport up to 30 feet to an unoccupied space it can see. |\n| 5 | Fortune Teller. The target has Advantage on D20 Tests until the start of your next turn. |\n| 6 | Wayfarer. The target gains Temporary Hit Points equal to a roll of your Bardic Inspiration die plus your Bard level. While the target has these Temporary Hit Points, its Speed increases by 10 feet. |\n| 7 | Trickster. The target makes a Wisdom saving throw. On a failed save, the target takes Psychic damage equal to two rolls of your Bardic Inspiration die and has the Charmed condition until the start of your next turn. On a successful save, the target takes half as much damage only. |\n| 8 | Shade. The target has the Invisible condition until the end of its next turn or until the target makes an attack roll, deals damage, or casts a spell. When the invisibility ends, each creature in a 5-foot Emanation originating from the target must succeed on a Constitution saving throw or take Necrotic damage equal to two rolls of your Bardic Inspiration die. |\n| 9 | Arsonist. The target makes a Dexterity saving throw, taking Fire damage equal to four rolls of your Bardic Inspiration die on a failed save or half as much damage on a successful one. |\n| 10 | Coward. The target and each creature of your choice in a 30-foot Emanation originating from the target must succeed on a Wisdom saving throw or have the Frightened condition until the start of your next turn. While a creature is Frightened, its Speed is halved (round down), and it can take either an action or a Bonus Action, not both. |\n| 11 | Brute. Each creature of your choice in a 30-foot Emanation originating from the target makes a Strength saving throw. On a failed save, a creature takes Thunder damage equal to three rolls of your Bardic Inspiration die and has the Prone condition. On a successful save, a creature takes half as much damage only. |\n| 12 | Priest. The target regains Hit Points equal to two rolls of your Bardic Inspiration die, and one of the following conditions of your choice ends on the target: Blinded, Charmed, Deafened, Paralyzed, Poisoned, or Stunned. |",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "ravenloft-horrors_bard_college-of-spirits_spells",
+        "name": "College of Spirits Spells",
+        "desc": "When you reach a Bard level specified in the College of Spirits Spells table, you thereafter always have the listed spells prepared.\n\nTable: College of Spirits Spells\n| Bard Level | Spells |\n|---|---|\n| 6 | Spirit Guardians (1/day) |",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 6,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "ravenloft-horrors_grave-domain",
+    "name": "Grave Domain",
+    "document": "ravenloft-horrors",
+    "desc": "Embody Deific Forces of Death\n\nThe Grave Domain concerns itself with the boundary between life and death. To those who tap into this domain's power, death is a natural and inevitable part of the multiverse. Such Clerics seek to destroy undead and shepherd spirits.\n\nThe magic of this domain also allows these Clerics to stave off death for a time. But this is merely a delay of death, not a denial of it, for the grave will always claim its due.",
+    "subclass_of": {
+      "key": "srd-2024_cleric",
+      "name": "Cleric"
+    },
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "saving_throws": [],
+    "primary_abilities": [],
+    "features": [
+      {
+        "key": "ravenloft-horrors_cleric_grave-domain_grave-domain",
+        "name": "Grave Domain",
+        "desc": "Embody Deific Forces of Death\n\nThe Grave Domain concerns itself with the boundary between life and death. To those who tap into this domain's power, death is a natural and inevitable part of the multiverse. Such Clerics seek to destroy undead and shepherd spirits.\n\nThe magic of this domain also allows these Clerics to stave off death for a time. But this is merely a delay of death, not a denial of it, for the grave will always claim its due.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "ravenloft-horrors_cleric_grave-domain_sentinel-at-deaths-door",
+        "name": "Sentinel at Death's Door",
+        "desc": "When you or a Bloodied creature you can see within 60 feet of yourself is hit with an attack roll, you can take a Reaction to halve that attack's damage (round down). If the triggering attack roll was a Critical Hit, any effects triggered by a Critical Hit are canceled.\n\nYou can use this feature a number of times equal to your Wisdom modifier (minimum of once). You regain all expended uses when you finish a Long Rest.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 6,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "ravenloft-horrors_cleric_grave-domain_divine-reaper",
+        "name": "Divine Reaper",
+        "desc": "Your deep connection to this domain renders you a hallowed harbinger of death, granting you the following benefits.\n\nEnhanced Necromancy. When you cast a spell of level 5 or lower from the Necromancy school that targets one creature, or when you cast a spell from the Grave Domain Spells table, you can expend a use of Channel Divinity to target a second creature within the spell's range. If the spell requires costly or consumed Material components, you must provide Material components for each target.\n\nKeeper of Souls. When an enemy dies within 60 feet of you, you or one creature you can see within 60 feet of yourself regains Hit Points equal to twice your Cleric level. You can't use this feature if you have the Incapacitated condition. Once you use this feature, you can't use it again until you finish a Short or Long Rest, unless you expend a level 6+ spell slot (no action required) to restore your use of it.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 17,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "ravenloft-horrors_cleric_grave-domain_grave-domain-spells",
+        "name": "Grave Domain Spells",
+        "desc": "Your connection to this divine domain ensures you always have certain spells ready. When you reach a Cleric level specified in the Grave Domain Spells table, you thereafter always have the listed spells prepared.\n\nTable: Grave Domain Spells\n| Cleric Level | Spells |\n|---|---|\n| 3 | Detect Evil and Good, False Life, Gentle Repose, Ray of Enfeeblement, Spare the Dying |\n| 5 | Revivify, Vampiric Touch |\n| 7 | Blight, Death Ward |\n| 9 | Dispel Evil and Good, Raise Dead |",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "ravenloft-horrors_cleric_grave-domain_circle-of-mortality",
+        "name": "Circle of Mortality",
+        "desc": "You can manipulate the balance between life and death, granting you the following benefits.\n\nPull of Death. Once per turn, when you deal damage to a creature that's missing any Hit Points by casting a spell or by hitting with an attack roll, that creature takes an extra 1d4 Necrotic damage. This extra damage increases to 1d6 when you reach Cleric level 11.\n\nReturn to Life. You can cast Spare the Dying as a Bonus Action.\n\nAdditionally, when you would normally roll one or more dice to restore Hit Points to a creature at 0 Hit Points with a spell or Channel Divinity, don't roll those dice for the healing; instead, use the highest number possible for each die. For example, instead of restoring 2d4 Hit Points to a creature at 0 Hit Points with a spell, you restore 8.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "ravenloft-horrors_cleric_grave-domain_path-to-the-grave",
+        "name": "Path to the Grave",
+        "desc": "As a Bonus Action, you present your Holy Symbol and expend a use of Channel Divinity to curse one creature you can see within 30 feet of yourself until the start of your next turn. While cursed, the creature has Disadvantage on attack rolls and saving throws.\n\nWhen you or an ally you can see hits the cursed target with an attack roll, you can end the curse early (no action required) to make the attack deal extra Necrotic or Radiant damage (your choice) equal to your Cleric level.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "ravenloft-horrors_hollow-warden",
+    "name": "Hollow Warden",
+    "document": "ravenloft-horrors",
+    "desc": "Draw on the Might of Ancient Wild Terrors\n\nLegends tell that the most ancient and bloodthirsty terrors lurk deep within the old places of the earth. Hollow Wardens venerate and draw power from such beings, transforming themselves into merciless and monstrous guardians that stalk jagged coastlines, steep mountain crags, and other dark and wild places.",
+    "subclass_of": {
+      "key": "srd-2024_ranger",
+      "name": "Ranger"
+    },
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "saving_throws": [],
+    "primary_abilities": [],
+    "features": [
+      {
+        "key": "ravenloft-horrors_ranger_hollow-warden_hollow-warden",
+        "name": "Hollow Warden",
+        "desc": "Draw on the Might of Ancient Wild Terrors\n\nLegends tell that the most ancient and bloodthirsty terrors lurk deep within the old places of the earth. Hollow Wardens venerate and draw power from such beings, transforming themselves into merciless and monstrous guardians that stalk jagged coastlines, steep mountain crags, and other dark and wild places.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "ravenloft-horrors_ranger_hollow-warden_hungering-might",
+        "name": "Hungering Might",
+        "desc": "You gain a bonus to Constitution saving throws equal to your Wisdom modifier (minimum of +1).\n\nIn addition, once per turn when you hit a creature with an attack roll while you are transformed using Wrath of the Wild, you regain a number of Hit Points equal to 1d10 plus your Wisdom modifier, provided you are Bloodied when you hit.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 7,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "ravenloft-horrors_ranger_hollow-warden_rot-and-violence",
+        "name": "Rot and Violence",
+        "desc": "Your dedication to wild eldritch beings alters you further. When transformed using Wrath of the Wild, you gain the following additional benefits.\n\nMenacing Aura. When a creature fails its saving throw against your Unnerving Aura, it also can't regain Hit Points or take Reactions until the start of your next turn.\n\nStrangling Roots. When you hit a creature with an attack roll using a weapon, you can activate the Sap or Slow mastery property in addition to a different mastery property you're using with that weapon.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 11,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "ravenloft-horrors_ranger_hollow-warden_ancient-might",
+        "name": "Ancient Might",
+        "desc": "You become wholly suffused with the wild's ancient and terrible power, granting you the following benefits.\n\nOminous Strikes. When you hit a creature that has the Frightened condition with an attack roll, that attack deals extra damage equal to your Wisdom modifier.\n\nPersistent Wrath. If you're reduced to 0 Hit Points but not killed outright while transformed using Wrath of the Wild, you can surge with wild power. Your Hit Points instead change to a number equal to twice your Ranger level. Once you use this feature, you can't do so again until you finish a Long Rest. You can also expend a level 4+ spell slot (no action required) to restore your use of this feature.\n\nTimeless. You have Immunity to the Exhaustion condition.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 15,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "ravenloft-horrors_ranger_hollow-warden_hollow-warden-spells",
+        "name": "Hollow Warden Spells",
+        "desc": "When you reach a Ranger level specified in the Hollow Warden Spells table, you thereafter always have the listed spell prepared.\n\nTable: Hollow Warden Spells\n| Ranger Level | Spell |\n|---|---|\n| 3 | Wrathful Smite |\n| 5 | Alter Self |\n| 9 | Phantom Steed |\n| 13 | Dominate Beast |\n| 17 | Steel Wind Strike |",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "ravenloft-horrors_ranger_hollow-warden_wrath-of-the-wild",
+        "name": "Wrath of the Wild",
+        "desc": "You draw power from the strange and ancient horrors of the land, causing you to sprout unnatural growths, such as bloody antlers or putrid fangs, or causing your shadow to lengthen or twist around you. As a Bonus Action, you can expend a use of Favored Enemy to transform into a ghastly form, gaining the following benefits for 1 minute or until you have the Incapacitated condition, die, or end the transformation (no action required).\n\nAncient Armor. You gain a +1 bonus to AC, as your body is wreathed in rotten bark and beastly bristles. This bonus increases to +2 when you reach Ranger level 11.\n\nProwling Retribution. Immediately after a creature you can see within 5 feet of yourself deals damage to you or one of your allies, you can make an Opportunity Attack against that creature.\n\nUnnerving Aura. When you transform and at the start of each of your subsequent turns, each creature of your choice in a 10-foot Emanation originating from you makes a Wisdom saving throw against your spell save DC. On a failed save, a creature has the Frightened condition until the start of your next turn.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "ravenloft-horrors_phantom",
+    "name": "Phantom",
+    "document": "ravenloft-horrors",
+    "desc": "Embrace Death and Wield Ghostly Power\n\nSome Rogues traverse the veil between life and death, shepherding opponents to the grave and slipping through the world as undetectable as a spirit. In these pursuits, a Rogue might discover a mystical connection to death itself. Such an individual becomes immersed in negative energy, infusing their strikes with deathly energy and stealing knowledge from souls who have passed on. Thieves' guilds value Rogues of this persuasion as highly effective information gatherers and spies.",
+    "subclass_of": {
+      "key": "srd-2024_rogue",
+      "name": "Rogue"
+    },
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "saving_throws": [],
+    "primary_abilities": [],
+    "features": [
+      {
+        "key": "ravenloft-horrors_rogue_phantom_phantom",
+        "name": "Phantom",
+        "desc": "Embrace Death and Wield Ghostly Power\n\nSome Rogues traverse the veil between life and death, shepherding opponents to the grave and slipping through the world as undetectable as a spirit. In these pursuits, a Rogue might discover a mystical connection to death itself. Such an individual becomes immersed in negative energy, infusing their strikes with deathly energy and stealing knowledge from souls who have passed on. Thieves' guilds value Rogues of this persuasion as highly effective information gatherers and spies.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "ravenloft-horrors_rogue_phantom_tokens-of-the-departed",
+        "name": "Tokens of the Departed",
+        "desc": "The spirits of the dead are drawn to you, and echoes of their past lives magically manifest as strange curios with resonant power.\n\nYou gain two soul trinkets. A soul trinket is a Tiny object (the DM determines the trinket's form or has you roll on the Trinkets table in the Player's Handbook to generate it). If you move more than 30 feet from a trinket, the trinket immediately teleports to you, appearing somewhere on your person.\n\nUsing Soul Trinkets. You can use soul trinkets in the following ways:\n\n- Death's Knell. When you deal Sneak Attack damage on your turn, you can destroy one soul trinket and immediately use Wails from the Grave without expending a use of that feature.\n\n- Life Essence. While you have at least one soul trinket, you have Advantage on Death Saving Throws and Constitution saving throws.\n\n- Spirit Query. You can take a Magic action to destroy one soul trinket and immediately cast the Augury spell, requiring no spell components and using Constitution as the spellcasting modifier. If you know the creature with which the trinket is associated, you can ask the creature's spirit one question instead of casting the spell. In this case, the spirit appears to you and answers as concisely as possible in a language it knew in life.\n\nGaining Additional Soul Trinkets. When a creature you can see within 30 feet of you dies, you can take a Reaction to gain another soul trinket, claiming a sliver of that creature's departing spirit. The new trinket appears somewhere on your person.\n\nYou can have a maximum of two soul trinkets at a time. If you try to gain a soul trinket while at your maximum, one of your existing trinkets is immediately destroyed and replaced by the new trinket. The maximum number of soul trinkets you can have increases when you reach Rogue levels 13 (three trinkets) and 17 (four trinkets).\n\nWhenever you finish a Long Rest with fewer than two soul trinkets, you gain soul trinkets until you have two.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 9,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "ravenloft-horrors_rogue_phantom_voice-of-death",
+        "name": "Voice of Death",
+        "desc": "You can cast Speak with Dead once without a spell slot, requiring no spell components and using Dexterity as the spellcasting modifier. You regain the ability to cast it this way when you finish a Short or Long Rest.\n\nWhen you cast the spell, you can target one of your soul trinkets from Tokens of the Departed instead of a corpse, allowing the spirit of the creature associated with the trinket to answer.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 9,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "ravenloft-horrors_rogue_phantom_ghost-walk",
+        "name": "Ghost Walk",
+        "desc": "As a Bonus Action, you assume a spectral form, gaining the benefits below for 10 minutes or until you end them (no action required). Once you use this feature, you can't use it again until you finish a Long Rest unless you destroy one of your soul trinkets from Tokens of the Departed (no action required) to restore your use of it.\n\nFlight. You gain a Fly Speed of 10 feet and can hover.\n\nHazy Form. Attack rolls have Disadvantage against you.\n\nIncorporeal Movement. You can move through creatures and objects as if they were Difficult Terrain, but you take 1d10 Force damage if you end your turn inside a creature or an object.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 13,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "ravenloft-horrors_rogue_phantom_deaths-friend",
+        "name": "Death's Friend",
+        "desc": "Your association with death has become so close that you gain the following benefits.\n\nDeath's Lament. When you use Wails from the Grave, you can deal the feature's Necrotic damage to both the first and the second creature.\n\nDraw of Death. When you roll Initiative, you gain one soul trinket for your Tokens of the Departed if you have none remaining.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 17,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "ravenloft-horrors_rogue_phantom_wails-from-the-grave",
+        "name": "Wails from the Grave",
+        "desc": "Immediately after you deal Sneak Attack damage to a creature on your turn, you can target a second creature that you can see within 30 feet of the first creature. Roll half the number of Sneak Attack damage dice for your level (round up), and the second creature takes Necrotic damage equal to the roll's total as wails of the dead sound around it.\n\nYou can use this feature a number of times equal to your Dexterity modifier (minimum of once), and you regain all expended uses when you finish a Long Rest.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "ravenloft-horrors_rogue_phantom_whispers-of-the-dead",
+        "name": "Whispers of the Dead",
+        "desc": "Whenever you finish a Short or Long Rest, you can choose one skill or tool proficiency that you lack and gain it, as a ghostly presence shares its knowledge with you. You lose this proficiency when you use this benefit again to choose a different proficiency.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "ravenloft-horrors_rogue_phantom_spells",
+        "name": "Phantom Spells",
+        "desc": "When you reach a Rogue level specified in the Phantom Spells table, you thereafter always have the listed spells prepared.\n\nTable: Phantom Spells\n| Rogue Level | Spells |\n|---|---|\n| 9 | Speak with Dead (1/rest) |",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 9,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "ravenloft-horrors_shadow-sorcery",
+    "name": "Shadow Sorcery",
+    "document": "ravenloft-horrors",
+    "desc": "Bend Doom and Darkness to Your Will\n\nYour innate magic comes from the most nebulous and inscrutable forces of the Shadowfell or from other regions of supernatural darkness. You might trace your lineage to an entity from such a place, or perhaps you were exposed to the sinister energy of a shadow dragon and were transformed by it. Your shadowy magic allows you to command darkness, undeath, and woe.",
+    "subclass_of": {
+      "key": "srd-2024_sorcerer",
+      "name": "Sorcerer"
+    },
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "saving_throws": [],
+    "primary_abilities": [],
+    "features": [
+      {
+        "key": "ravenloft-horrors_sorcerer_shadow-sorcery_shadow-sorcery",
+        "name": "Shadow Sorcery",
+        "desc": "Bend Doom and Darkness to Your Will\n\nYour innate magic comes from the most nebulous and inscrutable forces of the Shadowfell or from other regions of supernatural darkness. You might trace your lineage to an entity from such a place, or perhaps you were exposed to the sinister energy of a shadow dragon and were transformed by it. Your shadowy magic allows you to command darkness, undeath, and woe.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "ravenloft-horrors_sorcerer_shadow-sorcery_beasts-of-ill-omen",
+        "name": "Beasts of Ill Omen",
+        "desc": "You can call forth a howling creature of shadow to hound your foes. You can spend 3 Sorcery Points to cast Summon Beast as a Bonus Action without expending a spell slot, without preparing the spell, and without Material components. The summoned creature appears as a beast made of shadow, and enemies within 5 feet of the summoned creature have Disadvantage on saving throws against spells you cast.\n\nWhenever you cast the spell, you can modify it so that it doesn't require Concentration. If you do so, the spell's duration becomes 1 minute for that casting, and the spell ends early if you cast the spell again.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 6,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "ravenloft-horrors_sorcerer_shadow-sorcery_shadow-walk",
+        "name": "Shadow Walk",
+        "desc": "While you are in Dim Light or Darkness, you can take a Bonus Action to teleport up to 120 feet to an unoccupied space you can see that is also in Dim Light or Darkness.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 14,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "ravenloft-horrors_sorcerer_shadow-sorcery_umbral-form",
+        "name": "Umbral Form",
+        "desc": "When you use Innate Sorcery, you can adopt a shadowy form, gaining the benefits below while your Innate Sorcery is active or until you end the form (no action required). Once you use this feature, you can't use it again until you finish a Long Rest unless you spend 6 Sorcery Points (no action required) to restore your use of it.\n\nIncorporeal Movement. You can move through creatures and objects as if they were Difficult Terrain, but you take 1d10 Force damage if you end your turn inside a creature or an object.\n\nShadow Resilience. You have Resistance to all damage except Force and Radiant damage.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 18,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "ravenloft-horrors_sorcerer_shadow-sorcery_shadow-spells",
+        "name": "Shadow Spells",
+        "desc": "When you reach a Sorcerer level specified in the Shadow Spells table, you thereafter always have the listed spells prepared.\n\nTable: Shadow Spells\n| Sorcerer Level | Spells |\n|---|---|\n| 3 | Bane, Darkness, Inflict Wounds, Pass Without Trace |\n| 5 | Hunger of Hadar, Nondetection |\n| 7 | Greater Invisibility, Phantasmal Killer |\n| 9 | Contagion, Creation |",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "ravenloft-horrors_sorcerer_shadow-sorcery_power-of-shadow",
+        "name": "Power of Shadow",
+        "desc": "You gain the following benefits.\n\nEyes of the Dark. You have Darkvision with a range of 120 feet and Blindsight with a range of 10 feet. In addition, if a spell you cast creates an area of Darkness, you can see normally through that spell's Darkness.\n\nStrength of the Grave. If you would drop to 0 Hit Points and not die outright, you can make a Charisma saving throw (DC 5 plus the damage taken). On a successful save, your Hit Points instead change to a number equal to your Charisma modifier plus your Sorcerer level. After you succeed on this save, you can't use this benefit again until you finish a Long Rest.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "ravenloft-horrors_undead-patron",
+    "name": "Undead Patron",
+    "document": "ravenloft-horrors",
+    "desc": "Defy Death for Profane Power\n\nYou've made a pact with a creature that defies the cycle of life and death: a powerful lich, a vampire, or another entity of undeath. Having once been mortal, these ancient patrons know firsthand the paths of ambition and the routes past the doors of death. They eagerly share this profane knowledge and other secrets with those who work their will among the living.",
+    "subclass_of": {
+      "key": "srd-2024_warlock",
+      "name": "Warlock"
+    },
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "saving_throws": [],
+    "primary_abilities": [],
+    "features": [
+      {
+        "key": "ravenloft-horrors_warlock_undead-patron_undead-patron",
+        "name": "Undead Patron",
+        "desc": "Defy Death for Profane Power\n\nYou've made a pact with a creature that defies the cycle of life and death: a powerful lich, a vampire, or another entity of undeath. Having once been mortal, these ancient patrons know firsthand the paths of ambition and the routes past the doors of death. They eagerly share this profane knowledge and other secrets with those who work their will among the living.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "ravenloft-horrors_warlock_undead-patron_grave-touched",
+        "name": "Grave Touched",
+        "desc": "Your patron's powers have a profound effect on your body and magic, granting you the following benefits.\n\nArcane Necrosis. Necrotic damage from your attacks, Warlock spells, and Warlock features ignores Resistance to Necrotic damage. Once per turn when you cast a spell that deals damage, you can change that spell's damage type to Necrotic.\n\nDreaded Necrosis. When you hit a creature with an attack roll and deal Necrotic damage while using your Form of Dread, you can roll one additional damage die when determining the Necrotic damage the target takes. You can use this benefit only once per turn.\n\nUndead Endurance. You don't gain Exhaustion levels from dehydration, malnutrition, or suffocation. In addition, you don't need to sleep, and magic can't put you to sleep.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 6,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "ravenloft-horrors_warlock_undead-patron_necrotic-husk",
+        "name": "Necrotic Husk",
+        "desc": "Your connection to undeath saturates your body. You gain the following benefits.\n\nNecrotic Resilience. You have Resistance to Necrotic damage. While using your Form of Dread, you have Immunity to Necrotic damage.\n\nUnholy Resuscitation. If you drop to 0 Hit Points and don't die outright, you can cause your body to erupt with deathly energy. Each creature of your choice in a 30-foot Emanation originating from you makes a Constitution saving throw against your spell save DC, taking Necrotic damage equal to 2d10 plus your Charisma modifier on a failed save or half as much damage on a successful one. Your Hit Points then change to twice your Warlock level, and you gain 1 Exhaustion level.\n\nOnce you use this benefit, you can't use it again until you finish a Short or Long Rest.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 10,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "ravenloft-horrors_warlock_undead-patron_superior-dread",
+        "name": "Superior Dread",
+        "desc": "Your Form of Dread improves, granting you the following benefits while you are using it.\n\nDread Resistance. You have Resistance to Bludgeoning, Piercing, and Slashing damage.\n\nGhostly Flight. You have a Fly Speed equal to your Speed and can hover. You can move through creatures and objects as if they were Difficult Terrain, but you take 1d10 Force damage if you end your turn inside a creature or an object.\n\nProfane Casting. Whenever you cast a Warlock spell from the Conjuration or Necromancy school, you cast it without any Verbal, Somatic, or Material components, except Material components that are costly or consumed.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 14,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "ravenloft-horrors_warlock_undead-patron_form-of-dread",
+        "name": "Form of Dread",
+        "desc": "As a Bonus Action, you transform into an avatar of your patron's dreadful power, gaining the benefits below for 1 minute, until you have the Incapacitated condition, or until you end the form (no action required). You can transform a number of times equal to your Charisma modifier (minimum of once), and you regain all expended uses when you finish a Long Rest.\n\nFacsimile of Life. You gain Temporary Hit Points equal to 1d10 plus your Warlock level.\n\nFearless Form. You have Immunity to the Frightened condition. If you are Frightened when you transform, the condition immediately ends for you.\n\nFrightful Avatar. Once per turn, when you hit a creature with an attack roll, you can force it to make a Wisdom saving throw against your spell save DC. On a failed save, the target has the Frightened condition until the end of your next turn.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "ravenloft-horrors_warlock_undead-patron_undead-spells",
+        "name": "Undead Spells",
+        "desc": "The magic of your patron ensures you always have certain spells ready; when you reach a Warlock level specified in the Undead Spells table, you thereafter always have the listed spells prepared.\n\nTable: Undead Spells\n| Warlock Level | Spells |\n|---|---|\n| 3 | Bane, Blindness/Deafness, Phantasmal Force, Ray of Sickness |\n| 5 | Speak with Dead, Summon Undead |\n| 7 | Greater Invisibility, Phantasmal Killer |\n| 9 | Antilife Shell, Cloudkill |",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  }
+]

@@ -42,6 +42,44 @@ class Encounters extends Table {
   /// uydurma bir esyayi gercek sanmasin.
   TextColumn get lootJson => text().nullable()();
 
+  /// Tur suresi siniri (saniye); null = sinirsiz.
+  ///
+  /// Karsilasma basina saklaniyor: bir arena dovusunde 60 saniye, bir kusatma
+  /// sahnesinde sinirsiz istenebiliyor.
+  IntColumn get turnLimitSeconds => integer().nullable()();
+
+  /// In (lair) eylemi metni; null = bu karsilasmada in eylemi yok.
+  TextColumn get lairActionText => text().nullable()();
+
+  /// In eyleminin tetiklendigi inisiyatif degeri (kural: 20).
+  IntColumn get lairInitiative => integer().withDefault(const Constant(20))();
+
+  /// Karsilasmanin GECTIGI yer (`Locations.id`); null = bir yere baglanmadi.
+  ///
+  /// FK TANIMLANMADI, projedeki diger gevsek baglar gibi: yer silinince
+  /// karsilasma kaybolmamali, cozumleme okuma aninda yapiliyor ve yer yoksa
+  /// arayuz bagi "kopuk" gosteriyor.
+  TextColumn get locationId => text().nullable()();
+
+  DateTimeColumn get createdAt => dateTime().withDefault(currentDateAndTime)();
+
+  @override
+  Set<Column> get primaryKey => {id};
+}
+
+/// Kaydedilmis karsilasma kalibi: "6 goblin + 1 hobgoblin sefi".
+///
+/// Hazirlik yapan DM ayni grubu defalarca elle kuruyordu. Kalip yalnizca
+/// KADROYU tasiyor (kim, kac tane); can/inisiyatif kurulurken yeniden
+/// atiliyor -- yoksa ayni kalibi iki kez kuran DM ayni can degerlerini alirdi.
+class EncounterTemplates extends Table {
+  TextColumn get id => text()();
+  TextColumn get name => text()();
+
+  /// Kadro: `[{"kind":"monster","key":"...","name":"...","count":6}, ...]`.
+  TextColumn get entriesJson => text().withDefault(const Constant('[]'))();
+
+  TextColumn get note => text().withDefault(const Constant(''))();
   DateTimeColumn get createdAt => dateTime().withDefault(currentDateAndTime)();
 
   @override
@@ -60,13 +98,6 @@ class Combatants extends Table {
   TextColumn get monsterKey => text().nullable()();
 
   IntColumn get initiative => integer().withDefault(const Constant(0))();
-
-  /// Inisiyatif atildi mi? Oyuncu katilimcilar savasa 0 (atilmamis) girer ve
-  /// kendi panellerinden atar; canavar/adhoc eklenirken zaten atildigi icin
-  /// varsayilan true. Atilmamis oyuncu, savas listesinde sayi yerine zar
-  /// dugmesi gosterir.
-  BoolColumn get initiativeRolled =>
-      boolean().withDefault(const Constant(true))();
 
   /// Esit initiative'de sirayi sabitlemek icin; ayrica surukleyerek
   /// yeniden siralamada kullanilir.
@@ -101,9 +132,28 @@ class Combatants extends Table {
       boolean().withDefault(const Constant(false))();
   TextColumn get concentrationNote => text().nullable()();
 
-  /// Oyunculardan gizli tutulan katilimcilar (surpriz canavarlar).
-  BoolColumn get hiddenFromPlayers =>
-      boolean().withDefault(const Constant(false))();
+  /// Bu turda REAKSIYONUNU kullandi mi?
+  ///
+  /// Masada en cok unutulan kaynak: reaksiyon tur basina bir tanedir ve
+  /// katilimcinin SIRASI GELINCE tazelenir (D&D kurali: "tur basinizin
+  /// baslangicina kadar"). [CombatRepository.advanceTurn] sifirliyor.
+  BoolColumn get reactionUsed => boolean().withDefault(const Constant(false))();
+
+  /// Hasar turu savunmalari: `{"resist":[],"immune":[],"vulnerable":[]}`.
+  ///
+  /// Canavar eklenirken kutuphane verisinden dolduruluyor; DM elle
+  /// duzenleyebiliyor. Tek JSON sutun cunku uc liste de yalnizca hasar
+  /// uygulanirken birlikte okunuyor, hicbiri ayri sorgulanmiyor.
+  TextColumn get defensesJson => text().withDefault(const Constant('{}'))();
+
+  /// Olum kurtarma atislari.
+  ///
+  /// Oyuncu karakterlerinde karakter kaydiyla ESITLENIR (orasi ana kayit);
+  /// canavar/adhoc katilimcilar icin tek yer burasi. Can 0'a dusunce arayuz
+  /// sayaci kendiliginden aciyor.
+  IntColumn get deathSaveSuccesses =>
+      integer().withDefault(const Constant(0))();
+  IntColumn get deathSaveFailures => integer().withDefault(const Constant(0))();
 
   BoolColumn get defeated => boolean().withDefault(const Constant(false))();
   TextColumn get note => text().withDefault(const Constant(''))();

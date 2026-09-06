@@ -1,0 +1,908 @@
+[
+  {
+    "key": "faerun-heroes_college-of-the-moon",
+    "name": "College of the Moon",
+    "document": "faerun-heroes",
+    "desc": "Inspire Allies with Primal Tales\n\nThe College of the Moon traces its origins to the ancient druidic circles of the Moonshae Isles, who entrusted the first Bards of this tradition with chronicling the stories of the islands and their people. Bards of this college draw from the isles' fey magic and the primal power of the moonwells to bolster their allies, protect the natural world, and inspire their bardic works.",
+    "subclass_of": {
+      "key": "srd-2024_bard",
+      "name": "Bard"
+    },
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "saving_throws": [],
+    "primary_abilities": [],
+    "features": [
+      {
+        "key": "faerun-heroes_bard_college-of-the-moon_college-of-the-moon",
+        "name": "College of the Moon",
+        "desc": "Inspire Allies with Primal Tales\n\nThe College of the Moon traces its origins to the ancient druidic circles of the Moonshae Isles, who entrusted the first Bards of this tradition with chronicling the stories of the islands and their people. Bards of this college draw from the isles' fey magic and the primal power of the moonwells to bolster their allies, protect the natural world, and inspire their bardic works.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_bard_college-of-the-moon_blessing-of-moonlight",
+        "name": "Blessing of Moonlight",
+        "desc": "You always have the Moonbeam spell prepared.\n\nWhen you cast Moonbeam, you can modify the spell so that you glow faintly while the spell is active. While glowing, you shed Dim Light out to 5 feet, and whenever a creature fails its saving throw against the effects of this Moonbeam, another creature of your choice that you can see within 60 feet of yourself regains 2d4 Hit Points.\n\nOnce you use this feature to modify a casting of Moonbeam, you can't use it again until you finish a Long Rest.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 6,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_bard_college-of-the-moon_eventides-splendor",
+        "name": "Eventide's Splendor",
+        "desc": "You become suffused with the might of the moon, improving your Moon's Inspiration in the following ways.\n\nShadow of the New Moon. When you use Inspired Eclipse, the creature who received the Bardic Inspiration die can also have the Invisible condition and immediately take a Reaction to teleport up to 30 feet to an unoccupied space it can see. The creature remains Invisible until the start of its next turn.\n\nVibrance of the Full Moon. When you use Lunar Vitality, you can roll 1d6 and use the number rolled in place of expending a Bardic Inspiration die.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 14,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_bard_college-of-the-moon_moons-inspiration",
+        "name": "Moon's Inspiration",
+        "desc": "The primal and ever-changing power of the moon flows through you, granting you the following benefits.\n\nInspired Eclipse. When you take a Bonus Action to give a creature a Bardic Inspiration die, you can have the Invisible condition and teleport up to 30 feet to an unoccupied space you can see as part of that Bonus Action. This invisibility lasts until the start of your next turn and ends early immediately after you make an attack roll, deal damage, or cast a spell.\n\nLunar Vitality. Once per turn when you restore Hit Points to a creature with a spell, you can expend a Bardic Inspiration die and increase the amount of Hit Points restored by a number equal to a roll of the Bardic Inspiration die. The creature's Speed also increases by 10 feet until the end of its next turn.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_bard_college-of-the-moon_primal-lore",
+        "name": "Primal Lore",
+        "desc": "You learn Druidic and one cantrip from the Druid spell list. It counts as a Bard spell for you but doesn't count against the number of cantrips you know. Whenever you gain a Bard level, you can replace this cantrip with another cantrip of your choice from the Druid spell list.\n\nAdditionally, choose one of the following skills: Animal Handling, Insight, Medicine, Nature, Perception, or Survival. You have proficiency in that skill.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_bard_college-of-the-moon_spells",
+        "name": "College of the Moon Spells",
+        "desc": "When you reach a Bard level specified in the College of the Moon Spells table, you thereafter always have the listed spells prepared.\n\nTable: College of the Moon Spells\n| Bard Level | Spells |\n|---|---|\n| 6 | Moonbeam (1/day) |",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 6,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_knowledge-domain",
+    "name": "Knowledge Domain",
+    "document": "faerun-heroes",
+    "desc": "Unearth Secrets and Master the Mind\n\nThe Knowledge Domain values learning and understanding above all. Clerics who tap into this domain study esoteric lore, collect old tomes, delve into secret places, and examine the processes of the mind. To them, knowledge is more valuable than material wealth, and learning is an act of worship. Libraries, universities, and other educational institutions also draw on the power of the Knowledge Domain.\n\nGods of knowledge vary from masters of arcane magic to patrons of craft and invention. In Faerûn, Clerics of the Knowledge Domain worship deities of learning and ingenuity such as FRHoF and FRHoF, among many others.",
+    "subclass_of": {
+      "key": "srd-2024_cleric",
+      "name": "Cleric"
+    },
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "saving_throws": [],
+    "primary_abilities": [],
+    "features": [
+      {
+        "key": "faerun-heroes_cleric_knowledge-domain_knowledge-domain",
+        "name": "Knowledge Domain",
+        "desc": "Unearth Secrets and Master the Mind\n\nThe Knowledge Domain values learning and understanding above all. Clerics who tap into this domain study esoteric lore, collect old tomes, delve into secret places, and examine the processes of the mind. To them, knowledge is more valuable than material wealth, and learning is an act of worship. Libraries, universities, and other educational institutions also draw on the power of the Knowledge Domain.\n\nGods of knowledge vary from masters of arcane magic to patrons of craft and invention. In Faerûn, Clerics of the Knowledge Domain worship deities of learning and ingenuity such as FRHoF and FRHoF, among many others.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_cleric_knowledge-domain_unfettered-mind",
+        "name": "Unfettered Mind",
+        "desc": "You gain telepathy out to 60 feet. When you use this telepathy, you can simultaneously contact a number of creatures equal to your Wisdom modifier (minimum of one).\n\nAdditionally, you gain proficiency in Intelligence saving throws. If you already have this proficiency, you instead gain saving throw proficiency with one ability in which you lack it.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 6,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_cleric_knowledge-domain_divine-foreknowledge",
+        "name": "Divine Foreknowledge",
+        "desc": "As a Bonus Action, you magically expand your mind to the future. For 1 hour, you have Advantage on D20 Tests. Once you use this feature, you can't use it again until you finish a Long Rest. You can also restore your use of this feature by expending a level 6+ spell slot (no action required).",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 17,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_cleric_knowledge-domain_blessings-of-knowledge",
+        "name": "Blessings of Knowledge",
+        "desc": "You gain proficiency with one type of Artisan's Tools of your choice and in two of the following skills of your choice: Arcana, History, Nature, or Religion. You have Expertise in those two skills.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_cleric_knowledge-domain_knowledge-domain-spells",
+        "name": "Knowledge Domain Spells",
+        "desc": "When you reach a Cleric level specified in the Knowledge Domain Spells table, you thereafter always have the listed spells prepared.\n\n| Cleric Level | Spells |\n|---|---|\n| 3 | Command, Comprehend Languages*, Detect Magic*, Detect Thoughts*, Identify*, Mind Spike* |\n| 5 | Dispel Magic, Nondetection, Tongues* |\n| 7 | Arcane Eye*, Banishment, Confusion |\n| 9 | Legend Lore*, Scrying*, Synaptic Static |",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_cleric_knowledge-domain_mind-magic",
+        "name": "Mind Magic",
+        "desc": "As a Magic action, you can expend one use of your Channel Divinity to manifest your magical knowledge. Choose one spell from the Divination school on the Knowledge Domain Spells table that you have prepared. As part of that action, you cast that spell without expending a spell slot or needing Material components.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_banneret",
+    "name": "Banneret",
+    "document": "faerun-heroes",
+    "desc": "Rally Fellow Heroes with Inspiring Leadership\n\nBannerets are paragons of valor and leadership who protect the innocent and rally fellow adventurers to the causes of justice and freedom. Many are knights serving in Cormyr, the Silver Marches, Damara, Chessenta, or other lands across Faerûn. They wander the realms as knights errant, taking the fight against evil beyond their kingdom's borders.\n\nA Banneret relies on judgment, bravery, and fidelity to the code of chivalry to guide them in defeating evildoers. A lone Banneret is a skilled warrior, but when leading a band of allies one of these warriors can transform even a poorly equipped militia into a ferocious war band.",
+    "subclass_of": {
+      "key": "srd-2024_fighter",
+      "name": "Fighter"
+    },
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "saving_throws": [],
+    "primary_abilities": [],
+    "features": [
+      {
+        "key": "faerun-heroes_fighter_banneret_banneret",
+        "name": "Banneret",
+        "desc": "Rally Fellow Heroes with Inspiring Leadership\n\nBannerets are paragons of valor and leadership who protect the innocent and rally fellow adventurers to the causes of justice and freedom. Many are knights serving in Cormyr, the Silver Marches, Damara, Chessenta, or other lands across Faerûn. They wander the realms as knights errant, taking the fight against evil beyond their kingdom's borders.\n\nA Banneret relies on judgment, bravery, and fidelity to the code of chivalry to guide them in defeating evildoers. A lone Banneret is a skilled warrior, but when leading a band of allies one of these warriors can transform even a poorly equipped militia into a ferocious war band.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_fighter_banneret_team-tactics",
+        "name": "Team Tactics",
+        "desc": "When you use Group Recovery, each chosen ally has Advantage on D20 Tests until the start of your next turn.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 7,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_fighter_banneret_rallying-surge",
+        "name": "Rallying Surge",
+        "desc": "When you use your Action Surge, you can choose allies within a 30-foot Emanation originating from yourself, up to a number of allies equal to your Charisma modifier (minimum of one). Each of those allies can immediately take a Reaction to use one of the following options.\n\nAttack. The ally makes one attack with a weapon or an Unarmed Strike.\n\nMove. The ally moves up to half its Speed without provoking an Opportunity Attack.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 10,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_fighter_banneret_shared-resilience",
+        "name": "Shared Resilience",
+        "desc": "When an ally you can see within 60 feet of yourself fails a saving throw, you can take a Reaction to expend a use of your Indomitable feature. The ally can immediately reroll the saving throw with a bonus equal to your Fighter level; the ally must use the new roll.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 15,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_fighter_banneret_inspiring-commander",
+        "name": "Inspiring Commander",
+        "desc": "You gain the following benefits.\n\nBolstered Rally. The area of effect for both Group Recovery and Rallying Surge is now a 60-foot Emanation.\n\nUnshakable Bravery. You have Immunity to the Charmed and Frightened conditions.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 18,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_fighter_banneret_knightly-envoy",
+        "name": "Knightly Envoy",
+        "desc": "You know how to conduct yourself with grace as a noble ambassador. You gain the following benefits.\n\nComprehension. You can cast the Comprehend Languages spell but only as a Ritual. Charisma is your spellcasting ability for it.\n\nPolyglot. You learn one language from the language tables in the Player's Handbook or chapter 2 of this book. When you finish a Long Rest, you can replace a language learned from this benefit with another language you have heard, seen signed, or read in the past 24 hours.\n\nWell Spoken. You gain proficiency in one of the following skills of your choice: Insight, Intimidation, Persuasion, or Performance.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_fighter_banneret_group-recovery",
+        "name": "Group Recovery",
+        "desc": "When you use your Second Wind to regain Hit Points, you can choose a number of allies within a 30-foot Emanation originating from yourself, up to a number of allies equal to your Charisma modifier (minimum of one). Each of those allies regains Hit Points equal to 1d4 plus your Fighter level. Once you use this ability, you can't use it again until you finish a Short or Long Rest.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_fighter_banneret_spells",
+        "name": "Banneret Spells",
+        "desc": "When you reach a Fighter level specified in the Banneret Spells table, you thereafter always have the listed spells prepared.\n\nTable: Banneret Spells\n| Fighter Level | Spells |\n|---|---|\n| 3 | Comprehend Languages (ritual) |",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_oath-of-the-noble-genies",
+    "name": "Oath of the Noble Genies",
+    "document": "faerun-heroes",
+    "desc": "Brandish the Elemental Splendor of Genies\n\nPaladins sworn to the Oath of the Noble Genies revere the forces of the Elemental Planes. Through taking this oath, Paladins draw power from the four different types of genies—dao, masters of earth; djinn, masters of air; efreet, masters of fire; and marids, masters of water. In Faerûn, many Paladins who swear this oath hail from Calimshan, a land teeming with genies.\n\nPaladins who swear this oath often undertake quests that take them all over the Realms and across the multiverse—including the Elemental Planes. These paladins share the following tenets:\n\n- Sow the seeds of creation amid the ashes of destruction.\n\n- Lead with splendor and grace.\n\n- Respect the elements, and fear their wrath.",
+    "subclass_of": {
+      "key": "srd-2024_paladin",
+      "name": "Paladin"
+    },
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "saving_throws": [],
+    "primary_abilities": [],
+    "features": [
+      {
+        "key": "faerun-heroes_paladin_oath-of-the-noble-genies_oath-of-the-noble-genies",
+        "name": "Oath of the Noble Genies",
+        "desc": "Brandish the Elemental Splendor of Genies\n\nPaladins sworn to the Oath of the Noble Genies revere the forces of the Elemental Planes. Through taking this oath, Paladins draw power from the four different types of genies—dao, masters of earth; djinn, masters of air; efreet, masters of fire; and marids, masters of water. In Faerûn, many Paladins who swear this oath hail from Calimshan, a land teeming with genies.\n\nPaladins who swear this oath often undertake quests that take them all over the Realms and across the multiverse—including the Elemental Planes. These paladins share the following tenets:\n\n- Sow the seeds of creation amid the ashes of destruction.\n\n- Lead with splendor and grace.\n\n- Respect the elements, and fear their wrath.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_paladin_oath-of-the-noble-genies_aura-of-elemental-shielding",
+        "name": "Aura of Elemental Shielding",
+        "desc": "Choose one of the following damage types: Acid, Cold, Fire, Lightning, or Thunder. You and your allies have Resistance to that damage type while in your Aura of Protection.\n\nAt the start of each of your turns, you can change the damage type affected by this feature to one of the other listed options (no action required).",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 7,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_paladin_oath-of-the-noble-genies_elemental-rebuke",
+        "name": "Elemental Rebuke",
+        "desc": "When you are hit by an attack roll, you can take a Reaction to halve the attack's damage against yourself (round down) and force the attacker to make a Dexterity saving throw against your spell save DC. On a failed save, the attacker takes damage equal to 2d10 plus your Charisma modifier of one of the following types (your choice): Acid, Cold, Fire, Lightning, or Thunder. On a successful save, the attacker takes half as much damage.\n\nYou can use this feature a number of times equal to your Charisma modifier (minimum of once), and you regain all expended uses when you finish a Long Rest.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 15,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_paladin_oath-of-the-noble-genies_noble-scion",
+        "name": "Noble Scion",
+        "desc": "As a Bonus Action, you gain the benefits below for 10 minutes or until you end them (no action required). Once you use this feature, you can't use it again until you finish a Long Rest. You can also restore your use of it by expending a level 5 spell slot (no action required).\n\nFlight. You have a Fly Speed of 60 feet and can hover.\n\nMinor Wish. When you or an ally in your Aura of Protection fails a D20 Test, you can take a Reaction to make the D20 Test succeed instead.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 20,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_paladin_oath-of-the-noble-genies_elemental-smite",
+        "name": "Elemental Smite",
+        "desc": "Immediately after you cast Divine Smite, you can expend one use of your Channel Divinity and invoke one of the following effects.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_paladin_oath-of-the-noble-genies_genie-spells",
+        "name": "Genie Spells",
+        "desc": "When you reach a Paladin level specified in the Genie Spells table, you thereafter always have the listed spells prepared.\n\n| Paladin Level | Spells |\n|---|---|\n| 3 | Chromatic Orb, Elementalism, Thunderous Smite |\n| 5 | Mirror Image, Phantasmal Force |\n| 9 | Fly, Gaseous Form |\n| 13 | Conjure Minor Elementals, Summon Elemental |\n| 17 | Banishing Smite, Contact Other Plane |",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_paladin_oath-of-the-noble-genies_genies-splendor",
+        "name": "Genie's Splendor",
+        "desc": "When you aren't wearing any armor, your base Armor Class equals 10 plus your Dexterity and Charisma modifiers. You can use a Shield and still gain this benefit.\n\nYou also gain proficiency in one of the following skills of your choice: Acrobatics, Intimidation, Performance, or Persuasion.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_paladin_oath-of-the-noble-genies_daos-crush",
+        "name": "Dao's Crush",
+        "desc": "Earth rises up around the target of your Divine Smite. The target has the Grappled condition (escape DC equal to your spell save DC). While Grappled, the target has the Restrained condition.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_paladin_oath-of-the-noble-genies_djinnis-escape",
+        "name": "Djinni's Escape",
+        "desc": "You teleport to an unoccupied space you can see within 30 feet of yourself and take on a semi-incorporeal form, which lasts until the end of your next turn. While in this form, you have Resistance to Bludgeoning, Piercing, and Slashing damage, and you have Immunity to the Grappled, Prone, and Restrained conditions.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_paladin_oath-of-the-noble-genies_efreetis-fury",
+        "name": "Efreeti's Fury",
+        "desc": "The target of your Divine Smite takes an extra 2d4 Fire damage, and fire jumps from the target to another creature you can see within 30 feet of yourself. The second creature also takes 2d4 Fire damage.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_paladin_oath-of-the-noble-genies_marids-surge",
+        "name": "Marid's Surge",
+        "desc": "The target of your Divine Smite and each creature of your choice in a 10-foot Emanation originating from you make a Strength saving throw against your spell save DC. On a failed save, a creature is pushed 15 feet straight away from you and has the Prone condition.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_winter-walker",
+    "name": "Winter Walker",
+    "document": "faerun-heroes",
+    "desc": "Withstand the Horrors of Frigid Wastelands\n\nWinter Walkers hone their craft in the bleak and frozen wilds of places like Icewind Dale. These ruthless, rimed Rangers hunt monsters that haunt arctic wastelands, eventually becoming frigid terrors themselves. Winter Walkers are well versed in the phenomena of Icewind Dale, including the latent magic of fallen Netherese cities, endemic monsters like yetis and crag cats, and the rising threat of Underdark invaders. Due to their cold pragmatism, terrifying magic, and mastery of the region, Winter Walkers are regarded with equal parts respect and fear. Ten-Towns citizens say that Winter Walkers' frequent exposure to malignant entities gives them their fearsome powers. Many Reghed nomads, on the other hand, believe that nature spirits bestow on Winter Walkers a unique curse.",
+    "subclass_of": {
+      "key": "srd-2024_ranger",
+      "name": "Ranger"
+    },
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "saving_throws": [],
+    "primary_abilities": [],
+    "features": [
+      {
+        "key": "faerun-heroes_ranger_winter-walker_winter-walker",
+        "name": "Winter Walker",
+        "desc": "Withstand the Horrors of Frigid Wastelands\n\nWinter Walkers hone their craft in the bleak and frozen wilds of places like Icewind Dale. These ruthless, rimed Rangers hunt monsters that haunt arctic wastelands, eventually becoming frigid terrors themselves. Winter Walkers are well versed in the phenomena of Icewind Dale, including the latent magic of fallen Netherese cities, endemic monsters like yetis and crag cats, and the rising threat of Underdark invaders. Due to their cold pragmatism, terrifying magic, and mastery of the region, Winter Walkers are regarded with equal parts respect and fear. Ten-Towns citizens say that Winter Walkers' frequent exposure to malignant entities gives them their fearsome powers. Many Reghed nomads, on the other hand, believe that nature spirits bestow on Winter Walkers a unique curse.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_ranger_winter-walker_fortifying-soul",
+        "name": "Fortifying Soul",
+        "desc": "Your experience surviving harrowing environments allows you to bolster your allies in addition to yourself. As a Magic action, choose a number of creatures you can see equal to your Wisdom modifier (minimum of one). Each chosen creature regains Hit Points equal to 1d10 plus your Ranger level and has Advantage on saving throws to avoid or end the Frightened condition for 1 hour.\n\nOnce you use this feature, you can't use it again until you finish a Long Rest.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 7,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_ranger_winter-walker_chilling-retribution",
+        "name": "Chilling Retribution",
+        "desc": "When a creature hits you with an attack roll, you can take a Reaction to force the creature to make a Wisdom saving throw against your spell save DC. On a failed save, the target has the Stunned condition until the end of your next turn. While the target is Stunned, its Speed is reduced to 0 feet.\n\nYou can use this feature a number of times equal to your Wisdom modifier (minimum of once), and you regain all expended uses when you finish a Long Rest.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 11,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_ranger_winter-walker_frozen-haunt",
+        "name": "Frozen Haunt",
+        "desc": "When you cast Hunter's Mark, you can adopt a ghostly, snowy form. This form lasts until the spell ends, and while you are in this form, you gain the following benefits. Once you use this feature, you can't use it again until you finish a Long Rest unless you expend a level 4+ spell slot (no action required).\n\nFrozen Soul. You have Immunity to Cold damage. When you first adopt this form and at the start of each of your subsequent turns, each creature of your choice in a 15-foot Emanation originating from you takes 2d4 Cold damage.\n\nPartially Incorporeal. You have Immunity to the Grappled, Prone, and Restrained conditions. You can move through creatures and objects as if they were Difficult Terrain, but you take 1d10 Force damage if you end your turn inside a creature or an object. If the form ends while you are inside a creature or an object, you are shunted to the nearest unoccupied space.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 15,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_ranger_winter-walker_frigid-explorer",
+        "name": "Frigid Explorer",
+        "desc": "You gain the following benefits.\n\nBiting Cold. Damage from your weapon attacks, Ranger spells, and Ranger features ignores Resistance to Cold damage.\n\nFrost Resistance. You have Resistance to Cold damage.\n\nPolar Strikes. When you hit a creature with an attack roll using a weapon, you can deal an extra 1d4 Cold damage to the target, which can take this extra damage only once per turn. When you reach Ranger level 11, this extra damage increases to 1d6.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_ranger_winter-walker_hunters-rime",
+        "name": "Hunter's Rime",
+        "desc": "Ice rimes you and your prey, protecting you and slowing them. When you cast Hunter's Mark, you gain Temporary Hit Points equal to 1d10 plus your Ranger level.\n\nAdditionally, while a creature is marked by your Hunter's Mark, it can't take the Disengage action.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_ranger_winter-walker_winter-walker-spells",
+        "name": "Winter Walker Spells",
+        "desc": "When you reach a Ranger level specified in the Winter Walker Spells table, you thereafter always have the listed spells prepared.\n\n| Ranger Level | Spells |\n|---|---|\n| 3 | Ice Knife |\n| 5 | Hold Person |\n| 9 | Remove Curse |\n| 13 | Ice Storm |\n| 17 | Cone of Cold |",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_scion-of-the-three",
+    "name": "Scion of the Three",
+    "document": "faerun-heroes",
+    "desc": "Become a Gruesome Agent of Malice\n\nA Scion of the Three draws power from a group of malevolent gods known as the Dead Three: FRHoF, deity of tyranny; FRHoF, deity of violence and murder; and FRHoF, deity of death. While some Rogues of this subclass pledge themselves ardently to those three macabre gods, others find themselves thrust on this path by a curse. Either way, a scion's power manifests as various occult gifts, as well as an uncanny talent for striking and terrifying foes.\n\nScions of the Three are most common in Baldur's Gate, where the Dead Three have long competed for influence over mortal hearts. Underground cults to FRHoF, FRHoF, and FRHoF often count Scions of the Three among their most useful agents. Outside Baldur's Gate, secular thieves' guilds such as the Shadow Thieves of Amn or Xanathar's guild in Waterdeep might cautiously call on a Scion of the Three to undertake an especially violent contract.",
+    "subclass_of": {
+      "key": "srd-2024_rogue",
+      "name": "Rogue"
+    },
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "saving_throws": [],
+    "primary_abilities": [],
+    "features": [
+      {
+        "key": "faerun-heroes_rogue_scion-of-the-three_scion-of-the-three",
+        "name": "Scion of the Three",
+        "desc": "Become a Gruesome Agent of Malice\n\nA Scion of the Three draws power from a group of malevolent gods known as the Dead Three: FRHoF, deity of tyranny; FRHoF, deity of violence and murder; and FRHoF, deity of death. While some Rogues of this subclass pledge themselves ardently to those three macabre gods, others find themselves thrust on this path by a curse. Either way, a scion's power manifests as various occult gifts, as well as an uncanny talent for striking and terrifying foes.\n\nScions of the Three are most common in Baldur's Gate, where the Dead Three have long competed for influence over mortal hearts. Underground cults to FRHoF, FRHoF, and FRHoF often count Scions of the Three among their most useful agents. Outside Baldur's Gate, secular thieves' guilds such as the Shadow Thieves of Amn or Xanathar's guild in Waterdeep might cautiously call on a Scion of the Three to undertake an especially violent contract.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_rogue_scion-of-the-three_strike-fear",
+        "name": "Strike Fear",
+        "desc": "You gain the following Cunning Strike option.\n\nTerrify (Cost: 1d6). The target must succeed on a Wisdom saving throw, or it has the Frightened condition for 1 minute. While the target is Frightened in this way, you have Advantage on attack rolls against the target.\n\nThe Frightened target repeats the save at the end of each of its turns, ending the effect on itself on a success.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 9,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_rogue_scion-of-the-three_aura-of-malevolence",
+        "name": "Aura of Malevolence",
+        "desc": "You radiate malignant power associated with one of the Dead Three. When you use Bloodthirst and teleport, each creature of your choice within 10 feet of either the space you left or your destination space (your choice) takes damage equal to your Intelligence modifier; the damage type is the same as the damage Resistance granted by your choice in the Dread Allegiance feature. Damage dealt by this feature ignores Resistance.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 13,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_rogue_scion-of-the-three_dread-incarnate",
+        "name": "Dread Incarnate",
+        "desc": "You gain the following benefits.\n\nCutthroat. You regain one expended use of Bloodthirst when you finish a Short Rest.\n\nMurderous Intent. When you roll for your Sneak Attack damage, you can treat a roll of a 1 or 2 on the die as a 3.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 17,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_rogue_scion-of-the-three_bloodthirst",
+        "name": "Bloodthirst",
+        "desc": "When an enemy you can see within 30 feet of yourself takes damage and is Bloodied after taking that damage but not killed outright, you can take a Reaction and teleport to an unoccupied space you can see within 5 feet of that enemy. You can then make one melee attack. You can use this feature a number of times equal to your Intelligence modifier (minimum of once), and you regain all expended uses when you finish a Long Rest.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_rogue_scion-of-the-three_dread-allegiance",
+        "name": "Dread Allegiance",
+        "desc": "Choose one of the Dead Three: FRHoF, FRHoF, or FRHoF. You gain Resistance to one type of damage and the ability to cast a cantrip, as detailed in the table below; Intelligence is your spellcasting ability for this cantrip. When you finish a Long Rest, you can change your choice.\n\n| God | Damage Resistance | Cantrip |\n|---|---|---|\n| FRHoF | Psychic | Minor Illusion |\n| FRHoF | Poison | Blade Ward |\n| FRHoF | Necrotic | Chill Touch |",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_spellfire-sorcery",
+    "name": "Spellfire Sorcery",
+    "document": "faerun-heroes",
+    "desc": "Wield Raw Magic\n\nYour innate power stems from the source of magic itself: the Weave. This connection manifests as a rare ability known as spellfire, and you surge with radiant bursts of this raw magic. Your talent with spellfire allows you to heal allies, sear enemies, and absorb powerful spells.\n\nWielders of spellfire tend to have a penchant for wandering. Many travel between cosmopolitan settlements, such as those along the Sword Coast, and wield their magic in service of the common good. Others realize their own strange powers by roaming equally strange lands, from the magic-blasted wastes of the desert of Anauroch to the god-touched wilds of the Old Empires. Wherever they go in the Realms, spellfire Sorcerers are courted by factions with interests in the arcane arts, such as the Harpers, Cult of the Dragon, and Red Wizards.",
+    "subclass_of": {
+      "key": "srd-2024_sorcerer",
+      "name": "Sorcerer"
+    },
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "saving_throws": [],
+    "primary_abilities": [],
+    "features": [
+      {
+        "key": "faerun-heroes_sorcerer_spellfire-sorcery_spellfire-sorcery",
+        "name": "Spellfire Sorcery",
+        "desc": "Wield Raw Magic\n\nYour innate power stems from the source of magic itself: the Weave. This connection manifests as a rare ability known as spellfire, and you surge with radiant bursts of this raw magic. Your talent with spellfire allows you to heal allies, sear enemies, and absorb powerful spells.\n\nWielders of spellfire tend to have a penchant for wandering. Many travel between cosmopolitan settlements, such as those along the Sword Coast, and wield their magic in service of the common good. Others realize their own strange powers by roaming equally strange lands, from the magic-blasted wastes of the desert of Anauroch to the god-touched wilds of the Old Empires. Wherever they go in the Realms, spellfire Sorcerers are courted by factions with interests in the arcane arts, such as the Harpers, Cult of the Dragon, and Red Wizards.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_sorcerer_spellfire-sorcery_absorb-spells",
+        "name": "Absorb Spells",
+        "desc": "You always have Counterspell prepared.\n\nAdditionally, whenever a target fails the saving throw against a Counterspell you cast, you regain 1d4 Sorcery Points.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 6,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_sorcerer_spellfire-sorcery_honed-spellfire",
+        "name": "Honed Spellfire",
+        "desc": "Your Spellfire Burst improves. You add your Sorcerer level to the Temporary Hit Points gained from Bolstering Flames, and the damage of Radiant Fire increases to 1d8.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 14,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_sorcerer_spellfire-sorcery_crown-of-spellfire",
+        "name": "Crown of Spellfire",
+        "desc": "When you use Innate Sorcery, you can alter it and infuse yourself with the essence of spellfire, gaining the following benefits while this use of Innate Sorcery is active. Once you use this feature to alter Innate Sorcery, you can't use it again until you finish a Long Rest unless you spend 5 Sorcery Points (no action required) to restore your use of it.\n\nBurning Life Force. Once per turn when you are hit by an attack roll, you can expend a number of Hit Point Dice, up to a maximum equal to your Charisma modifier (minimum of one). Roll the expended dice, and reduce the amount of damage from that attack equal to the total rolled.\n\nFlight. You gain a Fly Speed of 60 feet and can hover.\n\nSpell Avoidance. When you're subjected to a spell or magical effect that allows you to make a saving throw to take only half damage, you instead take no damage if you succeed on the saving throw and only half damage if you fail. You can't use this benefit if you have the Incapacitated condition.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 18,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_sorcerer_spellfire-sorcery_spellfire-burst",
+        "name": "Spellfire Burst",
+        "desc": "When you spend at least 1 Sorcery Point as part of the Magic action or a Bonus Action on your turn, you can unleash one of the following magical effects of your choice. You can do so only once per turn.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_sorcerer_spellfire-sorcery_spellfire-spells",
+        "name": "Spellfire Spells",
+        "desc": "When you reach a Sorcerer level specified in the Spellfire Spells table, you thereafter always have the listed spells prepared.\n\n| Sorcerer Level | Spells |\n|---|---|\n| 3 | Cure Wounds, Guiding Bolt, Lesser Restoration, Scorching Ray |\n| 5 | Aura of Vitality, Dispel Magic |\n| 7 | Fire Shield, Wall of Fire |\n| 9 | Greater Restoration, Flame Strike |",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_sorcerer_spellfire-sorcery_bolstering-flames",
+        "name": "Bolstering Flames",
+        "desc": "You or one creature you can see within 30 feet of yourself gains Temporary Hit Points equal to 1d4 plus your Charisma modifier.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_sorcerer_spellfire-sorcery_radiant-fire",
+        "name": "Radiant Fire",
+        "desc": "One creature you can see within 30 feet of yourself takes 1d4 Fire or Radiant damage (your choice).",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "faerun-heroes_bladesinger",
+    "name": "Bladesinger",
+    "document": "faerun-heroes",
+    "desc": "Wield Weapon and Wizardry in Elegant Tandem\n\nBladesingers master a tradition of wizardry that incorporates swordplay and dance. In combat, a Bladesinger uses intricate, elegant maneuvers that fend off harm and allow the Bladesinger to channel magic into devastating attacks and a cunning defense. Many who have observed a Bladesinger at work remember the display as one of the more beautiful experiences in their life—a glorious dance accompanied by a singing blade.\n\nBladesinging is associated with the ancient elven societies that first mastered the art and coined the term. Even today, most Bladesingers still hail from old elven realms, such as Myth Drannor, or from non-elven societies that share land and history with elves, such as the Silver Marches. Wherever they hail from, Bladesingers take their talents all across the Realms to help common people and perform heroic deeds. Most communities greet the arrival of a Bladesinger as a good omen.",
+    "subclass_of": {
+      "key": "srd-2024_wizard",
+      "name": "Wizard"
+    },
+    "hit_dice": null,
+    "caster_type": "NONE",
+    "saving_throws": [],
+    "primary_abilities": [],
+    "features": [
+      {
+        "key": "faerun-heroes_wizard_bladesinger_bladesinger",
+        "name": "Bladesinger",
+        "desc": "Wield Weapon and Wizardry in Elegant Tandem\n\nBladesingers master a tradition of wizardry that incorporates swordplay and dance. In combat, a Bladesinger uses intricate, elegant maneuvers that fend off harm and allow the Bladesinger to channel magic into devastating attacks and a cunning defense. Many who have observed a Bladesinger at work remember the display as one of the more beautiful experiences in their life—a glorious dance accompanied by a singing blade.\n\nBladesinging is associated with the ancient elven societies that first mastered the art and coined the term. Even today, most Bladesingers still hail from old elven realms, such as Myth Drannor, or from non-elven societies that share land and history with elves, such as the Silver Marches. Wherever they hail from, Bladesingers take their talents all across the Realms to help common people and perform heroic deeds. Most communities greet the arrival of a Bladesinger as a good omen.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_wizard_bladesinger_extra-attack",
+        "name": "Extra Attack",
+        "desc": "You can attack twice, instead of once, whenever you take the Attack action on your turn. Moreover, you can cast one of your Wizard cantrips that has a casting time of an action in place of one of those attacks.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 6,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_wizard_bladesinger_song-of-defense",
+        "name": "Song of Defense",
+        "desc": "When you take damage while your Bladesong is active, you can take a Reaction to expend one spell slot and reduce the damage taken by an amount equal to five times the spell slot's level.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 10,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_wizard_bladesinger_song-of-victory",
+        "name": "Song of Victory",
+        "desc": "After you cast a spell that has a casting time of an action, you can make one attack with a weapon as a Bonus Action.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 14,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_wizard_bladesinger_bladesong",
+        "name": "Bladesong",
+        "desc": "As a Bonus Action, you invoke an elven magic called the Bladesong, provided you aren't wearing armor or using a Shield.\n\nThe Bladesong lasts for 1 minute and ends early if you have the Incapacitated condition, if you don armor or a Shield, or if you use two hands to make an attack with a weapon. You can dismiss the Bladesong at any time (no action required).\n\nWhile the Bladesong is active, you gain the following benefits. You can invoke the Bladesong a number of times equal to your Intelligence modifier (minimum of once), and you regain all expended uses when you finish a Long Rest. You regain one expended use when you use Arcane Recovery.\n\nAgility. You gain a bonus to your AC equal to your Intelligence modifier (minimum of +1), and your Speed increases by 10 feet. In addition, you have Advantage on Dexterity (Acrobatics) checks.\n\nBladework. Whenever you attack with a weapon with which you have proficiency, you can use your Intelligence modifier for the attack and damage rolls instead of using Strength or Dexterity.\n\nFocus. When you make a Constitution saving throw to maintain Concentration, you can add your Intelligence modifier to the total.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      },
+      {
+        "key": "faerun-heroes_wizard_bladesinger_training-in-war-and-song",
+        "name": "Training in War and Song",
+        "desc": "You gain proficiency with all Melee Martial weapons that don't have the Two-Handed or Heavy property. You can use a Melee weapon with which you have proficiency as a Spellcasting Focus for your Wizard spells.\n\nYou also gain proficiency in one of the following skills of your choice: Acrobatics, Athletics, Performance, or Persuasion.",
+        "feature_type": "CLASS_LEVEL_FEATURE",
+        "gained_at": [
+          {
+            "level": 3,
+            "detail": null
+          }
+        ],
+        "data_for_class_table": []
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  }
+]

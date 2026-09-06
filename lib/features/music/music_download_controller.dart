@@ -12,8 +12,8 @@ import 'tool_installer.dart';
 /// yt-dlp'nin elle verilen yolu. Boşsa PATH'e bakılır.
 ///
 /// `AiSettingsController` ile aynı desen: `shared_preferences`, cihazda kalır,
-/// yedeğe/LAN'a girmez. Windows'ta PATH sık sık ayarsız kaldığı için "Ayarlar'a
-/// tam yolu yapıştır" kaçış yolu şart.
+/// yedeğe girmez. Windows'ta PATH sık sık ayarsız kaldığı için "Ayarlar'a tam
+/// yolu yapıştır" kaçış yolu şart.
 class YtDlpPathController extends Notifier<String> {
   static const _key = 'music.ytDlpPath';
 
@@ -56,6 +56,15 @@ final ytDlpAvailableProvider = FutureProvider<bool>((ref) async {
   ref.watch(toolInstallerProvider);
   return await ref.watch(musicDownloaderProvider).resolveExecutable() != null;
 });
+
+/// Baglantidan indirme bu platformda VAR MI?
+///
+/// [ytDlpAvailableProvider] "kurulu mu" sorusunu cevapliyor; bu ise "hic
+/// kurulabilir mi". Android'de ikincisi hayir, o yuzden arayuz kurulum
+/// yonergesi degil ozelligin kendisini gizliyor.
+final musicDownloadSupportedProvider = Provider<bool>(
+  (ref) => MusicDownloader.supportedHere,
+);
 
 enum MusicJobStatus { queued, running, done, failed }
 

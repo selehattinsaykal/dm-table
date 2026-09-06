@@ -1,0 +1,41 @@
+[
+  {
+    "key": "eberron-forge_homunculus-servant",
+    "name": "Homunculus Servant",
+    "document": "eberron-forge",
+    "level": 2,
+    "school": {
+      "name": "Conjuration",
+      "key": "conjuration"
+    },
+    "casting_time": "hour",
+    "ritual": true,
+    "concentration": false,
+    "verbal": true,
+    "somatic": true,
+    "material": true,
+    "material_specified": "a gem worth 100+ GP",
+    "material_cost": "100.00",
+    "material_consumed": false,
+    "range": 10,
+    "range_unit": "feet",
+    "range_text": "10 feet",
+    "shape_type": null,
+    "shape_size": null,
+    "shape_size_unit": null,
+    "target_type": null,
+    "target_count": null,
+    "duration": "Instantaneous",
+    "damage_roll": null,
+    "damage_types": [],
+    "attack_roll": false,
+    "saving_throw_ability": "",
+    "reaction_condition": null,
+    "classes": [],
+    "desc": "You summon a special homunculus in an unoccupied space within range. This creature uses the Homunculus Servant stat block. If you already have a homunculus from this spell, the homunculus is replaced by the new one. You determine the homunculus's appearance, such as a mechanical-looking bird, winged vial, or miniature animate cauldron.\n\nCombat. The homunculus is an ally to you and your allies. In combat, it shares your Initiative count, but it takes its turn immediately after yours. It obeys your commands (no action required by you). If you don't issue any, it takes the Dodge action and uses its movement to avoid danger.",
+    "higher_level": "Using a Higher-Level Spell Slot. Use the spell slot's level for the spell's level in the stat block.",
+    "crossreferences": {
+      "to": []
+    }
+  }
+]

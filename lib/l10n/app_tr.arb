@@ -1,12 +1,9 @@
 {
   "@@locale": "tr",
-
   "appTitle": "DM Table",
-
   "navCampaigns": "Kampanyalar",
   "navCompendium": "Kütüphane",
   "navCharacters": "Karakterler",
-
   "@_navShort": {
     "description": "Alt gezinme cubugu icin kisa etiketler. Telefonda alti sekme yan yana durdugunda tam adlar (Kütüphane, Karakterler) satir kiriyor."
   },
@@ -20,9 +17,11 @@
   "navSettings": "Ayarlar",
   "navLoot": "Ganimet",
   "navCodex": "Kayıtlar",
-
   "navMusic": "Müzik",
   "musicImport": "Dosya ekle",
+  "fileTypeAudio": "Ses",
+  "fileTypeImage": "Görsel",
+  "fileTypeVideo": "Video",
   "musicNewPlaylist": "Yeni liste",
   "musicNewSubList": "Yeni alt liste",
   "musicRenamePlaylist": "Listeyi yeniden adlandır",
@@ -40,8 +39,13 @@
   "musicLoopAll": "Listeyi tekrarla",
   "musicLoopOne": "Tek parçayı tekrarla",
   "musicMissingFile": "{title} — dosya bulunamadı",
-  "@musicMissingFile": { "placeholders": { "title": { "type": "String" } } },
-
+  "@musicMissingFile": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
   "musicAddLink": "Bağlantıdan ekle",
   "musicLinkTitle": "Bağlantıdan müzik ekle",
   "musicLinkHint": "YouTube bağlantısı yapıştır (veya yt-dlp'nin desteklediği herhangi bir bağlantı)",
@@ -55,24 +59,33 @@
   "musicToolNotInstalled": "Kurulu değil",
   "musicToolChecking": "Kontrol ediliyor…",
   "musicToolDownloading": "İndiriliyor: %{percent}",
-  "@musicToolDownloading": { "placeholders": { "percent": { "type": "String" } } },
+  "@musicToolDownloading": {
+    "placeholders": {
+      "percent": {
+        "type": "String"
+      }
+    }
+  },
   "musicToolExtracting": "Çıkarılıyor…",
   "musicToolInstalling": "Kuruluyor…",
   "musicToolError": "Hata: {message}",
-  "@musicToolError": { "placeholders": { "message": { "type": "String" } } },
+  "@musicToolError": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
   "musicToolMissingHint": "yt-dlp henüz kurulu değil, bağlantı indirilemez. Müzik ayarlarından kurabilirsin.",
   "musicOpenSettings": "Ayarları aç",
   "musicLinkBad": "Bu geçerli bir web bağlantısı değil.",
   "musicToolMissing": "İndirme araçları bulunamadı",
-  "musicToolMissingBody": "YouTube için yt-dlp gerekli. Otomatik kurulum için Müzik sayfasındaki \"Müzik İndirme Araçları\" panelini kullanın veya yolunu aşağıya yapıştırın.",
-  "musicToolPath": "yt-dlp yolu (isteğe bağlı)",
   "musicToolInstall": "Kurulum yönergeleri",
   "musicDownloads": "İndirmeler",
   "musicDownloadClear": "Bitenleri temizle",
   "musicDownloadFailed": "İndirme başarısız",
   "musicForbidden": "Erişim reddedildi (403). Bu genellikle korumalı ya da lisanslı içerik demektir; değilse araçların güncel olduğundan emin ol.",
   "musicDownloadDone": "Kütüphaneye eklendi",
-
   "settingsLanguage": "Dil",
   "settingsTheme": "Tema",
   "themeDark": "Koyu",
@@ -149,7 +162,13 @@
   "encLootInLibrary": "Kütüphanede var",
   "encLootNotInLibrary": "Kütüphanede yok — yalnızca isim",
   "encLootUnresolvedHint": "{count} eşya kütüphanede bulunamadı; keseye yalnızca isim olarak gider.",
-  "@encLootUnresolvedHint": { "placeholders": { "count": { "type": "int" } } },
+  "@encLootUnresolvedHint": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "encLootGrant": "Ganimeti partiye ver",
   "encLootGranted": "Ganimet keseye aktarıldı",
   "encLootNoInventory": "Önce Ganimet sekmesinden bir parti kesesi oluştur.",
@@ -229,16 +248,10 @@
   "questDmOnly": "Sadece sen görüyorsun — oyunculara gitmez",
   "questCopyPlayer": "Oyuncu metnini kopyala",
   "questCopyAll": "Tümünü kopyala",
-  "questSendPlayers": "Oyunculara gönder",
-  "questSentPlayers": "Oyunculara gönderildi",
-  "questNeedSession": "Önce Oturum sekmesinden masayı aç.",
   "navQuests": "Görevler",
   "questsNew": "Yeni görev",
   "questsEmpty": "Henüz görev yok. Sağ alttan ekle ya da AI Araçları'ndan gönder.",
   "questUntitled": "(başlıksız görev)",
-  "questAcceptedBy": "Kabul",
-  "questRejectedBy": "Ret",
-  "questPending": "Bekleyen",
   "campaignDefaultName": "Ana Kampanya",
   "campaignExplainer": "Her kampanya kendi veritabanı dosyasıdır: karakterler, dünya, görevler, kayıtlar ve takvim kampanyaya özeldir. Aynı anda tek kampanya açıktır.",
   "campaignNew": "Yeni kampanya",
@@ -248,15 +261,16 @@
   "campaignActive": "Açık kampanya",
   "campaignInactive": "Kapalı",
   "campaignDeleteTitle": "{name} silinsin mi?",
-  "@campaignDeleteTitle": { "placeholders": { "name": { "type": "String" } } },
+  "@campaignDeleteTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "campaignDeleteBody": "Bu kampanyanın karakterleri, dünyası, görevleri, kayıtları ve tüm görselleri kalıcı olarak silinir. Bu işlem geri alınamaz.",
   "campaignDeleted": "Kampanya silindi",
   "campaignDeleteLater": "Dosya şu an kullanımda; kampanya bir sonraki açılışta silinecek.",
-  "campaignSwitchTitle": "Oturum açık",
-  "campaignSwitchBody": "Kampanya değiştirilirse masa kapanır, bağlı oyuncuların bağlantısı kesilir ve yeni bir katılım adresi üretilir.",
-  "campaignSwitchPlayers": "Bağlı oyuncular: {names}",
-  "@campaignSwitchPlayers": { "placeholders": { "names": { "type": "String" } } },
-  "campaignSwitchConfirm": "Devam et",
   "navCalendar": "Takvim",
   "calendarTabCalendar": "Takvim",
   "calendarTabChronicle": "Tarihçe",
@@ -271,17 +285,35 @@
   "reminderRepeatMonthly": "Her ay",
   "reminderRepeatYearly": "Her yıl",
   "reminderRepeatEveryNDays": "Her {n} günde bir",
-  "@reminderRepeatEveryNDays": { "placeholders": { "n": { "type": "int" } } },
+  "@reminderRepeatEveryNDays": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "reminderRepeatEveryNDaysShort": "Her N günde",
   "reminderEveryNDaysLabel": "Kaç günde bir",
   "reminderMonthlyHint": "Ay o güne kadar sürmüyorsa hatırlatıcı ayın son gününe çekilir; atlanmaz.",
   "reminderNext": "sıradaki: {date}",
-  "@reminderNext": { "placeholders": { "date": { "type": "String" } } },
+  "@reminderNext": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
   "reminderNoNext": "sırada yok",
   "reminderClose": "Kapat",
   "reminderReopen": "Yeniden aç",
   "reminderFired": "Hatırlatıcı: {titles}",
-  "@reminderFired": { "placeholders": { "titles": { "type": "String" } } },
+  "@reminderFired": {
+    "placeholders": {
+      "titles": {
+        "type": "String"
+      }
+    }
+  },
   "calendarTabSettings": "Takvim yapısı",
   "calendarDefaultMonths": "Karakış,Buzçözen,Tohumay,Yeşerme,Çiçekay,Günortası,Sıcakay,Harmanay,Bereket,Yaprakdökümü,Sisay,Uzunkaranlık",
   "calendarDefaultWeekdays": "Örsgün,Ocakgün,Sugün,Pazargün,Yolgün,Andgün,Dinlence",
@@ -313,7 +345,16 @@
   "calendarSeasons": "Mevsimler",
   "calendarAddSeason": "Mevsim ekle",
   "calendarSeasonRange": "{start} — {end}",
-  "@calendarSeasonRange": { "placeholders": { "start": { "type": "String" }, "end": { "type": "String" } } },
+  "@calendarSeasonRange": {
+    "placeholders": {
+      "start": {
+        "type": "String"
+      },
+      "end": {
+        "type": "String"
+      }
+    }
+  },
   "calendarSeasonStart": "Başlangıç",
   "calendarSeasonEnd": "Bitiş",
   "calendarSeasonWrapHint": "Bitiş başlangıçtan önceyse mevsim yıl sonunu sarar (kış gibi).",
@@ -340,7 +381,13 @@
   "chronicleSearch": "Tarihçede ara",
   "chronicleDeleteConfirm": "Bu olay kalıcı olarak silinsin mi?",
   "chronicleEventsOnDay": "{date} günü",
-  "@chronicleEventsOnDay": { "placeholders": { "date": { "type": "String" } } },
+  "@chronicleEventsOnDay": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
   "chronicleNoEventsOnDay": "Bu gün için kayıt yok.",
   "chronicleAddHere": "Bu güne olay ekle",
   "chronicleOnlySecret": "Yalnız gizli olaylar",
@@ -349,22 +396,47 @@
   "restEveryone": "Herkes",
   "restShortOpenHint": "Dinlenme oyunculara açıldı. Herkes kendi panelinden istediği kadar hit die harcar; sen yalnızca izliyorsun.",
   "restShortFinish": "Dinlenmeyi bitir",
-  "restNeedSession": "Önce Oturum sekmesinden masayı aç.",
   "restShort": "Kısa mola",
   "restLong": "Uzun mola",
   "restHitDiceLeft": "{left} / {total} hit dice",
-  "@restHitDiceLeft": { "placeholders": { "left": { "type": "int" }, "total": { "type": "int" } } },
+  "@restHitDiceLeft": {
+    "placeholders": {
+      "left": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "restLongConfirm": "{count} karakter uzun molaya çekilecek: can dolar, büyü yuvaları ve hit dice'ın yarısı geri gelir, tükenmişlik 1 azalır.",
-  "@restLongConfirm": { "placeholders": { "count": { "type": "int" } } },
+  "@restLongConfirm": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "restAdvanceDay": "Takvimde 1 gün ilerlet",
   "restLoggedLong": "Uzun mola ({count} karakter)",
-  "@restLoggedLong": { "placeholders": { "count": { "type": "int" } } },
-  "restAnnounceLong": "Ekip uzun molaya çekildi.",
+  "@restLoggedLong": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "aiToolEncounter": "Karşılaşma Üretici",
   "encounterEnvironment": "Ortam / tema (isteğe bağlı)",
   "encounterEnvironmentHint": "Ör. bataklık harabesi, buzul geçidi, liman deposu.",
   "encounterBudgetHint": "Hedef canavar XP'si: {xp}",
-  "@encounterBudgetHint": { "placeholders": { "xp": { "type": "int" } } },
+  "@encounterBudgetHint": {
+    "placeholders": {
+      "xp": {
+        "type": "int"
+      }
+    }
+  },
   "encounterSummary": "Sahne",
   "encounterMonsters": "Canavarlar",
   "encounterTerrain": "Arazi",
@@ -372,37 +444,27 @@
   "encounterCreate": "Savaşa dönüştür",
   "encounterFallbackName": "Karşılaşma",
   "encounterCreated": "{name} savaş olarak oluşturuldu",
-  "@encounterCreated": { "placeholders": { "name": { "type": "String" } } },
+  "@encounterCreated": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "encounterCreatedPartial": "{name} oluşturuldu — kütüphanede bulunamayanlar: {missing}",
-  "@encounterCreatedPartial": { "placeholders": { "name": { "type": "String" }, "missing": { "type": "String" } } },
+  "@encounterCreatedPartial": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "missing": {
+        "type": "String"
+      }
+    }
+  },
   "encounterNoCandidates": "Bu seviye için kütüphanede uygun canavar bulunamadı.",
-  "navChat": "Sohbet",
-  "chatGeneral": "Genel",
-  "chatWhisper": "Fısıltı",
-  "chatPlaceholder": "Mesajınızı yazın...",
-  "chatTo": "Kime:",
-  "chatDm": "DM",
-  "chatEmpty": "Henüz mesaj yok. Masaya bir şey söyle.",
-  "chatNeedSession": "Önce Oturum sekmesinden masayı aç.",
-  "presenceTitle": "Oyuncular",
-  "presenceDragHint": "Taşımak için basılı tutup sürükle",
-  "presenceNoPlayers": "Henüz bağlı oyuncu yok.",
-  "presenceActive": "Aktif",
-  "presenceAway": "Uzakta",
-  "presenceOffline": "Çevrimdışı",
-  "lastSeenSeconds": "son görülme {n}sn önce",
-  "@lastSeenSeconds": { "placeholders": { "n": { "type": "int" } } },
-  "lastSeenMinutes": "son görülme {n}dk önce",
-  "@lastSeenMinutes": { "placeholders": { "n": { "type": "int" } } },
-  "lastSeenHours": "son görülme {n}sa önce",
-  "@lastSeenHours": { "placeholders": { "n": { "type": "int" } } },
-  "questNoTargets": "Hiç oyuncu seçilmedi",
-  "questHide": "Paylaşımı kaldır",
   "questComplete": "Tamamla",
   "questReopen": "Geri aç",
-  "questSharePick": "Hangi oyunculara gösterilsin?",
-  "questShow": "Göster",
-  "questShared": "Oyunculara gösterildi",
   "questNoCharacters": "Önce karakter oluştur.",
   "questDelete": "Görevi sil",
   "questDeleteConfirm": "Bu görev kalıcı olarak silinsin mi?",
@@ -418,20 +480,6 @@
   "aiQuestRewardAuto": "Görevlere gönderince bu para ve eşyalar görevin gerçek ödülü olur; görev tamamlanınca oyunculara ortak ganimet olarak açılır.",
   "questRealReward": "Gerçek ödül (eşya + para)",
   "questRealRewardHint": "Görevi tamamlayınca kabul eden oyunculara ortak ganimet olarak açılır. Bir eşyayı ilk kim alırsa onun olur; havuz boşalınca görev kapanır.",
-  "questRewardPending": "Ödül dağıtımda",
-  "questRewardItemCount": "{count} eşya",
-  "@questRewardItemCount": { "placeholders": { "count": { "type": "int" } } },
-  "questShareSection": "Oyunculara gösterim",
-  "questModeIndividual": "Tek tek kabul",
-  "questModeVote": "Oylama",
-  "questModeIndividualHint": "Seçtiğin oyuncuların her biri görevi ayrı ayrı kabul eder ya da reddeder.",
-  "questModeVoteHint": "Seçtiğin oyuncular oylar. Kabul oyu %50 ve üzerindeyse görev hepsine verilir; altında kalırsa kimse alamaz.",
-  "questStartVote": "Oylamayı başlat",
-  "questVoteStarted": "Oylama başlatıldı",
-  "questVoteOngoing": "Oylama sürüyor",
-  "questVotePassed": "Oylama geçti — görev ekipte",
-  "questVoteFailed": "Oylama düştü — kimse almadı",
-
   "compendiumMonsters": "Canavarlar",
   "compendiumSpells": "Büyüler",
   "compendiumItems": "Eşyalar",
@@ -439,27 +487,33 @@
   "compendiumFeats": "Feat'ler",
   "compendiumSpecies": "Irklar",
   "compendiumBackgrounds": "Geçmişler",
-
-  "searchHint": "Ara...",
+  "searchHint": "Canavar, büyü, eşya, karakter, yer, görev, kayıt, parça…",
   "filters": "Filtreler",
   "clearFilters": "Filtreleri temizle",
   "noResults": "Sonuç bulunamadı",
-
   "filterSchool": "Okul",
   "filterRarity": "Nadirlik",
-
-
+  "filterConcentration": "Konsantrasyon",
+  "filterRitual": "Ritüel",
+  "filterAttunement": "Uyum",
+  "sourcebookSrd": "SRD 5.2",
+  "sourcebookPhb": "Oyunculuk Elkitabı 2024",
+  "sourcebookMm": "Canavarlar Elkitabı 2024",
+  "sourcebookEberron": "Eberron: Forge of the Artificer",
+  "sourcebookRavenloft": "Ravenloft: The Horrors Within",
+  "sourcebookFaerun": "Forgotten Realms: Heroes of Faerûn",
   "importTitle": "İçerik hazırlanıyor",
   "importSubtitle": "Kural kitaplığı ilk kez kuruluyor, bu bir kez yapılır.",
   "importStepWriting": "Veritabanına yazılıyor: {table}",
   "@importStepWriting": {
     "placeholders": {
-      "table": { "type": "String" }
+      "table": {
+        "type": "String"
+      }
     }
   },
   "importFailed": "İçerik kurulumu başarısız oldu",
   "retry": "Tekrar dene",
-
   "cancel": "Vazgeç",
   "save": "Kaydet",
   "delete": "Sil",
@@ -469,11 +523,11 @@
   "ok": "Tamam",
   "create": "Oluştur",
   "remove": "Çıkar",
-
   "licenseTitle": "İçerik lisansları",
   "licenseBody": "Bu uygulamadaki kural içeriği System Reference Document 5.2 (CC-BY 4.0) ve Open5e üzerinden dağıtılan açık lisanslı setlerden alınmıştır. Kişisel kitaplığınızdan içe aktardığınız içerik yalnızca bu cihazda saklanır.",
-
-  "@_characterSheet": { "description": "Karakter kağıdı ekranı (DM)." },
+  "@_characterSheet": {
+    "description": "Karakter kağıdı ekranı (DM)."
+  },
   "sheetTitleFallback": "Karakter",
   "sheetRollDice": "Zar at",
   "sheetLevelUp": "Seviye atla",
@@ -499,6 +553,28 @@
   "sheetPassivePerception": "Pasif Algı",
   "sheetCarry": "Taşıma",
   "sheetSavingThrows": "Kurtarma atışları",
+  "sheetProficiencies": "Yeterlilikler",
+  "sheetArmorTraining": "Zırh eğitimi",
+  "sheetWeaponProficiencies": "Silah yeterlilikleri",
+  "sheetToolProficiencies": "Uzman olunan aletler",
+  "sheetLanguages": "Bilinen diller",
+  "sheetWeaponMastery": "Silah ustalıkları",
+  "sheetNoProficiencies": "Yok",
+  "sheetAddProficiency": "Ekle",
+  "sheetProficiencyPending": "{count} seçim bekliyor",
+  "sheetProficiencySourceHint": "Sınıf, geçmiş ve feat'lerden gelenler otomatik; elle eklediklerin korunur.",
+  "sheetPickTool": "Alet seç",
+  "sheetPickLanguage": "Dil seç",
+  "sheetPickWeapon": "Silah seç",
+  "sheetArmorPenalty": "Yeterliliğin olmayan zırh: Güç ve Çeviklik kontrolleriyle kurtarmalarında dezavantaj, büyü yapamazsın.",
+  "sheetShieldPenalty": "Yeterliliğin olmayan kalkan: aynı ceza geçerli.",
+  "@sheetProficiencyPending": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "sheetSkills": "Beceriler",
   "sheetSpellSlots": "Büyü yuvaları",
   "sheetStatus": "Durum",
@@ -506,18 +582,83 @@
   "sheetExhaustion": "Tükenmişlik",
   "sheetExperience": "Deneyim (XP)",
   "sheetXpToNext": "Sonraki seviye (Sv {nextLevel}) için {xpNeeded} XP",
-  "@sheetXpToNext": { "placeholders": { "nextLevel": { "type": "int" }, "xpNeeded": { "type": "int" } } },
+  "@sheetXpToNext": {
+    "placeholders": {
+      "nextLevel": {
+        "type": "int"
+      },
+      "xpNeeded": {
+        "type": "int"
+      }
+    }
+  },
   "sheetXpMaxLevel": "Azami seviye (Sv {level})",
-  "@sheetXpMaxLevel": { "placeholders": { "level": { "type": "int" } } },
+  "@sheetXpMaxLevel": {
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
   "sheetInventory": "Envanter",
   "sheetBagEmpty": "Çanta boş.",
   "sheetAddItem": "Eşya ekle",
   "sheetEquip": "Giy/kuşan",
   "sheetUnequip": "Çıkar",
+  "sheetGear": "Ekipman",
+  "sheetGearTab": "Kuşanılan",
+  "sheetBagTab": "Çanta",
+  "sheetSlotEmpty": "Boş",
+  "sheetBagAllEquipped": "Çantadaki her şey kuşanılmış.",
+  "sheetSlotFull": "{slot} yuvası dolu ({limit}). Önce bir şey çıkar ya da sınırı artır.",
+  "@sheetSlotFull": {
+    "placeholders": {
+      "slot": {
+        "type": "String"
+      },
+      "limit": {
+        "type": "int"
+      }
+    }
+  },
+  "sheetSlotLimit": "Sınır: {limit}",
+  "@sheetSlotLimit": {
+    "placeholders": {
+      "limit": {
+        "type": "String"
+      }
+    }
+  },
+  "sheetSlotUnlimited": "Sınırsız",
+  "sheetSlotEditLimit": "Yuva sınırını düzenle",
+  "sheetSlotLimitTitle": "{slot} sınırı",
+  "@sheetSlotLimitTitle": {
+    "placeholders": {
+      "slot": {
+        "type": "String"
+      }
+    }
+  },
+  "sheetSlotLimitHint": "Kaç tane kuşanılabilir? Sınırsız için sınırsızı seç.",
+  "sheetSlotDefault": "Varsayılana dön",
+  "sheetSlotChange": "Yuvayı değiştir",
+  "sheetSlotHead": "Baş",
+  "sheetSlotArmor": "Zırh",
+  "sheetSlotCloak": "Pelerin",
+  "sheetSlotGloves": "Eldiven",
+  "sheetSlotBoots": "Ayakkabı",
+  "sheetSlotBelt": "Kemer",
+  "sheetSlotAmulet": "Kolye",
+  "sheetSlotRing": "Yüzük",
+  "sheetSlotMainHand": "Ana el",
+  "sheetSlotOffHand": "Diğer el",
+  "sheetSlotOther": "Diğer",
   "sheetItemTab": "Eşya",
   "sheetMagicTab": "Büyülü",
   "sheetCustomTab": "Serbest",
   "sheetItemName": "Eşya adı",
+  "sheetItemType": "Eşya türü",
+  "sheetItemTypeAuto": "Otomatik (addan tahmin et)",
   "sheetPurse": "Kese",
   "sheetRest": "Dinlen",
   "sheetShortRest": "Kısa dinlen (hit die)",
@@ -544,8 +685,9 @@
   "sheetIdeal": "İdeal",
   "sheetBond": "Bağ",
   "sheetFlaw": "Kusur",
-
-  "@_combat": { "description": "Savaş / karşılaşma ekranı (DM)." },
+  "@_combat": {
+    "description": "Savaş / karşılaşma ekranı (DM)."
+  },
   "combatNewEncounter": "Yeni karşılaşma",
   "combatPreparing": "Hazırlanıyor",
   "combatEncounterName": "Karşılaşma",
@@ -575,13 +717,40 @@
   "combatCount": "Adet",
   "combatRollHp": "HP zar at",
   "combatRoundN": "{n}. tur",
-  "@combatRoundN": { "placeholders": { "n": { "type": "int" } } },
+  "@combatRoundN": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "combatInitiativeTitle": "{name} — inisiyatif",
-  "@combatInitiativeTitle": { "placeholders": { "name": { "type": "String" } } },
+  "@combatInitiativeTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "combatConditionsTitle": "{name} — durumlar",
-  "@combatConditionsTitle": { "placeholders": { "name": { "type": "String" } } },
+  "@combatConditionsTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "combatConditionsExpired": "{name}: {conditions} sona erdi",
-  "@combatConditionsExpired": { "placeholders": { "name": { "type": "String" }, "conditions": { "type": "String" } } },
+  "@combatConditionsExpired": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "conditions": {
+        "type": "String"
+      }
+    }
+  },
   "combatDurationRounds": "Süre (tur)",
   "combatDurationUnlimited": "Süresiz",
   "combatAttackRoll": "Saldır",
@@ -609,22 +778,73 @@
   "compendiumConditions": "Durumlar",
   "compendiumConditionsEmpty": "Durum efektleri yüklenmedi.",
   "combatBudgetSummary": "{xp} XP · bütçe D{low} / O{moderate} / Y{high}",
-  "@combatBudgetSummary": { "placeholders": { "xp": { "type": "int" }, "low": { "type": "int" }, "moderate": { "type": "int" }, "high": { "type": "int" } } },
+  "@combatBudgetSummary": {
+    "placeholders": {
+      "xp": {
+        "type": "int"
+      },
+      "low": {
+        "type": "int"
+      },
+      "moderate": {
+        "type": "int"
+      },
+      "high": {
+        "type": "int"
+      }
+    }
+  },
   "combatUncounted": "{count} katılımcı XP’siz, hesaba katılmadı.",
-  "@combatUncounted": { "placeholders": { "count": { "type": "int" } } },
+  "@combatUncounted": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "combatAwardXp": "XP ver",
   "combatAwardXpNone": "Verilecek canavar XP’si ya da oyuncu yok.",
   "combatAwardXpConfirm": "{total} XP, {players} oyuncuya ({each}’er) verilsin mi?",
-  "@combatAwardXpConfirm": { "placeholders": { "total": { "type": "int" }, "players": { "type": "int" }, "each": { "type": "int" } } },
+  "@combatAwardXpConfirm": {
+    "placeholders": {
+      "total": {
+        "type": "int"
+      },
+      "players": {
+        "type": "int"
+      },
+      "each": {
+        "type": "int"
+      }
+    }
+  },
   "combatAwardXpDone": "XP verildi ({each}’er).",
-  "@combatAwardXpDone": { "placeholders": { "each": { "type": "int" } } },
+  "@combatAwardXpDone": {
+    "placeholders": {
+      "each": {
+        "type": "int"
+      }
+    }
+  },
   "logXpAwarded": "Karşılaşma XP’si: {total} → {players} oyuncu ({each}’er)",
-  "@logXpAwarded": { "placeholders": { "total": { "type": "int" }, "players": { "type": "int" }, "each": { "type": "int" } } },
-
-  "@_world": { "description": "Dünya / harita / NPC / pin ekranları (DM)." },
+  "@logXpAwarded": {
+    "placeholders": {
+      "total": {
+        "type": "int"
+      },
+      "players": {
+        "type": "int"
+      },
+      "each": {
+        "type": "int"
+      }
+    }
+  },
+  "@_world": {
+    "description": "Dünya / harita / NPC / pin ekranları (DM)."
+  },
   "worldNpcs": "NPC’ler",
   "worldNewLocation": "Yeni yer",
-  "worldShowToPlayers": "Oyunculara göster",
   "worldAddChild": "Alt yer ekle",
   "worldRename": "Yeniden adlandır",
   "worldDeleteConfirmBody": "Bu yer, altındaki tüm yerler, pinleri ve haritaları kalıcı olarak silinecek.",
@@ -645,13 +865,10 @@
   "editModeOff": "Görüntüleme modu — düzenlemek için dokun",
   "editModeEmptyRecord": "Bu kayıt henüz boş. Doldurmak için düzenleme modunu aç.",
   "editModeDiscard": "Vazgeç",
-  "worldPinHiddenFromPlayers": "Oyunculara kapalı",
-  "worldPinVisibleToPlayers": "Oyunculara açık",
   "worldNoMap": "Harita yok",
   "worldNoMapHint": "Haritayı yükledikten sonra üstüne pin koyabilir, pinlerden alt yerlere girebilirsin.",
   "worldNoMapViewModeHint": "Harita yüklemek için düzenleme modunu aç.",
   "worldMapNotFound": "Harita dosyası bulunamadı.",
-
   "travelTitle": "Seyahat",
   "travelScaleTitle": "Harita ölçeği",
   "travelScaleHint": "Haritanın gerçek dünyada kaç mil olduğunu gir. Pinler arası mesafe buradan hesaplanır.",
@@ -681,19 +898,39 @@
   "travelConfirmTitle": "Yolculuğu uygula",
   "travelConfirmBody": "{route}\n\n{miles} mil — {duration}",
   "travelAdvanceCalendar": "Takvimi {days} gün ilerlet",
-  "travelAnnounce": "Parti {days} gün yol aldı.",
   "travelPlanAction": "Seyahat planla",
   "travelDrawRoute": "Haritada rota çiz",
   "travelDrawRouteHint": "Haritaya dokunarak durak ekle; bir pine dokunmak onu durak yapar. En az iki durak gerekir.",
   "travelDrawRouteStops": "{count} durak seçildi. “Planla” ile mesafe ve süreyi hesapla.",
-  "@travelDrawRouteStops": { "placeholders": { "count": { "type": "int" } } },
+  "@travelDrawRouteStops": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "travelRouteUndo": "Son durağı sil",
   "travelRoutePlan": "Planla",
   "travelWaypoint": "Ara nokta {index}",
-  "@travelWaypoint": { "placeholders": { "index": { "type": "int" } } },
+  "@travelWaypoint": {
+    "placeholders": {
+      "index": {
+        "type": "int"
+      }
+    }
+  },
   "journeyStart": "Yolculuğa başla",
   "journeyStarted": "Yolculuk başladı: {route} ({miles} mil)",
-  "@journeyStarted": { "placeholders": { "route": { "type": "String" }, "miles": { "type": "String" } } },
+  "@journeyStarted": {
+    "placeholders": {
+      "route": {
+        "type": "String"
+      },
+      "miles": {
+        "type": "String"
+      }
+    }
+  },
   "journeyTitle": "Yolculuk",
   "journeyNone": "Süren bir yolculuk yok.",
   "journeyOpen": "Yolculuğu aç",
@@ -706,27 +943,93 @@
   "journeyAbandonConfirm": "Yolculuk kapatılır. Şimdiye kadar gidilen yol ve takvimde geçen günler geri alınmaz.",
   "journeyArrived": "Hedefe varıldı.",
   "journeyArrivedLog": "Varış: {route} ({miles} mil)",
-  "@journeyArrivedLog": { "placeholders": { "route": { "type": "String" }, "miles": { "type": "String" } } },
+  "@journeyArrivedLog": {
+    "placeholders": {
+      "route": {
+        "type": "String"
+      },
+      "miles": {
+        "type": "String"
+      }
+    }
+  },
   "journeyEncounterTitle": "Yolda bir şey oldu — parti durdu",
   "journeyDaysPassed": "Bu adımda {days} gün geçti.",
-  "@journeyDaysPassed": { "placeholders": { "days": { "type": "int" } } },
+  "@journeyDaysPassed": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
   "journeyBannerProgress": "Yolculuk sürüyor — {travelled} / {total} mil",
-  "@journeyBannerProgress": { "placeholders": { "travelled": { "type": "String" }, "total": { "type": "String" } } },
+  "@journeyBannerProgress": {
+    "placeholders": {
+      "travelled": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
   "journeySpeedLine": "{mph} mil/saat · günde {hours} saat",
-  "@journeySpeedLine": { "placeholders": { "mph": { "type": "String" }, "hours": { "type": "String" } } },
+  "@journeySpeedLine": {
+    "placeholders": {
+      "mph": {
+        "type": "String"
+      },
+      "hours": {
+        "type": "String"
+      }
+    }
+  },
   "travelEncounters": "Rastgele karşılaşma",
   "travelEncountersHint": "Yolculuğun her diliminde d20 atılır; eşiği tutturan atış için seçili tablodan bir satır çekilir. Sonuç yalnızca sana gösterilir.",
   "travelEncounterTable": "Karşılaşma tablosu",
   "travelEncounterNoTables": "Henüz rastgele tablo yok. Tablolar sekmesinden bir tane ekle.",
   "travelEncounterChance": "Eşik: d20 ≥ {threshold}  (%{percent})",
-  "@travelEncounterChance": { "placeholders": { "threshold": { "type": "int" }, "percent": { "type": "int" } } },
+  "@travelEncounterChance": {
+    "placeholders": {
+      "threshold": {
+        "type": "int"
+      },
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
   "travelEncounterChecks": "Günlük kontrol sayısı",
   "travelEncounterWhen": "{day}. gün · {check}. kontrol",
-  "@travelEncounterWhen": { "placeholders": { "day": { "type": "int" }, "check": { "type": "int" } } },
+  "@travelEncounterWhen": {
+    "placeholders": {
+      "day": {
+        "type": "int"
+      },
+      "check": {
+        "type": "int"
+      }
+    }
+  },
   "travelEncounterMissingRow": "Tabloda {roll} atışına karşılık gelen satır yok.",
-  "@travelEncounterMissingRow": { "placeholders": { "roll": { "type": "int" } } },
+  "@travelEncounterMissingRow": {
+    "placeholders": {
+      "roll": {
+        "type": "int"
+      }
+    }
+  },
   "travelEncounterLogged": "{day}. gün — karşılaşma: {text}",
-  "@travelEncounterLogged": { "placeholders": { "day": { "type": "int" }, "text": { "type": "String" } } },
+  "@travelEncounterLogged": {
+    "placeholders": {
+      "day": {
+        "type": "int"
+      },
+      "text": {
+        "type": "String"
+      }
+    }
+  },
   "travelPaceFast": "Hızlı",
   "travelPaceNormal": "Normal",
   "travelPaceSlow": "Yavaş",
@@ -755,8 +1058,6 @@
   "worldPinType": "Tür",
   "worldPinNote": "Not",
   "worldPinNoteHint": "Sadece sen görürsün; pini açarsan oyuncular da.",
-  "worldPinRevealLocationHint": "Kapalıyken pin yalnızca sende görünür. Açıkken oyuncular pine dokunup o yerin haritasına girebilir (haritası varsa).",
-  "worldPinRevealHint": "Kapalıyken pin yalnızca sende görünür.",
   "worldKindLocation": "Alt yer",
   "worldKindPlace": "Lokasyon",
   "worldPinPlaceHint": "Kendi haritası olmayan bir yer: içine girilmez ama lokasyon olarak kaydedilir ve görevlerde, seyahatte ve yer seçicilerinde görünür. Oyuncuların buradan öğreneceklerini aşağıya yaz.",
@@ -775,30 +1076,38 @@
   "worldTargetNoEncounters": "Henüz karşılaşma yok. Savaş sekmesinden oluştur.",
   "worldTargetLink": "Bağlanacak kayıt",
   "worldDeleteConfirmTitle": "{name} silinsin mi?",
-  "@worldDeleteConfirmTitle": { "placeholders": { "name": { "type": "String" } } },
-
-  "@_session": { "description": "Oturum / LAN masası ekranı (DM)." },
+  "@worldDeleteConfirmTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@_session": {
+    "description": "Oturum ekranı: günlük, zar kaydı, mola (DM)."
+  },
   "sessionBackup": "Yedekleme",
-  "sessionCloseTable": "Oturumu kapat",
   "sessionLogTitle": "Oturum günlüğü",
   "sessionLogAdd": "Not ekle",
   "sessionLogClear": "Temizle",
   "sessionLogClearConfirm": "Tüm günlük kalıcı olarak silinsin mi?",
   "sessionLogEmpty": "Henüz kayıt yok. XP verildikçe ve not ekledikçe burada birikir.",
-  "sessionHandoutCaption": "Görsel başlığı (isteğe bağlı)",
-  "sessionHandoutShow": "Görsel göster",
-  "sessionHandoutClear": "Görseli kaldır",
-  "sessionHandoutShared": "Görsel oyunculara gösterildi.",
-  "sessionHandoutCleared": "Görsel kaldırıldı.",
-
-  "@_codex": { "description": "DM bilgi tabanı (Kayıtlar): sayfalar + bloklar." },
+  "@_codex": {
+    "description": "DM bilgi tabanı (Kayıtlar): sayfalar + bloklar."
+  },
   "codexNewPage": "Yeni sayfa",
   "codexUntitled": "Başlıksız",
   "codexAddSubpage": "Alt sayfa ekle",
   "codexRename": "Yeniden adlandır",
   "codexSetIcon": "Simge (emoji)",
   "codexDeleteConfirm": "“{title}” ve tüm alt sayfaları silinsin mi?",
-  "@codexDeleteConfirm": { "placeholders": { "title": { "type": "String" } } },
+  "@codexDeleteConfirm": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
   "codexEmpty": "Henüz sayfa yok",
   "codexEmptyHint": "İlk sayfanı oluştur; içine metin, liste, görsel, tablo, zar ve bağlantı blokları ekleyebilirsin.",
   "codexDone": "Bitti",
@@ -829,13 +1138,31 @@
   "codexBlockCharacter": "Karakter kartı",
   "codexCharacterMissing": "Karakter bulunamadı",
   "codexCharacterLevel": "Seviye {level}",
-  "@codexCharacterLevel": { "placeholders": { "level": { "type": "int" } } },
+  "@codexCharacterLevel": {
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
   "codexWikiMissingTitle": "Sayfa yok",
   "codexWikiMissingBody": "“{title}” adlı sayfa yok. Oluşturulsun mu?",
-  "@codexWikiMissingBody": { "placeholders": { "title": { "type": "String" } } },
+  "@codexWikiMissingBody": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
   "codexWikiCreate": "Oluştur",
   "codexRefNotFound": "“{name}” bulunamadı.",
-  "@codexRefNotFound": { "placeholders": { "name": { "type": "String" } } },
+  "@codexRefNotFound": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "codexTextHint": "**kalın** · *italik* · `kod` · [[Sayfa]] · /r1d20 · /character(Ad) · /monster(Ad) · /spell(Ad) · /item(Ad) · /link(url)(kelime) · /page(Başlık)(kelime)",
   "codexBlockDivider": "Ayraç",
   "codexBlockDice": "Zar",
@@ -850,35 +1177,143 @@
   "codexTableRemoveColumn": "Sütun sil",
   "codexImageCaption": "Açıklama (isteğe bağlı)",
   "codexLinkTargetPage": "Hedef sayfa",
+  "@_codexStyle": {
+    "description": "Blok gorunum jetonlari: yerlesim, ton, grafik ve sayac ayarlari."
+  },
+  "codexAppearance": "Görünüm",
+  "codexWidth": "Genişlik",
+  "codexAlign": "Hizalama",
+  "codexAlignLeft": "Sol",
+  "codexAlignCenter": "Orta",
+  "codexAlignRight": "Sağ",
+  "codexHeight": "Yükseklik",
+  "codexHeightAuto": "Otomatik",
+  "codexResizeHint": "İpucu: düzenleme modunda blokların kenarlarından sürükleyerek boyutlandırabilirsin.",
+  "codexResetSize": "Boyutu sıfırla",
+  "codexDuplicate": "Çoğalt",
+  "codexMoveUp": "Yukarı taşı",
+  "codexMoveDown": "Aşağı taşı",
+  "codexBlockSearch": "Blok ara",
+  "codexGroupText": "Metin",
+  "codexGroupData": "Veri",
+  "codexGroupMedia": "Medya",
+  "codexGroupLinks": "Bağlantılar",
+  "codexTextSize": "Yazı boyutu",
+  "codexDropCap": "Süslü ilk harf",
+  "codexTone": "Ton",
+  "codexToneNeutral": "Yalın",
+  "codexToneInfo": "Bilgi",
+  "codexToneSuccess": "Olumlu",
+  "codexToneWarning": "Uyarı",
+  "codexToneDanger": "Tehlike",
+  "codexToneArcane": "Büyülü",
+  "codexToneGold": "Altın",
+  "codexHeadingRule": "Altına çizgi",
+  "codexListOrdered": "Numaralı",
+  "codexListMarker": "Madde işareti",
+  "codexListDense": "Sık aralık",
+  "codexChecklistProgress": "İlerleme çubuğu",
+  "codexChecklistStrike": "Yapılanın üstünü çiz",
+  "codexChecklistDone": "{done}/{total} tamam",
+  "@codexChecklistDone": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "codexCalloutBorder": "Kenarlık",
+  "codexDividerStyle": "Ayraç biçimi",
+  "codexDividerOrnament": "Süslü",
+  "codexDividerLine": "Çizgi",
+  "codexDividerDashed": "Kesik",
+  "codexDividerThick": "Kalın",
+  "codexDividerDots": "Noktalar",
+  "codexDividerSpace": "Boşluk",
+  "codexMediaFit": "Doldurma",
+  "codexFitContain": "Sığdır",
+  "codexFitCover": "Kapla",
+  "codexFitFill": "Ger",
+  "codexCornerRadius": "Köşe yuvarlaklığı",
+  "codexMediaFrame": "Çerçeve",
+  "codexImageFullscreen": "Tam ekran",
+  "codexImageMissing": "Görsel dosyası bulunamadı",
+  "codexVideoLoop": "Döngü",
+  "codexVideoMuted": "Sessiz",
+  "codexTableZebra": "Şeritli satırlar",
+  "codexTableDense": "Sık",
+  "codexTableBorders": "Kenarlıklar",
+  "codexChartType": "Grafik türü",
+  "codexChartBar": "Yatay çubuk",
+  "codexChartColumn": "Dikey sütun",
+  "codexChartLine": "Çizgi",
+  "codexChartArea": "Alan",
+  "codexChartPie": "Pasta",
+  "codexChartDonut": "Halka",
+  "codexChartRadar": "Radar",
+  "codexChartStacked": "Yığılmış",
+  "codexChartPalette": "Renk paleti",
+  "codexPaletteTheme": "Tema",
+  "codexPaletteBrass": "Pirinç",
+  "codexPaletteJewel": "Mücevher",
+  "codexPaletteEmber": "Kor",
+  "codexPaletteForest": "Orman",
+  "codexPaletteMono": "Tek renk",
+  "codexChartShowValues": "Değerler",
+  "codexChartShowGrid": "Izgara",
+  "codexChartShowLegend": "Açıklama",
+  "codexChartSort": "Büyükten küçüğe sırala",
+  "codexChartEmpty": "Henüz veri yok.",
+  "codexChartRadarHint": "Radar en az üç öge ister.",
+  "codexBlockCounter": "Sayaç",
+  "codexCounterEmpty": "Sayaç yok.",
+  "codexCounterAdd": "Sayaç ekle",
+  "codexCounterValue": "Değer",
+  "codexCounterMin": "En az",
+  "codexCounterMax": "En çok",
+  "codexCounterStep": "Adım",
+  "codexCounterStyle": "Biçim",
+  "codexCounterStyleRow": "Satır",
+  "codexCounterStyleTile": "Kart",
+  "codexCounterStyleChip": "Çip",
+  "codexCounterHint": "Dokun: değer gir · Uzun bas: sıfırla",
+  "codexBlockTimer": "Süre sayacı",
+  "codexTimerMode": "Sayma yönü",
+  "codexTimerCountdown": "Geri sayım",
+  "codexTimerStopwatch": "Kronometre",
+  "codexTimerDuration": "Süre",
+  "codexTimerMinutes": "Dakika",
+  "codexTimerSeconds": "Saniye",
+  "codexTimerStart": "Başlat",
+  "codexTimerPause": "Duraklat",
+  "codexTimerReset": "Sıfırla",
+  "codexTimerAddMinute": "Bir dakika ekle",
+  "codexTimerDone": "Süre doldu.",
+  "codexTimerFinished": "“{title}” süresi doldu.",
+  "@codexTimerFinished": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "codexTimerOpen": "Aç",
+  "codexTimerAlarm": "Bitince uyar",
+  "codexTimerLoop": "Bitince yeniden başlat",
+  "codexTimerStyleDigits": "Rakam",
+  "codexTimerStyleBar": "Çubuk",
+  "codexTimerStyleRing": "Halka",
+  "codexTimerRunningHint": "Sayaç sayfadan çıkınca da işlemeye devam eder.",
+  "codexChipStyle": "Görünüm",
+  "codexChipStyleChip": "Çip",
+  "codexChipStyleButton": "Düğme",
+  "codexChipStyleCard": "Kart",
+  "codexEmbedCompact": "Kompakt",
+  "codexTitleOptional": "Başlık (isteğe bağlı)",
   "codexLinkLabel": "Etiket (isteğe bağlı)",
-  "sessionOpenTable": "Masayı aç",
-  "sessionStartHint": "Oyuncular aynı Wi-Fi ağındayken bilgisayardan veya telefondan linki yapıştırabilir ya da QR kodu okutabilir; tarayıcıdan bağlanırlar. Uygulama kurmalarına, hesap açmalarına ya da internete gerek yok.",
-  "sessionStartServer": "Sunucuyu başlat",
-  "sessionAddressCopied": "Adres kopyalandı",
-  "sessionCopyAddress": "Adresi kopyala",
-  "sessionReject": "Reddet",
-  "sessionApprove": "Onayla",
-  "sessionDmTools": "DM araçları",
-  "sessionTarget": "Hedef",
-  "sessionEveryone": "Herkes",
-  "sessionAnnouncement": "Duyuru / mesaj",
-  "sessionSend": "Gönder",
-  "sessionAnnouncementSent": "Duyuru gönderildi.",
-  "sessionAbility": "Yetenek",
-  "sessionRequestSave": "Kurtarma iste",
-  "sessionSaveRequested": "Kurtarma atışı istendi.",
-  "sessionGold": "Altın",
-  "sessionItemsCsv": "Eşyalar (virgülle)",
-  "sessionGiveLoot": "Ganimet ver",
-  "sessionLootOffered": "Ganimet sunuldu.",
-  "sessionNobodyConnected": "Henüz kimse bağlanmadı.",
-  "sessionNoCharacter": "Karakter seçmedi",
-  "sessionHasCharacter": "Karakteri sahiplendi",
-  "sessionPurchaseRequests": "Satın alma isteği ({count})",
-  "@sessionPurchaseRequests": { "placeholders": { "count": { "type": "int" } } },
-  "sessionConnectedPlayers": "Bağlı oyuncular ({count})",
-  "@sessionConnectedPlayers": { "placeholders": { "count": { "type": "int" } } },
-
   "charactersTabParty": "Parti",
   "charactersTabSharedInventory": "Ortak envanter",
   "charactersNew": "Yeni karakter",
@@ -886,15 +1321,29 @@
   "charactersEmpty": "Henüz karakter yok",
   "charactersEmptyHint": "Sağ alttaki butondan ilk karakteri oluştur.",
   "charactersDeleteConfirm": "“{name}” kalıcı olarak silinecek. Emin misin?",
-  "@charactersDeleteConfirm": { "placeholders": { "name": { "type": "String" } } },
-
+  "@charactersDeleteConfirm": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "compendiumCreateMonster": "Canavar yarat",
   "compendiumImportImages": "Görsel içe aktar",
   "compendiumImportHint": "Bir klasör seç; dosya adları canavar adıyla eşleşen görseller (ör. Goblin.png) otomatik atanır. Yalnızca kendi görsellerin.",
   "compendiumChooseFolder": "Klasör seç",
   "compendiumNoImagesFound": "Klasörde görsel bulunamadı.",
   "compendiumImportResult": "{assigned} canavara görsel atandı, {unmatched} dosya eşleşmedi.",
-  "@compendiumImportResult": { "placeholders": { "assigned": { "type": "int" }, "unmatched": { "type": "int" } } },
+  "@compendiumImportResult": {
+    "placeholders": {
+      "assigned": {
+        "type": "int"
+      },
+      "unmatched": {
+        "type": "int"
+      }
+    }
+  },
   "compendiumCreateSpell": "Büyü yarat",
   "compendiumCreateItem": "Eşya yarat",
   "compendiumCreateMagicItem": "Büyülü eşya yarat",
@@ -906,9 +1355,17 @@
   "compendiumStrengthReq": "Güç şartı",
   "compendiumStealth": "Gizlilik",
   "compendiumDisadvantage": "Dezavantaj",
+  "compendiumAcPlusDex": " + Çeviklik",
+  "compendiumAcMaxDex": " (en fazla {max})",
+  "@compendiumAcMaxDex": {
+    "placeholders": {
+      "max": {
+        "type": "int"
+      }
+    }
+  },
   "compendiumSuggested": "önerilen",
   "compendiumMagicPriceHint": "SRD büyülü eşyalar için fiyat yayınlamaz; bu değer nadirliğe göre önerilmiştir ve mağaza kurarken değiştirilebilir.",
-
   "levelUpNoClass": "Karakterin sınıfı yok.",
   "levelUpNewClass": "yeni sınıf",
   "levelUpFeaturesGained": "Kazanılan yetenekler",
@@ -919,20 +1376,54 @@
   "levelUpAbilityIncrease": "Yetenek artışı",
   "levelUpRoll": "Zar at",
   "levelUpSaveAs": "{className} {level} olarak kaydet",
-  "@levelUpSaveAs": { "placeholders": { "className": { "type": "String" }, "level": { "type": "int" } } },
+  "@levelUpSaveAs": {
+    "placeholders": {
+      "className": {
+        "type": "String"
+      },
+      "level": {
+        "type": "int"
+      }
+    }
+  },
   "levelUpHpHint": "d{sides} at ya da sabit {avg} al. Bu değere ayrıca CON modifiern eklenir.",
-  "@levelUpHpHint": { "placeholders": { "sides": { "type": "int" }, "avg": { "type": "int" } } },
+  "@levelUpHpHint": {
+    "placeholders": {
+      "sides": {
+        "type": "int"
+      },
+      "avg": {
+        "type": "int"
+      }
+    }
+  },
   "levelUpFixed": "Sabit {avg}",
-  "@levelUpFixed": { "placeholders": { "avg": { "type": "int" } } },
+  "@levelUpFixed": {
+    "placeholders": {
+      "avg": {
+        "type": "int"
+      }
+    }
+  },
   "levelUpRolled": "Zar: {n}",
-  "@levelUpRolled": { "placeholders": { "n": { "type": "int" } } },
+  "@levelUpRolled": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "levelUpAbilityHint": "Bir yeteneğe +2 ya da iki yeteneğe +1. Kalan: {remaining}",
-  "@levelUpAbilityHint": { "placeholders": { "remaining": { "type": "int" } } },
-
+  "@levelUpAbilityHint": {
+    "placeholders": {
+      "remaining": {
+        "type": "int"
+      }
+    }
+  },
   "lootNewSet": "Yeni set",
   "lootEmpty": "Henüz ganimet seti yok. Eşya ve para içeren bir set hazırla, sonra masada tek dokunuşla oyunculara sun.",
   "lootEmptyLabel": "Boş",
-  "lootShow": "Göster",
   "lootSetTitle": "Ganimet seti",
   "lootSetName": "Set adı",
   "lootMoney": "Para",
@@ -943,7 +1434,6 @@
   "lootAddFromCompendium": "Katalogdan ekle",
   "lootItemCount": "{count} eşya",
   "lootUnknownItem": "Bilinmeyen eşya",
-
   "navTables": "Tablolar",
   "navTablesShort": "Tablo",
   "tablesTabTables": "Tablolar",
@@ -976,7 +1466,13 @@
   "nameSavedAsNpc": "“{name}” NPC olarak kaydedildi.",
   "nameSaveAsLocation": "Yer olarak kaydet",
   "nameSavedAsLocation": "“{name}” yerlere eklendi.",
-  "@nameSavedAsLocation": { "placeholders": { "name": { "type": "String" } } },
+  "@nameSavedAsLocation": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "nameGender": "Cinsiyet",
   "nameGenderAny": "Farketmez",
   "nameGenderMale": "Erkek",
@@ -1026,7 +1522,6 @@
   "nameCultureTome": "Kitap / eser",
   "nameCultureFestival": "Bayram / şenlik",
   "nameCultureEpithet": "Unvan / lakap",
-
   "aiToolTable": "Tablo",
   "aiTableTopic": "Konu / tema",
   "aiTableTopicHint": "ör. bataklıkta rastgele olaylar, liman şehri söylentileri",
@@ -1053,10 +1548,13 @@
   "partyInventoryCoins": "Para",
   "partyInventoryItems": "Eşyalar",
   "partyInventoryDeleteConfirm": "“{name}” kesesi silinsin mi? İçindekiler de gider.",
-  "@lootItemCount": { "placeholders": { "count": { "type": "int" } } },
-  "lootOffered": "“{name}” oyunculara sunuldu.",
-  "@lootOffered": { "placeholders": { "name": { "type": "String" } } },
-
+  "@lootItemCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "shopsNew": "Yeni mağaza",
   "shopsOpen": "Oyunculara açık",
   "shopsClosed": "Kapalı",
@@ -1068,7 +1566,6 @@
   "shopsOwnerNpcNone": "Yok (serbest ad)",
   "shopsEmpty": "Mağaza yok",
   "shopsEmptyHint": "Kütüphaneden eşya seçerek bir dükkân kur, sonra oyunculara aç.",
-
   "formName": "Adı",
   "formDescription": "Açıklama",
   "formLevel": "Seviye",
@@ -1078,14 +1575,20 @@
   "formClasses": "Sınıflar",
   "formClassesFailed": "Sınıf listesi yüklenemedi.",
   "formHigherLevel": "Üst seviyede (opsiyonel)",
+  "spellHigherLevelSlot": "Üst Seviye Büyü Yuvasıyla Kullanım. ",
+  "formCastingTime": "Kullanım süresi",
+  "formCantrip": "Ufak Büyü",
+  "formActionDescHint": "Yakın Saldırı Zarı: +5, erişim 5 ft. 8 (1d10 + 3) delici hasar.",
   "formCastingTimeHint": "ör. 1 action",
   "formRangeHint": "ör. 60 feet",
   "formDurationHint": "ör. Instantaneous",
   "formMaterialHint": "ör. bir tutam kükürt",
-
   "ccAddSpecies": "Tür ekle",
   "ccSpeciesName": "Tür adı",
   "ccSize": "Boyut",
+  "ccSizeSmall": "Küçük",
+  "ccSizeMedium": "Orta",
+  "ccSizeLarge": "Büyük",
   "ccSpeed": "Hız (feet)",
   "ccTraits": "Özellikler (serbest metin)",
   "ccSubclassName": "Alt sınıf adı",
@@ -1096,18 +1599,34 @@
   "ccToolProf": "Alet yeterliliği (isteğe bağlı)",
   "ccBackgroundFeat": "Köken feat’i (isteğe bağlı)",
   "ccAddSubclass": "{className} alt sınıfı ekle",
-  "@ccAddSubclass": { "placeholders": { "className": { "type": "String" } } },
+  "@ccAddSubclass": {
+    "placeholders": {
+      "className": {
+        "type": "String"
+      }
+    }
+  },
   "ccAbilities3": "Yetenekler — tam 3 tane ({count}/3)",
-  "@ccAbilities3": { "placeholders": { "count": { "type": "int" } } },
+  "@ccAbilities3": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "ccSkills2": "Beceriler — tam 2 tane ({count}/2)",
-  "@ccSkills2": { "placeholders": { "count": { "type": "int" } } },
-
+  "@ccSkills2": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "ciMagicPrice": "Fiyat (boş bırakılırsa nadirlikten önerilir)",
   "ciAttunement": "Attunement gerekir",
   "ciFreeStock": "Serbest satır",
   "ciFreeStockHint": "Yalnızca bu mağazada görünür, kütüphaneye kaydedilmez.",
   "ciQuantity": "Adet (-1 sınırsız)",
-
   "mcType": "Tip",
   "mcArmorClass": "Zırh sınıfı",
   "mcSpeedFt": "Hız (ft)",
@@ -1124,8 +1643,16 @@
   "mcAddAction": "Aksiyon ekle",
   "mcActionNameHint": "ör. Bite",
   "mcCrBreakdown": "Savunma CR {defensive} · Saldırı CR {offensive}",
-  "@mcCrBreakdown": { "placeholders": { "defensive": { "type": "String" }, "offensive": { "type": "String" } } },
-
+  "@mcCrBreakdown": {
+    "placeholders": {
+      "defensive": {
+        "type": "String"
+      },
+      "offensive": {
+        "type": "String"
+      }
+    }
+  },
   "seShortDesc": "Kısa tanım (isteğe bağlı)",
   "seFeaturesHint": "Hangi seviyede ne kazanılıyor. Level atlarken bunlar kendiliğinden gelir ve karakter kâğıdında görünür.",
   "seNoFeatures": "Henüz yetenek eklenmedi.",
@@ -1145,10 +1672,24 @@
   "seValue": "Değer",
   "seValueHint": "ör. 4  ya da  1d8",
   "seSubclassOf": "{className} alt sınıfı",
-  "@seSubclassOf": { "placeholders": { "className": { "type": "String" } } },
+  "@seSubclassOf": {
+    "placeholders": {
+      "className": {
+        "type": "String"
+      }
+    }
+  },
   "seLevelArrow": "{level}. sv → {value}",
-  "@seLevelArrow": { "placeholders": { "level": { "type": "int" }, "value": { "type": "String" } } },
-
+  "@seLevelArrow": {
+    "placeholders": {
+      "level": {
+        "type": "int"
+      },
+      "value": {
+        "type": "String"
+      }
+    }
+  },
   "sdAddFromLibrary": "Kütüphaneden ekle",
   "sdCreateOwnItem": "Kendi eşyanı yarat",
   "sdCreateOwnMagic": "Kendi büyülü eşyanı yarat",
@@ -1156,14 +1697,8 @@
   "sdStockEmpty": "Stok boş. Sağ üstteki butonlardan eşya ekle.",
   "sdPriceMultiplier": "Fiyat çarpanı",
   "sdPriceMultiplierHint": "Liste fiyatlarına uygulanır. Pazarlıkta düşür, ıssız kasabada yükselt.",
-  "sdOpenToPlayers": "Oyunculara aç",
-  "sdOpenHint": "Açıkken oyuncuların panelinde bu mağaza görünür. Aynı anda tek mağaza açık olabilir.",
-  "sdMapAccessible": "Haritadan erişilebilir",
-  "sdMapAccessibleHint": "Açıkken oyuncular, görünür bir haritadaki bu mağazanın pinine dokunarak dükkânı açabilir. Birden fazla mağaza aynı anda erişilebilir olabilir.",
   "sdClosed": "Mağaza kapalı",
   "sdClosedHint": "Kapalıyken oyuncular mağazaya tıklayınca “mağaza kapalı” görür; eşyalar listelenmez ve satın alınamaz.",
-  "sdRequireApproval": "Satın alma onayı iste",
-  "sdRequireApprovalHint": "Kapalıysa oyuncular doğrudan satın alır; altınları ve stok anında düşer.",
   "sdUnlimited": "sınırsız",
   "sdEditPrice": "Fiyatı değiştir",
   "sdEditQuantity": "Adedi değiştir",
@@ -1172,27 +1707,74 @@
   "sdRestockHint": "Kaç oyun-içi günde bir stok tazelensin? Takvim ilerledikçe süresi dolan mağazalar kendiliğinden yenilenir.",
   "sdRestockOff": "Kapalı",
   "sdRestockEvery": "{days} günde bir",
-  "@sdRestockEvery": { "placeholders": { "days": { "type": "int" } } },
+  "@sdRestockEvery": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
   "sdRestockQty": "Yenileme adedi",
   "sdRestockQtyTitle": "{name} — yenilemede kaç adet",
-  "@sdRestockQtyTitle": { "placeholders": { "name": { "type": "String" } } },
+  "@sdRestockQtyTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "sdRestockQtyHint": "Yenilemede adet bu değere döner. Ayarlamazsan bu satır hiç yenilenmez — tükenince biter.",
   "sdRestockQtyClear": "Bu satırı yenileme",
   "sdRestockQtyBadge": "yenileme: {count}",
-  "@sdRestockQtyBadge": { "placeholders": { "count": { "type": "int" } } },
+  "@sdRestockQtyBadge": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "shopRestocked": "Stok yenilendi: {shops}",
-  "@shopRestocked": { "placeholders": { "shops": { "type": "String" } } },
+  "@shopRestocked": {
+    "placeholders": {
+      "shops": {
+        "type": "String"
+      }
+    }
+  },
   "sdOperator": "İşleten: {name}",
   "sdOperatorNone": "İşleten belirtilmedi",
   "sdOpenOwnerNpc": "NPC kartını aç",
-  "@sdOperator": { "placeholders": { "name": { "type": "String" } } },
+  "@sdOperator": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "sdPieces": "{count} adet",
-  "@sdPieces": { "placeholders": { "count": { "type": "int" } } },
+  "@sdPieces": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "sdPriceTitle": "{name} — fiyat",
-  "@sdPriceTitle": { "placeholders": { "name": { "type": "String" } } },
+  "@sdPriceTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "sdQtyTitle": "{name} — adet",
-  "@sdQtyTitle": { "placeholders": { "name": { "type": "String" } } },
-
+  "@sdQtyTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "cwStepIdentity": "Kimlik ve tür",
   "cwStepBackground": "Köken (background)",
   "cwStepClass": "Sınıf",
@@ -1223,31 +1805,50 @@
   "cwPointBuy": "Puan dağıtımı",
   "cwStandardArray": "Standart dizi",
   "cwManual": "Elle gir",
-
   "sheetUnknownItem": "Bilinmeyen eşya",
-  "pfInvalidQuantity": "Geçersiz adet.",
-  "pfItemNotFound": "Eşya bulunamadı.",
-  "pfShopNotFound": "Mağaza bulunamadı.",
-  "pfShopClosed": "Mağaza şu anda kapalı.",
-  "pfSoldOut": "Bu eşya tükendi.",
-  "pfCharacterNotFound": "Karakter bulunamadı.",
-  "pfRequestNotFound": "İstek bulunamadı.",
-  "pfOnlyNLeft": "Stokta yalnızca {n} adet var.",
-  "@pfOnlyNLeft": { "placeholders": { "n": { "type": "String" } } },
-  "pfNotEnoughGold": "Paran yetmiyor: {need} gerekiyor, {have} var.",
-  "@pfNotEnoughGold": { "placeholders": { "need": { "type": "String" }, "have": { "type": "String" } } },
   "cwPointsRemaining": "Kalan puan: {n}",
-  "@cwPointsRemaining": { "placeholders": { "n": { "type": "int" } } },
+  "@cwPointsRemaining": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "cwChooseMoreSkills": "Sınıfından {n} beceri daha seç",
-  "@cwChooseMoreSkills": { "placeholders": { "n": { "type": "int" } } },
+  "@cwChooseMoreSkills": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "cwFromBackground": "Kökeninden zaten geliyor: {skills}",
-  "@cwFromBackground": { "placeholders": { "skills": { "type": "String" } } },
+  "@cwFromBackground": {
+    "placeholders": {
+      "skills": {
+        "type": "String"
+      }
+    }
+  },
   "cwOption": "Seçenek {label}",
-  "@cwOption": { "placeholders": { "label": { "type": "String" } } },
+  "@cwOption": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
   "cwBackgroundPrefix": "Köken: {desc}",
-  "@cwBackgroundPrefix": { "placeholders": { "desc": { "type": "String" } } },
-
-  "@_backup": { "description": "Yedekleme / geri yükleme ekranı (DM)." },
+  "@cwBackgroundPrefix": {
+    "placeholders": {
+      "desc": {
+        "type": "String"
+      }
+    }
+  },
+  "@_backup": {
+    "description": "Yedekleme / geri yükleme ekranı (DM)."
+  },
   "backupExport": "Yedek al",
   "backupExportHint": "Karakterler, NPC'ler, dünya, Kayıtlar, oyuncu notları, envanterler, görevler, oturum günlüğü ve kendi eklediğin içerik tek dosyaya yazılır. Görseller yol olarak değil, dosyanın kendisi olarak gömülür. Kural kütüphanesi (SRD) yedeğe girmez — uygulama onu zaten kendi içinde taşıyor.",
   "backupCreateFile": "Yedek dosyası oluştur",
@@ -1288,25 +1889,73 @@
   "backupLabelFeats": "Feat'ler",
   "backupLabelSessionLog": "Oturum günlüğü",
   "backupExportedKb": "Yedek alındı: {kb} KB",
-  "@backupExportedKb": { "placeholders": { "kb": { "type": "int" } } },
+  "@backupExportedKb": {
+    "placeholders": {
+      "kb": {
+        "type": "int"
+      }
+    }
+  },
   "backupExportFailed": "Yedek alınamadı: {error}",
-  "@backupExportFailed": { "placeholders": { "error": { "type": "String" } } },
+  "@backupExportFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
   "backupReadFailed": "Bu dosya okunamadı: {error}",
-  "@backupReadFailed": { "placeholders": { "error": { "type": "String" } } },
+  "@backupReadFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
   "backupDate": "Tarih: {date}",
-  "@backupDate": { "placeholders": { "date": { "type": "String" } } },
+  "@backupDate": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
   "backupMapFiles": "Harita dosyası: {count}",
-  "@backupMapFiles": { "placeholders": { "count": { "type": "int" } } },
+  "@backupMapFiles": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "backupPortraitFiles": "Portre dosyası: {count}",
   "backupMediaFiles": "Kayıtlar videosu: {count}",
-  "@backupPortraitFiles": { "placeholders": { "count": { "type": "int" } } },
+  "@backupPortraitFiles": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "backupMusicFiles": "Müzik dosyası: {count}",
-  "@backupMusicFiles": { "placeholders": { "count": { "type": "int" } } },
+  "@backupMusicFiles": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "backupImportAsCampaign": "Yeni kampanya olarak içe aktar",
   "backupImportAsCampaignHint": "Yedeği ayrı bir kampanya olarak kurar; açık kampanyaya dokunmaz. Başkasının masasını yanına almak ya da eski bir kaydı saklamak için.",
   "backupImportButton": "İçe aktar",
   "backupImportedAsCampaign": "“{name}” kampanyası yedekten kuruldu.",
-  "@backupImportedAsCampaign": { "placeholders": { "name": { "type": "String" } } },
+  "@backupImportedAsCampaign": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "backupOpenImportedCampaign": "Bu kampanyaya şimdi geçilsin mi? Açık masa kapanır ve oyunculara yeni bir katılma adresi gerekir.",
   "backupLabelPartyInventories": "Ortak keseler",
   "backupLabelRandomTables": "Rastgele tablolar",
@@ -1319,23 +1968,74 @@
   "backupLabelMusicTracks": "Müzik parçaları",
   "backupLabelSpells": "Büyüler",
   "backupRestoreFailed": "Geri yükleme başarısız: {error}",
-  "@backupRestoreFailed": { "placeholders": { "error": { "type": "String" } } },
-
+  "@backupRestoreFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
   "sheetOrdinalLevel": "{n}. seviye",
-  "@sheetOrdinalLevel": { "placeholders": { "n": { "type": "int" } } },
+  "@sheetOrdinalLevel": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "sheetAbilityCheck": "{ability} kontrolü",
-  "@sheetAbilityCheck": { "placeholders": { "ability": { "type": "String" } } },
+  "@sheetAbilityCheck": {
+    "placeholders": {
+      "ability": {
+        "type": "String"
+      }
+    }
+  },
   "sheetAbilitySave": "{ability} kurtarma",
-  "@sheetAbilitySave": { "placeholders": { "ability": { "type": "String" } } },
+  "@sheetAbilitySave": {
+    "placeholders": {
+      "ability": {
+        "type": "String"
+      }
+    }
+  },
+  "sheetHpLabel": "HP",
   "sheetTempHp": "+{n} geçici",
-  "@sheetTempHp": { "placeholders": { "n": { "type": "int" } } },
+  "@sheetTempHp": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "sheetPactMagic": "Pact Magic ({n}. sv)",
-  "@sheetPactMagic": { "placeholders": { "n": { "type": "int" } } },
+  "@sheetPactMagic": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "sheetExhaustionPenalty": "Tüm d20 testlerine {n} ceza uygulanıyor.",
-  "@sheetExhaustionPenalty": { "placeholders": { "n": { "type": "int" } } },
+  "@sheetExhaustionPenalty": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "sheetHitDieHealed": "{n} HP iyileşti (1 hit die).",
-  "@sheetHitDieHealed": { "placeholders": { "n": { "type": "int" } } },
+  "@sheetHitDieHealed": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "diceTitle": "Zar",
+  "diceRollTitle": "Zar at",
+  "diceCount": "Adet",
+  "diceModifier": "Ek",
   "diceCritical": "Kritik!",
   "diceFumble": "Başarısızlık!",
   "navNpcs": "NPC'ler",
@@ -1368,12 +2068,6 @@
   "worldGraphChangeType": "Tür değiştir",
   "worldGraphDeleteLink": "Bağı sil",
   "worldGraphOpenLocation": "Yeri aç",
-  "worldGraphShowToPlayers": "Oyunculara göster",
-  "worldGraphHideFromPlayers": "Oyunculardan gizle",
-  "worldGraphShownNotice": "{name} artık oyunculara açık.",
-  "@worldGraphShownNotice": { "placeholders": { "name": { "type": "String" } } },
-  "worldGraphHiddenNotice": "{name} oyunculardan gizlendi.",
-  "@worldGraphHiddenNotice": { "placeholders": { "name": { "type": "String" } } },
   "worldGraphSetSize": "Küre boyutu",
   "worldGraphSizeHint": "Seçili kürenin görsel yarıçapını girin",
   "worldGraphNodeRadiusLabel": "Yarıçap",
@@ -1398,19 +2092,16 @@
   "bondColorLabel": "Renk",
   "bondHexLabel": "Hex",
   "bondBrightness": "Parlaklık",
-
   "navMore": "Daha fazla",
   "navMoreTitle": "Tüm bölümler",
   "navGroupTable": "Masada",
   "navGroupWorld": "Dünya & öykü",
   "navGroupTools": "Araçlar",
-
   "stateErrorTitle": "Bir şeyler ters gitti",
   "stateErrorMessage": "Bu bölüm yüklenemedi. Tekrar dene; sorun sürerse aşağıdaki teknik ayrıntı izini sürmeye yarar.",
   "stateErrorDetail": "Teknik ayrıntı",
   "stateRetry": "Tekrar dene",
   "stateLoading": "Yükleniyor…",
-
   "npcBoundLocation": "Bağlı olduğu yer",
   "npcBoundLocationNone": "Yer seçilmedi",
   "npcBoundLocationHint": "Seçersen NPC bu yere haritada bağlanır ve metni de buraya göre üretilir.",
@@ -1433,5 +2124,599 @@
   "aiImageModelHint": "Portre üretimi için. Boş bırakırsan varsayılan kullanılır.",
   "aiImageUnsupportedNote": "Seçili sağlayıcı görsel üretmiyor; portre üretimi kapalı.",
   "aiErrorDetail": "Sağlayıcının yanıtı",
-  "codexAiErrNoImage": "Bu sağlayıcı görsel üretmiyor."
+  "codexAiErrNoImage": "Bu sağlayıcı görsel üretmiyor.",
+  "sheetEdit": "Düzenle",
+  "sheetProficiencyToggle": "Yeterliliği değiştir",
+  "editCharacterTitle": "Karakteri düzenle",
+  "editSave": "Kaydet",
+  "editCancel": "Vazgeç",
+  "editNone": "Yok",
+  "editNameRequired": "Ad boş olamaz",
+  "editSectionIdentity": "Kimlik",
+  "editName": "Ad",
+  "editPlayerName": "Oyuncu",
+  "editAlignment": "Hizalama",
+  "editSectionOrigin": "Köken",
+  "editSpecies": "Tür",
+  "editBackground": "Geçmiş",
+  "editBackgroundHint": "Geçmiş değişirse eski geçmişin verdiği beceriler kalkar, yenisininkiler eklenir.",
+  "editSectionAbilities": "Yetenek puanları",
+  "editAbilityHint": "Kağıttaki nihai puanlar. CON değişirse azami can her seviye için birlikte kayar.",
+  "editSectionVitals": "Can ve değerler",
+  "editHitPointsMax": "Azami can",
+  "editArmorClassOverride": "AC",
+  "editSpeedOverride": "Hız",
+  "editOverrideHint": "AC ve hız boş bırakılırsa hesaplanan değer kullanılır.",
+  "editSectionClasses": "Sınıflar",
+  "editClass": "Sınıf",
+  "editSubclass": "Alt sınıf",
+  "editLevel": "Seviye",
+  "editClassChangeTitle": "Sınıf değiştirilsin mi?",
+  "editClassChangeBody": "{from} yerine {to} yazılacak. Seviye ve atılmış can zarları korunur; eski sınıfın ve alt sınıfın yetenekleri kağıttan silinip yeni sınıfınkiler işlenir.",
+  "@editClassChangeBody": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      }
+    }
+  },
+  "editClassChangeConfirm": "Değiştir",
+  "editSaved": "Karakter güncellendi",
+  "sheetPreparedCount": "Hazır {used}/{limit}",
+  "@sheetPreparedCount": {
+    "placeholders": {
+      "used": {
+        "type": "int"
+      },
+      "limit": {
+        "type": "int"
+      }
+    }
+  },
+  "sheetCantripCount": "Ufak Büyü {used}/{limit}",
+  "@sheetCantripCount": {
+    "placeholders": {
+      "used": {
+        "type": "int"
+      },
+      "limit": {
+        "type": "int"
+      }
+    }
+  },
+  "sheetSpellChangesLeft": "{n} değiştirme hakkı",
+  "@sheetSpellChangesLeft": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "compendiumClasses": "Sınıflar",
+  "compendiumClassTable": "Sınıf tablosu",
+  "compendiumSubclasses": "Alt sınıflar",
+  "compendiumFeatures": "Yetenekler",
+  "compendiumLevel": "Sv",
+  "compendiumFullCaster": "Tam büyücü",
+  "compendiumHalfCaster": "Yarı büyücü",
+  "compendiumThirdCaster": "Üçte bir büyücü",
+  "compendiumPactCaster": "Ahit Büyüsü",
+  "compendiumSubclassOf": "{className} alt sınıfı",
+  "@compendiumSubclassOf": {
+    "placeholders": {
+      "className": {
+        "type": "String"
+      }
+    }
+  },
+  "sheetCastSpell": "Büyüyü kullan",
+  "sheetCastAtLevel": "Hangi yuvayla?",
+  "sheetNoSlotLeft": "Uygun boş büyü yuvası yok.",
+  "sheetSpellAttack": "Saldırı",
+  "sheetSpellDamage": "Hasar",
+  "sheetSaveDc": "kurtarma DC",
+  "sheetConcentrationNote": "Konsantrasyon gerektirir",
+  "sheetSpellCastNoRoll": "Yuva harcandı",
+  "levelUpAbilityOption": "Yetenek puanı",
+  "levelUpFeatOption": "Feat",
+  "levelUpFeatSearch": "Feat ara",
+  "sheetAttune": "Bağlan / bağı çöz",
+  "sheetAttunedCount": "Bağlı eşya {used}/{limit}",
+  "@sheetAttunedCount": {
+    "placeholders": {
+      "used": {
+        "type": "int"
+      },
+      "limit": {
+        "type": "int"
+      }
+    }
+  },
+  "sheetAttunementFull": "En fazla {limit} eşyaya bağlanabilirsin.",
+  "@sheetAttunementFull": {
+    "placeholders": {
+      "limit": {
+        "type": "int"
+      }
+    }
+  },
+  "levelUpMulticlassBlocked": "Bu sınıfa geçmek için: {requirements}",
+  "@levelUpMulticlassBlocked": {
+    "placeholders": {
+      "requirements": {
+        "type": "String"
+      }
+    }
+  },
+  "sheetConcentratingOn": "Konsantrasyon: {spell}",
+  "sheetConcentrationHint": "Hasar alınca CON kurtarması: DC 10 ya da hasarın yarısı (hangisi yüksekse).",
+  "sheetConcentrationEnd": "Bitir",
+  "@sheetConcentratingOn": {
+    "placeholders": {
+      "spell": {
+        "type": "String"
+      }
+    }
+  },
+  "sheetAddClassOption": "Sınıf seçeneği ekle",
+  "sheetAddClassOptionAction": "Ekle",
+  "sheetNoClassOptions": "Bu sınıfın seçilebilir bir özelliği yok.",
+  "statAc": "AC",
+  "statHp": "Can",
+  "statSpeed": "Hız",
+  "statInitiative": "İnisiyatif",
+  "statSavingThrows": "Kurtarma Zarları",
+  "statSkills": "Beceriler",
+  "statSenses": "Duyular",
+  "statLanguages": "Diller",
+  "statCr": "CR",
+  "statDamageResistances": "Hasar Dirençleri",
+  "statDamageImmunities": "Hasar Bağışıklıkları",
+  "statDamageVulnerabilities": "Hasar Zafiyetleri",
+  "statConditionImmunities": "Durum Bağışıklıkları",
+  "statPassivePerception": "Pasif Algı",
+  "statActions": "Eylemler",
+  "statBonusActions": "Bonus Eylemler",
+  "statReactions": "Tepkiler",
+  "statLegendaryActions": "Efsanevi Eylemler",
+  "statNoLanguages": "—",
+  "@_gameTerms": {
+    "description": "Ability/Skill enum'larinin gorunen adlari. Enum'un kendi `label` alani Ingilizce kaliyor cunku SRD verisiyle eslesmede ve `fromName` ayristirmasinda kullaniliyor; ekranda bunlar gosteriliyor (bkz. lib/l10n/game_terms.dart)."
+  },
+  "abilityStrength": "Güç",
+  "abilityDexterity": "Çeviklik",
+  "abilityConstitution": "Dayanıklılık",
+  "abilityIntelligence": "Zekâ",
+  "abilityWisdom": "Bilgelik",
+  "abilityCharisma": "Karizma",
+  "abilityShortStrength": "GÜÇ",
+  "abilityShortDexterity": "ÇEV",
+  "abilityShortConstitution": "DAY",
+  "abilityShortIntelligence": "ZEK",
+  "abilityShortWisdom": "BİL",
+  "abilityShortCharisma": "KAR",
+  "skillAcrobatics": "Akrobasi",
+  "skillAnimalHandling": "Hayvan Terbiyesi",
+  "skillArcana": "Gizemli Bilgi",
+  "skillAthletics": "Atletizm",
+  "skillDeception": "Aldatma",
+  "skillHistory": "Tarih",
+  "skillInsight": "Sezgi",
+  "skillIntimidation": "Yıldırma",
+  "skillInvestigation": "Araştırma",
+  "skillMedicine": "Tıp",
+  "skillNature": "Doğa",
+  "skillPerception": "Algı",
+  "skillPerformance": "Sahne Sanatları",
+  "skillPersuasion": "İkna",
+  "skillReligion": "Din",
+  "skillSleightOfHand": "El Çabukluğu",
+  "skillStealth": "Gizlilik",
+  "skillSurvival": "Hayatta Kalma",
+  "@_spellInfo": {
+    "description": "Buyu kartlarinin ve buyu secme listelerinin alan etiketleri. Kutuphane, karakter kagidi ve buyu secme dialogu ayni etiketleri kullaniyor."
+  },
+  "spellCantrip": "Ufak Büyü",
+  "spellCantripAbbr": "U",
+  "spellLevelN": "{level}. Seviye",
+  "@spellLevelN": {
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "spellSchoolCantrip": "{school} ufak büyüsü",
+  "@spellSchoolCantrip": {
+    "placeholders": {
+      "school": {
+        "type": "String"
+      }
+    }
+  },
+  "spellSchoolLevel": "{level}. seviye {school}",
+  "@spellSchoolLevel": {
+    "placeholders": {
+      "level": {
+        "type": "int"
+      },
+      "school": {
+        "type": "String"
+      }
+    }
+  },
+  "spellRitualSuffix": " (ritüel)",
+  "spellConcentrationPrefix": "Konsantrasyon, ",
+  "spellConcentrationShort": "Kons.",
+  "spellComponents": "Bileşenler",
+  "spellClasses": "Sınıflar",
+  "itemAttunementDetail": "Uyum",
+  "settingsDensity": "Arayüz yoğunluğu",
+  "settingsDensityCompact": "Sıkı",
+  "settingsDensityNormal": "Normal",
+  "settingsDensityComfortable": "Ferah",
+  "settingsDensityHint": "Sıkı: masada daha çok bilgi ekrana sığar.",
+  "worldCollapseChildren": "Alt yerleri gizle",
+  "worldExpandChildren": "Alt yerleri göster",
+  "musicAmbience": "Ortam sesi",
+  "musicAmbienceStop": "Ortam sesini durdur",
+  "journeySkipTime": "Zamanı ilerlet",
+  "combatConcentrationCheck": "{name} konsantrasyonu için DC {dc} Constitution kurtarması atmalı.",
+  "@combatConcentrationCheck": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "dc": {
+        "type": "int"
+      }
+    }
+  },
+  "combatGroupInitiative": "Aynı türe tek atış",
+  "combatNoArmorClass": "AC bilinmiyor",
+  "combatHits": "İsabet (AC {ac})",
+  "@combatHits": {
+    "placeholders": {
+      "ac": {
+        "type": "int"
+      }
+    }
+  },
+  "combatMisses": "Iskaladı (AC {ac})",
+  "@combatMisses": {
+    "placeholders": {
+      "ac": {
+        "type": "int"
+      }
+    }
+  },
+  "combatApplyDamage": "{damage} hasar uygula",
+  "@combatApplyDamage": {
+    "placeholders": {
+      "damage": {
+        "type": "int"
+      }
+    }
+  },
+  "combatApplied": "Uygulandı",
+  "searchEmpty": "Aramak için yazmaya başla.",
+  "searchOpen": "Genel arama",
+  "sessionRolls": "Zar günlüğü",
+  "sessionRollsEmpty": "Henüz zar atılmadı.",
+  "contentSourcesTitle": "İçerik kaynakları",
+  "contentSourcesHint": "5etools biçiminde JSON sunan bir adres ekle; uygulama orada hangi dosyalar olduğunu keşfeder. Uygulama hazır bir adresle gelmez — hangi kaynağı kullanacağına sen karar verirsin.",
+  "contentSourceAdd": "Kaynak ekle",
+  "contentSourceName": "Ad",
+  "contentSourceUrl": "Kök adres",
+  "contentSourceUrlHint": "Veri klasörünün kökü, ör. https://ornek/data",
+  "contentSourceDiscover": "Keşfet",
+  "contentSourceEmpty": "Henüz kaynak yok.",
+  "contentSourceNothingFound": "Bu adreste tanınan bir dosya bulunamadı.",
+  "contentSourceLastImport": "Son aktarma: {date}",
+  "@contentSourceLastImport": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "contentSourceNeverImported": "Hiç aktarılmadı",
+  "contentSourceImportSelected": "Seçilenleri aktar",
+  "contentSourceImporting": "Aktarılıyor: {file}",
+  "@contentSourceImporting": {
+    "placeholders": {
+      "file": {
+        "type": "String"
+      }
+    }
+  },
+  "contentSourceDone": "{monsters} canavar, {spells} büyü, {items} eşya, {others} diğer aktarıldı.",
+  "@contentSourceDone": {
+    "placeholders": {
+      "monsters": {
+        "type": "int"
+      },
+      "spells": {
+        "type": "int"
+      },
+      "items": {
+        "type": "int"
+      },
+      "others": {
+        "type": "int"
+      }
+    }
+  },
+  "contentSourceLocalFiles": "Dosyadan aktar",
+  "contentSourceDeleteImported": "Aktarılan içeriği sil",
+  "contentSourceDeleteImportedBody": "Bu adreslerden aktarılmış tüm kayıtlar silinecek. Uygulama içinde oluşturduğun içerik ve paketlenmiş SRD etkilenmez.",
+  "contentSourceDeleted": "{count} kayıt silindi.",
+  "@contentSourceDeleted": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "contentSourceKindMonster": "Canavarlar",
+  "contentSourceKindSpell": "Büyüler",
+  "contentSourceKindItem": "Eşyalar",
+  "contentSourceKindRace": "Türler",
+  "contentSourceKindBackground": "Geçmişler",
+  "contentSourceKindFeat": "Yetenekler",
+  "contentSourceSelectAll": "Tümünü seç",
+  "contentSourceLegal": "Yalnızca kullanma hakkına sahip olduğun içeriği aktar. Aktarılan kayıtlar cihazında kalır; yedekleme paketlerine girmez.",
+  "contentSourceProblemNetwork": "Adrese bağlanılamadı. Bağlantını ve adresi kontrol et.",
+  "contentSourceProblemBlocked": "Sunucu isteği reddetti ({status}). Bu adres tarayıcı dışı istemcileri bot koruması ile engelliyor; uygulama bu korumayı aşmaz. Verileri tarayıcından indirip “Dosyadan aktar” ile ekleyebilirsin.",
+  "@contentSourceProblemBlocked": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "contentSourceProblemNotFound": "Bu adreste 5etools biçiminde dosya bulunamadı ({status}). Kök adresin veri klasörünü gösterdiğinden emin ol.",
+  "@contentSourceProblemNotFound": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "contentSourceProblemNotJson": "Adres JSON değil, sayfa döndürdü. Kök adres veri klasörünü göstermiyor olabilir.",
+  "contentSourceResolved": "Bulunan kök: {url}",
+  "@contentSourceResolved": {
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "undoDone": "{label} geri alındı",
+  "@undoDone": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "undoNothing": "Geri alınacak bir şey yok",
+  "undoTitle": "Geri al",
+  "undoHistory": "Geri alma geçmişi",
+  "turnTimer": "Tur süresi",
+  "turnTimerOff": "Kapalı",
+  "turnTimerSeconds": "{seconds} sn",
+  "@turnTimerSeconds": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "turnTimerUp": "Süre doldu",
+  "partyBoard": "Parti panosu",
+  "partyBoardPassive": "Pasif algı",
+  "partyBoardSaves": "Kurtarmalar",
+  "partyBoardDefenses": "Direnç / bağışıklık",
+  "partyBoardLanguages": "Diller",
+  "partyBoardEmpty": "Partide karakter yok.",
+  "encounterTemplates": "Karşılaşma kalıpları",
+  "encounterTemplateSave": "Kalıp olarak kaydet",
+  "encounterTemplateUse": "Bu kalıptan kur",
+  "encounterTemplateEmpty": "Kayıtlı kalıp yok.",
+  "encounterTemplateMissing": "Kütüphanede bulunamayan: {names}",
+  "@encounterTemplateMissing": {
+    "placeholders": {
+      "names": {
+        "type": "String"
+      }
+    }
+  },
+  "encounterTemplateCreated": "{name} kuruldu.",
+  "@encounterTemplateCreated": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "reaction": "Reaksiyon",
+  "reactionUsed": "Reaksiyon kullanıldı",
+  "reactionAvailable": "Reaksiyon hazır",
+  "lairAction": "İn eylemi",
+  "lairActionHint": "İnisiyatif {value} geldiğinde hatırlatılır.",
+  "@lairActionHint": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "lairActionNone": "Bu karşılaşmada in eylemi yok.",
+  "damageType": "Hasar türü",
+  "damageTypeAny": "Tür yok",
+  "damageResisted": "Direnç: {amount}",
+  "@damageResisted": {
+    "placeholders": {
+      "amount": {
+        "type": "int"
+      }
+    }
+  },
+  "damageImmune": "Bağışık — hasar yok",
+  "damageVulnerable": "Zayıflık: {amount}",
+  "@damageVulnerable": {
+    "placeholders": {
+      "amount": {
+        "type": "int"
+      }
+    }
+  },
+  "defensesTitle": "Savunmalar",
+  "defenseResist": "Direnç",
+  "defenseImmune": "Bağışıklık",
+  "defenseVulnerable": "Zayıflık",
+  "deathSaves": "Ölüm kurtarması",
+  "deathSaveRoll": "Kurtarma at",
+  "deathSaveStable": "Stabil",
+  "deathSaveDead": "Öldü",
+  "deathSaveRevived": "Ayağa kalktı (1 can)",
+  "downtime": "Boş zaman",
+  "downtimeAdd": "Faaliyet ekle",
+  "downtimeDays": "Gün",
+  "downtimeRemaining": "{days} gün kaldı",
+  "@downtimeRemaining": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "downtimeComplete": "Tamamla",
+  "downtimeOutcome": "Sonuç",
+  "downtimeEmpty": "Kayıtlı faaliyet yok.",
+  "downtimeKindCraft": "Zanaat",
+  "downtimeKindResearch": "Araştırma",
+  "downtimeKindWork": "İş bulma",
+  "downtimeKindTrain": "Eğitim",
+  "downtimeKindRecuperate": "İyileşme",
+  "downtimeKindCarouse": "Âlem",
+  "downtimeKindCustom": "Serbest",
+  "sessionRecap": "Oturum özeti",
+  "sessionRecapGenerate": "Özet üret",
+  "sessionRecapEmpty": "Özetlenecek günlük kaydı yok.",
+  "exportPdf": "PDF olarak kaydet",
+  "exportPdfDone": "Kaydedildi: {path}",
+  "@exportPdfDone": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "macros": "Makrolar",
+  "macroAdd": "Makro ekle",
+  "macroExpression": "Zar ifadesi",
+  "macroInvalid": "İfade çözülemedi (örn. 2d6+3).",
+  "macroEmpty": "Makro yok.",
+  "macroScopeDm": "Yalnızca DM",
+  "macroScopePlayer": "Oyuncular",
+  "macroScopeBoth": "Herkes",
+  "settingsAccessibility": "Erişilebilirlik",
+  "settingsHighContrast": "Yüksek kontrast",
+  "settingsColorBlind": "Renk körlüğü uyumu",
+  "settingsColorBlindHint": "Jeton takımları ve duvar türleri renge ek olarak desen/şekille de ayrışır.",
+  "settingsTouchLayout": "Dokunmatik düzen",
+  "settingsTouchLayoutHint": "Orta tuş ve sağ tık yerine ekrandaki düğmeler kullanılır; hedefler büyür.",
+  "syncFolder": "Yedek klasörü",
+  "syncFolderHint": "Seçilen klasöre her gün otomatik yedek yazılır. Bulut klasörü (OneDrive, Drive, Dropbox) seçersen yedek cihazlar arasında taşınır.",
+  "syncFolderPick": "Klasör seç",
+  "syncFolderNone": "Seçilmedi",
+  "syncFolderCleared": "Kaldırıldı",
+  "campaignMerge": "Başka kampanyadan al",
+  "campaignMergeHint": "Seçtiğin kampanyadan canavar, NPC, harita ve rastgele tabloları kopyalar. Mevcut kayıtlarının üzerine yazılmaz.",
+  "campaignMergeDone": "{count} kayıt alındı.",
+  "@campaignMergeDone": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "campaignMergeWhat": "Ne alınsın?",
+  "contentSourceImages": "Görseller indiriliyor: {done}/{total}",
+  "@contentSourceImages": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "questOwners": "Üstlenen",
+  "questOwnersSection": "Görevi kim üstlendi?",
+  "questOwnersHint": "İşi üstlenen karakterleri işaretle.",
+  "restSpendHitDie": "Zar harca",
+  "restHitDieSpent": "{name} bir hit die harcadı: +{healed} can",
+  "@restHitDieSpent": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "healed": {
+        "type": "int"
+      }
+    }
+  },
+  "lootGrant": "Aktar",
+  "lootGranted": "“{name}” ortak keseye aktarıldı.",
+  "lootNoPartyBag": "Önce bir ortak kese oluştur (Karakterler sekmesi).",
+  "encLocation": "Geçtiği yer",
+  "encLocationNone": "Bir yere bağlanmadı",
+  "encLocationMissing": "Bağlı yer silinmiş",
+  "encLocationPick": "Yer seç",
+  "encLocationClear": "Bağı kaldır",
+  "encLocationNoLocations": "Henüz yer yok — önce Dünya sekmesinden bir yer oluştur.",
+  "worldEncountersHere": "Buradaki karşılaşmalar",
+  "factionTitle": "Fraksiyon",
+  "factionsTab": "Fraksiyonlar",
+  "factionAdd": "Yeni fraksiyon",
+  "factionEmpty": "Henüz fraksiyon yok. Loncalar, tarikatlar, hanedanlar ve çeteler buraya.",
+  "factionName": "Ad",
+  "factionKind": "Tür",
+  "factionKindHint": "lonca, tarikat, hanedan, çete…",
+  "factionGoal": "Amaç",
+  "factionDescription": "Açıklama",
+  "factionSecretNotes": "DM notu",
+  "factionSecretHint": "Yalnızca sen görürsün.",
+  "factionEmblemClear": "Armayı kaldır",
+  "factionBonds": "Bağlar",
+  "factionBondsEmpty": "Henüz bağ yok — dünya grafiğinden düğümleri bağla.",
+  "factionBondBroken": "(silinmiş)",
+  "factionDelete": "Fraksiyonu sil",
+  "factionDeleteConfirm": "Fraksiyon ve bağları kaldırılacak.",
+  "worldFactions": "Fraksiyonlar",
+  "bondMembership": "Üyelik",
+  "clocksTitle": "Saatler",
+  "clocksEmpty": "Saat yok. Bir kuşatmayı, bir ayini ya da yayılan bir söylentiyi izle.",
+  "clockAdd": "Yeni saat",
+  "clockName": "Ne işliyor?",
+  "clockNameHint": "Kuşatma geliyor",
+  "clockOutcome": "Dolunca",
+  "clockOutcomeHint": "Son dilim dolduğunda masada ne olacak.",
+  "clockAdvance": "Bir dilim ilerlet",
+  "clockClose": "Saati kapat",
+  "clockReopen": "Saati yeniden aç",
+  "exportTitle": "Açık biçimler",
+  "exportHint": "Her yerde okunur ama geri YÜKLENMEZ. Medya dosyaları dahil değildir.",
+  "exportMarkdown": "Kayıtlar → Markdown",
+  "exportJson": "Kampanya → JSON",
+  "exportMarkdownType": "Markdown",
+  "exportJsonType": "JSON",
+  "exportDone": "Dışa aktarıldı."
 }

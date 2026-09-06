@@ -1,0 +1,271 @@
+[
+  {
+    "key": "eberron-forge_changeling",
+    "name": "Changeling",
+    "document": "eberron-forge",
+    "desc": "",
+    "is_subspecies": false,
+    "subspecies_of": null,
+    "traits": [
+      {
+        "name": "Creature Type",
+        "desc": "Fey",
+        "type": "CREATURE_TYPE",
+        "order": 1
+      },
+      {
+        "name": "Size",
+        "desc": "Medium (about 4-7 feet tall) or Small (about 2-4 feet tall), chosen when you select this species",
+        "type": "SIZE",
+        "order": 2
+      },
+      {
+        "name": "Speed",
+        "desc": "30 feet",
+        "type": "SPEED",
+        "order": 3
+      },
+      {
+        "name": "Changeling Instincts",
+        "desc": "Thanks to your connection to the fey realm, you gain proficiency in two of the following skills of your choice: Deception, Insight, Intimidation, Performance, or Persuasion.",
+        "type": null,
+        "order": 4
+      },
+      {
+        "name": "Shape-Shifter",
+        "desc": "As an action, you can shape-shift to change your appearance and your voice. You determine the specifics of the changes, including your coloration, hair length, and sex. You can also adjust your height and weight and can change your size between Medium and Small. You can make yourself appear as a member of another playable species, though none of your game statistics change. You can't duplicate the appearance of an individual you've never seen, and you must adopt a form that has the same basic arrangement of limbs that you have. This trait doesn't change your clothing and equipment.\n\nWhile shape-shifted with this trait, you have Advantage on Charisma checks.\n\nYou stay in the new form until you take an action to revert to your true form.",
+        "type": null,
+        "order": 5
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "eberron-forge_kalashtar",
+    "name": "Kalashtar",
+    "document": "eberron-forge",
+    "desc": "",
+    "is_subspecies": false,
+    "subspecies_of": null,
+    "traits": [
+      {
+        "name": "Creature Type",
+        "desc": "Aberration",
+        "type": "CREATURE_TYPE",
+        "order": 1
+      },
+      {
+        "name": "Size",
+        "desc": "Medium (about 6–7 feet tall)",
+        "type": "SIZE",
+        "order": 2
+      },
+      {
+        "name": "Speed",
+        "desc": "30 feet",
+        "type": "SPEED",
+        "order": 3
+      },
+      {
+        "name": "Dual Mind",
+        "desc": "You have Advantage on Wisdom and Charisma saving throws.",
+        "type": null,
+        "order": 4
+      },
+      {
+        "name": "Mental Discipline",
+        "desc": "You have Resistance to Psychic damage.",
+        "type": null,
+        "order": 5
+      },
+      {
+        "name": "Mind Link",
+        "desc": "You have telepathy with a range in feet equal to 10 times your level. When you're using this trait to speak telepathically to a creature, you can take a Magic action to give that creature the ability to speak telepathically with you for 1 hour or until you take another Magic action to end this effect.",
+        "type": null,
+        "order": 6
+      },
+      {
+        "name": "Severed from Dreams",
+        "desc": "You can't be the target of the Dream spell. In addition, when you finish a Long Rest, you gain proficiency in one skill of your choice. This proficiency lasts until you finish another Long Rest.",
+        "type": null,
+        "order": 7
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "eberron-forge_khoravar",
+    "name": "Khoravar",
+    "document": "eberron-forge",
+    "desc": "",
+    "is_subspecies": false,
+    "subspecies_of": null,
+    "traits": [
+      {
+        "name": "Creature Type",
+        "desc": "Humanoid",
+        "type": "CREATURE_TYPE",
+        "order": 1
+      },
+      {
+        "name": "Size",
+        "desc": "Medium (about 4-6 feet tall) or Small (about 2-4 feet tall), chosen when you select this species",
+        "type": "SIZE",
+        "order": 2
+      },
+      {
+        "name": "Speed",
+        "desc": "30 feet",
+        "type": "SPEED",
+        "order": 3
+      },
+      {
+        "name": "Darkvision",
+        "desc": "You have Darkvision with a range of 60 feet.",
+        "type": null,
+        "order": 4
+      },
+      {
+        "name": "Fey Ancestry",
+        "desc": "You have Advantage on saving throws you make to avoid or end the Charmed condition.",
+        "type": null,
+        "order": 5
+      },
+      {
+        "name": "Fey Gift",
+        "desc": "You know the Friends cantrip. Whenever you finish a Long Rest, you can replace that cantrip with a different cantrip from the Cleric, Druid, or Wizard spell list. Intelligence, Wisdom, or Charisma is your spellcasting ability for it (choose the ability when you select this species).",
+        "type": null,
+        "order": 6
+      },
+      {
+        "name": "Lethargy Resilience",
+        "desc": "When you fail a saving throw to avoid or end the Unconscious condition, you can succeed instead. Once you use this trait, you can't do so again until you finish 1d4 Long Rests.",
+        "type": null,
+        "order": 7
+      },
+      {
+        "name": "Skill Versatility",
+        "desc": "You gain proficiency in one skill or with one tool of your choice. Whenever you finish a Long Rest, you can replace it with another skill or tool proficiency.",
+        "type": null,
+        "order": 8
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "eberron-forge_shifter",
+    "name": "Shifter",
+    "document": "eberron-forge",
+    "desc": "",
+    "is_subspecies": false,
+    "subspecies_of": null,
+    "traits": [
+      {
+        "name": "Creature Type",
+        "desc": "Humanoid",
+        "type": "CREATURE_TYPE",
+        "order": 1
+      },
+      {
+        "name": "Size",
+        "desc": "Medium (about 4-7 feet tall) or Small (about 2-4 feet tall), chosen when you select this species",
+        "type": "SIZE",
+        "order": 2
+      },
+      {
+        "name": "Speed",
+        "desc": "30 feet",
+        "type": "SPEED",
+        "order": 3
+      },
+      {
+        "name": "Bestial Instincts",
+        "desc": "Channeling the beast within, you gain proficiency in one of the following skills of your choice: Acrobatics, Athletics, Intimidation, or Survival.",
+        "type": null,
+        "order": 4
+      },
+      {
+        "name": "Darkvision",
+        "desc": "You have Darkvision with a range of 60 feet.",
+        "type": null,
+        "order": 5
+      },
+      {
+        "name": "Shifting",
+        "desc": "As a Bonus Action, you can shape-shift to assume a more bestial appearance. This transformation lasts for 1 minute or until you revert to your normal appearance as a Bonus Action. When you shift, you gain Temporary Hit Points equal to 2 times your Proficiency Bonus. You can shift a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest.\n\nWhenever you shift, you gain the benefit of one of the following options (choose when you select this species)\n\n- Beasthide. You gain 1d6 additional Temporary Hit Points. While shifted, you have a +1 bonus to your Armor Class.\n\n- Longtooth. When you shift and as a Bonus Action on your other turns while shifted, you can use your elongated fangs to make an Unarmed Strike. If you hit with this Unarmed Strike and deal damage, you can deal Piercing damage equal to 1d6 plus your Strength modifier, instead of the normal damage of an Unarmed Strike.\n\n- Swiftstride. While you are shifted, your Speed increases by 10 feet. Additionally, you can move up to 10 feet as a Reaction when a creature ends its turn within 5 feet of you. This reactive movement doesn't provoke Opportunity Attacks.\n\n- Wildhunt. While shifted, you have Advantage on Wisdom checks. Additionally, no creature within 30 feet of you can have Advantage on an attack roll against you unless you have the Incapacitated condition.",
+        "type": null,
+        "order": 6
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  },
+  {
+    "key": "eberron-forge_warforged",
+    "name": "Warforged",
+    "document": "eberron-forge",
+    "desc": "",
+    "is_subspecies": false,
+    "subspecies_of": null,
+    "traits": [
+      {
+        "name": "Creature Type",
+        "desc": "Construct",
+        "type": "CREATURE_TYPE",
+        "order": 1
+      },
+      {
+        "name": "Size",
+        "desc": "Medium (about 6-8 feet tall) or Small (about 3-4 feet tall), chosen when you select this species",
+        "type": "SIZE",
+        "order": 2
+      },
+      {
+        "name": "Speed",
+        "desc": "30 feet",
+        "type": "SPEED",
+        "order": 3
+      },
+      {
+        "name": "Construct Resilience",
+        "desc": "You have Resistance to Poison damage. You also have Advantage on saving throws to avoid or end the Poisoned condition.",
+        "type": null,
+        "order": 4
+      },
+      {
+        "name": "Integrated Protection",
+        "desc": "You gain a +1 bonus to your Armor Class. In addition, armor you have donned can't be removed against your will while you're alive.",
+        "type": null,
+        "order": 5
+      },
+      {
+        "name": "Sentry's Rest",
+        "desc": "You don't need to sleep, and magic can't put you to sleep. You can finish a Long Rest in 6 hours if you spend those hours in an inactive, motionless state. During this time, you appear inert but remain conscious.",
+        "type": null,
+        "order": 6
+      },
+      {
+        "name": "Specialized Design",
+        "desc": "You gain one skill proficiency and one tool proficiency of your choice.",
+        "type": null,
+        "order": 7
+      },
+      {
+        "name": "Tireless",
+        "desc": "You don't gain Exhaustion levels from dehydration, malnutrition, or suffocation.",
+        "type": null,
+        "order": 8
+      }
+    ],
+    "crossreferences": {
+      "to": []
+    }
+  }
+]

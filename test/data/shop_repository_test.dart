@@ -104,7 +104,6 @@ void main() {
 
   group('satin alma', () {
     setUp(() async {
-      await shops.openOnly(shopId);
       await shops.addItem(
         shopId: shopId,
         itemKey: await itemKeyNamed('Longsword'),
@@ -145,7 +144,7 @@ void main() {
       );
 
       expect(result, isA<PurchaseFailed>());
-      expect((result as PurchaseFailed).reason, contains('notEnoughGold'));
+      expect((result as PurchaseFailed).reason, PurchaseFailure.notEnoughGold);
 
       // Altin ve stok dokunulmamis olmali.
       expect((await characters.find('vex'))!.coinsCp, 100);
@@ -165,7 +164,7 @@ void main() {
         quantity: 5,
       );
       expect(result, isA<PurchaseFailed>());
-      expect((result as PurchaseFailed).reason, contains('onlyNLeft'));
+      expect((result as PurchaseFailed).reason, PurchaseFailure.onlyNLeft);
     });
 
     test('stok bitince tukendi der', () async {
@@ -173,7 +172,7 @@ void main() {
       await shops.purchase(characterId: 'vex', stockId: id, quantity: 2);
 
       final result = await shops.purchase(characterId: 'vex', stockId: id);
-      expect((result as PurchaseFailed).reason, contains('soldOut'));
+      expect((result as PurchaseFailed).reason, PurchaseFailure.soldOut);
     });
 
     test('kapali magazadan alisveris yapilamaz', () async {
@@ -184,23 +183,8 @@ void main() {
         stockId: await stockId(),
       );
       expect(result, isA<PurchaseFailed>());
-      expect((result as PurchaseFailed).reason, contains('shopClosed'));
+      expect((result as PurchaseFailed).reason, PurchaseFailure.shopClosed);
       expect((await characters.find('vex'))!.coinsCp, 10000);
-    });
-
-    test('haritadan erisilebilir acik magazadan alisveris yapilir', () async {
-      // Direkt panel magazasi DEGIL (openOnly yok) ama haritadan
-      // erisilebilir ve kapali degil → satin alma calismali.
-      await shops.openOnly(null);
-      await shops.update(shopId, mapAccessible: true);
-
-      final result = await shops.purchase(
-        characterId: 'vex',
-        stockId: await stockId(),
-      );
-      expect(result, isA<PurchaseOk>());
-      expect((result as PurchaseOk).totalCp, 1500);
-      expect((await characters.find('vex'))!.coinsCp, 8500);
     });
 
     test('sinirsiz stok azalmaz', () async {
@@ -220,17 +204,6 @@ void main() {
       expect((result as PurchaseOk).totalCp, 3000);
       expect((await characters.find('vex'))!.coinsCp, 7000);
     });
-  });
-
-  test('ayni anda tek magaza acik kalir', () async {
-    final second = await shops.create(name: 'Simyaci');
-
-    await shops.openOnly(shopId);
-    expect((await shops.openShop())!.id, shopId);
-
-    await shops.openOnly(second);
-    final open = await shops.openShop();
-    expect(open!.id, second, reason: 'onceki magaza kapanmaliydi');
   });
 
   test('kendi esyani yaratip magazaya koyabilirsin', () async {

@@ -41,9 +41,3 @@ final shopEntriesProvider = FutureProvider.family<List<ShopEntry>, String>((
   ref.watch(shopStockProvider(shopId));
   return ref.watch(shopRepositoryProvider).entries(shopId);
 });
-
-/// Su an oyunculara acik olan magaza (varsa).
-final openShopProvider = FutureProvider<Shop?>((ref) async {
-  final shops = await ref.watch(shopsProvider.future);
-  return shops.where((s) => s.openToPlayers).firstOrNull;
-});
