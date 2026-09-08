@@ -2052,5 +2052,15 @@
   "exportJson": "Campaign → JSON",
   "exportMarkdownType": "Markdown",
   "exportJsonType": "JSON",
-  "exportDone": "Exported."
+  "exportDone": "Exported.",
+  "worldGraphLinked": "{a} ↔ {b} linked",
+  "worldGraphRetyped": "{a} ↔ {b} bond type changed",
+  "worldGraphShow": "Show",
+  "worldGraphKindLocations": "Places",
+  "worldGraphKindNpcs": "NPCs",
+  "worldGraphKindFactions": "Factions",
+  "worldGraphFocus": "Focus on this",
+  "worldGraphFocusClear": "Show whole graph",
+  "worldGraphFocusOn": "Focused: {name}",
+  "worldGraphFind": "Find a node"
 }

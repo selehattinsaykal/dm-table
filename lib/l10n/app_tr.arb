@@ -2718,5 +2718,15 @@
   "exportJson": "Kampanya → JSON",
   "exportMarkdownType": "Markdown",
   "exportJsonType": "JSON",
-  "exportDone": "Dışa aktarıldı."
+  "exportDone": "Dışa aktarıldı.",
+  "worldGraphLinked": "{a} ↔ {b} bağlandı",
+  "worldGraphRetyped": "{a} ↔ {b} bağ türü değişti",
+  "worldGraphShow": "Göster",
+  "worldGraphKindLocations": "Yerler",
+  "worldGraphKindNpcs": "NPC’ler",
+  "worldGraphKindFactions": "Fraksiyonlar",
+  "worldGraphFocus": "Buna odaklan",
+  "worldGraphFocusClear": "Tüm ağı göster",
+  "worldGraphFocusOn": "Odak: {name}",
+  "worldGraphFind": "Düğüm bul"
 }

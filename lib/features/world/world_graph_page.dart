@@ -7,12 +7,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../app/undo.dart';
+
 import '../../app/theme.dart';
 import '../../data/db/database.dart';
 import '../../l10n/app_localizations.dart';
 import 'bond_type.dart';
 import 'bond_types_settings.dart';
 import 'faction_detail_page.dart';
+import 'graph_interaction.dart';
 import 'graph_simulation.dart';
 import 'location_page.dart';
 import 'npc_detail_page.dart';
@@ -81,18 +84,47 @@ class _WorldGraphState extends ConsumerState<WorldGraph>
   double _scale = 1;
   bool _centered = false;
 
+  /// Ekranda o an basili olan isaretciler (dokunmatik parmaklar).
+  ///
+  /// Ikiden fazlasini izlemiyoruz: iki parmak sikistirma (zoom), biri
+  /// surukleme. Ucuncu parmak yok sayilir.
+  final _pointers = <int, Offset>{};
+
+  /// Sikistirma baslangici; null ise sikistirma yok.
+  double? _pinchStartSpan;
+  double _pinchStartScale = 1;
+  Offset _pinchStartWorld = Offset.zero;
+
+  /// Suren basma-surukleme-birakma dizisi; bosta null.
+  ///
+  /// Dokunus/surukleme karari BURADA degil, `graph_interaction.dart` icinde
+  /// -- saf ve test edilebilir olmasi icin (bkz. o dosyanin basligi).
+  GraphPointerSession? _session;
+
   String? _dragId;
   Offset _dragTargetWorld = Offset.zero;
-  bool _dragMoved = false;
   bool _longPressed = false;
   Offset _lastScreen = Offset.zero;
-  bool _panning = false;
   Timer? _longPressTimer;
 
   bool _linkMode = false;
   String? _linkFirst;
   String _bondCode = 'friendship';
   Offset? _hoverScreen;
+
+  /// Grafikte gorunen dugum turleri.
+  ///
+  /// Uc tur birden cizilince (yer + NPC + orgut) orta buyuklukte bir
+  /// kampanyada ag okunmaz hale geliyor. Filtre bir GORUNUM ayari: hicbir sey
+  /// silmiyor, yalnizca o anda bakilan katmani secmeye yariyor.
+  final Set<String> _visibleKinds = {'location', 'npc', 'faction'};
+
+  /// Odaklanilan dugum; null ise butun ag.
+  ///
+  /// Odakta yalnizca bu dugum ve DOGRUDAN komsulari cizilir. "Bu orgutun
+  /// eli nerelere uzaniyor" sorusu yuz dugumluk bir agda gozle
+  /// cevaplanamiyordu.
+  String? _focusId;
 
   var _bonds = <BondType>[];
   final _bondColor = <String, Color>{};
@@ -345,11 +377,20 @@ class _WorldGraphState extends ConsumerState<WorldGraph>
       Offset((s.dx - _pan.dx) / _scale, (s.dy - _pan.dy) / _scale);
 
   String? _hitNode(Offset world) {
-    for (final id in _ordered.reversed) {
+    // EN YAKIN dugum seciliyor, ilk isabet eden degil: dokunma hedefleri
+    // uzaklasmis bir grafikte cakisabiliyor ve o zaman cizim sirasi
+    // "hangisine dokundum" sorusunu belirliyordu.
+    String? best;
+    var bestDistance = double.infinity;
+    for (final id in _ordered) {
       final n = _nodes[id]!;
-      if ((world - Offset(n.x, n.y)).distance <= _radius(id)) return id;
+      final distance = (world - Offset(n.x, n.y)).distance;
+      if (distance > graphHitRadius(_radius(id), _scale)) continue;
+      if (distance >= bestDistance) continue;
+      bestDistance = distance;
+      best = id;
     }
-    return null;
+    return best;
   }
 
   WorldLink? _hitEdge(Offset world) {
@@ -374,6 +415,18 @@ class _WorldGraphState extends ConsumerState<WorldGraph>
   // --- Isaretci -----------------------------------------------------------
 
   void _onPointerDown(PointerDownEvent e) {
+    _pointers[e.pointer] = e.localPosition;
+
+    // Ikinci parmak: sikistirma baslar, suren surukleme/dokunus IPTAL olur.
+    // Iptal sart -- yoksa iki parmakla yakinlastirmak once bir dugumu
+    // suruklemis olurdu ve parmagini kaldirinca dugum orada kalirdi.
+    if (_pointers.length == 2) {
+      _cancelSession();
+      _beginPinch();
+      return;
+    }
+    if (_pointers.length > 2) return;
+
     final world = _toWorld(e.localPosition);
     _lastScreen = e.localPosition;
     _longPressed = false;
@@ -387,77 +440,109 @@ class _WorldGraphState extends ConsumerState<WorldGraph>
       return;
     }
 
-    // Sol tık: sürüklemeye başla veya pan
-    if (hitId != null) {
-      _dragId = hitId;
-      _dragMoved = false;
-      _dragTargetWorld = world;
-      _nodes[hitId]!.pinned = true;
-      _longPressTimer?.cancel();
+    _session = GraphPointerSession(
+      startScreen: e.localPosition,
+      kind: e.kind,
+      nodeId: hitId,
+    );
+
+    if (hitId == null) return;
+
+    _dragId = hitId;
+    _dragTargetWorld = world;
+    _nodes[hitId]!.pinned = true;
+    _longPressTimer?.cancel();
+    // BAGLAMA MODUNDA uzun basma menusu YOK: orada basili tutmak "dikkatli
+    // nisan aliyorum" demek, "menu ac" demek degil. Menu aciliverince
+    // secim de kayboluyordu.
+    if (!_linkMode) {
       _longPressTimer = Timer(const Duration(milliseconds: 500), () {
-        if (_dragId == hitId && !_dragMoved) {
+        if (_dragId == hitId && !(_session?.moved ?? true)) {
           _longPressed = true;
           _releaseDrag(persist: false);
           _showNodeMenu(hitId, e.localPosition);
         }
       });
-      _wake();
-    } else {
-      _panning = true;
     }
+    _wake();
   }
 
   void _onPointerMove(PointerMoveEvent e) {
+    if (_pointers.containsKey(e.pointer)) {
+      _pointers[e.pointer] = e.localPosition;
+    }
+    if (_pinchStartSpan != null) {
+      _updatePinch();
+      return;
+    }
+
     final delta = e.localPosition - _lastScreen;
     _lastScreen = e.localPosition;
-    if (_dragId != null) {
-      if (!_dragMoved && delta.distance > 3) {
-        _dragMoved = true;
-        _longPressTimer?.cancel();
-      }
-      _dragTargetWorld = _toWorld(e.localPosition);
-      _wake();
-    } else if (_panning) {
-      _pan += delta;
-      _repaint.value++;
+
+    final session = _session;
+    if (session == null) return;
+    session.update(e.localPosition);
+    if (session.moved) _longPressTimer?.cancel();
+
+    switch (session.gesture) {
+      case GraphGesture.dragNode:
+        _dragTargetWorld = _toWorld(e.localPosition);
+        _wake();
+      case GraphGesture.panCanvas:
+        _pan += delta;
+        _repaint.value++;
+      case GraphGesture.pending:
+        // Esik asilmadi: hicbir sey yapma. Baglama modunda lastik bandin
+        // parmagi izlemesi icin yine de yeniden ciziyoruz (dokunmatikte
+        // `onHover` hic gelmiyor).
+        if (_linkMode && _linkFirst != null) {
+          _hoverScreen = e.localPosition;
+          _repaint.value++;
+        }
     }
   }
 
   void _onPointerUp(PointerUpEvent e) {
-    _longPressTimer?.cancel();
-    if (_longPressed) {
-      _longPressed = false;
-      _panning = false;
+    _pointers.remove(e.pointer);
+    if (_pinchStartSpan != null) {
+      // Bir parmak kalkti: sikistirma biter. Kalan parmak YENI bir surukleme
+      // baslatmaz; kullanici parmagini kaldirip yeniden koymali. Aksi halde
+      // zoom'dan cikarken ag kayiyordu.
+      if (_pointers.length < 2) _pinchStartSpan = null;
       return;
     }
 
-    if (_dragId != null) {
-      final id = _dragId!;
-      if (_dragMoved) {
-        _releaseDrag(persist: true);
-      } else {
-        _releaseDrag(persist: false);
-        if (_linkMode) _onLinkTapNode(id);
-      }
-    } else if (_panning) {
-      _panning = false;
-      if ((e.localPosition - _lastScreen).distance < 3) {
-        final world = _toWorld(e.localPosition);
-        final edge = _hitEdge(world);
-        if (edge != null) {
-          _showEdgeMenu(edge, e.position);
-        } else if (_linkMode) {
-          setState(() => _linkFirst = null);
-        }
-      }
+    _longPressTimer?.cancel();
+    final session = _session;
+    _session = null;
+
+    if (_longPressed) {
+      _longPressed = false;
+      return;
     }
-    _panning = false;
+    if (session == null) return;
+
+    if (session.nodeId != null) {
+      // Surukleme yalnizca esik ASILDIYSA kaydedilir; aksi halde dokunus.
+      _releaseDrag(persist: !session.isTap);
+      if (session.isTap && _linkMode) _onLinkTapNode(session.nodeId!);
+      return;
+    }
+
+    // Tuvale dokunus (kaydirma DEGIL): once kenar menusu, sonra secimi iptal.
+    if (!session.isTap) return;
+    final world = _toWorld(e.localPosition);
+    final edge = _hitEdge(world);
+    if (edge != null) {
+      _showEdgeMenu(edge, e.position);
+    } else if (_linkMode && _linkFirst != null) {
+      setState(() => _linkFirst = null);
+    }
   }
 
   void _releaseDrag({required bool persist}) {
     final id = _dragId;
     _dragId = null;
-    _dragMoved = false;
     if (id == null) return;
     final n = _nodes[id];
     if (n == null) return;
@@ -475,6 +560,49 @@ class _WorldGraphState extends ConsumerState<WorldGraph>
     }
   }
 
+  void _onPointerCancel(PointerCancelEvent e) {
+    _pointers.remove(e.pointer);
+    if (_pointers.length < 2) _pinchStartSpan = null;
+    _cancelSession();
+  }
+
+  /// Suren dokunus/surukleme dizisini iz birakmadan iptal eder.
+  void _cancelSession() {
+    _longPressTimer?.cancel();
+    _session = null;
+    _longPressed = false;
+    _releaseDrag(persist: false);
+  }
+
+  /// Iki parmak arasindaki uzaklik ve orta nokta.
+  ({double span, Offset focal})? _pinchGeometry() {
+    if (_pointers.length < 2) return null;
+    final points = _pointers.values.take(2).toList();
+    return (
+      span: (points[0] - points[1]).distance,
+      focal: (points[0] + points[1]) / 2,
+    );
+  }
+
+  void _beginPinch() {
+    final g = _pinchGeometry();
+    if (g == null || g.span < 1) return;
+    _pinchStartSpan = g.span;
+    _pinchStartScale = _scale;
+    // Iki parmagin ortasindaki DUNYA noktasi sabit kalmali: yakinlastirirken
+    // baktigin yer kaymamali.
+    _pinchStartWorld = _toWorld(g.focal);
+  }
+
+  void _updatePinch() {
+    final start = _pinchStartSpan;
+    final g = _pinchGeometry();
+    if (start == null || g == null || start < 1) return;
+    _scale = (_pinchStartScale * (g.span / start)).clamp(0.2, 3.0);
+    _pan = g.focal - _pinchStartWorld * _scale;
+    _repaint.value++;
+  }
+
   void _onSignal(PointerSignalEvent e) {
     if (e is! PointerScrollEvent) return;
     final s = e.localPosition;
@@ -485,24 +613,59 @@ class _WorldGraphState extends ConsumerState<WorldGraph>
     _repaint.value++;
   }
 
-  void _onLinkTapNode(String id) {
-    if (_linkFirst == null) {
+  Future<void> _onLinkTapNode(String id) async {
+    final firstId = _linkFirst;
+    if (firstId == null) {
       setState(() => _linkFirst = id);
-    } else if (_linkFirst == id) {
-      setState(() => _linkFirst = null);
-    } else {
-      final firstId = _linkFirst!;
-      ref
-          .read(worldRepositoryProvider)
-          .createLink(
-            firstId,
-            id,
-            xKind: _info[firstId]?.kind ?? 'location',
-            yKind: _info[id]?.kind ?? 'location',
-            type: _bondCode,
-          );
-      setState(() => _linkFirst = null);
+      return;
     }
+    if (firstId == id) {
+      setState(() => _linkFirst = null);
+      return;
+    }
+
+    final l10n = L10n.of(context);
+    final repo = ref.read(worldRepositoryProvider);
+    // Ayni cift zaten bagliysa `createLink` TUR DEGISTIRIR, yeni kenar
+    // acmaz. Kullaniciya hangisinin oldugunu soylemek gerekiyor: aksi halde
+    // "bagladim ama bir sey olmadi" hissi veriyordu.
+    final existing = await repo.findLink(firstId, id);
+    await repo.createLink(
+      firstId,
+      id,
+      xKind: _info[firstId]?.kind ?? 'location',
+      yKind: _info[id]?.kind ?? 'location',
+      type: _bondCode,
+    );
+    if (!mounted) return;
+    setState(() => _linkFirst = null);
+
+    final a = _info[firstId]?.name ?? '';
+    final b = _info[id]?.name ?? '';
+    // Geri alma: bag yeniyse silinir, var olan bir bagin turu degistiyse
+    // eski turune donulur. Ctrl+Z zaten uygulama geneli.
+    ref
+        .read(undoControllerProvider.notifier)
+        .push(
+          existing == null
+              ? l10n.worldGraphLinked(a, b)
+              : l10n.worldGraphRetyped(a, b),
+          () async => existing == null
+              ? repo.deleteLinkBetween(firstId, id)
+              : repo.updateLinkType(existing.id, existing.type),
+        );
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(
+        SnackBar(
+          content: Text(
+            existing == null
+                ? l10n.worldGraphLinked(a, b)
+                : l10n.worldGraphRetyped(a, b),
+          ),
+          duration: const Duration(seconds: 2),
+        ),
+      );
   }
 
   Future<void> _showEdgeMenu(WorldLink link, Offset globalPos) async {
@@ -539,6 +702,18 @@ class _WorldGraphState extends ConsumerState<WorldGraph>
       await repo.updateLinkType(link.id, selected.substring(5));
     }
   }
+
+  static IconData _kindIcon(String kind) => switch (kind) {
+    'npc' => Icons.face,
+    'faction' => Icons.groups_2_outlined,
+    _ => Icons.place_outlined,
+  };
+
+  static String _kindLabel(L10n l10n, String kind) => switch (kind) {
+    'npc' => l10n.worldGraphKindNpcs,
+    'faction' => l10n.worldGraphKindFactions,
+    _ => l10n.worldGraphKindLocations,
+  };
 
   Widget _dot(Color c) => Container(
     width: 12,
@@ -598,7 +773,27 @@ class _WorldGraphState extends ConsumerState<WorldGraph>
               ],
             ),
           ),
-        // 3. Düğüm boyutu (her tip için)
+        // 3. Odak: bu dugum + dogrudan komsulari
+        PopupMenuItem(
+          value: 'focus',
+          child: Row(
+            children: [
+              Icon(
+                _focusId == id
+                    ? Icons.center_focus_weak
+                    : Icons.center_focus_strong,
+                size: 18,
+              ),
+              const SizedBox(width: 8),
+              Text(
+                _focusId == id
+                    ? l10n.worldGraphFocusClear
+                    : l10n.worldGraphFocus,
+              ),
+            ],
+          ),
+        ),
+        // 4. Düğüm boyutu (her tip için)
         PopupMenuItem(
           value: 'set_radius',
           child: Row(
@@ -637,6 +832,9 @@ class _WorldGraphState extends ConsumerState<WorldGraph>
         await ref
             .read(worldRepositoryProvider)
             .updateLocation(id, graphCollapsed: !(info.collapsed));
+        break;
+      case 'focus':
+        setState(() => _focusId = _focusId == id ? null : id);
         break;
       case 'set_radius':
         await _setNodeRadius(id);
@@ -752,6 +950,56 @@ class _WorldGraphState extends ConsumerState<WorldGraph>
     }
   }
 
+  /// Tur filtresi + odak uygulanmis gorunum.
+  ///
+  /// Odak varsa yalnizca odaklanilan dugum ve DOGRUDAN komsulari kalir;
+  /// odaktaki dugum turu filtreden bagimsiz her zaman gorunur (aksi halde
+  /// odaklanip sonra turunu kapatmak bos bir ekran verirdi).
+  ({
+    List<Location> locations,
+    List<Npc> npcs,
+    List<Faction> factions,
+    List<WorldLink> links,
+  })
+  _applyView(
+    List<Location> locs,
+    List<Npc> npcs,
+    List<Faction> factions,
+    List<WorldLink> links,
+  ) {
+    final ids = visibleGraphNodes(
+      kindOf: {
+        for (final l in locs) l.id: 'location',
+        for (final n in npcs) n.id: 'npc',
+        for (final f in factions) f.id: 'faction',
+      },
+      links: [for (final l in links) (aId: l.aId, bId: l.bId)],
+      visibleKinds: _visibleKinds,
+      focusId: _focusId,
+    );
+
+    return (
+      locations: [
+        for (final l in locs)
+          if (ids.contains(l.id)) l,
+      ],
+      npcs: [
+        for (final n in npcs)
+          if (ids.contains(n.id)) n,
+      ],
+      factions: [
+        for (final f in factions)
+          if (ids.contains(f.id)) f,
+      ],
+      // Bir ucu elenen kenar cizilemez; `_reconcile` zaten atliyor ama
+      // listeyi burada temizlemek kenar isabet testini de dogru tutuyor.
+      links: [
+        for (final link in links)
+          if (ids.contains(link.aId) && ids.contains(link.bId)) link,
+      ],
+    );
+  }
+
   void _openNode(String id) {
     Navigator.of(context, rootNavigator: true).push(
       MaterialPageRoute(
@@ -803,7 +1051,17 @@ class _WorldGraphState extends ConsumerState<WorldGraph>
             bId: collapse.representative[link.bId] ?? link.bId,
           ),
     ];
-    _reconcile(locs, npcs, factions, links, collapse.counts);
+    // Tur filtresi ve odak, `_reconcile`den ONCE uygulaniyor: gizlenen bir
+    // dugum simulasyona hic girmemeli, yoksa gorunmeyen kutleler gorunen
+    // dugumleri iter ve ag "kendiliginden kayiyor" gibi durur.
+    final view = _applyView(locs, npcs, factions, links);
+    _reconcile(
+      view.locations,
+      view.npcs,
+      view.factions,
+      view.links,
+      collapse.counts,
+    );
 
     // Bag turleri (duzenlenebilir); ilk acilista varsayilanlari tohumla.
     if (!_seeded) {
@@ -833,6 +1091,10 @@ class _WorldGraphState extends ConsumerState<WorldGraph>
                 onPointerDown: _onPointerDown,
                 onPointerMove: _onPointerMove,
                 onPointerUp: _onPointerUp,
+                // Iptal edilen isaretci (sistem jesti, pencere kaybi)
+                // temizlenmezse sikistirma kilitli kalir ve grafik bir daha
+                // suruklenemez.
+                onPointerCancel: _onPointerCancel,
                 onPointerSignal: _onSignal,
                 child: MouseRegion(
                   cursor: _linkMode
@@ -885,14 +1147,44 @@ class _WorldGraphState extends ConsumerState<WorldGraph>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          FilterChip(
-            avatar: const Icon(Icons.hub_outlined, size: 18),
-            label: Text(l10n.worldGraphConnect),
-            selected: _linkMode,
-            onSelected: (v) => setState(() {
-              _linkMode = v;
-              _linkFirst = null;
-            }),
+          Wrap(
+            spacing: 6,
+            runSpacing: 6,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            children: [
+              FilterChip(
+                avatar: const Icon(Icons.hub_outlined, size: 18),
+                label: Text(l10n.worldGraphConnect),
+                selected: _linkMode,
+                onSelected: (v) => setState(() {
+                  _linkMode = v;
+                  _linkFirst = null;
+                }),
+              ),
+              // Tur filtresi: hangi katmana bakiyoruz. Kapali bir tur
+              // SILINMIYOR, yalnizca cizilmiyor.
+              for (final kind in const ['location', 'npc', 'faction'])
+                FilterChip(
+                  avatar: Icon(_kindIcon(kind), size: 18),
+                  label: Text(_kindLabel(l10n, kind)),
+                  selected: _visibleKinds.contains(kind),
+                  onSelected: (on) => setState(() {
+                    // Son acik tur kapatilamaz: bos bir grafik hicbir sey
+                    // anlatmiyor ve geri acmanin yolu da gorunmuyor.
+                    if (!on && _visibleKinds.length == 1) return;
+                    on ? _visibleKinds.add(kind) : _visibleKinds.remove(kind);
+                  }),
+                ),
+              if (_focusId != null)
+                InputChip(
+                  avatar: const Icon(Icons.center_focus_strong, size: 18),
+                  label: Text(
+                    l10n.worldGraphFocusOn(_info[_focusId]?.name ?? ''),
+                  ),
+                  onDeleted: () => setState(() => _focusId = null),
+                  deleteIcon: const Icon(Icons.close, size: 16),
+                ),
+            ],
           ),
           if (_linkMode) ...[
             const SizedBox(height: 8),

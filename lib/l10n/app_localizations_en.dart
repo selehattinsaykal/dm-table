@@ -5466,4 +5466,40 @@ class L10nEn extends L10n {
 
   @override
   String get exportDone => 'Exported.';
+
+  @override
+  String worldGraphLinked(Object a, Object b) {
+    return '$a ↔ $b linked';
+  }
+
+  @override
+  String worldGraphRetyped(Object a, Object b) {
+    return '$a ↔ $b bond type changed';
+  }
+
+  @override
+  String get worldGraphShow => 'Show';
+
+  @override
+  String get worldGraphKindLocations => 'Places';
+
+  @override
+  String get worldGraphKindNpcs => 'NPCs';
+
+  @override
+  String get worldGraphKindFactions => 'Factions';
+
+  @override
+  String get worldGraphFocus => 'Focus on this';
+
+  @override
+  String get worldGraphFocusClear => 'Show whole graph';
+
+  @override
+  String worldGraphFocusOn(Object name) {
+    return 'Focused: $name';
+  }
+
+  @override
+  String get worldGraphFind => 'Find a node';
 }

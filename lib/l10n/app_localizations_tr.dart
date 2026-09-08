@@ -5469,4 +5469,40 @@ class L10nTr extends L10n {
 
   @override
   String get exportDone => 'Dışa aktarıldı.';
+
+  @override
+  String worldGraphLinked(Object a, Object b) {
+    return '$a ↔ $b bağlandı';
+  }
+
+  @override
+  String worldGraphRetyped(Object a, Object b) {
+    return '$a ↔ $b bağ türü değişti';
+  }
+
+  @override
+  String get worldGraphShow => 'Göster';
+
+  @override
+  String get worldGraphKindLocations => 'Yerler';
+
+  @override
+  String get worldGraphKindNpcs => 'NPC’ler';
+
+  @override
+  String get worldGraphKindFactions => 'Fraksiyonlar';
+
+  @override
+  String get worldGraphFocus => 'Buna odaklan';
+
+  @override
+  String get worldGraphFocusClear => 'Tüm ağı göster';
+
+  @override
+  String worldGraphFocusOn(Object name) {
+    return 'Odak: $name';
+  }
+
+  @override
+  String get worldGraphFind => 'Düğüm bul';
 }

@@ -255,6 +255,25 @@ class WorldRepository {
         );
   }
 
+  /// Iki dugum arasindaki bagi bulur (yon fark etmez); yoksa null.
+  Future<WorldLink?> findLink(String x, String y) =>
+      (db.select(db.worldLinks)..where(
+            (t) =>
+                (t.aId.equals(x) & t.bId.equals(y)) |
+                (t.aId.equals(y) & t.bId.equals(x)),
+          ))
+          .getSingleOrNull();
+
+  /// Iki dugum arasindaki bagi siler (geri alma icin).
+  Future<void> deleteLinkBetween(String x, String y) async {
+    await (db.delete(db.worldLinks)..where(
+          (t) =>
+              (t.aId.equals(x) & t.bId.equals(y)) |
+              (t.aId.equals(y) & t.bId.equals(x)),
+        ))
+        .go();
+  }
+
   Future<void> updateLinkType(String id, String type) async {
     await (db.update(db.worldLinks)..where((t) => t.id.equals(id))).write(
       WorldLinksCompanion(type: Value(type)),

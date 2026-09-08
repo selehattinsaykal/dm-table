@@ -10104,6 +10104,66 @@ abstract class L10n {
   /// In tr, this message translates to:
   /// **'Dışa aktarıldı.'**
   String get exportDone;
+
+  /// No description provided for @worldGraphLinked.
+  ///
+  /// In tr, this message translates to:
+  /// **'{a} ↔ {b} bağlandı'**
+  String worldGraphLinked(Object a, Object b);
+
+  /// No description provided for @worldGraphRetyped.
+  ///
+  /// In tr, this message translates to:
+  /// **'{a} ↔ {b} bağ türü değişti'**
+  String worldGraphRetyped(Object a, Object b);
+
+  /// No description provided for @worldGraphShow.
+  ///
+  /// In tr, this message translates to:
+  /// **'Göster'**
+  String get worldGraphShow;
+
+  /// No description provided for @worldGraphKindLocations.
+  ///
+  /// In tr, this message translates to:
+  /// **'Yerler'**
+  String get worldGraphKindLocations;
+
+  /// No description provided for @worldGraphKindNpcs.
+  ///
+  /// In tr, this message translates to:
+  /// **'NPC’ler'**
+  String get worldGraphKindNpcs;
+
+  /// No description provided for @worldGraphKindFactions.
+  ///
+  /// In tr, this message translates to:
+  /// **'Fraksiyonlar'**
+  String get worldGraphKindFactions;
+
+  /// No description provided for @worldGraphFocus.
+  ///
+  /// In tr, this message translates to:
+  /// **'Buna odaklan'**
+  String get worldGraphFocus;
+
+  /// No description provided for @worldGraphFocusClear.
+  ///
+  /// In tr, this message translates to:
+  /// **'Tüm ağı göster'**
+  String get worldGraphFocusClear;
+
+  /// No description provided for @worldGraphFocusOn.
+  ///
+  /// In tr, this message translates to:
+  /// **'Odak: {name}'**
+  String worldGraphFocusOn(Object name);
+
+  /// No description provided for @worldGraphFind.
+  ///
+  /// In tr, this message translates to:
+  /// **'Düğüm bul'**
+  String get worldGraphFind;
 }
 
 class _L10nDelegate extends LocalizationsDelegate<L10n> {

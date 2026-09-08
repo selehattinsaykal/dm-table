@@ -6,6 +6,34 @@ All notable changes to this project are documented here. The format is based on
 
 ## [Unreleased]
 
+### Fixed
+
+- **Linking two nodes in the world graph did not work.** Four separate faults,
+  all of which looked like "it just doesn't connect", and all of which behaved
+  *correctly* when you moved a mouse slowly — which is why they survived:
+  - The drag threshold measured the distance between two consecutive move
+    events instead of the distance from where the pointer went down. A tap on
+    a touchscreen jitters more than 3 px in a single event, so it was
+    classified as a drag and the tap callback never ran: in link mode, tapping
+    a node moved it instead of selecting it.
+  - On pointer-up, "was this a tap?" compared the release position against the
+    last move position — the same value — so it was *always* true. Panning the
+    canvas in link mode therefore cleared your first selection silently.
+  - The hit radius was measured in world units, so a zoomed-out node was a
+    2–3 px target on screen. Hit testing now keeps a minimum screen-space
+    target and picks the *nearest* node rather than the first one drawn.
+  - The 500 ms long-press menu fired while you were holding still to aim,
+    which cancelled the selection. It is now suppressed in link mode.
+
+  The tap/drag decision moved into `lib/features/world/graph_interaction.dart`
+  as pure, tested logic — none of the above is visible by eye.
+
+- **The world graph could not be zoomed on a touch screen.** Only mouse-wheel
+  zoom existed, which made the graph nearly unusable on the new Android build.
+  Two-finger pinch now zooms around the point between your fingers, a second
+  finger cancels an in-progress drag instead of stranding a node, and a
+  cancelled pointer no longer leaves the gesture state stuck.
+
 ### Added
 
 - **Factions.** Guilds, cults, houses and gangs are now first-class world nodes with a kind, a goal,
@@ -26,6 +54,15 @@ All notable changes to this project are documented here. The format is based on
   JSON (characters, world, factions, bonds, quests, clocks, session log). These are *not*
   restorable and carry no media; they exist so months of notes are never locked inside this app.
   Both live next to the backup buttons.
+- **Node filtering and focus in the world graph.** Toggle places / NPCs /
+  factions to pick the layer you are looking at, or focus a node to see only
+  it and its direct neighbours — "where does this guild reach?" was not
+  answerable by eye in a hundred-node graph. Neither hides data; both are view
+  settings, and a focused node stays visible even when its own kind is off.
+- **Linking now says what it did, and is undoable.** Connecting two already
+  connected nodes changes the bond type rather than adding an edge, which used
+  to be invisible. Both outcomes now show a message and push an entry onto the
+  app-wide undo stack.
 - **Record routes.** `/npcs/<id>`, `/world/<id>`, `/quests/<id>`, `/characters/<id>`,
   `/combat/<id>`, `/shops/<id>`, `/codex/<id>` and `/npcs/faction/<id>` open the record itself.
 - **Encounters link to a location again.** The link used to live inside the battle-map table and
