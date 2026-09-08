@@ -8,6 +8,17 @@ All notable changes to this project are documented here. The format is based on
 
 ### Fixed
 
+- **Only one edge was ever drawn in the world graph.** The duplicate-edge
+  filter built its key as `'\$a|\$b|...'` — an escaped dollar sign, so the
+  string was the same constant for every edge and `Set.add` returned true only
+  for the first one. Every link after the first was silently dropped before
+  reaching the canvas: you connected two nodes, the row was written to the
+  database, and nothing changed on screen. This was the actual cause of
+  "linking doesn't work"; the gesture faults below were real but separate.
+  The collapse/dedup step is now `collapseGraphEdges` in
+  `graph_interaction.dart`, with tests — including one that only fails on the
+  *second* link, which is why a single-link test missed it.
+
 - **Linking two nodes in the world graph did not work.** Four separate faults,
   all of which looked like "it just doesn't connect", and all of which behaved
   *correctly* when you moved a mouse slowly — which is why they survived:

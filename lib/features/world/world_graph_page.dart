@@ -1037,19 +1037,14 @@ class _WorldGraphState extends ConsumerState<WorldGraph>
     final factions = ref.watch(factionsProvider).value ?? const [];
     final rawLinks = ref.watch(worldLinksProvider).value ?? const <WorldLink>[];
     // Gizli uclar atalarina baglaniyor; ayni ata cifti birden fazla kez
-    // cikarsa kenar bir kez cizilir.
-    final seen = <String>{};
+    // cikarsa kenar bir kez cizilir (bkz. `collapseGraphEdges`).
+    final collapsedEdges = collapseGraphEdges(
+      edges: [for (final l in rawLinks) (aId: l.aId, bId: l.bId, type: l.type)],
+      representative: collapse.representative,
+    );
     final links = <WorldLink>[
-      for (final link in rawLinks)
-        if (() {
-          final a = collapse.representative[link.aId] ?? link.aId;
-          final b = collapse.representative[link.bId] ?? link.bId;
-          return a != b && seen.add('\$a|\$b|\${link.type}');
-        }())
-          link.copyWith(
-            aId: collapse.representative[link.aId] ?? link.aId,
-            bId: collapse.representative[link.bId] ?? link.bId,
-          ),
+      for (final edge in collapsedEdges)
+        rawLinks[edge.index].copyWith(aId: edge.aId, bId: edge.bId),
     ];
     // Tur filtresi ve odak, `_reconcile`den ONCE uygulaniyor: gizlenen bir
     // dugum simulasyona hic girmemeli, yoksa gorunmeyen kutleler gorunen

@@ -93,6 +93,74 @@ void main() {
     });
   });
 
+  group('kenar katlama', () {
+    test('BIRDEN COK kenarin hepsi cizilir', () {
+      // GERILEME TESTI. Eleme anahtari `'\$a|\$b|...'` diye yaziliydi --
+      // Dart'ta kacirilmis dolar, yani her kenar icin AYNI sabit metin.
+      // `Set.add` yalnizca ilkinde true dondugu icin grafikte tek bir kenar
+      // gorunuyordu: kullanici bag kuruyor, veritabanina yaziliyor, ekranda
+      // hicbir sey degismiyordu ("baglanmiyor").
+      final kept = collapseGraphEdges(
+        edges: const [
+          (aId: 'a', bId: 'b', type: 'road'),
+          (aId: 'b', bId: 'c', type: 'road'),
+          (aId: 'c', bId: 'd', type: 'friendship'),
+        ],
+        representative: const {},
+      );
+
+      expect(kept, hasLength(3));
+      expect(kept.map((e) => '${e.aId}-${e.bId}'), ['a-b', 'b-c', 'c-d']);
+    });
+
+    test('katlanmis dugumun kenari gorunur atasina tasinir', () {
+      final kept = collapseGraphEdges(
+        edges: const [(aId: 'child', bId: 'other', type: 'road')],
+        representative: const {'child': 'parent'},
+      );
+
+      expect(kept.single.aId, 'parent');
+      expect(kept.single.bId, 'other');
+      // Girdi sirasi korunuyor: cagiran taraf ham kenari bu indeksle buluyor.
+      expect(kept.single.index, 0);
+    });
+
+    test('ayni ataya dusen iki kenar bir kez cizilir', () {
+      final kept = collapseGraphEdges(
+        edges: const [
+          (aId: 'child-1', bId: 'other', type: 'road'),
+          (aId: 'child-2', bId: 'other', type: 'road'),
+        ],
+        representative: const {'child-1': 'parent', 'child-2': 'parent'},
+      );
+
+      expect(kept, hasLength(1), reason: 'ust uste ayni cizgi');
+    });
+
+    test('ayni cift FARKLI turden iki kez gecebilir', () {
+      final kept = collapseGraphEdges(
+        edges: const [
+          (aId: 'a', bId: 'b', type: 'road'),
+          (aId: 'a', bId: 'b', type: 'enmity'),
+        ],
+        representative: const {},
+      );
+
+      expect(kept, hasLength(2));
+    });
+
+    test('iki ucu ayni ataya dusen kenar cizilmez', () {
+      // Katlanmis bir yerin IKI cocugu arasindaki bag, atanin kendisine
+      // giden bir dongu olurdu.
+      final kept = collapseGraphEdges(
+        edges: const [(aId: 'child-1', bId: 'child-2', type: 'road')],
+        representative: const {'child-1': 'parent', 'child-2': 'parent'},
+      );
+
+      expect(kept, isEmpty);
+    });
+  });
+
   group('gorunum: tur filtresi ve odak', () {
     const kinds = {
       'loc-1': 'location',

@@ -86,6 +86,40 @@ double graphHitRadius(double worldRadius, double scale) {
 /// Ekranda en az bu yaricap kadar dokunma hedefi.
 const double minHitRadius = 22;
 
+/// Bir kenarin katlama sonrasi hali: girdi listesindeki yeri ve duzeltilmis
+/// uclari.
+typedef CollapsedEdge = ({int index, String aId, String bId});
+
+/// Katlanmis dugumlerin kenarlarini gorunur atalarina tasir ve olusan
+/// KOPYALARI eler.
+///
+/// Katlanmis bir yerin cocuklari cizilmiyor; onlara giden kenarlar gorunur
+/// en yakin ataya tasiniyor. Iki cocuga giden iki kenar ayni ataya
+/// tasininca ust uste ayni cizgi olur, o yuzden `(a, b, tur)` uclusu bir kez
+/// gecer. Iki ucu ayni ataya dusen kenar (kardesler arasi bag) hic cizilmez.
+///
+/// **Neden ayri ve test edilir:** bu eleme `build` icinde tek satirlik bir
+/// kapali fonksiyondu ve anahtari `'\$a|\$b|\${'\$'}{link.type}'` yaziliyordu --
+/// Dart'ta kacirilmis dolar, yani her kenar icin AYNI sabit metin.
+/// `Set.add` yalnizca ilkinde `true` dondugu icin grafikte **hangi kenar
+/// olursa olsun yalnizca bir tanesi** ciziliyordu: yeni bir bag kuruluyor,
+/// veritabanina yaziliyor, ekranda hicbir sey degismiyordu.
+List<CollapsedEdge> collapseGraphEdges({
+  required List<({String aId, String bId, String type})> edges,
+  required Map<String, String> representative,
+}) {
+  final seen = <String>{};
+  final out = <CollapsedEdge>[];
+  for (final (index, edge) in edges.indexed) {
+    final a = representative[edge.aId] ?? edge.aId;
+    final b = representative[edge.bId] ?? edge.bId;
+    if (a == b) continue;
+    if (!seen.add('$a|$b|${edge.type}')) continue;
+    out.add((index: index, aId: a, bId: b));
+  }
+  return out;
+}
+
 /// Grafikte GORUNECEK dugum kimlikleri.
 ///
 /// Iki ayri suzgec ust uste biniyor ve sirasi onemli:
